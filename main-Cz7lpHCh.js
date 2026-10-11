@@ -114217,6 +114217,8 @@ className: "w-12 h-12 text-white"
         gradient: "from-amber-500 to-orange-500",
         text: _t("MAINTENANCE.FEATURES")
     }];
+    return null;
+return jsxRuntimeExports.jsx(StatusScreen, {
     return jsxRuntimeExports.jsx(StatusScreen, {
         icon: jsxRuntimeExports.jsx(Wrench, {
             className: "w-12 h-12 text-white"
