@@ -2,46 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#121212" />
     <title>Epic Gift</title>
 
-    <!-- JS fayl joylashgan manzilga mos bo'lishi kerak -->
     <base href="https://not1pmg-cell.github.io/epicdemo/" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <style>
-      * {
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-      }
+      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-      html,
-      body {
+      html, body {
         margin: 0;
         padding: 0;
         width: 100%;
         height: 100%;
         overflow-x: hidden;
-        background-color: #121212;
-        color: #ffffff;
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Helvetica, Arial, sans-serif;
+        background: #121212;
+        color: #fff;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       }
 
-      #root {
-        width: 100%;
-        min-height: 100vh;
-      }
+      #root { width: 100%; min-height: 100vh; }
 
       .boot-error {
         min-height: 100vh;
@@ -53,54 +38,30 @@
         background: #121212;
         color: #fff;
         font-size: 16px;
-        line-height: 1.5;
+        line-height: 1.6;
       }
     </style>
 
-    <!-- Telegram WebApp skripti main.js dan OLDIN bo'lishi shart -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <script>
+      window.__epicJsLoaded = false;
+
       window.addEventListener("error", function (event) {
         console.error("Global error:", event.error || event.message);
       });
 
       window.addEventListener("unhandledrejection", function (event) {
-        console.error("Unhandled promise rejection:", event.reason);
-      });
-
-      window.addEventListener("vitepreloadError", function () {
-        sessionStorage.setItem("egchunkreload", String(Date.now()));
-        window.location.reload();
+        console.error("Unhandled rejection:", event.reason);
       });
     </script>
 
-    <link
-      rel="preload"
-      as="image"
-      href="https://epicgift.app/assets/play-hub/home-hub-bg.webp"
-      fetchpriority="high"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://epicgift.app/assets/play-hub/home-card-upgrade.webp?v=5"
-      fetchpriority="high"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://epicgift.app/assets/play-hub/home-card-plinko.webp?v=5"
-      fetchpriority="high"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://epicgift.app/assets/play-hub/home-card-mines.webp?v=3"
-      fetchpriority="high"
-    />
-
-    <script type="module" crossorigin src="https://not1pmg-cell.github.io/epicdemo/main-Cz7lpHCh.js"></script>
+    <script
+      type="module"
+      crossorigin
+      src="https://not1pmg-cell.github.io/epicdemo/main-Cz7lpHCh.js"
+      onload="window.__epicJsLoaded = true"
+    ></script>
   </head>
 
   <body>
@@ -111,19 +72,21 @@
     </div>
 
     <script>
-      // Agar 8 soniyada React hech narsa chiqarmasa, foydalanuvchiga tushunarli xabar beramiz
       setTimeout(function () {
         var root = document.getElementById("root");
+        var tg = window.Telegram && window.Telegram.WebApp;
 
         if (root && root.textContent.trim() === "Epic Gift yuklanmoqda…") {
           root.innerHTML =
-            '<div class="boot-error">' +
-            "Ilova ochilmadi.<br><br>" +
-            "Iltimos, ushbu Mini App’ni Telegram ichidan oching.<br>" +
-            "Agar Telegram’da ochsangiz, bot’ning Mini App URL sozlamasini tekshiring." +
+            "<div class='boot-error'>" +
+            "<b>Diagnostika</b><br><br>" +
+            "Telegram: " + (tg ? "HA" : "YO‘Q") + "<br>" +
+            "Platform: " + (tg && tg.platform ? tg.platform : "aniqlanmadi") + "<br>" +
+            "initData: " + (tg && tg.initData ? "BOR" : "YO‘Q") + "<br>" +
+            "JS yuklandi: " + (window.__epicJsLoaded ? "HA" : "YO‘Q") + "<br>" +
             "</div>";
         }
-      }, 8000);
+      }, 6000);
     </script>
   </body>
 </html>
