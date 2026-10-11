@@ -98988,4 +98988,16119 @@ const FIXED_SEGMENT_WIDTH$1 = 80
                                             const Bn = Number(An);
                                             return Number.isFinite(Bn) ? `${Bn}%` : An
                                         }
-            
+                                        return typeof An == "number" ? `${An}%` : String(An)
+                                    }
+                                    )(yn.rarity)
+                                      , $n = yn.value ?? "â€”"
+                                      , wn = bn === fn.length - 1;
+                                    return jsxRuntimeExports.jsxs("div", {
+                                        className: `grid grid-cols-[1fr_2fr] items-stretch text-sm border-b border-white/10 ${wn ? "last:border-b-0" : ""}`,
+                                        children: [jsxRuntimeExports.jsx("span", {
+                                            className: "text-white/65 px-3 py-3 bg-[#16161f]",
+                                            children: yn.label
+                                        }), jsxRuntimeExports.jsxs("div", {
+                                            className: "flex items-center gap-2 text-white font-semibold border-l border-white/10 px-3 py-3 bg-[#0f0f14]",
+                                            children: [jsxRuntimeExports.jsx("span", {
+                                                className: "truncate",
+                                                children: $n
+                                            }), Pn && jsxRuntimeExports.jsx("span", {
+                                                className: "text-[11px] px-2 py-0.5 rounded-full bg-[#1f2b44] text-[#7eb6ff] border border-[#2f3f5f]",
+                                                children: Pn
+                                            })]
+                                        })]
+                                    }, yn.label)
+                                }
+                                )
+                            }) : jsxRuntimeExports.jsx("div", {
+                                className: "text-white/50 text-sm text-center py-4",
+                                children: Zt("common:LABELS.NO_ATTRIBUTE_DATA")
+                            })
+                        })
+                    })]
+                })
+            })
+        }
+        )()]
+    });
+    return reactDomExports.createPortal(mn, document.body)
+}
+  , FIXED_SEGMENT_WIDTH = 80
+  , SEGMENT_GAP = 4
+  , HIGHLIGHT_BG = "linear-gradient(135deg, rgba(255,210,120,0.7), rgba(255,168,58,0.6))"
+  , HIGHLIGHT_SHADOW = "0 6px 16px rgba(255,168,58,0.36), 0 0 18px rgba(255,210,120,0.45)"
+  , DEFAULT_BG = "rgba(255, 255, 255, 0.1)";
+function usePvPWinnerAnimation() {
+    return {
+        animateWinner: reactExports.useCallback( (_t, Yt, {players: Kt, winnerId: Xt, randomResult: Jt, skipScrollAnimation: Zt, remainingScrollMs: tn, gameId: nn}, an, un, dn) => {
+            if (!_t.current || !Yt.current || Kt.length === 0)
+                return () => {}
+                ;
+            const fn = _t.current
+              , hn = Yt.current;
+            if (!Kt.some(Ui => Ui.playerId === Xt))
+                return console.error("âŒ Winner not found in players:", Xt),
+                un(),
+                () => {}
+                ;
+            const En = generateProportionalCards(Kt, TOTAL_CARDS_IN_ANIMATION, FIXED_SEGMENT_WIDTH, nn, Xt)
+              , {cardIndex: gn, offsetInCard: Sn} = findWinnerCardPosition(En.length, Jt, Xt, Kt);
+            let yn = FIXED_SEGMENT_WIDTH
+              , bn = SEGMENT_GAP;
+            try {
+                const Ui = fn.children && fn.children[0];
+                if (Ui) {
+                    const Gi = Ui.getBoundingClientRect()
+                      , Ri = window.getComputedStyle(Ui)
+                      , ni = parseFloat(Ri.marginRight || "0") || 0;
+                    Gi.width > 0 && (yn = Gi.width),
+                    ni >= 0 && (bn = ni)
+                }
+            } catch {}
+            const Cn = yn + bn
+              , $n = En.length * Cn
+              , wn = gn * Cn + Sn * yn
+              , An = hn.clientWidth
+              , Bn = An / 2;
+            let Xn = -(wn - Bn);
+            const Mn = -($n - An)
+              , Wn = 0;
+            Number.isFinite(Mn) && Number.isFinite(Wn) && (Xn = Math.max(Mn, Math.min(Wn, Xn))),
+            gsapWithCSS.killTweensOf(fn),
+            gsapWithCSS.set(fn, {
+                clearProps: "transform",
+                willChange: "transform",
+                x: 0,
+                force3D: !0,
+                transformPerspective: 600
+            });
+            let hr = -1
+              , fr = 0;
+            const Cr = () => {
+                const Ui = performance.now();
+                Ui - fr < 120 || (zu.selectionChanged.isAvailable() ? zu.selectionChanged() : zu.impactOccurred.isAvailable() && zu.impactOccurred("light"),
+                fr = Ui)
+            }
+              , us = gsapWithCSS.timeline({
+                onComplete: () => {
+                    Js(),
+                    gsapWithCSS.to(fn, {
+                        opacity: 0,
+                        duration: .25,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            gsapWithCSS.set(fn, {
+                                clearProps: "transform,will-change"
+                            }),
+                            un()
+                        }
+                    })
+                }
+            });
+            let oi = 13;
+            Zt ? oi = 0 : tn !== void 0 && (oi = Math.max(.5, tn / 1e3));
+            const dr = dn !== void 0 ? Math.max(0, dn / 1e3) : 5
+              , yr = Math.min(1, dr)
+              , vr = Math.max(0, dr - yr);
+            let Sr = null;
+            const zr = () => {
+                const Gi = fn.children[gn]?.firstElementChild;
+                Gi && (Sr = Gi,
+                gsapWithCSS.to(Gi, {
+                    background: HIGHLIGHT_BG,
+                    boxShadow: HIGHLIGHT_SHADOW,
+                    filter: "saturate(1.15) brightness(1.05)",
+                    borderRadius: "18px",
+                    duration: .18,
+                    ease: "power2.out"
+                }))
+            }
+              , Js = () => {
+                Sr && (gsapWithCSS.to(Sr, {
+                    background: DEFAULT_BG,
+                    boxShadow: "none",
+                    filter: "none",
+                    duration: .12,
+                    ease: "power1.inOut",
+                    clearProps: "boxShadow,filter"
+                }),
+                Sr = null)
+            }
+            ;
+            return ( () => {
+                if (oi <= 0) {
+                    us.to(fn, {
+                        x: Xn,
+                        duration: 0,
+                        ease: "none",
+                        onComplete: () => {
+                            zr()
+                        }
+                    });
+                    return
+                }
+                const Ui = Gi => {
+                    const Ri = 1 - Math.pow(2, -10 * Gi)
+                      , ni = Math.pow(Gi, .7)
+                      , ti = Ri * .85 + ni * .15
+                      , xi = 1 - Math.pow(1 - Gi, 3.5)
+                      , vi = .55;
+                    let Bi = 0;
+                    if (Gi > vi) {
+                        const zi = (Gi - vi) / (1 - vi);
+                        Bi = zi * zi
+                    }
+                    return ti * (1 - Bi) + xi * Bi
+                }
+                ;
+                us.to(fn, {
+                    x: Xn,
+                    duration: oi,
+                    ease: Ui,
+                    onUpdate: () => {
+                        const Gi = Number(gsapWithCSS.getProperty(fn, "x")) || 0
+                          , Ri = Math.floor(Math.abs(Gi) / Cn);
+                        Ri > hr && (hr = Ri,
+                        Cr())
+                    }
+                    ,
+                    onComplete: () => {
+                        zr()
+                    }
+                })
+            }
+            )(),
+            us.to(fn, {
+                x: Xn,
+                duration: yr,
+                ease: "none"
+            }),
+            us.call( () => {
+                an()
+            }
+            ),
+            us.to(fn, {
+                x: Xn,
+                duration: vr,
+                ease: "none"
+            }),
+            () => {
+                us.kill(),
+                fn && (gsapWithCSS.killTweensOf(fn),
+                gsapWithCSS.set(fn, {
+                    clearProps: "transform,will-change,opacity"
+                })),
+                Js()
+            }
+        }
+        , [])
+    }
+}
+const MAX_PHYSICAL_CELLS = 14
+  , VISIBLE_CELLS = 7
+  , ROTATION_SPEED = 2e3
+  , usePvPPoolCarousel = ({gifts: tt, tonBets: _t=[], resetKey: Yt}) => {
+    const Kt = reactExports.useRef([])
+      , Xt = reactExports.useRef(Yt)
+      , Jt = reactExports.useRef([])
+      , Zt = reactExports.useRef([])
+      , tn = reactExports.useRef(0)
+      , nn = reactExports.useRef(typeof window < "u" ? window.innerWidth : 500);
+    reactExports.useEffect( () => {
+        if (typeof window > "u")
+            return;
+        const dn = () => {
+            nn.current = window.innerWidth
+        }
+        ;
+        return window.addEventListener("resize", dn),
+        () => window.removeEventListener("resize", dn)
+    }
+    , []);
+    const an = reactExports.useMemo( () => {
+        const dn = Kt.current;
+        let fn = !1;
+        const hn = [...tt.map(Sn => ({
+            key: `g${Sn.giftId}`,
+            content: {
+                key: `g${Sn.giftId}`,
+                gift: Sn,
+                cellType: "gift"
+            }
+        })), ..._t.map(Sn => ({
+            key: `t${Sn.playerId}`,
+            content: {
+                key: `t${Sn.playerId}`,
+                gift: null,
+                cellType: "ton",
+                tonAmount: Sn.amount,
+                tonPlayerId: Sn.playerId
+            }
+        }))]
+          , mn = new Set(hn.map(Sn => Sn.key))
+          , En = dn.some(Sn => Sn.key !== null && !mn.has(Sn.key));
+        (Xt.current !== Yt || En) && (Xt.current = Yt,
+        dn.length = 0,
+        fn = !0);
+        const gn = new Map;
+        dn.forEach( (Sn, yn) => {
+            Sn.key !== null && gn.set(Sn.key, yn)
+        }
+        );
+        for (const Sn of hn) {
+            const yn = gn.get(Sn.key);
+            if (yn !== void 0) {
+                const Cn = dn[yn];
+                Cn.cellType === "ton" && Cn.tonAmount !== Sn.content.tonAmount && (dn[yn] = Sn.content,
+                fn = !0);
+                continue
+            }
+            const bn = dn.findIndex(Cn => Cn.key === null);
+            bn !== -1 ? (dn[bn] = Sn.content,
+            gn.set(Sn.key, bn),
+            fn = !0) : dn.length < MAX_PHYSICAL_CELLS && (dn.push(Sn.content),
+            gn.set(Sn.key, dn.length - 1),
+            fn = !0)
+        }
+        for (; dn.length < VISIBLE_CELLS; )
+            dn.push({
+                key: null,
+                gift: null,
+                cellType: "placeholder"
+            }),
+            fn = !0;
+        return !fn && Zt.current.length === dn.length || (Jt.current = dn.map( (Sn, yn) => {
+            const bn = Jt.current[yn];
+            return bn && bn.cellType === Sn.cellType && bn.gift === Sn.gift && bn.tonAmount === Sn.tonAmount && bn.tonPlayerId === Sn.tonPlayerId ? bn : {
+                id: `cell-${yn}`,
+                gift: Sn.gift,
+                index: yn,
+                cellType: Sn.cellType,
+                tonAmount: Sn.tonAmount,
+                tonPlayerId: Sn.tonPlayerId
+            }
+        }
+        ),
+        Zt.current = Jt.current.slice(),
+        tn.current = Zt.current.length),
+        Zt.current
+    }
+    , [tt, _t, Yt]);
+    tn.current = an.length;
+    const un = reactExports.useCallback( (dn, fn) => {
+        const mn = tn.current || 1
+          , En = fn % mn;
+        let gn = dn - En;
+        for (; gn < -mn / 2; )
+            gn += mn;
+        for (; gn >= mn / 2; )
+            gn -= mn;
+        const Sn = 200 / (VISIBLE_CELLS - 1)
+          , yn = -60 - gn * Sn
+          , bn = nn.current
+          , Cn = Math.max(90, Math.min(130, bn * .26))
+          , Pn = yn * Math.PI / 180
+          , $n = Math.cos(Pn) * Cn
+          , wn = Math.sin(Pn) * Cn
+          , An = yn + 90
+          , Bn = gn >= -5 && gn <= VISIBLE_CELLS
+          , Xn = Bn ? 1 : 0
+          , Mn = Bn ? 1 : 0
+          , Wn = (yn + 90 + 360) % 360
+          , hr = Math.abs(Wn - 90);
+        return {
+            x: $n,
+            y: wn,
+            rotation: An,
+            scale: Mn,
+            opacity: Xn,
+            zIndex: Math.round((1 - hr / 180) * 100)
+        }
+    }
+    , []);
+    return {
+        cells: an,
+        getCellPosition: un,
+        totalItems: tt.length + _t.length
+    }
+}
+  , PvPPoolCarousel = ({gifts: tt, players: _t=[], tonBets: Yt=[], isEnabled: Kt=!0, className: Xt="", secondsRemaining: Jt, totalAmount: Zt=0, gameId: tn, gameState: nn}) => {
+    const {t: an} = useTranslation(["pvp", "common"])
+      , {cells: un, getCellPosition: dn} = usePvPPoolCarousel({
+        gifts: tt,
+        tonBets: Yt,
+        resetKey: tn
+    })
+      , fn = reactExports.useMemo( () => buildPlayerColorMap(_t, tn), [_t, tn])
+      , hn = reactExports.useMemo( () => {
+        const Wn = new Map;
+        for (const hr of _t)
+            for (const fr of hr.bet?.gifts || [])
+                fr?.giftId != null && !Wn.has(fr.giftId) && Wn.set(fr.giftId, hr.playerId);
+        return Wn
+    }
+    , [_t])
+      , mn = Wn => {
+        if (Wn.cellType === "ton" && Wn.tonPlayerId)
+            return fn.get(Wn.tonPlayerId);
+        if (Wn.cellType === "gift" && Wn.gift) {
+            const hr = hn.get(Wn.gift.giftId);
+            return hr ? fn.get(hr) : void 0
+        }
+    }
+      , En = reactExports.useRef(null)
+      , gn = reactExports.useRef(null)
+      , Sn = reactExports.useRef(null)
+      , yn = reactExports.useRef(null)
+      , bn = reactExports.useRef(0)
+      , Cn = reactExports.useRef([]);
+    reactExports.useLayoutEffect( () => {
+        const Wn = un.length
+          , hr = []
+          , fr = []
+          , Cr = []
+          , us = Sr => {
+            for (let zr = 0; zr < Wn; zr++) {
+                const Js = Cn.current[zr];
+                if (!Js)
+                    continue;
+                const Pi = dn(zr, Sr);
+                Js.style.transform = `translate(${Pi.x}px, ${Pi.y}px) rotate(${Pi.rotation - 27}deg) translate(-50%, -50%)`,
+                hr[zr] !== Pi.opacity && (Js.style.opacity = String(Pi.opacity),
+                hr[zr] = Pi.opacity),
+                fr[zr] !== Pi.zIndex && (Js.style.zIndex = String(Pi.zIndex),
+                fr[zr] = Pi.zIndex);
+                const Ui = Pi.opacity > .5 ? "auto" : "none";
+                Cr[zr] !== Ui && (Js.style.pointerEvents = Ui,
+                Cr[zr] = Ui)
+            }
+        }
+        ;
+        if (us(bn.current),
+        !Kt || Wn === 0)
+            return;
+        let oi = 0
+          , dr = performance.now();
+        const yr = 1 / ROTATION_SPEED
+          , vr = Sr => {
+            const zr = Sr - dr;
+            dr = Sr,
+            bn.current = (bn.current + yr * zr) % Wn,
+            us(bn.current),
+            oi = requestAnimationFrame(vr)
+        }
+        ;
+        return oi = requestAnimationFrame(vr),
+        () => cancelAnimationFrame(oi)
+    }
+    , [Kt, un, dn]);
+    const Pn = Wn => {
+        if (Wn === void 0)
+            return "00:00";
+        const hr = Math.max(0, Math.floor(Wn))
+          , fr = Math.floor(hr / 60)
+          , Cr = hr % 60;
+        return `${String(fr).padStart(2, "0")}:${String(Cr).padStart(2, "0")}`
+    }
+      , wn = (_t?.length || 0) >= 2
+      , An = nn === "COUNTDOWN" && Jt !== void 0 && wn
+      , Bn = nn === "DRAWING" && wn
+      , Xn = An ? Pn(Jt) : Bn ? "Live" : "Waiting"
+      , Mn = An || Bn || !wn;
+    return reactExports.useEffect( () => {
+        if (!An || !gn.current || !Sn.current) {
+            yn.current?.kill(),
+            yn.current = null;
+            return
+        }
+        yn.current?.kill();
+        const Wn = gsapWithCSS.timeline();
+        return Wn.fromTo(gn.current, {
+            scale: .9,
+            opacity: 0
+        }, {
+            scale: 1.1,
+            opacity: .16,
+            duration: .3,
+            ease: "sine.out"
+        }).to(gn.current, {
+            opacity: 0,
+            duration: .35,
+            ease: "sine.inOut"
+        }, .18),
+        yn.current = Wn,
+        () => {
+            Wn.kill()
+        }
+    }
+    , [An, Jt]),
+    jsxRuntimeExports.jsx("div", {
+        className: `relative ${Xt}`,
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "relative mx-auto",
+            style: {
+                width: "100%",
+                height: "min(230px, calc(2.5 * clamp(60px, 20vw, 90px)))",
+                overflow: "hidden"
+            },
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "absolute",
+                style: {
+                    width: "100%",
+                    height: "min(260px, calc(3.0 * clamp(60px, 20vw, 90px)))",
+                    left: "0",
+                    top: "0"
+                },
+                children: jsxRuntimeExports.jsx("div", {
+                    className: "absolute",
+                    style: {
+                        left: "37.5%",
+                        top: "min(155px, 35vw)",
+                        transform: "translate(-50%, -50%)"
+                    },
+                    children: un.map( (Wn, hr) => {
+                        const fr = dn(Wn.index, 0);
+                        return jsxRuntimeExports.jsx("div", {
+                            ref: Cr => {
+                                Cn.current[hr] = Cr
+                            }
+                            ,
+                            className: "absolute top-0 left-0",
+                            style: {
+                                transform: `translate(${fr.x}px, ${fr.y}px) rotate(${fr.rotation - 27}deg) translate(-50%, -50%)`,
+                                opacity: fr.opacity,
+                                zIndex: fr.zIndex,
+                                pointerEvents: fr.opacity > .5 ? "auto" : "none",
+                                willChange: "transform"
+                            },
+                            children: jsxRuntimeExports.jsx(CarouselCell, {
+                                cell: Wn,
+                                headerColor: mn(Wn)
+                            })
+                        }, Wn.id)
+                    }
+                    )
+                })
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "absolute h-[50%] max-w-[145px] left-1/2 bottom-[3.5%] transform -translate-x-1/2 z-10 text-center flex flex-col justify-between",
+                style: {
+                    pointerEvents: "none"
+                },
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "mx-auto flex items-center justify-center",
+                    children: jsxRuntimeExports.jsxs("div", {
+                        ref: En,
+                        className: `relative overflow-hidden flex items-center px-2 py-1 h-8 min-w-[72px] justify-center rounded-full border transition-all duration-200 ${An ? "bg-white/15 border-white/30 text-white drop-shadow-[0_0_14px_rgba(255,255,255,0.45)] opacity-100" : Bn ? "bg-emerald-400/10 border-emerald-300/40 text-emerald-50 opacity-100" : "bg-white/5 border-transparent text-white/50 opacity-80"}`,
+                        "aria-live": "polite",
+                        "aria-hidden": !Mn,
+                        children: [jsxRuntimeExports.jsx("div", {
+                            ref: gn,
+                            className: "absolute inset-0 rounded-full bg-white/40 opacity-0 pointer-events-none",
+                            style: {
+                                willChange: "transform, opacity"
+                            }
+                        }), jsxRuntimeExports.jsx("span", {
+                            ref: Sn,
+                            className: `font-black leading-none ${An ? "text-xl md:text-3xl text-white" : Bn ? "text-sm tracking-[0.2em] uppercase" : "text-[11px] tracking-[0.18em] uppercase"}`,
+                            children: Mn ? Xn : ""
+                        })]
+                    })
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex flex-col items-center gap-1 mt-1",
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "text-white/50 text-xs font-medium uppercase tracking-wider",
+                        children: an("LABELS.TOTAL_POOL")
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center gap-1.5",
+                        children: [jsxRuntimeExports.jsx("img", {
+                            src: "/assets/images/ton_symbol.svg",
+                            alt: an("common:LABELS.TON"),
+                            className: "w-4 h-4"
+                        }), jsxRuntimeExports.jsx("span", {
+                            className: "text-white font-black text-xl",
+                            children: Zt.toFixed(2)
+                        })]
+                    }), tn && jsxRuntimeExports.jsx("div", {
+                        className: "text-white/40 text-[10px] font-medium",
+                        children: jsxRuntimeExports.jsx("div", {
+                            children: an("LABELS.GAME_ID", {
+                                id: tn.slice(-8)
+                            })
+                        })
+                    })]
+                })]
+            })]
+        })
+    })
+}
+  , CELL_SVG_PATH = "M100.734 26.4893C103.689 15.8463 97.4627 4.71573 86.576 2.84876C62.6625 -1.25217 38.1954 -0.922693 14.401 3.82068C3.56848 5.98014 -2.35576 17.2743 0.885028 27.8339L14.941 73.633C18.1818 84.1925 29.3843 89.9285 40.3556 88.6489C47.845 87.7754 55.4048 87.6736 62.915 88.3451C73.9168 89.3288 84.9608 83.2933 87.9161 72.6503L100.734 26.4893Z"
+  , CELL_MASK_SVG = `url("data:image/svg+xml,%3Csvg viewBox='-3 -2 108 94' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath d='${encodeURIComponent(CELL_SVG_PATH)}' fill='white'/%3E%3C/svg%3E")`
+  , CarouselCellComponent = ({cell: tt, headerColor: _t}) => {
+    const {t: Yt} = useTranslation(["pvp", "common"])
+      , Kt = {
+        width: "clamp(75px, 22vw, 100px)",
+        height: "clamp(77px, 20vw, 99px)",
+        WebkitMaskImage: CELL_MASK_SVG,
+        WebkitMaskSize: "100% 100%",
+        WebkitMaskRepeat: "no-repeat",
+        maskImage: CELL_MASK_SVG,
+        maskSize: "100% 100%",
+        maskRepeat: "no-repeat"
+    };
+    return tt.cellType === "placeholder" ? jsxRuntimeExports.jsxs("div", {
+        className: "bg-white/10 flex justify-center items-center text-gray-500/40 font-semibold text-base flex-col",
+        style: {
+            ...Kt,
+            userSelect: "none",
+            WebkitUserSelect: "none",
+            MozUserSelect: "none",
+            msUserSelect: "none"
+        },
+        children: [jsxRuntimeExports.jsx("div", {
+            children: Yt("LABELS.EPIC")
+        }), jsxRuntimeExports.jsx("div", {
+            children: Yt("LABELS.GIFT")
+        })]
+    }) : tt.cellType === "ton" && tt.tonAmount != null ? jsxRuntimeExports.jsxs("div", {
+        className: "flex flex-col items-center justify-center gap-0.5 px-2 bg-white/10 relative overflow-hidden",
+        style: {
+            ...Kt
+        },
+        children: [_t && jsxRuntimeExports.jsx("div", {
+            style: {
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: "7%",
+                background: _t
+            }
+        }), jsxRuntimeExports.jsx("div", {
+            className: "p-2",
+            style: {
+                width: "min(55px, 14vw)",
+                height: "min(55px, 14vw)"
+            },
+            children: jsxRuntimeExports.jsx("img", {
+                src: "/assets/images/ton_symbol.svg",
+                alt: Yt("common:LABELS.TON"),
+                className: "w-full h-full object-contain"
+            })
+        }), jsxRuntimeExports.jsx("span", {
+            className: "text-[#FAF9F6] font-bold whitespace-nowrap",
+            style: {
+                fontSize: "min(14px, 2.7vw)"
+            },
+            children: tt.tonAmount.toFixed(2)
+        })]
+    }) : tt.cellType === "gift" && tt.gift ? jsxRuntimeExports.jsxs("div", {
+        className: "overflow-hidden relative",
+        style: Kt,
+        children: [jsxRuntimeExports.jsx(GiftPreview, {
+            gift: tt.gift,
+            className: "w-full h-full",
+            imagePadding: "p-3",
+            underMotion: !0,
+            priority: !0
+        }), _t && jsxRuntimeExports.jsx("div", {
+            style: {
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: "7%",
+                background: _t,
+                zIndex: 20
+            }
+        })]
+    }) : jsxRuntimeExports.jsx("div", {
+        style: {
+            ...Kt,
+            background: "rgba(255, 0, 0, 0.1)",
+            border: "1px solid rgba(255, 0, 0, 0.3)"
+        }
+    })
+}
+  , CarouselCell = reactExports.memo(CarouselCellComponent)
+  , MODAL_DURATION_MS = 5e3
+  , PvPGameArea = ({game: tt, currentUserId: _t="me", onAnimationStateChange: Yt, onWinnerSnapshotChange: Kt}) => {
+    const [Xt,Jt] = reactExports.useState(!1)
+      , [Zt,tn] = reactExports.useState(!1)
+      , [nn,an] = reactExports.useState(null)
+      , un = reactExports.useRef(null)
+      , dn = reactExports.useRef(null)
+      , fn = reactExports.useRef( () => {}
+    )
+      , hn = reactExports.useRef(!1)
+      , mn = reactExports.useRef("WAITING")
+      , En = reactExports.useRef(!1)
+      , gn = reactExports.useRef(nn)
+      , Sn = reactExports.useRef(null)
+      , yn = reactExports.useRef(null)
+      , bn = reactExports.useRef(null)
+      , Cn = reactExports.useRef(!1)
+      , Pn = reactExports.useRef(!1)
+      , {animateWinner: $n} = usePvPWinnerAnimation()
+      , wn = reactExports.useCallback( () => {
+        yn.current && (clearTimeout(yn.current),
+        yn.current = null)
+    }
+    , []);
+    reactExports.useEffect( () => wn, [wn]),
+    reactExports.useEffect( () => {
+        gn.current = nn
+    }
+    , [nn]),
+    reactExports.useEffect( () => {
+        const yr = () => {
+            document.visibilityState === "visible" && tt?.state && (tt.state === "WAITING" || tt.state === "COUNTDOWN") && (Xt || Zt || nn) && (wn(),
+            Jt(!1),
+            tn(!1),
+            an(null),
+            Kt?.(null),
+            Yt?.(!1),
+            hn.current = !1,
+            Sn.current = null,
+            fn.current())
+        }
+        ;
+        return document.addEventListener("visibilitychange", yr),
+        () => document.removeEventListener("visibilitychange", yr)
+    }
+    , [tt?.state, Xt, Zt, nn, Kt, Yt, wn]);
+    const An = reactExports.useCallback(yr => {
+        un.current = yr.current
+    }
+    , [])
+      , Bn = reactExports.useCallback(yr => {
+        dn.current = yr.current
+    }
+    , []);
+    reactExports.useEffect( () => {
+        if (!Xt)
+            if (tt?.state === "DRAWING" && tt.provablyFair?.result !== void 0 && tt.players.length > 0) {
+                if (Sn.current === tt.gameId)
+                    return;
+                Sn.current = tt.gameId;
+                const yr = tt.animationTimeLeft ?? 0;
+                if (yr <= 0) {
+                    const Js = {
+                        gameId: tt.gameId,
+                        players: [...tt.players],
+                        winnerId: tt.winner?.playerId || "",
+                        winner: tt.winner ? {
+                            ...tt.winner
+                        } : void 0,
+                        pot: {
+                            ...tt.pot
+                        },
+                        provablyFair: tt.provablyFair ? {
+                            ...tt.provablyFair
+                        } : void 0,
+                        randomResult: tt.provablyFair.result
+                    };
+                    an(Js),
+                    Kt?.(Js);
+                    return
+                }
+                let vr, Sr;
+                yr > MODAL_DURATION_MS ? (vr = yr - MODAL_DURATION_MS,
+                Sr = MODAL_DURATION_MS) : (vr = 0,
+                Sr = yr);
+                const zr = {
+                    gameId: tt.gameId,
+                    players: [...tt.players],
+                    winnerId: tt.winner?.playerId || "",
+                    winner: tt.winner ? {
+                        ...tt.winner
+                    } : void 0,
+                    pot: {
+                        ...tt.pot
+                    },
+                    provablyFair: tt.provablyFair ? {
+                        ...tt.provablyFair
+                    } : void 0,
+                    randomResult: tt.provablyFair.result,
+                    skipScrollAnimation: vr === 0,
+                    remainingScrollMs: vr > 0 ? vr : void 0,
+                    remainingMs: Sr
+                };
+                if (vr === 0) {
+                    an(zr),
+                    tn(!0),
+                    Yt?.(!0),
+                    Kt?.(zr),
+                    wn(),
+                    yn.current = setTimeout( () => {
+                        yn.current = null,
+                        Jt(!1),
+                        tn(!1),
+                        an(null),
+                        Kt?.(null),
+                        Yt?.(!1),
+                        hn.current = !1
+                    }
+                    , Math.max(500, Sr));
+                    return
+                }
+                an(zr),
+                Jt(!0),
+                Yt?.(!0),
+                Kt?.(zr),
+                hn.current = !1
+            } else
+                (tt?.state === "WAITING" || tt?.state === "COUNTDOWN") && (Sn.current = null)
+    }
+    , [tt?.state, tt?.provablyFair?.result, tt?.players.length, tt?.winner, tt?.animationTimeLeft, Xt, Zt, Yt, Kt]),
+    reactExports.useEffect( () => {
+        const yr = (tt?.players?.length || 0) >= 2;
+        tt?.state === "COUNTDOWN" && yr && (tt?.secondsRemaining ?? 0) > 0 && tt?.gameId && bn.current !== tt.gameId && (bn.current = tt.gameId,
+        zu.notificationOccurred.isAvailable() ? zu.notificationOccurred("warning") : zu.impactOccurred.isAvailable() ? zu.impactOccurred("medium") : zu.selectionChanged.isAvailable() && zu.selectionChanged()),
+        tt?.state === "WAITING" && (bn.current = null)
+    }
+    , [tt?.state, tt?.secondsRemaining, tt?.gameId, tt?.players?.length]),
+    reactExports.useEffect( () => {
+        if (!nn)
+            return;
+        !!tt?.gameId && tt.gameId !== nn.gameId && (tt.state === "WAITING" || tt.state === "COUNTDOWN") && (wn(),
+        Jt(!1),
+        tn(!1),
+        an(null),
+        Kt?.(null),
+        Yt?.(!1))
+    }
+    , [tt?.gameId, tt?.state, nn, Kt, Yt, wn]),
+    reactExports.useEffect( () => {
+        if (Xt || Zt || nn) {
+            const yr = setTimeout( () => {
+                console.warn("âš ï¸ PvP: Failsafe cleanup after 25s"),
+                un.current && gsapWithCSS.set(un.current, {
+                    clearProps: "transform,will-change"
+                }),
+                wn(),
+                Jt(!1),
+                tn(!1),
+                an(null),
+                Kt?.(null),
+                Yt?.(!1),
+                hn.current = !1,
+                fn.current()
+            }
+            , 25e3);
+            return () => clearTimeout(yr)
+        }
+    }
+    , [Xt, Zt, nn, Kt, Yt, wn]),
+    reactExports.useEffect( () => {
+        Xt && !Cn.current && (zu.impactOccurred.isAvailable() ? zu.impactOccurred("heavy") : zu.selectionChanged.isAvailable() && zu.selectionChanged()),
+        Cn.current = Xt
+    }
+    , [Xt]),
+    reactExports.useEffect( () => {
+        Zt && !Pn.current && (zu.notificationOccurred.isAvailable() ? zu.notificationOccurred("success") : zu.impactOccurred.isAvailable() ? zu.impactOccurred("medium") : zu.selectionChanged.isAvailable() && zu.selectionChanged()),
+        Pn.current = Zt
+    }
+    , [Zt]),
+    reactExports.useEffect( () => {
+        if (Xt || Zt)
+            return;
+        const yr = tt?.state || "WAITING"
+          , vr = tt?.players.length || 0;
+        if (mn.current = yr,
+        yr === "WAITING" || vr < 2) {
+            En.current = !1;
+            return
+        }
+        yr === "COUNTDOWN" && tt?.secondsRemaining !== void 0 && vr >= 2
+    }
+    , [tt?.state, tt?.secondsRemaining, tt?.players.length, Xt, Zt]),
+    reactExports.useEffect( () => {
+        if (!(!Xt || hn.current || !nn || !un.current || !dn.current))
+            return hn.current = !0,
+            fn.current(),
+            fn.current = $n(un, dn, {
+                players: nn.players,
+                winnerId: nn.winnerId,
+                randomResult: nn.randomResult,
+                skipScrollAnimation: nn.skipScrollAnimation,
+                remainingScrollMs: nn.remainingScrollMs,
+                gameId: nn.gameId
+            }, () => {
+                gn.current?.winner ? tn(!0) : console.error("âŒ Cannot open modal - no winner in snapshot")
+            }
+            , () => {
+                Jt(!1),
+                tn(!1),
+                an(null),
+                Kt?.(null),
+                Yt?.(!1),
+                hn.current = !1
+            }
+            , nn.remainingMs),
+            () => {
+                fn.current()
+            }
+    }
+    , [Xt, nn, $n, Kt]);
+    const Xn = tt?.state || "WAITING"
+      , Mn = tt?.pot?.totalValue || 0
+      , Wn = reactExports.useMemo( () => Xt && nn ? {
+        players: nn.players,
+        winnerId: nn.winnerId,
+        gameId: nn.gameId,
+        randomResult: tt?.provablyFair?.result,
+        onStripRef: An,
+        onContainerRef: Bn,
+        isAnimating: !0,
+        isPlaceholder: !1
+    } : nn && !Xt ? {
+        players: nn.players,
+        winnerId: nn.winnerId,
+        gameId: nn.gameId,
+        randomResult: nn.randomResult,
+        onStripRef: void 0,
+        onContainerRef: void 0,
+        isAnimating: !1,
+        isPlaceholder: !1
+    } : tt?.players && tt.players.length > 0 ? {
+        players: tt.players,
+        winnerId: "",
+        gameId: tt.gameId,
+        randomResult: void 0,
+        onStripRef: void 0,
+        onContainerRef: void 0,
+        isAnimating: !1,
+        isPlaceholder: !1
+    } : {
+        players: [],
+        winnerId: "",
+        gameId: void 0,
+        randomResult: void 0,
+        onStripRef: void 0,
+        onContainerRef: void 0,
+        isAnimating: !1,
+        isPlaceholder: !0
+    }, [Xt, nn, Zt, tt?.players, tt?.gameId, tt?.provablyFair?.result, An, Bn])
+      , hr = nn ? nn.pot?.totalValue || nn.players.reduce( (yr, vr) => yr + (vr.bet?.totalValue || 0), 0) : Mn
+      , fr = reactExports.useMemo( () => nn ? nn.pot?.gifts || [] : tt?.pot?.gifts || [], [nn, tt?.pot?.gifts])
+      , Cr = reactExports.useMemo( () => nn ? nn.players : tt?.players || [], [nn, tt?.players])
+      , us = reactExports.useMemo( () => (nn ? nn.players : tt?.players || []).filter(vr => vr.bet && vr.bet.ton > 0).map(vr => ({
+        playerId: vr.playerId,
+        amount: vr.bet?.ton || 0
+    })), [nn, tt?.players])
+      , oi = reactExports.useMemo( () => ({
+        centerAlpha: .24,
+        midAlpha: Xt ? .12 : .1,
+        blur: Xt ? 5 : 9
+    }), [Xt])
+      , dr = "158, 132, 243";
+    return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsxs("div", {
+            className: "!mt-0",
+            children: [jsxRuntimeExports.jsx(PvPPoolCarousel, {
+                gifts: fr,
+                tonBets: us,
+                isEnabled: !0,
+                secondsRemaining: tt?.secondsRemaining,
+                totalAmount: hr,
+                gameId: tt?.gameId,
+                players: Cr,
+                gameState: Xn
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "h-[158px] relative overflow-hidden !mt-0",
+                style: {
+                    background: "rgba(255, 255, 255, 0.05)",
+                    borderRadius: "0px",
+                    boxShadow: "0px -26px 64px rgba(0, 0, 0, 0.55), 0px -10px 30px rgba(0, 0, 0, 0.45)",
+                    marginLeft: "calc(-1rem - var(--safe-area-left, 0px))",
+                    marginRight: "calc(-1rem - var(--safe-area-right, 0px))",
+                    width: "calc(100% + 2rem + var(--safe-area-left, 0px) + var(--safe-area-right, 0px))"
+                },
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "pointer-events-none absolute inset-0 flex items-center justify-center z-10",
+                    children: jsxRuntimeExports.jsx("div", {
+                        className: "w-[55%] max-w-[360px] h-full",
+                        style: {
+                            background: `radial-gradient(ellipse at center, rgba(${dr},${oi.centerAlpha}) 0%, rgba(${dr},${oi.midAlpha}) 40%, rgba(${dr},0) 70%)`,
+                            filter: `blur(${oi.blur}px)`
+                        }
+                    })
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "relative z-20 h-full",
+                    children: jsxRuntimeExports.jsx(PvPWinnerAnimation, {
+                        ...Wn,
+                        onComplete: () => {}
+                    })
+                })]
+            })]
+        }), Zt && nn?.winner && jsxRuntimeExports.jsx(PvPWinnerModal, {
+            winner: nn.winner,
+            pot: nn.pot,
+            provablyFair: nn.provablyFair,
+            winnerPlayer: ( () => {
+                const yr = nn.players.find(vr => vr.playerId === nn.winnerId);
+                return yr && yr.bet ? {
+                    playerId: yr.playerId,
+                    winChance: yr.bet.winChance
+                } : void 0
+            }
+            )(),
+            playersCount: nn.players.length,
+            isCurrentUser: nn.winnerId === _t,
+            gameId: nn.gameId,
+            onClose: () => {
+                tn(!1)
+            }
+        })]
+    })
+}
+;
+class HealthService {
+    static async checkHealth() {
+        try {
+            const {data: _t} = await apiClient.get("/health");
+            return _t
+        } catch (_t) {
+            if (console.error("Health check failed:", _t),
+            _t instanceof AxiosError) {
+                if (!_t.response)
+                    return {
+                        status: "error",
+                        maintenance: !0,
+                        isNetworkError: !0
+                    };
+                if (_t.response.status >= 500)
+                    return {
+                        status: "error",
+                        maintenance: !!_t.response.data?.maintenance,
+                        isNetworkError: !1
+                    }
+            }
+            return {
+                status: "ok",
+                maintenance: !1
+            }
+        }
+    }
+}
+function usePvPHighlights() {
+    const [tt,_t] = reactExports.useState(null)
+      , [Yt,Kt] = reactExports.useState(!1)
+      , [Xt,Jt] = reactExports.useState(null)
+      , Zt = reactExports.useCallback(async () => {
+        Kt(!0),
+        Jt(null);
+        try {
+            const tn = await apiClient.get("/pvp/highlights");
+            _t(tn.data || null)
+        } catch (tn) {
+            Jt(tn?.message || "Failed to fetch highlights")
+        } finally {
+            Kt(!1)
+        }
+    }
+    , []);
+    return reactExports.useEffect( () => {
+        Zt()
+    }
+    , [Zt]),
+    {
+        data: tt,
+        loading: Yt,
+        error: Xt,
+        refetch: Zt
+    }
+}
+const PvPHighlights = ({gameId: tt, freeze: _t=!1}) => {
+    const {data: Yt, loading: Kt, error: Xt, refetch: Jt} = usePvPHighlights()
+      , {t: Zt} = useTranslation(["pvp", "common"])
+      , [tn,nn] = reactExports.useState(null)
+      , an = (tn || Yt)?.last
+      , un = (tn || Yt)?.biggest
+      , dn = gn => gn == null ? "â€”" : `+${gn.toFixed(1)}`
+      , fn = reactExports.useMemo( () => !un || un.chance === void 0 || un.chance === null ? "â€”" : formatWinChance(un.chance * 100, un.participants), [un])
+      , hn = reactExports.useMemo( () => !an || an.chance === void 0 || an.chance === null ? "â€”" : formatWinChance(an.chance * 100, an.participants), [an])
+      , mn = reactExports.useRef(void 0);
+    reactExports.useEffect( () => {
+        const gn = mn.current;
+        gn !== void 0 && gn !== tt && !_t && Jt(),
+        mn.current = tt
+    }
+    , [tt, Jt, _t]),
+    reactExports.useEffect( () => {
+        !_t && Yt && nn(Yt)
+    }
+    , [Yt, _t]);
+    const En = reactExports.useRef(!1);
+    return reactExports.useEffect( () => {
+        En.current && !_t && Jt(),
+        En.current = _t
+    }
+    , [_t, Jt]),
+    jsxRuntimeExports.jsx("div", {
+        className: "max-w-md mx-auto",
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "overflow-hidden rounded",
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex flex-row items-stretch",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex-1 min-w-0 py-3 text-white w-full",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between text-sm font-semibold truncate",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            className: "truncate",
+                            children: an?.winner || (Kt ? "Loading..." : "â€”")
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "ml-2 text-[#0098EA] text-right",
+                            children: [dn(an?.amountTon), " ", Zt("common:LABELS.TON")]
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between text-[10px] text-gray-400 mt-1",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            children: Zt("LABELS.LAST_GAME")
+                        }), jsxRuntimeExports.jsx("div", {
+                            children: hn
+                        })]
+                    })]
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "w-px bg-[rgba(117,117,117,0.6)] my-2 mx-2",
+                    "aria-hidden": !0
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex-1 min-w-0 py-3 text-white w-full",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between text-sm font-semibold truncate",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            className: "truncate",
+                            children: un?.winner || (Kt ? "Loading..." : "â€”")
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "ml-2 text-[#0098EA] text-right",
+                            children: [dn(un?.amountTon), " ", Zt("common:LABELS.TON")]
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between text-[10px] text-gray-400 mt-1",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            children: Zt("LABELS.TOP_OF_THE_DAY")
+                        }), jsxRuntimeExports.jsx("div", {
+                            children: fn
+                        })]
+                    })]
+                })]
+            }), jsxRuntimeExports.jsx("div", {
+                className: "h-px bg-[rgba(255,255,255,0.12)]"
+            }), Xt && jsxRuntimeExports.jsx("div", {
+                className: "text-xs text-red-400 mt-2 px-3 py-2",
+                children: Xt
+            })]
+        })
+    })
+}
+  , usePlatform = () => {
+    const tt = he$1().tgWebAppPlatform;
+    return {
+        platform: tt,
+        isMobileTma: tt === "android" || tt === "ios"
+    }
+}
+  , Header = ({variant: tt="game", children: _t, className: Yt=""}) => {
+    const {platform: Kt, isMobileTma: Xt} = usePlatform()
+      , Jt = Xt ? Kt === "ios" ? 44 : 22 : 0;
+    return tt === "balance" ? jsxRuntimeExports.jsx("div", {
+        className: "fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[#1a1a1a] to-transparent",
+        children: jsxRuntimeExports.jsx("div", {
+            className: `max-w-md mx-auto p-4 ${Yt}`,
+            children: jsxRuntimeExports.jsx("div", {
+                className: "bg-gradient-to-r from-[#2C2C2C] to-[#363636] rounded-2xl p-4 shadow-lg",
+                children: jsxRuntimeExports.jsx("div", {
+                    className: "flex items-center justify-between",
+                    children: _t
+                })
+            })
+        })
+    }) : jsxRuntimeExports.jsx("div", {
+        className: `absolute top-4 left-0 right-0 z-30 px-4 ${Yt}`,
+        style: {
+            paddingTop: `calc(var(--safe-area-top, 0px) + ${Jt}px)`
+        },
+        children: jsxRuntimeExports.jsx("div", {
+            className: "flex items-center justify-between gap-3",
+            children: _t
+        })
+    })
+}
+;
+function avatarBadge(tt) {
+    const _t = tt != null && tt >= -1
+      , Yt = tt != null && tt >= 0 ? LEVEL_KEYS[tt] ?? null : null;
+    return {
+        show: _t,
+        tier: Yt
+    }
+}
+const SIZES = {
+    lg: {
+        circle: "w-11 h-11",
+        ring: "border-2",
+        badge: 18,
+        gem: 15,
+        hollow: 11
+    },
+    md: {
+        circle: "w-10 h-10",
+        ring: "border",
+        badge: 16,
+        gem: 13,
+        hollow: 10
+    },
+    sm: {
+        circle: "w-9 h-9",
+        ring: "border",
+        badge: 15,
+        gem: 12,
+        hollow: 9
+    }
+}
+  , AvatarButton = ({size: tt="lg"}) => {
+    const _t = useNavigate()
+      , {t: Yt} = useTranslation("common")
+      , {user: Kt, isLoading: Xt} = useUser()
+      , Jt = SIZES[tt]
+      , {show: Zt, tier: tn} = avatarBadge(Kt?.vipLevel);
+    return jsxRuntimeExports.jsxs("button", {
+        onClick: () => _t("/user/settings"),
+        "aria-label": Yt("LABELS.PROFILE"),
+        className: `relative ${Jt.circle} flex-shrink-0 active:scale-95 transition-transform`,
+        children: [jsxRuntimeExports.jsx("div", {
+            className: `w-full h-full rounded-full overflow-hidden ${Jt.ring} border-[#8774E1] hover:border-[#7B68D4] transition-colors shadow-lg hover:shadow-[0_0_20px_rgba(135,116,225,0.2)]`,
+            children: Kt?.photoUrl ? jsxRuntimeExports.jsx("img", {
+                src: Kt.photoUrl,
+                alt: "",
+                className: "w-full h-full object-cover"
+            }) : jsxRuntimeExports.jsx("div", {
+                className: "w-full h-full bg-[#363636] flex items-center justify-center text-white",
+                children: Xt ? "..." : Kt?.firstName?.charAt(0) || "?"
+            })
+        }), Zt && jsxRuntimeExports.jsx("span", {
+            className: "absolute -bottom-0.5 -right-0.5 rounded-full bg-[#242424] grid place-items-center shadow-md pointer-events-none",
+            style: {
+                width: Jt.badge,
+                height: Jt.badge
+            },
+            children: tn ? jsxRuntimeExports.jsx(TierGem, {
+                tier: tn,
+                size: Jt.gem
+            }) : jsxRuntimeExports.jsx(Gem, {
+                size: Jt.hollow,
+                strokeWidth: 2.5,
+                className: "text-white/45"
+            })
+        })]
+    })
+}
+  , BALANCE_COLOR = "rgba(255,255,255,0.95)";
+function AnimatedBalance({value: tt, className: _t, ready: Yt=!0, flash: Kt=!0}) {
+    const Xt = reactExports.useRef(null)
+      , Jt = reactExports.useRef(tt)
+      , Zt = reactExports.useRef(Yt);
+    return reactExports.useLayoutEffect( () => {
+        const tn = Xt.current;
+        if (!tn)
+            return;
+        const nn = Jt.current
+          , an = formatTonBalance(tt);
+        if (!Yt || !Zt.current) {
+            Zt.current = Yt,
+            tn.style.removeProperty("color"),
+            tn.textContent = an,
+            Jt.current = tt;
+            return
+        }
+        if (tn.style.removeProperty("color"),
+        an === formatTonBalance(nn)) {
+            tn.textContent = an,
+            Jt.current = tt;
+            return
+        }
+        tn.textContent = formatTonBalance(nn);
+        const un = {
+            v: nn
+        }
+          , dn = gsapWithCSS.to(un, {
+            v: tt,
+            duration: .6,
+            ease: "power2.out",
+            onUpdate: () => {
+                tn.textContent = formatTonBalance(un.v),
+                Jt.current = un.v
+            }
+        });
+        let fn = null;
+        return Kt && tt > nn && (fn = gsapWithCSS.fromTo(tn, {
+            color: "#4ADE80"
+        }, {
+            color: BALANCE_COLOR,
+            duration: .7,
+            ease: "power1.out",
+            clearProps: "color"
+        })),
+        () => {
+            dn.kill(),
+            fn?.kill()
+        }
+    }
+    , [tt, Yt, Kt]),
+    jsxRuntimeExports.jsx("span", {
+        ref: Xt,
+        className: _t,
+        children: formatTonBalance(tt)
+    })
+}
+const BalanceDisplay = () => {
+    const {t: tt} = useTranslation("common")
+      , _t = useNavigate()
+      , Yt = useStore(Jt => Jt.balance)
+      , Kt = useStore(Jt => Jt.balanceLoaded)
+      , Xt = useStore(Jt => Jt.balanceSilent);
+    return jsxRuntimeExports.jsxs("div", {
+        className: "relative",
+        children: [jsxRuntimeExports.jsxs("div", {
+            className: "relative flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/[0.04] backdrop-blur-2xl border border-white/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.1)]",
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "relative",
+                children: jsxRuntimeExports.jsx("div", {
+                    className: "w-6 h-6 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center shadow-[0_0.5px_0_rgba(255,255,255,0.2)_inset]",
+                    children: jsxRuntimeExports.jsx("img", {
+                        src: "/assets/images/ton_symbol.svg",
+                        alt: tt("LABELS.TON"),
+                        className: "w-4 h-4 opacity-90"
+                    })
+                })
+            }), jsxRuntimeExports.jsx(AnimatedBalance, {
+                value: Yt,
+                ready: Kt,
+                flash: !Xt,
+                className: "text-white/95 font-semibold text-base tracking-[-0.01em] antialiased tabular-nums"
+            }), jsxRuntimeExports.jsxs("button", {
+                onClick: () => _t("/topup"),
+                className: "relative w-6 h-6 rounded-xl bg-white/[0.06] border border-white/[0.08] transition-all duration-200 hover:bg-white/[0.1] active:scale-95 group shadow-[0_0.5px_0_rgba(255,255,255,0.2)_inset]",
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "flex items-center justify-center w-full h-full",
+                    children: jsxRuntimeExports.jsx(Plus, {
+                        size: 14,
+                        className: "text-white/90"
+                    })
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "absolute inset-0 rounded-xl bg-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                })]
+            })]
+        }), jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0 bg-white/[0.01] rounded-2xl blur-lg scale-110 -z-10"
+        })]
+    })
+}
+  , PvPBetDisplay = ({tonAmount: tt, gifts: _t=[], giftIconSize: Yt=24, maxGiftsToShow: Kt=25, maxGiftsPerRow: Xt, showTonIcon: Jt=!0, compact: Zt=!1}) => {
+    const {t: tn} = useTranslation(["pvp", "common"])
+      , nn = reactExports.useRef(null)
+      , an = reactExports.useRef(null)
+      , [un,dn] = reactExports.useState({
+        containerWidth: 0,
+        tonWidth: 0
+    })
+      , fn = tt > 0
+      , hn = _t.length > 0;
+    reactExports.useEffect( () => {
+        const yn = nn.current;
+        if (!yn)
+            return;
+        const bn = () => {
+            const $n = yn.clientWidth
+              , wn = an.current?.offsetWidth || 0;
+            dn(An => An.containerWidth === $n && An.tonWidth === wn ? An : {
+                containerWidth: $n,
+                tonWidth: wn
+            })
+        }
+        ;
+        bn();
+        const Cn = setTimeout(bn, 50)
+          , Pn = new ResizeObserver( () => bn());
+        return Pn.observe(yn),
+        () => {
+            clearTimeout(Cn),
+            Pn.disconnect()
+        }
+    }
+    , [Yt, tt, _t.length]);
+    const mn = reactExports.useMemo( () => {
+        const bn = Xt || 1 / 0;
+        if (!hn)
+            return {
+                visible: 0,
+                remaining: 0
+            };
+        const Cn = Math.max(un.containerWidth, 0)
+          , Pn = fn ? un.tonWidth : 0
+          , $n = Math.max(0, Cn - Pn - (fn ? 4 : 0))
+          , wn = Math.max(0, Math.floor(($n + 4) / (Yt + 4)))
+          , Bn = Math.max(1, Math.min(Kt, bn, wn === 0 ? 1 / 0 : wn));
+        if (_t.length <= Bn)
+            return {
+                visible: _t.length,
+                remaining: 0
+            };
+        const Xn = Math.max(1, Bn - 1)
+          , Mn = _t.length - Xn;
+        return {
+            visible: Xn,
+            remaining: Mn
+        }
+    }
+    , [_t, Yt, hn, fn, un.containerWidth, un.tonWidth, Xt, Kt])
+      , gn = reactExports.useMemo( () => [..._t].sort( (yn, bn) => bn.price - yn.price), [_t]).slice(0, mn.visible)
+      , Sn = mn.remaining;
+    return !fn && !hn ? null : jsxRuntimeExports.jsxs("div", {
+        ref: nn,
+        className: "flex gap-1 items-center justify-start flex-nowrap overflow-hidden",
+        children: [fn && jsxRuntimeExports.jsxs("div", {
+            ref: an,
+            className: "inline-flex flex-shrink-0 items-center gap-1 px-1.5 rounded-lg",
+            style: {
+                height: `${Yt}px`,
+                background: "linear-gradient(135deg, rgba(0, 152, 234, 0.2) 0%, rgba(0, 152, 234, 0.1) 100%)",
+                border: "1.5px solid rgba(0, 152, 234, 0.4)",
+                boxShadow: "0 2px 8px rgba(0, 152, 234, 0.2)"
+            },
+            children: [Jt && jsxRuntimeExports.jsx("img", {
+                src: "/assets/images/ton_symbol.svg",
+                alt: tn("common:LABELS.TON"),
+                className: "flex-shrink-0",
+                style: {
+                    width: `${Yt * .45}px`,
+                    height: `${Yt * .45}px`
+                }
+            }), jsxRuntimeExports.jsx("span", {
+                className: `text-[#FAF9F6] font-bold ${Zt ? "text-[10px]" : "text-xs"} whitespace-nowrap`,
+                children: tt.toFixed(2)
+            })]
+        }), hn && gn.map( (yn, bn) => jsxRuntimeExports.jsxs("div", {
+            className: "relative group rounded-lg overflow-hidden",
+            style: {
+                width: `${Yt}px`,
+                height: `${Yt}px`,
+                border: "1.5px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)"
+            },
+            children: [jsxRuntimeExports.jsx(GiftPreview, {
+                gift: yn,
+                underMotion: !0,
+                className: "w-full h-full"
+            }), jsxRuntimeExports.jsx("div", {
+                className: "absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200",
+                style: {
+                    background: "linear-gradient(135deg, rgba(0, 152, 234, 0.3) 0%, rgba(56, 189, 248, 0.2) 100%)",
+                    boxShadow: "0 0 12px rgba(0, 152, 234, 0.4)"
+                }
+            })]
+        }, yn.giftId ?? bn)), Sn > 0 && jsxRuntimeExports.jsx("div", {
+            className: "rounded-lg flex items-center justify-center",
+            style: {
+                width: `${Yt}px`,
+                height: `${Yt}px`,
+                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                border: "1.5px solid rgba(255, 255, 255, 0.15)"
+            },
+            children: jsxRuntimeExports.jsxs("span", {
+                className: "text-white/70 font-bold text-[10px]",
+                children: ["+", Sn]
+            })
+        })]
+    })
+}
+  , PvPPlayerRow = reactExports.memo( ({player: tt, playersCount: _t, isWinner: Yt, playerColor: Kt, onPlayerClick: Xt}) => {
+    const {t: Jt} = useTranslation("pvp")
+      , Zt = reactExports.useMemo( () => tt.bet?.gifts ? [...tt.bet.gifts].sort( (tn, nn) => nn.price - tn.price) : void 0, [tt.bet?.gifts]);
+    return jsxRuntimeExports.jsxs("div", {
+        className: `relative rounded-xl overflow-hidden transition-all duration-300 ${Yt ? "bg-gradient-to-br from-[#FFD700]/10 via-[#FFA500]/5 to-[#FFD700]/10  shadow-[0_0_20px_rgba(255,215,0,0.2)]" : "bg-white/10"} ${Xt ? "cursor-pointer hover:bg-white/15 active:scale-[0.99]" : ""}`,
+        role: Xt ? "button" : void 0,
+        tabIndex: Xt ? 0 : -1,
+        onClick: () => Xt?.(tt),
+        onKeyDown: tn => {
+            (tn.key === "Enter" || tn.key === " ") && Xt && (tn.preventDefault(),
+            Xt(tt))
+        }
+        ,
+        children: [Yt && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-[#FFD700]/20 to-transparent rounded-bl-full"
+            }), jsxRuntimeExports.jsx("div", {
+                className: "absolute bottom-0 left-0 w-12 h-12 bg-gradient-to-tr from-[#FFA500]/20 to-transparent rounded-tr-full"
+            })]
+        }), jsxRuntimeExports.jsx("div", {
+            className: "absolute left-0 top-0 w-[5px] h-full",
+            style: {
+                background: Yt ? "linear-gradient(180deg, #FFD700 0%, #FFA500 100%)" : Kt
+            }
+        }), jsxRuntimeExports.jsx("div", {
+            className: "p-3 relative z-10",
+            children: jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center gap-3",
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "flex-shrink-0",
+                    children: tt.photoUrl ? jsxRuntimeExports.jsx("img", {
+                        src: tt.photoUrl,
+                        alt: tt.username,
+                        className: "rounded-full border-2",
+                        style: {
+                            width: "50px",
+                            height: "50px",
+                            borderColor: Yt ? "#FFD700" : Kt
+                        }
+                    }) : jsxRuntimeExports.jsx("div", {
+                        className: "rounded-full bg-gradient-to-br from-white/10 to-white/5 border-2 flex items-center justify-center",
+                        style: {
+                            width: "50px",
+                            height: "50px",
+                            borderColor: Yt ? "#FFD700" : Kt
+                        },
+                        children: jsxRuntimeExports.jsx(User, {
+                            className: "w-6 h-6",
+                            style: {
+                                color: Yt ? "#FFD700" : Kt
+                            }
+                        })
+                    })
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex-1 min-w-0 flex flex-col gap-1.5",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center gap-2",
+                        children: [jsxRuntimeExports.jsx("p", {
+                            className: "text-white font-semibold text-sm truncate",
+                            children: tt.username
+                        }), Yt && jsxRuntimeExports.jsxs("div", {
+                            className: "flex items-center gap-1 px-1.5 py-0.5 bg-gradient-to-r from-[#FFD700] to-[#FFA500] rounded flex-shrink-0",
+                            children: [jsxRuntimeExports.jsx(Trophy, {
+                                className: "w-2.5 h-2.5 text-black flex-shrink-0"
+                            }), jsxRuntimeExports.jsx("span", {
+                                className: "text-black text-[9px] font-black uppercase",
+                                children: Jt("LABELS.WINNER")
+                            })]
+                        })]
+                    }), jsxRuntimeExports.jsx(PvPBetDisplay, {
+                        tonAmount: tt.bet?.ton ?? 0,
+                        gifts: Zt,
+                        giftIconSize: 32,
+                        maxGiftsToShow: 8,
+                        showTonIcon: !0
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex flex-col items-center gap-0.5 flex-shrink-0",
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "px-3 py-1.5 rounded-lg",
+                        children: jsxRuntimeExports.jsx("div", {
+                            className: "font-semibold text-lg leading-none",
+                            children: formatWinChance(tt.bet?.winChance ?? 0, _t)
+                        })
+                    }), jsxRuntimeExports.jsxs("span", {
+                        className: "text-white/50 text-sm font-semibold",
+                        children: [(tt.bet?.totalValue ?? 0).toFixed(2), " TON"]
+                    })]
+                })]
+            })
+        })]
+    })
+}
+);
+PvPPlayerRow.displayName = "PvPPlayerRow";
+const PvPPlayersList = reactExports.memo( ({players: tt, gameId: _t, winnerId: Yt, onPlayerClick: Kt}) => {
+    const Xt = reactExports.useMemo( () => [...tt].sort( (Zt, tn) => {
+        const nn = Zt.bet?.totalValue ?? 0;
+        return (tn.bet?.totalValue ?? 0) - nn
+    }
+    ), [tt])
+      , Jt = reactExports.useMemo( () => buildPlayerColorMap(tt, _t), [tt, _t]);
+    return tt.length === 0 ? null : jsxRuntimeExports.jsx("div", {
+        className: "space-y-2.5",
+        children: Xt.map(Zt => jsxRuntimeExports.jsx(PvPPlayerRow, {
+            player: Zt,
+            playersCount: tt.length,
+            isWinner: Yt === Zt.playerId,
+            playerColor: Jt.get(Zt.playerId) || "#6366f1",
+            onPlayerClick: Kt
+        }, Zt.playerId))
+    })
+}
+);
+PvPPlayersList.displayName = "PvPPlayersList";
+const GiftDetailModal = ({gift: tt, onClose: _t}) => {
+    const {t: Yt} = useTranslation("common")
+      , Kt = tt.giftType === "deposited"
+      , Xt = tt.attributes?.num ?? tt.giftId
+      , Jt = tt.attributes?.backdrop || "Random"
+      , Zt = [];
+    if (tt.attributes) {
+        const nn = tt.attributes
+          , {model: an, symbol: un, backdrop: dn, modelRarity: fn, symbolRarity: hn, backdropRarity: mn} = nn;
+        [{
+            label: "Model",
+            value: an,
+            rarity: fn
+        }, {
+            label: "Symbol",
+            value: un,
+            rarity: hn
+        }, {
+            label: "Backdrop",
+            value: dn,
+            rarity: mn
+        }].forEach(gn => {
+            gn.value !== void 0 && gn.value !== null && gn.value !== "" && Zt.push(gn)
+        }
+        )
+    }
+    const tn = jsxRuntimeExports.jsx("div", {
+        className: "fixed inset-0 z-[1200] bg-black/80 backdrop-blur-sm flex items-end justify-center",
+        style: {
+            paddingBottom: "env(safe-area-inset-bottom, 0px)"
+        },
+        onClick: _t,
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "w-full max-w-md bg-[#0f0f14] rounded-t-3xl shadow-2xl overflow-y-auto animate-slide-up",
+            style: {
+                maxHeight: "calc(92vh + env(safe-area-inset-bottom, 0px))",
+                touchAction: "pan-y",
+                WebkitOverflowScrolling: "touch"
+            },
+            onClick: nn => nn.stopPropagation(),
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "relative bg-gradient-to-b from-[#1b1b27] to-[#0f0f14]",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between p-4",
+                    children: [jsxRuntimeExports.jsx("div", {
+                        children: jsxRuntimeExports.jsx("p", {
+                            className: "text-white font-semibold text-lg",
+                            children: tt.name
+                        })
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: _t,
+                        className: "w-9 h-9 rounded-full bg-[#1f1f29] hover:bg-[#2a2a36] transition-colors flex items-center justify-center",
+                        children: jsxRuntimeExports.jsx(X, {
+                            className: "w-5 h-5 text-white"
+                        })
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "px-12",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "relative rounded-2xl overflow-hidden border border-white/10 shadow-inner",
+                        children: [jsxRuntimeExports.jsx(GiftPreview, {
+                            gift: tt,
+                            animate: "hero",
+                            priority: !0,
+                            className: "aspect-square"
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "absolute top-3 right-3 px-3 py-1 rounded-full bg-black/75 border border-white/10 flex items-center gap-1.5 shadow-lg",
+                            children: [jsxRuntimeExports.jsx("img", {
+                                src: "/assets/images/ton_symbol.svg",
+                                alt: Yt("LABELS.TON"),
+                                className: "w-3.5 h-3.5"
+                            }), jsxRuntimeExports.jsxs("span", {
+                                className: "text-white font-bold text-sm drop-shadow",
+                                children: [tt.price.toFixed(2), " TON"]
+                            })]
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "mt-3 text-center space-y-1",
+                        children: [jsxRuntimeExports.jsx("p", {
+                            className: "text-white font-semibold text-2xl leading-tight",
+                            children: tt.name
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "flex items-center justify-center gap-2 text-white/70 text-sm",
+                            children: Kt ? jsxRuntimeExports.jsxs("span", {
+                                className: "px-2 py-1 rounded-full bg-white/10 border border-white/10 text-white/80",
+                                children: ["#", Xt]
+                            }) : jsxRuntimeExports.jsx("span", {
+                                className: "px-2 py-1 rounded-full bg-white/10 border border-white/10 text-white/80",
+                                children: Jt === "Random" ? "Random" : Jt
+                            })
+                        })]
+                    })]
+                })]
+            }), jsxRuntimeExports.jsx("div", {
+                className: "p-4 space-y-4",
+                style: {
+                    maxHeight: "calc(92vh - 300px)"
+                },
+                children: jsxRuntimeExports.jsx("div", {
+                    className: "bg-[#0c0c12] rounded-2xl border border-white/10 overflow-hidden shadow-inner",
+                    children: Zt.length > 0 ? jsxRuntimeExports.jsx("div", {
+                        children: Zt.map( (nn, an) => {
+                            const dn = (mn => {
+                                if (mn == null || mn === "")
+                                    return null;
+                                if (typeof mn == "string") {
+                                    if (mn.includes("%"))
+                                        return mn;
+                                    const En = Number(mn);
+                                    return Number.isFinite(En) ? `${En}%` : mn
+                                }
+                                return typeof mn == "number" ? `${mn}%` : String(mn)
+                            }
+                            )(nn.rarity)
+                              , fn = nn.value ?? "â€”"
+                              , hn = an === Zt.length - 1;
+                            return jsxRuntimeExports.jsxs("div", {
+                                className: `grid grid-cols-[1fr_2fr] items-stretch text-sm border-b border-white/10 ${hn ? "last:border-b-0" : ""}`,
+                                children: [jsxRuntimeExports.jsx("span", {
+                                    className: "text-white/65 px-3 py-3 bg-[#16161f]",
+                                    children: nn.label
+                                }), jsxRuntimeExports.jsxs("div", {
+                                    className: "flex items-center gap-2 text-white font-semibold border-l border-white/10 px-3 py-3 bg-[#0f0f14]",
+                                    children: [jsxRuntimeExports.jsx("span", {
+                                        className: "truncate",
+                                        children: fn
+                                    }), dn && jsxRuntimeExports.jsx("span", {
+                                        className: "text-[11px] px-2 py-0.5 rounded-full bg-[#1f2b44] text-[#7eb6ff] border border-[#2f3f5f]",
+                                        children: dn
+                                    })]
+                                })]
+                            }, nn.label)
+                        }
+                        )
+                    }) : jsxRuntimeExports.jsx("div", {
+                        className: "text-white/50 text-sm text-center py-4",
+                        children: Yt("LABELS.NO_ATTRIBUTE_DATA")
+                    })
+                })
+            })]
+        })
+    });
+    return reactDomExports.createPortal(tn, document.body)
+}
+  , PvPBetDetailsModal = ({player: tt, playersCount: _t, gameId: Yt, onClose: Kt}) => {
+    const {t: Xt} = useTranslation(["pvp", "common"])
+      , Jt = tt.bet.gifts ?? []
+      , Zt = [...tt.bet.ton > 0 ? [{
+        type: "ton",
+        amount: tt.bet.ton
+    }] : [], ...Jt]
+      , [tn,nn] = reactExports.useState(null)
+      , an = dn => {
+        if ("type" in dn && dn.type === "ton") {
+            const gn = dn.amount;
+            return jsxRuntimeExports.jsx("div", {
+                className: "bg-gradient-to-br from-[#8774E1] to-[#7B68D4] rounded-2xl p-[1px] h-full",
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "bg-[#111117] rounded-2xl h-full flex flex-col gap-2 relative overflow-hidden",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "relative aspect-square overflow-hidden bg-gradient-to-br from-[#2a2a30] to-[#1b1b22]",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            className: "absolute inset-0 bg-gradient-to-br from-[#8774E1] to-[#7B68D4] opacity-15 blur-xl"
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "absolute inset-0 bg-gradient-to-tl from-[#8774E1] to-transparent opacity-10 blur-lg"
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "relative z-10 w-full h-full flex items-center justify-center p-6",
+                            children: jsxRuntimeExports.jsx("img", {
+                                src: "/assets/images/ton_symbol.svg",
+                                alt: Xt("common:LABELS.TON"),
+                                className: "w-full h-full object-contain"
+                            })
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "absolute top-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-lg border border-white/10 flex items-center gap-1 z-20",
+                            children: [jsxRuntimeExports.jsx("span", {
+                                className: "text-white font-semibold text-sm",
+                                children: gn.toFixed(2)
+                            }), jsxRuntimeExports.jsx("img", {
+                                src: "/assets/images/ton_symbol.svg",
+                                alt: Xt("common:LABELS.TON"),
+                                className: "w-3.5 h-3.5"
+                            })]
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex flex-col items-center text-center gap-1 pb-2",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-gradient-to-r from-sky-500/15 to-cyan-500/15 border border-sky-400/40 backdrop-blur-sm text-xs font-semibold text-sky-100",
+                            children: Xt("LABELS.TON_BET")
+                        }), jsxRuntimeExports.jsx("p", {
+                            className: "text-white font-semibold text-sm truncate w-full",
+                            children: Xt("common:LABELS.TON")
+                        })]
+                    })]
+                })
+            }, "ton-bet-card")
+        }
+        const fn = dn
+          , hn = fn.attributes?.backdrop
+          , mn = hn ? getBackdropByName(hn) : null
+          , En = fn.price || 0;
+        return jsxRuntimeExports.jsx("div", {
+            className: "bg-gradient-to-br from-[#8774E1] to-[#7B68D4] rounded-2xl p-[1px] h-full cursor-pointer",
+            onClick: () => nn(fn),
+            children: jsxRuntimeExports.jsxs("div", {
+                className: "bg-[#111117] rounded-2xl h-full flex flex-col gap-2 relative overflow-hidden",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "relative aspect-square overflow-hidden",
+                    children: [jsxRuntimeExports.jsx(GiftPreview, {
+                        gift: fn,
+                        className: "w-full h-full"
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "absolute top-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-lg border border-white/10 flex items-center gap-1 z-20",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-white font-semibold text-sm",
+                            children: En.toFixed(2)
+                        }), jsxRuntimeExports.jsx("img", {
+                            src: "/assets/images/ton_symbol.svg",
+                            alt: Xt("common:LABELS.TON"),
+                            className: "w-3.5 h-3.5"
+                        })]
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex flex-col items-center text-center gap-1",
+                    children: [( () => {
+                        const gn = fn.giftType === "deposited" ? fn.attributes?.num || fn.attributes?.symbol || fn.attributes?.model || String(fn.giftId) : null;
+                        return gn ? jsxRuntimeExports.jsxs("span", {
+                            className: "inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-gradient-to-r from-emerald-500/15 to-teal-500/15 border border-emerald-400/40 backdrop-blur-sm text-xs font-semibold text-emerald-200",
+                            children: ["#", gn]
+                        }) : mn?.hex ? jsxRuntimeExports.jsxs("span", {
+                            className: "inline-flex items-center gap-1 px-2 py-1 rounded-lg border backdrop-blur-sm text-xs font-semibold",
+                            style: {
+                                background: "#2C2C2C",
+                                color: mn.hex.textColor,
+                                borderColor: `${mn.hex.centerColor}40`
+                            },
+                            children: [jsxRuntimeExports.jsx("span", {
+                                className: "w-3 h-3 rounded-full shadow-sm",
+                                style: {
+                                    background: giftBackdropGradient(mn.hex.centerColor, mn.hex.edgeColor)
+                                }
+                            }), mn.name]
+                        }) : jsxRuntimeExports.jsx("span", {
+                            className: "inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-gradient-to-r from-[#8774E1]/20 to-[#7B68D4]/20 border border-[#8774E1]/30 backdrop-blur-sm text-xs font-semibold text-[#8774E1]",
+                            children: Xt("LABELS.RANDOM")
+                        })
+                    }
+                    )(), jsxRuntimeExports.jsx("p", {
+                        className: "text-white font-semibold text-sm truncate w-full mb-2",
+                        children: fn.name
+                    })]
+                })]
+            })
+        }, `${fn.giftId}-${fn.name}`)
+    }
+      , un = jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "fixed inset-0 z-[1100] bg-black/80 backdrop-blur-sm flex items-end justify-center",
+            style: {
+                paddingBottom: "env(safe-area-inset-bottom, 0px)"
+            },
+            onClick: Kt,
+            children: jsxRuntimeExports.jsxs("div", {
+                className: "w-full max-w-md bg-[#1E1E1E] rounded-t-2xl shadow-2xl overflow-hidden animate-slide-up",
+                style: {
+                    maxHeight: "calc(90vh + env(safe-area-inset-bottom, 0px))"
+                },
+                onClick: dn => dn.stopPropagation(),
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between p-4 border-b border-[#444444]",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        children: [jsxRuntimeExports.jsx("p", {
+                            className: "text-white font-semibold text-base",
+                            children: Xt("LABELS.BET_DETAILS")
+                        }), Yt && jsxRuntimeExports.jsxs("p", {
+                            className: "text-white/40 text-xs mt-0.5",
+                            children: ["Game #", Yt.slice(-8)]
+                        })]
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: Kt,
+                        className: "w-8 h-8 rounded-full bg-[#363636] hover:bg-[#404040] transition-colors flex items-center justify-center",
+                        children: jsxRuntimeExports.jsx(X, {
+                            className: "w-5 h-5 text-white"
+                        })
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "p-4 space-y-4 overflow-y-auto",
+                    style: {
+                        maxHeight: "calc(90vh - 64px)"
+                    },
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center gap-3 bg-white/5 rounded-xl p-3 border border-white/10",
+                        children: [tt.photoUrl ? jsxRuntimeExports.jsx("img", {
+                            src: tt.photoUrl,
+                            alt: tt.username,
+                            className: "w-14 h-14 rounded-full border-2 border-white/20 object-cover"
+                        }) : jsxRuntimeExports.jsx("div", {
+                            className: "w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-xl",
+                            children: tt.username.charAt(0).toUpperCase()
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "flex-1 min-w-0 flex items-start justify-between gap-3",
+                            children: [jsxRuntimeExports.jsx("div", {
+                                className: "min-w-0",
+                                children: jsxRuntimeExports.jsx("p", {
+                                    className: "text-white font-semibold text-lg truncate max-w-full",
+                                    children: tt.username
+                                })
+                            }), jsxRuntimeExports.jsxs("div", {
+                                className: "flex flex-col items-end gap-1 flex-shrink-0",
+                                children: [jsxRuntimeExports.jsxs("div", {
+                                    className: "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 border border-white/10",
+                                    children: [jsxRuntimeExports.jsx("img", {
+                                        src: "/assets/images/ton_symbol.svg",
+                                        alt: Xt("common:LABELS.TON"),
+                                        className: "w-3.5 h-3.5"
+                                    }), jsxRuntimeExports.jsxs("span", {
+                                        className: "text-white font-semibold text-sm leading-none",
+                                        children: [tt.bet.totalValue.toFixed(2), " TON"]
+                                    })]
+                                }), jsxRuntimeExports.jsx("span", {
+                                    className: "text-white/70 text-xs leading-none",
+                                    children: formatWinChance(tt.bet.winChance, _t)
+                                })]
+                            })]
+                        })]
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "space-y-2",
+                        children: Zt.length === 0 ? jsxRuntimeExports.jsx("div", {
+                            className: "text-white/50 text-sm text-center py-6 border border-white/10 rounded-xl",
+                            children: "No gifts placed for this bet."
+                        }) : jsxRuntimeExports.jsx("div", {
+                            className: "grid grid-cols-3 gap-3",
+                            children: Zt.map(dn => an(dn))
+                        })
+                    })]
+                })]
+            })
+        }), tn && jsxRuntimeExports.jsx(GiftDetailModal, {
+            gift: tn,
+            onClose: () => nn(null)
+        })]
+    });
+    return reactDomExports.createPortal(un, document.body)
+}
+  , BetModal = ({isOpen: tt, onClose: _t, title: Yt="Place bet", children: Kt, maxHeight: Xt="85vh", scrollContent: Jt=!0, contentClassName: Zt}) => {
+    reactExports.useEffect( () => {
+        tt && (nl.expand.isAvailable() && nl.expand(),
+        sl.disableVertical.isAvailable() && sl.disableVertical())
+    }
+    , [tt]);
+    const tn = () => {
+        zu.impactOccurred.isAvailable() && zu.impactOccurred("light"),
+        _t()
+    }
+    ;
+    if (!tt)
+        return null;
+    const nn = `calc(${Xt} - 72px)`
+      , an = [Jt ? "overflow-y-auto" : "overflow-hidden flex flex-col", Zt].filter(Boolean).join(" ")
+      , un = jsxRuntimeExports.jsx("div", {
+        className: "fixed inset-0 bg-black/80 backdrop-blur-sm z-[1000] flex items-end justify-center",
+        onClick: tn,
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "w-full max-w-md bg-[#1E1E1E] rounded-t-2xl animate-slide-up overflow-hidden",
+            style: {
+                maxHeight: Xt
+            },
+            onClick: dn => dn.stopPropagation(),
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "p-4 border-b border-[#444444]",
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [jsxRuntimeExports.jsx("h3", {
+                        className: "text-white font-medium text-lg",
+                        children: Yt
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: tn,
+                        className: "w-8 h-8 rounded-full bg-[#363636] hover:bg-[#404040] transition-colors flex items-center justify-center",
+                        children: jsxRuntimeExports.jsx(X, {
+                            size: 16,
+                            className: "text-white"
+                        })
+                    })]
+                })
+            }), jsxRuntimeExports.jsx("div", {
+                className: an,
+                style: {
+                    maxHeight: nn,
+                    ...Jt ? {} : {
+                        height: nn
+                    }
+                },
+                children: Kt
+            })]
+        })
+    });
+    return reactDomExports.createPortal(un, document.body)
+}
+  , BetTypeTabs = ({activeType: tt, onTypeChange: _t, availableTypes: Yt=["gifts", "ton"]}) => {
+    const Kt = Jt => {
+        zu.selectionChanged.isAvailable() && zu.selectionChanged(),
+        _t(Jt)
+    }
+      , Xt = Jt => Jt ? "bg-purple-500 text-white shadow-lg" : "text-white/60 hover:text-white";
+    return jsxRuntimeExports.jsx("div", {
+        className: "px-4 pt-4",
+        children: jsxRuntimeExports.jsx("div", {
+            className: "bg-[#2A2A2A] p-1 rounded-2xl",
+            children: jsxRuntimeExports.jsxs("div", {
+                className: "grid gap-1",
+                style: {
+                    gridTemplateColumns: `repeat(${Yt.length}, 1fr)`
+                },
+                children: [Yt.includes("gifts") && jsxRuntimeExports.jsx("button", {
+                    onClick: () => Kt("gifts"),
+                    className: `py-3 px-4 rounded-xl font-bold text-base transition-all ${Xt(tt === "gifts")}`,
+                    children: "Gifts"
+                }), Yt.includes("ton") && jsxRuntimeExports.jsx("button", {
+                    onClick: () => Kt("ton"),
+                    className: `py-3 px-4 rounded-xl font-bold text-base transition-all ${Xt(tt === "ton")}`,
+                    children: "TON"
+                })]
+            })
+        })
+    })
+}
+  , GiftFooter = ({message: tt, showSendButton: _t=!0, primaryColor: Yt, secondaryColor: Kt}) => {
+    const {t: Xt} = useTranslation("topup")
+      , Jt = tt ?? Xt("SEND_GIFTS_TO")
+      , Zt = Yt ?? "#f59e0b"
+      , tn = Kt ?? "#f97316"
+      , nn = () => {
+        try {
+            nu.isAvailable() ? nu("https://t.me/giftbackpack") : window.open("https://t.me/giftbackpack", "_blank", "noopener,noreferrer")
+        } catch {
+            window.open("https://t.me/giftbackpack", "_blank", "noopener,noreferrer")
+        }
+    }
+    ;
+    return jsxRuntimeExports.jsx("div", {
+        className: "col-span-3 pt-4 pb-8 border-t",
+        style: {
+            borderColor: Zt
+        },
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "text-center",
+            children: [jsxRuntimeExports.jsxs("p", {
+                className: "text-white/80 text-sm mb-3",
+                children: [Jt, " ", jsxRuntimeExports.jsx("button", {
+                    onClick: nn,
+                    className: "font-bold hover:underline transition-opacity",
+                    style: {
+                        color: Zt
+                    },
+                    children: "@giftbackpack"
+                }), " ", Xt("MESSAGES.TO_USE_THEM")]
+            }), _t && jsxRuntimeExports.jsxs("button", {
+                onClick: nn,
+                className: "text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_15px_rgba(0,0,0,0.25)] relative overflow-hidden group text-sm",
+                style: {
+                    backgroundImage: `linear-gradient(to right, ${Zt}, ${tn})`
+                },
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-center gap-2",
+                    children: [jsxRuntimeExports.jsx(ExternalLink, {
+                        className: "w-4 h-4"
+                    }), jsxRuntimeExports.jsx("span", {
+                        children: Xt("BUTTONS.SEND_GIFT")
+                    })]
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-500"
+                })]
+            })]
+        })
+    })
+}
+;
+function sortGiftsForGrid(tt) {
+    return [...tt].sort( (_t, Yt) => Yt.price - _t.price)
+}
+const getBackdropGradient = tt => {
+    const _t = getBackdropHex(tt);
+    return _t ? giftBackdropGradient(_t.centerColor, _t.edgeColor) : "#8774E1"
+}
+  , GiftSelector = reactExports.memo(function tt({gifts: _t, selectedGift: Yt, selectedGifts: Kt=[], onSelect: Xt, onMultiSelect: Jt, layout: Zt="grid", multiSelect: tn=!1, maxSelection: nn, constrainHeight: an=!0, isGiftDisabled: un, onDisabledSelect: dn}) {
+    const {t: fn} = useTranslation(["common", "topup"])
+      , hn = yn => {
+        if (!yn || typeof yn != "string")
+            return {};
+        const bn = getBackdropHex(yn);
+        return bn ? {
+            background: "#1E1E1E",
+            color: bn.textColor,
+            borderColor: `${bn.centerColor}40`
+        } : {}
+    }
+      , mn = yn => {
+        const bn = yn.variant?.attributes || yn.attributes;
+        return yn.giftType === "deposited" && yn.num ? jsxRuntimeExports.jsx("div", {
+            className: "inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-gradient-to-r from-emerald-500/15 to-teal-500/15 border border-emerald-400/40 backdrop-blur-sm text-xs font-medium",
+            children: jsxRuntimeExports.jsxs("span", {
+                className: "text-emerald-300 font-bold",
+                children: ["#", yn.num]
+            })
+        }) : bn?.backdrop && typeof bn.backdrop == "string" ? jsxRuntimeExports.jsxs("div", {
+            className: "inline-flex items-center gap-1.5 px-2 py-1 rounded-lg backdrop-blur-sm border shadow-sm text-xs font-medium",
+            style: hn(bn.backdrop),
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "w-4 h-4 rounded-full shadow-sm",
+                style: {
+                    background: getBackdropGradient(bn.backdrop)
+                }
+            }), jsxRuntimeExports.jsx("span", {
+                children: bn.backdrop
+            })]
+        }) : bn && (bn.model !== null || bn.symbol !== null) ? jsxRuntimeExports.jsx("div", {
+            className: "inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-gradient-to-r from-violet-500/20 to-purple-500/20 border border-violet-500/30 backdrop-blur-sm text-xs font-medium",
+            children: jsxRuntimeExports.jsx("span", {
+                className: "text-violet-400",
+                children: bn.model || fn("common:APP.VARIANT")
+            })
+        }) : jsxRuntimeExports.jsx("div", {
+            className: "inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-gradient-to-r from-[#8774E1]/20 to-[#7B68D4]/20 border border-[#8774E1]/30 backdrop-blur-sm text-xs font-medium",
+            children: jsxRuntimeExports.jsx("span", {
+                className: "text-[#8774E1]",
+                children: fn("common:APP.RANDOM")
+            })
+        })
+    }
+      , En = reactExports.useCallback(yn => tn ? Kt.some(bn => bn.id === yn.id && bn.giftType === yn.giftType) : Yt?.id === yn.id && Yt?.giftType === yn.giftType, [tn, Kt, Yt])
+      , gn = reactExports.useCallback( (yn, bn) => {
+        if (!En(yn) && un?.(yn)) {
+            zu.notificationOccurred.isAvailable() && zu.notificationOccurred("warning"),
+            bn && (bn.classList.remove("gift-reject-shake"),
+            bn.offsetWidth,
+            bn.classList.add("gift-reject-shake")),
+            dn?.(yn);
+            return
+        }
+        if (zu.selectionChanged.isAvailable() && zu.selectionChanged(),
+        tn && Jt) {
+            const Cn = Kt.some($n => $n.id === yn.id && $n.giftType === yn.giftType);
+            let Pn;
+            Cn ? Pn = Kt.filter($n => !($n.id === yn.id && $n.giftType === yn.giftType)) : nn && Kt.length >= nn ? Pn = [...Kt.slice(0, -1), yn] : Pn = [...Kt, yn],
+            Jt(Pn)
+        } else
+            Xt(yn)
+    }
+    , [tn, Jt, Kt, nn, Xt, un, dn, En])
+      , Sn = reactExports.useMemo( () => sortGiftsForGrid(_t), [_t]);
+    return Zt === "single" && Yt ? jsxRuntimeExports.jsx("div", {
+        className: "bg-[#2A2A2A] rounded-2xl p-4 border border-[#444444]/40",
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "flex items-center gap-4",
+            children: [jsxRuntimeExports.jsx(GiftPreview, {
+                gift: Yt,
+                className: "w-20 h-20 rounded-xl flex-shrink-0"
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex-1 min-w-0",
+                children: [jsxRuntimeExports.jsx("h3", {
+                    className: "text-white font-medium text-base leading-tight break-words mb-1",
+                    children: Yt.name
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "mb-2",
+                    children: mn(Yt)
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center",
+                        children: jsxRuntimeExports.jsx("img", {
+                            src: "/assets/images/ton_symbol.svg",
+                            alt: fn("LABELS.TON"),
+                            className: "w-4 h-4"
+                        })
+                    }), jsxRuntimeExports.jsx("span", {
+                        className: "text-blue-400 font-bold text-base",
+                        children: Yt.price.toFixed(2)
+                    })]
+                })]
+            })]
+        })
+    }) : jsxRuntimeExports.jsxs("div", {
+        className: `grid grid-cols-3 gap-2 ${an ? "max-h-[40vh] overflow-y-auto" : ""}`,
+        style: {
+            paddingBottom: "calc(env(safe-area-inset-bottom) + 24px)"
+        },
+        children: [jsxRuntimeExports.jsx("style", {
+            children: `
+        @keyframes gift-reject-shake {
+          0%, 100% { transform: translateX(0); }
+          20% { transform: translateX(-5px); }
+          40% { transform: translateX(5px); }
+          60% { transform: translateX(-3px); }
+          80% { transform: translateX(3px); }
+        }
+        .gift-reject-shake { animation: gift-reject-shake 320ms ease-in-out; }
+      `
+        }), Sn.map(yn => {
+            const bn = En(yn);
+            return jsxRuntimeExports.jsxs("button", {
+                onClick: Cn => gn(yn, Cn.currentTarget),
+                className: `bg-[#2A2A2A] rounded-xl p-3 transition-all duration-300 border relative ${bn ? "border-blue-500/60 bg-blue-500/10" : "border-[#444444]/40 md:hover:border-[#666666]"}`,
+                children: [tn && jsxRuntimeExports.jsx("div", {
+                    className: "absolute top-2 left-2 z-20",
+                    children: jsxRuntimeExports.jsx("div", {
+                        className: `w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${bn ? "bg-blue-500 border-blue-500" : "bg-[#1E1E1E] border-white/30"}`,
+                        children: bn && jsxRuntimeExports.jsx("svg", {
+                            className: "w-3.5 h-3.5 text-white",
+                            fill: "none",
+                            viewBox: "0 0 24 24",
+                            stroke: "currentColor",
+                            children: jsxRuntimeExports.jsx("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 3,
+                                d: "M5 13l4 4L19 7"
+                            })
+                        })
+                    })
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "absolute top-2 right-2 z-20",
+                    children: jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "font-bold text-xs text-white",
+                            children: yn.price < .01 ? yn.price.toFixed(3) : yn.price.toFixed(2)
+                        }), jsxRuntimeExports.jsx("img", {
+                            src: "/assets/images/ton_symbol.svg",
+                            alt: fn("LABELS.TON"),
+                            className: "w-3 h-3"
+                        })]
+                    })
+                }), jsxRuntimeExports.jsx(GiftPreview, {
+                    gift: yn,
+                    className: "aspect-square rounded-2xl mb-3"
+                }), jsxRuntimeExports.jsx("p", {
+                    className: "text-white text-sm font-medium leading-tight break-words",
+                    children: yn.name
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "mt-1.5 min-h-[24px]",
+                    children: mn(yn)
+                })]
+            }, `${yn.id}-${yn.giftType || "portal"}`)
+        }
+        ), jsxRuntimeExports.jsx(GiftFooter, {
+            message: fn("topup:SEND_GIFTS_TO")
+        })]
+    })
+})
+  , GiftEmptyState = ({onOpenBot: tt, onUnboxClick: _t, customMessage: Yt}) => {
+    const {t: Kt} = useTranslation("common")
+      , Xt = useNavigate()
+      , Jt = () => {
+        if (tt) {
+            tt();
+            return
+        }
+        try {
+            nu.isAvailable() ? nu("https://t.me/giftbackpack") : window.open("https://t.me/giftbackpack", "_blank", "noopener,noreferrer")
+        } catch {
+            window.open("https://t.me/giftbackpack", "_blank", "noopener,noreferrer")
+        }
+    }
+      , Zt = () => {
+        _t ? _t() : Xt("/")
+    }
+    ;
+    return jsxRuntimeExports.jsxs("div", {
+        className: "text-center py-6",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "relative mb-6",
+            children: jsxRuntimeExports.jsx("div", {
+                className: "relative w-16 h-16 mx-auto",
+                children: jsxRuntimeExports.jsx("div", {
+                    className: "absolute inset-0 bg-gradient-to-br from-sky-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-2xl",
+                    children: jsxRuntimeExports.jsx(Sparkles, {
+                        className: "w-8 h-8 text-white"
+                    })
+                })
+            })
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "mb-16",
+            children: [jsxRuntimeExports.jsx("h3", {
+                className: "text-2xl font-bold bg-gradient-to-r from-sky-400 to-blue-400 bg-clip-text text-transparent mb-3",
+                children: Kt("GIFT_EMPTY_STATE.NO_GIFTS_AVAILABLE")
+            }), jsxRuntimeExports.jsxs("p", {
+                className: "text-white/60 text-base",
+                children: [Yt || Kt("GIFT_EMPTY_STATE.SEND_GIFTS_TO"), " ", jsxRuntimeExports.jsx("button", {
+                    onClick: Jt,
+                    className: "text-violet-400 hover:text-purple-300 font-bold hover:underline transition-colors",
+                    children: "@giftbackpack"
+                }), " ", Kt("GIFT_EMPTY_STATE.AND_PLAY")]
+            })]
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "space-y-4",
+            children: [jsxRuntimeExports.jsxs("button", {
+                onClick: Jt,
+                className: "relative group bg-gradient-to-r from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] overflow-hidden w-full max-w-[280px] mx-auto",
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "relative flex items-center justify-center gap-3",
+                    children: [jsxRuntimeExports.jsx(ExternalLink, {
+                        className: "w-5 h-5"
+                    }), jsxRuntimeExports.jsx("span", {
+                        className: "text-lg",
+                        children: Kt("GIFT_EMPTY_STATE.SEND_GIFTS")
+                    })]
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center gap-3 my-6",
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "h-px bg-gradient-to-r from-transparent via-sky-500/30 to-blue-500/30 flex-1"
+                }), jsxRuntimeExports.jsx("span", {
+                    className: "text-sky-400/80 text-sm font-medium tracking-wider uppercase px-3",
+                    children: Kt("APP.OR")
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "h-px bg-gradient-to-l from-transparent via-sky-500/30 to-blue-500/30 flex-1"
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "text-center",
+                children: [jsxRuntimeExports.jsx("p", {
+                    className: "text-white/70 text-base mb-4",
+                    children: Kt("GIFT_EMPTY_STATE.OPEN_BOXES_DESC")
+                }), jsxRuntimeExports.jsxs("button", {
+                    onClick: Zt,
+                    className: "bg-gradient-to-r from-[#363636] to-[#404040] hover:from-[#404040] hover:to-[#454545] text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 mx-auto relative overflow-hidden group",
+                    children: [jsxRuntimeExports.jsx(Sparkles, {
+                        className: "w-5 h-5"
+                    }), jsxRuntimeExports.jsx("span", {
+                        children: Kt("GIFT_EMPTY_STATE.OPEN_BOXES")
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                    })]
+                })]
+            })]
+        })]
+    })
+}
+  , DecimalInput = ({value: tt, onChange: _t, min: Yt, max: Kt, step: Xt=.1, decimals: Jt=2, className: Zt="", placeholder: tn, showButtons: nn=!1, showEmptyWhenZero: an=!1, allowEmpty: un=!1, disabled: dn=!1, suffix: fn, onFocus: hn, onBlur: mn, onClamp: En}) => {
+    const [gn,Sn] = reactExports.useState( () => an && tt === 0 ? "" : tt.toFixed(Jt))
+      , yn = reactExports.useRef(!1);
+    reactExports.useEffect( () => {
+        dn && (yn.current = !1),
+        yn.current || Sn(an && tt === 0 ? "" : tt.toFixed(Jt))
+    }
+    , [tt, an, Jt, dn]);
+    const bn = Xn => {
+        const Mn = 10 ** Jt;
+        return Math.round(Xn * Mn) / Mn
+    }
+      , Cn = () => {
+        _t(bn(Math.max(Yt, tt - Xt)))
+    }
+      , Pn = () => {
+        _t(bn(Math.min(Kt, tt + Xt)))
+    }
+      , $n = Xn => {
+        let Mn = Xn.target.value;
+        if (Mn = Mn.replace(",", "."),
+        Mn === "" || /^\d*\.?\d*$/.test(Mn)) {
+            Sn(Mn);
+            const Wn = parseFloat(Mn);
+            if (un && (isNaN(Wn) || Wn === 0)) {
+                _t(0);
+                return
+            }
+            !isNaN(Wn) && Mn !== "" && !Mn.endsWith(".") && (Wn > Kt && En?.("max"),
+            _t(Math.max(Yt, Math.min(Kt, Wn))))
+        }
+    }
+      , wn = Xn => {
+        yn.current = !1;
+        const Mn = parseFloat(gn);
+        if (un && (isNaN(Mn) || Mn === 0))
+            _t(0),
+            Sn("");
+        else if (isNaN(Mn) || gn === "" || gn === ".")
+            _t(Yt),
+            Sn(Yt.toFixed(Jt));
+        else {
+            Mn > Kt ? En?.("max") : Mn < Yt && En?.("min");
+            const Wn = Math.max(Yt, Math.min(Kt, Mn));
+            _t(Wn),
+            Sn(Wn.toFixed(Jt))
+        }
+        mn?.(Xn)
+    }
+      , An = Xn => {
+        yn.current = !0,
+        Xn.target.select(),
+        hn?.(Xn)
+    }
+      , Bn = jsxRuntimeExports.jsxs("div", {
+        className: "flex-1 relative",
+        children: [jsxRuntimeExports.jsx("input", {
+            type: "text",
+            inputMode: "decimal",
+            value: gn,
+            placeholder: tn,
+            onChange: $n,
+            onBlur: wn,
+            onFocus: An,
+            disabled: dn,
+            className: Zt
+        }), fn && jsxRuntimeExports.jsx("div", {
+            className: "absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none",
+            children: fn
+        })]
+    });
+    return nn ? jsxRuntimeExports.jsxs("div", {
+        className: "flex items-center gap-2",
+        children: [jsxRuntimeExports.jsx("button", {
+            onClick: Cn,
+            disabled: dn || tt <= Yt,
+            type: "button",
+            className: "w-12 h-12 rounded-xl bg-[#363636] hover:bg-[#404040] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center transition-colors border border-[#444444]/30",
+            children: jsxRuntimeExports.jsx("span", {
+                className: "text-white text-xl font-bold leading-none",
+                children: "âˆ’"
+            })
+        }), Bn, jsxRuntimeExports.jsx("button", {
+            onClick: Pn,
+            disabled: dn || tt >= Kt,
+            type: "button",
+            className: "w-12 h-12 rounded-xl bg-[#363636] hover:bg-[#404040] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center transition-colors border border-[#444444]/30",
+            children: jsxRuntimeExports.jsx("span", {
+                className: "text-white text-xl font-bold leading-none",
+                children: "+"
+            })
+        })]
+    }) : Bn
+}
+  , TonBettingPanel = ({balance: tt, betAmount: _t, onAmountChange: Yt, minAmount: Kt=.1, step: Xt=.1, onConfirm: Jt, confirmButtonText: Zt, confirmButtonIcon: tn, canConfirm: nn=!0}) => {
+    const {t: an} = useTranslation("common");
+    return jsxRuntimeExports.jsx("div", {
+        className: "space-y-4",
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "bg-[#2A2A2A] rounded-2xl p-4 border border-[#444444]/40",
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between mb-4",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60 text-sm",
+                    children: an("LABELS.AVAILABLE_BALANCE")
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "text-white font-bold text-lg",
+                        children: formatTonBalance(tt)
+                    }), jsxRuntimeExports.jsx("img", {
+                        src: "/assets/images/ton_symbol.svg",
+                        alt: an("LABELS.TON"),
+                        className: "w-5 h-5"
+                    })]
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "mb-4",
+                children: [jsxRuntimeExports.jsx("label", {
+                    className: "text-white/60 text-sm block mb-2",
+                    children: an("LABELS.BET_AMOUNT")
+                }), jsxRuntimeExports.jsx(DecimalInput, {
+                    value: _t,
+                    onChange: Yt,
+                    min: Kt,
+                    max: floorTon2(tt),
+                    step: Xt,
+                    showButtons: !1,
+                    className: "w-full bg-[#2A2A2A] text-white text-center py-3 px-4 rounded-xl border border-[#444444]/40 focus:border-[#0098EA] focus:outline-none text-lg font-bold",
+                    placeholder: an("PLACEHOLDERS.TON_AMOUNT"),
+                    showEmptyWhenZero: !0,
+                    suffix: jsxRuntimeExports.jsx("img", {
+                        src: "/assets/images/ton_symbol.svg",
+                        alt: an("LABELS.TON"),
+                        className: "w-3 h-3"
+                    })
+                })]
+            }), Jt && Zt && jsxRuntimeExports.jsx("div", {
+                className: "mt-4",
+                children: jsxRuntimeExports.jsxs("button", {
+                    onClick: Jt,
+                    disabled: !nn,
+                    className: "w-full bg-gradient-to-r from-[#ffa700] to-[#ffd746] hover:shadow-[0_0_15px_rgba(255,167,0,0.3)] disabled:from-gray-600 disabled:to-gray-700 py-3 rounded-xl font-bold text-base transition-all duration-300 relative overflow-hidden group disabled:cursor-not-allowed flex items-center justify-center gap-2",
+                    style: {
+                        color: nn ? "#2A2A2A" : "#FFFFFF"
+                    },
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: nn ? "text-[#2A2A2A]" : "text-white",
+                        children: Zt
+                    }), tn, nn && jsxRuntimeExports.jsx("div", {
+                        className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"
+                    })]
+                })
+            })]
+        })
+    })
+}
+  , PvPBetModal = ({isOpen: tt, onClose: _t, balance: Yt, availableGifts: Kt=[], onConfirm: Xt, isIncreasing: Jt=!1, currentBetValue: Zt=0, onPvpLock: tn}) => {
+    const {t: nn} = useTranslation(["pvp", "common"])
+      , [an,un] = reactExports.useState("gifts")
+      , [dn,fn] = reactExports.useState(0)
+      , [hn,mn] = reactExports.useState([])
+      , [En,gn] = reactExports.useState(!1)
+      , [Sn,yn] = reactExports.useState(null)
+      , bn = async () => {
+        if (!En) {
+            zu.impactOccurred.isAvailable() && zu.impactOccurred("medium"),
+            yn(null),
+            gn(!0);
+            try {
+                let An;
+                an === "gifts" && hn.length > 0 ? An = {
+                    type: "gift",
+                    gifts: hn.map(Xn => ({
+                        giftId: Xn.id,
+                        giftType: Xn.giftType === "deposited" ? "deposited" : "portal"
+                    }))
+                } : An = {
+                    type: "ton",
+                    tonAmount: dn
+                },
+                await Xt(An),
+                zu.notificationOccurred.isAvailable() && zu.notificationOccurred("success"),
+                _t()
+            } catch (An) {
+                const Bn = An instanceof Error ? An.message : nn("ERRORS.BET_FAILED");
+                if (Bn === "PVP_STARS_LOCK_ACTIVE" || Bn === "STARS_RETENTION_ACTIVE" || Bn === "STARS_BUDGET_EXCEEDED" || Bn === "PVP_WITHDRAW_LOCK_ACTIVE") {
+                    tn?.(Bn === "PVP_WITHDRAW_LOCK_ACTIVE" ? "withdraw" : "stars"),
+                    _t();
+                    return
+                }
+                const Xn = {
+                    ANIMATION_IN_PROGRESS: nn("ERRORS.ROUND_IN_PROGRESS"),
+                    "Betting is closed. Game has already started.": nn("ERRORS.ROUND_IN_PROGRESS"),
+                    INVALID_STATE: nn("ERRORS.ROUND_IN_PROGRESS"),
+                    INSUFFICIENT_BALANCE: nn("ERRORS.INSUFFICIENT_BALANCE"),
+                    ALREADY_IN_GAME: nn("ERRORS.ALREADY_IN_GAME"),
+                    RATE_UNAVAILABLE: nn("toasts:ERROR.RATE_UNAVAILABLE")
+                };
+                yn(Xn[Bn] || Bn),
+                zu.notificationOccurred.isAvailable() && zu.notificationOccurred("error")
+            } finally {
+                gn(!1)
+            }
+        }
+    }
+      , Cn = an === "gifts" ? hn.length > 0 : dn >= .1 && dn <= Yt
+      , Pn = hn.reduce( (An, Bn) => An + Bn.price, 0)
+      , $n = an === "gifts" ? Pn : dn
+      , wn = Jt ? Zt + $n : $n;
+    return reactExports.useEffect( () => {
+        tt && (mn([]),
+        un("gifts"),
+        fn(0),
+        yn(null))
+    }
+    , [tt]),
+    reactExports.useEffect( () => () => {
+        mn([]),
+        un("gifts"),
+        fn(0),
+        yn(null)
+    }
+    , []),
+    jsxRuntimeExports.jsxs(BetModal, {
+        isOpen: tt,
+        onClose: _t,
+        title: nn(Jt ? "ACTIONS.INCREASE" : "ACTIONS.PLACE_BET"),
+        scrollContent: !1,
+        contentClassName: "flex flex-col",
+        children: [jsxRuntimeExports.jsx(BetTypeTabs, {
+            activeType: an,
+            onTypeChange: un,
+            availableTypes: ["gifts", "ton"]
+        }), Sn && jsxRuntimeExports.jsx("div", {
+            className: "mx-4 mt-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl",
+            children: jsxRuntimeExports.jsx("p", {
+                className: "text-red-400 text-sm font-medium",
+                children: Sn
+            })
+        }), jsxRuntimeExports.jsx("div", {
+            className: "flex-1 flex flex-col px-4 pt-2 pb-6 min-h-0",
+            children: an === "gifts" ? jsxRuntimeExports.jsx("div", {
+                className: "flex-1 flex flex-col min-h-0 space-y-4",
+                children: Kt.length === 0 ? jsxRuntimeExports.jsx("div", {
+                    className: "flex-1 overflow-hidden",
+                    children: jsxRuntimeExports.jsx(GiftEmptyState, {})
+                }) : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "-mx-4 px-4 pt-2 pb-2 bg-[#1E1E1E] flex-shrink-0",
+                        children: jsxRuntimeExports.jsxs("div", {
+                            className: "bg-[#2A2A2A] rounded-2xl p-4 border border-[#444444]/40 shadow-lg shadow-black/20",
+                            children: [jsxRuntimeExports.jsxs("div", {
+                                className: "mb-3",
+                                children: [jsxRuntimeExports.jsx("div", {
+                                    className: "text-white/60 text-sm mb-2",
+                                    children: hn.length > 0 ? nn("LABELS.GIFTS_SELECTED", {
+                                        count: hn.length
+                                    }) : nn("LABELS.NO_GIFTS_SELECTED")
+                                }), jsxRuntimeExports.jsxs("div", {
+                                    className: "flex items-center gap-2",
+                                    children: [jsxRuntimeExports.jsx("div", {
+                                        className: "w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center",
+                                        children: jsxRuntimeExports.jsx("img", {
+                                            src: "/assets/images/ton_symbol.svg",
+                                            alt: nn("common:LABELS.TON"),
+                                            className: "w-4 h-4"
+                                        })
+                                    }), jsxRuntimeExports.jsx("span", {
+                                        className: "text-blue-400 font-bold text-lg",
+                                        children: hn.length > 0 ? Jt ? `+${Pn.toFixed(2)}` : `${Pn.toFixed(2)} TON` : jsxRuntimeExports.jsx("span", {
+                                            className: "text-white/30",
+                                            children: "0 TON"
+                                        })
+                                    })]
+                                }), Jt && jsxRuntimeExports.jsx("div", {
+                                    className: "text-white/40 text-xs mt-1",
+                                    children: nn("LABELS.NEW_TOTAL_VALUE", {
+                                        value: wn.toFixed(2)
+                                    })
+                                })]
+                            }), jsxRuntimeExports.jsx("div", {
+                                className: "mt-3",
+                                children: jsxRuntimeExports.jsx("button", {
+                                    onClick: bn,
+                                    disabled: !Cn || En,
+                                    className: `w-full ${Cn ? "bg-gradient-to-r from-[#ffa700] to-[#ffd746] hover:shadow-[0_0_15px_rgba(255,167,0,0.3)] text-[#2A2A2A]" : "bg-gray-700 text-white"} py-3 rounded-xl font-bold text-base transition-all duration-300 relative overflow-hidden group disabled:cursor-not-allowed flex items-center justify-center gap-2`,
+                                    style: {
+                                        color: Cn ? "#2A2A2A" : "#FFFFFF"
+                                    },
+                                    children: En ? jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                                        children: [jsxRuntimeExports.jsx("div", {
+                                            className: `w-5 h-5 border-2 rounded-full animate-spin ${Cn ? "border-[#2A2A2A]/30 border-t-[#2A2A2A]" : "border-white/30 border-t-white"}`
+                                        }), jsxRuntimeExports.jsx("span", {
+                                            children: nn(Jt ? "STATUS.INCREASING" : "STATUS.PLACING_BET")
+                                        })]
+                                    }) : jsxRuntimeExports.jsx("span", {
+                                        className: Cn ? "text-[#2A2A2A]" : "text-white",
+                                        children: nn(Cn ? Jt ? "ACTIONS.INCREASE" : "ACTIONS.PLACE_BET" : "LABELS.SELECT_GIFTS")
+                                    })
+                                })
+                            })]
+                        })
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex-1 min-h-0 space-y-3 overflow-y-auto pb-1",
+                        children: [jsxRuntimeExports.jsx("h4", {
+                            className: "text-white/60 text-sm font-medium",
+                            children: hn.length > 0 ? nn("LABELS.SELECT_MORE_GIFTS") : nn("LABELS.SELECT_GIFTS")
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "relative",
+                            children: jsxRuntimeExports.jsx(GiftSelector, {
+                                gifts: Kt,
+                                selectedGift: null,
+                                selectedGifts: hn,
+                                onSelect: () => {}
+                                ,
+                                onMultiSelect: mn,
+                                layout: "grid",
+                                multiSelect: !0
+                            })
+                        })]
+                    })]
+                })
+            }) : jsxRuntimeExports.jsx("div", {
+                className: "space-y-4 pt-2",
+                children: jsxRuntimeExports.jsx(TonBettingPanel, {
+                    balance: Yt,
+                    betAmount: dn,
+                    onAmountChange: fn,
+                    minAmount: .1,
+                    quickSelectAmounts: [],
+                    onConfirm: bn,
+                    confirmButtonText: En ? nn(Jt ? "STATUS.INCREASING" : "STATUS.PLACING_BET") : Jt ? nn("LABELS.INCREASE_BY_TON", {
+                        amount: dn.toFixed(1)
+                    }) : nn("LABELS.PLACE_TON_BET", {
+                        amount: dn.toFixed(1)
+                    }),
+                    confirmButtonIcon: En ? jsxRuntimeExports.jsx("div", {
+                        className: "w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"
+                    }) : jsxRuntimeExports.jsx(Swords, {
+                        className: "w-5 h-5"
+                    }),
+                    canConfirm: Cn && !En
+                })
+            })
+        })]
+    })
+}
+  , PvPClientEvents = {
+    PLACE_BET: "pvp:place_bet",
+    INCREASE_BET: "pvp:increase_bet",
+    GET_STATE: "pvp:get_state",
+    GET_HISTORY: "pvp:get_history",
+    VERIFY_GAME: "pvp:verify_game"
+}
+  , PvPServerEvents = {
+    GAME_STATE: "pvp:game_state",
+    PLAYER_JOINED: "pvp:player_joined",
+    BET_INCREASED: "pvp:bet_increased",
+    DRAWING_COMPLETE: "pvp:drawing_complete",
+    HISTORY_UPDATED: "pvp:history_updated",
+    ERROR: "pvp:error"
+};
+class PvPService {
+    static instance;
+    socket = null;
+    gameStateCallback = null;
+    historyCallback = null;
+    errorCallback = null;
+    gameFinishedCallback = null;
+    lastFinishedGameId = null;
+    currentGame = null;
+    lastHistory = [];
+    lastHistoryTotal = 0;
+    lastHistoryFilter = null;
+    lastStateVersion = 0;
+    isConnecting = !1;
+    hasConnectedOnce = !1;
+    connectionQuality = "connecting";
+    qualityCallback = null;
+    lastEventAt = 0;
+    watchdogTimer = null;
+    connectionCheckInterval = null;
+    connectionTimeout = null;
+    watchdogIntervalMs = 500;
+    watchdogStaleMs = 1500;
+    constructor() {
+        this.connect();
+        try {
+            if (typeof document < "u") {
+                const _t = () => {
+                    try {
+                        document.visibilityState === "visible" && (this.currentGame && (this.currentGame = {
+                            ...this.currentGame,
+                            secondsRemaining: void 0
+                        }),
+                        this.ensureConnected(),
+                        this.socket?.connected && (this.requestGameState(),
+                        this.requestHistory(20),
+                        setTimeout( () => {
+                            this.socket?.connected && this.requestGameState()
+                        }
+                        , 500)))
+                    } catch {}
+                }
+                ;
+                this._pvp_vis_handler = _t,
+                document.addEventListener("visibilitychange", _t)
+            }
+            if (typeof window < "u") {
+                const _t = () => {
+                    try {
+                        this.ensureConnected(),
+                        this.socket?.connected && this.requestGameState()
+                    } catch {}
+                }
+                  , Yt = () => {
+                    try {
+                        this.isConnecting = !1
+                    } catch {}
+                }
+                ;
+                this._pvp_online_handler = _t,
+                this._pvp_offline_handler = Yt,
+                window.addEventListener("online", _t),
+                window.addEventListener("offline", Yt)
+            }
+        } catch {}
+    }
+    static getInstance() {
+        return PvPService.instance || (PvPService.instance = new PvPService),
+        PvPService.instance
+    }
+    connect() {
+        if (!(this.isConnecting || this.socket?.connected)) {
+            if (this.isConnecting = !0,
+            this.socket = socketManager.getSocket() || socketManager.connect(),
+            !this.socket?.connected) {
+                console.warn("[PvPService] Socket not connected, waiting..."),
+                this.clearConnectionTimers(),
+                this.connectionCheckInterval = setInterval( () => {
+                    this.socket = socketManager.getSocket(),
+                    this.socket?.connected && (this.clearConnectionTimers(),
+                    this.isConnecting = !1,
+                    this.onSocketConnected())
+                }
+                , 100),
+                this.connectionTimeout = setTimeout( () => {
+                    this.clearConnectionTimers(),
+                    this.socket?.connected || (console.error("[PvPService] Socket connection timeout"),
+                    this.isConnecting = !1,
+                    this.setConnectionQuality(this.hasConnectedOnce ? "reconnecting" : "connecting"))
+                }
+                , 15e3);
+                return
+            }
+            this.isConnecting = !1,
+            this.onSocketConnected()
+        }
+    }
+    clearConnectionTimers() {
+        this.connectionCheckInterval && (clearInterval(this.connectionCheckInterval),
+        this.connectionCheckInterval = null),
+        this.connectionTimeout && (clearTimeout(this.connectionTimeout),
+        this.connectionTimeout = null)
+    }
+    onSocketConnected() {
+        if (!this.socket)
+            return;
+        this.isConnecting = !1,
+        this.hasConnectedOnce = !0,
+        this.socket.listeners("pvp:game_state").length === 0 && this.setupEventListeners();
+        const _t = this.gameStateCallback || this.historyCallback;
+        socketManager.activeSubscriptions.includes("pvp:all") ? _t && (this.setConnectionQuality("good"),
+        this.requestGameState(),
+        this.requestHistory(20),
+        this.startWatchdog()) : _t && socketManager.subscribe({
+            module: "pvp",
+            type: "all"
+        }, Yt => {
+            Yt || (this.setConnectionQuality("good"),
+            this.requestGameState(),
+            this.requestHistory(20),
+            this.startWatchdog())
+        }
+        )
+    }
+    acceptStateVersion(_t) {
+        return typeof _t != "number" ? !0 : _t < this.lastStateVersion ? !1 : (this.lastStateVersion = _t,
+        !0)
+    }
+    setupEventListeners() {
+        this.socket && (this.socket.on(PvPServerEvents.GAME_STATE, _t => {
+            if (this.connectionQuality !== "good" && this.setConnectionQuality("good"),
+            !_t.game) {
+                console.error("[PvP] GAME_STATE received with missing game data");
+                return
+            }
+            const Yt = _t.game.stateVersion;
+            if (!this.acceptStateVersion(Yt))
+                return;
+            this.lastEventAt = Date.now();
+            const Kt = typeof Yt == "number"
+              , Xt = this.currentGame?.gameId === _t.game.gameId
+              , Jt = _t.game.players || []
+              , Zt = this.currentGame?.players || [];
+            let tn = Jt;
+            !Kt && Xt && _t.game.state !== "DRAWING" && _t.game.state !== "FINISHED" && Zt.length > 0 && (tn = Jt.map(fn => {
+                const hn = Zt.find(mn => mn.playerId === fn.playerId);
+                return hn && (hn.bet?.totalValue || 0) > (fn.bet?.totalValue || 0) ? hn : fn
+            }
+            ));
+            const an = _t.game.pot
+              , un = this.currentGame?.pot
+              , dn = !Kt && Xt && _t.game.state !== "DRAWING" && _t.game.state !== "FINISHED" && un && (un.totalValue || 0) > (an?.totalValue || 0);
+            this.currentGame = {
+                ..._t.game,
+                players: tn,
+                pot: dn ? un : an
+            },
+            this.gameStateCallback && this.gameStateCallback(this.currentGame)
+        }
+        ),
+        this.socket.on(PvPServerEvents.PLAYER_JOINED, _t => {
+            if (this.connectionQuality !== "good" && this.setConnectionQuality("good"),
+            this.currentGame && this.currentGame.gameId === _t.gameId && this.currentGame.players && _t.player) {
+                if (!this.acceptStateVersion(_t.stateVersion))
+                    return;
+                this.lastEventAt = Date.now();
+                const Yt = this.currentGame.players.findIndex(Xt => Xt.playerId === _t.player.playerId)
+                  , Kt = [...this.currentGame.players];
+                Yt === -1 ? Kt.push(_t.player) : (typeof _t.stateVersion == "number" || (_t.player.bet?.totalValue || 0) >= (Kt[Yt].bet?.totalValue || 0)) && (Kt[Yt] = _t.player),
+                this.currentGame = {
+                    ...this.currentGame,
+                    players: Kt,
+                    ..._t.newState ? {
+                        state: _t.newState,
+                        countdownEndsAt: _t.countdownEndsAt
+                    } : {}
+                },
+                this.gameStateCallback && this.gameStateCallback(this.currentGame)
+            }
+        }
+        ),
+        this.socket.on(PvPServerEvents.BET_INCREASED, _t => {
+            if (this.connectionQuality !== "good" && this.setConnectionQuality("good"),
+            this.currentGame && this.currentGame.gameId === _t.gameId && this.currentGame.players) {
+                if (!this.acceptStateVersion(_t.stateVersion))
+                    return;
+                this.lastEventAt = Date.now();
+                const Yt = this.currentGame.players.map(Kt => {
+                    if (Kt.playerId === _t.playerId && _t.player)
+                        return _t.player;
+                    const Xt = _t.allPlayersChances?.find(Jt => Jt.playerId === Kt.playerId);
+                    return Xt ? {
+                        ...Kt,
+                        bet: {
+                            ...Kt.bet,
+                            winChance: Xt.winChance
+                        }
+                    } : Kt
+                }
+                );
+                this.currentGame = {
+                    ...this.currentGame,
+                    pot: _t.pot ?? this.currentGame.pot,
+                    players: Yt
+                },
+                this.gameStateCallback && this.gameStateCallback(this.currentGame)
+            }
+        }
+        ),
+        this.socket.on(PvPServerEvents.DRAWING_COMPLETE, _t => {
+            if (this.lastEventAt = Date.now(),
+            this.connectionQuality !== "good" && this.setConnectionQuality("good"),
+            this.lastStateVersion = 0,
+            !_t.animation?.players || !_t.result?.winner || !_t.result?.pot) {
+                console.error("[PvP] DRAWING_COMPLETE received with missing data");
+                return
+            }
+            const Yt = new Map((_t.game?.players || []).map(Xt => [Xt.playerId, Xt]))
+              , Kt = _t.animation.players.map(Xt => {
+                const Jt = this.currentGame?.players?.find(nn => nn.playerId === Xt.playerId);
+                if (Jt && this.currentGame?.gameId === _t.gameId)
+                    return {
+                        ...Jt,
+                        bet: {
+                            ...Jt.bet,
+                            winChance: Xt.winChance
+                        }
+                    };
+                const Zt = Yt.get(Xt.playerId);
+                if (Zt)
+                    return {
+                        ...Zt,
+                        bet: {
+                            ...Zt.bet,
+                            winChance: Xt.winChance
+                        }
+                    };
+                const tn = _t.result.allPlayers?.find(nn => nn.playerId === Xt.playerId);
+                return {
+                    playerId: Xt.playerId,
+                    username: Xt.username,
+                    photoUrl: Xt.photoUrl,
+                    bet: {
+                        ton: 0,
+                        giftsCount: 0,
+                        totalValue: tn?.betValue || 0,
+                        winChance: Xt.winChance,
+                        gifts: []
+                    },
+                    joinedAt: Date.now()
+                }
+            }
+            );
+            this.currentGame = {
+                gameId: _t.gameId,
+                state: "DRAWING",
+                players: Kt,
+                pot: {
+                    totalTon: _t.result.pot.tonAmount,
+                    totalGifts: _t.result.pot.giftsCount,
+                    totalValue: _t.result.pot.totalValue,
+                    gifts: _t.game?.pot?.gifts || this.currentGame?.pot?.gifts || []
+                },
+                winner: {
+                    playerId: _t.result.winner.playerId,
+                    username: _t.result.winner.username,
+                    photoUrl: _t.result.winner.photoUrl,
+                    actualPrize: _t.result.winner.actualPrize
+                },
+                provablyFair: {
+                    serverSeedHash: _t.animation.provablyFair.serverSeedHash,
+                    serverSeed: _t.animation.provablyFair.serverSeed,
+                    clientSeeds: _t.animation.provablyFair.clientSeeds,
+                    nonce: _t.animation.provablyFair.nonce,
+                    result: _t.animation.provablyFair.randomResult
+                },
+                animationTimeLeft: _t.animationTimeLeft
+            },
+            this.gameStateCallback && this.gameStateCallback(this.currentGame),
+            this.gameFinishedCallback && this.lastFinishedGameId !== _t.gameId && (this.lastFinishedGameId = _t.gameId,
+            this.gameFinishedCallback(_t.gameId))
+        }
+        ),
+        this.socket.on(PvPServerEvents.ERROR, _t => {
+            this.lastEventAt = Date.now(),
+            console.error("âŒ PvP Error:", _t),
+            this.errorCallback && this.errorCallback(_t)
+        }
+        ),
+        this.socket.on(PvPServerEvents.HISTORY_UPDATED, _t => {
+            this.lastEventAt = Date.now(),
+            _t?.game?.gameId && (this.lastHistory.some(Yt => Yt.gameId === _t.game.gameId) || (this.lastHistory = [_t.game, ...this.lastHistory],
+            this.lastHistoryTotal += 1,
+            this.historyCallback && this.historyCallback(this.lastHistory)))
+        }
+        ))
+    }
+    startWatchdog() {
+        try {
+            this.stopWatchdog()
+        } catch {}
+        this.lastEventAt = Date.now(),
+        this.watchdogTimer = setInterval( () => {
+            try {
+                if (!this.socket?.connected)
+                    return;
+                const _t = Date.now()
+                  , Yt = _t - this.lastEventAt;
+                Yt > this.watchdogStaleMs && (Yt > 4e3 ? (this.setConnectionQuality("reconnecting"),
+                socketManager.unsubscribe({
+                    module: "pvp",
+                    type: "all"
+                }, () => {
+                    socketManager.subscribe({
+                        module: "pvp",
+                        type: "all"
+                    }, Kt => {
+                        Kt || (this.setConnectionQuality("good"),
+                        this.requestGameState())
+                    }
+                    )
+                }
+                ),
+                this.lastEventAt = _t) : (this.setConnectionQuality("degraded"),
+                this.requestGameState(),
+                this.lastEventAt = _t))
+            } catch {}
+        }
+        , this.watchdogIntervalMs)
+    }
+    stopWatchdog() {
+        this.watchdogTimer && (clearInterval(this.watchdogTimer),
+        this.watchdogTimer = null)
+    }
+    setConnectionQuality(_t) {
+        this.connectionQuality !== _t && (this.connectionQuality = _t,
+        this.qualityCallback && this.qualityCallback(_t))
+    }
+    ensureConnected() {
+        (!this.socket || !this.socket.connected) && (this.connect(),
+        !this.socket?.connected) || (this.socket && this.socket.listeners("pvp:game_state").length === 0 && this.setupEventListeners(),
+        socketManager.activeSubscriptions.includes("pvp:all") || socketManager.subscribe({
+            module: "pvp",
+            type: "all"
+        }, _t => {
+            _t || (this.setConnectionQuality("good"),
+            this.startWatchdog())
+        }
+        ))
+    }
+    isConnected() {
+        return this.socket?.connected || !1
+    }
+    requestGameState() {
+        this.socket?.connected && this.socket.emit(PvPClientEvents.GET_STATE, {}, _t => {
+            _t?.ok && _t.game && (typeof _t.game.stateVersion == "number" && (this.lastStateVersion = _t.game.stateVersion),
+            this.currentGame = _t.game,
+            this.gameStateCallback && this.gameStateCallback(this.currentGame))
+        }
+        )
+    }
+    requestHistory(_t=50, Yt=0, Kt) {
+        if (!this.socket?.connected)
+            return;
+        const Xt = Kt ?? null;
+        Yt === 0 && this.lastHistoryFilter !== Xt && (this.lastHistory = [],
+        this.lastHistoryTotal = 0,
+        this.lastHistoryFilter = Xt);
+        const Jt = {
+            limit: _t,
+            offset: Yt
+        };
+        Xt && (Jt.userId = Xt),
+        Yt > 0 && (Jt.includeTotal = !1),
+        this.socket.emit(PvPClientEvents.GET_HISTORY, Jt, Zt => {
+            if (Zt?.ok && Array.isArray(Zt.games)) {
+                if (Yt === 0)
+                    this.lastHistory = Zt.games;
+                else {
+                    const tn = new Set(this.lastHistory.map(an => an.gameId))
+                      , nn = Zt.games.filter(an => !tn.has(an.gameId));
+                    this.lastHistory = [...this.lastHistory, ...nn]
+                }
+                Zt.total !== void 0 ? this.lastHistoryTotal = Zt.total : Zt.hasMore === !1 || Zt.games.length < _t ? this.lastHistoryTotal = this.lastHistory.length : this.lastHistoryTotal = Math.max(this.lastHistoryTotal, this.lastHistory.length + 1),
+                this.historyCallback && this.historyCallback(this.lastHistory)
+            }
+        }
+        )
+    }
+    getHistory() {
+        return this.lastHistory
+    }
+    getHistoryTotal() {
+        return this.lastHistoryTotal
+    }
+    async getGameDetails(_t) {
+        return new Promise(Yt => {
+            if (!this.socket?.connected) {
+                Yt(null);
+                return
+            }
+            this.socket.emit("pvp:get_game_details", {
+                gameId: _t
+            }, Kt => {
+                Kt?.ok && Kt.game ? Yt(Kt.game) : Yt(null)
+            }
+            )
+        }
+        )
+    }
+    async placeBet(_t) {
+        return new Promise(Yt => {
+            if (!this.socket?.connected) {
+                toast.error(instance$1.t("toasts:ERROR.NOT_CONNECTED_TO_SERVER")),
+                Yt({
+                    ok: !1,
+                    error: instance$1.t("errors:PVP.NOT_CONNECTED")
+                });
+                return
+            }
+            const Kt = useStore.getState().balance
+              , Xt = _t.tonAmount || 0
+              , Jt = Math.max(0, Kt - Xt);
+            useStore.getState().setBalance(Jt);
+            const Zt = setTimeout( () => {
+                console.warn("âš ï¸ PvP bet response timeout, reverting optimistic balance update"),
+                useStore.getState().setBalance(Kt, {
+                    silent: !0
+                }),
+                Yt({
+                    ok: !1,
+                    error: "Request timeout"
+                })
+            }
+            , 1e4);
+            this.socket.emit(PvPClientEvents.PLACE_BET, {
+                bet: _t
+            }, tn => {
+                if (clearTimeout(Zt),
+                tn?.ok)
+                    typeof tn.balance == "number" && useStore.getState().setBalance(tn.balance),
+                    Yt({
+                        ok: !0,
+                        gameId: tn.gameId
+                    });
+                else {
+                    if (useStore.getState().setBalance(Kt, {
+                        silent: !0
+                    }),
+                    tn?.error !== "PVP_STARS_LOCK_ACTIVE" && tn?.error !== "PVP_WITHDRAW_LOCK_ACTIVE" && tn?.error !== "STARS_RETENTION_ACTIVE" && tn?.error !== "STARS_BUDGET_EXCEEDED") {
+                        let nn;
+                        tn?.error === "RATE_UNAVAILABLE" ? nn = instance$1.t("toasts:ERROR.RATE_UNAVAILABLE") : nn = tn?.error || instance$1.t("toasts:ERROR.FAILED_TO_PLACE_BET"),
+                        toast.error(nn)
+                    }
+                    Yt({
+                        ok: !1,
+                        error: tn?.error
+                    })
+                }
+            }
+            )
+        }
+        )
+    }
+    async increaseBet(_t, Yt) {
+        return new Promise(Kt => {
+            if (!this.socket?.connected) {
+                toast.error(instance$1.t("toasts:ERROR.NOT_CONNECTED_TO_SERVER")),
+                Kt({
+                    ok: !1,
+                    error: instance$1.t("errors:PVP.NOT_CONNECTED")
+                });
+                return
+            }
+            const Xt = useStore.getState().balance
+              , Jt = Yt.tonAmount || 0
+              , Zt = Math.max(0, Xt - Jt);
+            useStore.getState().setBalance(Zt);
+            const tn = setTimeout( () => {
+                console.warn("âš ï¸ PvP bet response timeout, reverting optimistic balance update"),
+                useStore.getState().setBalance(Xt, {
+                    silent: !0
+                }),
+                Kt({
+                    ok: !1,
+                    error: "Request timeout"
+                })
+            }
+            , 1e4);
+            this.socket.emit(PvPClientEvents.INCREASE_BET, {
+                gameId: _t,
+                additionalBet: Yt
+            }, nn => {
+                if (clearTimeout(tn),
+                nn?.ok)
+                    typeof nn.balance == "number" && useStore.getState().setBalance(nn.balance),
+                    Kt({
+                        ok: !0
+                    });
+                else {
+                    if (useStore.getState().setBalance(Xt, {
+                        silent: !0
+                    }),
+                    nn?.error !== "PVP_STARS_LOCK_ACTIVE" && nn?.error !== "PVP_WITHDRAW_LOCK_ACTIVE" && nn?.error !== "STARS_RETENTION_ACTIVE" && nn?.error !== "STARS_BUDGET_EXCEEDED") {
+                        let an;
+                        nn?.error === "RATE_UNAVAILABLE" ? an = instance$1.t("toasts:ERROR.RATE_UNAVAILABLE") : an = nn?.error || instance$1.t("toasts:ERROR.FAILED_TO_INCREASE_BET"),
+                        toast.error(an)
+                    }
+                    Kt({
+                        ok: !1,
+                        error: nn?.error
+                    })
+                }
+            }
+            )
+        }
+        )
+    }
+    async verifyGame(_t) {
+        return new Promise(Yt => {
+            if (!this.socket?.connected) {
+                toast.error(instance$1.t("toasts:ERROR.NOT_CONNECTED_TO_SERVER")),
+                Yt({
+                    ok: !1,
+                    error: instance$1.t("errors:PVP.NOT_CONNECTED")
+                });
+                return
+            }
+            this.socket.emit(PvPClientEvents.VERIFY_GAME, {
+                gameId: _t
+            }, Kt => {
+                Kt?.ok ? Yt({
+                    ok: !0,
+                    verification: Kt.verification
+                }) : Yt({
+                    ok: !1,
+                    error: Kt?.message
+                })
+            }
+            )
+        }
+        )
+    }
+    subscribeToGameState(_t) {
+        return this.gameStateCallback = _t,
+        this.currentGame?.state === "DRAWING" && this.requestGameState(),
+        () => {
+            this.gameStateCallback = null
+        }
+    }
+    subscribeToHistory(_t) {
+        return this.historyCallback = _t,
+        this.lastHistory.length > 0 ? _t(this.lastHistory) : this.socket?.connected && this.requestHistory(20, 0),
+        () => {
+            this.historyCallback = null
+        }
+    }
+    subscribeToGameFinished(_t) {
+        return this.gameFinishedCallback = _t,
+        () => {
+            this.gameFinishedCallback = null
+        }
+    }
+    subscribeToErrors(_t) {
+        return this.errorCallback = _t,
+        () => {
+            this.errorCallback = null
+        }
+    }
+    subscribeToConnectionQuality(_t) {
+        return this.qualityCallback = _t,
+        _t(this.connectionQuality),
+        () => {
+            this.qualityCallback = null
+        }
+    }
+    disconnect() {
+        socketManager.unsubscribe({
+            module: "pvp",
+            type: "all"
+        }),
+        this.socket && (this.socket.off("pvp:game_state"),
+        this.socket.off("pvp:player_joined"),
+        this.socket.off("pvp:bet_increased"),
+        this.socket.off("pvp:drawing_complete"),
+        this.socket.off("pvp:error"),
+        this.socket.off("pvp:history_updated")),
+        this.socket = null,
+        this.gameStateCallback = null,
+        this.historyCallback = null,
+        this.errorCallback = null,
+        this.qualityCallback = null,
+        this.gameFinishedCallback = null,
+        this.currentGame = null,
+        this.isConnecting = !1,
+        this.hasConnectedOnce = !1,
+        this.clearConnectionTimers(),
+        this.stopWatchdog()
+    }
+}
+const usePvPGame = tt => {
+    const {balance: _t, setBalance: Yt} = useStore()
+      , [Kt,Xt] = reactExports.useState(null)
+      , [Jt,Zt] = reactExports.useState(void 0)
+      , [tn,nn] = reactExports.useState([])
+      , [an,un] = reactExports.useState(0)
+      , [dn,fn] = reactExports.useState(!1)
+      , [hn,mn] = reactExports.useState("connecting")
+      , [En,gn] = reactExports.useState(!0)
+      , Sn = reactExports.useRef()
+      , yn = reactExports.useRef(null)
+      , bn = reactExports.useRef(null)
+      , Cn = reactExports.useRef(null)
+      , Pn = reactExports.useRef(null)
+      , $n = reactExports.useRef(tt)
+      , wn = reactExports.useRef(null)
+      , An = reactExports.useRef(null)
+      , Bn = reactExports.useRef(null)
+      , Xn = reactExports.useRef(null)
+      , Mn = reactExports.useRef(null)
+      , Wn = reactExports.useRef(null);
+    reactExports.useEffect( () => {
+        $n.current = tt
+    }
+    , [tt]),
+    reactExports.useEffect( () => {
+        Sn.current = PvPService.getInstance(),
+        Sn.current.ensureConnected();
+        const dr = Sr => {
+            Mn.current = Date.now() + Sr * 1e3,
+            Zt(Math.floor(Sr)),
+            Wn.current && clearInterval(Wn.current);
+            let zr = Math.floor(Sr);
+            Wn.current = setInterval( () => {
+                if (Mn.current) {
+                    const Js = Math.max(0, Math.floor((Mn.current - Date.now()) / 1e3));
+                    Js !== zr && (zr = Js,
+                    Zt(Js)),
+                    Js <= 0 && (clearInterval(Wn.current),
+                    Wn.current = null,
+                    Mn.current = null)
+                }
+            }
+            , 100)
+        }
+          , yr = () => {
+            Wn.current && (clearInterval(Wn.current),
+            Wn.current = null),
+            Mn.current = null
+        }
+        ;
+        let vr = !1;
+        return yn.current = Sn.current.subscribeToGameState(Sr => {
+            if (Sr?.gameId && Sr.gameId !== Xn.current && (Xn.current = Sr.gameId,
+            yr(),
+            Zt(void 0)),
+            Sr?.state === "DRAWING") {
+                yr(),
+                wn.current = {
+                    gameId: Sr.gameId,
+                    at: Date.now()
+                },
+                Xt(Sr);
+                return
+            }
+            if (Sr?.state === "WAITING" && wn.current && wn.current.gameId !== Sr.gameId && Date.now() - wn.current.at < 2e3) {
+                Bn.current = Sr,
+                An.current && clearTimeout(An.current),
+                An.current = setTimeout( () => {
+                    Xt(Bn.current),
+                    An.current = null,
+                    Bn.current = null,
+                    wn.current = null
+                }
+                , 250);
+                return
+            }
+            Xt(Sr),
+            vr || (vr = !0,
+            gn(!1)),
+            Sr?.state === "COUNTDOWN" && Sr.secondsRemaining !== void 0 && !Wn.current && dr(Sr.secondsRemaining),
+            Sr?.state === "WAITING" && (yr(),
+            wn.current = null)
+        }
+        ),
+        bn.current = Sn.current.subscribeToHistory(Sr => {
+            nn(Sr),
+            un(Sn.current?.getHistoryTotal() || 0)
+        }
+        ),
+        Cn.current = Sn.current.subscribeToConnectionQuality(Sr => {
+            mn(Sr),
+            fn(Sr === "good" || Sr === "degraded")
+        }
+        ),
+        $n.current && (Pn.current = Sn.current.subscribeToGameFinished( () => {
+            setTimeout( () => {
+                $n.current?.()
+            }
+            , 500)
+        }
+        )),
+        Sn.current.requestGameState(),
+        () => {
+            try {
+                yn.current?.()
+            } catch {}
+            try {
+                bn.current?.()
+            } catch {}
+            try {
+                Cn.current?.()
+            } catch {}
+            try {
+                Pn.current?.()
+            } catch {}
+            An.current && (clearTimeout(An.current),
+            An.current = null),
+            Wn.current && (clearInterval(Wn.current),
+            Wn.current = null),
+            Mn.current = null,
+            Bn.current = null,
+            wn.current = null,
+            Sn.current && Sn.current.disconnect()
+        }
+    }
+    , [Yt]);
+    const hr = reactExports.useCallback(async dr => Sn.current ? await Sn.current.placeBet(dr) : {
+        ok: !1,
+        error: instance$1.t("errors:PVP.UNABLE_TO_PLACE_BET")
+    }, [])
+      , fr = reactExports.useCallback(async dr => !Sn.current || !Kt ? {
+        ok: !1,
+        error: "Service not initialized or no active game"
+    } : await Sn.current.increaseBet(Kt.gameId, dr), [Kt])
+      , Cr = reactExports.useCallback(async (dr=50, yr=0, vr) => Sn.current ? (Sn.current.requestHistory(dr, yr, vr),
+    {
+        ok: !0,
+        games: []
+    }) : {
+        ok: !1,
+        games: []
+    }, [])
+      , us = reactExports.useCallback(async dr => Sn.current ? await Sn.current.verifyGame(dr) : {
+        ok: !1,
+        error: "Service not initialized"
+    }, []);
+    return {
+        gameState: reactExports.useMemo( () => Kt ? {
+            ...Kt,
+            secondsRemaining: Kt.state === "COUNTDOWN" ? Jt : Kt.secondsRemaining
+        } : null, [Kt, Jt]),
+        historyGames: tn,
+        historyTotal: an,
+        isLoading: En,
+        isConnected: dn,
+        connectionQuality: hn,
+        balance: _t,
+        placeBet: hr,
+        increaseBet: fr,
+        fetchHistory: Cr,
+        verifyGame: us
+    }
+}
+  , isGiftAvailableForPvP = tt => tt.giftType === "deposited" ? tt.status === "deposited" || tt.status === "unboxed" || tt.status === "pvp_won" || tt.status === "giveaway_won" : tt.status === "unboxed" || tt.status === "purchased" || tt.status === "pvp_won" || tt.status === "giveaway_won" || tt.status === "need_pm"
+  , usePvPGifts = () => {
+    const [tt,_t] = reactExports.useState(void 0)
+      , [Yt,Kt] = reactExports.useState(!0)
+      , [Xt,Jt] = reactExports.useState(null)
+      , Zt = async () => {
+        try {
+            Kt(!0),
+            Jt(null);
+            const nn = (await GiftService.getUserGiftsForCrash())?.filter(isGiftAvailableForPvP);
+            _t(nn)
+        } catch (tn) {
+            console.error("Failed to fetch user gifts:", tn),
+            Jt(tn)
+        } finally {
+            Kt(!1)
+        }
+    }
+    ;
+    return reactExports.useEffect( () => {
+        Zt()
+    }
+    , []),
+    {
+        gifts: tt,
+        isLoading: Yt,
+        error: Xt,
+        refetch: Zt
+    }
+}
+;
+function DisplayHash({hash: tt}) {
+    const {t: _t} = useTranslation("gifts")
+      , Yt = Xt => {
+        if (!Xt)
+            return _t("LABELS.HASH_PREFIX") + " " + _t("LABELS.HASH_EMPTY");
+        if (Xt.length <= 24)
+            return `${_t("LABELS.HASH_PREFIX")}: ${Xt}`;
+        const tn = Xt.slice(0, 5)
+          , nn = Xt.slice(-5);
+        return `${_t("LABELS.HASH_PREFIX")}: ${tn}â€¦${nn}`
+    }
+      , Kt = async () => {
+        if (tt)
+            try {
+                await navigator.clipboard.writeText(tt),
+                toast.success(`${Yt(tt)} ${_t("MESSAGES.HASH_COPIED")}`)
+            } catch {}
+    }
+    ;
+    return jsxRuntimeExports.jsxs("button", {
+        type: "button",
+        onClick: Kt,
+        title: tt ? _t("BUTTONS.COPY_HASH") : "",
+        "aria-label": _t("BUTTONS.COPY_HASH"),
+        className: "inline-flex items-center gap-2 text-gray-400 hover:text-gray-300 focus:outline-none",
+        style: {
+            cursor: tt ? "pointer" : "default"
+        },
+        children: [jsxRuntimeExports.jsx("span", {
+            className: "font-semibold text-sm text-center text-gray-500 whitespace-nowrap",
+            children: Yt(tt)
+        }), jsxRuntimeExports.jsx("span", {
+            className: "relative",
+            children: jsxRuntimeExports.jsx(Copy, {
+                className: "w-4 h-4 text-gray-500"
+            })
+        })]
+    })
+}
+function AnimatedDots() {
+    return jsxRuntimeExports.jsx("span", {
+        className: "ml-0.25 inline-block w-[3ch] text-left align-baseline dots",
+        "aria-hidden": "true"
+    })
+}
+const PvPPage = () => {
+    const tt = useNavigate()
+      , {t: _t} = useTranslation("pvp")
+      , [Yt,Kt] = reactExports.useState(!1)
+      , [Xt,Jt] = reactExports.useState(null)
+      , [Zt,tn] = reactExports.useState(!1)
+      , [nn,an] = reactExports.useState(null)
+      , [un,dn] = reactExports.useState(null)
+      , {user: fn} = useUser()
+      , {gifts: hn, refetch: mn} = usePvPGifts()
+      , {gameState: En, balance: gn, placeBet: Sn, increaseBet: yn} = usePvPGame(mn)
+      , {platform: bn, isMobileTma: Cn} = usePlatform()
+      , Pn = Cn ? bn === "ios" ? 100 : 80 : 56
+      , $n = reactExports.useCallback(fr => dn(fr), []);
+    reactExports.useEffect( () => {
+        Zt && Yt && Kt(!1)
+    }
+    , [Zt, Yt]);
+    const wn = reactExports.useMemo( () => fn?.dbId, [fn])
+      , An = reactExports.useMemo( () => wn && En?.players.find(fr => fr.playerId === wn) || null, [wn, En]);
+    reactExports.useEffect( () => {
+        const fr = () => {
+            document.visibilityState === "visible" && En?.state && (En.state === "WAITING" || En.state === "COUNTDOWN") && (Zt || nn) && (tn(!1),
+            an(null))
+        }
+        ;
+        return document.addEventListener("visibilitychange", fr),
+        () => document.removeEventListener("visibilitychange", fr)
+    }
+    , [Zt, nn, En?.state, En?.gameId]);
+    const Bn = (!En || En.state === "WAITING" || En.state === "COUNTDOWN" && En.secondsRemaining !== void 0 && En.secondsRemaining > 0) && !Zt && !nn && wn !== void 0
+      , Xn = reactExports.useMemo( () => {
+        const fr = new Set(An?.bet.gifts?.map(Cr => Cr.giftId) || []);
+        return (hn ?? []).filter(Cr => !fr.has(Cr.id))
+    }
+    , [An, hn]);
+    if (hn === void 0)
+        return jsxRuntimeExports.jsx(Page, {
+            children: jsxRuntimeExports.jsx("div", {
+                className: "flex items-center justify-center min-h-screen",
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "text-center",
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"
+                    }), jsxRuntimeExports.jsx("p", {
+                        className: "text-white/60",
+                        children: _t("STATUS.LOADING_USER_DATA")
+                    })]
+                })
+            })
+        });
+    const Mn = () => {
+        zu.selectionChanged.isAvailable() && zu.selectionChanged(),
+        tt("/pvp/history")
+    }
+      , Wn = () => {
+        if (zu.impactOccurred.isAvailable() ? zu.impactOccurred("medium") : zu.selectionChanged.isAvailable() && zu.selectionChanged(),
+        fn && fn.withdrawEnabled === !1) {
+            Jt("withdraw");
+            return
+        }
+        Kt(!0)
+    }
+      , hr = async fr => {
+        if (En?.state === "DRAWING" || Zt)
+            throw new Error("Betting is closed. Game has already started.");
+        const us = wn && En?.players.find(oi => oi.playerId === wn) || null ? await yn(fr) : await Sn(fr);
+        if (!us.ok && us.error)
+            throw new Error(us.error)
+    }
+    ;
+    return jsxRuntimeExports.jsxs(Page, {
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "fixed top-0 left-0 right-0 z-30",
+            children: jsxRuntimeExports.jsx(Header, {
+                variant: "game",
+                className: "max-w-md mx-auto",
+                children: jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                    children: [jsxRuntimeExports.jsx("button", {
+                        onClick: Mn,
+                        className: "flex items-center justify-center w-10 h-10 rounded-xl transition-all active:scale-95",
+                        style: {
+                            background: "rgba(255, 255, 255, 0.08)",
+                            backdropFilter: "blur(24px)",
+                            border: "1px solid rgba(255, 255, 255, 0.12)"
+                        },
+                        children: jsxRuntimeExports.jsx(History, {
+                            className: "w-5 h-5 text-white/90"
+                        })
+                    }), jsxRuntimeExports.jsx(BalanceDisplay, {})]
+                })
+            })
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "space-y-5",
+            style: {
+                paddingTop: `${Pn}px`
+            },
+            children: [jsxRuntimeExports.jsx(PvPHighlights, {
+                gameId: En?.gameId,
+                freeze: Zt
+            }), jsxRuntimeExports.jsx(PvPGameArea, {
+                game: En,
+                currentUserId: wn || "unknown",
+                onAnimationStateChange: tn,
+                onWinnerSnapshotChange: an
+            }), jsxRuntimeExports.jsxs("button", {
+                onClick: Wn,
+                disabled: !Bn,
+                className: `w-full py-4 rounded-2xl font-bold text-lg transition-all duration-300 relative overflow-hidden shadow-lg ${Bn ? "bg-gradient-to-r from-[#ffa700] to-[#ffd746] hover:shadow-[0_0_30px_rgba(255,167,0,0.5)] text-black active:scale-[0.98]" : "bg-gradient-to-r from-gray-700 to-gray-800 text-white/40 cursor-not-allowed"}`,
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "relative z-10 flex items-center justify-center gap-2",
+                    children: An ? jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
+                        children: _t("ACTIONS.INCREASE")
+                    }) : jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
+                        children: _t("ACTIONS.JOIN")
+                    })
+                }), Bn && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "absolute inset-0 bg-gradient-to-r from-[#ffa700] to-[#ffd746] opacity-0 group-hover:opacity-100 transition-opacity"
+                    })]
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "space-y-3",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between px-1",
+                    children: [jsxRuntimeExports.jsx("h3", {
+                        className: "text-white font-semibold text-sm flex items-center gap-2",
+                        children: _t("LABELS.PLAYERS")
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center gap-1.5 px-3 py-1.5 rounded-lg",
+                        children: [jsxRuntimeExports.jsx("svg", {
+                            className: "w-4 h-4 text-gray-500",
+                            viewBox: "0 0 24 24",
+                            fill: "currentColor",
+                            children: jsxRuntimeExports.jsx("path", {
+                                d: "M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+                            })
+                        }), jsxRuntimeExports.jsx("span", {
+                            className: "text-gray-500 font-bold text-sm",
+                            children: (nn?.players || En?.players || []).length
+                        })]
+                    })]
+                }), (nn?.players || En?.players || []).length > 0 ? jsxRuntimeExports.jsx(PvPPlayersList, {
+                    players: nn ? nn.players : En?.players || [],
+                    gameId: nn ? nn.gameId : En?.gameId,
+                    onPlayerClick: $n
+                }) : jsxRuntimeExports.jsx("div", {
+                    className: "text-center font-bold text-2xl",
+                    children: _t("ACTIONS.PLACE_BET")
+                })]
+            }), En?.players && En?.players?.length <= 1 && jsxRuntimeExports.jsxs("div", {
+                className: "text-gray-500 text-sm mb-1 flex items-center justify-center",
+                "aria-live": "polite",
+                children: [En?.players.length === 0 ? _t("STATUS.WAITING_FOR_PLAYERS") : _t("STATUS.WAITING_FOR_MORE"), jsxRuntimeExports.jsx(AnimatedDots, {})]
+            }), jsxRuntimeExports.jsx("div", {
+                className: "mx-auto text-sm font-semibold text-center text-gray-500 tracking-tight",
+                children: jsxRuntimeExports.jsx(DisplayHash, {
+                    hash: En?.provablyFair?.serverSeedHash || ""
+                })
+            })]
+        }), jsxRuntimeExports.jsx(PvPBetModal, {
+            isOpen: Yt,
+            onClose: () => Kt(!1),
+            balance: gn,
+            availableGifts: Xn,
+            onConfirm: hr,
+            isIncreasing: !!An,
+            currentBetValue: An?.bet.totalValue,
+            onPvpLock: Jt
+        }), Xt && jsxRuntimeExports.jsx(StarsLockModal, {
+            titleKey: Xt === "stars" ? "PVP_STARS_LOCK.TITLE" : "PVP_RESTRICTED.TITLE",
+            descriptionKey: Xt === "stars" ? "PVP_STARS_LOCK.DESCRIPTION" : "PVP_RESTRICTED.DESCRIPTION",
+            onClose: () => Jt(null)
+        }), un && jsxRuntimeExports.jsx(PvPBetDetailsModal, {
+            player: un,
+            playersCount: nn?.players.length ?? En?.players.length ?? 0,
+            gameId: nn ? nn.gameId : En?.gameId,
+            onClose: () => dn(null)
+        })]
+    })
+}
+  , HEADER_PILL_STYLE = {
+    background: "rgba(42, 42, 42, 0.9)",
+    border: "1px solid rgba(255, 255, 255, 0.12)"
+}
+  , GameHeader = reactExports.forwardRef(function tt({balance: _t, balanceReady: Yt=!0, onBack: Kt, avatar: Xt=!1, onHistory: Jt, onHelp: Zt, topupRoute: tn="/topup", currencyIconSrc: nn="/assets/images/gram_symbol.svg", currencyLabel: an="GRAM"}, un) {
+    const dn = useNavigate()
+      , fn = useLocation()
+      , {t: hn} = useTranslation("gameKit")
+      , {platform: mn, isMobileTma: En} = usePlatform()
+      , gn = En ? mn === "ios" ? 60 : 48 : 16
+      , Sn = En ? "flex items-center justify-center w-10 h-10 rounded-xl transition-all active:scale-95 text-white/80" : "flex items-center justify-center w-9 h-9 rounded-2xl transition-all active:scale-95 text-white/80"
+      , yn = En ? "w-5 h-5" : "w-4 h-4"
+      , bn = En ? "flex items-center justify-center gap-2 px-3 h-10 rounded-xl transition-all" : "flex items-center gap-2 px-4 py-2 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.1)]"
+      , Pn = Kt === null ? null : Kt ?? ( () => {
+        fn.key === "default" ? dn("/play-hub", {
+            replace: !0
+        }) : dn(-1)
+    }
+    );
+    return jsxRuntimeExports.jsxs("div", {
+        ref: un,
+        className: "flex items-center justify-between",
+        style: {
+            paddingTop: `${gn}px`
+        },
+        children: [jsxRuntimeExports.jsxs("div", {
+            className: "flex items-center gap-2",
+            children: [Xt && jsxRuntimeExports.jsx("span", {
+                className: "mr-2 flex",
+                children: jsxRuntimeExports.jsx(AvatarButton, {
+                    size: En ? "md" : "sm"
+                })
+            }), Pn && jsxRuntimeExports.jsx("button", {
+                onClick: Pn,
+                className: Sn,
+                style: HEADER_PILL_STYLE,
+                "aria-label": hn("HEADER.BACK"),
+                children: jsxRuntimeExports.jsx(ChevronLeft, {
+                    className: yn
+                })
+            }), Jt && jsxRuntimeExports.jsx("button", {
+                onClick: Jt,
+                className: Sn,
+                style: HEADER_PILL_STYLE,
+                "aria-label": hn("HEADER.HISTORY"),
+                children: jsxRuntimeExports.jsx(History, {
+                    className: yn
+                })
+            }), Zt && jsxRuntimeExports.jsx("button", {
+                onClick: Zt,
+                className: Sn,
+                style: HEADER_PILL_STYLE,
+                "aria-label": hn("HEADER.HELP"),
+                children: jsxRuntimeExports.jsx(CircleHelp, {
+                    className: yn
+                })
+            })]
+        }), jsxRuntimeExports.jsxs("div", {
+            className: bn,
+            style: HEADER_PILL_STYLE,
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "w-6 h-6 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center",
+                children: jsxRuntimeExports.jsx("img", {
+                    src: nn,
+                    alt: an,
+                    className: "w-4 h-4 opacity-90"
+                })
+            }), jsxRuntimeExports.jsx(AnimatedBalance, {
+                value: _t,
+                ready: Yt,
+                className: "text-white/95 font-semibold text-base tabular-nums"
+            }), tn && jsxRuntimeExports.jsx("button", {
+                onClick: () => dn(tn),
+                className: "relative w-6 h-6 rounded-xl bg-white/[0.06] border border-white/[0.08] transition-all duration-200 hover:bg-white/[0.1] active:scale-95",
+                "aria-label": hn("HEADER.TOPUP"),
+                children: jsxRuntimeExports.jsx("div", {
+                    className: "flex items-center justify-center w-full h-full",
+                    children: jsxRuntimeExports.jsx(Plus, {
+                        size: 14,
+                        className: "text-white/90"
+                    })
+                })
+            })]
+        })]
+    })
+})
+  , BetModeToggle = reactExports.memo(function tt({mode: _t, onTonSelect: Yt, onGiftsSelect: Kt, ns: Xt, currencyIconSrc: Jt="/assets/images/gram_symbol.svg", disabled: Zt=!1}) {
+    const {t: tn} = useTranslation(Xt)
+      , nn = un => {
+        zu.selectionChanged.isAvailable() && zu.selectionChanged(),
+        un === "ton" ? Yt() : Kt()
+    }
+      , an = un => `w-12 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${un ? "bg-purple-500 text-white shadow-lg" : "text-[#999999] md:hover:text-white active:text-[#999999] focus:text-[#999999]"}`;
+    return jsxRuntimeExports.jsxs("div", {
+        className: `bg-[#2A2A2A] p-1 rounded-full flex gap-1 shrink-0${Zt ? " opacity-50" : ""}`,
+        children: [jsxRuntimeExports.jsx("button", {
+            type: "button",
+            disabled: Zt,
+            onClick: () => nn("gifts"),
+            className: an(_t === "gifts"),
+            "aria-pressed": _t === "gifts",
+            "aria-label": tn("TOGGLE.GIFTS"),
+            children: jsxRuntimeExports.jsx(Gift, {
+                className: "w-5 h-5"
+            })
+        }), jsxRuntimeExports.jsx("button", {
+            type: "button",
+            disabled: Zt,
+            onClick: () => nn("ton"),
+            className: an(_t === "ton"),
+            "aria-pressed": _t === "ton",
+            "aria-label": tn("TOGGLE.TON"),
+            children: jsxRuntimeExports.jsx("img", {
+                src: Jt,
+                alt: "",
+                className: "w-4 h-4"
+            })
+        })]
+    })
+})
+  , GameBetPanel = reactExports.memo(function tt({roomy: _t, amount: Yt, onAmountChange: Kt, minBet: Xt, maxBet: Jt, step: Zt=.1, onClamp: tn, amountPlaceholder: nn, allowEmptyAmount: an=!1, amountDisabled: un=!1, giftsActive: dn, onOpenGifts: fn, ns: hn, canBet: mn, ctaLabel: En, ctaHidden: gn=!1, ctaPlaceholder: Sn, ctaPlacement: yn="bottom", modeDisabled: bn=!1, amountTrailing: Cn, onBet: Pn, hold: $n, ctaVariant: wn="primary", currencyIconSrc: An="/assets/images/gram_symbol.svg", topSlot: Bn, amountSlot: Xn, onTonSelect: Mn, middleSlot: Wn, bottomSlot: hr}) {
+    const fr = reactExports.useRef(null)
+      , [Cr,us] = reactExports.useState(!1)
+      , oi = reactExports.useCallback(zr => {
+        $n && zr.button === 0 && fr.current === null && (fr.current = zr.pointerId,
+        us(!0),
+        zr.currentTarget.setPointerCapture(zr.pointerId),
+        $n.onStart())
+    }
+    , [$n])
+      , dr = reactExports.useCallback(zr => {
+        $n && zr.pointerId === fr.current && (fr.current = null,
+        us(!1),
+        $n.onEnd())
+    }
+    , [$n])
+      , yr = mn || Cr
+      , vr = wn === "success" ? "bg-gradient-to-r from-emerald-500 to-green-500 text-white active:scale-[0.98]" : wn === "danger" ? "bg-gradient-to-r from-rose-500 to-red-500 text-white active:scale-[0.98]" : "bg-gradient-to-r from-violet-500 to-purple-500 text-white active:scale-[0.98]"
+      , Sr = jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
+        children: gn ? jsxRuntimeExports.jsx("div", {
+            className: "flex h-12 w-full items-center justify-center rounded-xl bg-[#2A2A2A] px-4 text-center text-base font-bold leading-tight text-white/40",
+            children: Sn
+        }) : jsxRuntimeExports.jsx("button", {
+            onPointerDown: oi,
+            onPointerUp: dr,
+            onPointerCancel: dr,
+            onLostPointerCapture: dr,
+            onClick: zr => {
+                (!$n || zr.detail === 0) && Pn()
+            }
+            ,
+            onContextMenu: zr => zr.preventDefault(),
+            disabled: !yr,
+            className: `w-full py-3 rounded-xl font-bold text-base transition-all select-none ${$n ? "touch-none [-webkit-touch-callout:none] " : ""}${yr ? vr : "bg-[#2A2A2A] text-white/30"}`,
+            children: En
+        })
+    });
+    return jsxRuntimeExports.jsxs("div", {
+        className: `flex flex-col shrink-0 transition-all duration-200 ${_t ? "gap-3 bg-[#1E1E1E] rounded-2xl p-4 mb-2" : "gap-2"}`,
+        children: [Bn, yn === "top" && Sr, jsxRuntimeExports.jsxs("div", {
+            className: "flex items-stretch gap-2",
+            children: [jsxRuntimeExports.jsx(BetModeToggle, {
+                mode: dn ? "gifts" : "ton",
+                onTonSelect: Mn ?? ( () => {}
+                ),
+                onGiftsSelect: fn,
+                ns: hn,
+                currencyIconSrc: An,
+                disabled: bn
+            }), jsxRuntimeExports.jsx("div", {
+                className: "flex-1 min-w-0 flex flex-col",
+                children: Xn ?? jsxRuntimeExports.jsx(DecimalInput, {
+                    value: Yt,
+                    onChange: Kt,
+                    min: Xt,
+                    max: Jt,
+                    step: Zt,
+                    onClamp: tn,
+                    disabled: un,
+                    placeholder: nn,
+                    allowEmpty: an,
+                    className: `w-full h-full bg-[#2A2A2A] text-white text-center px-4 pr-9 rounded-xl border border-[#444444]/40 focus:border-[#0098EA] focus:outline-none text-base font-bold${un ? " opacity-50" : ""}${Cn ? " max-[359px]:pl-1 max-[359px]:pr-7 max-[359px]:text-xs" : ""}`,
+                    suffix: jsxRuntimeExports.jsx("img", {
+                        src: An,
+                        alt: "",
+                        className: "w-3.5 h-3.5"
+                    }),
+                    showEmptyWhenZero: !0
+                })
+            }), Cn]
+        }), Wn, yn === "bottom" && Sr, hr]
+    })
+});
+function isVariant(tt) {
+    const _t = tt.variant?.attributes ?? tt.attributes;
+    return !!_t && (_t.model != null || _t.symbol != null)
+}
+const EMPTY_GIFT = {
+    id: -1,
+    name: "",
+    slug: "",
+    status: "unboxed",
+    unboxedAt: "",
+    giftBoxTitle: "",
+    price: 0
+};
+function GameGiftModal({isOpen: tt, onClose: _t, ns: Yt, gifts: Kt, loading: Xt, toGift: Jt, onRefresh: Zt, isGiftDisabled: tn, disabledReason: nn, single: an=!1, maxSelection: un, prunedMessage: dn, currencyIconSrc: fn="/assets/images/gram_symbol.svg", belowSummary: hn, onConfirm: mn}) {
+    const {t: En} = useTranslation([Yt, "common"])
+      , [gn,Sn] = reactExports.useState([])
+      , yn = reactExports.useMemo( () => Kt.map(Jt), [Kt, Jt])
+      , bn = reactExports.useRef(gn);
+    bn.current = gn;
+    const Cn = reactExports.useRef(Kt);
+    Cn.current = Kt;
+    const Pn = reactExports.useRef(Zt);
+    Pn.current = Zt,
+    reactExports.useEffect( () => {
+        tt && (Sn([]),
+        Pn.current())
+    }
+    , [tt]),
+    reactExports.useEffect( () => {
+        if (!an || !tt || gn.length > 0 || Kt.length === 0)
+            return;
+        const fr = sortGiftsForGrid(yn).find(Cr => !tn?.(Cr));
+        fr && Sn([Kt[fr.id]])
+    }
+    , [an, tt, gn.length, Kt, yn, tn]),
+    reactExports.useEffect( () => {
+        const fr = bn.current.map(dr => Kt.indexOf(dr)).filter(dr => dr >= 0)
+          , Cr = (tn ? fr.filter(dr => !tn(yn[dr])) : fr).map(dr => Kt[dr])
+          , us = bn.current;
+        if (Cr.length === us.length && Cr.every( (dr, yr) => dr === us[yr]))
+            return;
+        const oi = fr.length - Cr.length;
+        if (oi > 0 && dn) {
+            const dr = dn(oi);
+            dr && toast.error(dr, {
+                id: `${Yt}-gift-pruned`
+            })
+        }
+        Sn(Cr)
+    }
+    , [Kt, yn, tn, dn, Yt]);
+    const $n = reactExports.useMemo( () => gn.map(fr => Kt.indexOf(fr)).filter(fr => fr >= 0).map(fr => yn[fr]), [gn, Kt, yn])
+      , wn = reactExports.useCallback(fr => {
+        Sn(fr.map(Cr => Cn.current[Cr.id]).filter(Boolean))
+    }
+    , [])
+      , An = reactExports.useCallback(fr => {
+        const Cr = Cn.current[fr.id];
+        Cr && Sn([Cr])
+    }
+    , [])
+      , Bn = reactExports.useCallback(fr => {
+        const Cr = nn?.(fr);
+        Cr && toast.error(Cr, {
+            id: `${Yt}-gift-limit`
+        })
+    }
+    , [nn, Yt])
+      , Xn = $n.reduce( (fr, Cr) => fr + Cr.price, 0)
+      , Mn = gn.length > 0
+      , Wn = an ? $n[0] : void 0
+      , hr = () => {
+        Mn && (zu.impactOccurred.isAvailable() && zu.impactOccurred("medium"),
+        mn(gn))
+    }
+    ;
+    return jsxRuntimeExports.jsx(BetModal, {
+        isOpen: tt,
+        onClose: _t,
+        title: En("GIFT_MODAL.TITLE"),
+        scrollContent: !1,
+        contentClassName: "flex flex-col",
+        children: jsxRuntimeExports.jsx("div", {
+            className: "flex-1 flex flex-col px-4 pt-4 pb-6 min-h-0",
+            children: Kt.length === 0 && !Xt ? jsxRuntimeExports.jsx("div", {
+                className: "flex-1 overflow-hidden",
+                children: jsxRuntimeExports.jsx(GiftEmptyState, {})
+            }) : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "shrink-0 bg-[#2A2A2A] rounded-2xl p-4 border border-[#444444]/40 mb-4",
+                    children: [an ? jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center gap-3 mb-3",
+                        children: [jsxRuntimeExports.jsx(GiftPreview, {
+                            gift: Wn ?? EMPTY_GIFT,
+                            imagePadding: "p-2",
+                            transparentBg: !0,
+                            className: `size-[88px] shrink-0 rounded-2xl${Wn ? "" : " opacity-30"}`
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "flex min-w-0 flex-1 flex-col gap-1.5",
+                            children: [jsxRuntimeExports.jsx("span", {
+                                className: "truncate text-base font-semibold text-white",
+                                children: Wn && (Wn.name || Wn.collectionName) || En("GIFT_MODAL.SELECT")
+                            }), Wn && jsxRuntimeExports.jsx("span", {
+                                className: "inline-flex w-fit items-center gap-1.5 rounded-lg border border-[#8774E1]/30 bg-gradient-to-r from-[#8774E1]/20 to-[#7B68D4]/20 px-2 py-1 text-xs font-medium text-[#8774E1]",
+                                children: isVariant(Wn) ? (Wn.variant?.attributes ?? Wn.attributes)?.model || En("common:APP.VARIANT") : En("common:APP.RANDOM")
+                            }), jsxRuntimeExports.jsxs("div", {
+                                className: "flex items-center gap-1.5",
+                                children: [jsxRuntimeExports.jsx("img", {
+                                    src: fn,
+                                    alt: "",
+                                    className: "w-4 h-4"
+                                }), jsxRuntimeExports.jsx("span", {
+                                    className: `font-bold ${Mn ? "text-blue-400" : "text-white/30"}`,
+                                    children: Xn.toFixed(2)
+                                })]
+                            })]
+                        })]
+                    }) : jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between gap-3 mb-3",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-white/60 text-sm",
+                            children: Mn ? En("GIFT_MODAL.SELECTED", {
+                                count: gn.length
+                            }) : En("GIFT_MODAL.SELECT")
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "flex items-center gap-1.5 shrink-0",
+                            children: [jsxRuntimeExports.jsx("img", {
+                                src: fn,
+                                alt: "",
+                                className: "w-4 h-4"
+                            }), jsxRuntimeExports.jsx("span", {
+                                className: `font-bold ${Mn ? "text-blue-400" : "text-white/30"}`,
+                                children: Xn.toFixed(2)
+                            })]
+                        })]
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: hr,
+                        disabled: !Mn,
+                        className: `w-full py-3 rounded-xl font-bold text-base transition-all border ${Mn ? "border-transparent bg-gradient-to-r from-violet-500 to-purple-500 text-white active:scale-[0.98]" : "border-[#444444]/40 bg-[#232323] text-white/30"}`,
+                        children: Mn ? En(an ? "GIFT_MODAL.CONFIRM_ONE" : "GIFT_MODAL.CONFIRM", {
+                            count: gn.length,
+                            amount: Xn.toFixed(2)
+                        }) : En("GIFT_MODAL.SELECT")
+                    })]
+                }), hn, an && Wn && jsxRuntimeExports.jsx("p", {
+                    className: "mb-2 text-sm text-white/50",
+                    children: En("GIFT_MODAL.PICK_ANOTHER")
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "flex-1 min-h-0 overflow-y-auto",
+                    children: jsxRuntimeExports.jsx(GiftSelector, {
+                        gifts: yn,
+                        selectedGift: an ? Wn ?? null : null,
+                        selectedGifts: an ? void 0 : $n,
+                        onSelect: an ? An : () => {}
+                        ,
+                        onMultiSelect: an ? void 0 : wn,
+                        layout: "grid",
+                        multiSelect: !an,
+                        ...!an && un !== void 0 ? {
+                            maxSelection: Math.max(1, un)
+                        } : {},
+                        constrainHeight: !1,
+                        isGiftDisabled: tn,
+                        onDisabledSelect: Bn
+                    })
+                })]
+            })
+        })
+    })
+}
+function backdropHex(tt) {
+    const _t = getBackdropHex(tt);
+    return _t ? {
+        center: _t.centerColor,
+        edge: _t.edgeColor
+    } : null
+}
+const GameUnavailable = reactExports.memo(function tt({title: _t, description: Yt, ctaLabel: Kt, onBack: Xt}) {
+    return jsxRuntimeExports.jsx("div", {
+        role: "alertdialog",
+        "aria-modal": "true",
+        className: "fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/85",
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "w-full max-w-sm bg-[#1E1E1E] rounded-2xl p-6 text-center",
+            children: [jsxRuntimeExports.jsx("h2", {
+                className: "text-white text-lg font-semibold mb-2",
+                children: _t
+            }), jsxRuntimeExports.jsx("p", {
+                className: "text-white/60 text-sm leading-relaxed mb-6",
+                children: Yt
+            }), jsxRuntimeExports.jsx("button", {
+                type: "button",
+                onClick: Xt,
+                className: "w-full bg-[#8774E1] text-white font-semibold px-6 py-3 rounded-xl active:opacity-90 transition-colors",
+                children: Kt
+            })]
+        })
+    })
+});
+function nextEntryBlock(tt, _t, Yt, Kt) {
+    return Yt ? _t ? Kt ? tt : !1 : Kt : tt
+}
+function useEntryBlock(tt, _t) {
+    const [Yt,Kt] = reactExports.useState(!1)
+      , Xt = reactExports.useRef(!1);
+    return reactExports.useEffect( () => {
+        Kt(Jt => nextEntryBlock(Jt, Xt.current, tt, _t)),
+        tt && (Xt.current = !0)
+    }
+    , [tt, _t]),
+    Yt
+}
+const STEPS$2 = ["STEP_1", "STEP_2", "STEP_3", "STEP_4"]
+  , GameHowItWorksModal = reactExports.memo(function tt({ns: _t, open: Yt, onClose: Kt}) {
+    const {t: Xt} = useTranslation(_t);
+    return Yt ? jsxRuntimeExports.jsxs("div", {
+        className: "fixed inset-0 z-[220] flex items-center justify-center p-5",
+        role: "dialog",
+        "aria-modal": "true",
+        "aria-labelledby": `${_t}-hiw-title`,
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0 bg-black/70",
+            onClick: Kt
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "relative flex max-h-[85vh] w-full max-w-sm flex-col overflow-hidden rounded-3xl bg-[#1E1E1E]",
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-start justify-between gap-3 px-6 pb-4 pt-6",
+                children: [jsxRuntimeExports.jsx("h2", {
+                    id: `${_t}-hiw-title`,
+                    className: "text-xl font-bold leading-tight text-white",
+                    children: Xt("HOW_IT_WORKS.TITLE")
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: Kt,
+                    className: "-mr-1 -mt-1 shrink-0 rounded-full bg-white/5 p-2 text-white/60 transition-transform active:scale-95",
+                    "aria-label": Xt("HOW_IT_WORKS.CLOSE"),
+                    children: jsxRuntimeExports.jsx(X, {
+                        className: "size-5"
+                    })
+                })]
+            }), jsxRuntimeExports.jsx("ol", {
+                className: "flex-1 space-y-4 overflow-y-auto overscroll-contain px-6 pb-6",
+                children: STEPS$2.map( (Jt, Zt) => jsxRuntimeExports.jsxs("li", {
+                    className: "relative flex gap-3",
+                    children: [Zt < STEPS$2.length - 1 && jsxRuntimeExports.jsx("span", {
+                        "aria-hidden": !0,
+                        className: "absolute -bottom-4 left-3 top-7 w-px -translate-x-1/2 bg-gradient-to-b from-violet-400/25 to-violet-400/5"
+                    }), jsxRuntimeExports.jsx("span", {
+                        className: "relative flex size-6 shrink-0 items-center justify-center rounded-full bg-violet-500/20 text-[11px] font-bold text-violet-300",
+                        children: Zt + 1
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "min-w-0 flex-1",
+                        children: [jsxRuntimeExports.jsx("p", {
+                            className: "text-[15px] font-semibold leading-snug text-white",
+                            children: Xt(`HOW_IT_WORKS.${Jt}_TITLE`)
+                        }), jsxRuntimeExports.jsx("p", {
+                            className: "mt-1 text-[13px] leading-relaxed text-white/55",
+                            children: Xt(`HOW_IT_WORKS.${Jt}_BODY`)
+                        })]
+                    })]
+                }, Jt))
+            })]
+        })]
+    }) : null
+})
+  , PAGE_COOLDOWN_MS$2 = 700
+  , NEAR_BOTTOM_PX$2 = 300
+  , MAX_FIRST_PAGE_ATTEMPTS = 3
+  , EMPTY = [];
+function GameHistorySheet({ns: tt, open: _t, onClose: Yt, items: Kt, getKey: Xt, fetchPage: Jt, onOpen: Zt, renderItem: tn, header: nn, pageSize: an=50}) {
+    const {t: un} = useTranslation(tt)
+      , [dn,fn] = reactExports.useState([])
+      , [hn,mn] = reactExports.useState(!1)
+      , [En,gn] = reactExports.useState(!1)
+      , Sn = reactExports.useRef(!1)
+      , yn = reactExports.useRef(!1)
+      , bn = reactExports.useRef(0)
+      , Cn = reactExports.useRef(0)
+      , Pn = reactExports.useRef(0)
+      , $n = reactExports.useRef(null)
+      , wn = reactExports.useRef(null)
+      , An = reactExports.useRef({
+        getKey: Xt,
+        fetchPage: Jt,
+        onOpen: Zt
+    });
+    An.current = {
+        getKey: Xt,
+        fetchPage: Jt,
+        onOpen: Zt
+    };
+    const Bn = Kt ?? EMPTY
+      , Xn = reactExports.useMemo( () => {
+        const fr = new Set(Bn.map(Xt));
+        return [...Bn, ...dn.filter(Cr => !fr.has(Xt(Cr)))]
+    }
+    , [Bn, dn, Xt])
+      , Mn = reactExports.useRef(Xn);
+    Mn.current = Xn;
+    const Wn = reactExports.useCallback(async () => {
+        if (Sn.current || yn.current)
+            return;
+        const fr = Date.now() - bn.current;
+        if (fr < PAGE_COOLDOWN_MS$2) {
+            $n.current === null && ($n.current = window.setTimeout( () => {
+                $n.current = null,
+                Wn()
+            }
+            , PAGE_COOLDOWN_MS$2 - fr));
+            return
+        }
+        Sn.current = !0,
+        mn(!0),
+        bn.current = Date.now();
+        const Cr = Mn.current;
+        try {
+            const us = await An.current.fetchPage({
+                pageSize: an,
+                page: Cn.current + 1,
+                loaded: Cr.length,
+                last: Cr[Cr.length - 1]
+            });
+            if (us) {
+                Pn.current = 0,
+                Cn.current += 1;
+                const oi = An.current.getKey
+                  , dr = new Set(Cr.map(oi))
+                  , yr = us.filter(vr => !dr.has(oi(vr)));
+                (us.length < an || yr.length === 0) && (yn.current = !0,
+                gn(!0)),
+                yr.length > 0 && fn(vr => [...vr, ...yr])
+            } else
+                Pn.current += 1
+        } catch {
+            Pn.current += 1
+        } finally {
+            Sn.current = !1,
+            mn(!1)
+        }
+    }
+    , [an])
+      , hr = reactExports.useCallback( () => {
+        const fr = wn.current;
+        fr && fr.scrollHeight - fr.scrollTop - fr.clientHeight < NEAR_BOTTOM_PX$2 && Wn()
+    }
+    , [Wn]);
+    return reactExports.useEffect( () => {
+        if (_t)
+            return fn([]),
+            mn(!1),
+            gn(!1),
+            Sn.current = !1,
+            yn.current = !1,
+            bn.current = 0,
+            Cn.current = 0,
+            Pn.current = 0,
+            An.current.onOpen?.(),
+            () => {
+                $n.current !== null && (clearTimeout($n.current),
+                $n.current = null)
+            }
+    }
+    , [_t]),
+    reactExports.useEffect( () => {
+        !_t || Xn.length > 0 || En || hn || Pn.current >= MAX_FIRST_PAGE_ATTEMPTS || Wn()
+    }
+    , [_t, Xn.length, En, hn, Wn]),
+    _t ? jsxRuntimeExports.jsxs("div", {
+        className: "fixed inset-0 z-[200]",
+        role: "dialog",
+        "aria-modal": "true",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0 bg-black/60",
+            onClick: Yt
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "absolute bottom-0 left-0 right-0 mx-auto flex max-h-[80vh] max-w-md flex-col rounded-t-3xl bg-[#1E1E1E]",
+            style: {
+                paddingBottom: "var(--safe-area-bottom, 0px)"
+            },
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between border-b border-white/5 px-5 py-4",
+                children: [jsxRuntimeExports.jsx("h2", {
+                    className: "text-lg font-bold text-white",
+                    children: un("HISTORY.TITLE")
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: Yt,
+                    className: "rounded-full bg-white/5 p-2 text-white/60",
+                    "aria-label": un("HISTORY.BACK"),
+                    children: jsxRuntimeExports.jsx(X, {
+                        className: "size-5"
+                    })
+                })]
+            }), nn && jsxRuntimeExports.jsx("div", {
+                className: "border-b border-white/5 px-5 py-2.5",
+                children: nn
+            }), jsxRuntimeExports.jsxs("div", {
+                ref: wn,
+                onScroll: hr,
+                className: "overflow-y-auto overscroll-contain px-3 py-2",
+                children: [Xn.length === 0 && !hn ? jsxRuntimeExports.jsx("div", {
+                    className: "py-16 text-center text-white/50",
+                    children: un("HISTORY.EMPTY")
+                }) : Xn.map(fr => jsxRuntimeExports.jsx("div", {
+                    children: tn(fr)
+                }, Xt(fr))), hn && !En && jsxRuntimeExports.jsx("div", {
+                    className: "flex justify-center py-4",
+                    children: jsxRuntimeExports.jsx(LoaderCircle, {
+                        className: "size-5 animate-spin text-white/40"
+                    })
+                })]
+            })]
+        })]
+    }) : null
+}
+function SeedRow({ns: tt, label: _t, value: Yt, tone: Kt}) {
+    const {t: Xt} = useTranslation(tt)
+      , Jt = reactExports.useCallback(async () => {
+        try {
+            if (!navigator.clipboard?.writeText)
+                throw new Error("clipboard unavailable");
+            await navigator.clipboard.writeText(Yt),
+            toast.success(Xt("FAIRNESS.COPIED"))
+        } catch {
+            toast.error(Xt("FAIRNESS.COPY_FAILED"))
+        }
+    }
+    , [Yt, Xt]);
+    return jsxRuntimeExports.jsxs("div", {
+        children: [jsxRuntimeExports.jsx("p", {
+            className: "text-white/40 text-[11px] mb-0.5",
+            children: _t
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "flex items-center gap-2 bg-black/30 rounded-lg px-2.5 py-2",
+            children: [jsxRuntimeExports.jsx("code", {
+                className: `text-xs font-mono flex-1 truncate ${Kt}`,
+                children: Yt
+            }), jsxRuntimeExports.jsx("button", {
+                onClick: () => void Jt(),
+                className: "p-1 rounded md:hover:bg-white/10 shrink-0",
+                "aria-label": Xt("FAIRNESS.COPY"),
+                children: jsxRuntimeExports.jsx(Copy, {
+                    className: "w-3.5 h-3.5 text-white/50"
+                })
+            })]
+        })]
+    })
+}
+const LIVE_REFRESH_DELAY_MS = 6e3
+  , STORAGE_KEY$1 = "gamesConfig"
+  , readPersisted = () => {
+    try {
+        const tt = localStorage.getItem(STORAGE_KEY$1);
+        if (!tt)
+            return null;
+        const _t = JSON.parse(tt);
+        return {
+            plinko: _t.plinko === !0,
+            dice: _t.dice === !0,
+            mines: _t.mines === !0
+        }
+    } catch {
+        return null
+    }
+}
+  , persisted = readPersisted()
+  , useGamesConfig = create( (tt, _t) => ({
+    plinko: persisted?.plinko ?? !1,
+    dice: persisted?.dice ?? !1,
+    mines: persisted?.mines ?? !1,
+    hydrated: persisted != null,
+    hydrate: async () => {
+        try {
+            const Yt = await ConfigService.getConfig({
+                fresh: !0
+            })
+              , Kt = {
+                plinko: Yt.games.plinko.enabled,
+                dice: Yt.games.dice.enabled,
+                mines: Yt.games.mines.enabled
+            };
+            tt({
+                ...Kt,
+                hydrated: !0
+            });
+            try {
+                localStorage.setItem(STORAGE_KEY$1, JSON.stringify(Kt))
+            } catch {}
+        } catch {
+            tt({
+                hydrated: !0
+            })
+        }
+    }
+    ,
+    subscribeLive: () => {
+        let Yt = null;
+        const Kt = () => {
+            _t().hydrate(),
+            Yt != null && clearTimeout(Yt),
+            Yt = setTimeout( () => {
+                _t().hydrate()
+            }
+            , LIVE_REFRESH_DELAY_MS)
+        }
+        ;
+        return socketManager.on("plinko:config_updated", Kt),
+        socketManager.on("dice:config_updated", Kt),
+        socketManager.on("mines:config_updated", Kt),
+        () => {
+            socketManager.off("plinko:config_updated", Kt),
+            socketManager.off("dice:config_updated", Kt),
+            socketManager.off("mines:config_updated", Kt),
+            Yt != null && clearTimeout(Yt),
+            Yt = null
+        }
+    }
+}))
+  , MINES_COLUMNS = 5
+  , MINES_ROWS = 5
+  , MINES_GRID_SIZE = MINES_COLUMNS * MINES_ROWS
+  , TILE_ART_BY_ROW = [1, 2, 3, 2, 3]
+  , TILE_ART_SRC = {
+    1: "/assets/mines/gift-tile-1.svg",
+    2: "/assets/mines/gift-tile-2.svg",
+    3: "/assets/mines/gift-tile-3.svg"
+}
+  , REVEALED_ART = {
+    gem: "/assets/mines/gem.png",
+    mine: "/assets/mines/bomb.png"
+}
+  , MINES_ICONS = {
+    currency: "/assets/images/gram_symbol.svg",
+    chevronDown: "/assets/mines/chevron-down.svg"
+}
+  , FALLBACK_MINE_COUNT_OPTIONS = [1, 2, 3, 4, 5, 8, 10, 12, 16, 20, 24]
+  , DEFAULT_GEMS_ON_BOARD = 22
+  , DEFAULT_GEMS_TO_OPEN = 4
+  , DEFAULT_NUMBER_OF_BETS = 10
+  , MAX_NUMBER_OF_BETS = 100
+  , AUTO_REVEAL_STEP_MS = 350
+  , AUTOBET_ROUND_DELAY_MS = 800
+  , WIN_HOLD_MS = 2600
+  , SHELL_BY_STATE = {
+    hidden: "from-white/10 to-[#666666]/10 border-[#282828]",
+    pending: "from-white/10 to-[#666666]/10 border-[#282828] opacity-60",
+    gem: "from-[#342CB2]/40 to-[#342CB2]/40 border-[#5F4EFF]",
+    mine: "from-[#FF2222]/25 to-[#FF2222]/25 border-[#FF2222]",
+    mineGhost: "from-[#FF2222]/10 to-[#FF2222]/10 border-[#FF2222]/40"
+}
+  , RING_BY_STATE = {
+    hidden: "",
+    pending: "",
+    gem: "ring-1 ring-inset ring-[#5F4EFF]",
+    mine: "ring-1 ring-inset ring-[#FF8C6C]/70",
+    mineGhost: ""
+}
+  , REVEALED_STATES = new Set(["gem", "mine", "mineGhost"])
+  , ART_BOX = "h-[75%] w-[65%] object-contain"
+  , MinesTile = reactExports.memo( ({index: tt, artVariant: _t, state: Yt, disabled: Kt=!1, onPress: Xt}) => jsxRuntimeExports.jsx("button", {
+    type: "button",
+    disabled: Kt || Yt !== "hidden",
+    onClick: () => Xt(tt),
+    className: `relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[12px] border-b-[3px] bg-gradient-to-b ${SHELL_BY_STATE[Yt]} ${RING_BY_STATE[Yt]} shadow-[0px_4px_4px_0px_rgba(0,0,0,0.21)] transition-transform duration-150 active:scale-95 disabled:active:scale-100 ${Yt === "mine" ? "animate-mines-bomb-shake" : ""}`,
+    children: REVEALED_STATES.has(Yt) ? jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [Yt !== "mineGhost" && jsxRuntimeExports.jsx("span", {
+            "aria-hidden": "true",
+            className: Yt === "gem" ? "mines-fx mines-fx--gem-splash animate-mines-gem-splash" : "mines-fx mines-fx--bomb-burst animate-mines-bomb-burst"
+        }), Yt !== "mineGhost" && jsxRuntimeExports.jsx("img", {
+            src: REVEALED_ART[Yt === "gem" ? "gem" : "mine"],
+            alt: "",
+            "aria-hidden": "true",
+            draggable: !1,
+            className: `pointer-events-none absolute scale-110 blur-[13px] animate-mines-glow-in ${ART_BOX}`
+        }), jsxRuntimeExports.jsx("img", {
+            src: REVEALED_ART[Yt === "gem" ? "gem" : "mine"],
+            alt: "",
+            draggable: !1,
+            className: `pointer-events-none relative ${ART_BOX} ${Yt === "gem" ? "animate-mines-gem-pop" : Yt === "mine" ? "animate-mines-bomb-pop" : "opacity-50"}`
+        }), Yt === "mine" && jsxRuntimeExports.jsx("span", {
+            "aria-hidden": "true",
+            className: "mines-fx mines-fx--bomb-flash animate-mines-bomb-flash"
+        })]
+    }) : jsxRuntimeExports.jsx("img", {
+        src: TILE_ART_SRC[_t],
+        alt: "",
+        draggable: !1,
+        className: `pointer-events-none h-[44.44%] w-[41.06%] ${Yt === "pending" ? "animate-pulse" : ""}`
+    })
+}));
+MinesTile.displayName = "MinesTile";
+const MinesBoard = ({tiles: tt, disabled: _t=!1, isWinning: Yt=!1, settleKey: Kt=0, onTilePress: Xt}) => {
+    const Jt = !Yt && tt.some(Zt => Zt === "mine");
+    return jsxRuntimeExports.jsxs("div", {
+        className: "relative h-full w-full select-none [-webkit-touch-callout:none] overflow-visible rounded-[26px] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.10),rgba(103,103,103,0.10))] p-3",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "flex flex-col gap-1.5",
+            children: Array.from({
+                length: MINES_ROWS
+            }, (Zt, tn) => jsxRuntimeExports.jsx("div", {
+                className: "flex items-center gap-1.5",
+                children: Array.from({
+                    length: MINES_COLUMNS
+                }, (nn, an) => {
+                    const un = tn * MINES_COLUMNS + an;
+                    return jsxRuntimeExports.jsx(MinesTile, {
+                        index: un,
+                        artVariant: TILE_ART_BY_ROW[tn],
+                        state: tt[un],
+                        disabled: _t,
+                        onPress: Xt
+                    }, un)
+                }
+                )
+            }, tn))
+        }), Jt && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+            children: [jsxRuntimeExports.jsx("span", {
+                "aria-hidden": "true",
+                className: "mines-board-alarm-bloom animate-mines-board-bloom"
+            }, `bust-bloom-${Kt}`), jsxRuntimeExports.jsx("span", {
+                "aria-hidden": "true",
+                className: "mines-board-alarm animate-mines-board-alarm"
+            }, `bust-${Kt}`)]
+        }), Yt && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+            children: [jsxRuntimeExports.jsx("span", {
+                "aria-hidden": "true",
+                className: "mines-board-win-bloom animate-mines-board-bloom"
+            }, `win-bloom-${Kt}`), jsxRuntimeExports.jsx("span", {
+                "aria-hidden": "true",
+                className: "mines-board-win animate-mines-board-alarm"
+            }, `win-${Kt}`)]
+        })]
+    })
+}
+  , MinesCashoutModal = ({multiplier: tt, amountTon: _t, rewardGift: Yt, bonusGift: Kt}) => jsxRuntimeExports.jsx("div", {
+    role: "status",
+    "aria-live": "polite",
+    className: "pointer-events-none absolute inset-0 z-10 flex items-center justify-center",
+    children: jsxRuntimeExports.jsxs("div", {
+        className: "animate-mines-cashout-in flex flex-col items-center justify-center gap-[13px] rounded-[22px] border-2 border-[#00C951] bg-[#0B2E1A]/60 px-3 pb-4 pt-5 shadow-[0_8px_32px_rgba(0,0,0,0.35)]",
+        children: [jsxRuntimeExports.jsxs("span", {
+            className: "text-[35px] font-semibold capitalize leading-[1.1] text-white",
+            children: [tt.toFixed(2), "X"]
+        }), jsxRuntimeExports.jsx("span", {
+            "aria-hidden": "true",
+            className: "h-[1.5px] w-[170px] bg-white/20"
+        }), Yt ? jsxRuntimeExports.jsxs("div", {
+            className: "flex max-w-[220px] flex-col items-center gap-2",
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "flex items-start justify-center gap-2",
+                children: [Yt, Kt].filter(Boolean).map(Xt => jsxRuntimeExports.jsxs("div", {
+                    className: "flex w-[92px] flex-col items-center gap-1.5",
+                    children: [jsxRuntimeExports.jsx(GiftPreview, {
+                        gift: {
+                            ...Xt,
+                            id: Number(Xt.id),
+                            name: Xt.name ?? void 0
+                        },
+                        imagePadding: "p-2",
+                        transparentBg: !0,
+                        className: "size-[72px] shrink-0 rounded-[14px]"
+                    }), jsxRuntimeExports.jsx("span", {
+                        className: "line-clamp-2 text-center text-xs font-semibold leading-tight text-white",
+                        children: Xt.name || Xt.collectionName || ""
+                    })]
+                }, Xt.id))
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center gap-1.5 rounded-[8px] bg-[#367E56] px-1.5 py-1",
+                children: [jsxRuntimeExports.jsx("img", {
+                    src: MINES_ICONS.currency,
+                    alt: "",
+                    className: "size-4 shrink-0"
+                }), jsxRuntimeExports.jsx("span", {
+                    className: "text-base font-bold leading-[1.1] text-white",
+                    children: (Number(Yt.priceTon) + Number(Kt?.priceTon ?? 0)).toFixed(2)
+                })]
+            })]
+        }) : jsxRuntimeExports.jsxs("div", {
+            className: "flex items-center gap-1.5 rounded-[8px] bg-[#367E56] p-1.5",
+            children: [jsxRuntimeExports.jsx("img", {
+                src: MINES_ICONS.currency,
+                alt: "",
+                className: "size-6 shrink-0"
+            }), jsxRuntimeExports.jsx("span", {
+                className: "text-2xl font-bold leading-[1.1] text-white",
+                children: _t.toFixed(2)
+            })]
+        })]
+    })
+})
+  , MinesNumberSelect = ({label: tt, value: _t, options: Yt, onChange: Kt, disabled: Xt=!1, compact: Jt=!1}) => jsxRuntimeExports.jsxs("div", {
+    className: Jt ? "flex w-[84px] shrink-0 flex-col" : "flex flex-1 flex-col gap-1",
+    children: [!Jt && jsxRuntimeExports.jsx("div", {
+        className: "flex h-3 items-center justify-between",
+        children: jsxRuntimeExports.jsx("span", {
+            className: "text-xs font-semibold capitalize leading-[1.1] text-white",
+            children: tt
+        })
+    }), jsxRuntimeExports.jsxs("div", {
+        className: `relative w-full ${Jt ? "h-full rounded-xl border border-[#444444]/40 bg-[#2A2A2A]" : "h-10 rounded-[12px] border border-white/10"}`,
+        children: [jsxRuntimeExports.jsx("select", {
+            value: _t,
+            disabled: Xt,
+            "aria-label": tt,
+            onChange: Zt => Kt(Number(Zt.target.value)),
+            className: `h-full w-full appearance-none rounded-[12px] bg-transparent font-bold leading-[1.1] text-white focus:outline-none disabled:opacity-50 ${Jt ? "pl-8 pr-7 text-base" : "pl-5 pr-10 text-xl"}`,
+            children: Yt.map(Zt => jsxRuntimeExports.jsx("option", {
+                value: Zt,
+                className: "bg-[#2c2c2c] text-white",
+                children: Zt
+            }, Zt))
+        }), Jt && jsxRuntimeExports.jsx("img", {
+            src: REVEALED_ART.mine,
+            alt: "",
+            className: "pointer-events-none absolute left-2 top-1/2 size-5 -translate-y-1/2 opacity-80"
+        }), jsxRuntimeExports.jsx("img", {
+            src: MINES_ICONS.chevronDown,
+            alt: "",
+            className: `pointer-events-none absolute top-1/2 -translate-y-1/2 ${Jt ? "right-1.5 size-5" : "right-2 size-6"}`
+        })]
+    })]
+})
+  , SPECS = {
+    uiTap: {
+        tgSelection: !0,
+        capacitor: {
+            kind: "selection"
+        },
+        rn: "selection",
+        vibrate: 10,
+        minIntervalMs: 50
+    },
+    uiConfirm: {
+        tgImpact: "medium",
+        capacitor: {
+            kind: "impact",
+            style: "MEDIUM"
+        },
+        rn: "impactMedium",
+        vibrate: 25,
+        minIntervalMs: 120
+    },
+    tileReveal: {
+        tgImpact: "soft",
+        capacitor: {
+            kind: "impact",
+            style: "LIGHT"
+        },
+        rn: "impactLight",
+        vibrate: 8,
+        minIntervalMs: 45
+    },
+    gemCollect: {
+        tgImpact: "light",
+        capacitor: {
+            kind: "impact",
+            style: "LIGHT"
+        },
+        rn: "impactLight",
+        vibrate: 18,
+        minIntervalMs: 60
+    },
+    mineExplode: {
+        tgNotification: "error",
+        capacitor: {
+            kind: "notification",
+            style: "ERROR"
+        },
+        rn: "notificationError",
+        vibrate: [45, 35, 70],
+        minIntervalMs: 250
+    },
+    win: {
+        tgNotification: "success",
+        capacitor: {
+            kind: "notification",
+            style: "SUCCESS"
+        },
+        rn: "notificationSuccess",
+        vibrate: [18, 45, 28],
+        minIntervalMs: 250
+    }
+}
+  , GLOBAL_MIN_INTERVAL_MS = 25
+  , STORAGE_KEY = "eg_haptics_enabled"
+  , hostWindow = () => typeof window > "u" ? null : window;
+function tryTelegram(tt) {
+    try {
+        if (tt.tgNotification && zu.notificationOccurred.isAvailable())
+            return zu.notificationOccurred(tt.tgNotification),
+            !0;
+        if (tt.tgImpact && zu.impactOccurred.isAvailable())
+            return zu.impactOccurred(tt.tgImpact),
+            !0;
+        if (tt.tgSelection && zu.selectionChanged.isAvailable())
+            return zu.selectionChanged(),
+            !0;
+        if (tt.tgNotification && zu.impactOccurred.isAvailable())
+            return zu.impactOccurred("heavy"),
+            !0
+    } catch {}
+    return !1
+}
+function tryCapacitor(tt) {
+    const _t = hostWindow()?.Capacitor?.Plugins?.Haptics;
+    if (!_t)
+        return !1;
+    try {
+        const Yt = Kt => {
+            Kt && typeof Kt.catch == "function" && Kt.catch( () => {}
+            )
+        }
+        ;
+        if (tt.capacitor.kind === "impact" && _t.impact)
+            return Yt(_t.impact({
+                style: tt.capacitor.style
+            })),
+            !0;
+        if (tt.capacitor.kind === "notification" && _t.notification)
+            return Yt(_t.notification({
+                type: tt.capacitor.style
+            })),
+            !0;
+        if (tt.capacitor.kind === "selection" && _t.selectionChanged)
+            return Yt(_t.selectionChanged()),
+            !0
+    } catch {}
+    return !1
+}
+function tryReactNative(tt, _t) {
+    const Yt = hostWindow()?.ReactNativeWebView;
+    if (!Yt?.postMessage)
+        return !1;
+    try {
+        return Yt.postMessage(JSON.stringify({
+            type: "haptic",
+            event: tt,
+            style: _t.rn
+        })),
+        !0
+    } catch {
+        return !1
+    }
+}
+function tryVibrate(tt) {
+    if (typeof navigator > "u" || typeof navigator.vibrate != "function" || typeof document < "u" && document.hidden)
+        return !1;
+    try {
+        return navigator.vibrate(tt.vibrate)
+    } catch {
+        return !1
+    }
+}
+function readStoredPreference() {
+    try {
+        return window.localStorage.getItem(STORAGE_KEY) !== "0"
+    } catch {
+        return !0
+    }
+}
+let enabled = typeof window > "u" ? !0 : readStoredPreference()
+  , lastFireAt = 0;
+const lastEventAt = new Map
+  , haptics = {
+    trigger(tt) {
+        if (!enabled)
+            return !1;
+        const _t = SPECS[tt];
+        if (!_t)
+            return !1;
+        const Yt = typeof performance < "u" ? performance.now() : Date.now();
+        if (Yt - lastFireAt < GLOBAL_MIN_INTERVAL_MS || Yt - (lastEventAt.get(tt) ?? -1 / 0) < _t.minIntervalMs)
+            return !1;
+        const Kt = tryTelegram(_t) || tryCapacitor(_t) || tryReactNative(tt, _t) || tryVibrate(_t);
+        return Kt && (lastFireAt = Yt,
+        lastEventAt.set(tt, Yt)),
+        Kt
+    },
+    setEnabled(tt) {
+        enabled = tt;
+        try {
+            window.localStorage.setItem(STORAGE_KEY, tt ? "1" : "0")
+        } catch {}
+    },
+    isEnabled() {
+        return enabled
+    },
+    isSupported() {
+        try {
+            if (zu.impactOccurred.isAvailable() || zu.notificationOccurred.isAvailable() || zu.selectionChanged.isAvailable())
+                return !0
+        } catch {}
+        const tt = hostWindow();
+        return tt?.Capacitor?.Plugins?.Haptics || tt?.ReactNativeWebView?.postMessage ? !0 : typeof navigator < "u" && typeof navigator.vibrate == "function"
+    }
+}
+  , MinesToggle = ({checked: tt, label: _t, onChange: Yt, disabled: Kt=!1}) => {
+    const Xt = () => {
+        haptics.trigger("uiTap"),
+        Yt(!tt)
+    }
+    ;
+    return jsxRuntimeExports.jsx("button", {
+        type: "button",
+        role: "switch",
+        "aria-checked": tt,
+        "aria-label": _t,
+        onClick: Xt,
+        disabled: Kt,
+        className: `flex h-6 w-[46px] shrink-0 items-center rounded-[12px] p-0.5 transition-colors disabled:opacity-40 ${tt ? "bg-[#8971e6]" : "bg-white/10"}`,
+        children: jsxRuntimeExports.jsx("span", {
+            className: `size-5 rounded-full bg-white transition-transform duration-200 ${tt ? "translate-x-[22px]" : "translate-x-0"}`
+        })
+    })
+}
+  , SHOW_AUTO_BET = !1
+  , MinesBetControls = ({mineCount: tt, onMineCountChange: _t, mineCountOptions: Yt, autoBet: Kt, onAutoBetChange: Xt, onOpenAutobet: Jt, autoBetLocked: Zt=!1, disabled: tn=!1}) => {
+    const {t: nn} = useTranslation("mines");
+    return nn("LABELS.AUTO_BET"),
+    nn("LABELS.AUTO_BET"),
+    jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx(MinesNumberSelect, {
+            label: nn("LABELS.MINES"),
+            value: tt,
+            options: Yt,
+            onChange: _t,
+            disabled: tn,
+            compact: !0
+        }), SHOW_AUTO_BET]
+    })
+}
+  , MinesBetPanel = ({roomy: tt, betAmount: _t, onBetAmountChange: Yt, minBetTon: Kt, maxBetTon: Xt, mineCount: Jt, onMineCountChange: Zt, mineCountOptions: tn, autoBet: nn, onAutoBetChange: an, onOpenAutobet: un, autoBetLocked: dn, onOpenGifts: fn, giftsActive: hn, onTonSelect: mn, ctaLabel: En, ctaHidden: gn, ctaPlaceholder: Sn, ctaVariant: yn="primary", ctaDisabled: bn=!1, onCta: Cn, disabled: Pn=!1, stakedGift: $n=null}) => {
+    const {t: wn} = useTranslation("mines")
+      , An = reactExports.useCallback(Xn => {
+        zu.notificationOccurred.isAvailable() && zu.notificationOccurred("warning"),
+        toast.error(Xn === "max" ? wn("TOASTS.MAX_BET", {
+            max: Xt
+        }) : wn("TOASTS.MIN_BET", {
+            min: Kt
+        }), {
+            id: "mines-bet-limit"
+        })
+    }
+    , [Xt, Kt, wn])
+      , Bn = $n ? jsxRuntimeExports.jsxs("div", {
+        className: "flex h-full w-full items-center justify-center gap-2 rounded-xl border border-[#444444]/40 bg-[#2A2A2A] px-3",
+        children: [jsxRuntimeExports.jsx(GiftPreview, {
+            gift: {
+                ...$n,
+                id: Number($n.id),
+                name: $n.name ?? void 0
+            },
+            imagePadding: "p-1",
+            transparentBg: !0,
+            className: "size-8 shrink-0 rounded-[8px]"
+        }), jsxRuntimeExports.jsx("span", {
+            className: "text-base font-bold leading-[1.1] text-white",
+            children: Number($n.priceTon).toFixed(2)
+        }), jsxRuntimeExports.jsx("img", {
+            src: MINES_ICONS.currency,
+            alt: "",
+            className: "size-3.5 shrink-0"
+        })]
+    }) : void 0;
+    return jsxRuntimeExports.jsx(GameBetPanel, {
+        ns: "mines",
+        roomy: tt,
+        amount: _t,
+        onAmountChange: Yt,
+        minBet: Kt,
+        maxBet: Xt,
+        amountPlaceholder: wn("PLACEHOLDERS.TON_AMOUNT"),
+        allowEmptyAmount: !0,
+        onClamp: An,
+        onOpenGifts: fn,
+        giftsActive: hn,
+        onTonSelect: mn,
+        amountDisabled: Pn,
+        modeDisabled: Pn,
+        onBet: Cn,
+        canBet: !bn,
+        ctaLabel: En,
+        ctaHidden: gn,
+        ctaPlaceholder: Sn,
+        ctaPlacement: "top",
+        ctaVariant: yn,
+        amountSlot: Bn,
+        amountTrailing: jsxRuntimeExports.jsx(MinesBetControls, {
+            mineCount: Jt,
+            onMineCountChange: Zt,
+            mineCountOptions: tn,
+            autoBet: nn,
+            onAutoBetChange: an,
+            onOpenAutobet: un,
+            autoBetLocked: dn,
+            disabled: Pn
+        })
+    })
+}
+;
+class MinesError extends Error {
+    constructor(_t, Yt="UNKNOWN", Kt) {
+        super(_t),
+        this.code = Yt,
+        this.status = Kt,
+        this.name = "MinesError"
+    }
+    get isNetworkError() {
+        return this.code === "NETWORK_ERROR"
+    }
+}
+function isUnknownOutcome(tt, _t) {
+    return tt === void 0 || tt >= 500 ? !0 : typeof _t?.code != "string" || _t.code.length === 0
+}
+function toMinesError(tt) {
+    if (tt instanceof AxiosError) {
+        const _t = tt.response?.status
+          , Yt = tt.response?.data;
+        return tt.response ? isUnknownOutcome(_t, Yt) ? new MinesError(Yt?.error || tt.message || "Network error","NETWORK_ERROR",_t) : new MinesError(Yt?.error || tt.message,Yt?.code || "UNKNOWN",_t) : new MinesError(tt.message || "Network error","NETWORK_ERROR")
+    }
+    return new MinesError(tt instanceof Error ? tt.message : "Unknown error","UNKNOWN")
+}
+const inFlight = new Map;
+function dedupe(tt, _t) {
+    const Yt = inFlight.get(tt);
+    if (Yt)
+        return Yt;
+    const Kt = _t().finally( () => inFlight.delete(tt));
+    return inFlight.set(tt, Kt),
+    Kt
+}
+class MinesService {
+    static async getConfig() {
+        return dedupe("config", async () => {
+            try {
+                const {data: _t} = await apiClient.get("/mines/config");
+                return _t
+            } catch (_t) {
+                throw toMinesError(_t)
+            }
+        }
+        )
+    }
+    static async getActive() {
+        return dedupe("active", async () => {
+            try {
+                const {data: _t} = await apiClient.get("/mines/active");
+                return _t.round
+            } catch (_t) {
+                throw toMinesError(_t)
+            }
+        }
+        )
+    }
+    static async placeBet(_t) {
+        return dedupe(`bet:${_t.clientBetId}`, async () => {
+            try {
+                const {data: Yt} = await apiClient.post("/mines/bet", _t);
+                return Yt
+            } catch (Yt) {
+                throw toMinesError(Yt)
+            }
+        }
+        )
+    }
+    static async openTile(_t, Yt) {
+        return dedupe(`open:${_t}:${Yt}`, async () => {
+            try {
+                const {data: Kt} = await apiClient.post("/mines/open", {
+                    roundId: _t,
+                    tileIndex: Yt
+                });
+                return Kt
+            } catch (Kt) {
+                throw toMinesError(Kt)
+            }
+        }
+        )
+    }
+    static async cashout(_t) {
+        return dedupe(`cashout:${_t}`, async () => {
+            try {
+                const {data: Yt} = await apiClient.post("/mines/cashout", {
+                    roundId: _t
+                });
+                return Yt
+            } catch (Yt) {
+                throw toMinesError(Yt)
+            }
+        }
+        )
+    }
+    static async cancel(_t) {
+        return dedupe(`cancel:${_t}`, async () => {
+            try {
+                const {data: Yt} = await apiClient.post("/mines/cancel", {
+                    roundId: _t
+                });
+                return Yt
+            } catch (Yt) {
+                throw toMinesError(Yt)
+            }
+        }
+        )
+    }
+    static async getGifts() {
+        try {
+            const {data: _t} = await apiClient.get("/mines/gifts");
+            return _t.gifts || []
+        } catch (_t) {
+            throw toMinesError(_t)
+        }
+    }
+    static async getHistory(_t=20, Yt) {
+        try {
+            const {data: Kt} = await apiClient.get("/mines/history", {
+                params: Yt ? {
+                    limit: _t,
+                    cursor: Yt
+                } : {
+                    limit: _t
+                }
+            });
+            return Kt
+        } catch (Kt) {
+            throw toMinesError(Kt)
+        }
+    }
+    static async verify(_t) {
+        try {
+            const {data: Yt} = await apiClient.get(`/mines/verify/${_t}`);
+            return Yt
+        } catch (Yt) {
+            throw toMinesError(Yt)
+        }
+    }
+}
+const scriptRel = "modulepreload"
+  , assetsURL = function(tt) {
+    return "/" + tt
+}
+  , seen = {}
+  , __vitePreload = function tt(_t, Yt, Kt) {
+    let Xt = Promise.resolve();
+    if (Yt && Yt.length > 0) {
+        let Zt = function(an) {
+            return Promise.all(an.map(un => Promise.resolve(un).then(dn => ({
+                status: "fulfilled",
+                value: dn
+            }), dn => ({
+                status: "rejected",
+                reason: dn
+            }))))
+        };
+        document.getElementsByTagName("link");
+        const tn = document.querySelector("meta[property=csp-nonce]")
+          , nn = tn?.nonce || tn?.getAttribute("nonce");
+        Xt = Zt(Yt.map(an => {
+            if (an = assetsURL(an),
+            an in seen)
+                return;
+            seen[an] = !0;
+            const un = an.endsWith(".css")
+              , dn = un ? '[rel="stylesheet"]' : "";
+            if (document.querySelector(`link[href="${an}"]${dn}`))
+                return;
+            const fn = document.createElement("link");
+            if (fn.rel = un ? "stylesheet" : scriptRel,
+            un || (fn.as = "script"),
+            fn.crossOrigin = "",
+            fn.href = an,
+            nn && fn.setAttribute("nonce", nn),
+            document.head.appendChild(fn),
+            un)
+                return new Promise( (hn, mn) => {
+                    fn.addEventListener("load", hn),
+                    fn.addEventListener("error", () => mn(new Error(`Unable to preload CSS for ${an}`)))
+                }
+                )
+        }
+        ))
+    }
+    function Jt(Zt) {
+        const tn = new Event("vite:preloadError",{
+            cancelable: !0
+        });
+        if (tn.payload = Zt,
+        window.dispatchEvent(tn),
+        !tn.defaultPrevented)
+            throw Zt
+    }
+    return Xt.then(Zt => {
+        for (const tn of Zt || [])
+            tn.status === "rejected" && Jt(tn.reason);
+        return _t().catch(Jt)
+    }
+    )
+}
+  , encoder = new TextEncoder;
+function bytesToHex(tt) {
+    return Array.from(tt).map(_t => _t.toString(16).padStart(2, "0")).join("")
+}
+async function sha256Hex(tt) {
+    const _t = await crypto.subtle.digest("SHA-256", encoder.encode(tt));
+    return bytesToHex(new Uint8Array(_t))
+}
+async function hmacSha256Bytes(tt, _t) {
+    const Yt = await crypto.subtle.importKey("raw", encoder.encode(tt), {
+        name: "HMAC",
+        hash: "SHA-256"
+    }, !1, ["sign"])
+      , Kt = await crypto.subtle.sign("HMAC", Yt, encoder.encode(_t));
+    return new Uint8Array(Kt)
+}
+async function hmacSha256Hex(tt, _t) {
+    return bytesToHex(await hmacSha256Bytes(tt, _t))
+}
+function createByteStream({serverSeed: tt, clientSeed: _t, game: Yt, nonce: Kt}) {
+    const Xt = `${_t}:${Yt}:${Kt}`;
+    let Jt = new Uint8Array(0)
+      , Zt = 0
+      , tn = 0;
+    return async function() {
+        Zt >= Jt.length && (Jt = await hmacSha256Bytes(String(tt), tn === 0 ? Xt : `${Xt}:${tn}`),
+        Zt = 0,
+        tn += 1);
+        const an = Jt[Zt];
+        return Zt += 1,
+        an
+    }
+}
+async function uniformBelow(tt, _t) {
+    if (!Number.isInteger(_t) || _t <= 0)
+        throw new Error("INVALID_BOUND");
+    if (_t === 1)
+        return 0;
+    const Yt = Math.floor(4294967296 / _t) * _t;
+    for (let Kt = 0; Kt < 1e3; Kt += 1) {
+        const Xt = await tt()
+          , Jt = await tt()
+          , Zt = await tt()
+          , tn = await tt()
+          , nn = (Xt << 24 >>> 0) + (Jt << 16 >>> 0) + (Zt << 8 >>> 0) + tn;
+        if (nn < Yt)
+            return nn % _t
+    }
+    throw new Error("FAIRNESS_STREAM_EXHAUSTED")
+}
+async function shuffleIndices({serverSeed: tt, clientSeed: _t, game: Yt, nonce: Kt, size: Xt}) {
+    if (!Number.isInteger(Xt) || Xt <= 0)
+        throw new Error("INVALID_SIZE");
+    const Jt = createByteStream({
+        serverSeed: tt,
+        clientSeed: _t,
+        game: Yt,
+        nonce: Kt
+    })
+      , Zt = Array.from({
+        length: Xt
+    }, (tn, nn) => nn);
+    for (let tn = Xt - 1; tn > 0; tn -= 1) {
+        const nn = await uniformBelow(Jt, tn + 1)
+          , an = Zt[tn];
+        Zt[tn] = Zt[nn],
+        Zt[nn] = an
+    }
+    return Zt
+}
+async function verifyShufflePrefix({serverSeed: tt, serverSeedHash: _t, clientSeed: Yt, game: Kt, nonce: Xt, size: Jt, prefixLength: Zt, claimedPrefix: tn}) {
+    const [nn,an] = await Promise.all([sha256Hex(tt), shuffleIndices({
+        serverSeed: tt,
+        clientSeed: Yt,
+        game: Kt,
+        nonce: Xt,
+        size: Jt
+    })])
+      , un = nn === String(_t || "").toLowerCase()
+      , dn = an.slice(0, Zt).sort( (mn, En) => mn - En)
+      , fn = Array.isArray(tn) ? [...tn].map(Number).sort( (mn, En) => mn - En) : []
+      , hn = dn.length === fn.length && dn.every( (mn, En) => mn === fn[En]);
+    return {
+        valid: un && hn,
+        hashMatches: un,
+        prefixMatches: hn,
+        expected: dn
+    }
+}
+async function verifyMinesRound(tt) {
+    return !tt.serverSeedRevealed || !tt.serverSeed ? null : verifyShufflePrefix({
+        serverSeed: tt.serverSeed,
+        serverSeedHash: tt.serverSeedHash,
+        clientSeed: tt.clientSeed,
+        game: tt.algorithm?.boardGame || tt.game,
+        nonce: tt.nonce,
+        size: tt.gridSize,
+        prefixLength: tt.minesCount,
+        claimedPrefix: tt.minePositions
+    })
+}
+function CheckRow({label: tt, ok: _t}) {
+    const {t: Yt} = useTranslation("mines");
+    return jsxRuntimeExports.jsxs("div", {
+        className: "flex items-center justify-between",
+        children: [jsxRuntimeExports.jsx("span", {
+            className: "text-white/60",
+            children: tt
+        }), jsxRuntimeExports.jsxs("span", {
+            className: `flex items-center gap-1 font-semibold ${_t ? "text-emerald-300" : "text-red-300"}`,
+            children: [_t ? jsxRuntimeExports.jsx(Check, {
+                className: "w-3.5 h-3.5"
+            }) : jsxRuntimeExports.jsx(X, {
+                className: "w-3.5 h-3.5"
+            }), Yt(_t ? "FAIRNESS.VERIFIED" : "FAIRNESS.NOT_VERIFIED")]
+        })]
+    })
+}
+const MinesFairnessPanel = reactExports.memo(function tt({roundId: _t}) {
+    const {t: Yt} = useTranslation("mines")
+      , [Kt,Xt] = reactExports.useState(!1)
+      , [Jt,Zt] = reactExports.useState(null)
+      , [tn,nn] = reactExports.useState(null)
+      , [an,un] = reactExports.useState(null)
+      , dn = reactExports.useCallback(async ({manual: mn=!1}={}) => {
+        Xt(!0);
+        let En;
+        try {
+            En = await MinesService.verify(_t)
+        } catch {
+            toast.error(Yt("FAIRNESS.ERROR"), {
+                id: "mines-verify"
+            }),
+            Xt(!1);
+            return
+        }
+        if (Zt(En),
+        nn(null),
+        !En.serverSeedRevealed || !En.serverSeed) {
+            mn && toast.info(Yt("FAIRNESS.STILL_SEALED"), {
+                id: "mines-verify"
+            }),
+            un(new Date),
+            Xt(!1);
+            return
+        }
+        try {
+            const gn = await verifyMinesRound(En);
+            nn(gn),
+            un(new Date),
+            mn && gn?.valid && toast.success(Yt("FAIRNESS.VERIFIED_TOAST"), {
+                id: "mines-verify"
+            }),
+            gn && !gn.valid && (toast.error(Yt("FAIRNESS.INVALID"), {
+                id: "mines-verify"
+            }),
+            __vitePreload( () => import("./index-qIGC66re.js"), []).then(Sn => Sn.captureMessage("mines: fairness verification failed", {
+                extra: {
+                    roundId: _t,
+                    ...gn
+                }
+            })).catch( () => {}
+            ))
+        } catch {
+            toast.error(Yt("FAIRNESS.LOCAL_CHECK_ERROR"), {
+                id: "mines-verify"
+            })
+        } finally {
+            Xt(!1)
+        }
+    }
+    , [_t, Yt]);
+    reactExports.useEffect( () => {
+        dn()
+    }
+    , [dn]);
+    const fn = !!Jt && !(Jt.serverSeedRevealed && Jt.serverSeed)
+      , hn = Jt && (fn ? jsxRuntimeExports.jsxs("div", {
+        className: "rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs",
+        children: [jsxRuntimeExports.jsx("p", {
+            className: "font-semibold text-amber-200",
+            children: Yt("FAIRNESS.PENDING_TITLE")
+        }), jsxRuntimeExports.jsx("p", {
+            className: "mt-0.5 text-white/70",
+            children: Yt("FAIRNESS.PENDING_REVEAL")
+        })]
+    }) : tn ? jsxRuntimeExports.jsxs("div", {
+        className: `rounded-lg px-3 py-2 text-xs ${tn.valid ? "border border-emerald-500/30 bg-emerald-500/10" : "border border-red-500/30 bg-red-500/10"}`,
+        children: [jsxRuntimeExports.jsx("p", {
+            className: `font-semibold ${tn.valid ? "text-emerald-200" : "text-red-200"}`,
+            children: Yt(tn.valid ? "FAIRNESS.VERIFIED_TITLE" : "FAIRNESS.NOT_VERIFIED_TITLE")
+        }), jsxRuntimeExports.jsx("p", {
+            className: "mt-0.5 text-white/70",
+            children: Yt(tn.valid ? "FAIRNESS.VERIFIED_TEXT" : "FAIRNESS.NOT_VERIFIED_TEXT")
+        }), an && jsxRuntimeExports.jsx("p", {
+            className: "mt-1 text-white/40",
+            children: Yt("FAIRNESS.CHECKED_AT", {
+                time: an.toLocaleTimeString()
+            })
+        })]
+    }) : null);
+    return jsxRuntimeExports.jsxs("div", {
+        className: "space-y-2.5 pt-3",
+        children: [Kt && !Jt && jsxRuntimeExports.jsxs("div", {
+            className: "flex items-center gap-2 text-xs text-white/50",
+            children: [jsxRuntimeExports.jsx(LoaderCircle, {
+                className: "w-4 h-4 animate-spin"
+            }), Yt("FAIRNESS.CHECKING")]
+        }), hn, Jt && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+            children: [jsxRuntimeExports.jsx(SeedRow, {
+                ns: "mines",
+                label: Yt("FAIRNESS.SERVER_SEED_HASH"),
+                value: Jt.serverSeedHash,
+                tone: "text-violet-300"
+            }), Jt.serverSeedRevealed && Jt.serverSeed ? jsxRuntimeExports.jsx(SeedRow, {
+                ns: "mines",
+                label: Yt("FAIRNESS.SERVER_SEED"),
+                value: Jt.serverSeed,
+                tone: "text-emerald-300"
+            }) : jsxRuntimeExports.jsxs("div", {
+                children: [jsxRuntimeExports.jsx("p", {
+                    className: "text-white/40 text-[11px] mb-0.5",
+                    children: Yt("FAIRNESS.SERVER_SEED")
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "bg-black/30 rounded-lg px-3 py-2 text-xs text-white/50",
+                    children: Yt("FAIRNESS.SERVER_SEED_SECRET")
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "grid grid-cols-[1fr_auto] gap-2",
+                children: [jsxRuntimeExports.jsx(SeedRow, {
+                    ns: "mines",
+                    label: Yt("FAIRNESS.CLIENT_SEED"),
+                    value: Jt.clientSeed,
+                    tone: "text-sky-300"
+                }), jsxRuntimeExports.jsxs("div", {
+                    children: [jsxRuntimeExports.jsx("p", {
+                        className: "text-white/40 text-[11px] mb-0.5",
+                        children: Yt("FAIRNESS.NONCE")
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "bg-black/30 rounded-lg px-3 py-2 text-xs font-mono text-white/80",
+                        children: Jt.nonce
+                    })]
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                children: [jsxRuntimeExports.jsx("p", {
+                    className: "text-white/40 text-[11px] mb-0.5",
+                    children: Yt("FAIRNESS.MINE_POSITIONS")
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "bg-black/30 rounded-lg px-3 py-2 text-xs font-mono text-amber-300 break-all",
+                    children: Jt.minePositions.join(", ")
+                })]
+            }), tn && jsxRuntimeExports.jsxs("div", {
+                className: `rounded-lg px-3 py-2 text-xs space-y-1 ${tn.valid ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-red-500/10 border border-red-500/30"}`,
+                children: [jsxRuntimeExports.jsx(CheckRow, {
+                    label: Yt("FAIRNESS.HASH_CHECK"),
+                    ok: tn.hashMatches
+                }), jsxRuntimeExports.jsx(CheckRow, {
+                    label: Yt("FAIRNESS.BOARD_CHECK"),
+                    ok: tn.prefixMatches
+                }), !tn.prefixMatches && jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-start justify-between gap-2",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "text-white/60 shrink-0",
+                        children: Yt("FAIRNESS.RECOMPUTED")
+                    }), jsxRuntimeExports.jsx("code", {
+                        className: "font-mono text-sky-300 break-all text-right",
+                        children: tn.expected.join(", ")
+                    })]
+                })]
+            })]
+        }), Jt && jsxRuntimeExports.jsxs("button", {
+            onClick: () => void dn({
+                manual: !0
+            }),
+            disabled: Kt,
+            className: "w-full py-2.5 rounded-xl font-bold text-sm bg-emerald-600/90 hover:bg-emerald-600 text-white flex items-center justify-center gap-2 transition-colors disabled:opacity-60",
+            children: [Kt ? jsxRuntimeExports.jsx(LoaderCircle, {
+                className: "w-4 h-4 animate-spin"
+            }) : jsxRuntimeExports.jsx(ShieldCheck, {
+                className: "w-4 h-4"
+            }), Yt("FAIRNESS.VERIFY_AGAIN")]
+        }), jsxRuntimeExports.jsx("p", {
+            className: "text-white/30 text-[11px] leading-snug",
+            children: Yt("FAIRNESS.NOTE")
+        })]
+    })
+})
+  , PAGE_SIZE$2 = 20;
+function MinesHistoryRow({round: tt}) {
+    const {t: _t} = useTranslation("mines")
+      , [Yt,Kt] = reactExports.useState(!1)
+      , Xt = tt.state === "cashed_out" || tt.state === "reward_pending"
+      , Jt = Xt ? tt.finalMultiplier ?? 0 : 0
+      , Zt = tn => tn ? tn.name || tn.slug || _t("LABELS.GIFT") : null;
+    return jsxRuntimeExports.jsxs("div", {
+        className: `rounded-xl transition-colors ${Yt ? "my-1.5 bg-white/5" : ""}`,
+        children: [jsxRuntimeExports.jsxs("button", {
+            onClick: () => Kt(tn => !tn),
+            className: "flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition-colors active:bg-white/10",
+            "aria-expanded": Yt,
+            children: [jsxRuntimeExports.jsxs("span", {
+                className: `min-w-[52px] rounded-full px-2 py-1 text-center text-sm font-bold ${Jt >= 2 ? "bg-emerald-500/20 text-emerald-300" : Jt >= 1 ? "bg-violet-500/20 text-violet-300" : "bg-red-500/15 text-red-300"}`,
+                children: ["Ã—", Jt.toFixed(2)]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "min-w-0 flex-1",
+                children: [jsxRuntimeExports.jsxs("p", {
+                    className: "truncate text-sm font-medium text-white",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: `font-bold tabular-nums ${Xt ? "text-emerald-300" : "text-red-300"}`,
+                        children: _t("HISTORY.GEMS_OF", {
+                            opened: tt.gemsOpened,
+                            total: MINES_GRID_SIZE - tt.minesCount
+                        })
+                    }), jsxRuntimeExports.jsxs("span", {
+                        className: "text-white/40",
+                        children: [" Â· ", _t("HISTORY.MINES_SHORT", {
+                            count: tt.minesCount
+                        })]
+                    })]
+                }), jsxRuntimeExports.jsx("p", {
+                    className: "truncate text-xs text-white/60",
+                    children: Zt(tt.stakedGift) ?? `${tt.betAmountTon.toFixed(2)} GRAM`
+                }), jsxRuntimeExports.jsxs("p", {
+                    className: "truncate text-xs text-white/40",
+                    children: [new Date(tt.finishedAt ?? tt.createdAt).toLocaleTimeString(), " Â· ", _t("HISTORY.PAYOUT"), ":", " ", [tt.rewardGift, tt.bonusGift].some(Boolean) ? [tt.rewardGift, tt.bonusGift].map(Zt).filter(Boolean).join(" + ") : `${tt.payoutTon.toFixed(2)} GRAM`]
+                })]
+            }), jsxRuntimeExports.jsx(ChevronDown, {
+                className: `size-4 shrink-0 text-white/30 transition-transform ${Yt ? "rotate-180" : ""}`
+            })]
+        }), Yt && jsxRuntimeExports.jsx("div", {
+            className: "px-3 pb-3 pt-1.5",
+            children: jsxRuntimeExports.jsx(MinesFairnessPanel, {
+                roundId: tt.roundId
+            })
+        })]
+    })
+}
+const MinesHistorySheet = reactExports.memo(function tt({open: _t, onClose: Yt, fairness: Kt, onOpen: Xt}) {
+    const {t: Jt} = useTranslation("mines")
+      , Zt = reactExports.useCallback(an => an.roundId, [])
+      , tn = reactExports.useCallback(async ({pageSize: an, last: un}) => {
+        try {
+            const dn = un ? `${Date.parse(un.createdAt)}_${un.roundId}` : void 0;
+            return (await MinesService.getHistory(an, dn)).rows
+        } catch {
+            return null
+        }
+    }
+    , [])
+      , nn = reactExports.useCallback(an => jsxRuntimeExports.jsx(MinesHistoryRow, {
+        round: an
+    }), []);
+    return jsxRuntimeExports.jsx(GameHistorySheet, {
+        ns: "mines",
+        open: _t,
+        onClose: Yt,
+        getKey: Zt,
+        onOpen: Xt,
+        fetchPage: tn,
+        renderItem: nn,
+        header: Kt ? jsxRuntimeExports.jsxs("div", {
+            className: "flex items-center gap-2",
+            children: [jsxRuntimeExports.jsx(ShieldCheck, {
+                className: "size-4 shrink-0 text-emerald-400"
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "min-w-0",
+                children: [jsxRuntimeExports.jsx("p", {
+                    className: "text-[11px] text-white/40",
+                    children: Jt("FAIRNESS.NEXT_HASH")
+                }), jsxRuntimeExports.jsx("code", {
+                    className: "block truncate font-mono text-[11px] text-emerald-300/90",
+                    children: Kt.serverSeedHash
+                })]
+            })]
+        }) : void 0,
+        pageSize: PAGE_SIZE$2
+    })
+})
+  , COMPACT_FROM = 1e4
+  , EXPONENTIAL_FROM = 1e15
+  , UNITS = [{
+    at: 1e12,
+    suffix: "T"
+}, {
+    at: 1e9,
+    suffix: "B"
+}, {
+    at: 1e6,
+    suffix: "M"
+}, {
+    at: 1e3,
+    suffix: "K"
+}];
+function toThreeSignificant(tt) {
+    return tt < 10 ? tt.toFixed(2) : tt < 100 ? tt.toFixed(1) : tt.toFixed(0)
+}
+function formatMultiplier$1(tt) {
+    if (!Number.isFinite(tt) || tt < 0)
+        return "-";
+    if (tt < COMPACT_FROM)
+        return `${tt.toFixed(2)}x`;
+    if (tt >= EXPONENTIAL_FROM)
+        return `${tt.toExponential(1).replace("e+", "e")}x`;
+    for (let _t = 0; _t < UNITS.length; _t += 1) {
+        const {at: Yt, suffix: Kt} = UNITS[_t];
+        if (!(tt < Yt)) {
+            if (toThreeSignificant(tt / Yt) === "1000" && _t > 0) {
+                const Xt = UNITS[_t - 1];
+                return `${toThreeSignificant(tt / Xt.at)}${Xt.suffix}x`
+            }
+            return `${toThreeSignificant(tt / Yt)}${Kt}x`
+        }
+    }
+    return `${tt.toFixed(0)}x`
+}
+function exactMultiplier(tt) {
+    return !Number.isFinite(tt) || tt < COMPACT_FROM ? null : `${tt.toFixed(2)}x`
+}
+const ACTIVE_AT = 1 / 3
+  , FADE_PX = 28
+  , REWIND_SETTLE_MS = 600
+  , MinesMultiplierStrip = ({table: tt, gemsOpened: _t, live: Yt}) => {
+    const Kt = reactExports.useRef(null)
+      , Xt = reactExports.useRef(null)
+      , [Jt,Zt] = reactExports.useState({
+        left: !1
+    })
+      , tn = tt?.length ? tt.slice(1) : []
+      , nn = reactExports.useCallback( () => {
+        const un = Kt.current;
+        un && Zt({
+            left: un.scrollLeft > 1
+        })
+    }
+    , []);
+    reactExports.useLayoutEffect(nn, [nn, tn.length]),
+    reactExports.useEffect( () => {
+        const un = Kt.current;
+        if (!un)
+            return;
+        const dn = Xt.current;
+        if (!dn) {
+            if (un.scrollLeft <= 0)
+                return;
+            const En = requestAnimationFrame( () => un.scrollTo({
+                left: 0,
+                behavior: "smooth"
+            }))
+              , gn = window.setTimeout( () => {
+                un.scrollLeft > 0 && un.scrollTo({
+                    left: 0
+                })
+            }
+            , REWIND_SETTLE_MS);
+            return () => {
+                cancelAnimationFrame(En),
+                clearTimeout(gn)
+            }
+        }
+        const fn = un.getBoundingClientRect()
+          , mn = dn.getBoundingClientRect().left - fn.left - fn.width * ACTIVE_AT;
+        Math.abs(mn) < 1 || un.scrollBy({
+            left: mn,
+            behavior: "smooth"
+        })
+    }
+    , [_t, Yt, tn.length]);
+    const an = Jt.left ? `linear-gradient(to right, transparent 0, #000 ${FADE_PX}px, #000 100%)` : void 0;
+    return jsxRuntimeExports.jsx("div", {
+        ref: Kt,
+        onScroll: nn,
+        className: "scrollbar-hide flex h-7 w-full shrink-0 items-center gap-1.5 overflow-x-auto overscroll-x-contain",
+        style: an ? {
+            maskImage: an,
+            WebkitMaskImage: an
+        } : void 0,
+        children: tn.map( (un, dn) => {
+            const fn = dn + 1
+              , hn = Yt && fn === _t
+              , mn = Yt && fn < _t
+              , En = fn === tn.length
+              , gn = jsxRuntimeExports.jsx("span", {
+                ref: hn ? Xt : void 0,
+                title: exactMultiplier(un) ?? void 0,
+                className: `flex h-7 shrink-0 items-center rounded-lg border px-2.5 text-xs font-bold leading-none transition-colors ${hn ? "border-[#8774E1] bg-[#8774E1]/20 text-[#8774E1]" : En ? "border-[#FFD746]/40 bg-[#3C3621] text-[#FFD746]" : mn ? "border-transparent bg-white/5 text-white/30" : "border-transparent bg-white/5 text-white/70"}`,
+                children: formatMultiplier$1(un)
+            });
+            return En ? jsxRuntimeExports.jsx("span", {
+                className: "sticky right-0 ml-auto flex shrink-0 items-center pl-16 bg-[linear-gradient(to_left,#1a1a1a_0,#1a1a1a_calc(100%-64px),transparent_100%)]",
+                children: gn
+            }, fn) : jsxRuntimeExports.jsx("span", {
+                className: "contents",
+                children: gn
+            }, fn)
+        }
+        )
+    })
+}
+;
+function toInventoryGift(tt, _t) {
+    return {
+        id: _t,
+        wireId: tt.id,
+        wireGiftType: tt.giftType === "portals" ? "portals" : "deposited",
+        name: tt.name,
+        slug: tt.slug,
+        collectionName: tt.collectionName,
+        status: "unboxed",
+        unboxedAt: "",
+        giftBoxTitle: "",
+        price: tt.price,
+        giftType: tt.giftType,
+        num: tt.num ?? void 0,
+        attributes: tt.attributes ? {
+            model: tt.attributes.model,
+            backdrop: tt.attributes.backdrop ?? void 0,
+            symbol: tt.attributes.symbol ?? null
+        } : void 0,
+        variant: tt.variant ? {
+            id: tt.variant.id,
+            name: tt.variant.name ?? "",
+            slug: tt.variant.slug ?? "",
+            attributes: {
+                model: tt.variant.attributes.model,
+                backdrop: tt.variant.attributes.backdrop ?? void 0,
+                symbol: tt.variant.attributes.symbol ?? null
+            }
+        } : void 0
+    }
+}
+const MinesGiftModal = ({isOpen: tt, onClose: _t, minBetTon: Yt, maxBetTon: Kt, onConfirm: Xt}) => {
+    const {t: Jt} = useTranslation("mines")
+      , [Zt,tn] = reactExports.useState([])
+      , [nn,an] = reactExports.useState(!1)
+      , un = reactExports.useCallback(async () => {
+        an(!0);
+        try {
+            const gn = await MinesService.getGifts();
+            tn(gn.map(toInventoryGift))
+        } catch {
+            tn([])
+        } finally {
+            an(!1)
+        }
+    }
+    , []);
+    reactExports.useEffect( () => {
+        tt || tn([])
+    }
+    , [tt]);
+    const dn = reactExports.useCallback(gn => gn.price > Kt || gn.price < Yt, [Kt, Yt])
+      , fn = reactExports.useCallback(gn => gn.price > Kt ? Jt("TOASTS.MAX_BET", {
+        max: Kt
+    }) : Jt("TOASTS.MIN_BET", {
+        min: Yt
+    }), [Kt, Yt, Jt])
+      , hn = reactExports.useCallback(gn => gn, [])
+      , mn = reactExports.useCallback( () => void un(), [un])
+      , En = reactExports.useCallback(gn => {
+        gn[0] && Xt(gn[0])
+    }
+    , [Xt]);
+    return jsxRuntimeExports.jsx(GameGiftModal, {
+        ns: "mines",
+        isOpen: tt,
+        onClose: _t,
+        gifts: Zt,
+        loading: nn,
+        toGift: hn,
+        onRefresh: mn,
+        onConfirm: En,
+        isGiftDisabled: dn,
+        disabledReason: fn,
+        single: !0
+    })
+}
+  , MinesAutobetModal = reactExports.memo(function tt({open: _t, onClose: Yt, armed: Kt, onArmedChange: Xt, gemsToOpen: Jt, onGemsToOpenChange: Zt, maxGemsToOpen: tn, numberOfBets: nn, onNumberOfBetsChange: an, maxNumberOfBets: un}) {
+    const {t: dn} = useTranslation("mines");
+    if (!_t)
+        return null;
+    const fn = Array.from({
+        length: tn
+    }, (hn, mn) => mn + 1);
+    return jsxRuntimeExports.jsxs("div", {
+        className: "fixed inset-0 z-[220] flex items-end justify-center",
+        role: "dialog",
+        "aria-modal": "true",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0 bg-black/60",
+            onClick: Yt
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "relative w-full max-w-md rounded-t-3xl bg-[#161616]",
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "mx-auto mt-2 h-1 w-12 rounded-full bg-white/20"
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between px-5 pb-2 pt-4",
+                children: [jsxRuntimeExports.jsx("h2", {
+                    className: "text-xl font-semibold text-white",
+                    children: dn("LABELS.AUTO_BET")
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: Yt,
+                    className: "flex size-9 items-center justify-center rounded-full bg-[#2A2A2A] text-white/80",
+                    "aria-label": dn("ACTIONS.DISMISS"),
+                    children: jsxRuntimeExports.jsx(X, {
+                        className: "size-5"
+                    })
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "space-y-4 px-5 pb-6",
+                children: [jsxRuntimeExports.jsx("p", {
+                    className: "text-sm leading-relaxed text-white/60",
+                    children: dn("LABELS.AUTOBET_HINT")
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex w-full items-start gap-3",
+                    children: [jsxRuntimeExports.jsx(MinesNumberSelect, {
+                        label: dn("LABELS.GEMS_TO_OPEN"),
+                        value: Math.min(Jt, tn),
+                        options: fn,
+                        onChange: Zt
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex flex-1 flex-col gap-1",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            className: "flex h-3 items-center",
+                            children: jsxRuntimeExports.jsx("span", {
+                                className: "text-xs font-semibold capitalize leading-[1.1] text-white",
+                                children: dn("LABELS.NUMBER_OF_BETS")
+                            })
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "flex h-10 w-full items-center rounded-[12px] border border-white/10 px-5",
+                            children: jsxRuntimeExports.jsx(DecimalInput, {
+                                value: nn,
+                                onChange: an,
+                                min: 1,
+                                max: un,
+                                step: 1,
+                                decimals: 0,
+                                className: "w-full bg-transparent text-xl font-bold leading-[1.1] text-white focus:outline-none"
+                            })
+                        })]
+                    })]
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: Yt,
+                    className: "h-12 w-full rounded-2xl bg-gradient-to-r from-[#8774E1] to-[#7B68D4] text-base font-bold text-white transition-transform active:scale-[0.99]",
+                    children: dn("ACTIONS.AUTOBET_DONE")
+                }), Kt && jsxRuntimeExports.jsx("button", {
+                    onClick: () => {
+                        Xt(!1),
+                        Yt()
+                    }
+                    ,
+                    className: "h-11 w-full rounded-2xl text-sm font-semibold text-white/60",
+                    children: dn("ACTIONS.AUTOBET_DISABLE")
+                })]
+            })]
+        })]
+    })
+});
+let instance = null
+  , retryAfter = 0;
+const RETRY_COOLDOWN_MS = 3e4;
+async function getConfetti() {
+    if (instance)
+        return instance;
+    if (Date.now() < retryAfter)
+        return null;
+    try {
+        const {default: tt} = await __vitePreload(async () => {
+            const {default: _t} = await import("./confetti.module-BVAT6wYb.js");
+            return {
+                default: _t
+            }
+        }
+        , []);
+        return instance = tt.create(void 0, {
+            resize: !0,
+            useWorker: !0
+        }),
+        instance
+    } catch {
+        return retryAfter = Date.now() + RETRY_COOLDOWN_MS,
+        null
+    }
+}
+function isLowEndDevice() {
+    try {
+        const tt = navigator;
+        if (typeof tt.deviceMemory == "number" && tt.deviceMemory <= 4 || typeof navigator.hardwareConcurrency == "number" && navigator.hardwareConcurrency <= 4)
+            return !0
+    } catch {}
+    return !1
+}
+const COLORS = ["#0ea5e9", "#06b6d4", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899"]
+  , JACKPOT_GOLD = ["#FFD873", "#FFC24B", "#FFEDB0", "#8b5cf6", "#ec4899"];
+async function fireConfetti() {
+    const tt = await getConfetti();
+    if (!tt)
+        return;
+    const _t = isLowEndDevice();
+    tt({
+        particleCount: _t ? 8 : 12,
+        spread: 70,
+        origin: {
+            y: .6
+        },
+        startVelocity: 20,
+        gravity: 1.2,
+        ticks: _t ? 50 : 80,
+        decay: .96,
+        colors: COLORS,
+        disableForReducedMotion: !0,
+        zIndex: 2e3
+    })
+}
+async function fireJackpotPillConfetti(tt, _t=1) {
+    if (_t <= 0)
+        return;
+    const Yt = await getConfetti();
+    if (!Yt)
+        return;
+    const Kt = (isLowEndDevice() ? .5 : 1) * _t
+      , Xt = Zt => Math.round(Zt * Kt)
+      , Jt = 150;
+    Yt({
+        particleCount: Xt(70),
+        angle: 90,
+        spread: 75,
+        origin: tt,
+        startVelocity: 32,
+        gravity: 1.15,
+        ticks: 180,
+        scalar: .95,
+        colors: JACKPOT_GOLD,
+        zIndex: Jt
+    }),
+    setTimeout( () => {
+        Yt({
+            particleCount: Xt(45),
+            angle: 90,
+            spread: 110,
+            origin: tt,
+            startVelocity: 24,
+            gravity: 1.1,
+            ticks: 170,
+            scalar: .85,
+            colors: JACKPOT_GOLD,
+            zIndex: Jt
+        })
+    }
+    , 180),
+    setTimeout( () => {
+        Yt({
+            particleCount: Xt(28),
+            angle: 90,
+            spread: 140,
+            origin: tt,
+            startVelocity: 17,
+            gravity: 1.05,
+            ticks: 160,
+            scalar: .8,
+            colors: JACKPOT_GOLD,
+            zIndex: Jt
+        })
+    }
+    , 380)
+}
+const sleep$1 = tt => new Promise(_t => {
+    setTimeout(_t, tt)
+}
+)
+  , ROUND_SYNC_DEBOUNCE_MS = 400
+  , CONFIG_REFRESH_DELAY_MS = 6e3
+  , RECONCILE_DELAYS_MS = [400, 1200, 3e3]
+  , INTERACTIVE_PHASES = new Set(["playing", "revealing"])
+  , RUN_ABORTING_CODES = new Set(["GAME_DISABLED"]);
+function newClientBetId() {
+    return typeof crypto < "u" && typeof crypto.randomUUID == "function" ? crypto.randomUUID() : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`
+}
+const useMinesGame = () => {
+    const [tt,_t] = reactExports.useState("booting")
+      , Yt = reactExports.useRef("booting")
+      , Kt = reactExports.useCallback(Ri => {
+        Yt.current = Ri,
+        _t(Ri)
+    }
+    , [])
+      , [Xt,Jt] = reactExports.useState(null)
+      , [Zt,tn] = reactExports.useState(null)
+      , nn = reactExports.useRef(null);
+    nn.current = Zt;
+    const [an,un] = reactExports.useState( () => new Set)
+      , [dn,fn] = reactExports.useState(null)
+      , [hn,mn] = reactExports.useState(0)
+      , En = useStore(Ri => Ri.setBalance)
+      , gn = reactExports.useRef(!0)
+      , Sn = reactExports.useRef(!1)
+      , yn = reactExports.useRef(null)
+      , bn = reactExports.useRef(0);
+    reactExports.useEffect( () => (gn.current = !0,
+    () => {
+        gn.current = !1
+    }
+    ), []);
+    const Cn = reactExports.useCallback(Ri => Ri.state === "active" ? "playing" : Ri.state === "lost" ? "busted" : "cashedOut", [])
+      , Pn = reactExports.useCallback( () => {
+        haptics.trigger("win"),
+        fireConfetti()
+    }
+    , [])
+      , $n = reactExports.useCallback( (Ri, {phase: ni}={}) => {
+        gn.current && (yn.current = {
+            roundId: Ri.roundId,
+            opened: Ri.openedTiles.length,
+            settled: Ri.state !== "active"
+        },
+        tn(Ri),
+        Kt(ni ?? Cn(Ri)),
+        typeof Ri.balance == "number" && En(Ri.balance),
+        Ri.state !== "active" && (mn(ti => ti + 1),
+        un(new Set)))
+    }
+    , [Cn, En, Kt])
+      , wn = reactExports.useCallback(async () => {
+        if (!Sn.current) {
+            Sn.current = !0;
+            try {
+                for (let Ri = 0; Ri <= RECONCILE_DELAYS_MS.length; Ri += 1)
+                    try {
+                        const ni = await MinesService.getActive();
+                        if (!gn.current)
+                            return;
+                        if (ni)
+                            $n(ni);
+                        else if (yn.current?.settled) {
+                            un(new Set);
+                            const ti = nn.current;
+                            Kt(ti ? Cn(ti) : "idle")
+                        } else
+                            yn.current = null,
+                            tn(null),
+                            un(new Set),
+                            Kt("idle");
+                        fn(null);
+                        return
+                    } catch (ni) {
+                        const ti = RECONCILE_DELAYS_MS[Ri];
+                        if (ti === void 0)
+                            throw ni;
+                        await new Promise(xi => setTimeout(xi, ti))
+                    }
+            } catch (Ri) {
+                if (!gn.current)
+                    return;
+                fn(Ri instanceof MinesError ? Ri : new MinesError("Reconcile failed")),
+                Kt("error")
+            } finally {
+                Sn.current = !1
+            }
+        }
+    }
+    , [$n, Kt, Cn])
+      , An = reactExports.useCallback( (Ri, ni) => {
+        const ti = Ri instanceof MinesError ? Ri : new MinesError("Unexpected error");
+        return ti.isNetworkError || ti.code === "ROUND_NOT_FOUND" || ti.code === "ROUND_ALREADY_FINISHED" || ti.code === "ACTIVE_ROUND_EXISTS" ? (Kt("reconciling"),
+        wn(),
+        "reconciling") : (fn(ti),
+        Kt(ni),
+        "surfaced")
+    }
+    , [wn, Kt])
+      , Bn = reactExports.useCallback(async () => {
+        const Ri = bn.current += 1
+          , ni = () => bn.current !== Ri || !gn.current;
+        fn(null),
+        Kt("booting");
+        try {
+            const [ti,xi] = await Promise.all([MinesService.getConfig(), MinesService.getActive()]);
+            if (ni())
+                return;
+            Jt(ti),
+            xi ? $n(xi) : Kt("idle")
+        } catch (ti) {
+            if (ni())
+                return;
+            fn(ti instanceof MinesError ? ti : new MinesError("Failed to load Mines")),
+            Kt("error")
+        }
+    }
+    , [$n, Kt]);
+    reactExports.useEffect( () => {
+        Bn()
+    }
+    , [Bn]);
+    const Xn = reactExports.useCallback(async () => {
+        try {
+            const Ri = await MinesService.getConfig();
+            gn.current && Jt(Ri)
+        } catch {}
+    }
+    , []);
+    reactExports.useEffect( () => {
+        const Ri = () => {
+            document.visibilityState === "visible" && (tt === "booting" || tt === "placingBet" || tt === "revealing" || tt === "cashingOut" || an.size > 0 || wn())
+        }
+        ;
+        return document.addEventListener("visibilitychange", Ri),
+        () => document.removeEventListener("visibilitychange", Ri)
+    }
+    , [tt, an, wn]),
+    reactExports.useEffect( () => {
+        let Ri = null
+          , ni = null;
+        const ti = Bi => {
+            Ri != null && clearTimeout(Ri),
+            Ri = window.setTimeout( () => {
+                Ri = null,
+                !(Yt.current === "booting" || Yt.current === "placingBet" || Yt.current === "revealing" || Yt.current === "cashingOut") && wn()
+            }
+            , Bi)
+        }
+          , xi = () => ti(ROUND_SYNC_DEBOUNCE_MS)
+          , vi = () => {
+            ti(ROUND_SYNC_DEBOUNCE_MS),
+            ni != null && clearTimeout(ni),
+            ni = window.setTimeout( () => {
+                ni = null,
+                ti(0)
+            }
+            , CONFIG_REFRESH_DELAY_MS)
+        }
+        ;
+        return socketManager.on("mines:round_sync", xi),
+        socketManager.on("mines:config_updated", vi),
+        () => {
+            socketManager.off("mines:round_sync", xi),
+            socketManager.off("mines:config_updated", vi),
+            Ri != null && clearTimeout(Ri),
+            ni != null && clearTimeout(ni)
+        }
+    }
+    , [wn]),
+    reactExports.useEffect( () => {
+        const Ri = Yt.current;
+        Ri !== "playing" && Ri !== "revealing" || Kt(an.size > 0 ? "revealing" : "playing")
+    }
+    , [an, Kt]);
+    const Mn = reactExports.useCallback(async Ri => {
+        const ni = Yt.current;
+        if (ni !== "idle" && ni !== "busted" && ni !== "cashedOut")
+            return "aborted";
+        fn(null),
+        Kt("placingBet");
+        try {
+            const ti = await MinesService.placeBet({
+                ...Ri.gift ? {
+                    betType: Ri.gift.giftType === "portals" ? "gift_portals" : "gift_deposit",
+                    giftId: Ri.gift.id
+                } : {
+                    betType: "ton",
+                    amountTon: Ri.amountTon
+                },
+                minesCount: Ri.minesCount,
+                gemsTarget: Ri.gemsTarget ?? null,
+                clientBetId: newClientBetId()
+            });
+            return $n(ti),
+            "placed"
+        } catch (ti) {
+            if (An(ti, "idle") === "reconciling")
+                return "aborted";
+            const vi = ti instanceof MinesError ? ti.code : "UNKNOWN";
+            return RUN_ABORTING_CODES.has(vi) ? "aborted" : "rejected"
+        }
+    }
+    , [$n, An, Kt])
+      , Wn = reactExports.useCallback(Ri => {
+        const ni = yn.current;
+        return !ni || ni.roundId !== Ri.roundId || ni.settled ? !1 : Ri.state !== "active" ? !0 : Ri.openedTiles.length > ni.opened
+    }
+    , [])
+      , hr = reactExports.useCallback(async Ri => {
+        const ni = yn.current;
+        if (!(!INTERACTIVE_PHASES.has(Yt.current) || !ni || ni.settled) && !(Zt?.roundId === ni.roundId && Zt.openedTiles.includes(Ri)) && !an.has(Ri)) {
+            haptics.trigger("tileReveal"),
+            un(ti => new Set(ti).add(Ri));
+            try {
+                const ti = await MinesService.openTile(ni.roundId, Ri);
+                haptics.trigger(ti.result === "mine" ? "mineExplode" : "gemCollect"),
+                Wn(ti) && ($n(ti),
+                ti.state === "cashed_out" && Pn())
+            } catch (ti) {
+                An(ti, "playing")
+            } finally {
+                gn.current && un(ti => {
+                    if (!ti.has(Ri))
+                        return ti;
+                    const xi = new Set(ti);
+                    return xi.delete(Ri),
+                    xi
+                }
+                )
+            }
+        }
+    }
+    , [Zt, an, $n, An, Pn, Wn])
+      , fr = reactExports.useCallback(async () => {
+        if (!(!INTERACTIVE_PHASES.has(tt) || !Zt) && !(Zt.gemsOpened < 1)) {
+            Kt("cashingOut");
+            try {
+                const Ri = await MinesService.cashout(Zt.roundId);
+                $n(Ri),
+                Pn()
+            } catch (Ri) {
+                An(Ri, "playing")
+            }
+        }
+    }
+    , [tt, Zt, $n, An, Pn, Kt])
+      , Cr = reactExports.useCallback(async (Ri, ni) => {
+        for (let ti = 1; ti <= Ri.openedTiles.length; ti += 1) {
+            if (!gn.current)
+                return;
+            if (ni?.())
+                break;
+            $n({
+                ...Ri,
+                state: "active",
+                openedTiles: Ri.openedTiles.slice(0, ti),
+                gemsOpened: ti,
+                bustedTile: null,
+                minePositions: void 0,
+                finalMultiplier: null,
+                payoutTon: null,
+                balance: void 0,
+                currentMultiplier: Ri.multiplierTable[ti] ?? Ri.currentMultiplier,
+                nextMultiplier: Ri.multiplierTable[ti + 1] ?? null,
+                potentialPayoutTon: 0
+            }, {
+                phase: "placingBet"
+            }),
+            await sleep$1(AUTO_REVEAL_STEP_MS)
+        }
+        gn.current && ($n(Ri),
+        Ri.state === "cashed_out" && Pn())
+    }
+    , [$n, Pn])
+      , us = reactExports.useCallback(async Ri => {
+        try {
+            const ni = await MinesService.placeBet({
+                amountTon: Ri.amountTon,
+                minesCount: Ri.minesCount,
+                gemsTarget: Ri.gemsTarget,
+                autoMode: !0,
+                clientBetId: newClientBetId()
+            });
+            return await Cr(ni, Ri.shouldAbort),
+            ni
+        } catch (ni) {
+            throw An(ni, "idle"),
+            ni
+        }
+    }
+    , [Cr, An])
+      , oi = reactExports.useCallback( () => {
+        yn.current = null,
+        tn(null),
+        un(new Set),
+        fn(null),
+        Kt("idle")
+    }
+    , [Kt])
+      , dr = reactExports.useCallback(async () => {
+        if (!(!INTERACTIVE_PHASES.has(tt) || !Zt) && !(Zt.gemsOpened > 0 || an.size > 0)) {
+            Kt("cashingOut");
+            try {
+                const Ri = await MinesService.cancel(Zt.roundId);
+                $n(Ri),
+                oi()
+            } catch (Ri) {
+                An(Ri, "playing")
+            }
+        }
+    }
+    , [tt, Zt, an, $n, An, oi, Kt])
+      , yr = reactExports.useCallback( () => {
+        if (fn(null),
+        Yt.current === "error") {
+            if (!Xt) {
+                Bn();
+                return
+            }
+            Kt("reconciling"),
+            wn()
+        }
+    }
+    , [Xt, Bn, wn, Kt])
+      , vr = reactExports.useMemo( () => {
+        const Ri = Array.from({
+            length: MINES_GRID_SIZE
+        }, () => "hidden");
+        if (!Zt)
+            return Ri;
+        for (const ni of Zt.openedTiles)
+            Ri[ni] = "gem";
+        if (Zt.minePositions)
+            for (const ni of Zt.minePositions)
+                Ri[ni] = ni === Zt.bustedTile ? "mine" : "mineGhost";
+        else
+            Zt.bustedTile != null && (Ri[Zt.bustedTile] = "mine");
+        for (const ni of an)
+            Ri[ni] === "hidden" && (Ri[ni] = "pending");
+        return Ri
+    }
+    , [Zt, an])
+      , Sr = reactExports.useCallback(Ri => Xt ? Xt.maxBetTonByMines?.[Ri] ?? Xt.maxBetTon : 0, [Xt])
+      , zr = reactExports.useCallback( (Ri, ni, ti) => {
+        const xi = Xt?.multiplierTables?.[ni];
+        if (!xi || !Ri)
+            return 0;
+        const vi = xi[ti];
+        return typeof vi != "number" ? 0 : Math.max(0, Math.floor((Ri * vi - Ri) * 100) / 100)
+    }
+    , [Xt])
+      , Js = Zt?.currentMultiplier ?? 1
+      , Pi = Zt?.nextMultiplier ?? null
+      , Ui = Zt?.potentialPayoutTon ?? 0
+      , Gi = reactExports.useMemo( () => !Zt || Zt.state === "lost" ? 0 : Zt.state === "cashed_out" ? Math.max(0, (Zt.payoutTon ?? 0) - Zt.betAmountTon) : Zt.gemsOpened < 1 ? 0 : Math.max(0, Ui - Zt.betAmountTon), [Zt, Ui]);
+    return {
+        phase: tt,
+        config: Xt,
+        refreshFairness: Xn,
+        snapshot: Zt,
+        tiles: vr,
+        error: dn,
+        currentMultiplier: Js,
+        nextMultiplier: Pi,
+        potentialPayoutTon: Ui,
+        totalProfitTon: Gi,
+        canCashOut: INTERACTIVE_PHASES.has(tt) && (Zt?.gemsOpened ?? 0) >= 1,
+        canCancel: (INTERACTIVE_PHASES.has(tt) || tt === "cashingOut") && (Zt?.gemsOpened ?? 0) === 0 && an.size === 0,
+        canBet: tt === "idle" || tt === "busted" || tt === "cashedOut",
+        isBoardInteractive: INTERACTIVE_PHASES.has(tt),
+        isWinCelebrating: Zt?.state === "cashed_out",
+        settleKey: hn,
+        maxBetTonFor: Sr,
+        projectedProfitTon: zr,
+        placeBet: Mn,
+        openTile: hr,
+        cashout: fr,
+        cancelRound: dr,
+        playAgain: oi,
+        clearError: yr,
+        reconcile: wn,
+        runAutoRound: us
+    }
+}
+  , useMinesAutobet = ({runAutoRound: tt, roundDelayMs: _t=AUTOBET_ROUND_DELAY_MS}) => {
+    const [Yt,Kt] = reactExports.useState(!1)
+      , [Xt,Jt] = reactExports.useState(0)
+      , [Zt,tn] = reactExports.useState(0)
+      , [nn,an] = reactExports.useState(null)
+      , [un,dn] = reactExports.useState(null)
+      , fn = reactExports.useRef(!1)
+      , hn = reactExports.useRef(!0);
+    reactExports.useEffect( () => (hn.current = !0,
+    () => {
+        hn.current = !1,
+        fn.current = !0
+    }
+    ), []);
+    const mn = reactExports.useCallback( () => {
+        fn.current = !0
+    }
+    , [])
+      , En = reactExports.useCallback( () => {
+        dn(null),
+        an(null)
+    }
+    , [])
+      , gn = reactExports.useCallback(async Sn => {
+        if (Yt)
+            return;
+        fn.current = !1,
+        Kt(!0),
+        Jt(0),
+        tn(Sn.numberOfBets),
+        an(null),
+        dn(null);
+        let yn = 0
+          , bn = "completed";
+        try {
+            for (let Cn = 0; Cn < Sn.numberOfBets; Cn += 1) {
+                if (fn.current || !hn.current) {
+                    bn = "user";
+                    break
+                }
+                try {
+                    await tt({
+                        amountTon: Sn.amountTon,
+                        minesCount: Sn.minesCount,
+                        gemsTarget: Sn.gemsTarget,
+                        shouldAbort: () => fn.current || !hn.current
+                    })
+                } catch ($n) {
+                    const wn = $n instanceof MinesError ? $n : new MinesError("Autobet failed");
+                    wn.code === "INSUFFICIENT_BALANCE" ? bn = "insufficientBalance" : (bn = "error",
+                    hn.current && dn(wn));
+                    break
+                }
+                yn += 1,
+                hn.current && Jt(yn),
+                !(Cn === Sn.numberOfBets - 1) && !fn.current && _t > 0 && await new Promise($n => setTimeout($n, _t))
+            }
+        } finally {
+            hn.current && (Kt(!1),
+            an(bn)),
+            fn.current = !1
+        }
+    }
+    , [Yt, tt, _t]);
+    return {
+        isRunning: Yt,
+        roundsPlayed: Xt,
+        totalRounds: Zt,
+        stopReason: nn,
+        error: un,
+        start: gn,
+        stop: mn,
+        dismiss: En
+    }
+}
+;
+function cashoutPreviewGifts(tt) {
+    const _t = tt?.potentialRewardGift ?? null;
+    if (!_t)
+        return null;
+    const Yt = tt?.potentialBonusGift ?? null
+      , Kt = Yt ? [_t, Yt] : [_t];
+    return {
+        gifts: Kt,
+        totalTon: Kt.reduce( (Xt, Jt) => Xt + Number(Jt.priceTon), 0)
+    }
+}
+const BOARD_CLEAR_DELAY_MS = 1e3
+  , ERROR_BANNER_MS = 5e3
+  , ROOMY_PANEL_EXTRA_PX$2 = 56
+  , ROOMY_PANEL_MIN_WIDTH_PX = 358
+  , LADDER_BLOCK_PX = 36
+  , MinesPage = () => {
+    const {t: tt} = useTranslation("mines")
+      , _t = useNavigate()
+      , Yt = useLocation()
+      , Kt = useStore(wo => wo.balance)
+      , Xt = reactExports.useCallback( () => {
+        Yt.key === "default" ? _t("/play-hub", {
+            replace: !0
+        }) : _t(-1)
+    }
+    , [_t, Yt.key])
+      , {phase: Jt, config: Zt, refreshFairness: tn, snapshot: nn, tiles: an, error: un, potentialPayoutTon: dn, currentMultiplier: fn, canCashOut: hn, canCancel: mn, canBet: En, isBoardInteractive: gn, isWinCelebrating: Sn, settleKey: yn, maxBetTonFor: bn, placeBet: Cn, openTile: Pn, cashout: $n, cancelRound: wn, playAgain: An, clearError: Bn, runAutoRound: Xn} = useMinesGame()
+      , [Mn,Wn] = reactExports.useState(0)
+      , [hr,fr] = reactExports.useState(DEFAULT_GEMS_ON_BOARD)
+      , [Cr,us] = reactExports.useState(DEFAULT_GEMS_TO_OPEN)
+      , [oi,dr] = reactExports.useState(!1)
+      , [yr,vr] = reactExports.useState(DEFAULT_NUMBER_OF_BETS)
+      , [Sr,zr] = reactExports.useState(!1)
+      , [Js,Pi] = reactExports.useState(!1)
+      , [Ui,Gi] = reactExports.useState(!1)
+      , [Ri,ni] = reactExports.useState(!1)
+      , [ti,xi] = reactExports.useState(null)
+      , vi = useGamesConfig(wo => wo.hydrated && !wo.mines)
+      , Bi = useEntryBlock(Zt != null, Zt?.enabled === !1);
+    reactExports.useEffect( () => (useGamesConfig.getState().hydrate(),
+    useGamesConfig.getState().subscribeLive()), []);
+    const zi = MINES_GRID_SIZE - hr
+      , Yi = reactExports.useCallback(wo => fr(MINES_GRID_SIZE - wo), [])
+      , to = useMinesAutobet({
+        runAutoRound: Xn
+    })
+      , ya = reactExports.useCallback(wo => Cn({
+        amountTon: 0,
+        minesCount: zi,
+        gemsTarget: Cr,
+        gift: {
+            id: wo.wireId,
+            giftType: wo.wireGiftType
+        }
+    }), [Cn, zi, Cr])
+      , Ia = reactExports.useMemo( () => {
+        if (!Zt)
+            return FALLBACK_MINE_COUNT_OPTIONS;
+        const wo = new Set(Zt.unplayableMineCounts ?? [])
+          , sa = [];
+        for (let gl = Zt.minMines; gl <= Zt.maxMines; gl += 1)
+            wo.has(gl) || sa.push(gl);
+        return sa.length ? sa : FALLBACK_MINE_COUNT_OPTIONS
+    }
+    , [Zt]);
+    reactExports.useEffect( () => {
+        Ia.length && !Ia.includes(zi) && fr(MINES_GRID_SIZE - Ia[0])
+    }
+    , [Ia, zi]);
+    const mo = reactExports.useRef(null)
+      , [Ea,xa] = reactExports.useState(!1)
+      , va = reactExports.useRef(!1)
+      , [go,wa] = reactExports.useState(0)
+      , {isMobileTma: Oa} = usePlatform()
+      , [Fl,Ya] = reactExports.useState(!1)
+      , rl = reactExports.useRef(!1)
+      , ka = reactExports.useRef(null)
+      , ol = reactExports.useRef(null)
+      , $o = reactExports.useRef(null)
+      , [ul,Fa] = reactExports.useState(0)
+      , Ha = Fl && Oa;
+    reactExports.useLayoutEffect( () => {
+        const wo = mo.current;
+        if (!wo)
+            return;
+        const sa = () => {
+            if (rl.current)
+                return;
+            const {width: Aa, height: fl} = wo.getBoundingClientRect();
+            if (fl <= 0)
+                return;
+            wa(Math.floor(Math.min(Aa, fl - LADDER_BLOCK_PX)));
+            const xl = fl + (va.current ? ROOMY_PANEL_EXTRA_PX$2 : 0)
+              , _l = Aa >= ROOMY_PANEL_MIN_WIDTH_PX && xl - ROOMY_PANEL_EXTRA_PX$2 - LADDER_BLOCK_PX >= Aa;
+            _l !== va.current && (va.current = _l,
+            xa(_l))
+        }
+        ;
+        ka.current = sa,
+        sa();
+        const gl = new ResizeObserver(sa);
+        return gl.observe(wo),
+        window.addEventListener("resize", sa),
+        () => {
+            gl.disconnect(),
+            window.removeEventListener("resize", sa),
+            ka.current = null
+        }
+    }
+    , []),
+    reactExports.useEffect( () => () => {
+        ol.current && clearTimeout(ol.current)
+    }
+    , []);
+    const ec = reactExports.useCallback(wo => {
+        if (!(!Oa || wo.target.tagName !== "INPUT")) {
+            if (ol.current && (clearTimeout(ol.current),
+            ol.current = null),
+            !rl.current) {
+                const sa = mo.current
+                  , gl = $o.current;
+                if (sa && gl) {
+                    const Aa = gl.getBoundingClientRect().top - sa.getBoundingClientRect().top;
+                    Fa(Math.max(0, Math.round(Aa)))
+                }
+            }
+            rl.current = !0,
+            Ya(!0)
+        }
+    }
+    , [Oa])
+      , ja = reactExports.useCallback(wo => {
+        wo.target.tagName === "INPUT" && (ol.current = window.setTimeout( () => {
+            ol.current = null,
+            rl.current = !1,
+            Ya(!1),
+            ka.current?.()
+        }
+        , 100))
+    }
+    , [])
+      , Dl = reactExports.useMemo( () => {
+        const wo = Zt?.multiplierTables?.[zi];
+        return wo?.length ? wo.length - 1 : hr
+    }
+    , [Zt, zi, hr])
+      , Mu = Math.max(1, Zt?.autobetMaxRounds ?? MAX_NUMBER_OF_BETS);
+    reactExports.useEffect( () => {
+        yr > Mu && vr(Mu)
+    }
+    , [Mu, yr]),
+    reactExports.useEffect( () => {
+        Cr > Dl && us(Dl)
+    }
+    , [Dl, Cr]),
+    reactExports.useEffect( () => {
+        if (Jt !== "busted" && Jt !== "cashedOut" || to.isRunning)
+            return;
+        const wo = Jt === "cashedOut" ? WIN_HOLD_MS : BOARD_CLEAR_DELAY_MS
+          , sa = window.setTimeout(An, wo);
+        return () => window.clearTimeout(sa)
+    }
+    , [Jt, to.isRunning, An]),
+    reactExports.useEffect( () => {
+        if (!un || Jt === "error")
+            return;
+        const wo = window.setTimeout(Bn, ERROR_BANNER_MS);
+        return () => window.clearTimeout(wo)
+    }
+    , [un, Jt, Bn]);
+    const td = nn ? nn.multiplierTable : Zt?.multiplierTables?.[zi]
+      , ql = bn(zi)
+      , pc = Zt?.minBetTon ?? .1
+      , wu = nn?.state === "active"
+      , Xu = wu ? nn.minesCount : zi
+      , Pd = wu ? nn.betAmountTon : Mn
+      , tl = Jt === "placingBet" || Jt === "revealing" || Jt === "cashingOut" || Jt === "booting" || Jt === "reconciling"
+      , Jl = !En || tl || to.isRunning || Zt?.enabled === !1 || vi || (ti ? ti.price < pc || ti.price > ql : Mn < pc || Mn > ql || Mn > Kt)
+      , tc = reactExports.useCallback( () => {
+        if (to.isRunning) {
+            to.stop();
+            return
+        }
+        if ((Jt === "busted" || Jt === "cashedOut") && An(),
+        ti) {
+            const wo = ti;
+            xi(null),
+            ya(wo);
+            return
+        }
+        if (oi) {
+            to.start({
+                amountTon: Mn,
+                minesCount: zi,
+                gemsTarget: Cr,
+                numberOfBets: yr
+            });
+            return
+        }
+        Cn({
+            amountTon: Mn,
+            minesCount: zi,
+            gemsTarget: Cr
+        })
+    }
+    , [to, oi, Mn, zi, Cr, yr, Jt, An, Cn, ti, ya])
+      , mc = Jt === "idle" && !Jl && !oi && !to.isRunning
+      , Ju = reactExports.useRef(!1)
+      , ic = reactExports.useCallback( () => {
+        const wo = document.activeElement
+          , sa = !!wo && (wo.tagName === "INPUT" || wo.tagName === "TEXTAREA" || wo.isContentEditable);
+        Ju.current = sa,
+        sa && wo?.blur()
+    }
+    , [])
+      , Su = reactExports.useCallback(wo => {
+        if (Ju.current) {
+            Ju.current = !1;
+            return
+        }
+        if (gn) {
+            Pn(wo);
+            return
+        }
+        mc && (async () => {
+            const sa = ti;
+            sa && xi(null),
+            (sa ? await ya(sa) : await Cn({
+                amountTon: Mn,
+                minesCount: zi,
+                gemsTarget: Cr
+            })) === "placed" && Pn(wo)
+        }
+        )()
+    }
+    , [gn, Pn, mc, ti, ya, Cn, Mn, zi, Cr])
+      , Zc = reactExports.useCallback( () => {
+        Ju.current = !1,
+        An()
+    }
+    , [An])
+      , yu = reactExports.useCallback( () => {
+        (Jt === "busted" || Jt === "cashedOut") && An(),
+        Gi(!0)
+    }
+    , [Jt, An])
+      , Er = reactExports.useCallback(wo => {
+        Gi(!1),
+        (Jt === "busted" || Jt === "cashedOut") && An(),
+        dr(!1),
+        xi(wo)
+    }
+    , [Jt, An])
+      , $r = reactExports.useCallback( () => {
+        xi(null)
+    }
+    , [])
+      , wr = reactExports.useMemo( () => to.isRunning ? tt("ACTIONS.STOP_AUTOBET") : Jt === "placingBet" ? tt("BET.PLACING") : Jt === "busted" || Jt === "cashedOut" ? tt("ACTIONS.PLAY_AGAIN") : ti ? jsxRuntimeExports.jsxs("span", {
+        className: "inline-flex items-center gap-2",
+        children: [tt("BET.PLACE_GIFT"), jsxRuntimeExports.jsx(GiftPreview, {
+            gift: {
+                ...ti,
+                name: ti.name ?? void 0
+            },
+            imagePadding: "p-0.5",
+            transparentBg: !0,
+            className: "size-6 shrink-0 rounded-[6px]"
+        })]
+    }) : oi ? tt("ACTIONS.START_AUTOBET") : Mn <= 0 ? tt("BET.PLACE_BET_EMPTY") : jsxRuntimeExports.jsxs("span", {
+        className: "inline-flex items-center gap-1.5",
+        children: [tt("BET.PLACE_TON", {
+            amount: Mn.toFixed(2)
+        }), jsxRuntimeExports.jsx("img", {
+            src: MINES_ICONS.currency,
+            alt: "",
+            className: "size-4 shrink-0"
+        })]
+    }), [to.isRunning, oi, Jt, Mn, ti, tt])
+      , rr = reactExports.useMemo( () => ti ? {
+        id: String(ti.wireId),
+        name: ti.name ?? null,
+        slug: ti.slug ?? null,
+        collectionName: ti.collectionName ?? null,
+        priceTon: ti.price,
+        variant: ti.variant,
+        attributes: ti.attributes ? {
+            model: ti.attributes.model ?? null,
+            backdrop: ti.attributes.backdrop ?? null,
+            symbol: ti.attributes.symbol ?? null
+        } : null,
+        giftType: ti.wireGiftType,
+        num: ti.num ?? null
+    } : null, [ti])
+      , es = Jt === "playing" || Jt === "cashingOut" || Jt === "revealing"
+      , Ki = reactExports.useMemo( () => es || oi || to.isRunning || Jt !== "idle" ? null : ti ? ti.price > ql ? tt("BET.GIFT_OVER_LIMIT", {
+        max: ql
+    }) : ti.price < pc ? tt("BET.GIFT_UNDER_LIMIT", {
+        min: pc
+    }) : tt("BET.TAP_TO_START") : Mn > 0 ? Mn < pc ? tt("BET.MIN_BET", {
+        min: pc
+    }) : Mn > Kt ? tt("BET.NOT_ENOUGH_BALANCE") : Mn > ql ? tt("BET.MAX_BET", {
+        max: ql
+    }) : tt("BET.TAP_TO_START") : tt("BET.PLACE_BET_EMPTY"), [es, oi, to.isRunning, Jt, ti, Mn, pc, ql, Kt, tt])
+      , Xi = reactExports.useMemo( () => !wu && !es || !nn || nn.betType === "ton_balance" ? null : nn.stakedGift ?? null, [wu, es, nn])
+      , bo = reactExports.useMemo( () => {
+        if (es) {
+            if (mn)
+                return {
+                    label: tt("ACTIONS.CANCEL_BET"),
+                    variant: "danger",
+                    disabled: Jt === "cashingOut",
+                    onClick: () => void wn()
+                };
+            const wo = cashoutPreviewGifts(nn);
+            return {
+                label: wo ? jsxRuntimeExports.jsxs("span", {
+                    className: "inline-flex items-center gap-1.5",
+                    children: [tt("ACTIONS.CASH_OUT"), wo.gifts.map( (sa, gl) => jsxRuntimeExports.jsxs("span", {
+                        className: "inline-flex items-center gap-1.5",
+                        children: [gl > 0 && jsxRuntimeExports.jsx("span", {
+                            "aria-hidden": "true",
+                            children: "+"
+                        }), jsxRuntimeExports.jsx(GiftPreview, {
+                            gift: {
+                                ...sa,
+                                id: 0,
+                                name: sa.name ?? void 0
+                            },
+                            imagePadding: "p-0.5",
+                            transparentBg: !0,
+                            className: "size-6 shrink-0 rounded-[6px]"
+                        })]
+                    }, gl)), wo.totalTon.toFixed(2), jsxRuntimeExports.jsx("img", {
+                        src: MINES_ICONS.currency,
+                        alt: "",
+                        className: "size-4 shrink-0"
+                    })]
+                }) : tt("ACTIONS.CASH_OUT_AMOUNT", {
+                    amount: dn.toFixed(2)
+                }),
+                variant: "success",
+                disabled: !hn || Jt === "cashingOut",
+                onClick: () => void $n()
+            }
+        }
+        return {
+            label: wr,
+            variant: to.isRunning ? "danger" : "primary",
+            disabled: Jl && !to.isRunning,
+            onClick: tc
+        }
+    }
+    , [es, tt, dn, nn, hn, mn, Jt, $n, wn, wr, to.isRunning, Jl, tc])
+      , Mo = reactExports.useMemo( () => !Sn || nn?.state !== "cashed_out" ? null : {
+        multiplier: fn,
+        amountTon: nn.payoutTon ?? dn,
+        rewardGift: nn.rewardGift ?? null,
+        bonusGift: nn.bonusGift ?? null
+    }, [Sn, nn, fn, dn]);
+    return jsxRuntimeExports.jsxs(Page, {
+        back: !0,
+        onBack: Xt,
+        className: "h-full min-h-0 flex flex-col gap-2",
+        children: [jsxRuntimeExports.jsxs("div", {
+            className: "flex min-h-0 flex-1 flex-col gap-2 pb-2",
+            children: [jsxRuntimeExports.jsx(GameHeader, {
+                balance: Kt,
+                onBack: null,
+                avatar: !0,
+                onHistory: () => zr(!0),
+                onHelp: () => Pi(!0)
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex min-h-0 flex-1 flex-col gap-2",
+                children: [jsxRuntimeExports.jsx("div", {
+                    ref: mo,
+                    className: `flex min-h-0 flex-1 justify-center ${Ha ? "items-start overflow-hidden" : "items-center"}`,
+                    style: Ha ? {
+                        paddingTop: ul
+                    } : void 0,
+                    children: jsxRuntimeExports.jsxs("div", {
+                        ref: $o,
+                        className: "flex w-full flex-col gap-2",
+                        children: [jsxRuntimeExports.jsx(MinesMultiplierStrip, {
+                            table: td,
+                            gemsOpened: nn?.gemsOpened ?? 0,
+                            live: !!nn
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "relative mx-auto",
+                            style: {
+                                width: go || void 0,
+                                height: go || void 0
+                            },
+                            onPointerDownCapture: ic,
+                            children: [jsxRuntimeExports.jsx(MinesBoard, {
+                                tiles: an,
+                                disabled: !gn && !mc,
+                                isWinning: Sn,
+                                settleKey: yn,
+                                onTilePress: Su
+                            }), Mo && jsxRuntimeExports.jsx(MinesCashoutModal, {
+                                multiplier: Mo.multiplier,
+                                amountTon: Mo.amountTon,
+                                rewardGift: Mo.rewardGift,
+                                bonusGift: Mo.bonusGift
+                            }, yn), Jt === "cashedOut" && !to.isRunning && jsxRuntimeExports.jsx("button", {
+                                type: "button",
+                                "aria-label": tt("ACTIONS.CONTINUE"),
+                                onClick: Zc,
+                                className: "absolute inset-0 z-20 rounded-[26px]"
+                            }), jsxRuntimeExports.jsx("div", {
+                                "aria-hidden": !0,
+                                className: `pointer-events-none absolute inset-0 z-10 rounded-[26px] bg-black/60 transition-opacity duration-200 ${Ha ? "opacity-100" : "opacity-0"}`
+                            })]
+                        })]
+                    })
+                }), un && jsxRuntimeExports.jsxs("button", {
+                    type: "button",
+                    onClick: Bn,
+                    className: "flex w-full items-center justify-between gap-3 rounded-[12px] border border-[#FF2222]/40 bg-[#FF2222]/10 px-4 py-3 text-left text-sm text-white",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "min-w-0",
+                        children: un.message
+                    }), Jt === "error" && jsxRuntimeExports.jsx("span", {
+                        className: "shrink-0 text-xs font-semibold text-white/60 underline underline-offset-2",
+                        children: tt("ACTIONS.RETRY")
+                    })]
+                }), vi && !Bi && jsxRuntimeExports.jsx("div", {
+                    className: "rounded-[16px] border border-[#FF2222]/40 bg-[#FF2222]/10 px-4 py-3 text-center text-sm font-semibold text-[#FF6B6B]",
+                    children: tt("MAINTENANCE")
+                }), !to.isRunning && (to.stopReason === "error" || to.stopReason === "insufficientBalance") && jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between gap-3 rounded-[16px] border border-white/10 bg-white/5 px-4 py-3",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "text-xs font-semibold text-white/60",
+                        children: tt("LABELS.AUTOBET_STOPPED", {
+                            played: to.roundsPlayed,
+                            total: to.totalRounds
+                        })
+                    }), jsxRuntimeExports.jsx("button", {
+                        type: "button",
+                        onClick: to.dismiss,
+                        className: "shrink-0 text-xs font-semibold text-white/60 underline underline-offset-2",
+                        children: tt("ACTIONS.DISMISS")
+                    })]
+                }), jsxRuntimeExports.jsx("div", {
+                    onFocusCapture: ec,
+                    onBlurCapture: ja,
+                    children: jsxRuntimeExports.jsx(MinesBetPanel, {
+                        roomy: Ea,
+                        betAmount: Pd,
+                        onBetAmountChange: Wn,
+                        minBetTon: pc,
+                        maxBetTon: Math.max(pc, ql),
+                        onOpenGifts: yu,
+                        giftsActive: Ui || !!ti,
+                        onTonSelect: $r,
+                        stakedGift: rr ?? Xi,
+                        mineCount: Xu,
+                        onMineCountChange: Yi,
+                        mineCountOptions: Ia,
+                        autoBet: oi,
+                        onAutoBetChange: dr,
+                        onOpenAutobet: () => ni(!0),
+                        autoBetLocked: !!(ti || Xi),
+                        ctaHidden: !es && !oi && !to.isRunning,
+                        ctaPlaceholder: Ki,
+                        ctaLabel: bo.label,
+                        ctaVariant: bo.variant,
+                        ctaDisabled: bo.disabled,
+                        onCta: bo.onClick,
+                        disabled: nn?.state === "active" || to.isRunning || tl
+                    })
+                })]
+            })]
+        }), jsxRuntimeExports.jsx(MinesGiftModal, {
+            isOpen: Ui,
+            onClose: () => Gi(!1),
+            minBetTon: pc,
+            maxBetTon: Math.max(pc, ql),
+            onConfirm: Er
+        }), jsxRuntimeExports.jsx(MinesAutobetModal, {
+            open: Ri,
+            onClose: () => ni(!1),
+            armed: oi,
+            onArmedChange: dr,
+            gemsToOpen: Cr,
+            onGemsToOpenChange: us,
+            maxGemsToOpen: Dl,
+            numberOfBets: yr,
+            onNumberOfBetsChange: vr,
+            maxNumberOfBets: Mu
+        }), jsxRuntimeExports.jsx(MinesHistorySheet, {
+            onOpen: tn,
+            open: Sr,
+            onClose: () => zr(!1),
+            fairness: Zt?.fairness ?? null
+        }), jsxRuntimeExports.jsx(GameHowItWorksModal, {
+            ns: "mines",
+            open: Js,
+            onClose: () => Pi(!1)
+        }), Bi && jsxRuntimeExports.jsx(GameUnavailable, {
+            title: tt("UNAVAILABLE.TITLE"),
+            description: tt("UNAVAILABLE.DESCRIPTION"),
+            ctaLabel: tt("UNAVAILABLE.BACK"),
+            onBack: () => _t("/play-hub")
+        })]
+    })
+}
+  , EARN_FEED_POLL_MS = 6e4
+  , Navbar = () => {
+    const tt = useNavigate()
+      , _t = useLocation()
+      , {platform: Yt} = usePlatform()
+      , {t: Kt} = useTranslation("navigation")
+      , Xt = useEarnFeedStore(dn => dn.newTasksCount)
+      , Jt = useEarnFeedStore(dn => dn.newGiveawaysCount)
+      , Zt = Xt + Jt
+      , tn = useEarnFeedStore(dn => dn.refresh);
+    reactExports.useEffect( () => {
+        document.activeElement instanceof HTMLElement && document.activeElement.blur()
+    }
+    , [_t.pathname]),
+    reactExports.useEffect( () => {
+        tn();
+        const dn = setInterval(tn, EARN_FEED_POLL_MS);
+        return () => clearInterval(dn)
+    }
+    , [tn]);
+    const nn = Yt === "android" ? "var(--safe-area-bottom, 0px)" : "0px"
+      , an = dn => {
+        zu.selectionChanged.isAvailable() && zu.selectionChanged(),
+        tt(dn)
+    }
+      , un = [{
+        path: "/backpack",
+        icon: Package,
+        label: Kt("NAVBAR.BACKPACK")
+    }, {
+        path: "/invite",
+        icon: Users,
+        label: Kt("NAVBAR.INVITE")
+    }, {
+        path: "/",
+        icon: House,
+        label: Kt("NAVBAR.HOME")
+    }, {
+        path: "/leaderboard",
+        icon: Trophy,
+        label: Kt("NAVBAR.LEADERBOARD")
+    }, {
+        path: "/giveaway",
+        icon: Coins,
+        label: Kt("NAVBAR.EARN")
+    }];
+    return jsxRuntimeExports.jsx("div", {
+        className: "fixed bottom-0 left-0 right-0 z-50 bg-[#1E1E1E] border-t border-[#363636]",
+        style: {
+            paddingBottom: nn
+        },
+        children: jsxRuntimeExports.jsx("div", {
+            className: "max-w-md mx-auto",
+            children: jsxRuntimeExports.jsx("div", {
+                className: "grid grid-cols-5 gap-0",
+                children: un.map(dn => {
+                    const fn = dn.path === "/"
+                      , hn = fn ? _t.pathname === "/" : _t.pathname.startsWith(dn.path)
+                      , mn = dn.icon
+                      , En = dn.path === "/giveaway" && Zt > 0 && !hn
+                      , gn = Zt > 99 ? "99+" : String(Zt);
+                    return jsxRuntimeExports.jsxs("button", {
+                        onClick: () => an(dn.path),
+                        className: `flex flex-col items-center justify-center py-3 px-2 transition-all duration-200 relative ${hn ? fn ? "text-white" : "text-[#8774E1]" : "text-[#999999] md:hover:text-white active:text-[#999999] focus:text-[#999999]"}`,
+                        style: {
+                            minHeight: "72px"
+                        },
+                        children: [hn && jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
+                            children: jsxRuntimeExports.jsx("div", {
+                                className: "absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-[#8774E1] to-[#7B68D4] rounded-b-full transition-all duration-200"
+                            })
+                        }), fn && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                            children: [hn && jsxRuntimeExports.jsx("div", {
+                                className: "absolute inset-0 bg-gradient-to-r from-[#8774E1]/20 to-[#7B68D4]/20 rounded-xl blur-sm opacity-60"
+                            }), jsxRuntimeExports.jsx("div", {
+                                className: `absolute inset-2 rounded-xl transition-all duration-200 border ${hn ? "bg-gradient-to-br from-[#8774E1] to-[#7B68D4] opacity-100 border-[#8774E1]/30 shadow-lg" : "bg-[#363636]/30 opacity-100 border-[#444444]/30"}`
+                            })]
+                        }), !fn && hn && jsxRuntimeExports.jsx("div", {
+                            className: "absolute inset-2 bg-[#8774E1]/20 rounded-xl"
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "relative z-10 flex flex-col items-center justify-center gap-1",
+                            children: [jsxRuntimeExports.jsxs("div", {
+                                className: "relative",
+                                children: [jsxRuntimeExports.jsx(mn, {
+                                    size: fn ? 28 : 22,
+                                    className: `transition-all duration-200 ${fn ? "drop-shadow-lg" : ""} ${fn && hn ? "scale-110" : ""}`
+                                }), En && jsxRuntimeExports.jsx("span", {
+                                    "aria-label": `${Zt} new`,
+                                    className: "absolute -top-1 -right-1.5 min-w-[16px] h-[16px] px-1 rounded-full bg-red-500 ring-2 ring-[#1E1E1E] text-white text-[10px] font-bold flex items-center justify-center leading-none",
+                                    children: gn
+                                })]
+                            }), jsxRuntimeExports.jsx("span", {
+                                className: `text-xs leading-tight text-center transition-all duration-200 ${fn ? "font-bold" : "font-medium"}`,
+                                children: dn.label
+                            })]
+                        })]
+                    }, dn.path)
+                }
+                )
+            })
+        })
+    })
+}
+;
+async function sha256(tt) {
+    const _t = new TextEncoder().encode(tt)
+      , Yt = await crypto.subtle.digest("SHA-256", _t);
+    return Array.from(new Uint8Array(Yt)).map(Xt => Xt.toString(16).padStart(2, "0")).join("")
+}
+async function calculateProvablyFairResult(tt, _t, Yt) {
+    const Kt = `${tt}:${_t.join(",")}:${Yt}`
+      , Jt = (await sha256(Kt)).substring(0, 8)
+      , Zt = parseInt(Jt, 16)
+      , tn = parseInt("ffffffff", 16)
+      , nn = Zt / tn * 100;
+    return Math.floor(nn * 1e4) / 1e4
+}
+const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isExpanded: Kt=!1, onToggle: Xt}) => {
+    const {t: Jt} = useTranslation(["pvpHistory", "toasts"])
+      , [Zt,tn] = reactExports.useState(!1)
+      , [nn,an] = reactExports.useState(null)
+      , un = (hn, mn) => {
+        navigator.clipboard.writeText(hn),
+        toast.success(Jt("toasts:SUCCESS.DATA_COPIED", {
+            label: mn
+        }))
+    }
+      , dn = () => {
+        const hn = {
+            gameId: _t,
+            provablyFair: {
+                serverSeed: tt.serverSeed,
+                serverSeedHash: tt.serverSeedHash,
+                clientSeeds: tt.clientSeeds,
+                nonce: tt.nonce,
+                result: tt.result,
+                ...tt.winnerIndex !== void 0 && {
+                    winnerIndex: tt.winnerIndex
+                },
+                calculationFormula: tt.calculationFormula
+            },
+            verificationSteps: ["1. Verify SHA-256(serverSeed) equals serverSeedHash", "2. Combine: serverSeed + all clientSeeds + nonce", "3. Apply hash function to get random number 0-99.9999", "4. Map result to player ranges based on bet amounts", "5. Winner is determined by where result falls"],
+            timestamp: new Date().toISOString()
+        }
+          , mn = new Blob([JSON.stringify(hn, null, 2)],{
+            type: "application/json"
+        })
+          , En = URL.createObjectURL(mn)
+          , gn = document.createElement("a");
+        gn.href = En,
+        gn.download = `pvp-game-${_t}.json`,
+        document.body.appendChild(gn),
+        gn.click(),
+        document.body.removeChild(gn),
+        URL.revokeObjectURL(En),
+        toast.success(Jt("toasts:SUCCESS.DATA_DOWNLOADED"))
+    }
+      , fn = async () => {
+        if (!tt.serverSeed || !tt.serverSeedHash || !tt.clientSeeds || tt.nonce === void 0) {
+            toast.error(Jt("toasts:ERROR.MISSING_VERIFICATION_DATA"), {
+                description: Jt("toasts:ERROR.VERIFICATION_DATA_DESCRIPTION")
+            });
+            return
+        }
+        tn(!0),
+        an(null);
+        try {
+            const mn = (await sha256(tt.serverSeed)).toLowerCase() === tt.serverSeedHash.toLowerCase()
+              , En = await calculateProvablyFairResult(tt.serverSeed, tt.clientSeeds, tt.nonce)
+              , gn = tt.result ?? 0
+              , Sn = Math.abs(En - gn) < 1e-4;
+            an({
+                hashValid: mn,
+                resultValid: Sn,
+                calculatedResult: En,
+                expectedResult: gn
+            }),
+            mn && Sn ? toast.success(Jt("toasts:SUCCESS.VERIFICATION_PASSED")) : toast.error(Jt("toasts:ERROR.VERIFICATION_FAILED"), {
+                description: Jt("toasts:ERROR.VERIFICATION_FAILED_DESCRIPTION")
+            })
+        } catch (hn) {
+            console.error("Verification error:", hn),
+            toast.error(Jt("toasts:ERROR.VERIFICATION_FAILED"), {
+                description: Jt("VERIFICATION.CHECK_DATA_TRY_AGAIN")
+            })
+        } finally {
+            tn(!1)
+        }
+    }
+    ;
+    return jsxRuntimeExports.jsxs("div", {
+        className: "bg-[#1a1a1a] rounded-xl border border-[#444444]/30",
+        children: [jsxRuntimeExports.jsxs("button", {
+            onClick: Xt,
+            className: "w-full flex items-center justify-between p-4 hover:bg-[#2C2C2C] transition-colors rounded-xl",
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center gap-2",
+                children: [jsxRuntimeExports.jsx(Shield, {
+                    className: "w-5 h-5 text-green-400"
+                }), jsxRuntimeExports.jsx("span", {
+                    className: "text-white font-semibold",
+                    children: Jt("VERIFICATION.TITLE")
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center gap-2",
+                children: [jsxRuntimeExports.jsxs("span", {
+                    className: "text-green-400 text-xs font-medium",
+                    children: [Jt("VERIFICATION.VERIFIED"), " âœ“"]
+                }), jsxRuntimeExports.jsx("svg", {
+                    className: `w-5 h-5 text-white/60 transition-transform ${Kt ? "rotate-180" : ""}`,
+                    fill: "none",
+                    viewBox: "0 0 24 24",
+                    stroke: "currentColor",
+                    children: jsxRuntimeExports.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M19 9l-7 7-7-7"
+                    })
+                })]
+            })]
+        }), Kt && jsxRuntimeExports.jsxs("div", {
+            className: "px-4 pb-4 space-y-4",
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-xl p-4 mt-2",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between mb-3",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "text-white/60 text-sm",
+                        children: Jt("LABELS.RANDOM_RESULT")
+                    }), jsxRuntimeExports.jsx("code", {
+                        className: "text-green-400 text-xl font-mono font-bold",
+                        children: tt.result !== void 0 ? tt.result.toFixed(4) : Jt("VERIFICATION.NA")
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "text-white/60 text-sm",
+                        children: Jt("LABELS.WINNER")
+                    }), jsxRuntimeExports.jsx("code", {
+                        className: "text-amber-400 text-base font-mono font-semibold",
+                        children: Yt?.username || (tt.winnerIndex !== void 0 ? Jt("LABELS.PLAYER_NUMBER", {
+                            number: tt.winnerIndex + 1
+                        }) : Jt("VERIFICATION.NA"))
+                    })]
+                })]
+            }), jsxRuntimeExports.jsx("div", {
+                className: "bg-[#1a1a1a] rounded-xl border border-[#444444]/20 p-4",
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "space-y-3",
+                    children: [tt.serverSeedHash && jsxRuntimeExports.jsxs("div", {
+                        children: [jsxRuntimeExports.jsxs("label", {
+                            className: "text-white/60 text-xs font-medium mb-1 block",
+                            children: ["ðŸ”’ ", Jt("VERIFICATION.SERVER_HASH")]
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "flex items-center gap-2 bg-[#0a0a0a] rounded-lg p-2.5",
+                            children: [jsxRuntimeExports.jsx("code", {
+                                className: "text-purple-400 text-xs font-mono flex-1 truncate",
+                                children: tt.serverSeedHash
+                            }), jsxRuntimeExports.jsx("button", {
+                                onClick: () => un(tt.serverSeedHash, Jt("VERIFICATION.SERVER_SEED_HASH")),
+                                className: "p-1 hover:bg-white/10 rounded transition-colors shrink-0",
+                                children: jsxRuntimeExports.jsx(Copy, {
+                                    className: "w-3.5 h-3.5 text-white/60"
+                                })
+                            })]
+                        })]
+                    }), tt.serverSeed && jsxRuntimeExports.jsxs("div", {
+                        children: [jsxRuntimeExports.jsxs("label", {
+                            className: "text-white/60 text-xs font-medium mb-1 block",
+                            children: ["âœ… ", Jt("VERIFICATION.SERVER_SEED")]
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "flex items-center gap-2 bg-[#0a0a0a] rounded-lg p-2.5",
+                            children: [jsxRuntimeExports.jsx("code", {
+                                className: "text-green-400 text-xs font-mono flex-1 truncate",
+                                children: tt.serverSeed
+                            }), jsxRuntimeExports.jsx("button", {
+                                onClick: () => un(tt.serverSeed, "Server Seed"),
+                                className: "p-1 hover:bg-white/10 rounded transition-colors shrink-0",
+                                children: jsxRuntimeExports.jsx(Copy, {
+                                    className: "w-3.5 h-3.5 text-white/60"
+                                })
+                            })]
+                        })]
+                    }), tt.clientSeeds && tt.clientSeeds.length > 0 && jsxRuntimeExports.jsxs("div", {
+                        children: [jsxRuntimeExports.jsxs("label", {
+                            className: "text-white/60 text-xs font-medium mb-1 block",
+                            children: ["ðŸ‘¥ ", Jt("VERIFICATION.CLIENT_SEEDS", {
+                                count: tt.clientSeeds.length
+                            })]
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "bg-[#0a0a0a] rounded-lg p-2.5",
+                            children: jsxRuntimeExports.jsxs("code", {
+                                className: "text-blue-400 text-xs font-mono",
+                                children: [tt.clientSeeds.join(", ").substring(0, 60), "..."]
+                            })
+                        })]
+                    })]
+                })
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/30 rounded-xl p-4",
+                children: [jsxRuntimeExports.jsxs("h4", {
+                    className: "text-white font-semibold text-sm mb-3 flex items-center gap-2",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "text-purple-400",
+                        children: "ðŸ”"
+                    }), Jt("VERIFICATION.HOW_IT_WORKS")]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "space-y-2 text-xs text-white/70",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "flex gap-2",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-green-400 shrink-0",
+                            children: "1."
+                        }), jsxRuntimeExports.jsx("span", {
+                            children: jsxRuntimeExports.jsx(Trans, {
+                                i18nKey: "VERIFICATION.STEP_1",
+                                ns: "pvpHistory",
+                                components: {
+                                    strong: jsxRuntimeExports.jsx("strong", {})
+                                }
+                            })
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex gap-2",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-green-400 shrink-0",
+                            children: "2."
+                        }), jsxRuntimeExports.jsx("span", {
+                            children: jsxRuntimeExports.jsx(Trans, {
+                                i18nKey: "VERIFICATION.STEP_2",
+                                ns: "pvpHistory",
+                                components: {
+                                    strong: jsxRuntimeExports.jsx("strong", {})
+                                }
+                            })
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex gap-2",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-green-400 shrink-0",
+                            children: "3."
+                        }), jsxRuntimeExports.jsx("span", {
+                            children: Jt("VERIFICATION.STEP_3")
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex gap-2",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-green-400 shrink-0",
+                            children: "4."
+                        }), jsxRuntimeExports.jsx("span", {
+                            children: Jt("VERIFICATION.STEP_4")
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex gap-2",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-amber-400 shrink-0",
+                            children: "âœ“"
+                        }), jsxRuntimeExports.jsx("span", {
+                            children: jsxRuntimeExports.jsx(Trans, {
+                                i18nKey: "VERIFICATION.NO_CHEAT",
+                                ns: "pvpHistory",
+                                components: {
+                                    strong: jsxRuntimeExports.jsx("strong", {})
+                                }
+                            })
+                        })]
+                    })]
+                })]
+            }), nn && jsxRuntimeExports.jsxs("div", {
+                className: `rounded-xl border p-4 ${nn.hashValid && nn.resultValid ? "bg-green-500/10 border-green-500/30" : "bg-red-500/10 border-red-500/30"}`,
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between mb-3",
+                    children: [jsxRuntimeExports.jsx("h4", {
+                        className: "text-white font-semibold text-sm flex items-center gap-2",
+                        children: nn.hashValid && nn.resultValid ? jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                            children: [jsxRuntimeExports.jsx(Check, {
+                                className: "w-4 h-4 text-green-400"
+                            }), jsxRuntimeExports.jsx("span", {
+                                className: "text-green-400",
+                                children: Jt("VERIFICATION.PASSED")
+                            })]
+                        }) : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                            children: [jsxRuntimeExports.jsx(X, {
+                                className: "w-4 h-4 text-red-400"
+                            }), jsxRuntimeExports.jsx("span", {
+                                className: "text-red-400",
+                                children: Jt("VERIFICATION.FAILED")
+                            })]
+                        })
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: () => an(null),
+                        className: "p-1 hover:bg-white/10 rounded transition-colors",
+                        children: jsxRuntimeExports.jsx(X, {
+                            className: "w-4 h-4 text-white/60"
+                        })
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "space-y-2 text-xs",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-white/60",
+                            children: Jt("VERIFICATION.HASH_VERIFICATION")
+                        }), jsxRuntimeExports.jsx("span", {
+                            className: nn.hashValid ? "text-green-400" : "text-red-400",
+                            children: nn.hashValid ? `âœ“ ${Jt("VERIFICATION.VALID")}` : `âœ— ${Jt("VERIFICATION.INVALID")}`
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-white/60",
+                            children: Jt("VERIFICATION.RESULT_VERIFICATION")
+                        }), jsxRuntimeExports.jsx("span", {
+                            className: nn.resultValid ? "text-green-400" : "text-red-400",
+                            children: nn.resultValid ? `âœ“ ${Jt("VERIFICATION.VALID")}` : `âœ— ${Jt("VERIFICATION.INVALID")}`
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-white/60",
+                            children: Jt("VERIFICATION.CALCULATED_RESULT")
+                        }), jsxRuntimeExports.jsx("code", {
+                            className: "text-blue-400 font-mono",
+                            children: nn.calculatedResult.toFixed(4)
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-white/60",
+                            children: Jt("VERIFICATION.EXPECTED_RESULT")
+                        }), jsxRuntimeExports.jsx("code", {
+                            className: "text-purple-400 font-mono",
+                            children: nn.expectedResult.toFixed(4)
+                        })]
+                    })]
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex gap-2",
+                children: [jsxRuntimeExports.jsx("button", {
+                    onClick: fn,
+                    disabled: Zt || !tt.serverSeed,
+                    className: "flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 disabled:from-gray-500 disabled:to-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-500/20",
+                    children: Zt ? jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                        children: [jsxRuntimeExports.jsx(LoaderCircle, {
+                            className: "w-5 h-5 animate-spin"
+                        }), Jt("VERIFICATION.VERIFYING")]
+                    }) : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                        children: [jsxRuntimeExports.jsx(Check, {
+                            className: "w-5 h-5"
+                        }), Jt(nn ? "VERIFICATION.VERIFY_AGAIN" : "VERIFICATION.VERIFY_NOW")]
+                    })
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: dn,
+                    className: "px-4 bg-[#2C2C2C] hover:bg-[#333333] text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 border border-[#444444]/30",
+                    title: Jt("VERIFICATION.DOWNLOAD_TITLE"),
+                    children: jsxRuntimeExports.jsx(Download, {
+                        className: "w-5 h-5"
+                    })
+                })]
+            })]
+        })]
+    })
+}
+  , PvPGameDetailModal = ({gameId: tt, isOpen: _t, onClose: Yt}) => {
+    const {t: Kt} = useTranslation(["pvpHistory", "pvp", "common"])
+      , [Xt,Jt] = reactExports.useState(null)
+      , [Zt,tn] = reactExports.useState(!1)
+      , [nn,an] = reactExports.useState(!1)
+      , [un,dn] = reactExports.useState(!1)
+      , [fn,hn] = reactExports.useState(null)
+      , [mn,En] = reactExports.useState(null)
+      , gn = async () => {
+        if (tt) {
+            tn(!0);
+            try {
+                const An = await PvPService.getInstance().getGameDetails(tt);
+                console.log(An),
+                Jt(An)
+            } catch (wn) {
+                console.error("Failed to load game details:", wn)
+            } finally {
+                tn(!1)
+            }
+        }
+    }
+    ;
+    reactExports.useEffect( () => {
+        _t && tt && gn()
+    }
+    , [_t, tt]);
+    const Sn = Xt?.winner?.actualPrize
+      , yn = [...Sn?.ton && Sn.ton > 0 ? [{
+        type: "ton",
+        amount: Sn.ton
+    }] : [], ...Sn?.gifts ?? []]
+      , bn = reactExports.useMemo( () => {
+        const wn = Sn?.totalValue;
+        if (typeof wn == "number")
+            return Math.max(0, wn);
+        const An = Xt?.pot?.totalValue;
+        return typeof An == "number" ? Math.max(0, An) : 0
+    }
+    , [Sn, Xt?.pot?.totalValue])
+      , Cn = Xt?.players.find(wn => wn.playerId === Xt?.winner?.playerId)
+      , Pn = reactExports.useMemo( () => {
+        if (!Xt?.players)
+            return [];
+        const wn = [...Xt.players].sort( (Mn, Wn) => Number.isFinite(Wn.bet.winChance) && Number.isFinite(Mn.bet.winChance) ? Wn.bet.winChance - Mn.bet.winChance : Wn.bet.totalValue - Mn.bet.totalValue)
+          , An = Xt.winner?.playerId;
+        if (!An)
+            return wn;
+        const Bn = wn.find(Mn => Mn.playerId === An)
+          , Xn = wn.filter(Mn => Mn.playerId !== An);
+        return Bn ? [Bn, ...Xn] : wn
+    }
+    , [Xt?.players, Xt?.winner?.playerId])
+      , $n = wn => {
+        if ("type" in wn && wn.type === "ton") {
+            const Wn = wn.amount;
+            return jsxRuntimeExports.jsx("div", {
+                className: "bg-gradient-to-br from-[#8774E1] to-[#7B68D4] rounded-2xl p-[1px] h-full",
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "bg-[#111117] rounded-2xl h-full flex flex-col gap-2 relative overflow-hidden",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "relative aspect-square overflow-hidden bg-gradient-to-br from-[#2a2a30] to-[#1b1b22]",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            className: "absolute inset-0 bg-gradient-to-br from-[#8774E1] to-[#7B68D4] opacity-15 blur-xl"
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "absolute inset-0 bg-gradient-to-tl from-[#8774E1] to-transparent opacity-10 blur-lg"
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "relative z-10 w-full h-full flex items-center justify-center p-6",
+                            children: jsxRuntimeExports.jsx("img", {
+                                src: "/assets/images/ton_symbol.svg",
+                                alt: Kt("common:LABELS.TON"),
+                                className: "w-full h-full object-contain"
+                            })
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "absolute top-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-lg border border-white/10 flex items-center gap-1 z-20",
+                            children: [jsxRuntimeExports.jsx("span", {
+                                className: "text-white font-semibold text-sm",
+                                children: Wn.toFixed(2)
+                            }), jsxRuntimeExports.jsx("img", {
+                                src: "/assets/images/ton_symbol.svg",
+                                alt: Kt("common:LABELS.TON"),
+                                className: "w-3.5 h-3.5"
+                            })]
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "flex flex-col items-center text-center gap-1 pb-2",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-gradient-to-r from-sky-500/15 to-cyan-500/15 border border-sky-400/40 backdrop-blur-sm text-xs font-semibold text-sky-100",
+                            children: "TON Prize"
+                        }), jsxRuntimeExports.jsx("p", {
+                            className: "text-white font-semibold text-sm truncate w-full",
+                            children: "TON"
+                        })]
+                    })]
+                })
+            }, "ton-reward-card")
+        }
+        const An = wn
+          , Bn = An.attributes?.backdrop
+          , Xn = Bn ? getBackdropByName(Bn) : null
+          , Mn = An.price || 0;
+        return jsxRuntimeExports.jsx("div", {
+            className: "bg-gradient-to-br from-[#8774E1] to-[#7B68D4] rounded-2xl p-[1px] h-full cursor-pointer",
+            onClick: () => hn(An),
+            children: jsxRuntimeExports.jsxs("div", {
+                className: "bg-[#111117] rounded-2xl h-full flex flex-col gap-2 relative overflow-hidden",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "relative aspect-square overflow-hidden",
+                    children: [jsxRuntimeExports.jsx(GiftPreview, {
+                        gift: An,
+                        className: "w-full h-full"
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "absolute top-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-lg border border-white/10 flex items-center gap-1 z-20",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-white font-semibold text-sm",
+                            children: Mn.toFixed(2)
+                        }), jsxRuntimeExports.jsx("img", {
+                            src: "/assets/images/ton_symbol.svg",
+                            alt: Kt("common:LABELS.TON"),
+                            className: "w-3.5 h-3.5"
+                        })]
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex flex-col items-center text-center gap-1",
+                    children: [( () => {
+                        const Wn = An.giftType === "deposited" ? An.attributes?.num || An.attributes?.symbol || An.attributes?.model || String(An.giftId) : null;
+                        return Wn ? jsxRuntimeExports.jsxs("span", {
+                            className: "inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-gradient-to-r from-emerald-500/15 to-teal-500/15 border border-emerald-400/40 backdrop-blur-sm text-xs font-semibold text-emerald-200",
+                            children: ["#", Wn]
+                        }) : Xn?.hex ? jsxRuntimeExports.jsxs("span", {
+                            className: "inline-flex items-center gap-1 px-2 py-1 rounded-lg border backdrop-blur-sm text-xs font-semibold",
+                            style: {
+                                background: "#2C2C2C",
+                                color: Xn.hex.textColor,
+                                borderColor: `${Xn.hex.centerColor}40`
+                            },
+                            children: [jsxRuntimeExports.jsx("span", {
+                                className: "w-3 h-3 rounded-full shadow-sm",
+                                style: {
+                                    background: giftBackdropGradient(Xn.hex.centerColor, Xn.hex.edgeColor)
+                                }
+                            }), Xn.name]
+                        }) : jsxRuntimeExports.jsx("span", {
+                            className: "inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-gradient-to-r from-[#8774E1]/20 to-[#7B68D4]/20 border border-[#8774E1]/30 backdrop-blur-sm text-xs font-semibold text-[#8774E1]",
+                            children: "Random"
+                        })
+                    }
+                    )(), jsxRuntimeExports.jsx("p", {
+                        className: "text-white font-semibold text-sm truncate w-full mb-2",
+                        children: An.name
+                    })]
+                })]
+            })
+        }, `${An.giftId}-${An.name}`)
+    }
+    ;
+    return _t ? reactDomExports.createPortal(jsxRuntimeExports.jsxs("div", {
+        className: "fixed inset-0 z-[1100] bg-black/80 backdrop-blur-sm flex items-end justify-center",
+        style: {
+            paddingBottom: "env(safe-area-inset-bottom, 0px)"
+        },
+        onClick: Yt,
+        children: [jsxRuntimeExports.jsxs("div", {
+            className: "w-full max-w-md bg-[#1E1E1E] rounded-t-3xl shadow-2xl overflow-hidden animate-slide-up",
+            style: {
+                maxHeight: "calc(100vh - var(--safe-area-top, 0px) - var(--header-extra-offset, 0px) - 40px)"
+            },
+            onClick: wn => wn.stopPropagation(),
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between p-4 border-b border-[#444444]",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    children: [jsxRuntimeExports.jsx("p", {
+                        className: "text-white font-semibold text-base",
+                        children: Kt("pvp:LABELS.GAME_DETAILS")
+                    }), jsxRuntimeExports.jsx("p", {
+                        className: "text-white/40 text-xs mt-0.5",
+                        children: Kt("pvp:LABELS.GAME_ID", {
+                            id: tt?.slice(-8) || "N/A"
+                        })
+                    })]
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: Yt,
+                    className: "w-8 h-8 rounded-full bg-[#363636] hover:bg-[#404040] transition-colors flex items-center justify-center",
+                    children: jsxRuntimeExports.jsx(X, {
+                        className: "w-5 h-5 text-white"
+                    })
+                })]
+            }), jsxRuntimeExports.jsx("div", {
+                className: "p-4 space-y-4 overflow-y-auto",
+                style: {
+                    maxHeight: "calc(100vh - var(--safe-area-top, 0px) - var(--header-extra-offset, 0px) - 112px)"
+                },
+                children: Zt ? jsxRuntimeExports.jsxs("div", {
+                    className: "text-center py-12",
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "w-12 h-12 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin mx-auto mb-3"
+                    }), jsxRuntimeExports.jsx("p", {
+                        className: "text-white/60",
+                        children: Kt("LABELS.LOADING_HISTORY")
+                    })]
+                }) : Xt ? jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                    children: [Xt.winner && jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center gap-3 bg-white/5 rounded-xl p-3 border border-white/10",
+                        children: [Xt.winner.photoUrl ? jsxRuntimeExports.jsx("img", {
+                            src: Xt.winner.photoUrl,
+                            alt: Xt.winner.username,
+                            className: "w-14 h-14 rounded-full border-2 border-white/20 object-cover"
+                        }) : jsxRuntimeExports.jsx("div", {
+                            className: "w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white font-bold text-xl",
+                            children: Xt.winner.username.charAt(0).toUpperCase()
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "flex-1 min-w-0 flex items-start justify-between gap-3",
+                            children: [jsxRuntimeExports.jsxs("div", {
+                                className: "min-w-0",
+                                children: [jsxRuntimeExports.jsx("p", {
+                                    className: "text-white font-semibold text-lg truncate max-w-full",
+                                    children: Xt.winner.username
+                                }), jsxRuntimeExports.jsx("p", {
+                                    className: "text-amber-400 text-sm font-semibold mt-0.5",
+                                    children: Kt("pvp:LABELS.WINNER")
+                                })]
+                            }), jsxRuntimeExports.jsxs("div", {
+                                className: "flex flex-col items-end gap-1 flex-shrink-0",
+                                children: [jsxRuntimeExports.jsxs("div", {
+                                    className: "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 border border-white/10",
+                                    children: [jsxRuntimeExports.jsx("img", {
+                                        src: "/assets/images/ton_symbol.svg",
+                                        alt: Kt("common:LABELS.TON"),
+                                        className: "w-3.5 h-3.5"
+                                    }), jsxRuntimeExports.jsxs("span", {
+                                        className: "text-white font-semibold text-sm leading-none",
+                                        children: [bn.toFixed(2), " ", Kt("pvp:LABELS.TON")]
+                                    })]
+                                }), Cn?.bet.winChance !== void 0 && jsxRuntimeExports.jsx("span", {
+                                    className: "text-white/70 text-xs leading-none",
+                                    children: Kt("pvpHistory:LABELS.WIN_CHANCE", {
+                                        chance: formatWinChance(Cn.bet.winChance, Xt.players.length)
+                                    })
+                                })]
+                            })]
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "space-y-2",
+                        children: [jsxRuntimeExports.jsxs("div", {
+                            className: "flex items-center justify-between",
+                            children: [jsxRuntimeExports.jsx("p", {
+                                className: "text-white font-semibold text-base",
+                                children: Kt("pvp:LABELS.REWARDS")
+                            }), jsxRuntimeExports.jsx("p", {
+                                className: "text-white/50 text-sm",
+                                children: Kt("pvpHistory:LABELS.ITEMS_COUNT", {
+                                    count: Sn?.giftsCount ?? yn.length
+                                })
+                            })]
+                        }), yn.length === 0 ? jsxRuntimeExports.jsx("div", {
+                            className: "text-white/50 text-sm text-center py-6 border border-white/10 rounded-xl",
+                            children: Kt("LABELS.NO_GAMES_YET")
+                        }) : jsxRuntimeExports.jsx("div", {
+                            className: "grid grid-cols-3 gap-3",
+                            children: yn.map(wn => $n(wn))
+                        })]
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "bg-[#2C2C2C] rounded-xl border border-[#444444]/30 overflow-hidden",
+                        children: [jsxRuntimeExports.jsxs("button", {
+                            onClick: () => dn(!un),
+                            className: "w-full flex items-center justify-between p-4 hover:bg-[#333333] transition-colors",
+                            children: [jsxRuntimeExports.jsxs("div", {
+                                className: "flex items-center gap-2",
+                                children: [jsxRuntimeExports.jsx(Users, {
+                                    className: "w-5 h-5 text-purple-400"
+                                }), jsxRuntimeExports.jsxs("span", {
+                                    className: "text-white font-semibold",
+                                    children: [Kt("pvp:LABELS.PLAYERS"), " (", Xt.players.length, ")"]
+                                })]
+                            }), un ? jsxRuntimeExports.jsx(ChevronUp, {
+                                className: "w-5 h-5 text-white/60"
+                            }) : jsxRuntimeExports.jsx(ChevronDown, {
+                                className: "w-5 h-5 text-white/60"
+                            })]
+                        }), un && jsxRuntimeExports.jsx("div", {
+                            className: "px-4 pb-4 pt-2 max-h-[320px] overflow-y-auto",
+                            children: jsxRuntimeExports.jsx(PvPPlayersList, {
+                                players: Pn,
+                                winnerId: Xt.winner?.playerId,
+                                onPlayerClick: wn => En(wn)
+                            })
+                        })]
+                    }), Xt.provablyFair && jsxRuntimeExports.jsx(ProvablyFairVerification, {
+                        provablyFair: Xt.provablyFair,
+                        gameId: Xt.gameId,
+                        winner: Xt.winner,
+                        isExpanded: nn,
+                        onToggle: () => an(!nn)
+                    })]
+                }) : jsxRuntimeExports.jsxs("div", {
+                    className: "text-center py-12",
+                    children: [jsxRuntimeExports.jsx(Trophy, {
+                        className: "w-12 h-12 text-white/20 mx-auto mb-3"
+                    }), jsxRuntimeExports.jsx("p", {
+                        className: "text-white/60",
+                        children: Kt("LABELS.NO_GAMES_YET")
+                    })]
+                })
+            })]
+        }), fn && jsxRuntimeExports.jsx(GiftDetailModal, {
+            gift: fn,
+            onClose: () => hn(null)
+        }), mn && jsxRuntimeExports.jsx(PvPBetDetailsModal, {
+            onClose: () => En(null),
+            player: mn,
+            playersCount: Xt?.players.length,
+            gameId: Xt?.gameId ?? void 0
+        })]
+    }), document.body) : null
+}
+  , HISTORY_PAGE_LIMIT = 20
+  , PvPHistoryPage = () => {
+    const tt = useNavigate()
+      , {t: _t} = useTranslation(["pvpHistory", "pvp"])
+      , {user: Yt} = useUser()
+      , {historyGames: Kt, historyTotal: Xt, fetchHistory: Jt} = usePvPGame()
+      , [Zt,tn] = reactExports.useState("all")
+      , nn = Zt === "my_games" ? Yt?.dbId ?? null : null
+      , [an,un] = reactExports.useState(null)
+      , dn = reactExports.useRef(null)
+      , fn = reactExports.useRef(!1)
+      , hn = reactExports.useRef(!1)
+      , mn = Kt.length === 0 && Xt > 0
+      , En = Kt.length < Xt;
+    hn.current = En;
+    const gn = reactExports.useCallback( () => {
+        fn.current || !hn.current || (fn.current = !0,
+        Jt(HISTORY_PAGE_LIMIT, Kt.length, nn))
+    }
+    , [Kt.length, Jt, nn]);
+    reactExports.useEffect( () => {
+        Jt(HISTORY_PAGE_LIMIT, 0, nn)
+    }
+    , [nn, Jt]),
+    reactExports.useEffect( () => {
+        fn.current && (fn.current = !1)
+    }
+    , [Kt.length, Xt]),
+    reactExports.useEffect( () => {
+        const Cn = new IntersectionObserver($n => {
+            $n[0].isIntersecting && hn.current && !fn.current && gn()
+        }
+        ,{
+            threshold: .3
+        })
+          , Pn = dn.current;
+        return Pn && Cn.observe(Pn),
+        () => {
+            Pn && Cn.unobserve(Pn)
+        }
+    }
+    , [gn]);
+    const Sn = reactExports.useMemo( () => Kt.filter(Cn => Zt === "all" ? !0 : Zt === "my_games" ? !!Cn.myParticipation : !0), [Kt, Zt])
+      , yn = reactExports.useCallback(Cn => {
+        const Pn = new Date(Cn);
+        if (Number.isNaN(Pn.getTime()))
+            return "";
+        const $n = new Intl.DateTimeFormat(void 0,{
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        }).format(Pn).replace(/\//g, ".").replace(/-/g, ".")
+          , wn = new Intl.DateTimeFormat(void 0,{
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: !1
+        }).format(Pn);
+        return `${$n} Â· ${wn}`
+    }
+    , [])
+      , bn = reactExports.useCallback(Cn => Cn ? `#${(Cn.length > 6 ? Cn.slice(-6) : Cn).toUpperCase()}` : "", []);
+    return jsxRuntimeExports.jsx(Page, {
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "relative min-h-screen pb-20",
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "fixed top-0 left-0 right-0 z-30",
+                children: jsxRuntimeExports.jsx(Header, {
+                    variant: "game",
+                    className: "max-w-md mx-auto",
+                    children: jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                        children: [jsxRuntimeExports.jsx("button", {
+                            onClick: () => tt("/pvp"),
+                            className: "flex items-center justify-center w-10 h-10 rounded-xl transition-all active:scale-95",
+                            style: {
+                                background: "rgba(255, 255, 255, 0.08)",
+                                backdropFilter: "blur(24px)",
+                                border: "1px solid rgba(255, 255, 255, 0.12)"
+                            },
+                            children: jsxRuntimeExports.jsx(ArrowLeft, {
+                                className: "w-5 h-5 text-[#E6E6E6]"
+                            })
+                        }), jsxRuntimeExports.jsx(BalanceDisplay, {})]
+                    })
+                })
+            }), jsxRuntimeExports.jsx(Navbar, {}), jsxRuntimeExports.jsxs("div", {
+                className: "pb-6 max-w-md mx-auto space-y-4",
+                style: {
+                    paddingTop: "calc(var(--safe-area-top, 0px) + 72px)"
+                },
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "h-7 w-1.5 rounded-full bg-gradient-to-b from-[#ffa700] to-[#ffd746]"
+                    }), jsxRuntimeExports.jsx("p", {
+                        className: "text-2xl font-semibold text-white tracking-tight",
+                        children: _t("TITLE")
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex gap-2",
+                    children: [jsxRuntimeExports.jsx("button", {
+                        onClick: () => tn("all"),
+                        className: `px-4 py-2 rounded-xl font-medium text-sm transition-all ${Zt === "all" ? "bg-gradient-to-r from-[#ffa700] to-[#ffd746] text-black" : "bg-[#2C2C2C] text-[#999999] hover:bg-[#333333]"}`,
+                        children: _t("LABELS.ALL_GAMES")
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: () => tn("my_games"),
+                        className: `px-4 py-2 rounded-xl font-medium text-sm transition-all ${Zt === "my_games" ? "bg-gradient-to-r from-[#ffa700] to-[#ffd746] text-black" : "bg-[#2C2C2C] text-[#999999] hover:bg-[#333333]"}`,
+                        children: _t("LABELS.MY_GAMES")
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "space-y-3",
+                    children: [mn ? jsxRuntimeExports.jsxs("div", {
+                        className: "text-center py-12",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            className: "w-12 h-12 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin mx-auto mb-3"
+                        }), jsxRuntimeExports.jsx("p", {
+                            className: "text-[#999999]",
+                            children: _t("LABELS.LOADING_HISTORY")
+                        })]
+                    }) : Sn.length === 0 ? jsxRuntimeExports.jsxs("div", {
+                        className: "text-center py-12",
+                        children: [jsxRuntimeExports.jsx(Trophy, {
+                            className: "w-12 h-12 text-[#333333] mx-auto mb-3"
+                        }), jsxRuntimeExports.jsx("p", {
+                            className: "text-[#999999]",
+                            children: _t(Zt === "my_games" ? "LABELS.NO_GAMES_PLAYED" : "LABELS.NO_GAMES_YET")
+                        })]
+                    }) : jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
+                        children: Sn.map(Cn => jsxRuntimeExports.jsxs("button", {
+                            onClick: () => un(Cn.gameId),
+                            className: "w-full bg-[#2C2C2C] rounded-xl p-4 border border-[#444444]/30 hover:border-[#ffd746]/50 hover:bg-[#333333] transition-all text-left",
+                            children: [jsxRuntimeExports.jsxs("div", {
+                                className: "flex items-center justify-between mb-3 pb-2 border-b border-white/5 gap-2 flex-wrap",
+                                children: [jsxRuntimeExports.jsxs("div", {
+                                    className: "flex items-center gap-2 text-[#999999] text-sm",
+                                    children: [jsxRuntimeExports.jsx(Clock, {
+                                        className: "w-4 h-4 text-[#ffd746]"
+                                    }), jsxRuntimeExports.jsx("span", {
+                                        children: yn(Cn.finishedAt)
+                                    })]
+                                }), jsxRuntimeExports.jsxs("div", {
+                                    className: "flex items-center gap-2",
+                                    children: [jsxRuntimeExports.jsxs("span", {
+                                        className: "px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[#B3B3B3] text-[11px] font-semibold leading-none",
+                                        children: [_t("LABELS.ROUND"), " ", bn(Cn.gameId)]
+                                    }), jsxRuntimeExports.jsxs("div", {
+                                        className: "flex items-center gap-1.5 text-[#999999] text-sm",
+                                        children: [jsxRuntimeExports.jsx(Users, {
+                                            className: "w-4 h-4"
+                                        }), jsxRuntimeExports.jsxs("span", {
+                                            children: [Cn.playersCount, " ", _t("LABELS.PLAYERS").toLowerCase()]
+                                        })]
+                                    })]
+                                })]
+                            }), jsxRuntimeExports.jsxs("div", {
+                                className: "flex items-center gap-3 mb-3",
+                                children: [Cn.winner?.photoUrl ? jsxRuntimeExports.jsx("img", {
+                                    src: Cn.winner.photoUrl,
+                                    alt: Cn.winner?.username || "Winner",
+                                    className: "w-12 h-12 rounded-full ring-2 ring-[#ffa700]/50"
+                                }) : jsxRuntimeExports.jsx("div", {
+                                    className: "w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center ring-2 ring-amber-400/50",
+                                    children: jsxRuntimeExports.jsx(Trophy, {
+                                        className: "w-6 h-6 text-white"
+                                    })
+                                }), jsxRuntimeExports.jsxs("div", {
+                                    className: "flex-1 min-w-0",
+                                    children: [jsxRuntimeExports.jsx("p", {
+                                        className: "text-white font-semibold truncate",
+                                        children: Cn.winner?.username || "Unknown"
+                                    }), jsxRuntimeExports.jsx("p", {
+                                        className: "text-[#ffb347] text-sm font-medium",
+                                        children: _t("pvp:LABELS.WINNER")
+                                    })]
+                                }), jsxRuntimeExports.jsxs("div", {
+                                    className: "text-right",
+                                    children: [jsxRuntimeExports.jsxs("p", {
+                                        className: "text-[#0098EA] font-bold text-lg",
+                                        children: [(Cn.winnerPrize?.totalValue ?? 0).toFixed(2), " ", _t("pvp:LABELS.TON")]
+                                    }), Cn.winner?.winChance !== void 0 && jsxRuntimeExports.jsx("p", {
+                                        className: "text-[#ffa700] text-xs font-medium",
+                                        children: _t("pvp:LABELS.WIN_CHANCE", {
+                                            chance: formatWinChance(Cn.winner.winChance, Cn.playersCount)
+                                        })
+                                    })]
+                                })]
+                            }), jsxRuntimeExports.jsx("div", {
+                                className: "h-px bg-gradient-to-r from-transparent via-[#ffd746]/30 to-transparent my-3"
+                            }), jsxRuntimeExports.jsx("div", {
+                                className: "flex items-center justify-between",
+                                children: jsxRuntimeExports.jsx(PvPBetDisplay, {
+                                    tonAmount: Cn.pot?.tonAmount || 0,
+                                    gifts: Cn.pot?.gifts,
+                                    giftIconSize: 32,
+                                    maxGiftsToShow: 5
+                                })
+                            })]
+                        }, Cn.gameId))
+                    }), En && jsxRuntimeExports.jsx("div", {
+                        ref: dn,
+                        className: "h-10 w-full"
+                    })]
+                })]
+            }), jsxRuntimeExports.jsx(PvPGameDetailModal, {
+                gameId: an,
+                isOpen: !!an,
+                onClose: () => un(null)
+            })]
+        })
+    })
+}
+  , SPAWN_FALL_MS = 450
+  , SEG_BASE_MS = 290
+  , SEG_ROW_ACCEL = .01
+  , BOUNCE_HEIGHT_FACTOR = .55
+  , BOUNCE_HEIGHT_JITTER_LO = .75
+  , BOUNCE_HEIGHT_JITTER_HI = 1.15
+  , SEG_TIME_JITTER_LO = .94
+  , SEG_TIME_JITTER_HI = 1.06
+  , SPAWN_X_JITTER = .1
+  , SETTLE_MS = 240
+  , FADE_MS = 150
+  , PEG_FLASH_MS = 280
+  , GHOST_ALPHA = .35
+  , GAP_Y_FACTOR = .85
+  , PAD_TOP_ROWS = 1.4
+  , BIN_ZONE_FACTOR = .15
+  , PEG_RADIUS_FACTOR = .185
+  , BALL_RADIUS_FACTOR = .26
+  , JACKPOT_MIN_MULTIPLIER = 1e3
+  , JACKPOT_TIME_SCALE = .2
+  , JACKPOT_OTHERS_ALPHA = .45
+  , JACKPOT_ROWS_FROM_END = 2
+  , JACKPOT_EASE_MS = 260
+  , JACKPOT_FX_IN_MS = 300
+  , JACKPOT_FX_OUT_MS = 420
+  , JACKPOT_HOLD_MS = 1600
+  , JACKPOT_CONFETTI_SCALE = 1
+  , JACKPOT_HIDE_MS = 220
+  , JACKPOT_DIM_ALPHA = .74
+  , MAX_DPR = 3
+  , RESIZE_EPSILON_PX = 5;
+function createGeometry(tt) {
+    const _t = 1 / (tt + 2)
+      , Yt = _t * GAP_Y_FACTOR
+      , Kt = Yt * PAD_TOP_ROWS;
+    return {
+        rows: tt,
+        gapX: _t,
+        gapY: Yt,
+        padTop: Kt,
+        pegRadius: _t * PEG_RADIUS_FACTOR,
+        ballRadius: _t * BALL_RADIUS_FACTOR,
+        height: Kt + tt * Yt + Yt * BIN_ZONE_FACTOR
+    }
+}
+function pegCount(tt) {
+    return 3 + tt
+}
+function pegPos(tt, _t, Yt) {
+    const Kt = pegCount(_t);
+    return {
+        x: .5 + (Yt - (Kt - 1) / 2) * tt.gapX,
+        y: tt.padTop + _t * tt.gapY
+    }
+}
+function contactPos(tt, _t, Yt) {
+    return {
+        x: .5 + (Yt - _t / 2) * tt.gapX,
+        y: tt.padTop + _t * tt.gapY
+    }
+}
+function contactPegIndex(tt, _t) {
+    return _t + 1
+}
+function binPos(tt, _t) {
+    return {
+        x: .5 + (_t - tt.rows / 2) * tt.gapX,
+        y: tt.padTop + tt.rows * tt.gapY + tt.gapY * BIN_ZONE_FACTOR * .7
+    }
+}
+function hashSeed(tt) {
+    let _t = 2166136261;
+    for (let Yt = 0; Yt < tt.length; Yt++)
+        _t ^= tt.charCodeAt(Yt),
+        _t = Math.imul(_t, 16777619);
+    return _t >>> 0
+}
+function mulberry32(tt) {
+    let _t = tt >>> 0;
+    return () => {
+        _t |= 0,
+        _t = _t + 1831565813 | 0;
+        let Yt = Math.imul(_t ^ _t >>> 15, 1 | _t);
+        return Yt = Yt + Math.imul(Yt ^ Yt >>> 7, 61 | Yt) ^ Yt,
+        ((Yt ^ Yt >>> 14) >>> 0) / 4294967296
+    }
+}
+function rngForDrop(tt) {
+    return mulberry32(hashSeed(tt))
+}
+function jitter(tt, _t, Yt) {
+    return _t + (Yt - _t) * tt()
+}
+function estimateFlightMs(tt) {
+    let _t = 0;
+    for (let Yt = 0; Yt < tt; Yt++)
+        _t += SEG_BASE_MS * (1 - Yt * SEG_ROW_ACCEL);
+    return SPAWN_FALL_MS + _t + SETTLE_MS + FADE_MS
+}
+function synthesizePath(tt, _t, Yt) {
+    const Kt = new Array(tt);
+    for (let Xt = 0; Xt < tt; Xt++)
+        Kt[Xt] = Xt < _t ? 1 : 0;
+    for (let Xt = tt - 1; Xt > 0; Xt--) {
+        const Jt = Math.floor(Yt() * (Xt + 1))
+          , Zt = Kt[Xt];
+        Kt[Xt] = Kt[Jt],
+        Kt[Jt] = Zt
+    }
+    return Kt
+}
+function buildTrajectory(tt, _t, Yt) {
+    const Kt = tt.rows
+      , Xt = []
+      , Jt = []
+      , Zt = tt.pegRadius + tt.ballRadius
+      , tn = En => ({
+        x: En.x,
+        y: En.y - Zt
+    })
+      , nn = tn(contactPos(tt, 0, 0))
+      , an = nn.x + tt.gapX * SPAWN_X_JITTER * (Yt() * 2 - 1)
+      , un = tt.padTop - 2 * tt.gapY;
+    let dn = 0;
+    Xt.push({
+        x0: an,
+        y0: un,
+        x1: nn.x,
+        y1: nn.y,
+        h: 0,
+        t0: dn,
+        t1: dn + SPAWN_FALL_MS,
+        kind: 1
+    }),
+    dn += SPAWN_FALL_MS,
+    Jt.push({
+        t: dn,
+        row: 0,
+        pegIndex: contactPegIndex(0, 0)
+    });
+    let fn = 0
+      , hn = nn;
+    for (let En = 0; En < Kt; En++) {
+        fn += _t[En];
+        const gn = En === Kt - 1
+          , Sn = gn ? binPos(tt, fn) : tn(contactPos(tt, En + 1, fn))
+          , yn = tt.gapY * BOUNCE_HEIGHT_FACTOR * jitter(Yt, BOUNCE_HEIGHT_JITTER_LO, BOUNCE_HEIGHT_JITTER_HI)
+          , bn = SEG_BASE_MS * (1 - En * SEG_ROW_ACCEL) * jitter(Yt, SEG_TIME_JITTER_LO, SEG_TIME_JITTER_HI);
+        Xt.push({
+            x0: hn.x,
+            y0: hn.y,
+            x1: Sn.x,
+            y1: Sn.y,
+            h: yn,
+            t0: dn,
+            t1: dn + bn,
+            kind: 0
+        }),
+        dn += bn,
+        gn ? Jt.push({
+            t: dn,
+            row: Kt,
+            pegIndex: fn
+        }) : Jt.push({
+            t: dn,
+            row: En + 1,
+            pegIndex: contactPegIndex(En + 1, fn)
+        }),
+        hn = Sn
+    }
+    const mn = dn;
+    return {
+        segments: Xt,
+        contacts: Jt,
+        landAt: mn,
+        totalMs: mn + SETTLE_MS + FADE_MS,
+        binIndex: fn,
+        binX: hn.x,
+        binY: hn.y
+    }
+}
+function evalTrajectory(tt, _t, Yt) {
+    const {segments: Kt, landAt: Xt, binX: Jt, binY: Zt} = tt;
+    if (_t >= Xt) {
+        const an = _t - Xt;
+        if (an >= SETTLE_MS + FADE_MS)
+            return 0;
+        const un = Math.min(an / SETTLE_MS, 1)
+          , dn = Math.abs(Math.sin(un * Math.PI * 2)) * (1 - un) * .35;
+        Yt.x = Jt,
+        Yt.y = Zt - dn * Kt[Kt.length - 1].h;
+        const fn = an - SETTLE_MS;
+        return fn <= 0 ? 1 : Math.max(0, 1 - fn / FADE_MS)
+    }
+    let tn = Kt[0];
+    for (let an = Kt.length - 1; an >= 0; an--)
+        if (_t >= Kt[an].t0) {
+            tn = Kt[an];
+            break
+        }
+    const nn = tn.t1 > tn.t0 ? Math.min(Math.max((_t - tn.t0) / (tn.t1 - tn.t0), 0), 1) : 1;
+    return tn.kind === 1 ? (Yt.x = tn.x0 + (tn.x1 - tn.x0) * nn,
+    Yt.y = tn.y0 + (tn.y1 - tn.y0) * nn * nn) : (Yt.x = tn.x0 + (tn.x1 - tn.x0) * nn,
+    Yt.y = tn.y0 + (tn.y1 - tn.y0) * nn - tn.h * 4 * nn * (1 - nn)),
+    1
+}
+const BALL_VARIANTS = 3
+  , LATE_CONTACT_MS = 250
+  , DEFAULT_FPS_CAP = 60;
+class PlinkoEngine {
+    staticCanvas;
+    dynamicCanvas;
+    staticCtx;
+    dynamicCtx;
+    geometry;
+    mode;
+    callbacks;
+    widthPx = 0;
+    heightPx = 0;
+    dpr = 1;
+    balls = [];
+    flashes = [];
+    rafId = null;
+    fpsCap = 0;
+    lastFrameAt = 0;
+    destroyed = !1;
+    cinematic = null;
+    fx = 0;
+    fxTarget = 0;
+    pegSprite = null;
+    pegFlashSprite = null;
+    heroGlowSprite = null;
+    ballSprites = [];
+    scratch = {
+        x: 0,
+        y: 0
+    };
+    constructor(_t) {
+        this.staticCanvas = _t.staticCanvas,
+        this.dynamicCanvas = _t.dynamicCanvas;
+        const Yt = _t.staticCanvas.getContext("2d")
+          , Kt = _t.dynamicCanvas.getContext("2d");
+        if (!Yt || !Kt)
+            throw new Error("PlinkoEngine: 2d context unavailable");
+        this.staticCtx = Yt,
+        this.dynamicCtx = Kt,
+        this.geometry = createGeometry(_t.rows),
+        this.mode = _t.mode ?? "live",
+        this.callbacks = _t.callbacks ?? {},
+        this.fpsCap = _t.fpsCap ?? DEFAULT_FPS_CAP
+    }
+    get rows() {
+        return this.geometry.rows
+    }
+    get activeBallCount() {
+        return this.balls.length
+    }
+    get boardHeightRatio() {
+        return this.geometry.height
+    }
+    setBoard(_t) {
+        return this.balls.length > 0 ? !1 : (_t !== this.geometry.rows && (this.geometry = createGeometry(_t),
+        this.applyLayout()),
+        !0)
+    }
+    resize(_t) {
+        if (_t <= 0)
+            return;
+        const Yt = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+        Math.abs(_t - this.widthPx) < RESIZE_EPSILON_PX && Yt === this.dpr && this.pegSprite || (this.widthPx = _t,
+        this.dpr = Yt,
+        this.applyLayout())
+    }
+    applyLayout() {
+        if (!(this.widthPx <= 0)) {
+            this.heightPx = this.widthPx * this.geometry.height;
+            for (const _t of [this.staticCanvas, this.dynamicCanvas])
+                _t.width = Math.round(this.widthPx * this.dpr),
+                _t.height = Math.round(this.heightPx * this.dpr),
+                _t.style.width = `${this.widthPx}px`,
+                _t.style.height = `${this.heightPx}px`;
+            this.buildSprites(),
+            this.drawStatic(),
+            (this.balls.length > 0 || this.flashes.length > 0 || this.fx > 0) && this.drawDynamic(performance.now())
+        }
+    }
+    addBall(_t) {
+        if (this.destroyed)
+            return !1;
+        const Yt = rngForDrop(_t.dropId)
+          , Kt = synthesizePath(this.geometry.rows, _t.binIndex, Yt)
+          , Xt = buildTrajectory(this.geometry, Kt, Yt)
+          , Jt = {
+            dropId: _t.dropId,
+            traj: Xt,
+            clock: _t.instant ? Xt.landAt : -(_t.delayMs ?? 0),
+            timeScale: 1,
+            timeScaleTarget: 1,
+            hide: 0,
+            hideTarget: 0,
+            jackpot: (_t.jackpot ?? !1) && !_t.instant && !_t.ghost,
+            ghost: _t.ghost ?? !1,
+            landedFired: !1,
+            contactIdx: 0,
+            variant: hashVariant(_t.dropId),
+            content: _t.content,
+            sprite: null,
+            done: !1
+        };
+        return this.cinematic && this.cinematic.phase !== "out" && (this.applyBackgroundRole(Jt),
+        Jt.timeScale = Jt.timeScaleTarget,
+        Jt.hide = Jt.hideTarget),
+        Jt.sprite = this.buildBallSprite(Jt),
+        _t.instant && (Jt.contactIdx = Xt.contacts.length),
+        this.balls.push(Jt),
+        this.ensureLoop(),
+        !0
+    }
+    clear() {
+        this.balls.length = 0,
+        this.flashes.length = 0,
+        this.cinematic && (this.cinematic = null,
+        this.callbacks.onCinematic?.(!1, null, null)),
+        this.fx = 0,
+        this.fxTarget = 0,
+        this.drawDynamicClear()
+    }
+    destroy() {
+        this.destroyed = !0,
+        this.rafId !== null && cancelAnimationFrame(this.rafId),
+        this.rafId = null,
+        this.balls.length = 0,
+        this.flashes.length = 0,
+        this.cinematic = null,
+        this.fx = 0,
+        this.fxTarget = 0
+    }
+    ensureLoop() {
+        this.rafId === null && !this.destroyed && (this.lastFrameAt = 0,
+        this.rafId = requestAnimationFrame(this.frame))
+    }
+    frame = _t => {
+        if (this.rafId = null,
+        this.destroyed)
+            return;
+        if (this.fpsCap > 0 && this.lastFrameAt > 0) {
+            const Kt = 1e3 / this.fpsCap;
+            if (_t - this.lastFrameAt < Kt) {
+                this.rafId = requestAnimationFrame(this.frame);
+                return
+            }
+        }
+        const Yt = this.lastFrameAt > 0 ? _t - this.lastFrameAt : 0;
+        this.lastFrameAt = _t,
+        this.advance(_t, Yt),
+        this.drawDynamic(_t),
+        this.balls.length > 0 || this.flashes.length > 0 || this.cinematic !== null || this.fx > 0 ? this.rafId = requestAnimationFrame(this.frame) : (this.drawDynamicClear(),
+        this.callbacks.onIdle?.())
+    }
+    ;
+    advance(_t, Yt) {
+        const Kt = this.geometry.rows;
+        for (let Xt = this.balls.length - 1; Xt >= 0; Xt--) {
+            const Jt = this.balls[Xt];
+            Jt.timeScale = approach(Jt.timeScale, Jt.timeScaleTarget, Yt / JACKPOT_EASE_MS),
+            Jt.hide = approach(Jt.hide, Jt.hideTarget, Yt / JACKPOT_HIDE_MS),
+            Jt.clock += Yt * Jt.timeScale;
+            const Zt = Jt.clock;
+            if (Zt < 0)
+                continue;
+            const tn = Jt.traj.contacts;
+            for (; Jt.contactIdx < tn.length && tn[Jt.contactIdx].t <= Zt; ) {
+                const nn = tn[Jt.contactIdx];
+                Jt.contactIdx++;
+                const an = Zt - nn.t > LATE_CONTACT_MS
+                  , un = this.cinematic !== null && this.cinematic.dropId !== Jt.dropId;
+                nn.row < Kt && !Jt.ghost && (this.flashes.push({
+                    row: nn.row,
+                    pegIndex: nn.pegIndex,
+                    at: _t
+                }),
+                this.callbacks.onContact?.(Jt.dropId, an || un)),
+                Jt.jackpot && !an && this.cinematic === null && nn.row === Kt - JACKPOT_ROWS_FROM_END && this.beginCinematic(Jt)
+            }
+            !Jt.landedFired && Zt >= Jt.traj.landAt && (Jt.landedFired = !0,
+            Jt.ghost || this.callbacks.onLanded?.(Jt.dropId, Jt.traj.binIndex)),
+            Zt >= Jt.traj.totalMs && (Jt.done = !0,
+            this.balls.splice(Xt, 1))
+        }
+        this.advanceCinematic(_t),
+        this.fx = approach(this.fx, this.fxTarget, Yt / (this.fxTarget > this.fx ? JACKPOT_FX_IN_MS : JACKPOT_FX_OUT_MS));
+        for (let Xt = this.flashes.length - 1; Xt >= 0; Xt--)
+            _t - this.flashes[Xt].at >= PEG_FLASH_MS && this.flashes.splice(Xt, 1)
+    }
+    beginCinematic(_t) {
+        evalTrajectory(_t.traj, Math.max(0, _t.clock), this.scratch),
+        this.cinematic = {
+            dropId: _t.dropId,
+            binIndex: _t.traj.binIndex,
+            phase: "slow",
+            holdUntil: 0,
+            hx: this.scratch.x,
+            hy: this.scratch.y
+        },
+        this.fxTarget = 1,
+        _t.timeScaleTarget = JACKPOT_TIME_SCALE,
+        _t.hideTarget = 0;
+        for (const Yt of this.balls)
+            Yt !== _t && this.applyBackgroundRole(Yt);
+        this.callbacks.onCinematic?.(!0, _t.traj.binIndex, _t.dropId)
+    }
+    applyBackgroundRole(_t) {
+        _t.timeScaleTarget = JACKPOT_TIME_SCALE,
+        _t.hideTarget = 1 - JACKPOT_OTHERS_ALPHA
+    }
+    advanceCinematic(_t) {
+        const Yt = this.cinematic;
+        if (!Yt)
+            return;
+        let Kt = null;
+        for (let Xt = 0; Xt < this.balls.length; Xt++)
+            if (this.balls[Xt].dropId === Yt.dropId) {
+                Kt = this.balls[Xt];
+                break
+            }
+        if (Yt.phase === "slow")
+            (!Kt || Kt.landedFired) && (Yt.phase = "hold",
+            Yt.holdUntil = _t + JACKPOT_HOLD_MS,
+            Kt && (Kt.timeScaleTarget = 1));
+        else if (Yt.phase === "hold") {
+            if (_t >= Yt.holdUntil) {
+                Yt.phase = "out",
+                this.fxTarget = 0;
+                for (const Xt of this.balls)
+                    Xt.timeScaleTarget = 1,
+                    Xt.hideTarget = 0;
+                this.callbacks.onCinematic?.(!1, null, Yt.dropId)
+            }
+        } else if (this.fx <= 0) {
+            this.cinematic = null;
+            for (const Xt of this.balls)
+                Xt.timeScaleTarget = 1,
+                Xt.hideTarget = 0
+        }
+    }
+    drawDynamic(_t) {
+        const Yt = this.dynamicCtx
+          , Kt = this.widthPx * this.dpr;
+        Yt.clearRect(0, 0, this.dynamicCanvas.width, this.dynamicCanvas.height);
+        const Xt = this.fx
+          , Jt = this.cinematic;
+        if (!Jt || Xt <= 0) {
+            this.drawFlashes(Yt, _t, Kt),
+            this.drawBalls(Yt, Kt, null);
+            return
+        }
+        Yt.fillStyle = `rgba(8, 5, 22, ${(JACKPOT_DIM_ALPHA * Xt).toFixed(3)})`,
+        Yt.fillRect(0, 0, this.dynamicCanvas.width, this.dynamicCanvas.height),
+        Yt.globalAlpha = Xt,
+        Yt.drawImage(this.staticCanvas, 0, 0),
+        Yt.globalAlpha = 1,
+        this.drawFlashes(Yt, _t, Kt),
+        this.drawBalls(Yt, Kt, Jt.dropId);
+        let Zt = null;
+        for (let nn = 0; nn < this.balls.length; nn++)
+            if (this.balls[nn].dropId === Jt.dropId) {
+                Zt = this.balls[nn];
+                break
+            }
+        let tn = 0;
+        if (Zt && Zt.clock >= 0 && (tn = evalTrajectory(Zt.traj, Zt.clock, this.scratch),
+        tn > 0 && (Jt.hx = this.scratch.x,
+        Jt.hy = this.scratch.y)),
+        this.drawSpotlight(Yt, Jt.hx * Kt, Jt.hy * Kt, Xt, _t),
+        Zt && tn > 0) {
+            const nn = Zt.sprite ?? this.ballSprites[Zt.variant];
+            if (nn) {
+                const an = nn.width / 2;
+                Yt.globalAlpha = tn,
+                Yt.drawImage(nn, Jt.hx * Kt - an, Jt.hy * Kt - an),
+                Yt.globalAlpha = 1
+            }
+        }
+    }
+    drawFlashes(_t, Yt, Kt) {
+        if (!this.pegFlashSprite)
+            return;
+        const Xt = this.pegFlashSprite.width / 2;
+        for (let Jt = 0; Jt < this.flashes.length; Jt++) {
+            const Zt = this.flashes[Jt]
+              , tn = pegPos(this.geometry, Zt.row, Zt.pegIndex)
+              , nn = (Yt - Zt.at) / PEG_FLASH_MS;
+            _t.globalAlpha = 1 - nn,
+            _t.drawImage(this.pegFlashSprite, tn.x * Kt - Xt, tn.y * Kt - Xt)
+        }
+        _t.globalAlpha = 1
+    }
+    drawBalls(_t, Yt, Kt) {
+        for (let Xt = 0; Xt < this.balls.length; Xt++) {
+            const Jt = this.balls[Xt];
+            if (Jt.dropId === Kt || Jt.clock < 0 || Jt.hide >= 1)
+                continue;
+            const Zt = evalTrajectory(Jt.traj, Jt.clock, this.scratch);
+            if (Zt <= 0)
+                continue;
+            const tn = Jt.sprite ?? this.ballSprites[Jt.variant];
+            if (!tn)
+                continue;
+            const nn = tn.width / 2;
+            _t.globalAlpha = (Jt.ghost ? Zt * GHOST_ALPHA : Zt) * (1 - Jt.hide),
+            _t.drawImage(tn, this.scratch.x * Yt - nn, this.scratch.y * Yt - nn)
+        }
+        _t.globalAlpha = 1
+    }
+    drawSpotlight(_t, Yt, Kt, Xt, Jt) {
+        const Zt = this.dynamicCanvas.width
+          , tn = this.dynamicCanvas.height
+          , nn = this.geometry.ballRadius * this.widthPx * this.dpr
+          , an = .85 + .15 * Math.sin(Jt / 180);
+        _t.save(),
+        _t.globalCompositeOperation = "lighter";
+        for (let un = 0; un < 2; un++) {
+            const dn = un === 0 ? Zt * .1 : Zt * .9
+              , fn = -tn * .08;
+            let hn = Yt - dn
+              , mn = Kt - fn;
+            const En = Math.hypot(hn, mn) || 1;
+            hn /= En,
+            mn /= En;
+            const gn = -mn
+              , Sn = hn
+              , yn = dn + hn * En * 1.22
+              , bn = fn + mn * En * 1.22
+              , Cn = nn * 1.2
+              , Pn = nn * 4
+              , $n = _t.createLinearGradient(dn, fn, yn, bn);
+            $n.addColorStop(0, `rgba(255, 228, 155, ${(.1 * Xt * an).toFixed(3)})`),
+            $n.addColorStop(.78, `rgba(255, 228, 155, ${(.28 * Xt * an).toFixed(3)})`),
+            $n.addColorStop(1, "rgba(255, 228, 155, 0)"),
+            _t.fillStyle = $n,
+            _t.beginPath(),
+            _t.moveTo(dn - gn * Cn, fn - Sn * Cn),
+            _t.lineTo(dn + gn * Cn, fn + Sn * Cn),
+            _t.lineTo(yn + gn * Pn, bn + Sn * Pn),
+            _t.lineTo(yn - gn * Pn, bn - Sn * Pn),
+            _t.closePath(),
+            _t.fill()
+        }
+        if (this.heroGlowSprite) {
+            const un = this.heroGlowSprite.width / 2;
+            _t.globalAlpha = Xt * an,
+            _t.drawImage(this.heroGlowSprite, Yt - un, Kt - un),
+            _t.globalAlpha = 1
+        }
+        _t.restore()
+    }
+    drawDynamicClear() {
+        this.dynamicCtx.clearRect(0, 0, this.dynamicCanvas.width, this.dynamicCanvas.height)
+    }
+    drawStatic() {
+        const _t = this.staticCtx;
+        if (_t.clearRect(0, 0, this.staticCanvas.width, this.staticCanvas.height),
+        !this.pegSprite)
+            return;
+        const Yt = this.widthPx * this.dpr
+          , Kt = this.pegSprite.width / 2;
+        for (let Xt = 0; Xt < this.geometry.rows; Xt++) {
+            const Jt = pegCount(Xt);
+            for (let Zt = 0; Zt < Jt; Zt++) {
+                const tn = pegPos(this.geometry, Xt, Zt);
+                _t.drawImage(this.pegSprite, Math.round(tn.x * Yt - Kt), Math.round(tn.y * Yt - Kt))
+            }
+        }
+    }
+    buildSprites() {
+        const _t = this.widthPx * this.dpr;
+        if (_t <= 0)
+            return;
+        const Yt = this.geometry;
+        this.pegSprite = renderPegSprite(Yt.pegRadius * _t),
+        this.pegFlashSprite = renderFlashSprite(Yt.pegRadius * _t),
+        this.heroGlowSprite = renderHeroGlowSprite(Yt.ballRadius * _t);
+        const Kt = [["#AD9CED", "#8971E6", "#BBAAFF"], ["#B7A8F0", "#937EE9", "#C6B7FF"], ["#A390EA", "#7E64E2", "#B09EFF"]];
+        this.ballSprites = Kt.slice(0, BALL_VARIANTS).map( ([Xt,Jt,Zt]) => renderBallSprite(Yt.ballRadius * _t, Xt, Jt, Zt));
+        for (const Xt of this.balls)
+            Xt.sprite = this.buildBallSprite(Xt)
+    }
+    buildBallSprite(_t) {
+        const Yt = this.ballSprites[_t.variant];
+        if (!Yt || !_t.content)
+            return null;
+        const Kt = this.geometry.ballRadius * this.widthPx * this.dpr;
+        if (Kt <= 1)
+            return null;
+        const Xt = document.createElement("canvas");
+        Xt.width = Yt.width,
+        Xt.height = Yt.height;
+        const Jt = Xt.getContext("2d")
+          , Zt = Xt.width / 2;
+        if (Jt.drawImage(Yt, 0, 0),
+        _t.content.kind === "ton") {
+            const dn = formatTonShort(_t.content.amount);
+            let fn = Kt * (dn.length <= 2 ? 1.1 : dn.length === 3 ? .9 : .75);
+            const hn = () => {
+                Jt.font = `700 ${fn.toFixed(1)}px -apple-system, 'Segoe UI', Roboto, sans-serif`
+            }
+            ;
+            hn();
+            const mn = Kt * 1.7
+              , En = Jt.measureText(dn).width;
+            return En > mn && (fn *= mn / En,
+            hn()),
+            Jt.textAlign = "center",
+            Jt.textBaseline = "middle",
+            Jt.lineWidth = Math.max(1, fn * .14),
+            Jt.strokeStyle = "rgba(30, 16, 60, 0.55)",
+            Jt.strokeText(dn, Zt, Zt + fn * .05),
+            Jt.fillStyle = "#ffffff",
+            Jt.fillText(dn, Zt, Zt + fn * .05),
+            Xt
+        }
+        const tn = _t.content.imageUrl
+          , nn = _t.content.backdrop ?? null
+          , an = tn ? getGiftImage(tn, () => {
+            !this.destroyed && !_t.done && (_t.sprite = this.buildBallSprite(_t))
+        }
+        ) : null
+          , un = !!(an && an.complete && an.naturalWidth > 0);
+        if (nn || un) {
+            if (Jt.save(),
+            Jt.beginPath(),
+            Jt.arc(Zt, Zt, Kt * .96, 0, Math.PI * 2),
+            Jt.clip(),
+            nn) {
+                const dn = Jt.createRadialGradient(Zt, Zt, 0, Zt, Zt, Kt * .96);
+                dn.addColorStop(0, nn.center),
+                dn.addColorStop(1, nn.edge),
+                Jt.fillStyle = dn,
+                Jt.fillRect(Zt - Kt, Zt - Kt, Kt * 2, Kt * 2)
+            }
+            un && Jt.drawImage(an, Zt - Kt, Zt - Kt, Kt * 2, Kt * 2),
+            Jt.restore(),
+            Jt.beginPath(),
+            Jt.arc(Zt, Zt, Kt * .94, 0, Math.PI * 2),
+            Jt.lineWidth = Math.max(1, Kt * .12),
+            Jt.strokeStyle = "rgba(183, 166, 255, 0.85)",
+            Jt.stroke()
+        }
+        return Xt
+    }
+}
+function formatTonShort(tt) {
+    const _t = Math.round(tt * 100) / 100;
+    return _t >= 1e3 ? `${Math.round(_t / 1e3 * 10) / 10}k` : String(_t)
+}
+const giftImageCache = new Map
+  , failedGiftImages = new Set;
+function getGiftImage(tt, _t) {
+    if (failedGiftImages.has(tt))
+        return null;
+    let Yt = giftImageCache.get(tt);
+    return Yt || (Yt = new Image,
+    Yt.addEventListener("error", () => failedGiftImages.add(tt), {
+        once: !0
+    }),
+    Yt.src = tt,
+    giftImageCache.set(tt, Yt)),
+    Yt.complete ? Yt.naturalWidth > 0 ? Yt : (failedGiftImages.add(tt),
+    null) : (Yt.addEventListener("load", _t, {
+        once: !0
+    }),
+    Yt)
+}
+function hashVariant(tt) {
+    let _t = 0;
+    for (let Yt = 0; Yt < tt.length; Yt++)
+        _t = _t * 31 + tt.charCodeAt(Yt) | 0;
+    return Math.abs(_t) % BALL_VARIANTS
+}
+function approach(tt, _t, Yt) {
+    return tt === _t ? tt : tt < _t ? Math.min(_t, tt + Yt) : Math.max(_t, tt - Yt)
+}
+function renderHeroGlowSprite(tt) {
+    const _t = Math.max(1, tt) * 3.2
+      , Yt = Math.ceil(_t * 2)
+      , Kt = document.createElement("canvas");
+    Kt.width = Yt,
+    Kt.height = Yt;
+    const Xt = Kt.getContext("2d")
+      , Jt = Yt / 2
+      , Zt = Xt.createRadialGradient(Jt, Jt, 0, Jt, Jt, _t);
+    return Zt.addColorStop(0, "rgba(255, 238, 185, 0.8)"),
+    Zt.addColorStop(.35, "rgba(255, 222, 145, 0.45)"),
+    Zt.addColorStop(1, "rgba(255, 222, 145, 0)"),
+    Xt.fillStyle = Zt,
+    Xt.beginPath(),
+    Xt.arc(Jt, Jt, _t, 0, Math.PI * 2),
+    Xt.fill(),
+    Kt
+}
+function renderBallSprite(tt, _t, Yt, Kt) {
+    const Xt = Math.max(1, tt)
+      , Jt = Math.ceil(Xt * .6)
+      , Zt = Math.ceil((Xt + Jt) * 2)
+      , tn = document.createElement("canvas");
+    tn.width = Zt,
+    tn.height = Zt;
+    const nn = tn.getContext("2d")
+      , an = Zt / 2
+      , un = nn.createRadialGradient(an, an, Xt * .7, an, an, Xt * 1.45);
+    un.addColorStop(0, "rgba(137, 113, 230, 0.45)"),
+    un.addColorStop(1, "rgba(137, 113, 230, 0)"),
+    nn.fillStyle = un,
+    nn.beginPath(),
+    nn.arc(an, an, Xt * 1.45, 0, Math.PI * 2),
+    nn.fill();
+    const dn = nn.createRadialGradient(an, an - Xt * .6, Xt * .15, an, an, Xt);
+    dn.addColorStop(0, _t),
+    dn.addColorStop(.55, Yt),
+    dn.addColorStop(1, Yt),
+    nn.fillStyle = dn,
+    nn.beginPath(),
+    nn.arc(an, an, Xt, 0, Math.PI * 2),
+    nn.fill(),
+    nn.save(),
+    nn.beginPath(),
+    nn.arc(an, an, Xt, 0, Math.PI * 2),
+    nn.clip();
+    const fn = nn.createRadialGradient(an, an - Xt * .15, Xt * .7, an, an - Xt * .15, Xt * 1.15);
+    return fn.addColorStop(0, hexWithAlpha(Kt, 0)),
+    fn.addColorStop(.72, hexWithAlpha(Kt, 0)),
+    fn.addColorStop(1, Kt),
+    nn.fillStyle = fn,
+    nn.beginPath(),
+    nn.arc(an, an, Xt, 0, Math.PI * 2),
+    nn.fill(),
+    nn.restore(),
+    tn
+}
+function hexWithAlpha(tt, _t) {
+    const Yt = parseInt(tt.slice(1, 3), 16)
+      , Kt = parseInt(tt.slice(3, 5), 16)
+      , Xt = parseInt(tt.slice(5, 7), 16);
+    return `rgba(${Yt}, ${Kt}, ${Xt}, ${_t})`
+}
+function renderPegSprite(tt) {
+    const _t = Math.max(1, tt)
+      , Yt = Math.ceil(_t * 1.5)
+      , Kt = Math.ceil((_t + Yt) * 2)
+      , Xt = document.createElement("canvas");
+    Xt.width = Kt,
+    Xt.height = Kt;
+    const Jt = Xt.getContext("2d")
+      , Zt = Kt / 2;
+    Jt.save(),
+    Jt.translate(Zt, Zt + _t * 1.32),
+    Jt.scale(1, .48);
+    const tn = Jt.createRadialGradient(0, 0, 0, 0, 0, _t * 1.1);
+    tn.addColorStop(0, "rgba(0, 0, 0, 0.6)"),
+    tn.addColorStop(.6, "rgba(0, 0, 0, 0.3)"),
+    tn.addColorStop(1, "rgba(0, 0, 0, 0)"),
+    Jt.fillStyle = tn,
+    Jt.beginPath(),
+    Jt.arc(0, 0, _t * 1.1, 0, Math.PI * 2),
+    Jt.fill(),
+    Jt.restore();
+    const nn = Jt.createRadialGradient(Zt, Zt - _t * .55, _t * .1, Zt, Zt - _t * .25, _t * 1.4);
+    return nn.addColorStop(0, "#ffffff"),
+    nn.addColorStop(.3, "#f2f3f6"),
+    nn.addColorStop(.55, "#d9dbe3"),
+    nn.addColorStop(.78, "#b4b8c6"),
+    nn.addColorStop(1, "#767b8e"),
+    Jt.fillStyle = nn,
+    Jt.beginPath(),
+    Jt.arc(Zt, Zt, _t, 0, Math.PI * 2),
+    Jt.fill(),
+    Xt
+}
+function renderFlashSprite(tt) {
+    const _t = Math.max(1, tt) * 2.2
+      , Yt = Math.ceil(_t * 2)
+      , Kt = document.createElement("canvas");
+    Kt.width = Yt,
+    Kt.height = Yt;
+    const Xt = Kt.getContext("2d")
+      , Jt = Yt / 2
+      , Zt = Xt.createRadialGradient(Jt, Jt, 0, Jt, Jt, _t);
+    return Zt.addColorStop(0, "rgba(183, 166, 255, 0.9)"),
+    Zt.addColorStop(.4, "rgba(140, 110, 255, 0.45)"),
+    Zt.addColorStop(1, "rgba(140, 110, 255, 0)"),
+    Xt.fillStyle = Zt,
+    Xt.beginPath(),
+    Xt.arc(Jt, Jt, _t, 0, Math.PI * 2),
+    Xt.fill(),
+    Kt
+}
+function formatMultiplier(tt) {
+    return tt >= 1e3 ? `${tt / 1e3}k` : `${tt}`
+}
+const JACKPOT_KEEP_BACKDROPS = new Set(["Black", "Onyx Black"]);
+function formatWin(tt) {
+    const _t = Math.round(tt * 100) / 100;
+    return Number.isInteger(_t),
+    String(_t)
+}
+const GRAM_ICON = '<svg viewBox="0 0 100 100" width="11" height="11" aria-hidden="true"><path fill="currentColor" d="M66.523 11.333H33.477c-4.401 0-6.601 0-8.592.616a13.792 13.792 0 0 0-4.808 2.625c-1.594 1.341-2.784 3.192-5.164 6.894L4.408 37.81c-1.572 2.446-2.358 3.67-2.572 4.956a6.322 6.322 0 0 0 .362 3.37c.482 1.212 1.51 2.24 3.567 4.296l39.033 39.034c1.821 1.82 2.731 2.731 3.781 3.072.924.3 1.918.3 2.842 0 1.05-.34 1.96-1.251 3.78-3.072l39.035-39.034c2.056-2.056 3.084-3.084 3.566-4.296a6.32 6.32 0 0 0 .362-3.37c-.214-1.287-1-2.51-2.572-4.956L85.087 21.47c-2.38-3.703-3.57-5.554-5.164-6.895a13.792 13.792 0 0 0-4.808-2.625c-1.99-.616-4.191-.616-8.592-.616z"/><path fill="#fff" d="M60.268 24.224c.537-1.45 2.59-1.45 3.126 0l3.71 10.027a2.2 2.2 0 0 0 1.3 1.3l10.027 3.71c1.451.537 1.451 2.59 0 3.126l-10.027 3.71a2.2 2.2 0 0 0-1.3 1.3l-3.71 10.027c-.537 1.451-2.59 1.451-3.126 0l-3.71-10.027a2.2 2.2 0 0 0-1.3-1.3l-10.027-3.71c-1.451-.537-1.451-2.589 0-3.126l10.027-3.71a2.2 2.2 0 0 0 1.3-1.3l3.71-10.027z"/></svg>'
+  , MultiplierRow = reactExports.memo(reactExports.forwardRef(function tt({multipliers: _t}, Yt) {
+    const Kt = reactExports.useRef([])
+      , Xt = reactExports.useRef(null);
+    reactExports.useImperativeHandle(Yt, () => ({
+        hit: tn => {
+            const nn = Kt.current[tn];
+            nn && (nn.classList.remove("plinko-pill-hit"),
+            nn.offsetWidth,
+            nn.classList.add("plinko-pill-hit"))
+        }
+        ,
+        showWin: (tn, nn) => {
+            const an = Kt.current[tn]
+              , un = Xt.current;
+            if (!an || !un || !nn.gift && !(nn.amountTon && nn.amountTon > 0))
+                return;
+            const dn = document.createElement("div");
+            if (dn.className = nn.muted ? "plinko-win-chip plinko-win-chip--muted" : "plinko-win-chip",
+            nn.jackpot && dn.classList.add("plinko-win-chip--jackpot"),
+            nn.gift && nn.backdrop && (!nn.jackpot || JACKPOT_KEEP_BACKDROPS.has(nn.backdropName ?? "")) && (dn.style.background = giftBackdropGradient(nn.backdrop.center, nn.backdrop.edge),
+            dn.style.boxShadow = `0 4px 12px ${nn.backdrop.center}73`,
+            nn.jackpot || (dn.style.border = "1px solid rgba(255, 255, 255, 0.25)")),
+            nn.gift) {
+                const En = (Sn, yn) => {
+                    if (Sn) {
+                        const bn = document.createElement("img");
+                        bn.className = "plinko-win-chip__img",
+                        bn.src = Sn,
+                        bn.alt = "",
+                        yn && (bn.style.background = giftBackdropGradient(yn.center, yn.edge)),
+                        bn.onerror = () => {
+                            bn.outerHTML = '<span class="plinko-win-chip__gift">ðŸŽ</span>'
+                        }
+                        ,
+                        dn.appendChild(bn)
+                    } else
+                        dn.insertAdjacentHTML("beforeend", '<span class="plinko-win-chip__gift">ðŸŽ</span>')
+                }
+                  , gn = !!nn.bonusGiftImageUrl;
+                gn && dn.classList.add("plinko-win-chip--double"),
+                En(nn.giftImageUrl, gn ? nn.backdrop : null),
+                gn && En(nn.bonusGiftImageUrl, nn.bonusBackdrop)
+            } else
+                dn.innerHTML = `<span class="plinko-win-chip__coin">${GRAM_ICON}</span><span>+${formatWin(nn.amountTon)}</span>`;
+            un.appendChild(dn);
+            const hn = an.offsetLeft + an.offsetWidth / 2
+              , mn = dn.offsetWidth / 2;
+            dn.style.left = `${Math.min(Math.max(hn, mn), un.clientWidth - mn)}px`,
+            dn.addEventListener("animationend", () => dn.remove(), {
+                once: !0
+            })
+        }
+        ,
+        setSpotlight: (tn, nn) => {
+            Xt.current?.classList.toggle("plinko-row-cinematic", tn),
+            Kt.current.forEach( (an, un) => {
+                an?.classList.toggle("plinko-pill-spot", tn && nn === un)
+            }
+            )
+        }
+        ,
+        pillOrigin: tn => {
+            const nn = Kt.current[tn];
+            if (!nn || typeof window > "u")
+                return null;
+            const an = nn.getBoundingClientRect();
+            return window.innerWidth <= 0 || window.innerHeight <= 0 ? null : {
+                x: (an.left + an.width / 2) / window.innerWidth,
+                y: (an.top + an.height / 2) / window.innerHeight
+            }
+        }
+    }), []);
+    const Jt = reactExports.useMemo( () => _t.length >= 17 ? "text-[9px]" : _t.length >= 13 ? "text-[11px]" : "text-[13px]", [_t.length])
+      , Zt = reactExports.useMemo( () => {
+        const nn = (_t.length - 1) / 2;
+        return _t.map( (an, un) => {
+            const dn = nn > 0 ? Math.abs(un - nn) / nn : 0
+              , fn = Math.pow(dn, 1.6);
+            return {
+                backgroundColor: `rgba(137, 113, 230, ${(.15 + .85 * fn).toFixed(3)})`,
+                borderColor: `rgba(172, 145, 243, ${(.35 + .55 * fn).toFixed(3)})`,
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -2px 4px rgba(0,0,0,0.25)"
+            }
+        }
+        )
+    }
+    , [_t]);
+    return jsxRuntimeExports.jsxs("div", {
+        className: "w-full",
+        children: [jsxRuntimeExports.jsx("style", {
+            children: `
+          /* 0%/100% deliberately do NOT set background-color: each pill now has
+             its own tint (centreâ†’edge ramp), so the flash must return to it */
+          @keyframes plinko-pill-hit {
+            0% { transform: translateY(0) scale(1); }
+            30% { transform: translateY(3px) scale(0.94); background-color: rgba(196, 181, 253, 0.95); }
+            100% { transform: translateY(0) scale(1); }
+          }
+          .plinko-pill-hit { animation: plinko-pill-hit 420ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+          @keyframes plinko-win-chip {
+            0%   { transform: translate(-50%, 6px) scale(0.8); opacity: 0; }
+            18%  { transform: translate(-50%, -6px) scale(1.06); opacity: 1; }
+            30%  { transform: translate(-50%, -4px) scale(1); opacity: 1; }
+            75%  { transform: translate(-50%, -14px) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -30px) scale(0.96); opacity: 0; }
+          }
+          .plinko-win-chip {
+            position: absolute;
+            bottom: 100%;
+            /* Own width, not shrink-to-fit: an abspos box only gets (row width âˆ’
+               left) of room, so over the right-edge bins the chip collapsed and
+               squeezed the gift art (img max-width: 100%) down to nothing */
+            width: max-content;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 9px;
+            border-radius: 9999px;
+            background: linear-gradient(180deg, #34D07A 0%, #16A34A 100%);
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.45);
+            color: #fff;
+            font-weight: 800;
+            font-size: 12px;
+            line-height: 1.2;
+            white-space: nowrap;
+            pointer-events: none;
+            animation: plinko-win-chip 1400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          }
+          /* Jackpot reveal chip: bigger, gold-ringed, and it lingers â€” its own
+             keyframes hold a long readable plateau before floating away
+             (duration â‰ˆ cinematic hold + fade-out) */
+          @keyframes plinko-win-chip-jackpot {
+            0%   { transform: translate(-50%, 8px) scale(0.7); opacity: 0; }
+            8%   { transform: translate(-50%, -8px) scale(1.18); opacity: 1; }
+            14%  { transform: translate(-50%, -5px) scale(1.1); opacity: 1; }
+            82%  { transform: translate(-50%, -16px) scale(1.1); opacity: 1; }
+            100% { transform: translate(-50%, -34px) scale(1); opacity: 0; }
+          }
+          .plinko-win-chip--jackpot {
+            animation-name: plinko-win-chip-jackpot;
+            animation-duration: 2600ms;
+            font-size: 15px;
+            padding: 5px 13px;
+            gap: 6px;
+            background: linear-gradient(180deg, #FFDF8E 0%, #E8A93A 100%);
+            border: 1.5px solid rgba(255, 232, 170, 0.95);
+            box-shadow: 0 0 18px rgba(255, 200, 90, 0.5), 0 4px 14px rgba(0, 0, 0, 0.4);
+          }
+          .plinko-win-chip--jackpot .plinko-win-chip__coin { color: #FFF3D0; }
+          .plinko-win-chip--jackpot .plinko-win-chip__img { width: 26px; height: 26px; }
+          .plinko-win-chip--jackpot .plinko-win-chip__gift { font-size: 20px; }
+          .plinko-win-chip--muted {
+            background: linear-gradient(180deg, #4B5563 0%, #374151 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            color: #E5E7EB;
+          }
+          .plinko-win-chip--muted .plinko-win-chip__coin { color: #9CA3AF; }
+          .plinko-win-chip__coin { display: inline-flex; color: #BFF3D6; }
+          .plinko-win-chip__gift { font-size: 14px; line-height: 1; }
+          .plinko-win-chip--double .plinko-win-chip__img,
+          .plinko-win-chip--double .plinko-win-chip__gift {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 5px;
+            padding: 1px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+          }
+          .plinko-win-chip__img {
+            width: 18px; height: 18px; border-radius: 5px;
+            object-fit: contain; display: block;
+          }
+
+          /* Jackpot cinematic (owner: only the dead field goes dark â€” active
+             pieces come FORWARD): every pill brightens above its normal tint
+             while the board dims behind, the winner brightest of all with the
+             gold ring. Static brightness() on tiny elements is a cheap
+             color-matrix op (unlike blur) and the 300ms tween is a one-off,
+             not a loop. The transition lives on the base row so the restore
+             eases back too. Win chips are exempt: the hero's reveal chip has
+             its own look. Gold ring via outline â€” the pills carry inline
+             box-shadows that would win over a class. */
+          .plinko-mult-row > div { transition: opacity 300ms ease, filter 300ms ease; }
+          .plinko-row-cinematic > div:not(.plinko-pill-spot):not(.plinko-win-chip) {
+            filter: brightness(1.35);
+          }
+          .plinko-pill-spot {
+            animation: plinko-pill-spot 1100ms ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 216, 130, 0.85)) brightness(1.5);
+            outline: 2px solid rgba(255, 220, 140, 0.95);
+            outline-offset: 1px;
+          }
+          @keyframes plinko-pill-spot {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.14); }
+          }
+        `
+        }), jsxRuntimeExports.jsx("div", {
+            ref: Xt,
+            className: "plinko-mult-row relative grid gap-[3px] px-[2px]",
+            style: {
+                gridTemplateColumns: `repeat(${_t.length}, 1fr)`
+            },
+            children: _t.map( (tn, nn) => jsxRuntimeExports.jsx("div", {
+                ref: an => {
+                    Kt.current[nn] = an
+                }
+                ,
+                className: `rounded-md border text-white font-bold text-center py-1 leading-4 ${Jt}`,
+                style: Zt[nn],
+                children: formatMultiplier(tn)
+            }, `${nn}-${tn}`))
+        })]
+    })
+}))
+  , PlinkoBoard = reactExports.memo(function tt({rows: _t, multipliers: Yt, mode: Kt="live", fpsCap: Xt, onEngineReady: Jt, callbacks: Zt, winLookup: tn}) {
+    const nn = reactExports.useRef(null)
+      , an = reactExports.useRef(null)
+      , un = reactExports.useRef(null)
+      , dn = reactExports.useRef(null)
+      , fn = reactExports.useRef(null)
+      , hn = reactExports.useRef(null)
+      , mn = reactExports.useRef(Zt);
+    mn.current = Zt;
+    const En = reactExports.useRef(tn);
+    return En.current = tn,
+    reactExports.useEffect( () => {
+        if (!an.current || !un.current || !nn.current)
+            return;
+        const gn = new PlinkoEngine({
+            staticCanvas: an.current,
+            dynamicCanvas: un.current,
+            rows: _t,
+            mode: Kt,
+            fpsCap: Xt,
+            callbacks: {
+                onContact: (Cn, Pn) => mn.current?.onContact?.(Cn, Pn),
+                onLanded: (Cn, Pn) => {
+                    const $n = hn.current
+                      , wn = $n === Cn;
+                    if ($n === null || wn) {
+                        if (dn.current?.hit(Pn),
+                        wn && (dn.current?.setSpotlight(!0, Pn),
+                        Kt === "live")) {
+                            const Bn = dn.current?.pillOrigin(Pn);
+                            Bn && fireJackpotPillConfetti(Bn, JACKPOT_CONFETTI_SCALE)
+                        }
+                        const An = En.current?.(Cn);
+                        An && dn.current?.showWin(Pn, {
+                            ...An,
+                            jackpot: wn
+                        })
+                    }
+                    mn.current?.onLanded?.(Cn, Pn)
+                }
+                ,
+                onIdle: () => mn.current?.onIdle?.(),
+                onCinematic: (Cn, Pn, $n) => {
+                    hn.current = Cn ? $n : null,
+                    dn.current?.setSpotlight(Cn, null),
+                    mn.current?.onCinematic?.(Cn, Pn, $n)
+                }
+            }
+        });
+        fn.current = gn;
+        const Sn = () => gn.resize(nn.current?.clientWidth ?? 0);
+        Sn();
+        const yn = new ResizeObserver(Sn);
+        yn.observe(nn.current);
+        const bn = Cn => {
+            Cn.persisted && Sn()
+        }
+        ;
+        return window.addEventListener("pageshow", bn),
+        Jt(gn),
+        () => {
+            yn.disconnect(),
+            window.removeEventListener("pageshow", bn),
+            gn.destroy(),
+            fn.current = null
+        }
+    }
+    , []),
+    reactExports.useEffect( () => {
+        const gn = fn.current;
+        gn && gn.rows !== _t && (gn.setBoard(_t),
+        Jt(gn))
+    }
+    , [_t]),
+    jsxRuntimeExports.jsxs("div", {
+        className: "w-full select-none",
+        children: [jsxRuntimeExports.jsxs("div", {
+            ref: nn,
+            className: "relative w-full",
+            children: [jsxRuntimeExports.jsx("canvas", {
+                ref: an,
+                className: "block w-full"
+            }), jsxRuntimeExports.jsx("canvas", {
+                ref: un,
+                className: "absolute inset-0 w-full"
+            })]
+        }), jsxRuntimeExports.jsx(MultiplierRow, {
+            ref: dn,
+            multipliers: Yt
+        })]
+    })
+});
+async function computeRoll(tt, _t, Yt) {
+    const Kt = await hmacSha256Hex(tt, `${_t}:${Yt}`);
+    return parseInt(Kt.slice(0, 13), 16) / 4503599627370496
+}
+async function verifyDrop(tt) {
+    const [_t,Yt] = await Promise.all([sha256Hex(tt.serverSeed), computeRoll(tt.serverSeed, tt.clientSeed, tt.nonce)]);
+    return {
+        hashValid: _t.toLowerCase() === tt.serverSeedHash.toLowerCase(),
+        roll: Yt,
+        rollMatches: typeof tt.roll == "number" ? Yt === tt.roll : null
+    }
+}
+const FALLBACK_CONFIG$1 = {
+    difficulties: {
+        easy: {
+            rows: 8,
+            multipliers: [5.6, 2.1, 1.1, 1, .5, 1, 1.1, 2.1, 5.6],
+            maxBetTon: 100
+        },
+        medium: {
+            rows: 12,
+            multipliers: [33, 11, 4, 2, 1.1, .6, .3, .6, 1.1, 2, 4, 11, 33],
+            maxBetTon: 50
+        },
+        hard: {
+            rows: 16,
+            multipliers: [1e3, 130, 26, 9, 4, 2, .2, .2, .2, .2, .2, 2, 4, 9, 26, 130, 1e3],
+            maxBetTon: 10
+        }
+    },
+    minBetTon: .1,
+    maxConcurrentDrops: 30,
+    configVersion: 0
+}
+  , RETRYABLE_CODES = new Set(["DEDUP_TIMEOUT", "RATE_LIMITED", "NOT_CONNECTED", "ACK_TIMEOUT"])
+  , ACK_TIMEOUT_MS$1 = 5e3
+  , DROP_RETRIES = 3
+  , RETRY_BACKOFF_MS = [1e3, 2e3, 4e3];
+class PlinkoService {
+    static instance;
+    static getInstance() {
+        return PlinkoService.instance || (PlinkoService.instance = new PlinkoService),
+        PlinkoService.instance
+    }
+    constructor() {}
+    subscribe() {
+        socketManager.connect(),
+        socketManager.subscribe({
+            module: "plinko",
+            type: "user"
+        })
+    }
+    unsubscribe() {}
+    onBalanceUpdate(_t) {
+        return socketManager.on("balance:update", _t),
+        () => socketManager.off("balance:update", _t)
+    }
+    onConfigUpdated(_t) {
+        return socketManager.on("plinko:config_updated", _t),
+        () => socketManager.off("plinko:config_updated", _t)
+    }
+    async getState() {
+        return this.emitWithAck("plinko:get_state", null)
+    }
+    async getHistory(_t=50, Yt) {
+        return this.emitWithAck("plinko:history", {
+            limit: _t,
+            beforeId: Yt
+        })
+    }
+    async getUserGifts() {
+        return this.emitWithAck("plinko:get_user_gifts", null)
+    }
+    async sellGift(_t, Yt) {
+        return this.emitWithAck("plinko:sell_gift", {
+            giftId: _t,
+            giftType: Yt
+        })
+    }
+    async drop(_t) {
+        let Yt = "INTERNAL";
+        for (let Kt = 0; Kt <= DROP_RETRIES; Kt++) {
+            Kt > 0 && await sleep(RETRY_BACKOFF_MS[Math.min(Kt - 1, RETRY_BACKOFF_MS.length - 1)]);
+            try {
+                const Xt = await this.emitWithAck("plinko:drop", _t);
+                if (Xt.ok || (Yt = Xt.error || "INTERNAL",
+                !RETRYABLE_CODES.has(Yt)))
+                    return Xt
+            } catch (Xt) {
+                if (Yt = Xt instanceof Error ? Xt.message : "ACK_TIMEOUT",
+                !RETRYABLE_CODES.has(Yt))
+                    break
+            }
+        }
+        return {
+            ok: !1,
+            error: Yt
+        }
+    }
+    emitWithAck(_t, Yt) {
+        return new Promise( (Kt, Xt) => {
+            const Jt = socketManager.getSocket();
+            if (!Jt?.connected) {
+                Xt(new Error("NOT_CONNECTED"));
+                return
+            }
+            let Zt = !1;
+            const tn = setTimeout( () => {
+                Zt || (Zt = !0,
+                Xt(new Error("ACK_TIMEOUT")))
+            }
+            , ACK_TIMEOUT_MS$1);
+            Jt.emit(_t, Yt, nn => {
+                Zt || (Zt = !0,
+                clearTimeout(tn),
+                Kt(nn))
+            }
+            )
+        }
+        )
+    }
+}
+function sleep(tt) {
+    return new Promise(_t => setTimeout(_t, tt))
+}
+const PENDING_KEY$1 = "plinko.pending.v1"
+  , PENDING_TTL_MS$1 = 6e4
+  , INFLIGHT_KEY = "plinko.inflight.v1"
+  , LAST_DIFFICULTY_KEY = "plinko.lastDifficulty"
+  , AUTO_COUNT_KEY = "plinko.autoBetCount"
+  , AUTO_INTERVAL_KEY = "plinko.autoBetIntervalSec"
+  , MAX_INFLIGHT = 3
+  , HISTORY_CAP = 50
+  , DROP_ERROR_TOAST_ID = "plinko-drop-error";
+function readSession(tt) {
+    try {
+        return sessionStorage.getItem(tt)
+    } catch {
+        return null
+    }
+}
+function writeSession(tt, _t) {
+    try {
+        sessionStorage.setItem(tt, _t)
+    } catch {}
+}
+function readPending$1() {
+    try {
+        const tt = sessionStorage.getItem(PENDING_KEY$1);
+        if (!tt)
+            return [];
+        const _t = JSON.parse(tt);
+        return Array.isArray(_t) ? _t : []
+    } catch {
+        return []
+    }
+}
+function writePending$1(tt) {
+    try {
+        sessionStorage.setItem(PENDING_KEY$1, JSON.stringify(tt))
+    } catch {}
+}
+function addPending$1(tt) {
+    const _t = readPending$1().filter(Yt => Date.now() - Yt.ts < PENDING_TTL_MS$1);
+    _t.push({
+        clientCommandId: tt,
+        ts: Date.now()
+    }),
+    writePending$1(_t)
+}
+function removePending$1(tt) {
+    writePending$1(readPending$1().filter(_t => _t.clientCommandId !== tt))
+}
+const TRANSPORT_UNCERTAIN_CODES$1 = new Set(["ACK_TIMEOUT", "NOT_CONNECTED", "DEDUP_TIMEOUT"])
+  , LOST_DROP_RECONCILE_MS = 5e3;
+function scheduleLostDropReconcile(tt) {
+    setTimeout( () => {
+        reconcileLostDrop(tt)
+    }
+    , LOST_DROP_RECONCILE_MS)
+}
+async function reconcileLostDrop(tt) {
+    if (readPending$1().some(_t => _t.clientCommandId === tt))
+        try {
+            const _t = await PlinkoService.getInstance().getHistory(10);
+            if (!_t.ok)
+                return;
+            const Yt = _t.drops.find(Kt => Kt.clientCommandId === tt);
+            if (!Yt)
+                return;
+            removePending$1(tt),
+            usePlinkoStore.setState(Kt => ({
+                history: mergeDrops([Yt], Kt.history),
+                dropsById: {
+                    ...Kt.dropsById,
+                    [Yt.dropId]: Yt
+                }
+            }))
+        } catch {}
+}
+function readInflight() {
+    try {
+        const tt = localStorage.getItem(INFLIGHT_KEY);
+        if (!tt)
+            return [];
+        const _t = JSON.parse(tt);
+        return Array.isArray(_t) ? _t.filter(Yt => Yt && typeof Yt.dropId == "string") : []
+    } catch {
+        return []
+    }
+}
+function writeInflight(tt) {
+    try {
+        localStorage.setItem(INFLIGHT_KEY, JSON.stringify(tt))
+    } catch {}
+}
+function addInflight(tt) {
+    const _t = Date.now() - MAX_FLIGHT_MS
+      , Yt = readInflight().filter(Kt => Kt.startedAt > _t && Kt.dropId !== tt);
+    Yt.push({
+        dropId: tt,
+        startedAt: Date.now()
+    }),
+    writeInflight(Yt)
+}
+function removeInflight(tt) {
+    writeInflight(readInflight().filter(_t => _t.dropId !== tt))
+}
+function initialDifficulty() {
+    const tt = readSession(LAST_DIFFICULTY_KEY);
+    return tt === "easy" || tt === "medium" || tt === "hard" ? tt : "medium"
+}
+function initialAutoCount() {
+    const tt = readSession(AUTO_COUNT_KEY);
+    if (tt === "inf")
+        return null;
+    const _t = parseInt(tt ?? "", 10);
+    return Number.isFinite(_t) && _t > 0 ? _t : null
+}
+function initialAutoIntervalSec() {
+    const tt = parseFloat(readSession(AUTO_INTERVAL_KEY) ?? "");
+    return Number.isFinite(tt) && tt >= .5 && tt <= 10 ? tt : 1.5
+}
+let unsubscribeBalance = null
+  , unsubscribeConfig = null
+  , initGeneration = 0;
+function toTon2(tt) {
+    return Math.round(tt * 100) / 100
+}
+function balanceDeltaOf$1(tt) {
+    return tt.rewardGift ? 0 : tt.payoutTon
+}
+const MAX_FLIGHT_MS = estimateFlightMs(16)
+  , usePlinkoStore = create( (tt, _t) => ({
+    config: FALLBACK_CONFIG$1,
+    pendingConfig: null,
+    configLoaded: !1,
+    fairness: null,
+    stateFetchedAt: 0,
+    maintenance: !1,
+    serverBalance: 0,
+    pendingPayouts: {},
+    inflightBets: 0,
+    inflightStakes: {},
+    ballsInFlight: 0,
+    history: [],
+    dropsById: {},
+    userGifts: [],
+    userGiftsLoading: !1,
+    difficulty: initialDifficulty(),
+    tonAmount: 0,
+    autoBet: !1,
+    autoBetCount: initialAutoCount(),
+    autoBetIntervalSec: initialAutoIntervalSec(),
+    autoBetRemaining: null,
+    giftQueueActive: !1,
+    resumeQueue: [],
+    initialized: !1,
+    init: async () => {
+        if (_t().initialized)
+            return;
+        const Yt = ++initGeneration
+          , Kt = () => initGeneration === Yt;
+        tt({
+            initialized: !0,
+            tonAmount: 0,
+            ballsInFlight: 0,
+            inflightBets: 0,
+            inflightStakes: {},
+            pendingPayouts: {},
+            pendingConfig: null,
+            autoBet: !1,
+            autoBetRemaining: null,
+            giftQueueActive: !1,
+            resumeQueue: []
+        });
+        const Xt = PlinkoService.getInstance();
+        unsubscribeBalance = Xt.onBalanceUpdate( ({newBalance: an}) => {
+            typeof an == "number" && _t().applyBalanceUpdate(an)
+        }
+        ),
+        unsubscribeConfig = Xt.onConfigUpdated( () => {
+            _t().refreshState()
+        }
+        );
+        const Jt = readPending$1().filter(an => Date.now() - an.ts < PENDING_TTL_MS$1);
+        writePending$1([]);
+        const Zt = () => {
+            Jt.length > 0 && writePending$1([...readPending$1(), ...Jt])
+        }
+          , tn = Date.now()
+          , nn = () => _t().stateFetchedAt >= tn;
+        for (let an = 0; an < 4 && Kt() && !nn(); an++) {
+            if (an > 0 && await new Promise(un => setTimeout(un, 600)),
+            !Kt()) {
+                Zt();
+                return
+            }
+            Xt.subscribe(),
+            await _t().refreshState()
+        }
+        if (!Kt()) {
+            Zt();
+            return
+        }
+        Xt.subscribe(),
+        Kt() && await restoreInflightBalls(tt, _t, Xt)
+    }
+    ,
+    dispose: () => {
+        initGeneration++,
+        unsubscribeBalance?.(),
+        unsubscribeBalance = null,
+        unsubscribeConfig?.(),
+        unsubscribeConfig = null,
+        PlinkoService.getInstance().unsubscribe(),
+        tt({
+            initialized: !1,
+            ballsInFlight: 0,
+            inflightBets: 0,
+            inflightStakes: {},
+            pendingPayouts: {},
+            pendingConfig: null,
+            autoBet: !1,
+            autoBetRemaining: null,
+            giftQueueActive: !1,
+            resumeQueue: [],
+            configLoaded: !1,
+            maintenance: !1
+        })
+    }
+    ,
+    refreshState: async () => {
+        try {
+            const Yt = await PlinkoService.getInstance().getState();
+            if (!Yt.ok)
+                return;
+            tt(Kt => {
+                const Xt = Yt.config ?? Kt.config
+                  , Jt = Kt.ballsInFlight > 0 || Kt.inflightBets > 0;
+                return {
+                    config: Jt ? Kt.config : Xt,
+                    pendingConfig: Jt && Xt !== Kt.config ? Xt : null,
+                    configLoaded: !0,
+                    fairness: Yt.fairness ?? Kt.fairness,
+                    stateFetchedAt: Date.now(),
+                    maintenance: Yt.maintenance ?? !1,
+                    serverBalance: Yt.balance ?? Kt.serverBalance,
+                    history: mergeDrops(Yt.recentDrops ?? [], Kt.history),
+                    dropsById: indexDrops(Yt.recentDrops ?? [], Kt.dropsById)
+                }
+            }
+            )
+        } catch (Yt) {
+            console.warn("[Plinko] get_state failed:", Yt)
+        }
+    }
+    ,
+    fetchUserGifts: async () => {
+        if (!_t().userGiftsLoading) {
+            tt({
+                userGiftsLoading: !0
+            });
+            try {
+                const Yt = await PlinkoService.getInstance().getUserGifts();
+                Yt.ok && tt({
+                    userGifts: Yt.gifts
+                })
+            } catch (Yt) {
+                console.warn("[Plinko] get_user_gifts failed:", Yt)
+            } finally {
+                tt({
+                    userGiftsLoading: !1
+                })
+            }
+        }
+    }
+    ,
+    setDifficulty: Yt => {
+        const Kt = _t();
+        Kt.ballsInFlight > 0 || Kt.inflightBets > 0 || Kt.giftQueueActive || (writeSession(LAST_DIFFICULTY_KEY, Yt),
+        tt({
+            difficulty: Yt
+        }))
+    }
+    ,
+    setAutoBet: Yt => tt(Kt => ({
+        autoBet: Yt,
+        autoBetRemaining: Yt ? Kt.autoBetCount : null
+    })),
+    setAutoBetCount: Yt => {
+        writeSession(AUTO_COUNT_KEY, Yt === null ? "inf" : String(Yt)),
+        tt(Kt => ({
+            autoBetCount: Yt,
+            autoBetRemaining: Kt.autoBet ? Yt : null
+        }))
+    }
+    ,
+    setAutoBetIntervalSec: Yt => {
+        const Kt = Math.min(10, Math.max(.5, Yt));
+        writeSession(AUTO_INTERVAL_KEY, String(Kt)),
+        tt({
+            autoBetIntervalSec: Kt
+        })
+    }
+    ,
+    setGiftQueueActive: Yt => tt({
+        giftQueueActive: Yt
+    }),
+    consumeAutoBet: () => tt(Yt => {
+        if (!Yt.autoBet || Yt.autoBetRemaining === null)
+            return {};
+        const Kt = Yt.autoBetRemaining - 1;
+        return Kt <= 0 ? {
+            autoBet: !1,
+            autoBetRemaining: null
+        } : {
+            autoBetRemaining: Kt
+        }
+    }
+    ),
+    setTonAmount: Yt => tt({
+        tonAmount: Yt
+    }),
+    applyBalanceUpdate: Yt => tt({
+        serverBalance: Yt
+    }),
+    drop: async () => {
+        const Yt = _t();
+        if (!Yt.configLoaded || Yt.maintenance || Yt.inflightBets >= MAX_INFLIGHT || Yt.ballsInFlight >= Yt.config.maxConcurrentDrops)
+            return null;
+        const Kt = Yt.config.difficulties[Yt.difficulty]
+          , Xt = toTon2(Yt.tonAmount);
+        return Xt < Yt.config.minBetTon || Xt > Kt.maxBetTon ? null : Xt > spendableBalance(Yt) ? (toast.error(instance$1.t("plinko:TOASTS.ERROR.INSUFFICIENT_BALANCE"), {
+            id: DROP_ERROR_TOAST_ID
+        }),
+        null) : submitDrop(tt, _t, {
+            betType: "ton",
+            amountTon: Xt
+        })
+    }
+    ,
+    dropGift: async (Yt, Kt={}) => _t().userGifts.some(Jt => Jt.id === Yt.id && Jt.giftType === Yt.giftType) ? submitDrop(tt, _t, {
+        betType: Yt.giftType === "deposited" ? "gift_deposit" : "gift_portals",
+        giftId: Yt.id,
+        consumeGift: {
+            id: Yt.id,
+            giftType: Yt.giftType
+        },
+        silentErrors: Kt.silentErrors
+    }) : null,
+    settleDrop: Yt => {
+        const Kt = _t();
+        if (removeInflight(Yt),
+        !(Yt in Kt.pendingPayouts))
+            return;
+        const Xt = {
+            ...Kt.pendingPayouts
+        };
+        delete Xt[Yt];
+        const Jt = Kt.dropsById[Yt]
+          , Zt = Math.max(0, Kt.ballsInFlight - 1)
+          , tn = Zt === 0 && Kt.inflightBets === 0 && Kt.pendingConfig;
+        tt({
+            ...tn ? {
+                config: Kt.pendingConfig,
+                pendingConfig: null
+            } : {},
+            pendingPayouts: Xt,
+            ballsInFlight: Zt
+        }),
+        Jt && (Jt.stakedGift || Jt.rewardGift) && _t().fetchUserGifts()
+    }
+    ,
+    consumeResumeItem: Yt => tt(Kt => ({
+        resumeQueue: Kt.resumeQueue.filter(Xt => Xt.drop.dropId !== Yt)
+    })),
+    resumeInflightBalls: () => restoreInflightBalls(tt, _t, PlinkoService.getInstance())
+}));
+async function submitDrop(tt, _t, Yt) {
+    const Kt = _t();
+    if (!Kt.configLoaded || Kt.maintenance || Kt.inflightBets >= MAX_INFLIGHT || Kt.ballsInFlight >= Kt.config.maxConcurrentDrops)
+        return null;
+    const Xt = v4();
+    addPending$1(Xt);
+    const Jt = Yt.betType === "ton" ? Yt.amountTon ?? 0 : 0;
+    tt(Zt => ({
+        inflightBets: Zt.inflightBets + 1,
+        inflightStakes: Jt > 0 ? {
+            ...Zt.inflightStakes,
+            [Xt]: Jt
+        } : Zt.inflightStakes
+    }));
+    try {
+        const Zt = await PlinkoService.getInstance().drop({
+            difficulty: Kt.difficulty,
+            betType: Yt.betType,
+            amountTon: Yt.amountTon,
+            giftId: Yt.giftId,
+            clientCommandId: Xt
+        });
+        if (!Zt.ok || !Zt.drop) {
+            const un = Zt.error || "INTERNAL";
+            return TRANSPORT_UNCERTAIN_CODES$1.has(un) ? scheduleLostDropReconcile(Xt) : removePending$1(Xt),
+            Yt.silentErrors || toast.error(instance$1.t([`plinko:TOASTS.ERROR.${un}`, "plinko:TOASTS.ERROR.INTERNAL"]), {
+                id: DROP_ERROR_TOAST_ID
+            }),
+            un === "MAINTENANCE" && tt({
+                maintenance: !0
+            }),
+            null
+        }
+        removePending$1(Xt);
+        const tn = Zt.drop;
+        validateDrop(tn);
+        const nn = _t().config.difficulties[tn.difficulty];
+        return !!nn && tn.rows === nn.rows && Array.isArray(tn.multipliers) && tn.multipliers.length === nn.multipliers.length && tn.multipliers.every( (un, dn) => un === nn.multipliers[dn]) || _t().refreshState(),
+        addInflight(tn.dropId),
+        tt(un => ({
+            serverBalance: tn.balanceAfter,
+            pendingPayouts: {
+                ...un.pendingPayouts,
+                [tn.dropId]: balanceDeltaOf$1(tn)
+            },
+            ballsInFlight: un.ballsInFlight + 1,
+            history: mergeDrops([tn], un.history),
+            dropsById: {
+                ...un.dropsById,
+                [tn.dropId]: tn
+            },
+            userGifts: Yt.consumeGift ? un.userGifts.filter(dn => !(dn.id === Yt.consumeGift.id && dn.giftType === Yt.consumeGift.giftType)) : un.userGifts
+        })),
+        tn
+    } catch (Zt) {
+        return removePending$1(Xt),
+        Yt.silentErrors || toast.error(instance$1.t("plinko:TOASTS.ERROR.INTERNAL"), {
+            id: DROP_ERROR_TOAST_ID
+        }),
+        console.error("[Plinko] drop failed:", Zt),
+        null
+    } finally {
+        tt(Zt => {
+            const tn = Math.max(0, Zt.inflightBets - 1);
+            if (!(Xt in Zt.inflightStakes))
+                return {
+                    inflightBets: tn
+                };
+            const nn = {
+                ...Zt.inflightStakes
+            };
+            return delete nn[Xt],
+            {
+                inflightBets: tn,
+                inflightStakes: nn
+            }
+        }
+        )
+    }
+}
+async function restoreInflightBalls(tt, _t, Yt) {
+    const Kt = readInflight();
+    if (Kt.length === 0)
+        return;
+    let Xt = _t().dropsById;
+    if (Kt.some(En => !Xt[En.dropId]))
+        try {
+            const En = await Yt.getHistory(50);
+            En.ok && (tt(gn => ({
+                history: mergeDrops(En.drops, gn.history),
+                dropsById: indexDrops(En.drops, gn.dropsById)
+            })),
+            Xt = _t().dropsById)
+        } catch {}
+    const Jt = Date.now()
+      , Zt = []
+      , tn = new Set
+      , nn = _t()
+      , an = En => En in nn.pendingPayouts || nn.resumeQueue.some(gn => gn.drop.dropId === En);
+    for (const En of Kt) {
+        if (an(En.dropId))
+            continue;
+        const gn = Xt[En.dropId];
+        if (!gn) {
+            Jt - En.startedAt >= MAX_FLIGHT_MS && tn.add(En.dropId);
+            continue
+        }
+        const Sn = Math.max(0, Jt - En.startedAt);
+        Sn < estimateFlightMs(gn.rows) ? Zt.push({
+            drop: gn,
+            ageMs: Sn
+        }) : tn.add(En.dropId)
+    }
+    const un = readInflight()
+      , dn = new Set(un.map(En => En.dropId));
+    writeInflight(un.filter(En => !tn.has(En.dropId)));
+    const fn = Zt.filter(En => dn.has(En.drop.dropId));
+    if (fn.length === 0)
+        return;
+    const hn = fn[0].drop.difficulty
+      , mn = fn.filter(En => En.drop.difficulty === hn);
+    tt(En => {
+        const gn = {
+            ...En.pendingPayouts
+        }
+          , Sn = mn.filter(yn => !(yn.drop.dropId in gn) && !En.resumeQueue.some(bn => bn.drop.dropId === yn.drop.dropId));
+        for (const yn of Sn)
+            gn[yn.drop.dropId] = balanceDeltaOf$1(yn.drop);
+        return {
+            difficulty: hn,
+            pendingPayouts: gn,
+            ballsInFlight: En.ballsInFlight + Sn.length,
+            resumeQueue: [...En.resumeQueue, ...Sn]
+        }
+    }
+    )
+}
+function displayedBalance(tt) {
+    let _t = 0;
+    for (const Yt in tt.pendingPayouts)
+        _t += tt.pendingPayouts[Yt];
+    return floorTon2(tt.serverBalance - _t)
+}
+function spendableBalance(tt) {
+    let _t = 0;
+    for (const Yt in tt.inflightStakes)
+        _t += tt.inflightStakes[Yt];
+    return Math.max(0, Math.floor((displayedBalance(tt) - _t) * 100 + 1e-6) / 100)
+}
+function revealedHistory$1(tt) {
+    return tt.history.filter(_t => !(_t.dropId in tt.pendingPayouts))
+}
+function mergeDrops(tt, _t) {
+    const Yt = new Set(tt.map(Kt => Kt.dropId));
+    return [...tt, ..._t.filter(Kt => !Yt.has(Kt.dropId))].sort( (Kt, Xt) => Kt.createdAt < Xt.createdAt ? 1 : -1).slice(0, HISTORY_CAP)
+}
+function indexDrops(tt, _t) {
+    const Yt = {
+        ..._t
+    };
+    for (const Kt of tt)
+        Yt[Kt.dropId] = Kt;
+    return Yt
+}
+function validateDrop(tt) {
+    const _t = tt.binIndex >= 0 && tt.binIndex <= tt.rows
+      , Yt = tt.multipliers?.[tt.binIndex] === tt.multiplier;
+    (!_t || !Yt) && (console.error("[Plinko] ACK invariant mismatch", tt),
+    __vitePreload( () => import("./index-qIGC66re.js"), []).then(Kt => Kt.captureMessage("plinko: drop ACK invariant mismatch", {
+        extra: {
+            dropId: tt.dropId,
+            binIndex: tt.binIndex,
+            rows: tt.rows
+        }
+    })).catch( () => {}
+    ))
+}
+const DIFFICULTIES = ["easy", "medium", "hard"]
+  , PlinkoBetPanel = reactExports.memo(function tt({onDrop: _t, onHoldStart: Yt, onHoldEnd: Kt, onOpenGifts: Xt, giftsActive: Jt, roomy: Zt}) {
+    const {t: tn} = useTranslation("plinko")
+      , nn = usePlinkoStore(Wn => Wn.config)
+      , an = usePlinkoStore(Wn => Wn.configLoaded)
+      , un = usePlinkoStore(Wn => Wn.maintenance)
+      , dn = usePlinkoStore(Wn => Wn.difficulty)
+      , fn = usePlinkoStore(Wn => Wn.tonAmount)
+      , hn = usePlinkoStore(Wn => Wn.inflightBets)
+      , mn = usePlinkoStore(Wn => Wn.ballsInFlight)
+      , En = usePlinkoStore(Wn => Wn.giftQueueActive)
+      , gn = usePlinkoStore(Wn => displayedBalance(Wn))
+      , Sn = usePlinkoStore(Wn => Wn.setDifficulty)
+      , yn = usePlinkoStore(Wn => Wn.setTonAmount)
+      , bn = nn.difficulties[dn]
+      , Cn = mn > 0 || hn > 0 || En
+      , Pn = reactExports.useCallback(Wn => {
+        zu.selectionChanged.isAvailable() && zu.selectionChanged(),
+        Sn(Wn)
+    }
+    , [Sn])
+      , $n = reactExports.useCallback(Wn => {
+        zu.notificationOccurred.isAvailable() && zu.notificationOccurred("warning"),
+        toast.error(Wn === "max" ? tn("TOASTS.MAX_BET", {
+            max: bn.maxBetTon
+        }) : tn("TOASTS.MIN_BET", {
+            min: nn.minBetTon
+        }), {
+            id: "plinko-bet-limit"
+        })
+    }
+    , [bn.maxBetTon, nn.minBetTon, tn])
+      , wn = fn >= nn.minBetTon && fn <= bn.maxBetTon && fn <= gn
+      , An = an && !un && hn < 3 && mn < nn.maxConcurrentDrops && wn
+      , Bn = un ? tn("ACTIONS.MAINTENANCE") : fn > 0 ? tn("ACTIONS.PLACE_BET", {
+        amount: fn.toFixed(2)
+    }) : tn("ACTIONS.PLACE_BET_EMPTY")
+      , Xn = reactExports.useMemo( () => ({
+        onStart: Yt,
+        onEnd: Kt
+    }), [Yt, Kt])
+      , Mn = jsxRuntimeExports.jsx("div", {
+        className: "bg-[#2A2A2A] p-1 rounded-2xl grid grid-cols-3 gap-1",
+        children: DIFFICULTIES.map(Wn => jsxRuntimeExports.jsx("button", {
+            onClick: () => Pn(Wn),
+            disabled: Cn && Wn !== dn,
+            className: `py-1.5 px-2 rounded-xl font-bold text-sm transition-all ${dn === Wn ? "bg-purple-500 text-white shadow-lg" : Cn ? "text-white/25" : "text-white/60 hover:text-white"}`,
+            children: tn(`DIFFICULTY.${Wn.toUpperCase()}`)
+        }, Wn))
+    });
+    return jsxRuntimeExports.jsx(GameBetPanel, {
+        roomy: Zt,
+        ns: "plinko",
+        amount: fn,
+        onAmountChange: yn,
+        minBet: nn.minBetTon,
+        maxBet: bn.maxBetTon,
+        onClamp: $n,
+        amountPlaceholder: tn("PLACEHOLDERS.TON_AMOUNT"),
+        allowEmptyAmount: !0,
+        giftsActive: Jt,
+        onOpenGifts: Xt,
+        canBet: An,
+        ctaLabel: Bn,
+        onBet: _t,
+        hold: Xn,
+        topSlot: Mn
+    })
+});
+function toSelectorGift(tt, _t, Yt) {
+    return {
+        id: _t,
+        name: tt.collectionName || tt.name || tt.slug || Yt,
+        slug: tt.slug || "",
+        collectionName: tt.collectionName,
+        status: "deposited",
+        unboxedAt: "",
+        giftBoxTitle: "",
+        price: tt.price,
+        giftType: tt.giftType,
+        num: tt.num ?? void 0,
+        attributes: tt.attributes ? {
+            model: tt.attributes.model,
+            backdrop: tt.attributes.backdrop ?? void 0,
+            symbol: tt.attributes.symbol ?? null
+        } : void 0,
+        variant: tt.variant ? {
+            id: tt.variant.id,
+            name: tt.variant.name ?? "",
+            slug: tt.variant.slug ?? "",
+            attributes: {
+                model: tt.variant.attributes.model,
+                backdrop: tt.variant.attributes.backdrop ?? void 0,
+                symbol: tt.variant.attributes.symbol ?? null
+            }
+        } : void 0
+    }
+}
+const PlinkoGiftModal = ({isOpen: tt, onClose: _t, maxSelection: Yt, onConfirm: Kt}) => {
+    const {t: Xt} = useTranslation("plinko")
+      , Jt = usePlinkoStore(En => En.userGifts)
+      , Zt = usePlinkoStore(En => En.userGiftsLoading)
+      , tn = usePlinkoStore(En => En.fetchUserGifts)
+      , nn = usePlinkoStore(En => En.config.difficulties[En.difficulty].maxBetTon)
+      , an = usePlinkoStore(En => En.config.minBetTon)
+      , un = reactExports.useCallback(En => En.price > nn || En.price < an, [nn, an])
+      , dn = reactExports.useCallback(En => En.price > nn ? Xt("TOASTS.MAX_BET", {
+        max: nn
+    }) : Xt("TOASTS.MIN_BET", {
+        min: an
+    }), [nn, an, Xt])
+      , fn = Xt("LABELS.GIFT")
+      , hn = reactExports.useCallback( (En, gn) => toSelectorGift(En, gn, fn), [fn])
+      , mn = reactExports.useCallback( () => void tn(), [tn]);
+    return jsxRuntimeExports.jsx(GameGiftModal, {
+        isOpen: tt,
+        onClose: _t,
+        ns: "plinko",
+        gifts: Jt,
+        loading: Zt,
+        toGift: hn,
+        onRefresh: mn,
+        isGiftDisabled: un,
+        disabledReason: dn,
+        maxSelection: Yt,
+        currencyIconSrc: "/assets/images/ton_symbol.svg",
+        onConfirm: Kt
+    })
+}
+  , PlinkoFairnessPanel = reactExports.memo(function tt({provablyFair: _t, dropId: Yt}) {
+    const {t: Kt} = useTranslation("plinko")
+      , [Xt,Jt] = reactExports.useState(!1)
+      , [Zt,tn] = reactExports.useState(null)
+      , nn = reactExports.useCallback(async () => {
+        Jt(!0);
+        try {
+            const un = await verifyDrop(_t);
+            tn(un),
+            un.hashValid && un.rollMatches !== !1 || (toast.error(Kt("FAIRNESS.INVALID")),
+            __vitePreload( () => import("./index-qIGC66re.js"), []).then(fn => fn.captureMessage("plinko: fairness verification failed", {
+                extra: {
+                    dropId: Yt,
+                    ..._t,
+                    ...un
+                }
+            })).catch( () => {}
+            ))
+        } finally {
+            Jt(!1)
+        }
+    }
+    , [_t, Yt, Kt])
+      , an = Zt ? Zt.hashValid && Zt.rollMatches !== !1 : null;
+    return jsxRuntimeExports.jsxs("div", {
+        className: "space-y-2.5",
+        children: [jsxRuntimeExports.jsx(SeedRow, {
+            ns: "plinko",
+            label: Kt("FAIRNESS.SERVER_SEED_HASH"),
+            value: _t.serverSeedHash,
+            tone: "text-violet-300"
+        }), jsxRuntimeExports.jsx(SeedRow, {
+            ns: "plinko",
+            label: Kt("FAIRNESS.SERVER_SEED"),
+            value: _t.serverSeed,
+            tone: "text-emerald-300"
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "grid grid-cols-[1fr_auto] gap-2",
+            children: [jsxRuntimeExports.jsx(SeedRow, {
+                ns: "plinko",
+                label: Kt("FAIRNESS.CLIENT_SEED"),
+                value: _t.clientSeed,
+                tone: "text-sky-300"
+            }), jsxRuntimeExports.jsxs("div", {
+                children: [jsxRuntimeExports.jsx("p", {
+                    className: "text-white/40 text-[11px] mb-0.5",
+                    children: Kt("FAIRNESS.NONCE")
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "bg-black/30 rounded-lg px-3 py-2 text-xs font-mono text-white/80",
+                    children: _t.nonce
+                })]
+            })]
+        }), typeof _t.roll == "number" && jsxRuntimeExports.jsxs("div", {
+            children: [jsxRuntimeExports.jsx("p", {
+                className: "text-white/40 text-[11px] mb-0.5",
+                children: Kt("FAIRNESS.ROLL")
+            }), jsxRuntimeExports.jsx("div", {
+                className: "bg-black/30 rounded-lg px-3 py-2 text-xs font-mono text-amber-300",
+                children: _t.roll.toFixed(8)
+            })]
+        }), Zt && jsxRuntimeExports.jsxs("div", {
+            className: `rounded-lg px-3 py-2 text-xs space-y-1 ${an ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-red-500/10 border border-red-500/30"}`,
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60",
+                    children: Kt("FAIRNESS.HASH_CHECK")
+                }), jsxRuntimeExports.jsxs("span", {
+                    className: `flex items-center gap-1 font-semibold ${Zt.hashValid ? "text-emerald-300" : "text-red-300"}`,
+                    children: [Zt.hashValid ? jsxRuntimeExports.jsx(Check, {
+                        className: "w-3.5 h-3.5"
+                    }) : jsxRuntimeExports.jsx(X, {
+                        className: "w-3.5 h-3.5"
+                    }), Zt.hashValid ? Kt("FAIRNESS.VALID_SHORT") : Kt("FAIRNESS.INVALID_SHORT")]
+                })]
+            }), Zt.rollMatches !== null && jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60",
+                    children: Kt("FAIRNESS.ROLL_CHECK")
+                }), jsxRuntimeExports.jsxs("span", {
+                    className: `flex items-center gap-1 font-semibold ${Zt.rollMatches ? "text-emerald-300" : "text-red-300"}`,
+                    children: [Zt.rollMatches ? jsxRuntimeExports.jsx(Check, {
+                        className: "w-3.5 h-3.5"
+                    }) : jsxRuntimeExports.jsx(X, {
+                        className: "w-3.5 h-3.5"
+                    }), Zt.rollMatches ? Kt("FAIRNESS.ROLL_MATCH") : Kt("FAIRNESS.ROLL_MISMATCH")]
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60",
+                    children: Kt("FAIRNESS.CALCULATED")
+                }), jsxRuntimeExports.jsx("code", {
+                    className: "font-mono text-sky-300",
+                    children: Zt.roll.toFixed(8)
+                })]
+            }), typeof _t.roll == "number" && jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60",
+                    children: Kt("FAIRNESS.EXPECTED")
+                }), jsxRuntimeExports.jsx("code", {
+                    className: "font-mono text-violet-300",
+                    children: _t.roll.toFixed(8)
+                })]
+            })]
+        }), jsxRuntimeExports.jsxs("button", {
+            onClick: nn,
+            disabled: Xt,
+            className: "w-full py-2.5 rounded-xl font-bold text-sm bg-emerald-600/90 hover:bg-emerald-600 text-white flex items-center justify-center gap-2 transition-colors disabled:opacity-60",
+            children: [Xt ? jsxRuntimeExports.jsx(LoaderCircle, {
+                className: "w-4 h-4 animate-spin"
+            }) : jsxRuntimeExports.jsx(ShieldCheck, {
+                className: "w-4 h-4"
+            }), Kt(Zt ? "FAIRNESS.VERIFY_AGAIN" : "FAIRNESS.VERIFY")]
+        }), jsxRuntimeExports.jsx("p", {
+            className: "text-white/30 text-[11px] leading-snug",
+            children: Kt("FAIRNESS.NOTE")
+        })]
+    })
+})
+  , PAGE_SIZE$1 = 50
+  , PAGE_COOLDOWN_MS$1 = 700
+  , NEAR_BOTTOM_PX$1 = 300
+  , PlinkoHistorySheet = reactExports.memo(function tt({open: _t, onClose: Yt, onReplay: Kt}) {
+    const {t: Xt} = useTranslation("plinko")
+      , Jt = usePlinkoStore(Bn => Bn.history)
+      , Zt = usePlinkoStore(Bn => Bn.pendingPayouts)
+      , tn = usePlinkoStore(Bn => Bn.fairness)
+      , [nn,an] = reactExports.useState(null)
+      , [un,dn] = reactExports.useState([])
+      , [fn,hn] = reactExports.useState(!1)
+      , [mn,En] = reactExports.useState(!1)
+      , gn = reactExports.useRef(!1)
+      , Sn = reactExports.useRef(!1)
+      , yn = reactExports.useRef(0)
+      , bn = reactExports.useRef(null)
+      , Cn = reactExports.useRef(null)
+      , Pn = reactExports.useMemo( () => {
+        const Bn = revealedHistory$1({
+            history: Jt,
+            pendingPayouts: Zt
+        })
+          , Xn = new Set(Bn.map(Mn => Mn.dropId));
+        return [...Bn, ...un.filter(Mn => !Xn.has(Mn.dropId))]
+    }
+    , [Jt, Zt, un])
+      , $n = reactExports.useRef(Pn);
+    $n.current = Pn;
+    const wn = reactExports.useCallback(async () => {
+        if (gn.current || Sn.current)
+            return;
+        const Bn = Date.now() - yn.current;
+        if (Bn < PAGE_COOLDOWN_MS$1) {
+            bn.current === null && (bn.current = window.setTimeout( () => {
+                bn.current = null,
+                wn()
+            }
+            , PAGE_COOLDOWN_MS$1 - Bn));
+            return
+        }
+        const Xn = $n.current[$n.current.length - 1];
+        if (!Xn)
+            return;
+        const Mn = Number(Xn.dropId);
+        if (!Number.isFinite(Mn)) {
+            Sn.current = !0,
+            En(!0);
+            return
+        }
+        gn.current = !0,
+        hn(!0),
+        yn.current = Date.now();
+        try {
+            const Wn = await PlinkoService.getInstance().getHistory(PAGE_SIZE$1, Mn);
+            if (Wn.ok) {
+                const hr = new Set($n.current.map(Cr => Cr.dropId))
+                  , fr = Wn.drops.filter(Cr => !hr.has(Cr.dropId));
+                (Wn.drops.length < PAGE_SIZE$1 || fr.length === 0) && (Sn.current = !0,
+                En(!0)),
+                fr.length > 0 && dn(Cr => [...Cr, ...fr])
+            }
+        } catch {} finally {
+            gn.current = !1,
+            hn(!1)
+        }
+    }
+    , [])
+      , An = reactExports.useCallback( () => {
+        const Bn = Cn.current;
+        Bn && Bn.scrollHeight - Bn.scrollTop - Bn.clientHeight < NEAR_BOTTOM_PX$1 && wn()
+    }
+    , [wn]);
+    return reactExports.useEffect( () => {
+        if (_t)
+            return an(null),
+            dn([]),
+            hn(!1),
+            En(!1),
+            gn.current = !1,
+            Sn.current = !1,
+            yn.current = 0,
+            usePlinkoStore.getState().refreshState(),
+            PlinkoService.getInstance().getHistory(PAGE_SIZE$1).then(Bn => {
+                Bn.ok && usePlinkoStore.setState(Xn => ({
+                    history: mergeUnique(Bn.drops, Xn.history),
+                    dropsById: {
+                        ...Xn.dropsById,
+                        ...Object.fromEntries(Bn.drops.map(Mn => [Mn.dropId, Mn]))
+                    }
+                }))
+            }
+            ).catch( () => {}
+            ),
+            () => {
+                bn.current !== null && (clearTimeout(bn.current),
+                bn.current = null)
+            }
+    }
+    , [_t]),
+    _t ? jsxRuntimeExports.jsxs("div", {
+        className: "fixed inset-0 z-[200]",
+        role: "dialog",
+        "aria-modal": "true",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0 bg-black/60",
+            onClick: Yt
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "absolute bottom-0 left-0 right-0 bg-[#1E1E1E] rounded-t-3xl max-h-[80vh] flex flex-col",
+            style: {
+                paddingBottom: "var(--safe-area-bottom, 0px)"
+            },
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between px-5 py-4 border-b border-white/5",
+                children: [jsxRuntimeExports.jsx("h2", {
+                    className: "text-white font-bold text-lg",
+                    children: Xt("HISTORY.TITLE")
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: Yt,
+                    className: "p-2 rounded-full bg-white/5 text-white/60",
+                    children: jsxRuntimeExports.jsx(X, {
+                        className: "w-5 h-5"
+                    })
+                })]
+            }), tn && jsxRuntimeExports.jsx("div", {
+                className: "px-5 py-2.5 border-b border-white/5",
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [jsxRuntimeExports.jsx(ShieldCheck, {
+                        className: "w-4 h-4 text-emerald-400 shrink-0"
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "min-w-0",
+                        children: [jsxRuntimeExports.jsx("p", {
+                            className: "text-white/40 text-[11px]",
+                            children: Xt("FAIRNESS.NEXT_HASH")
+                        }), jsxRuntimeExports.jsx("code", {
+                            className: "text-emerald-300/90 text-[11px] font-mono block truncate",
+                            children: tn.nextServerSeedHash
+                        })]
+                    })]
+                })
+            }), jsxRuntimeExports.jsxs("div", {
+                ref: Cn,
+                onScroll: An,
+                className: "overflow-y-auto px-3 py-2",
+                children: [Pn.length === 0 ? jsxRuntimeExports.jsx("p", {
+                    className: "text-white/40 text-center py-10",
+                    children: Xt("HISTORY.EMPTY")
+                }) : Pn.map(Bn => {
+                    const Xn = nn === Bn.dropId;
+                    return jsxRuntimeExports.jsxs("div", {
+                        className: `rounded-xl transition-colors ${Xn ? "bg-white/5" : ""}`,
+                        children: [jsxRuntimeExports.jsxs("button", {
+                            onClick: () => an(Xn ? null : Bn.dropId),
+                            className: "w-full flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-colors text-left",
+                            "aria-expanded": Xn,
+                            children: [jsxRuntimeExports.jsxs("span", {
+                                className: `min-w-[52px] text-center px-2 py-1 rounded-full text-sm font-bold ${Bn.multiplier >= 2 ? "bg-emerald-500/20 text-emerald-300" : Bn.multiplier >= 1 ? "bg-violet-500/20 text-violet-300" : "bg-red-500/15 text-red-300"}`,
+                                children: ["Ã—", Bn.multiplier]
+                            }), jsxRuntimeExports.jsxs("div", {
+                                className: "flex-1 min-w-0",
+                                children: [jsxRuntimeExports.jsxs("p", {
+                                    className: "text-white text-sm font-medium truncate",
+                                    children: [Bn.stakedGift ? Bn.stakedGift.collectionName || Bn.stakedGift.slug : `${Bn.betAmountTon.toFixed(2)} TON`, jsxRuntimeExports.jsxs("span", {
+                                        className: "text-white/40",
+                                        children: [" Â· ", Xt(`DIFFICULTY.${Bn.difficulty.toUpperCase()}`)]
+                                    })]
+                                }), jsxRuntimeExports.jsxs("p", {
+                                    className: "text-white/40 text-xs",
+                                    children: [new Date(Bn.createdAt).toLocaleTimeString(), " Â· ", Xt("HISTORY.WIN"), ":", " ", Bn.rewardGift ? [Bn.rewardGift, Bn.bonusRewardGift].filter(Mn => Mn != null).map(Mn => Mn.collectionName || Mn.slug).join(" + ") : `${Bn.payoutTon.toFixed(2)} TON`]
+                                })]
+                            }), jsxRuntimeExports.jsx(ChevronDown, {
+                                className: `w-4 h-4 text-white/30 shrink-0 transition-transform ${Xn ? "rotate-180" : ""}`
+                            })]
+                        }), Xn && jsxRuntimeExports.jsxs("div", {
+                            className: "px-3 pt-1.5 pb-3 space-y-2.5",
+                            children: [jsxRuntimeExports.jsxs("button", {
+                                onClick: () => Kt(Bn),
+                                className: "w-full py-2.5 rounded-xl font-bold text-sm bg-violet-600/90 hover:bg-violet-600 text-white flex items-center justify-center gap-2 transition-colors",
+                                children: [jsxRuntimeExports.jsx(Play, {
+                                    className: "w-4 h-4"
+                                }), Xt("REPLAY.TITLE")]
+                            }), Bn.provablyFair ? jsxRuntimeExports.jsx(PlinkoFairnessPanel, {
+                                provablyFair: Bn.provablyFair,
+                                dropId: Bn.dropId
+                            }) : jsxRuntimeExports.jsx("p", {
+                                className: "text-white/30 text-xs text-center py-1",
+                                children: Xt("FAIRNESS.UNAVAILABLE")
+                            })]
+                        })]
+                    }, Bn.dropId)
+                }
+                ), fn && !mn && jsxRuntimeExports.jsx("div", {
+                    className: "flex justify-center py-3",
+                    children: jsxRuntimeExports.jsx(LoaderCircle, {
+                        className: "w-5 h-5 text-white/40 animate-spin"
+                    })
+                })]
+            })]
+        })]
+    }) : null
+});
+function mergeUnique(tt, _t) {
+    const Yt = new Set(tt.map(Kt => Kt.dropId));
+    return [...tt, ..._t.filter(Kt => !Yt.has(Kt.dropId))].sort( (Kt, Xt) => Kt.createdAt < Xt.createdAt ? 1 : -1).slice(0, 50)
+}
+function jackpotThreshold(tt) {
+    const _t = tt.jackpotMinMultiplier;
+    return typeof _t == "number" && _t > 0 ? _t : JACKPOT_MIN_MULTIPLIER
+}
+function ballContentForDrop(tt) {
+    return tt.stakedGift ? {
+        kind: "gift",
+        imageUrl: getGiftImageUrl(toGiftVisual(tt.stakedGift)),
+        backdrop: backdropHex(tt.stakedGift.attributes?.backdrop)
+    } : {
+        kind: "ton",
+        amount: tt.betAmountTon
+    }
+}
+const GHOST_WINDOW_MS = 3500
+  , ReplaySheet = reactExports.memo(function tt({drop: _t, onClose: Yt}) {
+    const {t: Kt} = useTranslation("plinko")
+      , Xt = reactExports.useRef(null)
+      , Jt = reactExports.useCallback( () => {
+        const tn = Xt.current;
+        if (!tn)
+            return;
+        tn.clear(),
+        tn.addBall({
+            dropId: _t.dropId,
+            binIndex: _t.binIndex,
+            content: ballContentForDrop(_t),
+            jackpot: _t.multiplier >= jackpotThreshold(usePlinkoStore.getState().config)
+        });
+        const {history: nn} = usePlinkoStore.getState()
+          , an = new Date(_t.createdAt).getTime()
+          , un = Math.min(usePlinkoStore.getState().config.maxConcurrentDrops - 1, 9);
+        let dn = 0;
+        for (const fn of nn) {
+            if (fn.dropId === _t.dropId || fn.difficulty !== _t.difficulty || fn.rows !== _t.rows)
+                continue;
+            const hn = new Date(fn.createdAt).getTime() - an;
+            if (!(Math.abs(hn) > GHOST_WINDOW_MS)) {
+                if (dn >= un)
+                    break;
+                dn++,
+                tn.addBall({
+                    dropId: fn.dropId,
+                    binIndex: fn.binIndex,
+                    ghost: !0,
+                    delayMs: hn,
+                    content: ballContentForDrop(fn)
+                })
+            }
+        }
+    }
+    , [_t])
+      , Zt = reactExports.useCallback(tn => {
+        Xt.current = tn,
+        Jt()
+    }
+    , [Jt]);
+    return reactExports.useEffect( () => () => Xt.current?.destroy(), []),
+    jsxRuntimeExports.jsxs("div", {
+        className: "fixed inset-0 z-[210]",
+        role: "dialog",
+        "aria-modal": "true",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0 bg-black/70",
+            onClick: Yt
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "absolute bottom-0 left-0 right-0 bg-[#161320] rounded-t-3xl px-4 pt-4",
+            style: {
+                paddingBottom: "calc(var(--safe-area-bottom, 0px) + 16px)"
+            },
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between mb-3",
+                children: [jsxRuntimeExports.jsx("h2", {
+                    className: "text-white font-bold text-lg",
+                    children: Kt("REPLAY.TITLE")
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex gap-2",
+                    children: [jsxRuntimeExports.jsx("button", {
+                        onClick: Jt,
+                        className: "p-2 rounded-full bg-white/5 text-white/70",
+                        "aria-label": Kt("REPLAY.REPEAT"),
+                        children: jsxRuntimeExports.jsx(RotateCcw, {
+                            className: "w-5 h-5"
+                        })
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: Yt,
+                        className: "p-2 rounded-full bg-white/5 text-white/60",
+                        "aria-label": Kt("REPLAY.CLOSE"),
+                        children: jsxRuntimeExports.jsx(X, {
+                            className: "w-5 h-5"
+                        })
+                    })]
+                })]
+            }), jsxRuntimeExports.jsx(PlinkoBoard, {
+                rows: _t.rows,
+                multipliers: _t.multipliers,
+                mode: "replay",
+                onEngineReady: Zt
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "mt-3 flex items-center justify-between bg-white/5 rounded-xl px-4 py-3 text-sm",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60",
+                    children: _t.stakedGift ? _t.stakedGift.collectionName || _t.stakedGift.slug : `${_t.betAmountTon.toFixed(2)} TON`
+                }), jsxRuntimeExports.jsxs("span", {
+                    className: "font-bold text-violet-300",
+                    children: ["Ã—", _t.multiplier]
+                }), jsxRuntimeExports.jsx("span", {
+                    className: "font-bold text-white",
+                    children: _t.rewardGift ? [_t.rewardGift, _t.bonusRewardGift].filter(tn => tn != null).map(tn => tn.collectionName || tn.slug).join(" + ") : `${_t.payoutTon.toFixed(2)} TON`
+                })]
+            })]
+        })]
+    })
+})
+  , STEPS$1 = ["STEP_1", "STEP_2", "STEP_3", "STEP_4"]
+  , HowItWorksModal$1 = reactExports.memo(function tt({open: _t, onClose: Yt}) {
+    const {t: Kt} = useTranslation("plinko");
+    return _t ? jsxRuntimeExports.jsxs("div", {
+        className: "fixed inset-0 z-[220] flex items-center justify-center p-5",
+        role: "dialog",
+        "aria-modal": "true",
+        "aria-labelledby": "plinko-hiw-title",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0 bg-black/70",
+            onClick: Yt
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "relative flex max-h-[85vh] w-full max-w-sm flex-col overflow-hidden rounded-3xl bg-[#1E1E1E]",
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-start justify-between gap-3 px-6 pt-6 pb-4",
+                children: [jsxRuntimeExports.jsx("h2", {
+                    id: "plinko-hiw-title",
+                    className: "text-white font-bold text-xl leading-tight",
+                    children: Kt("HOW_IT_WORKS.TITLE")
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: Yt,
+                    className: "-mt-1 -mr-1 shrink-0 p-2 rounded-full bg-white/5 text-white/60 active:scale-95 transition-transform",
+                    "aria-label": Kt("HOW_IT_WORKS.CLOSE"),
+                    children: jsxRuntimeExports.jsx(X, {
+                        className: "w-5 h-5"
+                    })
+                })]
+            }), jsxRuntimeExports.jsx("ol", {
+                className: "flex-1 overflow-y-auto overscroll-contain px-6 pb-6 space-y-4",
+                children: STEPS$1.map( (Xt, Jt) => jsxRuntimeExports.jsxs("li", {
+                    className: "relative flex gap-3",
+                    children: [Jt < STEPS$1.length - 1 && jsxRuntimeExports.jsx("span", {
+                        "aria-hidden": !0,
+                        className: "absolute left-3 top-7 -bottom-4 w-px -translate-x-1/2 bg-gradient-to-b from-violet-400/25 to-violet-400/5"
+                    }), jsxRuntimeExports.jsx("span", {
+                        className: "relative shrink-0 w-6 h-6 rounded-full bg-violet-500/20 text-violet-300 text-[11px] font-bold flex items-center justify-center",
+                        children: Jt + 1
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "min-w-0 flex-1",
+                        children: [jsxRuntimeExports.jsx("p", {
+                            className: "text-white font-semibold text-[15px] leading-snug",
+                            children: Kt(`HOW_IT_WORKS.${Xt}_TITLE`)
+                        }), jsxRuntimeExports.jsx("p", {
+                            className: "mt-1 text-white/55 text-[13px] leading-relaxed",
+                            children: Kt(`HOW_IT_WORKS.${Xt}_BODY`)
+                        })]
+                    })]
+                }, Xt))
+            })]
+        })]
+    }) : null
+})
+  , MIN_INTERVAL_MS = 90;
+let lastAt = 0;
+function pegHaptic() {
+    const tt = Date.now();
+    if (!(tt - lastAt < MIN_INTERVAL_MS)) {
+        lastAt = tt;
+        try {
+            zu.impactOccurred.isAvailable() && zu.impactOccurred("light")
+        } catch {}
+    }
+}
+function jackpotHaptic() {
+    try {
+        zu.impactOccurred.isAvailable() && zu.impactOccurred("heavy")
+    } catch {}
+}
+function landingHaptic(tt) {
+    try {
+        tt >= 2 && zu.notificationOccurred.isAvailable() ? zu.notificationOccurred("success") : zu.impactOccurred.isAvailable() && zu.impactOccurred("medium")
+    } catch {}
+}
+function prefersReducedMotion() {
+    try {
+        return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    } catch {
+        return !1
+    }
+}
+const DROP_STAGGER_MS = 150;
+async function runGiftQueue$1(tt, _t) {
+    let Yt = 0
+      , Kt = 0;
+    for (let Xt = 0; Xt < tt.length; Xt++) {
+        if (_t.isCancelled?.())
+            return {
+                placed: Yt,
+                failed: Kt,
+                cancelled: tt.length - Xt
+            };
+        if (Xt > 0 && await _t.sleep(DROP_STAGGER_MS),
+        _t.isCancelled?.())
+            return {
+                placed: Yt,
+                failed: Kt,
+                cancelled: tt.length - Xt
+            };
+        const Jt = await _t.dropGift(tt[Xt]);
+        Jt ? (Yt++,
+        _t.spawnBall(Jt)) : Kt++
+    }
+    return {
+        placed: Yt,
+        failed: Kt,
+        cancelled: 0
+    }
+}
+const HOLD_START_DELAY_MS = 400
+  , HOLD_REPEAT_MS = 250;
+async function runHoldRepeat(tt) {
+    const _t = tt.startDelayMs ?? HOLD_START_DELAY_MS
+      , Yt = tt.repeatMs ?? HOLD_REPEAT_MS;
+    if (!tt.isCancelled() && tt.tick())
+        for (await tt.sleep(_t); !tt.isCancelled(); ) {
+            if (!tt.tick())
+                return;
+            await tt.sleep(Yt)
+        }
+}
+function usePlinkoGame() {
+    const tt = reactExports.useRef(null)
+      , _t = reactExports.useRef(!0)
+      , Yt = usePlinkoStore(Sn => Sn.resumeQueue)
+      , [Kt,Xt] = reactExports.useState(0);
+    reactExports.useEffect( () => (_t.current = !0,
+    usePlinkoStore.getState().init(),
+    () => {
+        _t.current = !1,
+        usePlinkoStore.getState().dispose(),
+        tt.current = null
+    }
+    ), []);
+    const Jt = reactExports.useRef(0)
+      , Zt = reactExports.useRef(null);
+    reactExports.useEffect( () => {
+        const Sn = async () => {
+            const Cn = usePlinkoStore.getState();
+            await Cn.refreshState(),
+            await Cn.resumeInflightBalls()
+        }
+          , yn = () => {
+            document.visibilityState === "visible" ? Sn() : Jt.current++
+        }
+          , bn = socketManager.getSocket();
+        return document.addEventListener("visibilitychange", yn),
+        window.addEventListener("online", Sn),
+        bn?.on("connect", Sn),
+        () => {
+            document.removeEventListener("visibilitychange", yn),
+            window.removeEventListener("online", Sn),
+            bn?.off("connect", Sn)
+        }
+    }
+    , []);
+    const tn = {
+        onContact: (Sn, yn) => {
+            yn || pegHaptic()
+        }
+        ,
+        onLanded: Sn => {
+            const yn = usePlinkoStore.getState()
+              , bn = yn.dropsById[Sn]
+              , Cn = Zt.current;
+            (Cn === null || Cn === Sn) && landingHaptic(bn?.multiplier ?? 0),
+            yn.settleDrop(Sn)
+        }
+        ,
+        onIdle: () => {
+            const Sn = tt.current
+              , {config: yn, difficulty: bn} = usePlinkoStore.getState()
+              , Cn = yn.difficulties[bn].rows;
+            Sn && Sn.rows !== Cn && Sn.setBoard(Cn)
+        }
+        ,
+        onCinematic: (Sn, yn, bn) => {
+            Zt.current = Sn ? bn : null,
+            Sn && jackpotHaptic()
+        }
+    }
+      , nn = reactExports.useCallback(Sn => {
+        tt.current = Sn,
+        Xt(yn => yn + 1)
+    }
+    , []);
+    reactExports.useEffect( () => {
+        if (Yt.length === 0)
+            return;
+        const Sn = tt.current;
+        if (!Sn)
+            return;
+        const yn = usePlinkoStore.getState();
+        for (const bn of Yt)
+            Sn.rows === bn.drop.rows && (yn.consumeResumeItem(bn.drop.dropId),
+            Sn.addBall({
+                dropId: bn.drop.dropId,
+                binIndex: bn.drop.binIndex,
+                delayMs: -bn.ageMs,
+                instant: prefersReducedMotion(),
+                content: ballContentForDrop(bn.drop),
+                jackpot: bn.drop.multiplier >= jackpotThreshold(yn.config)
+            }))
+    }
+    , [Yt, Kt]);
+    const an = reactExports.useCallback(Sn => {
+        const yn = tt.current;
+        if (yn) {
+            if (yn.rows !== Sn.rows) {
+                usePlinkoStore.getState().settleDrop(Sn.dropId);
+                return
+            }
+            yn.addBall({
+                dropId: Sn.dropId,
+                binIndex: Sn.binIndex,
+                instant: prefersReducedMotion(),
+                content: ballContentForDrop(Sn),
+                jackpot: Sn.multiplier >= jackpotThreshold(usePlinkoStore.getState().config)
+            })
+        }
+    }
+    , [])
+      , un = reactExports.useCallback(async () => {
+        const Sn = await usePlinkoStore.getState().drop();
+        return Sn ? (an(Sn),
+        Sn) : null
+    }
+    , [an])
+      , dn = reactExports.useCallback(async Sn => {
+        usePlinkoStore.getState().setGiftQueueActive(!0);
+        try {
+            const {failed: yn} = await runGiftQueue$1(Sn, {
+                dropGift: bn => usePlinkoStore.getState().dropGift(bn, {
+                    silentErrors: !0
+                }),
+                spawnBall: an,
+                sleep: bn => new Promise(Cn => setTimeout(Cn, bn)),
+                isCancelled: () => !_t.current
+            });
+            yn > 0 && toast.error(instance$1.t("plinko:TOASTS.GIFTS_FAILED", {
+                count: yn
+            }))
+        } finally {
+            usePlinkoStore.getState().setGiftQueueActive(!1)
+        }
+    }
+    , [an])
+      , fn = reactExports.useCallback( () => {
+        const Sn = ++Jt.current;
+        let yn = !1
+          , bn = 0;
+        runHoldRepeat({
+            tick: () => {
+                if (yn)
+                    return !1;
+                const Cn = usePlinkoStore.getState();
+                return Cn.inflightBets >= 3 || Cn.ballsInFlight >= Cn.config.maxConcurrentDrops || Zt.current !== null && performance.now() - bn < HOLD_REPEAT_MS / JACKPOT_TIME_SCALE || (bn = performance.now(),
+                un().then(Pn => {
+                    Pn || (yn = !0)
+                }
+                )),
+                !0
+            }
+            ,
+            sleep: Cn => new Promise(Pn => setTimeout(Pn, Cn)),
+            isCancelled: () => Jt.current !== Sn || !_t.current
+        })
+    }
+    , [un])
+      , hn = reactExports.useCallback( () => {
+        Jt.current++
+    }
+    , [])
+      , mn = usePlinkoStore(Sn => Sn.autoBet)
+      , En = usePlinkoStore(Sn => Sn.autoBetIntervalSec)
+      , gn = reactExports.useCallback(async () => {
+        const Sn = usePlinkoStore.getState();
+        if (!Sn.autoBet)
+            return;
+        if (!Sn.configLoaded || Sn.maintenance) {
+            Sn.setAutoBet(!1);
+            return
+        }
+        const yn = Sn.config.difficulties[Sn.difficulty]
+          , bn = Math.round(Sn.tonAmount * 100) / 100;
+        if (bn < Sn.config.minBetTon || bn > yn.maxBetTon) {
+            Sn.setAutoBet(!1);
+            return
+        }
+        if (bn > spendableBalance(Sn)) {
+            Sn.setAutoBet(!1),
+            toast.error(instance$1.t("plinko:TOASTS.AUTO_STOPPED_BALANCE"));
+            return
+        }
+        if (Sn.inflightBets >= 3 || Sn.ballsInFlight >= Sn.config.maxConcurrentDrops)
+            return;
+        if (!await un()) {
+            usePlinkoStore.getState().setAutoBet(!1);
+            return
+        }
+        usePlinkoStore.getState().consumeAutoBet()
+    }
+    , [un]);
+    return reactExports.useEffect( () => {
+        mn && gn()
+    }
+    , [mn, gn]),
+    reactExports.useEffect( () => {
+        if (!mn)
+            return;
+        const Sn = setInterval( () => void gn(), Math.max(500, En * 1e3));
+        return () => clearInterval(Sn)
+    }
+    , [mn, En, gn]),
+    {
+        engineRef: tt,
+        engineCallbacks: tn,
+        onEngineReady: nn,
+        drop: un,
+        dropGifts: dn,
+        holdStart: fn,
+        holdEnd: hn
+    }
+}
+const MIN_BOARD_WIDTH_PX = 200
+  , BOARD_CHROME_PX = 40
+  , BOARD_HPAD_PX = 18;
+function fitBoardBoxWidth({zoneWidth: tt, zoneHeight: _t, aspect: Yt}) {
+    const Kt = (_t - BOARD_CHROME_PX) / Yt + BOARD_HPAD_PX;
+    return Math.max(MIN_BOARD_WIDTH_PX, Math.round(Math.min(tt, Kt)))
+}
+const ROOMY_PANEL_EXTRA_PX$1 = 48
+  , ROOMY_ENTER_SURPLUS_PX$1 = 72;
+function PlinkoPage() {
+    const tt = useNavigate()
+      , {t: _t} = useTranslation("plinko")
+      , {isMobileTma: Yt} = usePlatform()
+      , {engineCallbacks: Kt, onEngineReady: Xt, drop: Jt, dropGifts: Zt, holdStart: tn, holdEnd: nn} = usePlinkoGame()
+      , an = usePlinkoStore(mo => mo.config)
+      , un = usePlinkoStore(mo => mo.difficulty)
+      , dn = usePlinkoStore(mo => displayedBalance(mo))
+      , fn = usePlinkoStore(mo => mo.config.maxConcurrentDrops)
+      , hn = usePlinkoStore(mo => mo.ballsInFlight)
+      , mn = usePlinkoStore(mo => mo.inflightBets)
+      , En = usePlinkoStore(mo => mo.configLoaded)
+      , gn = usePlinkoStore(mo => mo.maintenance)
+      , Sn = useEntryBlock(En, gn)
+      , [yn,bn] = reactExports.useState(!1)
+      , [Cn,Pn] = reactExports.useState(!1)
+      , [$n,wn] = reactExports.useState(null)
+      , [An,Bn] = reactExports.useState(!1)
+      , Xn = useLocation()
+      , Mn = reactExports.useCallback( () => {
+        Xn.key === "default" ? tt("/play-hub", {
+            replace: !0
+        }) : tt(-1)
+    }
+    , [tt, Xn.key])
+      , Wn = an.difficulties[un]
+      , hr = reactExports.useRef(null)
+      , [fr,Cr] = reactExports.useState(null)
+      , [us,oi] = reactExports.useState(!1)
+      , dr = reactExports.useRef(!1)
+      , yr = createGeometry(Wn.rows).height
+      , [vr,Sr] = reactExports.useState(!1)
+      , zr = reactExports.useRef(!1)
+      , Js = reactExports.useRef(null)
+      , Pi = reactExports.useRef(null)
+      , Ui = vr && Yt;
+    reactExports.useLayoutEffect( () => {
+        const mo = hr.current;
+        if (!mo)
+            return;
+        const Ea = () => {
+            if (zr.current)
+                return;
+            const va = mo.getBoundingClientRect();
+            if (va.width > 0 && va.height > 0) {
+                const go = fitBoardBoxWidth({
+                    zoneWidth: va.width,
+                    zoneHeight: va.height,
+                    aspect: yr
+                });
+                Cr(go);
+                const wa = (go - BOARD_HPAD_PX) * yr + BOARD_CHROME_PX
+                  , Fl = va.height - wa + (dr.current ? ROOMY_PANEL_EXTRA_PX$1 : 0) >= ROOMY_ENTER_SURPLUS_PX$1;
+                dr.current = Fl,
+                oi(Fl)
+            }
+        }
+        ;
+        Js.current = Ea,
+        Ea();
+        const xa = new ResizeObserver(Ea);
+        return xa.observe(mo),
+        window.addEventListener("resize", Ea),
+        () => {
+            xa.disconnect(),
+            window.removeEventListener("resize", Ea),
+            Js.current = null
+        }
+    }
+    , [yr]),
+    reactExports.useEffect( () => () => {
+        Pi.current && clearTimeout(Pi.current)
+    }
+    , []);
+    const Gi = reactExports.useCallback(mo => {
+        !Yt || mo.target.tagName !== "INPUT" || (Pi.current && (clearTimeout(Pi.current),
+        Pi.current = null),
+        zr.current = !0,
+        Sr(!0))
+    }
+    , [Yt])
+      , Ri = reactExports.useCallback(mo => {
+        mo.target.tagName === "INPUT" && (Pi.current = window.setTimeout( () => {
+            Pi.current = null,
+            zr.current = !1,
+            Sr(!1),
+            Js.current?.()
+        }
+        , 100))
+    }
+    , [])
+      , ni = reactExports.useCallback(mo => {
+        const Ea = usePlinkoStore.getState().dropsById[mo];
+        if (Ea)
+            return Ea.rewardGift ? {
+                gift: !0,
+                giftImageUrl: getGiftImageUrl(toGiftVisual(Ea.rewardGift)),
+                bonusGiftImageUrl: Ea.bonusRewardGift ? getGiftImageUrl(toGiftVisual(Ea.bonusRewardGift)) : void 0,
+                bonusBackdrop: Ea.bonusRewardGift ? backdropHex(Ea.bonusRewardGift.attributes?.backdrop) : void 0,
+                backdrop: backdropHex(Ea.rewardGift.attributes?.backdrop),
+                backdropName: Ea.rewardGift.attributes?.backdrop ?? null
+            } : Ea.payoutTon > 0 ? {
+                amountTon: Ea.payoutTon,
+                muted: Ea.multiplier < 1
+            } : void 0
+    }
+    , [])
+      , ti = reactExports.useCallback(mo => {
+        bn(!1),
+        wn(mo)
+    }
+    , [])
+      , xi = reactExports.useRef(null)
+      , [vi,Bi] = reactExports.useState(!1)
+      , [zi,Yi] = reactExports.useState(null)
+      , to = reactExports.useCallback( () => {
+        const mo = xi.current?.getBoundingClientRect();
+        if (!mo)
+            return;
+        const Ea = 8;
+        Yi({
+            top: mo.top - Ea,
+            left: mo.left - Ea,
+            width: mo.width + Ea * 2,
+            height: mo.height + Ea * 2
+        })
+    }
+    , [])
+      , ya = reactExports.useCallback(mo => {
+        mo && to(),
+        Bi(mo)
+    }
+    , [to]);
+    reactExports.useEffect( () => {
+        if (vi)
+            return window.addEventListener("resize", to),
+            () => window.removeEventListener("resize", to)
+    }
+    , [vi, to]);
+    const Ia = reactExports.useCallback(mo => {
+        Bn(!1),
+        Zt(mo)
+    }
+    , [Zt]);
+    return jsxRuntimeExports.jsxs(Page, {
+        back: !0,
+        onBack: Mn,
+        className: "h-full min-h-0 flex flex-col gap-2",
+        children: [jsxRuntimeExports.jsx(GameHeader, {
+            balance: dn,
+            balanceReady: En,
+            onBack: null,
+            avatar: !0,
+            onHistory: () => bn(!0),
+            onHelp: () => Pn(!0)
+        }), gn && !Sn && jsxRuntimeExports.jsx("div", {
+            className: "shrink-0 rounded-2xl bg-[#EF2D42]/15 text-[#EF2D42] text-sm font-semibold px-4 py-2.5 text-center",
+            children: _t("MAINTENANCE")
+        }), jsxRuntimeExports.jsx("div", {
+            ref: hr,
+            className: `flex-1 min-h-0 flex justify-center ${Ui ? "items-start overflow-hidden" : "items-center"}`,
+            children: jsxRuntimeExports.jsxs("div", {
+                className: "relative overflow-hidden rounded-xl px-2 pb-3 border border-violet-400/10 w-full",
+                style: {
+                    background: ["radial-gradient(46% 85% at 0% 42%, rgba(143,99,232,0.62) 0%, rgba(143,99,232,0.26) 45%, transparent 75%)", "radial-gradient(46% 85% at 100% 42%, rgba(143,99,232,0.62) 0%, rgba(143,99,232,0.26) 45%, transparent 75%)", "#222126"].join(", ")
+                },
+                children: [jsxRuntimeExports.jsx("div", {
+                    "aria-hidden": !0,
+                    className: "pointer-events-none absolute inset-0 rounded-xl",
+                    style: {
+                        background: "repeating-linear-gradient(115deg, rgba(255,255,255,0.028) 0px, rgba(255,255,255,0.028) 1px, transparent 1px, transparent 7px)",
+                        maskImage: "radial-gradient(90% 90% at 50% 45%, transparent 40%, #000 100%)",
+                        WebkitMaskImage: "radial-gradient(90% 90% at 50% 45%, transparent 40%, #000 100%)"
+                    }
+                }), jsxRuntimeExports.jsx("div", {
+                    ref: xi,
+                    className: "relative mx-auto",
+                    style: {
+                        width: fr != null ? fr - BOARD_HPAD_PX : "100%",
+                        maxWidth: "100%"
+                    },
+                    children: jsxRuntimeExports.jsx(PlinkoBoard, {
+                        rows: Wn.rows,
+                        multipliers: Wn.multipliers,
+                        onEngineReady: Xt,
+                        callbacks: {
+                            ...Kt,
+                            onCinematic: (mo, Ea, xa) => {
+                                Kt.onCinematic?.(mo, Ea, xa),
+                                ya(mo)
+                            }
+                        },
+                        winLookup: ni
+                    })
+                }), jsxRuntimeExports.jsx("div", {
+                    "aria-hidden": !0,
+                    onPointerDown: mo => {
+                        mo.preventDefault(),
+                        document.activeElement?.blur()
+                    }
+                    ,
+                    className: `absolute inset-0 z-10 rounded-xl bg-black/60 transition-opacity duration-200 ${Ui ? "opacity-100" : "opacity-0 pointer-events-none"}`
+                })]
+            })
+        }), jsxRuntimeExports.jsx("div", {
+            onFocusCapture: Gi,
+            onBlurCapture: Ri,
+            children: jsxRuntimeExports.jsx(PlinkoBetPanel, {
+                onDrop: () => void Jt(),
+                onHoldStart: tn,
+                onHoldEnd: nn,
+                onOpenGifts: () => Bn(!0),
+                giftsActive: An,
+                roomy: us
+            })
+        }), jsxRuntimeExports.jsx(PlinkoGiftModal, {
+            isOpen: An,
+            onClose: () => Bn(!1),
+            maxSelection: Math.max(1, fn - hn - mn),
+            onConfirm: Ia
+        }), jsxRuntimeExports.jsx(PlinkoHistorySheet, {
+            open: yn,
+            onClose: () => bn(!1),
+            onReplay: ti
+        }), $n && jsxRuntimeExports.jsx(ReplaySheet, {
+            drop: $n,
+            onClose: () => wn(null)
+        }), jsxRuntimeExports.jsx(HowItWorksModal$1, {
+            open: Cn,
+            onClose: () => Pn(!1)
+        }), reactDomExports.createPortal(jsxRuntimeExports.jsx("div", {
+            "aria-hidden": !0,
+            className: "pointer-events-none fixed z-[120] transition-opacity duration-300",
+            style: {
+                top: zi?.top ?? 0,
+                left: zi?.left ?? 0,
+                width: zi?.width ?? 0,
+                height: zi?.height ?? 0,
+                borderRadius: 10,
+                boxShadow: "0 0 0 200vmax rgba(8, 5, 20, 0.8)",
+                opacity: vi && zi ? 1 : 0
+            }
+        }), document.body), Sn && jsxRuntimeExports.jsx(GameUnavailable, {
+            title: _t("UNAVAILABLE.TITLE"),
+            description: _t("UNAVAILABLE.DESCRIPTION"),
+            ctaLabel: _t("UNAVAILABLE.BACK"),
+            onBack: () => tt("/play-hub")
+        })]
+    })
+}
+const UPG_CROP = 9
+  , CX = 269.788
+  , CY = 84.15
+  , FIT = .84
+  , WHEEL_SCALE = .851 * FIT
+  , fitX = tt => CX + (tt - CX) * FIT
+  , fitY = tt => CY + (tt - CY) * FIT
+  , TIMELINE = ( () => {
+    try {
+        return buildUpgradeTimeline(UPGRADE_TIMELINE_CONFIG)
+    } catch (tt) {
+        return console.error(tt),
+        null
+    }
+}
+)()
+  , KEYFRAMES$4 = TIMELINE ? upgradeKeyframesCss(TIMELINE) : ""
+  , anim = tt => TIMELINE ? `${tt} ${TIMELINE.loopS}s linear infinite` : "none"
+  , REST_ANGLE = TIMELINE?.restAngle ?? UPGRADE_TIMELINE_CONFIG.landings[UPGRADE_TIMELINE_CONFIG.landings.length - 1]
+  , ART_SCALE = 304 / 292
+  , GIFTS = [{
+    src: "/assets/play-hub/upgrade-helmet.webp",
+    chance: "24%",
+    side: 79.3356 * FIT,
+    rotate: -3.49599,
+    cx: fitX(268.06),
+    cy: fitY(81.5)
+}, {
+    src: "/assets/play-hub/upgrade-heart.webp",
+    chance: "15%",
+    side: 89.5435 * WHEEL_SCALE,
+    rotate: 14.6432,
+    cx: fitX(268.6),
+    cy: fitY(85.2)
+}, {
+    src: "/assets/play-hub/upgrade-ringbox.webp",
+    chance: "8%",
+    side: 92.7999 * WHEEL_SCALE,
+    rotate: 6.84578,
+    cx: fitX(269.3),
+    cy: fitY(81.85)
+}]
+  , FLOAT_BOX = 110
+  , FLOAT_CX = 268.6
+  , FLOAT_CY = 82.5
+  , POINTER = {
+    x: POINTER_BOX.x * WHEEL_SCALE,
+    y: POINTER_BOX.y * WHEEL_SCALE,
+    w: POINTER_BOX.w * WHEEL_SCALE,
+    h: POINTER_BOX.h * WHEEL_SCALE
+}
+  , ARC_PATH = "M349.45 84.15C351.33 84.15 352.87 82.63 352.79 80.75C352.16 65.48 347.34 50.66 338.81 37.93C330.28 25.19 318.42 15.09 304.54 8.69C302.83 7.91 300.83 8.74 300.12 10.48L292.82 28.22C292.10 29.96 292.94 31.94 294.63 32.75C303.75 37.16 311.56 43.93 317.22 52.39C322.88 60.84 326.17 70.63 326.77 80.75C326.88 82.62 328.40 84.15 330.28 84.15H349.45Z"
+  , ARC_BOX = {
+    x: 288,
+    y: 4,
+    w: 68,
+    h: 84
+}
+  , CHIP$1 = {
+    x: fitX(252.898),
+    y: fitY(127.389),
+    w: 41.819,
+    h: 20.489,
+    r: 6.005,
+    rotate: 3.813
+}
+  , UpgradeBanner = reactExports.memo(function tt() {
+    const _t = useNavigate()
+      , {t: Yt} = useTranslation("playHub");
+    return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx("style", {
+            children: KEYFRAMES$4
+        }), jsxRuntimeExports.jsxs(HubBanner, {
+            designWidth: 394,
+            onClick: () => _t("/upgrade"),
+            children: [jsxRuntimeExports.jsx("img", {
+                src: "/assets/play-hub/upgrade-bg.webp",
+                alt: "",
+                draggable: !1,
+                className: "absolute max-w-none",
+                style: {
+                    left: 0,
+                    top: -9,
+                    width: 394,
+                    height: 168
+                }
+            }), jsxRuntimeExports.jsx("img", {
+                src: "/assets/play-hub/upgrade-decor.svg?v=3",
+                alt: "",
+                draggable: !1,
+                className: "absolute max-w-none",
+                style: {
+                    left: 0,
+                    top: -9,
+                    width: 394,
+                    height: 168
+                }
+            }), jsxRuntimeExports.jsx("svg", {
+                className: "hub-anim absolute",
+                style: {
+                    left: ARC_BOX.x,
+                    top: ARC_BOX.y - UPG_CROP,
+                    width: ARC_BOX.w,
+                    height: ARC_BOX.h,
+                    transformOrigin: `${CX - ARC_BOX.x}px ${CY - ARC_BOX.y}px`,
+                    animation: anim("hub-upg-arc")
+                },
+                viewBox: `${ARC_BOX.x} ${ARC_BOX.y} ${ARC_BOX.w} ${ARC_BOX.h}`,
+                fill: "none",
+                children: jsxRuntimeExports.jsx("path", {
+                    d: ARC_PATH,
+                    fill: "white",
+                    transform: `translate(${CX} ${CY}) scale(${FIT}) translate(${-269.788} ${-84.15})`
+                })
+            }), jsxRuntimeExports.jsx("div", {
+                className: "hub-anim absolute",
+                style: {
+                    left: FLOAT_CX - FLOAT_BOX / 2,
+                    top: FLOAT_CY - UPG_CROP - FLOAT_BOX / 2,
+                    width: FLOAT_BOX,
+                    height: FLOAT_BOX,
+                    animation: "hub-float-a 4s ease-in-out infinite"
+                },
+                children: GIFTS.map( (Kt, Xt) => {
+                    const Jt = Kt.side * ART_SCALE;
+                    return jsxRuntimeExports.jsx("div", {
+                        className: "absolute",
+                        style: {
+                            left: FLOAT_BOX / 2 + (Kt.cx - FLOAT_CX) - Jt / 2,
+                            top: FLOAT_BOX / 2 + (Kt.cy - FLOAT_CY) - Jt / 2,
+                            width: Jt,
+                            height: Jt,
+                            transform: `rotate(${Kt.rotate}deg)`
+                        },
+                        children: jsxRuntimeExports.jsx("img", {
+                            src: Kt.src,
+                            alt: "",
+                            draggable: !1,
+                            className: "hub-anim w-full h-full max-w-none",
+                            style: {
+                                opacity: Xt === 0 ? 1 : 0,
+                                animation: anim(`hub-upg-gift-${Xt}`)
+                            }
+                        })
+                    }, Kt.src)
+                }
+                )
+            }), jsxRuntimeExports.jsx("div", {
+                className: "hub-anim absolute",
+                style: {
+                    left: CX + POINTER.x,
+                    top: CY - UPG_CROP + POINTER.y,
+                    width: POINTER.w,
+                    height: POINTER.h,
+                    transformOrigin: `${-36.06510768}px ${10.420222679999998}px`,
+                    transform: `rotate(${REST_ANGLE}deg)`,
+                    animation: anim("hub-upg-pointer")
+                },
+                children: jsxRuntimeExports.jsx("svg", {
+                    className: "w-full h-full",
+                    viewBox: `0 0 ${POINTER_BOX.w} ${POINTER_BOX.h}`,
+                    fill: "none",
+                    children: jsxRuntimeExports.jsx("path", {
+                        d: POINTER_PATH,
+                        fill: "#FF9A20",
+                        stroke: "#FFCFA5"
+                    })
+                })
+            }), jsxRuntimeExports.jsx("div", {
+                className: "absolute bg-white",
+                style: {
+                    left: CHIP$1.x,
+                    top: CHIP$1.y - UPG_CROP,
+                    width: CHIP$1.w,
+                    height: CHIP$1.h,
+                    borderRadius: CHIP$1.r,
+                    transform: `rotate(${CHIP$1.rotate}deg)`,
+                    transformOrigin: "top left"
+                },
+                children: GIFTS.map( (Kt, Xt) => jsxRuntimeExports.jsx("span", {
+                    className: "hub-anim absolute inset-0 flex items-center justify-center font-onest font-extrabold text-[17px] leading-none",
+                    style: {
+                        color: "#22C263",
+                        opacity: Xt === 0 ? 1 : 0,
+                        animation: anim(`hub-upg-chip-${Xt}`)
+                    },
+                    children: Kt.chance
+                }, Kt.chance))
+            }), jsxRuntimeExports.jsx(HubBorder, {
+                id: "hub-border-upgrade",
+                width: 394,
+                from: "#B4FF66",
+                to: "#6C993D"
+            }), jsxRuntimeExports.jsx(HubBadge, {
+                variant: "hot",
+                label: Yt("PLAY_HUB.HOT"),
+                x: 16,
+                y: 16
+            }), jsxRuntimeExports.jsx(HubText, {
+                title: Yt("PLAY_HUB.BANNERS.UPGRADE.TITLE"),
+                tagline: Yt("PLAY_HUB.BANNERS.UPGRADE.TAGLINE")
+            })]
+        })]
+    })
+})
+  , BALL_R = 7.375
+  , BALL_START = {
+    x: 84.094,
+    y: 33.992
+}
+  , LOOP_S$2 = 4
+  , LAND_S = 1.85
+  , HITS = [{
+    at: .35,
+    ball: [88, 12]
+}, {
+    at: .7,
+    ball: [BALL_START.x, BALL_START.y],
+    glow: [96.219, 36.695]
+}, {
+    at: 1.1,
+    ball: [94, 58],
+    glow: [79.24, 59.8]
+}, {
+    at: 1.5,
+    ball: [112, 82],
+    glow: [96.219, 83.218]
+}]
+  , BIN = [109.3, 101.3]
+  , GLOW_LAG_S = .05
+  , rel = ([tt,_t]) => `translate3d(${(tt - BALL_START.x).toFixed(2)}px, ${(_t - BALL_START.y).toFixed(2)}px, 0)`
+  , pct = pctOf(LOOP_S$2)
+  , FALL = "cubic-bezier(0.4, 0, 1, 1)"
+  , GLOWS = HITS.flatMap(tt => tt.glow ? [{
+    at: tt.at - GLOW_LAG_S,
+    glow: tt.glow
+}] : [])
+  , glowFrames = (tt, _t) => `
+@keyframes ${tt} {
+  0%, ${pct(_t)}% { opacity: 0; transform: scale3d(0.8, 0.8, 1); }
+  ${pct(_t + .08)}% { opacity: 0.6; transform: scale3d(1, 1, 1); }
+  ${pct(_t + .4)}%, 100% { opacity: 0; transform: scale3d(1.1, 1.1, 1); }
+}`
+  , KEYFRAMES$3 = `
+@keyframes hub-plinko-ball {
+  0% { opacity: 0; transform: translate3d(12.1px, -50px, 0); animation-timing-function: ${FALL}; }
+  ${pct(.15)}% { opacity: 1; transform: translate3d(12.1px, -34px, 0); animation-timing-function: ${FALL}; }
+  ${HITS.map(tt => `${pct(tt.at)}% { opacity: 1; transform: ${rel(tt.ball)}; animation-timing-function: ${FALL}; }`).join(`
+  `)}
+  ${pct(LAND_S)}% { opacity: 1; transform: ${rel(BIN)}; animation-timing-function: linear; }
+  ${pct(2.9)}% { opacity: 1; transform: ${rel(BIN)}; animation-timing-function: linear; }
+  ${pct(3.2)}%, 100% { opacity: 0; transform: ${rel(BIN)}; }
+}
+${GLOWS.map( (tt, _t) => glowFrames(`hub-plinko-glow-${_t}`, tt.at)).join(`
+`)}
+${chipRise({
+    name: "hub-plinko-chip",
+    at: LAND_S + .05,
+    loopS: LOOP_S$2,
+    hoverS: .6
+})}`
+  , PlinkoBanner = reactExports.memo(function tt() {
+    const _t = useNavigate()
+      , {t: Yt} = useTranslation("playHub");
+    return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx("style", {
+            children: KEYFRAMES$3
+        }), jsxRuntimeExports.jsxs(HubBanner, {
+            designWidth: HUB_CARD_W,
+            designHeight: HUB_CARD_H,
+            onClick: () => _t("/plinko"),
+            children: [jsxRuntimeExports.jsx("img", {
+                src: "/assets/play-hub/hub-plinko-board.webp?v=2",
+                alt: "",
+                draggable: !1,
+                className: "absolute max-w-none",
+                style: {
+                    left: 0,
+                    top: 0,
+                    width: HUB_CARD_W,
+                    height: HUB_CARD_H
+                }
+            }), GLOWS.map( (Kt, Xt) => jsxRuntimeExports.jsx("div", {
+                className: "hub-anim absolute rounded-full",
+                style: {
+                    left: Kt.glow[0] - 10.6,
+                    top: Kt.glow[1] - 10.6,
+                    width: 21.2,
+                    height: 21.2,
+                    opacity: 0,
+                    background: "linear-gradient(to bottom, #fff, rgba(255,255,255,0))",
+                    animation: `hub-plinko-glow-${Xt} ${LOOP_S$2}s linear infinite`
+                }
+            }, Kt.at)), jsxRuntimeExports.jsx("div", {
+                className: "hub-anim absolute rounded-full",
+                style: {
+                    left: BALL_START.x - BALL_R,
+                    top: BALL_START.y - BALL_R,
+                    width: BALL_R * 2,
+                    height: BALL_R * 2,
+                    background: "linear-gradient(to bottom, #AE4BFF, #8322D8)",
+                    boxShadow: "0 3px 8px rgba(74,22,142,0.9), inset 0 0 0 0.8px rgba(255,255,255,0.5), inset 0 2px 3px rgba(255,255,255,0.55), inset 0 -2px 4px rgba(172,94,255,1)",
+                    animation: `hub-plinko-ball ${LOOP_S$2}s linear infinite`
+                }
+            }), jsxRuntimeExports.jsx(HubChip, {
+                x: 93.65,
+                y: 105.938,
+                w: 30.184,
+                h: 19.621,
+                radius: 5.751,
+                fontSize: 15,
+                bg: "#6E8DA6",
+                color: "#66FFA4",
+                label: "x2",
+                animation: `hub-plinko-chip ${LOOP_S$2}s linear infinite`,
+                restOpacity: 1
+            }), jsxRuntimeExports.jsx(HubBorder, {
+                id: "hub-border-plinko",
+                width: HUB_CARD_W,
+                height: HUB_CARD_H,
+                from: "#7B00FF",
+                to: "#975EDD",
+                toOpacity: .6
+            }), jsxRuntimeExports.jsx(HubCardText, {
+                title: Yt("PLAY_HUB.BANNERS.PLINKO.TITLE"),
+                tagline: Yt("PLAY_HUB.BANNERS.PLINKO.TAGLINE")
+            })]
+        })]
+    })
+})
+  , TILE$1 = 48.7825
+  , TILE_R$1 = 14.9495
+  , LOOP_S$1 = 4
+  , LOOP$1 = `${LOOP_S$1}s linear infinite`
+  , p = pctOf(LOOP_S$1)
+  , TILE_BG = "linear-gradient(to bottom, #fff, #FF854E)"
+  , TILE_SHADOW$1 = "0 3px 13px rgba(0,0,0,0.25), inset -1.6px 1.6px 3px rgba(250,50,42,0.4)"
+  , CENTRE = {
+    x: 96.3,
+    y: 64.7
+}
+  , TILES = [{
+    x: 0,
+    y: 55.081,
+    rot: -17.3974,
+    dx: 65.74,
+    dy: -6.36,
+    src: "/assets/play-hub/hub-crafts-frog.webp",
+    art: {
+        size: 34.3272,
+        rot: 11.98,
+        dx: -.6,
+        dy: -1.9
+    }
+}, {
+    x: 146.078,
+    y: 47.759,
+    rot: 22.4148,
+    dx: -63.03,
+    dy: -14.91,
+    src: "/assets/play-hub/hub-crafts-diamonds.webp",
+    art: {
+        size: 39.6763,
+        rot: -4.05,
+        dx: -.3,
+        dy: -.5
+    }
+}, {
+    x: 83.986,
+    y: 12.518,
+    rot: 19.0902,
+    dx: -2.76,
+    dy: 21.16,
+    src: "/assets/play-hub/hub-crafts-ringbox.webp",
+    art: {
+        size: 36.8159,
+        rot: 18.59,
+        dx: .15,
+        dy: 0
+    }
+}]
+  , RESULT = {
+    size: 62,
+    radius: 19
+}
+  , PLUS_SIZE = 14.5776
+  , PLUSES = [{
+    x: 51.766,
+    y: 46.232,
+    d: "M58.45 56.56H59.66V54.13H62.09V52.91H59.66V50.48H58.45V52.91H56.02V54.13H58.45V56.56ZM59.05 59.59C58.21 59.59 57.42 59.44 56.69 59.12C55.95 58.80 55.30 58.36 54.76 57.82C54.21 57.27 53.78 56.63 53.46 55.89C53.14 55.15 52.98 54.36 52.98 53.52C52.98 52.68 53.14 51.89 53.46 51.15C53.78 50.41 54.21 49.77 54.76 49.22C55.30 48.68 55.95 48.24 56.69 47.93C57.42 47.61 58.21 47.45 59.05 47.45C59.89 47.45 60.68 47.61 61.42 47.93C62.16 48.24 62.81 48.68 63.35 49.22C63.90 49.77 64.33 50.41 64.65 51.15C64.97 51.89 65.13 52.68 65.13 53.52C65.13 54.36 64.97 55.15 64.65 55.89C64.33 56.63 63.90 57.27 63.35 57.82C62.81 58.36 62.16 58.80 61.42 59.12C60.68 59.44 59.89 59.59 59.05 59.59Z"
+}, {
+    x: 126.881,
+    y: 46.232,
+    d: "M133.56 56.56H134.78V54.13H137.21V52.91H134.78V50.48H133.56V52.91H131.13V54.13H133.56V56.56ZM134.17 59.59C133.33 59.59 132.54 59.44 131.80 59.12C131.06 58.80 130.42 58.36 129.87 57.82C129.33 57.27 128.89 56.63 128.57 55.89C128.25 55.15 128.10 54.36 128.10 53.52C128.10 52.68 128.25 51.89 128.57 51.15C128.89 50.41 129.33 49.77 129.87 49.22C130.42 48.68 131.06 48.24 131.80 47.93C132.54 47.61 133.33 47.45 134.17 47.45C135.01 47.45 135.80 47.61 136.54 47.93C137.28 48.24 137.92 48.68 138.47 49.22C139.01 49.77 139.45 50.41 139.76 51.15C140.08 51.89 140.24 52.68 140.24 53.52C140.24 54.36 140.08 55.15 139.76 55.89C139.45 56.63 139.01 57.27 138.47 57.82C137.92 58.36 137.28 58.80 136.54 59.12C135.80 59.44 135.01 59.59 134.17 59.59Z"
+}]
+  , tileFrames = (tt, _t) => `
+  0%, ${p(.3)}% { opacity: 1; transform: translate3d(0, 0, 0) scale3d(1, 1, 1); animation-timing-function: ease-in-out; }
+  ${p(.9)}%, ${p(.95)}% { opacity: 1; transform: translate3d(${tt}px, ${_t}px, 0) scale3d(1, 1, 1); }
+  ${p(1.15)}%, ${p(2.95)}% { opacity: 0; transform: translate3d(${tt}px, ${_t}px, 0) scale3d(0.6, 0.6, 1); }
+  ${p(2.951)}% { opacity: 0; transform: translate3d(0, 0, 0) scale3d(0.9, 0.9, 1); }
+  ${p(3.3)}%, 100% { opacity: 1; transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }`
+  , KEYFRAMES$2 = `
+${TILES.map( (tt, _t) => `@keyframes hub-crafts-tile-${_t} {${tileFrames(tt.dx, tt.dy)}
+}`).join(`
+`)}
+@keyframes hub-crafts-plus {
+  0%, ${p(.3)}% { opacity: 1; }
+  ${p(.5)}%, ${p(3.1)}% { opacity: 0; }
+  ${p(3.3)}%, 100% { opacity: 1; }
+}
+@keyframes hub-crafts-halo {
+  0%, ${p(.9)}% { opacity: 0; transform: scale3d(0.85, 0.85, 1); }
+  ${p(1.05)}% { opacity: 1; transform: scale3d(1, 1, 1); }
+  ${p(1.35)}%, ${p(2.6)}% { opacity: 0.5; transform: scale3d(1, 1, 1); }
+  ${p(2.95)}%, 100% { opacity: 0; transform: scale3d(1.05, 1.05, 1); }
+}
+@keyframes hub-crafts-result {
+  0%, ${p(1.15)}% { opacity: 0; transform: scale3d(0.5, 0.5, 1); }
+  ${p(1.35)}% { opacity: 1; transform: scale3d(1.08, 1.08, 1); }
+  ${p(1.5)}% { opacity: 1; transform: scale3d(1, 1, 1); }
+  ${p(2.05)}% { opacity: 1; transform: scale3d(1.04, 1.04, 1); }
+  ${p(2.6)}% { opacity: 1; transform: scale3d(1, 1, 1); }
+  ${p(2.95)}%, 100% { opacity: 0; transform: scale3d(0.7, 0.7, 1); }
+}`
+  , tiltCentre = tt => {
+    const _t = tt * Math.PI / 180
+      , Yt = TILE$1 / 2;
+    return `${(Yt * (Math.cos(_t) - Math.sin(_t))).toFixed(2)}px ${(Yt * (Math.sin(_t) + Math.cos(_t))).toFixed(2)}px`
+}
+;
+function Ingredient({tile: tt, animation: _t}) {
+    return jsxRuntimeExports.jsx("div", {
+        className: "hub-anim absolute",
+        style: {
+            left: tt.x,
+            top: tt.y,
+            width: TILE$1,
+            height: TILE$1,
+            transformOrigin: tiltCentre(tt.rot),
+            animation: _t
+        },
+        children: jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0",
+            style: {
+                borderRadius: TILE_R$1,
+                transform: `rotate(${tt.rot}deg)`,
+                transformOrigin: "top left",
+                background: TILE_BG,
+                boxShadow: TILE_SHADOW$1
+            },
+            children: jsxRuntimeExports.jsx("img", {
+                src: tt.src,
+                alt: "",
+                draggable: !1,
+                className: "absolute max-w-none",
+                style: {
+                    left: (TILE$1 - tt.art.size) / 2 + tt.art.dx,
+                    top: (TILE$1 - tt.art.size) / 2 + tt.art.dy,
+                    width: tt.art.size,
+                    height: tt.art.size,
+                    transform: `rotate(${tt.art.rot}deg)`
+                }
+            })
+        })
+    })
+}
+const CraftsBanner = reactExports.memo(function tt() {
+    const _t = useNavigate()
+      , {t: Yt} = useTranslation("playHub");
+    return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx("style", {
+            children: KEYFRAMES$2
+        }), jsxRuntimeExports.jsxs(HubBanner, {
+            designWidth: HUB_CARD_W,
+            designHeight: HUB_CARD_H,
+            onClick: () => _t("/contracts"),
+            children: [jsxRuntimeExports.jsx("img", {
+                src: "/assets/play-hub/hub-crafts-board.webp?v=2",
+                alt: "",
+                draggable: !1,
+                className: "absolute max-w-none",
+                style: {
+                    left: 0,
+                    top: 0,
+                    width: HUB_CARD_W,
+                    height: HUB_CARD_H
+                }
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "hub-anim absolute",
+                style: {
+                    left: CENTRE.x - 89.5,
+                    top: CENTRE.y - 89.5,
+                    width: 179,
+                    height: 179,
+                    opacity: 0,
+                    animation: `hub-crafts-halo ${LOOP$1}`
+                },
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "absolute inset-0",
+                    style: {
+                        borderRadius: 42,
+                        background: "rgba(255,255,255,0.12)"
+                    }
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "absolute",
+                    style: {
+                        left: 22.85,
+                        top: 22.85,
+                        width: 133.3,
+                        height: 133.3,
+                        borderRadius: 29.4,
+                        background: "rgba(255,255,255,0.2)"
+                    }
+                })]
+            }), TILES.map( (Kt, Xt) => jsxRuntimeExports.jsx(Ingredient, {
+                tile: Kt,
+                animation: `hub-crafts-tile-${Xt} ${LOOP$1}`
+            }, Kt.src)), PLUSES.map(Kt => jsxRuntimeExports.jsx("svg", {
+                className: "hub-anim absolute",
+                style: {
+                    left: Kt.x,
+                    top: Kt.y,
+                    width: PLUS_SIZE,
+                    height: PLUS_SIZE,
+                    animation: `hub-crafts-plus ${LOOP$1}`
+                },
+                viewBox: `${Kt.x} ${Kt.y} ${PLUS_SIZE} ${PLUS_SIZE}`,
+                fill: "none",
+                children: jsxRuntimeExports.jsx("path", {
+                    d: Kt.d,
+                    fill: "white"
+                })
+            }, Kt.x)), jsxRuntimeExports.jsx("div", {
+                className: "hub-anim absolute",
+                style: {
+                    left: CENTRE.x - RESULT.size / 2,
+                    top: CENTRE.y - RESULT.size / 2,
+                    width: RESULT.size,
+                    height: RESULT.size,
+                    borderRadius: RESULT.radius,
+                    background: TILE_BG,
+                    boxShadow: TILE_SHADOW$1,
+                    opacity: 0,
+                    animation: `hub-crafts-result ${LOOP$1}`
+                },
+                children: jsxRuntimeExports.jsx("img", {
+                    src: "/assets/play-hub/hub-crafts-cap.webp",
+                    alt: "",
+                    draggable: !1,
+                    className: "absolute max-w-none",
+                    style: {
+                        left: 4.4,
+                        top: 7.2,
+                        width: 46.6,
+                        height: 46.6
+                    }
+                })
+            }), jsxRuntimeExports.jsx(HubBorder, {
+                id: "hub-border-craft",
+                width: HUB_CARD_W,
+                height: HUB_CARD_H,
+                from: "#FA763D",
+                to: "#FABB3D",
+                toOpacity: 0
+            }), jsxRuntimeExports.jsx(HubCardText, {
+                title: Yt("PLAY_HUB.BANNERS.CRAFTS.TITLE"),
+                tagline: Yt("PLAY_HUB.BANNERS.CRAFTS.TAGLINE")
+            })]
+        })]
+    })
+})
+  , SHADE_MAX = .38
+  , LIGHT = normalize([-.45, -.35, 1])
+  , FACE_NORMALS = [[0, -1, 0], [0, 0, 1], [1, 0, 0], [0, 0, -1], [-1, 0, 0], [0, 1, 0]]
+  , DICE_TUMBLE_CONFIG = {
+    loopS: 8,
+    startX: -18,
+    startY: 18
+};
+function normalize(tt) {
+    const _t = Math.hypot(tt[0], tt[1], tt[2]);
+    return [tt[0] / _t, tt[1] / _t, tt[2] / _t]
+}
+const rad = tt => tt * Math.PI / 180
+  , rotX = (tt, [_t,Yt,Kt]) => [_t, Yt * Math.cos(rad(tt)) - Kt * Math.sin(rad(tt)), Yt * Math.sin(rad(tt)) + Kt * Math.cos(rad(tt))]
+  , rotY = (tt, [_t,Yt,Kt]) => [_t * Math.cos(rad(tt)) + Kt * Math.sin(rad(tt)), Yt, -_t * Math.sin(rad(tt)) + Kt * Math.cos(rad(tt))]
+  , dot = (tt, _t) => tt[0] * _t[0] + tt[1] * _t[1] + tt[2] * _t[2];
+function faceShade(tt, _t, Yt) {
+    const Kt = rotX(_t, rotY(Yt, FACE_NORMALS[tt]));
+    return Number((SHADE_MAX * (1 - Math.min(1, Math.max(0, dot(Kt, LIGHT))))).toFixed(3))
+}
+const pose = (tt, _t) => `rotateX(${tt}deg) rotateY(${_t}deg)`;
+function buildDiceTumble(tt) {
+    const {loopS: _t, startX: Yt, startY: Kt} = tt
+      , Xt = "cubic-bezier(0.6, 0, 0.4, 1)"
+      , Jt = [0, 1, 2, 3, 4].map(tn => `${tn * 25}% { transform: ${pose(Yt + 90 * tn, Kt + 90 * tn)};${tn < 4 ? ` animation-timing-function: ${Xt};` : ""} }`)
+      , Zt = FACE_NORMALS.map( (tn, nn) => [0, 1, 2, 3, 4, 5, 6, 7, 8].map(an => `${an * 12.5}% { opacity: ${faceShade(nn, Yt + 45 * an, Kt + 45 * an)}; }`).join(`
+`));
+    return {
+        loopS: _t,
+        cube: Jt.join(`
+`),
+        shades: Zt,
+        restTransform: pose(Yt, Kt),
+        restShade: FACE_NORMALS.map( (tn, nn) => faceShade(nn, Yt, Kt))
+    }
+}
+function diceTumbleCss(tt) {
+    return [`@keyframes hub-dice-tumble {
+${tt.cube}
+}`, ...tt.shades.map( (_t, Yt) => `@keyframes hub-dice-shade-${Yt} {
+${_t}
+}`)].join(`
+`)
+}
+const CUBE = 72
+  , HALF = CUBE / 2
+  , CUBE_CX = 96
+  , CUBE_CY = 64
+  , TUMBLE = buildDiceTumble(DICE_TUMBLE_CONFIG)
+  , KEYFRAMES$1 = diceTumbleCss(TUMBLE)
+  , CORE_Z_INSET = 4
+  , CORE_RIM_INSET = .4
+  , SHELL_BG = "#2A2932"
+  , FACE_TOP = "linear-gradient(to bottom, #5A5866 0%, #2E2D37 100%)"
+  , FACE_SIDE = "linear-gradient(to bottom, #605E6C 0%, #393844 100%)"
+  , BEVEL_TOP = "inset 0 4px 7px rgba(255,255,255,0.30), inset 3px -4px 10px rgba(0,0,0,0.30)"
+  , BEVEL_SIDE = "inset 3px 3px 6px rgba(255,255,255,0.18), inset -3px -5px 10px rgba(0,0,0,0.32)"
+  , FACES = [{
+    src: "/assets/play-hub/dice-peach.webp",
+    rotate: "rotateX(90deg)",
+    bg: FACE_TOP,
+    bevel: BEVEL_TOP
+}, {
+    src: "/assets/play-hub/dice-pepe.webp",
+    rotate: "rotateY(0deg)",
+    bg: FACE_SIDE,
+    bevel: BEVEL_SIDE
+}, {
+    src: "/assets/play-hub/dice-arm.webp",
+    rotate: "rotateY(90deg)",
+    bg: FACE_SIDE,
+    bevel: BEVEL_SIDE
+}, {
+    src: "/assets/play-hub/dice-brick.webp",
+    rotate: "rotateY(180deg)",
+    bg: FACE_SIDE,
+    bevel: BEVEL_SIDE
+}, {
+    src: "/assets/play-hub/dice-calendar.webp",
+    rotate: "rotateY(-90deg)",
+    bg: FACE_SIDE,
+    bevel: BEVEL_SIDE
+}, {
+    src: "/assets/play-hub/dice-peach.webp",
+    rotate: "rotateX(-90deg)",
+    bg: FACE_TOP,
+    bevel: BEVEL_TOP
+}]
+  , DiceBanner = reactExports.memo(function tt() {
+    const _t = useNavigate()
+      , {t: Yt} = useTranslation("playHub");
+    return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx("style", {
+            children: KEYFRAMES$1
+        }), jsxRuntimeExports.jsxs(HubBanner, {
+            designWidth: HUB_CARD_W,
+            designHeight: HUB_CARD_H,
+            onClick: () => _t("/dice"),
+            children: [jsxRuntimeExports.jsx("img", {
+                src: "/assets/play-hub/hub-dice-board.webp?v=2",
+                alt: "",
+                draggable: !1,
+                className: "absolute max-w-none",
+                style: {
+                    left: 0,
+                    top: 0,
+                    width: HUB_CARD_W,
+                    height: HUB_CARD_H
+                }
+            }), jsxRuntimeExports.jsx("div", {
+                className: "absolute",
+                style: {
+                    left: CUBE_CX - HALF,
+                    top: CUBE_CY - HALF,
+                    width: CUBE,
+                    height: CUBE,
+                    perspective: 520
+                },
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "hub-3d relative w-full h-full",
+                    style: {
+                        transformStyle: "preserve-3d",
+                        transform: TUMBLE.restTransform,
+                        animation: `hub-dice-tumble ${TUMBLE.loopS}s linear infinite`
+                    },
+                    children: [FACES.map( (Kt, Xt) => jsxRuntimeExports.jsxs("div", {
+                        className: "absolute inset-0 rounded-[14px] flex items-center justify-center",
+                        style: {
+                            transform: `${Kt.rotate} translateZ(${HALF}px)`,
+                            background: Kt.bg,
+                            border: "1px solid rgba(255,255,255,0.14)",
+                            boxShadow: Kt.bevel,
+                            backfaceVisibility: "hidden",
+                            WebkitBackfaceVisibility: "hidden",
+                            willChange: "transform"
+                        },
+                        children: [jsxRuntimeExports.jsx("img", {
+                            src: Kt.src,
+                            alt: "",
+                            draggable: !1,
+                            className: "w-[76%] h-[76%] object-contain"
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "hub-anim absolute inset-0 rounded-[13px]",
+                            style: {
+                                background: "#000",
+                                opacity: TUMBLE.restShade[Xt],
+                                animation: `hub-dice-shade-${Xt} ${TUMBLE.loopS}s linear infinite`,
+                                willChange: "opacity"
+                            }
+                        })]
+                    }, Kt.rotate)), FACES.map(Kt => jsxRuntimeExports.jsx("div", {
+                        className: "absolute rounded-[11px]",
+                        style: {
+                            inset: `${CORE_RIM_INSET}px`,
+                            transform: `${Kt.rotate} translateZ(${HALF - CORE_Z_INSET}px)`,
+                            background: SHELL_BG,
+                            willChange: "transform"
+                        }
+                    }, `core-${Kt.rotate}`))]
+                })
+            }), jsxRuntimeExports.jsx(HubBorder, {
+                id: "hub-border-dice",
+                width: HUB_CARD_W,
+                height: HUB_CARD_H,
+                from: "#75A6FF",
+                to: "#75A6FF",
+                toOpacity: 0
+            }), jsxRuntimeExports.jsx(HubCardText, {
+                title: Yt("PLAY_HUB.BANNERS.DICE.TITLE"),
+                tagline: Yt("PLAY_HUB.BANNERS.DICE.TAGLINE")
+            })]
+        })]
+    })
+})
+  , TILE = 31.224
+  , TILE_R = 8.753
+  , LOOP_S = 4
+  , LOOP = `${LOOP_S}s linear infinite`
+  , TILE_SHADOW = "0 2.5px 11px rgba(0,0,0,0.25), inset -1.3px 1.3px 2.6px rgba(2,108,253,0.4)"
+  , GEM_BG = "linear-gradient(to bottom, #A1FFC7, #00C951)"
+  , COLS = [47.084, 80.891, 114.695]
+  , ROWS = [10.031, 43.839, 77.647]
+  , CHIP = {
+    w: 26.142,
+    h: 12.808,
+    radius: 3.754,
+    dx: .746,
+    dy: -2.581,
+    fontSize: 11
+}
+  , OPENS = [.25, 1.05, 1.85, 2.65]
+  , CLOSE_S = 3.6
+  , tile = (tt, _t, Yt=!1) => tileReveal({
+    name: tt,
+    at: _t,
+    closeS: CLOSE_S,
+    loopS: LOOP_S,
+    shake: Yt
+})
+  , chip = (tt, _t, Yt) => chipRise({
+    name: tt,
+    at: _t,
+    loopS: LOOP_S,
+    hoverS: Yt
+})
+  , KEYFRAMES = [tile("hub-mines-gem-a", OPENS[0]), chip("hub-mines-chip-a", OPENS[0] + .1), tile("hub-mines-gem-b", OPENS[1]), chip("hub-mines-chip-b", OPENS[1] + .1), tile("hub-mines-gem-c", OPENS[2]), chip("hub-mines-chip-c", OPENS[2] + .1), tile("hub-mines-bomb", OPENS[3], !0), chip("hub-mines-chip-d", OPENS[3] + .1, .5)].join(`
+`);
+function Tile({x: tt, y: _t, bg: Yt, art: Kt, artStyle: Xt, animation: Jt}) {
+    return jsxRuntimeExports.jsx("div", {
+        className: "hub-anim absolute",
+        style: {
+            left: tt,
+            top: _t,
+            width: TILE,
+            height: TILE,
+            borderRadius: TILE_R,
+            opacity: 0,
+            background: Yt,
+            boxShadow: TILE_SHADOW,
+            animation: Jt
+        },
+        children: jsxRuntimeExports.jsx("img", {
+            src: Kt,
+            alt: "",
+            draggable: !1,
+            className: "absolute max-w-none",
+            style: {
+                left: Xt.left,
+                top: Xt.top,
+                width: Xt.size,
+                height: Xt.size
+            }
+        })
+    })
+}
+const GEM_ART = {
+    left: 3.25,
+    top: 2.37,
+    size: 24.38
+}
+  , TNT_ART = {
+    left: 3.29,
+    top: 1.13,
+    size: 25.1
+}
+  , GEMS = [{
+    x: COLS[1],
+    y: ROWS[2],
+    label: "x1.4",
+    anim: "a"
+}, {
+    x: COLS[2],
+    y: ROWS[0],
+    label: "x2.1",
+    anim: "b"
+}, {
+    x: COLS[2],
+    y: ROWS[2],
+    label: "x3.4",
+    anim: "c"
+}]
+  , BOMB = {
+    x: COLS[0],
+    y: ROWS[1]
+}
+  , MinesBanner = reactExports.memo(function tt() {
+    const _t = useNavigate()
+      , {t: Yt} = useTranslation("playHub");
+    return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx("style", {
+            children: KEYFRAMES
+        }), jsxRuntimeExports.jsxs(HubBanner, {
+            designWidth: HUB_CARD_W,
+            designHeight: HUB_CARD_H,
+            onClick: () => _t("/mines"),
+            children: [jsxRuntimeExports.jsx("img", {
+                src: "/assets/play-hub/hub-mines-board.webp?v=2",
+                alt: "",
+                draggable: !1,
+                className: "absolute max-w-none",
+                style: {
+                    left: 0,
+                    top: 0,
+                    width: HUB_CARD_W,
+                    height: HUB_CARD_H
+                }
+            }), GEMS.map(Kt => jsxRuntimeExports.jsx(Tile, {
+                x: Kt.x,
+                y: Kt.y,
+                bg: GEM_BG,
+                art: "/assets/play-hub/hub-mines-gem.webp",
+                artStyle: GEM_ART,
+                animation: `hub-mines-gem-${Kt.anim} ${LOOP}`
+            }, Kt.label)), GEMS.map(Kt => jsxRuntimeExports.jsx(HubChip, {
+                x: Kt.x + CHIP.dx,
+                y: Kt.y + CHIP.dy,
+                w: CHIP.w,
+                h: CHIP.h,
+                radius: CHIP.radius,
+                fontSize: CHIP.fontSize,
+                bg: "#fff",
+                color: "#22C263",
+                label: Kt.label,
+                animation: `hub-mines-chip-${Kt.anim} ${LOOP}`
+            }, Kt.label)), jsxRuntimeExports.jsx(Tile, {
+                x: BOMB.x,
+                y: BOMB.y,
+                bg: "linear-gradient(to bottom, #FF819A, #FF0033)",
+                art: "/assets/play-hub/hub-mines-tnt.webp",
+                artStyle: TNT_ART,
+                animation: `hub-mines-bomb ${LOOP}`
+            }), jsxRuntimeExports.jsx(HubChip, {
+                x: BOMB.x + CHIP.dx,
+                y: BOMB.y + CHIP.dy,
+                w: 38,
+                h: CHIP.h,
+                radius: CHIP.radius,
+                fontSize: CHIP.fontSize,
+                bg: "#fff",
+                color: "#FF3333",
+                label: "Boom",
+                animation: `hub-mines-chip-d ${LOOP}`
+            }), jsxRuntimeExports.jsx(HubBorder, {
+                id: "hub-border-mines",
+                width: HUB_CARD_W,
+                height: HUB_CARD_H,
+                from: "#00AAFF",
+                to: "#BAC8FF",
+                toOpacity: .6
+            }), jsxRuntimeExports.jsx(HubCardText, {
+                title: Yt("PLAY_HUB.BANNERS.MINES.TITLE"),
+                tagline: Yt("PLAY_HUB.BANNERS.MINES.TAGLINE"),
+                badge: Yt("PLAY_HUB.NEW")
+            })]
+        })]
+    })
+});
+function PlayHubPage() {
+    const tt = useGamesConfig(Xt => Xt.plinko)
+      , _t = useGamesConfig(Xt => Xt.dice)
+      , Yt = useGamesConfig(Xt => Xt.hydrated)
+      , Kt = useGamesConfig(Xt => Xt.mines);
+    return reactExports.useEffect( () => (useGamesConfig.getState().hydrate(),
+    useGamesConfig.getState().subscribeLive()), []),
+    jsxRuntimeExports.jsxs(Page, {
+        back: !0,
+        children: [jsxRuntimeExports.jsx(LiveFeed, {}), jsxRuntimeExports.jsx(HubBannerStyles, {}), jsxRuntimeExports.jsxs("div", {
+            className: "flex flex-col gap-3",
+            children: [jsxRuntimeExports.jsx(UpgradeBanner, {}), jsxRuntimeExports.jsxs("div", {
+                className: "grid grid-cols-2 gap-2",
+                children: [Yt && Kt && jsxRuntimeExports.jsx(MinesBanner, {}), Yt && tt && jsxRuntimeExports.jsx(PlinkoBanner, {}), jsxRuntimeExports.jsx(CraftsBanner, {}), Yt && _t && jsxRuntimeExports.jsx(DiceBanner, {})]
+            })]
+        })]
+    })
+}
+const InfoIcon = ({size: tt=24, className: _t, style: Yt}) => jsxRuntimeExports.jsx("svg", {
+    width: tt,
+    height: tt,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    className: _t,
+    style: Yt,
+    "aria-hidden": !0,
+    children: jsxRuntimeExports.jsx("path", {
+        d: "M12.7125 16.7125C12.9042 16.5208 13 16.2833 13 16V12C13 11.7167 12.9042 11.4792 12.7125 11.2875C12.5208 11.0958 12.2833 11 12 11C11.7167 11 11.4792 11.0958 11.2875 11.2875C11.0958 11.4792 11 11.7167 11 12V16C11 16.2833 11.0958 16.5208 11.2875 16.7125C11.4792 16.9042 11.7167 17 12 17C12.2833 17 12.5208 16.9042 12.7125 16.7125ZM12.7125 8.7125C12.9042 8.52083 13 8.28333 13 8C13 7.71667 12.9042 7.47917 12.7125 7.2875C12.5208 7.09583 12.2833 7 12 7C11.7167 7 11.4792 7.09583 11.2875 7.2875C11.0958 7.47917 11 7.71667 11 8C11 8.28333 11.0958 8.52083 11.2875 8.7125C11.4792 8.90417 11.7167 9 12 9C12.2833 9 12.5208 8.90417 12.7125 8.7125ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z",
+        fill: "currentColor"
+    })
+})
+  , LockIcon = ({size: tt=24, className: _t, style: Yt}) => jsxRuntimeExports.jsx("svg", {
+    width: tt,
+    height: tt,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    className: _t,
+    style: Yt,
+    "aria-hidden": !0,
+    children: jsxRuntimeExports.jsx("path", {
+        d: "M6.30775 21.5C5.81058 21.5 5.385 21.323 5.031 20.969C4.677 20.615 4.5 20.1894 4.5 19.6923V10.3077C4.5 9.81058 4.677 9.385 5.031 9.031C5.385 8.677 5.81058 8.5 6.30775 8.5H7.5V6.5C7.5 5.25133 7.93783 4.18917 8.8135 3.3135C9.68917 2.43783 10.7513 2 12 2C13.2487 2 14.3108 2.43783 15.1865 3.3135C16.0622 4.18917 16.5 5.25133 16.5 6.5V8.5H17.6923C18.1894 8.5 18.615 8.677 18.969 9.031C19.323 9.385 19.5 9.81058 19.5 10.3077V19.6923C19.5 20.1894 19.323 20.615 18.969 20.969C18.615 21.323 18.1894 21.5 17.6923 21.5H6.30775ZM13.2395 16.2395C13.5798 15.899 13.75 15.4858 13.75 15C13.75 14.5142 13.5798 14.101 13.2395 13.7605C12.899 13.4202 12.4858 13.25 12 13.25C11.5142 13.25 11.101 13.4202 10.7605 13.7605C10.4202 14.101 10.25 14.5142 10.25 15C10.25 15.4858 10.4202 15.899 10.7605 16.2395C11.101 16.5798 11.5142 16.75 12 16.75C12.4858 16.75 12.899 16.5798 13.2395 16.2395ZM9 8.5H15V6.5C15 5.66667 14.7083 4.95833 14.125 4.375C13.5417 3.79167 12.8333 3.5 12 3.5C11.1667 3.5 10.4583 3.79167 9.875 4.375C9.29167 4.95833 9 5.66667 9 6.5V8.5Z",
+        fill: "currentColor"
+    })
+})
+  , CheckCircleIcon = ({size: tt=16, className: _t, style: Yt}) => jsxRuntimeExports.jsx("svg", {
+    width: tt,
+    height: tt,
+    viewBox: "0 0 16 16",
+    fill: "none",
+    className: _t,
+    style: Yt,
+    "aria-hidden": !0,
+    children: jsxRuntimeExports.jsx("path", {
+        d: "M7.05459 9.06091L5.72492 7.73124C5.58681 7.59302 5.41264 7.52391 5.20242 7.52391C4.99231 7.52391 4.81814 7.59302 4.67992 7.73124C4.54181 7.86935 4.47342 8.04352 4.47475 8.25374C4.47609 8.46385 4.54581 8.63796 4.68392 8.77608L6.52025 10.6124C6.67314 10.7643 6.85153 10.8402 7.05542 10.8402C7.2592 10.8402 7.43709 10.7643 7.58909 10.6124L11.2959 6.90541C11.4341 6.7673 11.5033 6.59385 11.5033 6.38508C11.5033 6.17619 11.4341 6.00269 11.2959 5.86457C11.1578 5.72635 10.9836 5.65724 10.7734 5.65724C10.5633 5.65724 10.3892 5.72635 10.2511 5.86457L7.05459 9.06091ZM7.99992 14.8026C7.05648 14.8026 6.17125 14.6241 5.34425 14.2672C4.51714 13.9104 3.7977 13.4261 3.18592 12.8144C2.57425 12.2026 2.08998 11.4832 1.73309 10.6561C1.3762 9.82907 1.19775 8.94385 1.19775 8.00041C1.19775 7.05696 1.3762 6.17174 1.73309 5.34474C2.08998 4.51763 2.57425 3.79819 3.18592 3.18641C3.7977 2.57474 4.51714 2.09046 5.34425 1.73358C6.17125 1.37669 7.05648 1.19824 7.99992 1.19824C8.94336 1.19824 9.82859 1.37669 10.6556 1.73358C11.4827 2.09046 12.2021 2.57474 12.8139 3.18641C13.4256 3.79819 13.9099 4.51763 14.2668 5.34474C14.6236 6.17174 14.8021 7.05696 14.8021 8.00041C14.8021 8.94385 14.6236 9.82907 14.2668 10.6561C13.9099 11.4832 13.4256 12.2026 12.8139 12.8144C12.2021 13.4261 11.4827 13.9104 10.6556 14.2672C9.82859 14.6241 8.94336 14.8026 7.99992 14.8026Z",
+        fill: "currentColor"
+    })
+})
+  , ChevronIcon = ({size: tt=24, className: _t, style: Yt}) => jsxRuntimeExports.jsx("svg", {
+    width: tt,
+    height: tt,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    className: _t,
+    style: Yt,
+    "aria-hidden": !0,
+    children: jsxRuntimeExports.jsx("path", {
+        d: "M11.6248 9.0877C11.5081 9.12936 11.3998 9.2002 11.2998 9.3002L6.6998 13.9002C6.51647 14.0835 6.4248 14.3169 6.4248 14.6002C6.4248 14.8835 6.51647 15.1169 6.6998 15.3002C6.88314 15.4835 7.11647 15.5752 7.3998 15.5752C7.68314 15.5752 7.91647 15.4835 8.0998 15.3002L11.9998 11.4002L15.8998 15.3002C16.0831 15.4835 16.3165 15.5752 16.5998 15.5752C16.8831 15.5752 17.1165 15.4835 17.2998 15.3002C17.4831 15.1169 17.5748 14.8835 17.5748 14.6002C17.5748 14.3169 17.4831 14.0835 17.2998 13.9002L12.6998 9.3002C12.5998 9.2002 12.4915 9.12936 12.3748 9.0877C12.2581 9.04603 12.1331 9.0252 11.9998 9.0252C11.8665 9.0252 11.7415 9.04603 11.6248 9.0877Z",
+        fill: "currentColor"
+    })
+})
+  , GiftIcon = ({size: tt=20, className: _t, style: Yt}) => jsxRuntimeExports.jsx("svg", {
+    width: tt,
+    height: tt,
+    viewBox: "0 0 20 20",
+    fill: "none",
+    className: _t,
+    style: Yt,
+    "aria-hidden": !0,
+    children: jsxRuntimeExports.jsx("path", {
+        d: "M3.33317 16.6663V9.16634C2.87484 9.16634 2.48248 9.00315 2.15609 8.67676C1.8297 8.35037 1.6665 7.95801 1.6665 7.49967V5.83301C1.6665 5.37467 1.8297 4.98231 2.15609 4.65592C2.48248 4.32954 2.87484 4.16634 3.33317 4.16634H5.99984C5.93039 4.04134 5.88525 3.9094 5.86442 3.77051C5.84359 3.63162 5.83317 3.48579 5.83317 3.33301C5.83317 2.63856 6.07623 2.04829 6.56234 1.56217C7.04845 1.07606 7.63873 0.833008 8.33317 0.833008C8.65261 0.833008 8.95123 0.892036 9.229 1.01009C9.50678 1.12815 9.76373 1.29134 9.99984 1.49967C10.2359 1.27745 10.4929 1.11079 10.7707 0.999674C11.0484 0.888563 11.3471 0.833008 11.6665 0.833008C12.3609 0.833008 12.9512 1.07606 13.4373 1.56217C13.9234 2.04829 14.1665 2.63856 14.1665 3.33301C14.1665 3.48579 14.1526 3.62815 14.1248 3.76009C14.0971 3.89204 14.0554 4.02745 13.9998 4.16634H16.6665C17.1248 4.16634 17.5172 4.32954 17.8436 4.65592C18.17 4.98231 18.3332 5.37467 18.3332 5.83301V7.49967C18.3332 7.95801 18.17 8.35037 17.8436 8.67676C17.5172 9.00315 17.1248 9.16634 16.6665 9.16634V16.6663C16.6665 17.1247 16.5033 17.517 16.1769 17.8434C15.8505 18.1698 15.4582 18.333 14.9998 18.333H4.99984C4.5415 18.333 4.14914 18.1698 3.82275 17.8434C3.49636 17.517 3.33317 17.1247 3.33317 16.6663ZM11.0728 2.73926C10.913 2.89898 10.8332 3.0969 10.8332 3.33301C10.8332 3.56912 10.913 3.76704 11.0728 3.92676C11.2325 4.08648 11.4304 4.16634 11.6665 4.16634C11.9026 4.16634 12.1005 4.08648 12.2603 3.92676C12.42 3.76704 12.4998 3.56912 12.4998 3.33301C12.4998 3.0969 12.42 2.89898 12.2603 2.73926C12.1005 2.57954 11.9026 2.49967 11.6665 2.49967C11.4304 2.49967 11.2325 2.57954 11.0728 2.73926ZM7.49984 3.33301C7.49984 3.56912 7.5797 3.76704 7.73942 3.92676C7.89914 4.08648 8.09706 4.16634 8.33317 4.16634C8.56928 4.16634 8.7672 4.08648 8.92692 3.92676C9.08664 3.76704 9.1665 3.56912 9.1665 3.33301C9.1665 3.0969 9.08664 2.89898 8.92692 2.73926C8.7672 2.57954 8.56928 2.49967 8.33317 2.49967C8.09706 2.49967 7.89914 2.57954 7.73942 2.73926C7.5797 2.89898 7.49984 3.0969 7.49984 3.33301ZM3.33317 5.83301V7.49967H9.1665V5.83301H3.33317ZM9.1665 16.6663V9.16634H4.99984V16.6663H9.1665ZM10.8332 16.6663H14.9998V9.16634H10.8332V16.6663ZM16.6665 7.49967V5.83301H10.8332V7.49967H16.6665Z",
+        fill: "currentColor"
+    })
+})
+  , LanguageIcon = ({size: tt=24, className: _t, style: Yt}) => jsxRuntimeExports.jsx("svg", {
+    width: tt,
+    height: tt,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    className: _t,
+    style: Yt,
+    "aria-hidden": !0,
+    children: jsxRuntimeExports.jsx("path", {
+        d: "M12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22ZM12 19.95C12.4333 19.35 12.8083 18.725 13.125 18.075C13.4417 17.425 13.7 16.7333 13.9 16H10.1C10.3 16.7333 10.5583 17.425 10.875 18.075C11.1917 18.725 11.5667 19.35 12 19.95ZM9.4 19.55C9.1 19 8.8375 18.4292 8.6125 17.8375C8.3875 17.2458 8.2 16.6333 8.05 16H5.1C5.58333 16.8333 6.1875 17.5583 6.9125 18.175C7.6375 18.7917 8.46667 19.25 9.4 19.55ZM14.6 19.55C15.5333 19.25 16.3625 18.7917 17.0875 18.175C17.8125 17.5583 18.4167 16.8333 18.9 16H15.95C15.8 16.6333 15.6125 17.2458 15.3875 17.8375C15.1625 18.4292 14.9 19 14.6 19.55ZM4.25 14H7.65C7.6 13.6667 7.5625 13.3375 7.5375 13.0125C7.5125 12.6875 7.5 12.35 7.5 12C7.5 11.65 7.5125 11.3125 7.5375 10.9875C7.5625 10.6625 7.6 10.3333 7.65 10H4.25C4.16667 10.3333 4.10417 10.6625 4.0625 10.9875C4.02083 11.3125 4 11.65 4 12C4 12.35 4.02083 12.6875 4.0625 13.0125C4.10417 13.3375 4.16667 13.6667 4.25 14ZM9.65 14H14.35C14.4 13.6667 14.4375 13.3375 14.4625 13.0125C14.4875 12.6875 14.5 12.35 14.5 12C14.5 11.65 14.4875 11.3125 14.4625 10.9875C14.4375 10.6625 14.4 10.3333 14.35 10H9.65C9.6 10.3333 9.5625 10.6625 9.5375 10.9875C9.5125 11.3125 9.5 11.65 9.5 12C9.5 12.35 9.5125 12.6875 9.5375 13.0125C9.5625 13.3375 9.6 13.6667 9.65 14ZM16.35 14H19.75C19.8333 13.6667 19.8958 13.3375 19.9375 13.0125C19.9792 12.6875 20 12.35 20 12C20 11.65 19.9792 11.3125 19.9375 10.9875C19.8958 10.6625 19.8333 10.3333 19.75 10H16.35C16.4 10.3333 16.4375 10.6625 16.4625 10.9875C16.4875 11.3125 16.5 11.65 16.5 12C16.5 12.35 16.4875 12.6875 16.4625 13.0125C16.4375 13.3375 16.4 13.6667 16.35 14ZM15.95 8H18.9C18.4167 7.16667 17.8125 6.44167 17.0875 5.825C16.3625 5.20833 15.5333 4.75 14.6 4.45C14.9 5 15.1625 5.57083 15.3875 6.1625C15.6125 6.75417 15.8 7.36667 15.95 8ZM10.1 8H13.9C13.7 7.26667 13.4417 6.575 13.125 5.925C12.8083 5.275 12.4333 4.65 12 4.05C11.5667 4.65 11.1917 5.275 10.875 5.925C10.5583 6.575 10.3 7.26667 10.1 8ZM5.1 8H8.05C8.2 7.36667 8.3875 6.75417 8.6125 6.1625C8.8375 5.57083 9.1 5 9.4 4.45C8.46667 4.75 7.6375 5.20833 6.9125 5.825C6.1875 6.44167 5.58333 7.16667 5.1 8Z",
+        fill: "currentColor"
+    })
+});
+function useAnimatedNumber(tt, _t=900) {
+    const [Yt,Kt] = reactExports.useState(tt)
+      , Xt = reactExports.useRef(tt)
+      , Jt = reactExports.useRef(null);
+    return reactExports.useEffect( () => {
+        if (Jt.current !== null && cancelAnimationFrame(Jt.current),
+        Xt.current === tt) {
+            Kt(tt);
+            return
+        }
+        const Zt = Xt.current
+          , tn = tt - Zt
+          , nn = performance.now()
+          , an = un => {
+            const dn = Math.min(1, (un - nn) / _t)
+              , fn = 1 - Math.pow(1 - dn, 3)
+              , hn = dn < 1 ? Zt + tn * fn : tt;
+            Xt.current = hn,
+            Kt(hn),
+            dn < 1 && (Jt.current = requestAnimationFrame(an))
+        }
+        ;
+        return Jt.current = requestAnimationFrame(an),
+        () => {
+            Jt.current !== null && cancelAnimationFrame(Jt.current)
+        }
+    }
+    , [tt, _t]),
+    Yt
+}
+const MIN_CLAIM_TON = .01
+  , PlayBonusCard = ({pendingTon: tt, claimUnlocked: _t, unlockLevelName: Yt, claiming: Kt, onClaim: Xt, onInfo: Jt}) => {
+    const {t: Zt} = useTranslation("vip")
+      , tn = _t && tt >= MIN_CLAIM_TON && !Kt
+      , nn = useAnimatedNumber(tt);
+    return jsxRuntimeExports.jsxs("div", {
+        className: "rounded-xl p-4",
+        style: {
+            background: VIP_CARD_BG
+        },
+        children: [jsxRuntimeExports.jsxs("div", {
+            className: "flex items-center justify-between",
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center gap-1",
+                children: [jsxRuntimeExports.jsx(GiftIcon, {
+                    size: 20,
+                    className: "text-white/50"
+                }), jsxRuntimeExports.jsx("span", {
+                    className: "text-base font-bold text-white",
+                    children: Zt("PLAYBONUS.TITLE")
+                })]
+            }), jsxRuntimeExports.jsx("button", {
+                onClick: Jt,
+                "aria-label": Zt("PLAYBONUS.INFO_TITLE"),
+                className: "-m-2.5 p-2.5 text-white/50 active:scale-90 transition",
+                children: jsxRuntimeExports.jsx(InfoIcon, {
+                    size: 22,
+                    className: "pointer-events-none"
+                })
+            })]
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "flex items-center gap-1.5 mt-3",
+            children: [jsxRuntimeExports.jsx("span", {
+                className: "text-[40px] leading-[44px] font-bold text-white tabular-nums",
+                children: formatTonBalance(nn)
+            }), jsxRuntimeExports.jsx("img", {
+                src: "/assets/images/ton_symbol.svg",
+                alt: "TON",
+                className: "w-8 h-8"
+            })]
+        }), jsxRuntimeExports.jsx("button", {
+            onClick: Xt,
+            disabled: !tn,
+            className: "w-full mt-3 min-h-[57px] rounded-[15px] px-5 py-2 transition active:scale-[0.99] disabled:active:scale-100",
+            style: {
+                background: _t ? VIP_ACCENT : "rgba(255,255,255,0.10)"
+            },
+            children: jsxRuntimeExports.jsxs("span", {
+                className: `flex items-center justify-center gap-2 text-center leading-snug text-white ${_t ? "text-[18px]" : "text-[16px]"}`,
+                style: {
+                    fontWeight: _t ? 800 : 700,
+                    opacity: _t ? 1 : .3
+                },
+                children: [Kt ? jsxRuntimeExports.jsx(LoaderCircle, {
+                    size: 20,
+                    className: "animate-spin"
+                }) : _t ? null : jsxRuntimeExports.jsx(LockIcon, {
+                    size: 20
+                }), _t ? Zt("PLAYBONUS.CLAIM") : Zt("PLAYBONUS.LOCKED_CLAIM", {
+                    level: Yt
+                })]
+            })
+        }), jsxRuntimeExports.jsx("p", {
+            className: "mt-3 text-xs font-bold leading-[15px] text-white/50",
+            children: Zt("PLAYBONUS.NOTE", {
+                level: Yt
+            })
+        })]
+    })
+}
+  , VIP_MANAGER_CHAT = "https://t.me/epic_gift_vip"
+  , openVipManagerChat = () => {
+    nu.isAvailable() ? nu(VIP_MANAGER_CHAT) : window.open(VIP_MANAGER_CHAT, "_blank")
+}
+  , PerkRow = ({earned: tt, children: _t}) => jsxRuntimeExports.jsxs("li", {
+    className: "flex items-center gap-1 min-h-9",
+    style: {
+        opacity: tt ? 1 : .5
+    },
+    children: [jsxRuntimeExports.jsx(CheckCircleIcon, {
+        size: 16,
+        className: "flex-none",
+        style: {
+            color: tt ? VIP_SUCCESS : "#ffffff"
+        }
+    }), _t]
+})
+  , LevelCard = ({level: tt, index: _t, state: Yt, playBonusUnlockLevel: Kt, claiming: Xt, onClaim: Jt}) => {
+    const {t: Zt} = useTranslation("vip")
+      , tn = perkFlags(_t, Kt)
+      , nn = tt.reward?.status === "claimed"
+      , an = tt.reached && tt.reward?.status === "unclaimed"
+      , [un,dn] = reactExports.useState(Yt === "current" || Yt === "passed" && an)
+      , fn = [{
+        text: Zt("PERKS.PROMO")
+    }, {
+        text: Zt("PERKS.DROPS")
+    }];
+    tn.raffle && fn.push({
+        text: Zt("PERKS.RAFFLES")
+    }),
+    tn.playBonus && fn.push({
+        text: Zt("PERKS.PLAYBONUS")
+    }),
+    tn.manager && fn.push({
+        text: Zt("PERKS.MANAGER"),
+        managerLink: !0
+    }),
+    tn.managerBonus && fn.push({
+        text: Zt("PERKS.MANAGER_BONUS")
+    });
+    const hn = tt.rewardType === "nft" ? Zt("PERKS.REWARD_NFT") : Zt("PERKS.REWARD_TON", {
+        amount: tt.rewardAmountTon
+    });
+    return jsxRuntimeExports.jsxs("div", {
+        className: "rounded-xl p-4",
+        style: {
+            background: VIP_CARD_BG
+        },
+        children: [jsxRuntimeExports.jsxs("button", {
+            type: "button",
+            onClick: () => dn(mn => !mn),
+            className: "w-full flex items-center gap-3 text-left",
+            style: {
+                opacity: tt.reached || un ? 1 : .35
+            },
+            children: [jsxRuntimeExports.jsx(TierGem, {
+                tier: tt.key,
+                size: 50,
+                dimmed: !tt.reached
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex-1 min-w-0",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center gap-1",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "text-[18px] leading-5 font-bold text-white truncate",
+                        children: LEVEL_NAMES[tt.key]
+                    }), !tt.reached && jsxRuntimeExports.jsx(LockIcon, {
+                        size: 16,
+                        className: "text-white flex-none"
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center gap-1 mt-1.5",
+                    children: [jsxRuntimeExports.jsx("img", {
+                        src: "/assets/images/ton_symbol.svg",
+                        alt: "",
+                        className: "w-4 h-4"
+                    }), jsxRuntimeExports.jsxs("span", {
+                        className: "text-sm leading-4 font-bold text-white",
+                        children: [formatNum(tt.thresholdTon), " TON"]
+                    })]
+                })]
+            }), Yt === "current" && jsxRuntimeExports.jsx("span", {
+                className: "flex-none rounded-full bg-white/10 px-3 py-[7px] text-xs font-extrabold text-white",
+                children: Zt("CURRENT")
+            }), jsxRuntimeExports.jsx(ChevronIcon, {
+                size: 24,
+                className: `flex-none text-white transition-transform ${un ? "" : "rotate-180"}`
+            })]
+        }), un && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "h-px bg-white/10 my-3"
+            }), jsxRuntimeExports.jsxs("ul", {
+                children: [jsxRuntimeExports.jsx(PerkRow, {
+                    earned: tt.reached,
+                    children: jsxRuntimeExports.jsx("span", {
+                        className: "flex-1 text-sm font-bold text-white leading-4",
+                        children: Zt("PERKS.TASK_TICKETS", {
+                            tickets: formatNum(tt.taskTickets)
+                        })
+                    })
+                }), jsxRuntimeExports.jsxs(PerkRow, {
+                    earned: tt.reached,
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "flex-1 text-sm font-bold text-white leading-4",
+                        children: hn
+                    }), an && jsxRuntimeExports.jsx("button", {
+                        onClick: () => Jt(_t),
+                        disabled: Xt,
+                        className: "flex-none rounded-full px-3 py-[7px] text-xs font-extrabold text-white active:scale-95 transition disabled:opacity-60",
+                        style: {
+                            background: VIP_ACCENT
+                        },
+                        children: Xt ? jsxRuntimeExports.jsx(LoaderCircle, {
+                            size: 13,
+                            className: "animate-spin"
+                        }) : Zt("CLAIM")
+                    }), nn && jsxRuntimeExports.jsx("span", {
+                        className: "flex-none px-3 py-[7px] text-xs font-extrabold",
+                        style: {
+                            color: VIP_SUCCESS
+                        },
+                        children: Zt("CLAIMED")
+                    })]
+                }), fn.map(mn => jsxRuntimeExports.jsx(PerkRow, {
+                    earned: tt.reached,
+                    children: mn.managerLink && tt.reached ? jsxRuntimeExports.jsx("button", {
+                        type: "button",
+                        onClick: openVipManagerChat,
+                        className: "flex-1 text-left text-sm font-bold leading-4 active:opacity-70 transition-opacity",
+                        style: {
+                            color: VIP_ACCENT
+                        },
+                        children: mn.text
+                    }) : jsxRuntimeExports.jsx("span", {
+                        className: "flex-1 text-sm font-bold text-white leading-4",
+                        children: mn.text
+                    })
+                }, mn.text))]
+            })]
+        })]
+    })
+}
+  , RewardPopup = ({data: tt, onClose: _t}) => {
+    const {t: Yt} = useTranslation(["vip", "common"]);
+    if (!tt)
+        return null;
+    const Kt = tt.kind === "ton"
+      , Xt = Kt ? `+${formatNum(tt.amountTon ?? 0)} TON` : tt.giftTitle ? tt.giftTitle : "+1 NFT"
+      , Jt = Kt ? null : tt.giftPriceTon ?? null;
+    return reactDomExports.createPortal(jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "fixed inset-0 bg-black/60 z-[1000]",
+            onClick: Zt => {
+                Zt.target === Zt.currentTarget && _t()
+            }
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "fixed bottom-0 left-0 right-0 mx-auto w-full max-w-md bg-[#1E1E1E] rounded-t-3xl shadow-2xl border-t border-white/10 overflow-hidden z-[1001] animate-slide-up",
+            style: {
+                paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 16px)"
+            },
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "relative z-10 flex justify-center pt-3 pb-2",
+                children: jsxRuntimeExports.jsx("div", {
+                    className: "w-12 h-1 bg-white/20 rounded-full"
+                })
+            }), jsxRuntimeExports.jsx("div", {
+                className: "relative z-10 px-6 pb-4",
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [jsxRuntimeExports.jsx("h2", {
+                        className: "text-white text-xl font-bold",
+                        children: Yt("vip:REWARD_CLAIMED")
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: _t,
+                        "aria-label": "close",
+                        className: "w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center",
+                        children: jsxRuntimeExports.jsx(X, {
+                            size: 16,
+                            className: "text-white"
+                        })
+                    })]
+                })
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "relative z-10 px-6 pb-6",
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "relative mb-6",
+                    children: jsxRuntimeExports.jsxs("div", {
+                        className: "relative mx-auto w-32 h-32 rounded-2xl",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            className: "absolute inset-0 bg-gradient-to-br from-[#8774E1] to-[#7B68D4] opacity-20 rounded-2xl blur-2xl animate-pulse"
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "absolute -inset-4 bg-gradient-to-br from-[#8774E1] to-[#7B68D4] opacity-10 rounded-[2rem] blur-3xl animate-pulse delay-75"
+                        }), Kt || !tt.giftSlug ? jsxRuntimeExports.jsx("div", {
+                            className: "relative z-20 w-full h-full rounded-2xl shadow-2xl overflow-hidden bg-gradient-to-br from-[#363636] to-[#2C2C2C] flex items-center justify-center",
+                            children: jsxRuntimeExports.jsx("img", {
+                                src: "/assets/images/ton_symbol.svg",
+                                alt: "TON",
+                                className: "w-16 h-16"
+                            })
+                        }) : jsxRuntimeExports.jsx("div", {
+                            className: "relative z-20 w-full h-full rounded-2xl shadow-2xl overflow-hidden",
+                            children: jsxRuntimeExports.jsx(GiftPreview, {
+                                gift: {
+                                    id: 0,
+                                    name: tt.giftTitle ?? void 0,
+                                    slug: tt.giftSlug,
+                                    num: tt.giftNum ?? null,
+                                    giftType: tt.giftNum != null ? "deposited" : null
+                                },
+                                className: "w-full h-full"
+                            })
+                        })]
+                    })
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "text-center mb-6",
+                    children: [jsxRuntimeExports.jsx("h3", {
+                        className: "text-white text-2xl font-bold mb-3 px-2",
+                        children: Xt
+                    }), !Kt && tt.giftNum != null && jsxRuntimeExports.jsx("div", {
+                        className: "mb-3",
+                        children: jsxRuntimeExports.jsx("div", {
+                            className: "inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-gradient-to-r from-emerald-500/15 to-teal-500/15 border border-emerald-400/40 backdrop-blur-sm shadow-lg",
+                            children: jsxRuntimeExports.jsxs("span", {
+                                className: "text-emerald-300 font-bold text-xs tracking-wide",
+                                children: ["#", tt.giftNum]
+                            })
+                        })
+                    }), Jt != null && Jt > 0 && jsxRuntimeExports.jsxs("div", {
+                        className: "inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-2xl border border-white/10",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "text-white font-bold text-lg",
+                            children: Jt < .01 ? Jt.toFixed(3) : Jt.toFixed(2)
+                        }), jsxRuntimeExports.jsx("img", {
+                            src: "/assets/images/ton_symbol.svg",
+                            alt: "TON",
+                            className: "w-5 h-5"
+                        })]
+                    }), Kt && jsxRuntimeExports.jsx("p", {
+                        className: "mt-3 text-white/50 text-sm",
+                        children: Yt("vip:CREDITED_TO_BALANCE")
+                    })]
+                }), jsxRuntimeExports.jsxs("button", {
+                    onClick: _t,
+                    className: "w-full bg-gradient-to-r from-[#8774E1] to-[#7B68D4] hover:opacity-90 text-white px-6 py-4 rounded-2xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg relative overflow-hidden group",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        children: Yt("vip:AWESOME")
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"
+                    })]
+                })]
+            })]
+        })]
+    }), document.body)
+}
+  , languages = [{
+    code: "en",
+    nativeName: "English"
+}, {
+    code: "ru",
+    nativeName: "Ð ÑƒÑÑÐºÐ¸Ð¹"
+}, {
+    code: "fa",
+    nativeName: "ÙØ§Ø±Ø³ÛŒ"
+}, {
+    code: "zh",
+    nativeName: "ä¸­æ–‡"
+}]
+  , LanguageMenu = ({open: tt, onClose: _t}) => {
+    const {t: Yt, i18n: Kt} = useTranslation(["settings", "toasts"])
+      , [Xt,Jt] = reactExports.useState(null);
+    if (!tt)
+        return null;
+    const Zt = async tn => {
+        if (tn === Kt.language || Xt)
+            return;
+        const nn = Kt.language;
+        Jt(tn);
+        try {
+            await Kt.changeLanguage(tn),
+            await UserService.changeLocale(tn),
+            toast.success(Kt.t("toasts:SUCCESS.SETTINGS_SAVED", {
+                lng: tn
+            })),
+            _t()
+        } catch (an) {
+            console.error("Failed to change locale:", an),
+            await Kt.changeLanguage(nn),
+            toast.error(an instanceof Error ? an.message : Yt("toasts:ERROR.FAILED_TO_SAVE_SETTINGS"))
+        } finally {
+            Jt(null)
+        }
+    }
+    ;
+    return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "fixed inset-0 z-20",
+            onClick: _t
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "absolute right-4 top-[50px] z-30 w-[170px] rounded-xl border border-white/10 bg-white/10 backdrop-blur-2xl px-2 py-3",
+            role: "menu",
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "px-1 text-xs font-bold text-white",
+                children: Yt("settings:LANGUAGE", "Language")
+            }), jsxRuntimeExports.jsx("div", {
+                className: "mt-1",
+                children: languages.map(tn => {
+                    const nn = (Kt.resolvedLanguage ?? Kt.language) === tn.code
+                      , an = Xt === tn.code;
+                    return jsxRuntimeExports.jsxs("button", {
+                        role: "menuitem",
+                        onClick: () => Zt(tn.code),
+                        disabled: an,
+                        className: `w-full flex items-center gap-2 rounded-lg px-1 py-3 text-left text-xs font-semibold text-white transition
+                  ${nn ? "bg-white/10" : "active:bg-white/5"}`,
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "flex-1 truncate",
+                            children: tn.nativeName
+                        }), an ? jsxRuntimeExports.jsx(LoaderCircle, {
+                            size: 14,
+                            className: "animate-spin text-white/70"
+                        }) : nn ? jsxRuntimeExports.jsx(Check, {
+                            size: 14,
+                            strokeWidth: 3,
+                            style: {
+                                color: VIP_SUCCESS
+                            }
+                        }) : null]
+                    }, tn.code)
+                }
+                )
+            })]
+        })]
+    })
+}
+  , VipProfilePage = () => {
+    const {t: tt, i18n: _t} = useTranslation(["vip", "settings"])
+      , {user: Yt} = useUser()
+      , Kt = useStore(vr => vr.setBalance)
+      , [Xt,Jt] = reactExports.useState(null)
+      , [Zt,tn] = reactExports.useState(!0)
+      , [nn,an] = reactExports.useState(!1)
+      , [un,dn] = reactExports.useState(null)
+      , [fn,hn] = reactExports.useState(!1)
+      , [mn,En] = reactExports.useState(null)
+      , [gn,Sn] = reactExports.useState(!1)
+      , [yn,bn] = reactExports.useState(!1)
+      , [Cn,Pn] = reactExports.useState(!1)
+      , $n = reactExports.useCallback(async () => {
+        try {
+            const vr = await VipService.getMe();
+            Jt(vr),
+            an(!1)
+        } catch (vr) {
+            console.error("Failed to load VIP status:", vr),
+            an(!0)
+        } finally {
+            tn(!1)
+        }
+    }
+    , []);
+    reactExports.useEffect( () => {
+        $n()
+    }
+    , [$n]);
+    const wn = reactExports.useCallback( () => {
+        tn(!0),
+        $n()
+    }
+    , [$n])
+      , An = !Zt && Xt?.enabled === !0
+      , Bn = (_t.resolvedLanguage || "en").slice(0, 2).toUpperCase()
+      , Xn = Xt?.level ?? -1
+      , Mn = Xt?.levelKey ?? null
+      , Wn = tierTheme(Mn)
+      , hr = Mn ? LEVEL_NAMES[Mn] : tt("NO_STATUS")
+      , fr = Xt?.playBonus.unlockLevelKey ?? Xt?.levels[Xt.playBonus.unlockLevel]?.key ?? null
+      , Cr = fr ? LEVEL_NAMES[fr] : ""
+      , us = reactExports.useMemo( () => {
+        if (!Xt)
+            return null;
+        const vr = Xt.nextLevel;
+        if (!vr)
+            return {
+                pct: 100,
+                leftTon: 0,
+                next: null
+            };
+        const Sr = vr.thresholdTon > 0 ? Xt.turnoverTon / vr.thresholdTon * 100 : 0;
+        return {
+            pct: Sr <= 0 ? 0 : Math.min(100, Math.max(2, Sr)),
+            leftTon: Math.max(0, vr.thresholdTon - Xt.turnoverTon),
+            next: vr
+        }
+    }
+    , [Xt])
+      , oi = vr => {
+        const Sr = vr instanceof Error ? vr.message : "";
+        return ["ALREADY_CLAIMED", "NO_GIFT_AVAILABLE", "PLAYBONUS_LOCKED", "NOTHING_TO_CLAIM", "VIP_DISABLED"].includes(Sr) ? tt(`ERRORS.${Sr}`) : Sr || tt("ERRORS.VIP_DISABLED")
+    }
+      , dr = async vr => {
+        if (un == null) {
+            dn(vr);
+            try {
+                const Sr = await VipService.claimLevelReward(vr);
+                Sr.rewardType === "ton" ? (typeof Sr.balance == "number" && Kt(Sr.balance),
+                En({
+                    kind: "ton",
+                    amountTon: Sr.amountTon ?? 0
+                })) : En({
+                    kind: "nft",
+                    giftTitle: Sr.gift?.title ?? null,
+                    giftSlug: Sr.gift?.slug ?? null,
+                    giftNum: Sr.gift?.num ?? null,
+                    giftPriceTon: Sr.gift?.amountTon
+                }),
+                await $n()
+            } catch (Sr) {
+                toast.error(oi(Sr))
+            } finally {
+                dn(null)
+            }
+        }
+    }
+      , yr = async () => {
+        if (!fn) {
+            hn(!0);
+            try {
+                const vr = await VipService.claimPlayBonus();
+                Kt(vr.balance),
+                await $n()
+            } catch (vr) {
+                toast.error(oi(vr))
+            } finally {
+                hn(!1)
+            }
+        }
+    }
+    ;
+    return jsxRuntimeExports.jsxs(Page, {
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "flex-1 overflow-y-auto",
+            children: jsxRuntimeExports.jsxs("div", {
+                className: "max-w-md mx-auto py-4 space-y-3",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#2a2547] via-[#221f38] to-[#151322] p-4 flex flex-col items-center overflow-hidden",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "pointer-events-none absolute inset-0",
+                        "aria-hidden": "true",
+                        children: [jsxRuntimeExports.jsx("div", {
+                            className: "absolute -top-12 right-0 h-36 w-36 rounded-full bg-[#8774E1]/25 blur-[90px] animate-[pulse_6s_ease-in-out_infinite]"
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "absolute bottom-0 left-[-10%] h-32 w-32 rounded-full bg-gradient-to-tr from-[#fde68a]/15 to-transparent blur-[80px]"
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent opacity-70"
+                        })]
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: () => Pn(!0),
+                        "aria-label": `${tt("settings:LANGUAGE")}: ${Bn}`,
+                        className: "absolute top-2 right-2 p-2 active:scale-90 transition",
+                        children: jsxRuntimeExports.jsxs("span", {
+                            className: "h-7 pl-2 pr-2.5 rounded-full bg-white/10 flex items-center gap-1 text-white/70",
+                            children: [jsxRuntimeExports.jsx(LanguageIcon, {
+                                size: 15,
+                                className: "pointer-events-none"
+                            }), jsxRuntimeExports.jsx("span", {
+                                className: "text-[11px] leading-none font-extrabold tracking-wide",
+                                children: Bn
+                            })]
+                        })
+                    }), jsxRuntimeExports.jsx(LanguageMenu, {
+                        open: Cn,
+                        onClose: () => Pn(!1)
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "w-[84px] h-[84px] rounded-full p-[4px]",
+                        style: {
+                            background: Mn ? ringGradient(Wn) : "rgba(255,255,255,0.10)"
+                        },
+                        children: jsxRuntimeExports.jsx("div", {
+                            className: "w-full h-full rounded-full overflow-hidden bg-[#363636]",
+                            children: Yt?.photoUrl ? jsxRuntimeExports.jsx("img", {
+                                src: Yt.photoUrl,
+                                alt: "",
+                                className: "w-full h-full object-cover"
+                            }) : jsxRuntimeExports.jsx("div", {
+                                className: "w-full h-full grid place-items-center text-white text-2xl font-extrabold",
+                                children: Yt?.firstName?.charAt(0) || "?"
+                            })
+                        })
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "mt-3 text-[18px] leading-5 font-extrabold text-white text-center truncate max-w-full",
+                        children: Yt?.firstName
+                    }), An && jsxRuntimeExports.jsxs("div", {
+                        className: `w-full mt-5 rounded-2xl flex items-center gap-2 bg-white/10 ${Mn ? "h-[70px] px-3" : "h-[66px] px-3"}`,
+                        children: [jsxRuntimeExports.jsx(TierGem, {
+                            tier: Mn,
+                            size: Mn ? 54 : 50,
+                            glow: !!Mn,
+                            className: Mn ? void 0 : "opacity-30"
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: `flex-1 min-w-0 ${Mn ? "" : "opacity-50"}`,
+                            children: [jsxRuntimeExports.jsx("div", {
+                                className: "text-xs font-bold text-white/50",
+                                children: tt("VIP_STATUS_LABEL")
+                            }), jsxRuntimeExports.jsx("div", {
+                                className: "mt-1.5 text-[18px] leading-5 font-bold text-white truncate",
+                                children: hr
+                            })]
+                        }), jsxRuntimeExports.jsx("button", {
+                            onClick: () => Sn(!0),
+                            "aria-label": tt("INFO.TITLE"),
+                            className: "flex-none -m-2.5 p-2.5 text-white opacity-30 active:scale-90 transition",
+                            children: jsxRuntimeExports.jsx(InfoIcon, {
+                                size: 22,
+                                className: "pointer-events-none"
+                            })
+                        })]
+                    }), nn && !Xt && jsxRuntimeExports.jsxs("div", {
+                        className: "w-full mt-5 rounded-2xl bg-white/10 px-3 py-4 flex items-center gap-3",
+                        children: [jsxRuntimeExports.jsx("span", {
+                            className: "flex-1 text-sm font-bold text-white/70",
+                            children: tt("LOAD_FAILED")
+                        }), jsxRuntimeExports.jsx("button", {
+                            onClick: wn,
+                            disabled: Zt,
+                            className: "flex-none rounded-full px-4 py-2 text-xs font-extrabold text-white active:scale-95 transition disabled:opacity-60",
+                            style: {
+                                background: VIP_ACCENT
+                            },
+                            children: Zt ? jsxRuntimeExports.jsx(LoaderCircle, {
+                                size: 13,
+                                className: "animate-spin"
+                            }) : tt("RETRY")
+                        })]
+                    }), An && Xt && us && jsxRuntimeExports.jsxs("div", {
+                        className: "w-full mt-4",
+                        children: [jsxRuntimeExports.jsxs("div", {
+                            className: "flex items-center justify-between gap-3",
+                            children: [jsxRuntimeExports.jsxs("span", {
+                                className: "text-sm font-extrabold text-white whitespace-nowrap",
+                                children: [formatNum(Xt.turnoverTon), jsxRuntimeExports.jsxs("span", {
+                                    className: "text-white/50",
+                                    children: [us.next && ` / ${formatNum(us.next.thresholdTon)}`, " TON"]
+                                })]
+                            }), us.next ? jsxRuntimeExports.jsxs("span", {
+                                dir: "auto",
+                                className: "flex items-center gap-1 text-xs font-bold text-white whitespace-nowrap",
+                                children: [tt("TO_LEVEL_PREFIX"), jsxRuntimeExports.jsx(TierGem, {
+                                    tier: us.next.key,
+                                    size: 16
+                                }), jsxRuntimeExports.jsx("span", {
+                                    style: {
+                                        color: tierTheme(us.next.key).label ?? tierTheme(us.next.key).from
+                                    },
+                                    children: LEVEL_NAMES[us.next.key]
+                                }), tt("TO_LEVEL_SUFFIX")]
+                            }) : jsxRuntimeExports.jsx("span", {
+                                className: "text-xs font-bold text-white",
+                                children: tt("MAX_LEVEL")
+                            })]
+                        }), jsxRuntimeExports.jsx("div", {
+                            className: "mt-2 h-[14px] rounded-full bg-white/10",
+                            children: jsxRuntimeExports.jsx("div", {
+                                className: "h-full rounded-full transition-[width] duration-1000",
+                                style: {
+                                    width: `${us.next ? us.pct : 100}%`,
+                                    background: barGradient(Wn),
+                                    boxShadow: `0 4px 24px ${Wn.glow}`
+                                }
+                            })
+                        }), jsxRuntimeExports.jsxs("div", {
+                            className: "mt-2 flex items-center justify-between gap-3 text-xs font-bold text-white/50",
+                            children: [jsxRuntimeExports.jsx("span", {
+                                children: tt("TURNOVER")
+                            }), jsxRuntimeExports.jsx("span", {
+                                children: us.next ? tt("LEFT_TON", {
+                                    amount: formatNum(us.leftTon)
+                                }) : tt("MAX_REACHED")
+                            })]
+                        })]
+                    })]
+                }), An && Xt && jsxRuntimeExports.jsx(PlayBonusCard, {
+                    pendingTon: Xt.playBonus.pendingTon,
+                    claimUnlocked: Xt.playBonus.claimUnlocked,
+                    unlockLevelName: Cr,
+                    claiming: fn,
+                    onClaim: yr,
+                    onInfo: () => bn(!0)
+                }), An && Xt && jsxRuntimeExports.jsxs("div", {
+                    className: "pt-1",
+                    children: [jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center justify-between px-1 mb-3",
+                        children: [jsxRuntimeExports.jsx("h2", {
+                            className: "text-base font-bold text-white",
+                            children: tt("LEVELS_TITLE")
+                        }), jsxRuntimeExports.jsx("span", {
+                            className: "text-xs font-bold text-white/50",
+                            children: tt("TURNOVER_HINT")
+                        })]
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "space-y-3",
+                        children: Xt.levels.map( (vr, Sr) => jsxRuntimeExports.jsx(LevelCard, {
+                            level: vr,
+                            index: Sr,
+                            state: Sr < Xn ? "passed" : Sr === Xn ? "current" : "future",
+                            playBonusUnlockLevel: Xt.playBonus.unlockLevel,
+                            claiming: un === Sr,
+                            onClaim: dr
+                        }, vr.key))
+                    })]
+                })]
+            })
+        }), jsxRuntimeExports.jsxs(InfoModal, {
+            open: gn,
+            title: tt("INFO.TITLE"),
+            icon: jsxRuntimeExports.jsx(Gem, {
+                size: 15
+            }),
+            onClose: () => Sn(!1),
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "space-y-3.5",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "text-[12.5px] font-extrabold text-[#d9cffb] mb-0.5",
+                        children: tt("INFO.LEVEL_T")
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "text-[12.5px] text-white/70 leading-relaxed",
+                        children: tt("INFO.LEVEL_X")
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "text-[12.5px] font-extrabold text-[#d9cffb] mb-0.5",
+                        children: tt("INFO.PRIVILEGES_T")
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "text-[12.5px] text-white/70 leading-relaxed",
+                        children: tt("INFO.PRIVILEGES_X")
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "text-[12.5px] font-extrabold text-[#d9cffb] mb-0.5",
+                        children: "PLAYBONUS"
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "text-[12.5px] text-white/70 leading-relaxed",
+                        children: tt("INFO.PLAYBONUS_X")
+                    })]
+                })]
+            }), jsxRuntimeExports.jsx("div", {
+                className: "mt-4 pt-3 border-t border-[#444444]/40 text-xs text-white/50 leading-relaxed",
+                children: tt("INFO.FOOTER")
+            })]
+        }), jsxRuntimeExports.jsx(InfoModal, {
+            open: yn,
+            title: tt("PLAYBONUS.INFO_TITLE"),
+            icon: jsxRuntimeExports.jsx(Zap, {
+                size: 15
+            }),
+            onClose: () => bn(!1),
+            children: jsxRuntimeExports.jsx("ul", {
+                className: "space-y-2.5",
+                children: ["INFO_1", "INFO_2", "INFO_3", "INFO_4"].map(vr => jsxRuntimeExports.jsxs("li", {
+                    className: "flex gap-2.5 text-[12.5px] text-white/70 leading-relaxed",
+                    children: [jsxRuntimeExports.jsx("span", {
+                        className: "w-1.5 h-1.5 rounded-full bg-[#8971e6] flex-none mt-[7px]"
+                    }), jsxRuntimeExports.jsx("span", {
+                        children: tt(`PLAYBONUS.${vr}`, {
+                            level: Cr
+                        })
+                    })]
+                }, vr))
+            })
+        }), jsxRuntimeExports.jsx(RewardPopup, {
+            data: mn,
+            onClose: () => En(null)
+        })]
+    })
+}
+  , ACK_TIMEOUT_MS = 5e3
+  , ROLL_RETRY_DELAYS_MS = [1e3, 2e3, 4e3]
+  , RETRYABLE = new Set(["DEDUP_TIMEOUT", "NOT_CONNECTED", "ACK_TIMEOUT"]);
+class DiceServiceImpl {
+    balanceHandler = null;
+    configHandler = null;
+    subscribe() {
+        socketManager.connect(),
+        socketManager.subscribe({
+            module: "dice",
+            type: "user"
+        })
+    }
+    unsubscribe() {}
+    waitForConnection(_t=8e3) {
+        return socketManager.getSocket()?.connected ? Promise.resolve(!0) : new Promise(Kt => {
+            let Xt = !1;
+            const Jt = nn => {
+                Xt || (Xt = !0,
+                clearTimeout(tn),
+                socketManager.off("connect", Zt),
+                Kt(nn))
+            }
+              , Zt = () => {
+                socketManager.subscribe({
+                    module: "dice",
+                    type: "user"
+                }),
+                Jt(!0)
+            }
+              , tn = setTimeout( () => Jt(!1), _t);
+            socketManager.on("connect", Zt)
+        }
+        )
+    }
+    emitWithAck(_t, Yt) {
+        return new Promise(Kt => {
+            const Xt = socketManager.getSocket();
+            if (!Xt || !Xt.connected) {
+                Kt({
+                    ok: !1,
+                    error: "NOT_CONNECTED"
+                });
+                return
+            }
+            let Jt = !1;
+            const Zt = setTimeout( () => {
+                Jt || (Jt = !0,
+                Kt({
+                    ok: !1,
+                    error: "ACK_TIMEOUT"
+                }))
+            }
+            , ACK_TIMEOUT_MS);
+            Xt.emit(_t, Yt, tn => {
+                Jt || (Jt = !0,
+                clearTimeout(Zt),
+                Kt(tn ?? {
+                    ok: !1,
+                    error: "INTERNAL"
+                }))
+            }
+            )
+        }
+        )
+    }
+    getState() {
+        return this.emitWithAck("dice:get_state", null)
+    }
+    async roll(_t) {
+        let Yt = await this.emitWithAck("dice:roll", _t);
+        for (const Kt of ROLL_RETRY_DELAYS_MS) {
+            if (Yt.ok || !RETRYABLE.has(Yt.error ?? ""))
+                return Yt;
+            await new Promise(Xt => setTimeout(Xt, Kt)),
+            Yt = await this.emitWithAck("dice:roll", _t)
+        }
+        return Yt
+    }
+    history(_t=50, Yt) {
+        return this.emitWithAck("dice:history", {
+            limit: _t,
+            beforeId: Yt
+        })
+    }
+    getUserGifts() {
+        return this.emitWithAck("dice:get_user_gifts", null)
+    }
+    sellGift(_t, Yt) {
+        return this.emitWithAck("dice:sell_gift", {
+            giftId: _t,
+            giftType: Yt
+        })
+    }
+    onBalanceUpdate(_t) {
+        this.offBalanceUpdate(),
+        this.balanceHandler = _t,
+        socketManager.on("balance:update", this.balanceHandler)
+    }
+    offBalanceUpdate() {
+        this.balanceHandler && (socketManager.off("balance:update", this.balanceHandler),
+        this.balanceHandler = null)
+    }
+    onConfigUpdated(_t) {
+        this.offConfigUpdated(),
+        this.configHandler = _t,
+        socketManager.on("dice:config_updated", this.configHandler)
+    }
+    offConfigUpdated() {
+        this.configHandler && (socketManager.off("dice:config_updated", this.configHandler),
+        this.configHandler = null)
+    }
+}
+const DiceService = new DiceServiceImpl
+  , FALLBACK_MULTIPLIERS_E4 = {};
+for (let tt = 2; tt <= 96; tt++)
+    FALLBACK_MULTIPLIERS_E4[tt] = Math.floor(98e4 / tt);
+const FALLBACK_CONFIG = {
+    multipliersE4: FALLBACK_MULTIPLIERS_E4,
+    payoutRateBps: 9800,
+    minChancePct: 2,
+    maxChancePct: 96,
+    minBetTon: .1,
+    maxBetTon: 100,
+    maxPayoutTon: 2e3,
+    configVersion: 0
+};
+function chanceFor(tt, _t) {
+    return !Number.isInteger(_t) || _t < 0 || _t > 99 ? null : tt === "over" ? 99 - _t : _t
+}
+function chanceForMultiplier(tt, _t) {
+    if (!Number.isFinite(_t) || _t <= 0)
+        return tt.maxChancePct;
+    let Yt = tt.maxChancePct
+      , Kt = 1 / 0;
+    for (let Xt = tt.minChancePct; Xt <= tt.maxChancePct; Xt++) {
+        const Jt = tt.multipliersE4[Xt];
+        if (Jt == null)
+            continue;
+        const Zt = Math.abs(Jt / 1e4 - _t);
+        Zt < Kt && (Kt = Zt,
+        Yt = Xt)
+    }
+    return Yt
+}
+function chanceBpFor(tt, _t) {
+    return !Number.isInteger(_t) || _t < 0 || _t > 9999 ? null : tt === "over" ? 9999 - _t : _t
+}
+function targetBpForChanceBp(tt, _t) {
+    return tt === "over" ? 9999 - _t : _t
+}
+function chanceBpWindow(tt) {
+    return {
+        min: tt.minChancePct * 100,
+        max: tt.maxChancePct * 100
+    }
+}
+function multiplierE4ForChanceBp(tt, _t) {
+    return tt.payoutRateBps != null ? Math.floor(tt.payoutRateBps * 1e4 / _t) : tt.multipliersE4[Math.round(_t / 100)] ?? 0
+}
+function multiplierForChanceBp(tt, _t) {
+    return multiplierE4ForChanceBp(tt, _t) / 1e4
+}
+function chanceBpForMultiplier(tt, _t) {
+    const {min: Yt, max: Kt} = chanceBpWindow(tt);
+    if (tt.payoutRateBps == null)
+        return chanceForMultiplier(tt, _t) * 100;
+    if (!Number.isFinite(_t) || _t <= 0)
+        return Kt;
+    const Xt = Math.round(_t * 1e4);
+    if (Xt <= 0)
+        return Kt;
+    const Jt = Math.min(Kt, Math.max(Yt, Math.floor(tt.payoutRateBps * 1e4 / Xt)));
+    let Zt = Jt
+      , tn = Math.abs(multiplierE4ForChanceBp(tt, Jt) - Xt);
+    for (const nn of [Jt - 1, Jt + 1]) {
+        if (nn < Yt || nn > Kt)
+            continue;
+        const an = Math.abs(multiplierE4ForChanceBp(tt, nn) - Xt);
+        an < tn && (tn = an,
+        Zt = nn)
+    }
+    return Zt
+}
+const isBpRoll = tt => tt.domainScale === 1e4 && tt.rollBp != null;
+function rollDisplay(tt) {
+    return isBpRoll(tt) ? (tt.rollBp / 100).toFixed(2) : String(tt.roll)
+}
+function targetDisplay(tt) {
+    return isBpRoll(tt) && tt.targetBp != null ? (tt.targetBp / 100).toFixed(2) : String(tt.target)
+}
+const SS = {
+    tonAmount: "dice.lastTonBetAmount",
+    direction: "dice.lastDirection",
+    target: "dice.lastTarget"
+};
+function ssGet(tt) {
+    try {
+        return sessionStorage.getItem(tt)
+    } catch {
+        return null
+    }
+}
+function ssSet(tt, _t) {
+    try {
+        sessionStorage.setItem(tt, _t)
+    } catch {}
+}
+const PENDING_KEY = "dice.pending.v1"
+  , PENDING_TTL_MS = 6e4;
+function readPending() {
+    try {
+        const tt = sessionStorage.getItem(PENDING_KEY);
+        if (!tt)
+            return [];
+        const _t = JSON.parse(tt);
+        return Array.isArray(_t) ? _t : []
+    } catch {
+        return []
+    }
+}
+function writePending(tt) {
+    try {
+        sessionStorage.setItem(PENDING_KEY, JSON.stringify(tt))
+    } catch {}
+}
+function addPending(tt) {
+    const _t = readPending().filter(Yt => Date.now() - Yt.ts < PENDING_TTL_MS);
+    _t.push({
+        clientCommandId: tt,
+        ts: Date.now()
+    }),
+    writePending(_t)
+}
+function removePending(tt) {
+    writePending(readPending().filter(_t => _t.clientCommandId !== tt))
+}
+const TRANSPORT_UNCERTAIN_CODES = new Set(["ACK_TIMEOUT", "NOT_CONNECTED", "DEDUP_TIMEOUT"])
+  , LOST_ROLL_RECONCILE_MS = 5e3;
+function scheduleLostRollReconcile(tt) {
+    setTimeout( () => {
+        reconcileLostRoll(tt)
+    }
+    , LOST_ROLL_RECONCILE_MS)
+}
+function balanceDeltaOf(tt) {
+    return tt.rewardGift ? 0 : tt.payoutTon
+}
+async function reconcileLostRoll(tt) {
+    if (!readPending().some(Yt => Yt.clientCommandId === tt))
+        return;
+    await useDiceStore.getState().refreshState();
+    const _t = useDiceStore.getState().history.find(Yt => Yt.clientCommandId === tt);
+    _t && (removePending(tt),
+    useDiceStore.setState(Yt => ({
+        lastRoll: _t,
+        revealSeq: Yt.revealSeq + 1,
+        revealingIds: new Set(Yt.revealingIds).add(_t.rollId),
+        heldPayouts: _t.win && _t.payoutTon > 0 ? {
+            ...Yt.heldPayouts,
+            [_t.rollId]: balanceDeltaOf(_t)
+        } : Yt.heldPayouts
+    })),
+    (_t.stakedGift || _t.rewardGift) && useDiceStore.getState().fetchUserGifts())
+}
+function mapWireGift(tt, _t) {
+    return {
+        id: _t,
+        wireId: tt.id,
+        wireGiftType: tt.giftType,
+        name: tt.collectionName || tt.name || tt.slug || "Gift",
+        slug: tt.slug || "",
+        collectionName: tt.collectionName ?? null,
+        status: "unboxed",
+        unboxedAt: "",
+        giftBoxTitle: "",
+        price: Number(tt.price) || 0,
+        quickSellPrice: tt.quickSellPrice,
+        giftType: tt.giftType,
+        num: tt.num ?? void 0,
+        attributes: tt.attributes ? {
+            model: tt.attributes.model ?? null,
+            backdrop: tt.attributes.backdrop ?? void 0,
+            symbol: tt.attributes.symbol ?? null
+        } : void 0,
+        variant: tt.variant ? {
+            id: tt.variant.id,
+            name: tt.variant.name ?? "",
+            slug: tt.variant.slug ?? "",
+            attributes: {
+                model: tt.variant.attributes.model ?? null,
+                backdrop: tt.variant.attributes.backdrop ?? void 0,
+                symbol: tt.variant.attributes.symbol ?? null
+            }
+        } : void 0
+    }
+}
+const SOCKET_WAIT_MS = 8e3;
+function clampTarget(tt, _t, Yt) {
+    const {min: Kt, max: Xt} = chanceBpWindow(Yt)
+      , Jt = targetBpForChanceBp(tt, tt === "over" ? Xt : Kt)
+      , Zt = targetBpForChanceBp(tt, tt === "over" ? Kt : Xt)
+      , tn = Math.min(Jt, Zt)
+      , nn = Math.max(Jt, Zt);
+    return Math.min(nn, Math.max(tn, Math.round(_t)))
+}
+function initialTargetBp() {
+    const tt = Number(ssGet(SS.target));
+    return !Number.isFinite(tt) || tt <= 0 ? 4999 : tt <= 99 ? (ssGet(SS.direction) || "over") === "over" ? tt * 100 + 99 : tt * 100 : Math.min(9999, Math.round(tt))
+}
+const useDiceStore = create( (tt, _t) => ({
+    config: FALLBACK_CONFIG,
+    configLoaded: !1,
+    loadFailed: !1,
+    maintenance: !1,
+    serverBalance: 0,
+    fairness: null,
+    history: [],
+    userGifts: [],
+    userGiftsLoading: !1,
+    direction: ssGet(SS.direction) || "over",
+    target: initialTargetBp(),
+    tonAmount: Number(ssGet(SS.tonAmount)) || 0,
+    phase: "idle",
+    lastRoll: null,
+    revealSeq: 0,
+    heldPayouts: {},
+    revealingIds: new Set,
+    chance: () => {
+        const {direction: Yt, target: Kt} = _t();
+        return chanceBpFor(Yt, Kt) ?? 5e3
+    }
+    ,
+    multiplier: () => multiplierForChanceBp(_t().config, _t().chance()),
+    displayedBalance: () => {
+        const {serverBalance: Yt, heldPayouts: Kt} = _t()
+          , Xt = Object.values(Kt).reduce( (Jt, Zt) => Jt + Zt, 0);
+        return floorTon2(Yt - Xt)
+    }
+    ,
+    canRoll: () => {
+        const Yt = _t();
+        if (!Yt.configLoaded || Yt.maintenance || Yt.phase === "awaiting_ack")
+            return !1;
+        const Kt = Yt.tonAmount;
+        return !(!(Kt >= Yt.config.minBetTon && Kt <= Yt.config.maxBetTon) || Kt > Yt.displayedBalance() || floorTon2(Kt * Yt.multiplier()) > Yt.config.maxPayoutTon)
+    }
+    ,
+    canRollGift: Yt => {
+        const Kt = _t();
+        return !(!Yt || !Kt.configLoaded || Kt.maintenance || Kt.phase === "awaiting_ack" || !Kt.userGifts.some(Jt => Jt.wireId === Yt.wireId && Jt.wireGiftType === Yt.wireGiftType) || Yt.price < Kt.config.minBetTon || Yt.price > Kt.config.maxBetTon || floorTon2(Yt.price * Kt.multiplier()) > Kt.config.maxPayoutTon)
+    }
+    ,
+    init: async () => {
+        tt({
+            heldPayouts: {},
+            revealingIds: new Set,
+            phase: "idle"
+        }),
+        DiceService.subscribe(),
+        DiceService.onBalanceUpdate( ({newBalance: Kt}) => {
+            Number.isFinite(Number(Kt)) && _t().applyBalanceUpdate(Number(Kt))
+        }
+        ),
+        DiceService.onConfigUpdated( () => {
+            _t().refreshState()
+        }
+        );
+        const Yt = readPending().filter(Kt => Date.now() - Kt.ts < PENDING_TTL_MS);
+        if (writePending([]),
+        await _t().refreshState(),
+        Yt.length !== 0 && _t().loadFailed) {
+            writePending([...readPending(), ...Yt]);
+            return
+        }
+    }
+    ,
+    dispose: () => {
+        tt({
+            heldPayouts: {},
+            revealingIds: new Set,
+            phase: "idle",
+            configLoaded: !1,
+            maintenance: !1
+        }),
+        DiceService.offBalanceUpdate(),
+        DiceService.offConfigUpdated(),
+        DiceService.unsubscribe()
+    }
+    ,
+    refreshState: async () => {
+        tt({
+            loadFailed: !1
+        }),
+        await DiceService.waitForConnection(SOCKET_WAIT_MS);
+        for (let Yt = 0; Yt < 4; Yt++) {
+            const Kt = await DiceService.getState();
+            if (Kt.ok && Kt.config) {
+                tt(Xt => ({
+                    config: Kt.config,
+                    configLoaded: !0,
+                    loadFailed: !1,
+                    maintenance: !!Kt.maintenance,
+                    serverBalance: Number(Kt.balance) || 0,
+                    fairness: Kt.fairness ?? null,
+                    history: Kt.recentRolls ?? Xt.history,
+                    target: clampTarget(Xt.direction, Xt.target, Kt.config)
+                }));
+                return
+            }
+            await new Promise(Xt => setTimeout(Xt, 600))
+        }
+        tt({
+            loadFailed: !0
+        })
+    }
+    ,
+    fetchUserGifts: async () => {
+        if (_t().userGiftsLoading)
+            return;
+        tt({
+            userGiftsLoading: !0
+        });
+        const Yt = await DiceService.getUserGifts();
+        tt({
+            userGifts: Yt.ok && Yt.gifts ? Yt.gifts.map(mapWireGift) : [],
+            userGiftsLoading: !1
+        })
+    }
+    ,
+    fetchHistory: async () => {
+        const Yt = await DiceService.history(50);
+        Yt.ok && Yt.rolls && tt({
+            history: Yt.rolls
+        })
+    }
+    ,
+    setDirection: Yt => {
+        ssSet(SS.direction, Yt),
+        tt(Kt => ({
+            direction: Yt,
+            target: clampTarget(Yt, Kt.target, Kt.config)
+        }))
+    }
+    ,
+    toggleDirection: () => {
+        const Yt = _t()
+          , Kt = Yt.direction === "over" ? "under" : "over"
+          , Xt = clampTarget(Kt, 9999 - Yt.target, Yt.config);
+        ssSet(SS.direction, Kt),
+        ssSet(SS.target, String(Xt)),
+        tt({
+            direction: Kt,
+            target: Xt
+        })
+    }
+    ,
+    setTarget: Yt => {
+        const Kt = _t()
+          , Xt = clampTarget(Kt.direction, Yt, Kt.config);
+        ssSet(SS.target, String(Xt)),
+        tt({
+            target: Xt
+        })
+    }
+    ,
+    setChance: Yt => {
+        const Kt = _t()
+          , {min: Xt, max: Jt} = chanceBpWindow(Kt.config)
+          , Zt = Math.min(Jt, Math.max(Xt, Math.round(Yt * 100)));
+        _t().setTarget(targetBpForChanceBp(Kt.direction, Zt))
+    }
+    ,
+    setMultiplier: Yt => {
+        const Kt = _t()
+          , Xt = chanceBpForMultiplier(Kt.config, Yt);
+        _t().setTarget(targetBpForChanceBp(Kt.direction, Xt))
+    }
+    ,
+    setTonAmount: Yt => {
+        ssSet(SS.tonAmount, String(Yt)),
+        tt({
+            tonAmount: Yt
+        })
+    }
+    ,
+    roll: async Yt => {
+        const Kt = _t()
+          , Xt = Yt
+          , Jt = Yt != null;
+        if (Jt ? !Kt.canRollGift(Xt) : !Kt.canRoll())
+            return null;
+        const Zt = v4();
+        addPending(Zt),
+        tt({
+            phase: "awaiting_ack"
+        });
+        const tn = await DiceService.roll({
+            direction: Kt.direction,
+            targetBp: Kt.target,
+            betType: Jt ? Xt.wireGiftType === "deposited" ? "gift_deposit" : "gift_portals" : "ton",
+            amountTon: Jt ? void 0 : Math.round(Kt.tonAmount * 100) / 100,
+            giftId: Jt ? Xt.wireId : void 0,
+            clientCommandId: Zt
+        });
+        if (!tn.ok || !tn.roll)
+            throw TRANSPORT_UNCERTAIN_CODES.has(tn.error ?? "") ? scheduleLostRollReconcile(Zt) : removePending(Zt),
+            tn.error === "MAINTENANCE" ? tt({
+                phase: "idle",
+                maintenance: !0
+            }) : tt({
+                phase: "idle"
+            }),
+            new Error(tn.error || "INTERNAL");
+        removePending(Zt);
+        const nn = tn.roll;
+        return (nn.chanceBp != null && nn.targetBp != null ? chanceBpFor(nn.direction, nn.targetBp) !== nn.chanceBp : chanceFor(nn.direction, nn.target) !== nn.chance) && _t().refreshState(),
+        nn.configVersion !== Kt.config.configVersion && _t().refreshState(),
+        tt(un => ({
+            phase: "idle",
+            lastRoll: nn,
+            revealSeq: un.revealSeq + 1,
+            revealingIds: new Set(un.revealingIds).add(nn.rollId),
+            serverBalance: nn.balanceAfter,
+            heldPayouts: nn.win && nn.payoutTon > 0 ? {
+                ...un.heldPayouts,
+                [nn.rollId]: balanceDeltaOf(nn)
+            } : un.heldPayouts,
+            fairness: null,
+            history: [nn, ...un.history].slice(0, 50),
+            userGifts: Jt ? un.userGifts.filter(dn => !(dn.wireId === Xt.wireId && dn.wireGiftType === Xt.wireGiftType)).map( (dn, fn) => ({
+                ...dn,
+                id: fn
+            })) : un.userGifts
+        })),
+        (nn.stakedGift || nn.rewardGift) && _t().fetchUserGifts(),
+        nn
+    }
+    ,
+    completeReveal: Yt => {
+        tt(Kt => {
+            const Xt = Yt.rollId in Kt.heldPayouts
+              , Jt = Kt.revealingIds.has(Yt.rollId);
+            if (!Xt && !Jt)
+                return Kt;
+            const Zt = {};
+            if (Xt) {
+                const tn = {
+                    ...Kt.heldPayouts
+                };
+                delete tn[Yt.rollId],
+                Zt.heldPayouts = tn
+            }
+            if (Jt) {
+                const tn = new Set(Kt.revealingIds);
+                tn.delete(Yt.rollId),
+                Zt.revealingIds = tn
+            }
+            return Zt
+        }
+        )
+    }
+    ,
+    applyBalanceUpdate: Yt => {
+        tt({
+            serverBalance: Yt
+        })
+    }
+}));
+function revealedHistory(tt) {
+    return tt.history.filter(_t => !tt.revealingIds.has(_t.rollId))
+}
+const ROLL_STAGGER_MS = 260
+  , BUSY_RETRY_MS = 2e3
+  , BUSY_POLL_MS = 120;
+async function runGiftQueue(tt, _t) {
+    let Yt = 0
+      , Kt = 0;
+    for (let Xt = 0; Xt < tt.length; Xt++) {
+        if (_t.isCancelled?.())
+            return {
+                placed: Yt,
+                failed: Kt,
+                cancelled: tt.length - Xt
+            };
+        if (Xt > 0 && await _t.sleep(ROLL_STAGGER_MS),
+        _t.isCancelled?.())
+            return {
+                placed: Yt,
+                failed: Kt,
+                cancelled: tt.length - Xt
+            };
+        let Jt = 0;
+        for (; _t.isBusy?.() && Jt < BUSY_RETRY_MS; ) {
+            if (_t.isCancelled?.())
+                return {
+                    placed: Yt,
+                    failed: Kt,
+                    cancelled: tt.length - Xt
+                };
+            await _t.sleep(BUSY_POLL_MS),
+            Jt += BUSY_POLL_MS
+        }
+        try {
+            await _t.rollGift(tt[Xt]) ? Yt++ : Kt++
+        } catch {
+            Kt++
+        }
+    }
+    return {
+        placed: Yt,
+        failed: Kt,
+        cancelled: 0
+    }
+}
+function boundaryPct(tt, _t) {
+    return (tt === "over" ? _t + 1 : _t) / 100
+}
+function targetFromRatio(tt, _t) {
+    const Yt = Math.round(_t * 1e4)
+      , Kt = tt === "over" ? Yt - 1 : Yt;
+    return Math.min(9999, Math.max(0, Kt))
+}
+function rollCenterPct(tt) {
+    return (tt + .5) / 100
+}
+const SWEEP_OUT_S = .26
+  , SWEEP_SETTLE_S = .48
+  , BADGE_LINGER_S = .9
+  , WIN_GREEN_BG = "#16A34A"
+  , LOSE_RED_BG = "#EF2D42"
+  , STAKE_ART_PX = 18
+  , STAKE_FLOAT_AWAY_PX = 26
+  , gramSvg = tt => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="${tt}" d="M66.523 11.333H33.477c-4.401 0-6.601 0-8.592.616a13.792 13.792 0 0 0-4.808 2.625c-1.594 1.341-2.784 3.192-5.164 6.894L4.408 37.81c-1.572 2.446-2.358 3.67-2.572 4.956a6.322 6.322 0 0 0 .362 3.37c.482 1.212 1.51 2.24 3.567 4.296l39.033 39.034c1.821 1.82 2.731 2.731 3.781 3.072.924.3 1.918.3 2.842 0 1.05-.34 1.96-1.251 3.78-3.072l39.035-39.034c2.056-2.056 3.084-3.084 3.566-4.296a6.32 6.32 0 0 0 .362-3.37c-.214-1.287-1-2.51-2.572-4.956L85.087 21.47c-2.38-3.703-3.57-5.554-5.164-6.895a13.792 13.792 0 0 0-4.808-2.625c-1.99-.616-4.191-.616-8.592-.616z"/><path fill="#fff" d="M60.268 24.224c.537-1.45 2.59-1.45 3.126 0l3.71 10.027a2.2 2.2 0 0 0 1.3 1.3l10.027 3.71c1.451.537 1.451 2.59 0 3.126l-10.027 3.71a2.2 2.2 0 0 0-1.3 1.3l-3.71 10.027c-.537 1.451-2.59 1.451-3.126 0l-3.71-10.027a2.2 2.2 0 0 0-1.3-1.3l-10.027-3.71c-1.451-.537-1.451-2.589 0-3.126l10.027-3.71a2.2 2.2 0 0 0 1.3-1.3l3.71-10.027z"/></svg>`;
+function svgImage(tt) {
+    const _t = new Image;
+    return _t.src = `data:image/svg+xml,${encodeURIComponent(tt)}`,
+    _t
+}
+const GLYPH_STAKE = svgImage(gramSvg("#7FC7FF"))
+  , GLYPH_WIN = svgImage(gramSvg("#BFF3D6"));
+function glowSprite(tt, _t=64) {
+    const Yt = document.createElement("canvas");
+    Yt.width = _t,
+    Yt.height = _t;
+    const Kt = Yt.getContext("2d")
+      , Xt = Kt.createRadialGradient(_t / 2, _t / 2, 0, _t / 2, _t / 2, _t / 2);
+    return Xt.addColorStop(0, tt),
+    Xt.addColorStop(1, "rgba(0,0,0,0)"),
+    Kt.fillStyle = Xt,
+    Kt.fillRect(0, 0, _t, _t),
+    Yt
+}
+const GLOW_WIN = glowSprite("rgba(34,197,94,.7)")
+  , GLOW_LOSE = glowSprite("rgba(239,45,66,.6)")
+  , GLOW_DARK = glowSprite("rgba(0,0,0,.5)");
+function scannerSprite() {
+    const Kt = document.createElement("canvas");
+    Kt.width = 128,
+    Kt.height = 192;
+    const Xt = Kt.getContext("2d");
+    Xt.shadowColor = "rgba(255,255,255,.5)",
+    Xt.shadowBlur = 28 * 2,
+    Xt.fillStyle = "#fff";
+    const Jt = () => {
+        Xt.beginPath(),
+        roundRectPath(Xt, 128 / 2 - 1.5 * 2, 192 / 2 - 16 * 2, 3 * 2, 32 * 2, 1.5 * 2),
+        Xt.fill()
+    }
+    ;
+    return Jt(),
+    Xt.shadowColor = "rgba(255,255,255,.9)",
+    Xt.shadowBlur = 12 * 2,
+    Jt(),
+    Kt
+}
+const SCANNER = scannerSprite()
+  , SCANNER_W = 64
+  , SCANNER_H = 96;
+function roundRectPath(tt, _t, Yt, Kt, Xt, Jt) {
+    const Zt = Math.min(Jt, Kt / 2, Xt / 2);
+    if (typeof tt.roundRect == "function") {
+        tt.roundRect(_t, Yt, Kt, Xt, Zt);
+        return
+    }
+    tt.moveTo(_t + Zt, Yt),
+    tt.arcTo(_t + Kt, Yt, _t + Kt, Yt + Xt, Zt),
+    tt.arcTo(_t + Kt, Yt + Xt, _t, Yt + Xt, Zt),
+    tt.arcTo(_t, Yt + Xt, _t, Yt, Zt),
+    tt.arcTo(_t, Yt, _t + Kt, Yt, Zt),
+    tt.closePath()
+}
+const giftArtCache = new Map;
+function loadGiftArt(tt) {
+    const _t = getGiftImageUrl(toGiftVisual(tt));
+    let Yt = giftArtCache.get(_t);
+    if (!Yt) {
+        const Kt = new Image;
+        Kt.src = _t,
+        Yt = {
+            img: Kt,
+            ready: !1
+        },
+        giftArtCache.set(_t, Yt);
+        const Xt = () => {
+            Yt.ready = !0
+        }
+        ;
+        typeof Kt.decode == "function" ? Kt.decode().then(Xt).catch( () => {}
+        ) : Kt.onload = Xt
+    }
+    return Yt
+}
+class DiceRevealRenderer {
+    canvas;
+    ctx;
+    track;
+    instances = new Set;
+    particles = [];
+    ro = null;
+    ticking = !1;
+    font;
+    badgeFont;
+    labelFont;
+    artFont;
+    trackX = 0;
+    trackCy = 0;
+    trackTop = 0;
+    trackW = 1;
+    dpr = 1;
+    constructor(_t, Yt) {
+        this.canvas = _t,
+        this.ctx = _t.getContext("2d"),
+        this.track = Yt,
+        this.font = getComputedStyle(document.body).fontFamily || "system-ui, sans-serif",
+        this.badgeFont = `700 17px ${this.font}`,
+        this.labelFont = `800 12px ${this.font}`,
+        this.artFont = `14px ${this.font}`,
+        this.measure(),
+        this.ro = new ResizeObserver( () => this.measure()),
+        this.ro.observe(_t),
+        this.ro.observe(Yt),
+        this.draw = this.draw.bind(this)
+    }
+    measure() {
+        const _t = this.canvas.getBoundingClientRect()
+          , Yt = this.track.getBoundingClientRect();
+        if (_t.width <= 0 || _t.height <= 0)
+            return;
+        this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const Kt = Math.round(_t.width * this.dpr)
+          , Xt = Math.round(_t.height * this.dpr);
+        this.canvas.width !== Kt && (this.canvas.width = Kt),
+        this.canvas.height !== Xt && (this.canvas.height = Xt),
+        this.trackX = Yt.left - _t.left,
+        this.trackTop = Yt.top - _t.top + Yt.height / 2 - 20,
+        this.trackCy = Yt.top - _t.top + Yt.height / 2,
+        this.trackW = Yt.width || 1
+    }
+    spawn(_t, Yt) {
+        _t.rewardGift && loadGiftArt(_t.rewardGift),
+        _t.bonusRewardGift && loadGiftArt(_t.bonusRewardGift);
+        const Kt = _t.rollBp ?? _t.roll * 100 + 50
+          , Xt = rollCenterPct(Kt)
+          , Jt = _t.rollBp != null ? (_t.rollBp / 100).toFixed(2) : String(_t.roll)
+          , Zt = {
+            alpha: 1,
+            scale: 1,
+            yOff: -30,
+            mode: "stake",
+            art: _t.stakedGift ? loadGiftArt(_t.stakedGift) : null,
+            glyph: _t.stakedGift ? null : GLYPH_STAKE,
+            label: _t.stakedGift ? "" : _t.betAmountTon.toFixed(2),
+            bg: "dark",
+            backdropCenter: "",
+            backdropEdge: "",
+            border: !1,
+            width: 0,
+            height: 24,
+            fill: "rgba(38,38,46,.92)",
+            bonusArt: null,
+            tileBackdrops: null,
+            tileFills: null
+        }
+          , tn = {
+            roll: _t,
+            rollText: Jt,
+            pos: {
+                x: 0
+            },
+            scannerAlpha: 1,
+            badgeAlpha: 1,
+            badgeScale: 1,
+            badgeYOff: 0,
+            badgeText: null,
+            badgeBg: "#26262E",
+            glow: "none",
+            pill: Zt,
+            tl: gsapWithCSS.timeline(),
+            tlDone: !1,
+            pillGone: !1,
+            onDone: () => Yt.onDone(_t)
+        };
+        this.layoutPill(Zt);
+        const nn = tn.tl;
+        nn.to(tn.pos, {
+            x: 100,
+            duration: SWEEP_OUT_S,
+            ease: "power2.in"
+        }),
+        nn.to(tn.pos, {
+            x: Xt,
+            duration: SWEEP_SETTLE_S,
+            ease: "back.out(1.7)"
+        }),
+        nn.call( () => {
+            tn.badgeText = Jt,
+            tn.badgeBg = _t.win ? WIN_GREEN_BG : LOSE_RED_BG,
+            tn.glow = _t.win ? "win" : "lose",
+            gsapWithCSS.fromTo(tn, {
+                badgeScale: 1.35
+            }, {
+                badgeScale: 1,
+                duration: .3,
+                ease: "back.out(3)"
+            }),
+            gsapWithCSS.to(tn, {
+                scannerAlpha: 0,
+                duration: .25
+            }),
+            _t.win && (this.burst(Xt),
+            this.morph(tn)),
+            Yt.onLand(_t)
+        }
+        ),
+        nn.to(tn, {
+            badgeAlpha: 0,
+            badgeYOff: -8,
+            duration: .3,
+            delay: BADGE_LINGER_S
+        }),
+        _t.win || nn.to(tn.pill, {
+            alpha: 0,
+            duration: .3
+        }, "<"),
+        nn.eventCallback("onComplete", () => {
+            tn.tlDone = !0,
+            _t.win || (tn.pillGone = !0),
+            this.reap(tn)
+        }
+        ),
+        this.instances.add(tn),
+        this.wake()
+    }
+    morph(_t) {
+        const {roll: Yt, pill: Kt} = _t
+          , Xt = Yt.rewardGift;
+        if (Xt) {
+            Kt.art = loadGiftArt(Xt),
+            Kt.glyph = null,
+            Kt.label = "";
+            const Zt = Yt.bonusRewardGift;
+            Zt && (Kt.bonusArt = loadGiftArt(Zt),
+            Kt.tileBackdrops = [backdropHex(Xt.attributes?.backdrop), backdropHex(Zt.attributes?.backdrop)])
+        } else
+            Kt.art = null,
+            Kt.glyph = GLYPH_WIN,
+            Kt.label = `+${Yt.payoutTon.toFixed(2)}`;
+        const Jt = Xt ? backdropHex(Xt.attributes?.backdrop) : null;
+        Jt ? (Kt.bg = "backdrop",
+        Kt.backdropCenter = Jt.center,
+        Kt.backdropEdge = Jt.edge,
+        Kt.border = !0) : Kt.bg = "green",
+        this.layoutPill(Kt),
+        gsapWithCSS.fromTo(Kt, {
+            scale: 1
+        }, {
+            scale: 1.18,
+            duration: .16,
+            ease: "back.out(3)",
+            yoyo: !0,
+            repeat: 1,
+            overwrite: "auto"
+        }),
+        gsapWithCSS.to(Kt, {
+            yOff: Kt.yOff - STAKE_FLOAT_AWAY_PX,
+            alpha: 0,
+            duration: .55,
+            delay: .75,
+            ease: "power1.in",
+            overwrite: "auto",
+            onComplete: () => {
+                _t.pillGone = !0,
+                this.reap(_t)
+            }
+        })
+    }
+    layoutPill(_t) {
+        const Yt = _t.label ? this.textW(this.labelFont, _t.label) : 0
+          , Kt = STAKE_ART_PX + (_t.bonusArt ? 4 + STAKE_ART_PX : 0) + (_t.label ? 4 + Yt : 0);
+        if (_t.width = 9 * 2 + Kt + (_t.border ? 2 : 0),
+        _t.height = 3 * 2 + STAKE_ART_PX + (_t.border ? 2 : 0),
+        _t.tileBackdrops) {
+            const Xt = Jt => {
+                if (!Jt)
+                    return "rgba(0,0,0,.25)";
+                const Zt = this.ctx.createRadialGradient(0, 0, 0, 0, 0, STAKE_ART_PX / 2);
+                return Zt.addColorStop(0, Jt.center),
+                Zt.addColorStop(1, Jt.edge),
+                Zt
+            }
+            ;
+            _t.tileFills = [Xt(_t.tileBackdrops[0]), Xt(_t.tileBackdrops[1])]
+        } else
+            _t.tileFills = null;
+        if (_t.bg === "backdrop") {
+            const Xt = this.ctx.createRadialGradient(0, 0, 0, 0, 0, _t.width / 2);
+            Xt.addColorStop(0, _t.backdropCenter),
+            Xt.addColorStop(1, _t.backdropEdge),
+            _t.fill = Xt
+        } else if (_t.bg === "green") {
+            const Xt = this.ctx.createLinearGradient(0, -_t.height / 2, 0, _t.height / 2);
+            Xt.addColorStop(0, "#34D07A"),
+            Xt.addColorStop(1, "#16A34A"),
+            _t.fill = Xt
+        } else
+            _t.fill = "rgba(38,38,46,.92)"
+    }
+    textWidths = new Map;
+    textW(_t, Yt) {
+        const Kt = `${_t}|${Yt}`;
+        let Xt = this.textWidths.get(Kt);
+        return Xt === void 0 && (this.textWidths.size > 2e3 && this.textWidths.clear(),
+        this.ctx.font = _t,
+        Xt = this.ctx.measureText(Yt).width,
+        this.textWidths.set(Kt, Xt)),
+        Xt
+    }
+    burst(_t) {
+        const Yt = ["#22C55E", "#4ADE80", "#A7F3D0", "#FACC15", "#FFFFFF"]
+          , Kt = this.trackX + _t / 100 * this.trackW
+          , Xt = this.trackTop - 14;
+        for (let Jt = 0; Jt < 14; Jt++) {
+            const Zt = -Math.PI / 2 + (Math.random() - .5) * Math.PI * 1.2
+              , tn = 34 + Math.random() * 52;
+            this.particles.push({
+                x0: Kt,
+                y0: Xt,
+                dx: Math.cos(Zt) * tn,
+                dy: Math.sin(Zt) * tn + 18,
+                t: 0,
+                dur: .7 + Math.random() * .35,
+                size: 3 + Math.random() * 4,
+                round: Math.random() > .5,
+                color: Yt[Jt % Yt.length],
+                rot: (Math.random() * 260 - 130) * (Math.PI / 180)
+            })
+        }
+        this.wake()
+    }
+    reap(_t) {
+        _t.tlDone && _t.pillGone && this.instances.delete(_t) && _t.onDone()
+    }
+    wake() {
+        this.ticking || (this.ticking = !0,
+        gsapWithCSS.ticker.add(this.draw))
+    }
+    sleep() {
+        this.ticking && (this.ticking = !1,
+        gsapWithCSS.ticker.remove(this.draw),
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0),
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height))
+    }
+    draw(_t, Yt) {
+        const {ctx: Kt} = this;
+        Kt.setTransform(this.dpr, 0, 0, this.dpr, 0, 0),
+        Kt.clearRect(0, 0, this.canvas.width / this.dpr, this.canvas.height / this.dpr);
+        for (const Xt of this.instances)
+            this.drawInstance(Xt);
+        this.drawParticles(Yt / 1e3),
+        this.instances.size === 0 && this.particles.length === 0 && this.sleep()
+    }
+    drawInstance(_t) {
+        const {ctx: Yt} = this
+          , Kt = Math.min(100, Math.max(0, _t.pos.x))
+          , Xt = this.trackX + Kt / 100 * this.trackW
+          , Jt = this.trackCy;
+        if (_t.scannerAlpha > .01 && (Yt.globalAlpha = _t.scannerAlpha,
+        Yt.drawImage(SCANNER, Xt - SCANNER_W / 2, Jt - SCANNER_H / 2, SCANNER_W, SCANNER_H)),
+        _t.badgeAlpha > .01) {
+            const Zt = _t.badgeText ?? (Math.min(9999, Math.floor(Kt * 100)) / 100).toFixed(2);
+            Yt.font = this.badgeFont;
+            const tn = this.textW(this.badgeFont, Zt) + 22
+              , nn = 32
+              , an = Jt + _t.badgeYOff;
+            if (Yt.globalAlpha = _t.badgeAlpha,
+            Yt.save(),
+            Yt.translate(Xt, an),
+            Yt.scale(_t.badgeScale, _t.badgeScale),
+            _t.glow === "win" || _t.glow === "lose") {
+                const un = _t.glow === "win" ? GLOW_WIN : GLOW_LOSE;
+                Yt.drawImage(un, -tn / 2 - 16, -32 / 2 - 16, tn + 32, nn + 32)
+            }
+            Yt.beginPath(),
+            roundRectPath(Yt, -tn / 2, -32 / 2, tn, nn, 12),
+            Yt.fillStyle = _t.badgeBg,
+            Yt.fill(),
+            Yt.fillStyle = "#fff",
+            Yt.textAlign = "center",
+            Yt.textBaseline = "middle",
+            Yt.fillText(Zt, 0, 1),
+            Yt.restore()
+        }
+        this.drawPill(_t, Xt, Jt),
+        Yt.globalAlpha = 1
+    }
+    drawPill(_t, Yt, Kt) {
+        const {ctx: Xt} = this
+          , Jt = _t.pill;
+        if (Jt.alpha <= .01)
+            return;
+        const Zt = Jt.width / 2
+          , tn = Math.min(this.trackX + this.trackW - Zt, Math.max(this.trackX + Zt, Yt))
+          , nn = Kt + Jt.yOff;
+        Xt.globalAlpha = Jt.alpha,
+        Xt.save(),
+        Xt.translate(tn, nn),
+        Xt.scale(Jt.scale, Jt.scale);
+        const an = Jt.width
+          , un = Jt.height;
+        Xt.drawImage(GLOW_DARK, -an / 2 - 8, -un / 2 - 4, an + 16, un + 16),
+        Xt.beginPath(),
+        roundRectPath(Xt, -an / 2, -un / 2, an, un, un / 2),
+        Xt.fillStyle = Jt.fill,
+        Xt.fill(),
+        Jt.border && (Xt.strokeStyle = "rgba(255,255,255,.25)",
+        Xt.lineWidth = 1,
+        Xt.stroke());
+        let dn = -an / 2 + 9 + (Jt.border ? 1 : 0);
+        this.drawArtSlot(Jt.art, Jt.glyph, Jt.tileFills ? Jt.tileFills[0] : null, dn),
+        dn += STAKE_ART_PX + 4,
+        Jt.bonusArt && (this.drawArtSlot(Jt.bonusArt, null, Jt.tileFills ? Jt.tileFills[1] : null, dn),
+        dn += STAKE_ART_PX + 4),
+        Jt.label && (Xt.font = this.labelFont,
+        Xt.fillStyle = "#fff",
+        Xt.textAlign = "left",
+        Xt.textBaseline = "middle",
+        Xt.fillText(Jt.label, dn, 1)),
+        Xt.restore()
+    }
+    drawArtSlot(_t, Yt, Kt, Xt) {
+        const {ctx: Jt} = this;
+        Kt && (Jt.save(),
+        Jt.translate(Xt + STAKE_ART_PX / 2, 0),
+        Jt.beginPath(),
+        roundRectPath(Jt, -18 / 2, -18 / 2, STAKE_ART_PX, STAKE_ART_PX, 5),
+        Jt.fillStyle = Kt,
+        Jt.fill(),
+        Jt.strokeStyle = "rgba(255,255,255,.22)",
+        Jt.lineWidth = 1,
+        Jt.stroke(),
+        Jt.restore()),
+        _t ? _t.ready ? Jt.drawImage(_t.img, Xt, -18 / 2, STAKE_ART_PX, STAKE_ART_PX) : (Jt.font = this.artFont,
+        Jt.textAlign = "center",
+        Jt.textBaseline = "middle",
+        Jt.fillText("ðŸŽ", Xt + STAKE_ART_PX / 2, 1)) : Yt && Jt.drawImage(Yt, Xt + 3, -6, 12, 12)
+    }
+    drawParticles(_t) {
+        if (this.particles.length === 0)
+            return;
+        const {ctx: Yt} = this;
+        let Kt = 0;
+        for (const Xt of this.particles) {
+            Xt.t += _t;
+            const Jt = Math.min(1, Xt.t / Xt.dur);
+            Jt < 1 && (this.particles[Kt++] = Xt);
+            const Zt = 1 - (1 - Jt) * (1 - Jt)
+              , tn = Xt.x0 + Xt.dx * Zt
+              , nn = Xt.y0 + Xt.dy * Zt
+              , an = 1 - .8 * Zt;
+            if (Yt.globalAlpha = 1 - Zt,
+            Yt.fillStyle = Xt.color,
+            Xt.round)
+                Yt.beginPath(),
+                Yt.arc(tn, nn, Xt.size / 2 * an, 0, Math.PI * 2),
+                Yt.fill();
+            else {
+                Yt.save(),
+                Yt.translate(tn, nn),
+                Yt.rotate(Xt.rot * Zt);
+                const un = Xt.size * an;
+                Yt.fillRect(-un / 2, -un / 2, un, un),
+                Yt.restore()
+            }
+        }
+        this.particles.length = Kt,
+        Yt.globalAlpha = 1
+    }
+    dispose() {
+        for (const _t of this.instances)
+            _t.tl.kill(),
+            gsapWithCSS.killTweensOf(_t),
+            gsapWithCSS.killTweensOf(_t.pos),
+            gsapWithCSS.killTweensOf(_t.pill);
+        this.instances.clear(),
+        this.particles.length = 0,
+        this.sleep(),
+        this.ro?.disconnect(),
+        this.ro = null
+    }
+}
+const PillsStrip = reactExports.memo(function tt({dense: _t}) {
+    const Yt = useDiceStore(Jt => Jt.history)
+      , Kt = useDiceStore(Jt => Jt.revealingIds)
+      , Xt = reactExports.useMemo( () => revealedHistory({
+        history: Yt,
+        revealingIds: Kt
+    }).slice(0, 9), [Yt, Kt]);
+    return jsxRuntimeExports.jsxs("div", {
+        className: `flex items-center gap-1.5 overflow-hidden ${_t ? "h-5 mb-1" : "h-7 mb-2"}`,
+        style: {
+            maskImage: "linear-gradient(90deg, #000 78%, transparent)"
+        },
+        children: [jsxRuntimeExports.jsx("style", {
+            children: `
+        @keyframes dice-pill-in { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .dice-pill { animation: dice-pill-in 260ms cubic-bezier(.34,1.56,.64,1); }
+      `
+        }), Xt.length === 0 ? jsxRuntimeExports.jsx("span", {
+            className: "text-white/25 text-xs font-medium",
+            children: "0 â€“ 100"
+        }) : Xt.map(Jt => jsxRuntimeExports.jsx("span", {
+            className: `dice-pill shrink-0 px-1.5 rounded-full flex items-center justify-center font-bold tabular-nums ${_t ? "min-w-[40px] h-[18px] text-[10px]" : "min-w-[46px] h-6 text-xs"} ${Jt.win ? "bg-[#22C55E]/15 text-[#4ADE80]" : "bg-white/[0.06] text-white/40"}`,
+            children: rollDisplay(Jt)
+        }, Jt.rollId))]
+    })
+})
+  , DiceScale = reactExports.memo(function tt({direction: _t, target: Yt, onTargetChange: Kt, onRevealDone: Xt, disabled: Jt=!1, dense: Zt=!1}) {
+    const tn = reactExports.useRef(null)
+      , nn = reactExports.useRef(null)
+      , an = reactExports.useRef(null)
+      , un = reactExports.useRef(null)
+      , dn = reactExports.useRef(null)
+      , fn = reactExports.useRef(null)
+      , hn = reactExports.useRef(null)
+      , mn = reactExports.useRef(!1)
+      , En = reactExports.useRef(null)
+      , gn = reactExports.useRef(new Map)
+      , Sn = reactExports.useRef(useDiceStore.getState().revealSeq)
+      , yn = Wn => {
+        const hr = nn.current;
+        if (!hr)
+            return Yt;
+        const fr = hr.getBoundingClientRect()
+          , Cr = Math.min(1, Math.max(0, (Wn - fr.left) / fr.width));
+        return targetFromRatio(_t, Cr)
+    }
+      , bn = Wn => {
+        if (!Jt) {
+            mn.current = !0,
+            Wn.currentTarget.setPointerCapture?.(Wn.pointerId),
+            En.current = Wn.pointerId,
+            an.current && gsapWithCSS.to(an.current, {
+                scale: 1.15,
+                xPercent: -50,
+                x: 0,
+                duration: .15,
+                overwrite: "auto"
+            }),
+            Kt(yn(Wn.clientX));
+            try {
+                zu.selectionChanged.isAvailable() && zu.selectionChanged()
+            } catch {}
+        }
+    }
+      , Cn = Wn => {
+        !mn.current || Jt || Kt(yn(Wn.clientX))
+    }
+      , Pn = Wn => {
+        mn.current = !1,
+        En.current != null && (Wn.currentTarget.releasePointerCapture?.(En.current),
+        En.current = null),
+        an.current && gsapWithCSS.to(an.current, {
+            scale: 1,
+            xPercent: -50,
+            x: 0,
+            duration: .2,
+            overwrite: "auto"
+        })
+    }
+      , $n = Wn => {
+        if (Jt)
+            return;
+        const hr = Wn.shiftKey ? 1e3 : 100;
+        let fr = null;
+        Wn.key === "ArrowLeft" || Wn.key === "ArrowDown" ? fr = Yt - hr : Wn.key === "ArrowRight" || Wn.key === "ArrowUp" ? fr = Yt + hr : Wn.key === "Home" ? fr = 0 : Wn.key === "End" && (fr = 9999),
+        fr != null && (Wn.preventDefault(),
+        Kt(Math.min(9999, Math.max(0, fr))))
+    }
+      , wn = reactExports.useRef(Xt);
+    wn.current = Xt,
+    reactExports.useEffect( () => useDiceStore.subscribe( (hr, fr) => {
+        if (hr.revealSeq === fr.revealSeq)
+            return;
+        const Cr = hr.lastRoll;
+        if (!Cr || hr.revealSeq <= Sn.current)
+            return;
+        const us = nn.current
+          , oi = fn.current;
+        if (!us || !oi) {
+            Sn.current = hr.revealSeq,
+            wn.current(Cr);
+            return
+        }
+        hn.current || (hn.current = new DiceRevealRenderer(oi,us)),
+        Sn.current = hr.revealSeq,
+        gn.current.set(Cr.rollId, Cr),
+        hn.current.spawn(Cr, {
+            onLand: dr => {
+                if (dr.win) {
+                    const yr = dr.direction === "over" ? dn.current : un.current;
+                    yr && gsapWithCSS.fromTo(yr, {
+                        opacity: 1
+                    }, {
+                        opacity: 0,
+                        duration: .65,
+                        ease: "power2.out",
+                        overwrite: "auto"
+                    })
+                } else
+                    tn.current && gsapWithCSS.fromTo(tn.current, {
+                        x: 0
+                    }, {
+                        keyframes: {
+                            x: [-6, 5, -3, 2, 0]
+                        },
+                        duration: .4,
+                        ease: "power1.out"
+                    });
+                try {
+                    dr.win && zu.notificationOccurred.isAvailable() ? zu.notificationOccurred("success") : !dr.win && zu.impactOccurred.isAvailable() && zu.impactOccurred("medium")
+                } catch {}
+            }
+            ,
+            onDone: dr => {
+                gn.current.delete(dr.rollId),
+                wn.current(dr)
+            }
+        })
+    }
+    ), []),
+    reactExports.useEffect( () => {
+        const Wn = gn.current;
+        return () => {
+            hn.current?.dispose(),
+            hn.current = null,
+            Wn.forEach(hr => wn.current(hr)),
+            Wn.clear()
+        }
+    }
+    , []);
+    const An = boundaryPct(_t, Yt)
+      , Bn = _t === "over"
+      , Xn = Bn ? {
+        background: "linear-gradient(90deg, #FF1F44, #8A0E20)"
+    } : {
+        background: "linear-gradient(90deg, #00E24B, #0B7A2D)"
+    }
+      , Mn = Bn ? {
+        background: "linear-gradient(90deg, #0B7A2D, #00E24B)"
+    } : {
+        background: "linear-gradient(90deg, #8A0E20, #FF1F44)"
+    };
+    return jsxRuntimeExports.jsxs("div", {
+        ref: tn,
+        className: `rounded-3xl bg-gradient-to-b from-[#1E1E25] to-[#161619] border border-white/[0.06] relative select-none ${Zt ? "p-3 pt-2" : "p-4 pt-3"}`,
+        children: [jsxRuntimeExports.jsx(PillsStrip, {
+            dense: Zt
+        }), jsxRuntimeExports.jsx("div", {
+            className: `relative h-4 text-white/40 font-semibold text-xs ${Zt ? "mb-1" : "mb-2"}`,
+            children: [0, 25, 50, 75, 100].map(Wn => jsxRuntimeExports.jsxs("span", {
+                className: "absolute -translate-x-1/2",
+                style: {
+                    left: `${Wn}%`
+                },
+                children: [Wn, jsxRuntimeExports.jsx("span", {
+                    className: "absolute left-1/2 -translate-x-1/2 top-full mt-1 w-0 h-0 border-l-4 border-r-4 border-t-[5px] border-l-transparent border-r-transparent border-t-white/20"
+                })]
+            }, Wn))
+        }), jsxRuntimeExports.jsxs("div", {
+            ref: nn,
+            className: `relative flex items-center touch-none ${Zt ? "h-9" : "h-10"}`,
+            onPointerDown: bn,
+            onPointerMove: Cn,
+            onPointerUp: Pn,
+            onPointerCancel: Pn,
+            onKeyDown: $n,
+            role: "slider",
+            "aria-valuemin": 0,
+            "aria-valuemax": 9999,
+            "aria-valuenow": Yt,
+            "aria-valuetext": (Yt / 100).toFixed(2),
+            tabIndex: Jt ? -1 : 0,
+            children: [jsxRuntimeExports.jsxs("div", {
+                "aria-hidden": !0,
+                className: "absolute inset-x-0 h-5 flex blur-md opacity-70 pointer-events-none",
+                style: {
+                    transform: "scaleY(1.5)"
+                },
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "h-full",
+                    style: {
+                        width: `${An}%`,
+                        background: Xn.background
+                    }
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "h-full flex-1",
+                    style: {
+                        background: Mn.background
+                    }
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "absolute inset-x-0 h-5 rounded-full overflow-hidden flex",
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "h-full relative",
+                    style: {
+                        width: `${An}%`,
+                        ...Xn
+                    },
+                    children: jsxRuntimeExports.jsx("div", {
+                        ref: un,
+                        "aria-hidden": !0,
+                        className: "absolute inset-0 opacity-0 pointer-events-none",
+                        style: {
+                            ...Xn,
+                            filter: "brightness(1.9) saturate(1.4)"
+                        }
+                    })
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "h-full flex-1 relative",
+                    style: Mn,
+                    children: jsxRuntimeExports.jsx("div", {
+                        ref: dn,
+                        "aria-hidden": !0,
+                        className: "absolute inset-0 opacity-0 pointer-events-none",
+                        style: {
+                            ...Mn,
+                            filter: "brightness(1.9) saturate(1.4)"
+                        }
+                    })
+                }), jsxRuntimeExports.jsx("div", {
+                    "aria-hidden": !0,
+                    className: "absolute inset-0 pointer-events-none",
+                    style: {
+                        background: "repeating-linear-gradient(115deg, rgba(255,255,255,0.13) 0 2px, transparent 2px 6px)"
+                    }
+                })]
+            }), jsxRuntimeExports.jsx("div", {
+                ref: an,
+                className: "absolute w-9 h-9 rounded-full bg-white flex items-center justify-center -translate-x-1/2 z-10",
+                style: {
+                    left: `${An}%`,
+                    boxShadow: "0 2px 10px rgba(0,0,0,.5), 0 0 0 4px rgba(255,255,255,.08)"
+                },
+                children: jsxRuntimeExports.jsx("div", {
+                    className: "w-5 h-5 rounded-full bg-[#5A4FBF]"
+                })
+            })]
+        }), jsxRuntimeExports.jsx("canvas", {
+            ref: fn,
+            "aria-hidden": !0,
+            className: "absolute left-0 z-20 pointer-events-none",
+            style: {
+                top: -32,
+                width: "100%",
+                height: "calc(100% + 32px)"
+            }
+        })]
+    })
+});
+function flash(tt) {
+    tt && (tt.classList.remove("dice-value-flash"),
+    tt.offsetWidth,
+    tt.classList.add("dice-value-flash"))
+}
+const DiceControls = reactExports.memo(function tt({direction: _t, target: Yt, chance: Kt, multiplier: Xt, onToggleDirection: Jt, onTargetChange: Zt, onChanceChange: tn, onMultiplierChange: nn, disabled: an=!1, dense: un=!1}) {
+    const {t: dn} = useTranslation("dice")
+      , [fn,hn] = reactExports.useState(null)
+      , [mn,En] = reactExports.useState(null)
+      , [gn,Sn] = reactExports.useState(null)
+      , yn = reactExports.useRef(null)
+      , bn = reactExports.useRef(null)
+      , Cn = reactExports.useRef(null)
+      , [Pn,$n] = reactExports.useState(0);
+    reactExports.useEffect( () => {
+        hn(null),
+        En(null),
+        Sn(null)
+    }
+    , [_t, Yt, Kt, Xt]);
+    const wn = reactExports.useRef(!1);
+    reactExports.useEffect( () => {
+        if (!wn.current) {
+            wn.current = !0;
+            return
+        }
+        flash(yn.current),
+        flash(bn.current),
+        flash(Cn.current)
+    }
+    , [_t, Yt, Kt, Xt]);
+    const An = (hr, fr) => {
+        if (hr == null)
+            return;
+        const Cr = parseFloat(hr.replace(",", "."));
+        Number.isFinite(Cr) && fr(Cr),
+        hn(null),
+        En(null),
+        Sn(null)
+    }
+      , Bn = () => {
+        if (!an) {
+            $n(hr => hr + 1);
+            try {
+                zu.selectionChanged.isAvailable() && zu.selectionChanged()
+            } catch {}
+            Jt()
+        }
+    }
+      , Xn = "flex items-center justify-between bg-[#232329] border border-white/[0.06] focus-within:border-[#8B78FF]/50 focus-within:bg-[#26262E] transition-colors rounded-2xl px-4 " + (un ? "h-12" : "h-14")
+      , Mn = "bg-transparent text-white font-bold text-xl tabular-nums outline-none w-full min-w-0"
+      , Wn = `text-white/50 ${un ? "text-xs mb-1" : "text-sm mb-1.5"}`;
+    return jsxRuntimeExports.jsxs("div", {
+        className: `rounded-3xl bg-gradient-to-b from-[#1E1E25] to-[#161619] border border-white/[0.06] ${un ? "p-3 space-y-2" : "p-4 space-y-3"}`,
+        children: [jsxRuntimeExports.jsx("style", {
+            children: `
+        @keyframes dice-value-flash { 0% { color: #8B78FF; } 100% { color: #FFFFFF; } }
+        .dice-value-flash { animation: dice-value-flash 450ms ease-out; }
+      `
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "grid grid-cols-2 gap-3",
+            children: [jsxRuntimeExports.jsxs("div", {
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: Wn,
+                    children: dn("CONTROLS.MULTIPLIER")
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: Xn,
+                    children: [jsxRuntimeExports.jsx("input", {
+                        ref: yn,
+                        className: Mn,
+                        inputMode: "decimal",
+                        value: fn ?? (Math.floor(Math.round(Xt * 1e4) / 100) / 100).toFixed(2),
+                        onChange: hr => hn(hr.target.value),
+                        onBlur: () => An(fn, nn),
+                        onKeyDown: hr => hr.key === "Enter" && hr.target.blur(),
+                        disabled: an,
+                        "aria-label": dn("CONTROLS.MULTIPLIER")
+                    }), jsxRuntimeExports.jsx(X, {
+                        className: "w-5 h-5 text-white/40 shrink-0"
+                    })]
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: Wn,
+                    children: dn(_t === "over" ? "CONTROLS.HIGHER" : "CONTROLS.LOWER")
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: Xn,
+                    children: [jsxRuntimeExports.jsx("input", {
+                        ref: bn,
+                        className: Mn,
+                        inputMode: "decimal",
+                        value: mn ?? (Yt / 100).toFixed(2),
+                        onChange: hr => En(hr.target.value),
+                        onBlur: () => An(mn, hr => Zt(Math.round(hr * 100))),
+                        onKeyDown: hr => hr.key === "Enter" && hr.target.blur(),
+                        disabled: an,
+                        "aria-label": dn(_t === "over" ? "CONTROLS.HIGHER" : "CONTROLS.LOWER")
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: Bn,
+                        disabled: an,
+                        className: "shrink-0 text-white/40 active:text-white transition-colors",
+                        "aria-label": dn("CONTROLS.FLIP_DIRECTION"),
+                        children: jsxRuntimeExports.jsx(ArrowLeftRight, {
+                            className: "w-5 h-5 transition-transform duration-300 ease-out",
+                            style: {
+                                transform: `rotate(${Pn * 180}deg)`
+                            }
+                        })
+                    })]
+                })]
+            })]
+        }), jsxRuntimeExports.jsxs("div", {
+            children: [jsxRuntimeExports.jsx("div", {
+                className: Wn,
+                children: dn("CONTROLS.CHANCE")
+            }), jsxRuntimeExports.jsxs("div", {
+                className: Xn,
+                children: [jsxRuntimeExports.jsx("input", {
+                    ref: Cn,
+                    className: Mn,
+                    inputMode: "decimal",
+                    value: gn ?? (Kt / 100).toFixed(2),
+                    onChange: hr => Sn(hr.target.value),
+                    onBlur: () => An(gn, tn),
+                    onKeyDown: hr => hr.key === "Enter" && hr.target.blur(),
+                    disabled: an,
+                    "aria-label": dn("CONTROLS.CHANCE")
+                }), jsxRuntimeExports.jsx(Percent, {
+                    className: "w-5 h-5 text-white/40 shrink-0"
+                })]
+            })]
+        })]
+    })
+})
+  , DiceBetPanel = reactExports.memo(function tt({onRoll: _t, onOpenGifts: Yt, giftsActive: Kt, roomy: Xt}) {
+    const {t: Jt} = useTranslation("dice")
+      , Zt = useDiceStore(mn => mn.config)
+      , tn = useDiceStore(mn => mn.tonAmount)
+      , nn = useDiceStore(mn => mn.phase)
+      , an = useDiceStore(mn => mn.canRoll())
+      , un = useDiceStore(mn => mn.setTonAmount)
+      , dn = nn === "awaiting_ack"
+      , fn = reactExports.useCallback(mn => {
+        zu.notificationOccurred.isAvailable() && zu.notificationOccurred("warning"),
+        toast.error(mn === "max" ? Jt("TOASTS.MAX_BET", {
+            max: Zt.maxBetTon
+        }) : Jt("TOASTS.MIN_BET", {
+            min: Zt.minBetTon
+        }), {
+            id: "dice-bet-limit"
+        })
+    }
+    , [Zt.maxBetTon, Zt.minBetTon, Jt])
+      , hn = dn ? Jt("BET.PLACING") : tn > 0 ? Jt("BET.PLACE_TON", {
+        amount: tn.toFixed(2)
+    }) : Jt("BET.PLACE_BET_EMPTY");
+    return jsxRuntimeExports.jsx(GameBetPanel, {
+        roomy: Xt,
+        ns: "dice",
+        amount: tn,
+        onAmountChange: un,
+        minBet: Zt.minBetTon,
+        maxBet: Zt.maxBetTon,
+        onClamp: fn,
+        amountPlaceholder: Jt("PLACEHOLDERS.TON_AMOUNT"),
+        giftsActive: Kt,
+        onOpenGifts: Yt,
+        canBet: an && !dn,
+        ctaLabel: hn,
+        onBet: _t
+    })
+})
+  , DiceGiftModal = ({isOpen: tt, onClose: _t, onConfirm: Yt}) => {
+    const {t: Kt} = useTranslation("dice")
+      , Xt = useDiceStore(hn => hn.userGifts)
+      , Jt = useDiceStore(hn => hn.userGiftsLoading)
+      , Zt = useDiceStore(hn => hn.config)
+      , tn = useDiceStore(hn => hn.multiplier())
+      , nn = reactExports.useCallback(hn => hn.price > Zt.maxBetTon || hn.price < Zt.minBetTon || floorTon2(hn.price * tn) > Zt.maxPayoutTon, [Zt.maxBetTon, Zt.minBetTon, Zt.maxPayoutTon, tn])
+      , an = reactExports.useCallback(hn => hn.price > Zt.maxBetTon ? Kt("TOASTS.MAX_BET", {
+        max: Zt.maxBetTon
+    }) : hn.price < Zt.minBetTon ? Kt("TOASTS.MIN_BET", {
+        min: Zt.minBetTon
+    }) : Kt("TOASTS.ERROR.MAX_PAYOUT_EXCEEDED"), [Zt.maxBetTon, Zt.minBetTon, Kt])
+      , un = reactExports.useCallback(hn => Kt("GIFT_MODAL.PRUNED", {
+        count: hn
+    }), [Kt])
+      , dn = reactExports.useCallback(hn => hn, [])
+      , fn = reactExports.useCallback( () => void useDiceStore.getState().fetchUserGifts(), []);
+    return jsxRuntimeExports.jsx(GameGiftModal, {
+        isOpen: tt,
+        onClose: _t,
+        ns: "dice",
+        gifts: Xt,
+        loading: Jt,
+        toGift: dn,
+        onRefresh: fn,
+        isGiftDisabled: nn,
+        disabledReason: an,
+        prunedMessage: un,
+        currencyIconSrc: "/assets/images/gram_symbol.svg",
+        onConfirm: Yt
+    })
+}
+  , TWO_POW_52 = 4503599627370496;
+async function computeRollFloat(tt, _t, Yt) {
+    const Kt = await hmacSha256Hex(tt, `${_t}:${Yt}`);
+    return parseInt(Kt.slice(0, 13), 16) / TWO_POW_52
+}
+function rollFromFloat(tt, _t=100) {
+    return Math.min(_t - 1, Math.floor(tt * _t))
+}
+async function verifyRoll(tt, _t, Yt=100) {
+    const [Kt,Xt] = await Promise.all([sha256Hex(tt.serverSeed), computeRollFloat(tt.serverSeed, tt.clientSeed, tt.nonce)])
+      , Jt = rollFromFloat(Xt, Yt);
+    return {
+        hashValid: Kt === tt.serverSeedHash,
+        rollValid: Jt === _t,
+        computedRoll: Jt,
+        computedFloat: Xt
+    }
+}
+const DiceFairnessPanel = reactExports.memo(function tt({roll: _t}) {
+    const {t: Yt} = useTranslation("dice")
+      , [Kt,Xt] = reactExports.useState(!1)
+      , [Jt,Zt] = reactExports.useState(null)
+      , tn = _t.provablyFair
+      , nn = reactExports.useCallback(async () => {
+        if (tn) {
+            Xt(!0);
+            try {
+                const un = _t.domainScale === 1e4 && _t.rollBp != null
+                  , dn = await verifyRoll(tn, un ? _t.rollBp : _t.roll, un ? 1e4 : 100);
+                Zt(dn),
+                dn.hashValid && dn.rollValid || (toast.error(Yt("FAIRNESS.INVALID")),
+                __vitePreload( () => import("./index-qIGC66re.js"), []).then(hn => hn.captureMessage("dice: fairness verification failed", {
+                    extra: {
+                        rollId: _t.rollId,
+                        ...tn,
+                        ...dn
+                    }
+                })).catch( () => {}
+                ))
+            } finally {
+                Xt(!1)
+            }
+        }
+    }
+    , [tn, _t.roll, _t.rollBp, _t.domainScale, _t.rollId, Yt]);
+    if (!tn)
+        return jsxRuntimeExports.jsx("p", {
+            className: "text-white/30 text-xs text-center py-1",
+            children: Yt("FAIRNESS.UNAVAILABLE")
+        });
+    const an = Jt ? Jt.hashValid && Jt.rollValid : null;
+    return jsxRuntimeExports.jsxs("div", {
+        className: "space-y-2.5",
+        children: [jsxRuntimeExports.jsx(SeedRow, {
+            ns: "dice",
+            label: Yt("FAIRNESS.SERVER_SEED_HASH"),
+            value: tn.serverSeedHash,
+            tone: "text-violet-300"
+        }), jsxRuntimeExports.jsx(SeedRow, {
+            ns: "dice",
+            label: Yt("FAIRNESS.SERVER_SEED"),
+            value: tn.serverSeed,
+            tone: "text-emerald-300"
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "grid grid-cols-[1fr_auto] gap-2",
+            children: [jsxRuntimeExports.jsx(SeedRow, {
+                ns: "dice",
+                label: Yt("FAIRNESS.CLIENT_SEED"),
+                value: tn.clientSeed,
+                tone: "text-sky-300"
+            }), jsxRuntimeExports.jsxs("div", {
+                children: [jsxRuntimeExports.jsx("p", {
+                    className: "text-white/40 text-[11px] mb-0.5",
+                    children: Yt("FAIRNESS.NONCE")
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "bg-black/30 rounded-lg px-3 py-2 text-xs font-mono text-white/80",
+                    children: tn.nonce
+                })]
+            })]
+        }), jsxRuntimeExports.jsxs("div", {
+            children: [jsxRuntimeExports.jsx("p", {
+                className: "text-white/40 text-[11px] mb-0.5",
+                children: Yt("FAIRNESS.ROLL")
+            }), jsxRuntimeExports.jsx("div", {
+                className: "bg-black/30 rounded-lg px-3 py-2 text-xs font-mono text-amber-300",
+                children: rollDisplay(_t)
+            })]
+        }), Jt && jsxRuntimeExports.jsxs("div", {
+            className: `rounded-lg px-3 py-2 text-xs space-y-1 ${an ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-red-500/10 border border-red-500/30"}`,
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60",
+                    children: Yt("FAIRNESS.HASH_CHECK")
+                }), jsxRuntimeExports.jsxs("span", {
+                    className: `flex items-center gap-1 font-semibold ${Jt.hashValid ? "text-emerald-300" : "text-red-300"}`,
+                    children: [Jt.hashValid ? jsxRuntimeExports.jsx(Check, {
+                        className: "w-3.5 h-3.5"
+                    }) : jsxRuntimeExports.jsx(X, {
+                        className: "w-3.5 h-3.5"
+                    }), Jt.hashValid ? Yt("FAIRNESS.VALID_SHORT") : Yt("FAIRNESS.INVALID_SHORT")]
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60",
+                    children: Yt("FAIRNESS.ROLL_CHECK")
+                }), jsxRuntimeExports.jsxs("span", {
+                    className: `flex items-center gap-1 font-semibold ${Jt.rollValid ? "text-emerald-300" : "text-red-300"}`,
+                    children: [Jt.rollValid ? jsxRuntimeExports.jsx(Check, {
+                        className: "w-3.5 h-3.5"
+                    }) : jsxRuntimeExports.jsx(X, {
+                        className: "w-3.5 h-3.5"
+                    }), Jt.rollValid ? Yt("FAIRNESS.ROLL_MATCH") : Yt("FAIRNESS.ROLL_MISMATCH")]
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60",
+                    children: Yt("FAIRNESS.CALCULATED")
+                }), jsxRuntimeExports.jsx("code", {
+                    className: "font-mono text-sky-300",
+                    children: _t.domainScale === 1e4 ? (Jt.computedRoll / 100).toFixed(2) : Jt.computedRoll
+                })]
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [jsxRuntimeExports.jsx("span", {
+                    className: "text-white/60",
+                    children: Yt("FAIRNESS.EXPECTED")
+                }), jsxRuntimeExports.jsx("code", {
+                    className: "font-mono text-violet-300",
+                    children: rollDisplay(_t)
+                })]
+            })]
+        }), jsxRuntimeExports.jsxs("button", {
+            onClick: nn,
+            disabled: Kt,
+            className: "w-full py-2.5 rounded-xl font-bold text-sm bg-emerald-600/90 hover:bg-emerald-600 text-white flex items-center justify-center gap-2 transition-colors disabled:opacity-60",
+            children: [Kt ? jsxRuntimeExports.jsx(LoaderCircle, {
+                className: "w-4 h-4 animate-spin"
+            }) : jsxRuntimeExports.jsx(ShieldCheck, {
+                className: "w-4 h-4"
+            }), Yt(Jt ? "FAIRNESS.VERIFY_AGAIN" : "FAIRNESS.VERIFY")]
+        }), jsxRuntimeExports.jsx("p", {
+            className: "text-white/30 text-[11px] leading-snug",
+            children: Yt("FAIRNESS.NOTE")
+        })]
+    })
+})
+  , PAGE_SIZE = 50
+  , PAGE_COOLDOWN_MS = 700
+  , NEAR_BOTTOM_PX = 300
+  , EMPTY_HISTORY = []
+  , EMPTY_IDS = new Set
+  , DiceHistorySheet = reactExports.memo(function tt({open: _t, onClose: Yt}) {
+    const {t: Kt} = useTranslation("dice")
+      , Xt = useDiceStore(An => _t ? An.history : EMPTY_HISTORY)
+      , Jt = useDiceStore(An => _t ? An.revealingIds : EMPTY_IDS)
+      , Zt = useDiceStore(An => _t ? An.fairness : null)
+      , [tn,nn] = reactExports.useState(null)
+      , [an,un] = reactExports.useState([])
+      , [dn,fn] = reactExports.useState(!1)
+      , [hn,mn] = reactExports.useState(!1)
+      , En = reactExports.useRef(!1)
+      , gn = reactExports.useRef(!1)
+      , Sn = reactExports.useRef(0)
+      , yn = reactExports.useRef(null)
+      , bn = reactExports.useRef(null)
+      , Cn = reactExports.useMemo( () => {
+        const An = new Set(Xt.map(Xn => Xn.rollId))
+          , Bn = [...Xt, ...an.filter(Xn => !An.has(Xn.rollId))];
+        return revealedHistory({
+            history: Bn,
+            revealingIds: Jt
+        })
+    }
+    , [Xt, an, Jt])
+      , Pn = reactExports.useRef(Cn);
+    Pn.current = Cn;
+    const $n = reactExports.useCallback(async () => {
+        if (En.current || gn.current)
+            return;
+        const An = Date.now() - Sn.current;
+        if (An < PAGE_COOLDOWN_MS) {
+            yn.current === null && (yn.current = window.setTimeout( () => {
+                yn.current = null,
+                $n()
+            }
+            , PAGE_COOLDOWN_MS - An));
+            return
+        }
+        const Bn = Pn.current[Pn.current.length - 1];
+        if (!Bn)
+            return;
+        const Xn = Number(Bn.rollId);
+        if (!Number.isFinite(Xn)) {
+            gn.current = !0,
+            mn(!0);
+            return
+        }
+        En.current = !0,
+        fn(!0),
+        Sn.current = Date.now();
+        try {
+            const Mn = await DiceService.history(PAGE_SIZE, Xn);
+            if (Mn.ok && Mn.rolls) {
+                const Wn = new Set(Pn.current.map(fr => fr.rollId))
+                  , hr = Mn.rolls.filter(fr => !Wn.has(fr.rollId));
+                (Mn.rolls.length < PAGE_SIZE || hr.length === 0) && (gn.current = !0,
+                mn(!0)),
+                hr.length > 0 && un(fr => [...fr, ...hr])
+            }
+        } catch {} finally {
+            En.current = !1,
+            fn(!1)
+        }
+    }
+    , [])
+      , wn = reactExports.useCallback( () => {
+        const An = bn.current;
+        An && An.scrollHeight - An.scrollTop - An.clientHeight < NEAR_BOTTOM_PX && $n()
+    }
+    , [$n]);
+    return reactExports.useEffect( () => {
+        if (_t)
+            return un([]),
+            fn(!1),
+            mn(!1),
+            En.current = !1,
+            gn.current = !1,
+            Sn.current = 0,
+            nn(null),
+            useDiceStore.getState().fetchHistory(),
+            useDiceStore.getState().refreshState(),
+            () => {
+                yn.current !== null && (clearTimeout(yn.current),
+                yn.current = null)
+            }
+    }
+    , [_t]),
+    _t ? jsxRuntimeExports.jsxs("div", {
+        className: "fixed inset-0 z-[200]",
+        role: "dialog",
+        "aria-modal": "true",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0 bg-black/60",
+            onClick: Yt
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "absolute bottom-0 left-0 right-0 bg-[#1E1E1E] rounded-t-3xl max-h-[80vh] flex flex-col",
+            style: {
+                paddingBottom: "var(--safe-area-bottom, 0px)"
+            },
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between px-5 py-4 border-b border-white/5",
+                children: [jsxRuntimeExports.jsx("h2", {
+                    className: "text-white font-bold text-lg",
+                    children: Kt("HISTORY.TITLE")
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: Yt,
+                    className: "p-2 rounded-full bg-white/5 text-white/60",
+                    children: jsxRuntimeExports.jsx(X, {
+                        className: "w-5 h-5"
+                    })
+                })]
+            }), Zt && jsxRuntimeExports.jsx("div", {
+                className: "px-5 py-2.5 border-b border-white/5",
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [jsxRuntimeExports.jsx(ShieldCheck, {
+                        className: "w-4 h-4 text-emerald-400 shrink-0"
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "min-w-0",
+                        children: [jsxRuntimeExports.jsx("p", {
+                            className: "text-white/40 text-[11px]",
+                            children: Kt("FAIRNESS.NEXT_HASH")
+                        }), jsxRuntimeExports.jsx("code", {
+                            className: "text-emerald-300/90 text-[11px] font-mono block truncate",
+                            children: Zt.nextServerSeedHash
+                        })]
+                    })]
+                })
+            }), jsxRuntimeExports.jsxs("div", {
+                ref: bn,
+                onScroll: wn,
+                className: "overflow-y-auto px-3 py-2",
+                children: [Cn.length === 0 ? jsxRuntimeExports.jsx("p", {
+                    className: "text-white/40 text-center py-10",
+                    children: Kt("HISTORY.EMPTY")
+                }) : Cn.map(An => {
+                    const Bn = tn === An.rollId
+                      , Xn = An.win ? An.multiplier : 0;
+                    return jsxRuntimeExports.jsxs("div", {
+                        className: `rounded-xl transition-colors ${Bn ? "bg-white/5" : ""}`,
+                        children: [jsxRuntimeExports.jsxs("button", {
+                            onClick: () => nn(Bn ? null : An.rollId),
+                            className: "w-full flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-colors text-left",
+                            "aria-expanded": Bn,
+                            children: [jsxRuntimeExports.jsxs("span", {
+                                className: `min-w-[52px] text-center px-2 py-1 rounded-full text-sm font-bold ${Xn >= 2 ? "bg-emerald-500/20 text-emerald-300" : Xn >= 1 ? "bg-violet-500/20 text-violet-300" : "bg-red-500/15 text-red-300"}`,
+                                children: ["Ã—", Xn.toFixed(2)]
+                            }), jsxRuntimeExports.jsxs("div", {
+                                className: "flex-1 min-w-0",
+                                children: [jsxRuntimeExports.jsxs("p", {
+                                    className: "text-white text-sm font-medium truncate",
+                                    children: [jsxRuntimeExports.jsx("span", {
+                                        className: `font-bold tabular-nums ${An.win ? "text-emerald-300" : "text-red-300"}`,
+                                        children: rollDisplay(An)
+                                    }), jsxRuntimeExports.jsxs("span", {
+                                        className: "text-white/40",
+                                        children: [" Â· ", An.direction === "over" ? Kt("CONTROLS.HIGHER") : Kt("CONTROLS.LOWER"), " ", targetDisplay(An)]
+                                    })]
+                                }), jsxRuntimeExports.jsx("p", {
+                                    className: "text-white/60 text-xs truncate",
+                                    children: An.stakedGift ? An.stakedGift.collectionName || An.stakedGift.slug || Kt("LABELS.GIFT") : `${An.betAmountTon.toFixed(2)} GRAM`
+                                }), jsxRuntimeExports.jsxs("p", {
+                                    className: "text-white/40 text-xs",
+                                    children: [new Date(An.createdAt).toLocaleTimeString(), " Â· ", Kt("HISTORY.PAYOUT"), ":", " ", An.rewardGift ? [An.rewardGift, An.bonusRewardGift].filter(Mn => Mn != null).map(Mn => Mn.collectionName || Mn.slug || Kt("LABELS.GIFT")).join(" + ") : `${An.payoutTon.toFixed(2)} GRAM`]
+                                })]
+                            }), jsxRuntimeExports.jsx(ChevronDown, {
+                                className: `w-4 h-4 text-white/30 shrink-0 transition-transform ${Bn ? "rotate-180" : ""}`
+                            })]
+                        }), Bn && jsxRuntimeExports.jsx("div", {
+                            className: "px-3 pt-1.5 pb-3",
+                            children: jsxRuntimeExports.jsx(DiceFairnessPanel, {
+                                roll: An
+                            })
+                        })]
+                    }, An.rollId)
+                }
+                ), dn && !hn && jsxRuntimeExports.jsx("div", {
+                    className: "flex justify-center py-3",
+                    children: jsxRuntimeExports.jsx(LoaderCircle, {
+                        className: "w-5 h-5 text-white/40 animate-spin"
+                    })
+                })]
+            })]
+        })]
+    }) : null
+})
+  , STEPS = ["STEP_1", "STEP_2", "STEP_3", "STEP_4"]
+  , HowItWorksModal = reactExports.memo(function tt({open: _t, onClose: Yt}) {
+    const {t: Kt} = useTranslation("dice");
+    return _t ? jsxRuntimeExports.jsxs("div", {
+        className: "fixed inset-0 z-[220] flex items-center justify-center p-5",
+        role: "dialog",
+        "aria-modal": "true",
+        "aria-labelledby": "dice-hiw-title",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-0 bg-black/70",
+            onClick: Yt
+        }), jsxRuntimeExports.jsxs("div", {
+            className: "relative flex max-h-[85vh] w-full max-w-sm flex-col overflow-hidden rounded-3xl bg-[#1E1E1E]",
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "flex items-start justify-between gap-3 px-6 pt-6 pb-4",
+                children: [jsxRuntimeExports.jsx("h2", {
+                    id: "dice-hiw-title",
+                    className: "text-white font-bold text-xl leading-tight",
+                    children: Kt("HOW_IT_WORKS.TITLE")
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: Yt,
+                    className: "-mt-1 -mr-1 shrink-0 p-2 rounded-full bg-white/5 text-white/60 active:scale-95 transition-transform",
+                    "aria-label": Kt("HOW_IT_WORKS.CLOSE"),
+                    children: jsxRuntimeExports.jsx(X, {
+                        className: "w-5 h-5"
+                    })
+                })]
+            }), jsxRuntimeExports.jsx("ol", {
+                className: "flex-1 overflow-y-auto overscroll-contain px-6 pb-6 space-y-4",
+                children: STEPS.map( (Xt, Jt) => jsxRuntimeExports.jsxs("li", {
+                    className: "relative flex gap-3",
+                    children: [Jt < STEPS.length - 1 && jsxRuntimeExports.jsx("span", {
+                        "aria-hidden": !0,
+                        className: "absolute left-3 top-7 -bottom-4 w-px -translate-x-1/2 bg-gradient-to-b from-violet-400/25 to-violet-400/5"
+                    }), jsxRuntimeExports.jsx("span", {
+                        className: "relative shrink-0 w-6 h-6 rounded-full bg-violet-500/20 text-violet-300 text-[11px] font-bold flex items-center justify-center",
+                        children: Jt + 1
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "min-w-0 flex-1",
+                        children: [jsxRuntimeExports.jsx("p", {
+                            className: "text-white font-semibold text-[15px] leading-snug",
+                            children: Kt(`HOW_IT_WORKS.${Xt}_TITLE`)
+                        }), jsxRuntimeExports.jsx("p", {
+                            className: "mt-1 text-white/55 text-[13px] leading-relaxed",
+                            children: Kt(`HOW_IT_WORKS.${Xt}_BODY`)
+                        })]
+                    })]
+                }, Xt))
+            })]
+        })]
+    }) : null
+})
+  , ROOMY_PANEL_EXTRA_PX = 44
+  , ROOMY_ENTER_SURPLUS_PX = 72
+  , DENSE_SAVED_PX = 72
+  , DENSE_EXIT_SURPLUS_PX = 24;
+function DicePage() {
+    const {t: tt} = useTranslation("dice")
+      , {isMobileTma: _t} = usePlatform()
+      , Yt = useDiceStore(xi => xi.direction)
+      , Kt = useDiceStore(xi => xi.target)
+      , Xt = useDiceStore(xi => xi.chance())
+      , Jt = useDiceStore(xi => xi.multiplier())
+      , Zt = useDiceStore(xi => xi.displayedBalance())
+      , tn = useDiceStore(xi => xi.phase)
+      , nn = useDiceStore(xi => xi.configLoaded)
+      , an = useDiceStore(xi => xi.maintenance)
+      , un = useDiceStore(xi => xi.loadFailed)
+      , dn = useEntryBlock(nn, an)
+      , [fn,hn] = reactExports.useState(!1)
+      , [mn,En] = reactExports.useState(!1)
+      , [gn,Sn] = reactExports.useState(!1)
+      , [yn,bn] = reactExports.useState(!1)
+      , Cn = useNavigate()
+      , Pn = useLocation()
+      , $n = reactExports.useCallback( () => {
+        Pn.key === "default" ? Cn("/play-hub", {
+            replace: !0
+        }) : Cn(-1)
+    }
+    , [Cn, Pn.key])
+      , wn = reactExports.useRef(!0);
+    reactExports.useEffect( () => (wn.current = !0,
+    useDiceStore.getState().init(),
+    () => {
+        wn.current = !1,
+        useDiceStore.getState().dispose()
+    }
+    ), []);
+    const An = reactExports.useRef(null)
+      , Bn = reactExports.useRef(null)
+      , [Xn,Mn] = reactExports.useState(!1)
+      , Wn = reactExports.useRef(!1)
+      , [hr,fr] = reactExports.useState(!1)
+      , Cr = reactExports.useRef(!1)
+      , [us,oi] = reactExports.useState(!1)
+      , dr = reactExports.useRef(!1)
+      , yr = reactExports.useRef(null)
+      , vr = reactExports.useRef(null)
+      , Sr = us && _t;
+    reactExports.useLayoutEffect( () => {
+        const xi = An.current
+          , vi = Bn.current;
+        if (!xi || !vi)
+            return;
+        const Bi = () => {
+            if (dr.current)
+                return;
+            const Yi = xi.getBoundingClientRect().height
+              , to = vi.getBoundingClientRect().height;
+            if (Yi <= 0 || to <= 0)
+                return;
+            const ya = Yi - to + (Wn.current ? ROOMY_PANEL_EXTRA_PX : 0) - (Cr.current ? DENSE_SAVED_PX : 0)
+              , Ia = ya >= ROOMY_ENTER_SURPLUS_PX;
+            Wn.current = Ia,
+            Mn(Ia);
+            const mo = Cr.current ? ya < DENSE_EXIT_SURPLUS_PX : ya < 0;
+            Cr.current = mo,
+            fr(mo)
+        }
+        ;
+        yr.current = Bi,
+        Bi();
+        const zi = new ResizeObserver(Bi);
+        return zi.observe(xi),
+        zi.observe(vi),
+        window.addEventListener("resize", Bi),
+        () => {
+            zi.disconnect(),
+            window.removeEventListener("resize", Bi),
+            yr.current = null
+        }
+    }
+    , []),
+    reactExports.useEffect( () => () => {
+        vr.current && clearTimeout(vr.current)
+    }
+    , []);
+    const zr = reactExports.useCallback(xi => {
+        !_t || xi.target.tagName !== "INPUT" || (vr.current && (clearTimeout(vr.current),
+        vr.current = null),
+        dr.current = !0,
+        oi(!0))
+    }
+    , [_t])
+      , Js = reactExports.useCallback(xi => {
+        xi.target.tagName === "INPUT" && (vr.current = window.setTimeout( () => {
+            vr.current = null,
+            dr.current = !1,
+            oi(!1),
+            yr.current?.()
+        }
+        , 100))
+    }
+    , [])
+      , Pi = reactExports.useCallback(xi => {
+        const vi = `TOASTS.ERROR.${xi}`
+          , Bi = tt(vi);
+        toast.error(Bi === vi ? tt("TOASTS.ERROR.INTERNAL") : Bi)
+    }
+    , [tt])
+      , Ui = reactExports.useCallback(async () => {
+        try {
+            await useDiceStore.getState().roll()
+        } catch (xi) {
+            Pi(xi instanceof Error ? xi.message : "INTERNAL")
+        }
+    }
+    , [Pi])
+      , Gi = reactExports.useCallback(async xi => {
+        bn(!1);
+        const {failed: vi} = await runGiftQueue(xi, {
+            rollGift: Bi => useDiceStore.getState().roll(Bi),
+            sleep: Bi => new Promise(zi => setTimeout(zi, Bi)),
+            isBusy: () => useDiceStore.getState().phase === "awaiting_ack",
+            isCancelled: () => !wn.current
+        });
+        vi > 0 && toast.error(tt("TOASTS.GIFTS_FAILED", {
+            count: vi
+        }))
+    }
+    , [tt])
+      , Ri = reactExports.useCallback(xi => {
+        useDiceStore.getState().completeReveal(xi)
+    }
+    , [])
+      , ni = useDiceStore(xi => xi.revealingIds)
+      , ti = tn === "awaiting_ack" || ni.size > 0;
+    return jsxRuntimeExports.jsxs(Page, {
+        back: !0,
+        onBack: $n,
+        className: "relative h-full min-h-0 flex flex-col gap-2",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute inset-x-0 -top-4 h-72 pointer-events-none -z-10",
+            style: {
+                background: "radial-gradient(ellipse 90% 100% at 50% -30%, rgba(90,79,191,.22), transparent 70%)"
+            }
+        }), jsxRuntimeExports.jsx(GameHeader, {
+            balance: Zt,
+            balanceReady: nn,
+            onBack: null,
+            avatar: !0,
+            onHistory: () => En(!0),
+            onHelp: () => Sn(!0),
+            currencyIconSrc: "/assets/images/gram_symbol.svg",
+            currencyLabel: "GRAM"
+        }), an && !dn && jsxRuntimeExports.jsx("div", {
+            className: "shrink-0 rounded-2xl bg-[#EF2D42]/15 text-[#EF2D42] text-sm font-semibold px-4 py-2.5 text-center",
+            children: tt("MAINTENANCE")
+        }), un && !an && jsxRuntimeExports.jsxs("div", {
+            className: "shrink-0 rounded-2xl bg-[#EF2D42]/15 px-4 py-2.5 flex items-center justify-between gap-3",
+            children: [jsxRuntimeExports.jsx("span", {
+                className: "text-[#EF2D42] text-sm font-semibold",
+                children: tt("LOAD_FAILED")
+            }), jsxRuntimeExports.jsx("button", {
+                onClick: async () => {
+                    hn(!0);
+                    try {
+                        await useDiceStore.getState().refreshState()
+                    } finally {
+                        hn(!1)
+                    }
+                }
+                ,
+                disabled: fn,
+                className: "shrink-0 h-8 px-3 rounded-lg bg-white/10 text-white text-xs font-bold active:scale-95 transition-transform disabled:opacity-50",
+                children: tt(fn ? "LOAD_RETRYING" : "LOAD_RETRY")
+            })]
+        }), jsxRuntimeExports.jsx("div", {
+            ref: An,
+            className: `flex-1 min-h-0 flex flex-col overflow-y-auto overscroll-y-contain transition-opacity duration-200 ${Sr ? "opacity-40" : ""}`,
+            children: jsxRuntimeExports.jsxs("div", {
+                ref: Bn,
+                className: `my-auto ${hr ? "space-y-2" : "space-y-3"}`,
+                children: [jsxRuntimeExports.jsx(DiceScale, {
+                    direction: Yt,
+                    target: Kt,
+                    onTargetChange: xi => useDiceStore.getState().setTarget(xi),
+                    onRevealDone: Ri,
+                    disabled: ti,
+                    dense: hr
+                }), jsxRuntimeExports.jsx(DiceControls, {
+                    direction: Yt,
+                    target: Kt,
+                    chance: Xt,
+                    multiplier: Jt,
+                    onToggleDirection: () => useDiceStore.getState().toggleDirection(),
+                    onTargetChange: xi => useDiceStore.getState().setTarget(xi),
+                    onChanceChange: xi => useDiceStore.getState().setChance(xi),
+                    onMultiplierChange: xi => useDiceStore.getState().setMultiplier(xi),
+                    disabled: ti,
+                    dense: hr
+                })]
+            })
+        }), jsxRuntimeExports.jsx("div", {
+            className: "shrink-0",
+            onFocus: zr,
+            onBlur: Js,
+            children: jsxRuntimeExports.jsx(DiceBetPanel, {
+                onRoll: () => {
+                    Ui()
+                }
+                ,
+                onOpenGifts: () => bn(!0),
+                giftsActive: yn,
+                roomy: Xn
+            })
+        }), jsxRuntimeExports.jsx(DiceGiftModal, {
+            isOpen: yn,
+            onClose: () => bn(!1),
+            onConfirm: Gi
+        }), jsxRuntimeExports.jsx(DiceHistorySheet, {
+            open: mn,
+            onClose: () => En(!1)
+        }), jsxRuntimeExports.jsx(HowItWorksModal, {
+            open: gn,
+            onClose: () => Sn(!1)
+        }), dn && jsxRuntimeExports.jsx(GameUnavailable, {
+            title: tt("UNAVAILABLE.TITLE"),
+            description: tt("UNAVAILABLE.DESCRIPTION"),
+            ctaLabel: tt("UNAVAILABLE.BACK"),
+            onBack: () => Cn("/play-hub")
+        })]
+    })
+}
+const routes = [{
+    path: "/",
+    Component: IndexPage
+}, {
+    path: "/backpack",
+    Component: BackpackPage
+}, {
+    path: "/giveaway",
+    Component: EarnPage
+}, {
+    path: "/giveaway/:id",
+    Component: GiveawayPage
+}, {
+    path: "/invite",
+    Component: InvitePage
+}, {
+    path: "/open/:boxId",
+    Component: OpenGiftPage
+}, {
+    path: "/open-daily/:boxId",
+    Component: OpenDailyGiftPage
+}, {
+    path: "/topup",
+    Component: TopUpPage
+}, {
+    path: "/contracts",
+    Component: ContractsPage
+}, {
+    path: "/upgrade",
+    Component: UpgradePage
+}, {
+    path: "/leaderboard",
+    Component: LeaderboardPage
+}, {
+    path: "/crash",
+    Component: CrashPage
+}, {
+    path: "/pvp",
+    Component: PvPPage
+}, {
+    path: "/mines",
+    Component: MinesPage
+}, {
+    path: "/pvp/history",
+    Component: PvPHistoryPage
+}, {
+    path: "/play-hub",
+    Component: PlayHubPage
+}, {
+    path: "/plinko",
+    Component: PlinkoPage
+}, {
+    path: "/dice",
+    Component: DicePage
+}, {
+    path: "/user/settings",
+    Component: VipProfilePage
+}]
+  , formatBalanceParts = tt => {
+    const [_t,Yt] = floorTon3(tt).toFixed(3).split(".");
+    return {
+        integer: _t,
+        decimal: Yt
+    }
+}
+  , BalanceHeader = () => {
+    const {isLoading: tt} = useUser()
+      , {balance: _t, balanceLoaded: Yt} = useStore()
+      , Kt = useNavigate()
+      , {isMobileTma: Xt} = usePlatform()
+      , {t: Jt} = useTranslation(["balance", "common"])
+      , Zt = Xt ? {
+        top: "calc(var(--safe-area-top, 0px) + var(--header-extra-offset, 0px))"
+    } : {
+        top: "0"
+    }
+      , tn = formatBalanceParts(_t);
+    return jsxRuntimeExports.jsx("div", {
+        className: "fixed left-0 right-0 z-50 border-b border-b-gray-500/60",
+        style: Zt,
+        children: jsxRuntimeExports.jsx("div", {
+            className: "w-full px-4 py-3 bg-[#242424]",
+            children: jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex space-x-4 items-center",
+                    children: [jsxRuntimeExports.jsx(AvatarButton, {}), tt || !Yt ? jsxRuntimeExports.jsxs("div", {
+                        className: "flex items-center gap-2 text-white/60",
+                        children: [jsxRuntimeExports.jsx(LoaderCircle, {
+                            className: "w-5 h-5 animate-spin"
+                        }), jsxRuntimeExports.jsx("span", {
+                            children: Jt("LABELS.LOADING")
+                        })]
+                    }) : jsxRuntimeExports.jsx("div", {
+                        className: "flex items-center",
+                        children: jsxRuntimeExports.jsxs("div", {
+                            className: "flex flex-col gap-0.5",
+                            children: [jsxRuntimeExports.jsx("span", {
+                                className: "text-white/50 text-xs",
+                                children: Jt("LABELS.BALANCE")
+                            }), jsxRuntimeExports.jsxs("div", {
+                                className: "flex items-center gap-1.5",
+                                children: [jsxRuntimeExports.jsx("img", {
+                                    src: "/assets/images/ton_symbol.svg",
+                                    alt: Jt("common:LABELS.TON"),
+                                    className: "w-6 h-6"
+                                }), jsxRuntimeExports.jsxs("div", {
+                                    className: "flex items-baseline",
+                                    children: [jsxRuntimeExports.jsx("span", {
+                                        className: "text-xl font-bold text-white",
+                                        children: tn.integer
+                                    }), jsxRuntimeExports.jsxs("span", {
+                                        className: "text-base font-bold text-white",
+                                        children: [".", tn.decimal]
+                                    })]
+                                })]
+                            })]
+                        })
+                    })]
+                }), jsxRuntimeExports.jsxs("button", {
+                    onClick: () => Kt("/topup"),
+                    className: "group relative overflow-hidden bg-gradient-to-r from-[#8774E1] to-[#7B68D4] hover:from-[#7B68D4] hover:to-[#6A5BC7] text-white px-4 py-2 rounded-xl transition-all duration-300 flex items-center gap-2 text-sm font-medium shadow-lg hover:shadow-[0_0_20px_rgba(135,116,225,0.3)]",
+                    disabled: tt,
+                    children: [jsxRuntimeExports.jsx(Wallet, {
+                        size: 16,
+                        className: "text-white/90"
+                    }), jsxRuntimeExports.jsx("span", {
+                        className: "hidden xs:inline",
+                        children: Jt("ACTIONS.TOP_UP")
+                    }), jsxRuntimeExports.jsx("span", {
+                        className: "xs:hidden",
+                        children: Jt("ACTIONS.TOP_UP")
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-30 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"
+                    })]
+                })]
+            })
+        })
+    })
+}
+;
+function FullscreenHeader({bgColor: tt}) {
+    return jsxRuntimeExports.jsx("header", {
+        className: "fixed top-0 left-0 right-0 px-3 pb-2 flex items-end justify-center z-[9999]",
+        style: {
+            height: "calc(var(--safe-area-top, 0px) + var(--header-extra-offset, 0px) + 8px)",
+            backgroundColor: tt ?? "#242424"
+        },
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "flex items-center gap-2",
+            children: [jsxRuntimeExports.jsx("img", {
+                src: "/assets/images/logo_clean_bg.svg",
+                alt: "Epic Gift",
+                className: "w-6 h-6"
+            }), jsxRuntimeExports.jsx("h1", {
+                className: "text-white text-base font-semibold",
+                children: "Epic Gift"
+            })]
+        })
+    })
+}
+const Layout = ({children: tt}) => {
+    const _t = useLocation()
+      , {isMobileTma: Yt} = usePlatform()
+      , Kt = reactExports.useRef(null)
+      , Xt = reactExports.useCallback( () => {
+        const an = Kt.current;
+        an && (an.style.transform = "translateZ(0)",
+        an.offsetHeight,
+        an.style.transform = "",
+        requestAnimationFrame( () => {
+            an.scrollTop === 0 && (an.scrollTop = 1,
+            an.scrollTop = 0)
+        }
+        ))
+    }
+    , [])
+      , Jt = _t.pathname.startsWith("/pvp") || _t.pathname.startsWith("/plinko") || _t.pathname.startsWith("/dice") || _t.pathname.startsWith("/mines")
+      , tn = _t.pathname.startsWith("/plinko") || _t.pathname.startsWith("/dice") || _t.pathname.startsWith("/mines")
+      , nn = Jt ? "var(--safe-area-top, 0px)" : Yt ? "calc(var(--safe-area-top, 0px) + 28px + var(--safe-area-top, 0px) + var(--header-extra-offset, 0px))" : "calc(var(--safe-area-top, 0px) + 76px)";
+    return reactExports.useEffect( () => {
+        (async () => {
+            sl.mount.isAvailable() && await sl.mount(),
+            sl.disableVertical.isAvailable() && sl.disableVertical()
+        }
+        )();
+        const un = setTimeout( () => {
+            window.scrollTo(0, 1),
+            window.scrollTo(0, 0)
+        }
+        , 100);
+        return () => {
+            clearTimeout(un)
+        }
+    }
+    , []),
+    reactExports.useEffect( () => {
+        const an = Kt.current;
+        an && (an.scrollTop = 0);
+        const un = [requestAnimationFrame( () => Xt()), setTimeout( () => Xt(), 50), setTimeout( () => Xt(), 150)];
+        return () => {
+            un.forEach(dn => {
+                typeof dn == "number" && clearTimeout(dn)
+            }
+            )
+        }
+    }
+    , [_t.pathname, Xt]),
+    jsxRuntimeExports.jsxs("div", {
+        className: "flex flex-col min-h-[var(--tg-viewport-stable-height)] bg-gradient-to-b from-[#1a1a1a] to-[#121212]",
+        children: [Yt && jsxRuntimeExports.jsx(FullscreenHeader, {
+            bgColor: tn ? "#1a1a1a" : void 0
+        }), !Jt && jsxRuntimeExports.jsx("div", {
+            className: "fixed top-0 left-0 right-0 z-[100]",
+            style: {
+                paddingTop: "var(--safe-area-top, 0px)",
+                paddingLeft: "var(--safe-area-left, 0px)",
+                paddingRight: "var(--safe-area-right, 0px)"
+            },
+            children: jsxRuntimeExports.jsx(BalanceHeader, {})
+        }), jsxRuntimeExports.jsx("main", {
+            ref: Kt,
+            className: "flex-1 w-full overflow-y-auto overscroll-none",
+            style: {
+                paddingTop: nn,
+                paddingBottom: tn ? "calc(80px + var(--safe-area-bottom, 0px))" : "calc(96px + var(--safe-area-bottom, 0px))",
+                paddingLeft: "calc(max(1rem, (100% - 28rem) / 2 + 1rem) + var(--safe-area-left, 0px))",
+                paddingRight: "calc(max(1rem, (100% - 28rem) / 2 + 1rem) + var(--safe-area-right, 0px))",
+                height: "var(--tg-viewport-stable-height)",
+                minHeight: "-webkit-fill-available"
+            },
+            children: tt
+        }), jsxRuntimeExports.jsx(Navbar, {})]
+    })
+}
+;
+function StartParameterHandler() {
+    const tt = useNavigate()
+      , _t = reactExports.useRef(!1);
+    return reactExports.useEffect( () => {
+        const Yt = sessionStorage.getItem("hasProcessedStartParam") === "true";
+        if (!(_t.current || Yt))
+            try {
+                const Kt = he$1()
+                  , Xt = Kt.tgWebAppStartParam || Kt.startParam || new URLSearchParams(window.location.search).get("startapp");
+                if (Xt) {
+                    if (typeof Xt == "string" && Xt.startsWith("giveaway_")) {
+                        const Jt = Xt.replace("giveaway_", "");
+                                        if (Jt && !isNaN(Number(Jt))) {
+                            _t.current = !0,
+                            sessionStorage.setItem("hasProcessedStartParam", "true"),
+                            setTimeout( () => {
+                                tt(`/giveaway/${Jt}`, {
+                                    replace: !0
+                                })
+                            }
+                            , 100);
+                            return
+                        } else
+                            console.warn("âš ï¸ Invalid giveaway ID:", Jt)
+                    }
+                    _t.current = !0,
+                    sessionStorage.setItem("hasProcessedStartParam", "true")
+                } else
+                    _t.current = !0,
+                    sessionStorage.setItem("hasProcessedStartParam", "true")
+            } catch (Kt) {
+                console.error("âŒ Error handling start parameter:", Kt),
+                _t.current = !0,
+                sessionStorage.setItem("hasProcessedStartParam", "true")
+            }
+    }
+    , [tt]),
+    null
+}
+function AppContent() {
+    return jsxRuntimeExports.jsxs(Layout, {
+        children: [jsxRuntimeExports.jsx(StartParameterHandler, {}), jsxRuntimeExports.jsxs(Routes, {
+            children: [routes.map(tt => jsxRuntimeExports.jsx(Route, {
+                ...tt
+            }, tt.path)), jsxRuntimeExports.jsx(Route, {
+                path: "*",
+                element: jsxRuntimeExports.jsx(Navigate, {
+                    to: "/"
+                })
+            })]
+        })]
+    })
+}
+function App() {
+    return jsxRuntimeExports.jsx(HashRouter, {
+        children: jsxRuntimeExports.jsx(AppContent, {})
+    })
+}
+class ErrorBoundary extends reactExports.Component {
+    state = {};
+    static getDerivedStateFromError = _t => ({
+        error: _t
+    });
+    componentDidCatch(_t, Yt) {
+        this.setState({
+            error: _t
+        }),
+        captureException(_t, {
+            contexts: {
+                react: {
+                    componentStack: Yt.componentStack
+                }
+            }
+        })
+    }
+    render() {
+        const {state: {error: _t}, props: {fallback: Yt, children: Kt}} = this;
+        return "error" in this.state ? typeof Yt == "function" ? jsxRuntimeExports.jsx(Yt, {
+            error: _t
+        }) : Yt : Kt
+    }
+}
+const TonProofContext = reactExports.createContext(null)
+  , LOCAL_STORAGE_KEY$1 = "ton-proof-token";
+function TonProofProvider({children: tt}) {
+    const [_t,Yt] = reactExports.useState( () => {
+        try {
+            return localStorage.getItem(LOCAL_STORAGE_KEY$1)
+        } catch {
+            return null
+        }
+    }
+    )
+      , Kt = Xt => {
+        Yt(Xt),
+        Xt ? localStorage.setItem(LOCAL_STORAGE_KEY$1, Xt) : localStorage.removeItem(LOCAL_STORAGE_KEY$1)
+    }
+    ;
+    return jsxRuntimeExports.jsx(TonProofContext.Provider, {
+        value: {
+            token: _t,
+            setToken: Kt
+        },
+        children: tt
+    })
+}
+function useTonProof() {
+    const tt = reactExports.useContext(TonProofContext);
+    if (!tt)
+        throw new Error("useTonProof must be used within a TonProofProvider");
+    return tt
+}
+const StatusScreen = ({icon: tt, decorations: _t, title: Yt, description: Kt, children: Xt, footer: Jt, hint: Zt}) => jsxRuntimeExports.jsxs("div", {
+    className: "min-h-screen bg-gradient-to-br from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center p-4 relative overflow-hidden",
+    children: [jsxRuntimeExports.jsxs("div", {
+        className: "absolute inset-0 overflow-hidden",
+        children: [jsxRuntimeExports.jsx("div", {
+            className: "absolute top-1/4 left-1/4 w-2 h-2 bg-[#8774E1] rounded-full animate-float opacity-60"
+        }), jsxRuntimeExports.jsx("div", {
+            className: "absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-[#7B68D4] rounded-full animate-float opacity-40",
+            style: {
+                animationDelay: "1s"
+            }
+        }), jsxRuntimeExports.jsx("div", {
+            className: "absolute bottom-1/4 left-1/3 w-1 h-1 bg-[#8774E1] rounded-full animate-float opacity-50",
+            style: {
+                animationDelay: "2s"
+            }
+        }), jsxRuntimeExports.jsx("div", {
+            className: "absolute bottom-1/3 right-1/4 w-2.5 h-2.5 bg-[#7B68D4] rounded-full animate-float opacity-30",
+            style: {
+                animationDelay: "0.5s"
+            }
+        }), jsxRuntimeExports.jsx("div", {
+            className: "absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-[#8774E1]/10 to-[#7B68D4]/10 rounded-full blur-3xl animate-pulse"
+        }), jsxRuntimeExports.jsx("div", {
+            className: "absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-br from-[#7B68D4]/10 to-[#6A5BC7]/10 rounded-full blur-3xl animate-pulse",
+            style: {
+                animationDelay: "1s"
+            }
+        })]
+    }), jsxRuntimeExports.jsxs("div", {
+        className: "relative max-w-md w-full",
+        children: [jsxRuntimeExports.jsxs("div", {
+            className: "relative bg-gradient-to-br from-[#2C2C2C] via-[#363636] to-[#2C2C2C] rounded-3xl p-8 border border-[#8774E1]/20 shadow-2xl backdrop-blur-sm overflow-hidden",
+            children: [jsxRuntimeExports.jsxs("div", {
+                className: "absolute inset-0 opacity-5",
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: "absolute top-8 right-8 w-16 h-16 rounded-full bg-gradient-to-br from-[#8774E1] to-[#7B68D4] animate-pulse"
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "absolute bottom-8 left-8 w-12 h-12 rounded-full bg-gradient-to-br from-[#7B68D4] to-[#6A5BC7] animate-pulse delay-75"
+                })]
+            }), jsxRuntimeExports.jsx("div", {
+                className: "flex justify-center mb-8",
+                children: jsxRuntimeExports.jsxs("div", {
+                    className: "relative",
+                    children: [jsxRuntimeExports.jsx("div", {
+                        className: "absolute inset-0 bg-gradient-to-r from-[#8774E1] to-[#7B68D4] blur-2xl opacity-40 animate-pulse scale-150"
+                    }), jsxRuntimeExports.jsx("div", {
+                        className: "absolute inset-0 bg-gradient-to-r from-[#8774E1] to-[#7B68D4] blur-xl opacity-30 animate-pulse delay-75 scale-125"
+                    }), jsxRuntimeExports.jsxs("div", {
+                        className: "relative w-24 h-24 bg-gradient-to-br from-[#8774E1] to-[#7B68D4] rounded-2xl flex items-center justify-center shadow-2xl",
+                        children: [tt, jsxRuntimeExports.jsx("div", {
+                            className: "absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-[#8774E1] via-transparent to-[#7B68D4] animate-spin",
+                            style: {
+                                animationDuration: "4s"
+                            }
+                        })]
+                    }), _t]
+                })
+            }), jsxRuntimeExports.jsxs("div", {
+                className: "text-center relative",
+                children: [jsxRuntimeExports.jsx("h1", {
+                    className: "text-3xl font-bold bg-gradient-to-r from-[#8774E1] to-[#7B68D4] bg-clip-text text-transparent mb-4",
+                    children: Yt
+                }), jsxRuntimeExports.jsx("p", {
+                    className: "text-white/80 text-lg mb-6",
+                    children: Kt
+                }), Xt && jsxRuntimeExports.jsx("div", {
+                    className: "bg-gradient-to-r from-[#8774E1]/10 to-[#7B68D4]/10 border border-[#8774E1]/20 rounded-2xl p-6 mb-8 backdrop-blur-sm",
+                    children: Xt
+                }), Jt && jsxRuntimeExports.jsx("div", {
+                    className: "space-y-4",
+                    children: Jt
+                })]
+            }), jsxRuntimeExports.jsx("div", {
+                className: "absolute bottom-0 left-0 right-0 h-1 bg-[#363636] overflow-hidden",
+                children: jsxRuntimeExports.jsx("div", {
+                    className: "h-full bg-gradient-to-r from-[#8774E1] to-[#7B68D4] animate-pulse",
+                    style: {
+                        width: "60%"
+                    }
+                })
+            })]
+        }), Zt && jsxRuntimeExports.jsx("div", {
+            className: "text-center mt-6",
+            children: jsxRuntimeExports.jsx("div", {
+                className: "inline-flex items-center gap-2 bg-[#2C2C2C]/80 backdrop-blur-sm px-4 py-2 rounded-xl border border-[#444444]/30",
+                children: Zt
+            })
+        })]
+    })]
+})
+  , MaintenanceMode = ({reason: tt}) => {
+    const {t: _t} = useTranslation(["environment", "common"])
+      , [Yt,Kt] = reactExports.useState("");
+    reactExports.useEffect( () => {
+        if (tt !== "maintenance")
+            return;
+        const tn = setInterval( () => {
+            Kt(nn => nn === "..." ? "" : nn + ".")
+        }
+        , 500);
+        return () => clearInterval(tn)
+    }
+    , [tt]);
+    const Xt = jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+        children: [jsxRuntimeExports.jsx(RefreshCw, {
+            className: "w-4 h-4 text-white/40"
+        }), jsxRuntimeExports.jsx("span", {
+            className: "text-white/60 text-sm",
+            children: _t("MAINTENANCE.AUTO_REFRESH")
+        })]
+    })
+      , Jt = tn => jsxRuntimeExports.jsxs("div", {
+        className: "flex items-center justify-center gap-2 text-white/60",
+        children: [jsxRuntimeExports.jsx(Clock, {
+            className: "w-5 h-5"
+        }), jsxRuntimeExports.jsx("span", {
+            className: "text-sm",
+            children: tn
+        })]
+    });
+    if (tt === "network")
+        return jsxRuntimeExports.jsx(StatusScreen, {
+            icon: jsxRuntimeExports.jsx(WifiOff, {
+className: "w-12 h-12 text-white"
+            }),
+            title: _t("NO_CONNECTION.TITLE"),
+            description: _t("NO_CONNECTION.DESCRIPTION"),
+            footer: Jt(_t("NO_CONNECTION.CHECKING")),
+            hint: Xt,
+            children: jsxRuntimeExports.jsx("p", {
+                className: "text-white/70 text-sm",
+                children: _t("NO_CONNECTION.HINT")
+            })
+        });
+  return null;
+  if (false && tt === "overload")
+        return jsxRuntimeExports.jsx(StatusScreen, {
+            icon: jsxRuntimeExports.jsx(Activity, {
+                className: "w-12 h-12 text-white"
+            }),
+            title: _t("OVERLOAD.TITLE"),
+            description: _t("OVERLOAD.DESCRIPTION"),
+            footer: jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                children: [Jt(_t("OVERLOAD.CHECKING")), jsxRuntimeExports.jsx("p", {
+                    className: "text-white/40 text-sm",
+                    children: _t("common:APP.THANK_YOU_PATIENCE")
+                })]
+            }),
+            hint: Xt,
+            children: jsxRuntimeExports.jsx("p", {
+                className: "text-white/70 text-sm",
+                children: _t("OVERLOAD.HINT")
+            })
+        });
+    return null;
+    const Zt = [{
+        icon: Zap,
+        gradient: "from-[#8774E1] to-[#7B68D4]",
+        text: _t("MAINTENANCE.UPGRADING")
+    }, {
+        icon: Shield,
+        gradient: "from-emerald-500 to-green-500",
+        text: _t("MAINTENANCE.SECURITY")
+    }, {
+        icon: Sparkles,
+        gradient: "from-amber-500 to-orange-500",
+        text: _t("MAINTENANCE.FEATURES")
+    }];
+    return null;
+return jsxRuntimeExports.jsx(StatusScreen, {
+    return jsxRuntimeExports.jsx(StatusScreen, {
+        icon: jsxRuntimeExports.jsx(Wrench, {
+            className: "w-12 h-12 text-white"
+        }),
+        decorations: jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full animate-bounce flex items-center justify-center",
+                children: jsxRuntimeExports.jsx(Sparkles, {
+                    className: "w-3 h-3 text-white"
+                })
+            }), jsxRuntimeExports.jsx("div", {
+                className: "absolute -bottom-2 -left-2 w-5 h-5 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full animate-bounce delay-75"
+            }), jsxRuntimeExports.jsx("div", {
+                className: "absolute top-0 -left-3 w-4 h-4 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full animate-bounce delay-150"
+            })]
+        }),
+        title: _t("MAINTENANCE.TITLE"),
+        description: `${_t("MAINTENANCE.DESCRIPTION_PART1")}${Yt}`,
+        footer: jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+            children: [Jt(_t("MAINTENANCE.BACK_SHORTLY")), jsxRuntimeExports.jsx("p", {
+                className: "text-white/40 text-sm",
+                children: _t("common:APP.THANK_YOU_PATIENCE")
+            })]
+        }),
+        hint: Xt,
+        children: jsxRuntimeExports.jsx("div", {
+            className: "space-y-4",
+            children: Zt.map( ({icon: tn, gradient: nn, text: an}) => jsxRuntimeExports.jsxs("div", {
+                className: "flex items-center gap-3",
+                children: [jsxRuntimeExports.jsx("div", {
+                    className: `w-8 h-8 rounded-lg bg-gradient-to-br ${nn} flex items-center justify-center`,
+                    children: jsxRuntimeExports.jsx(tn, {
+                        className: "w-4 h-4 text-white"
+                    })
+                }), jsxRuntimeExports.jsx("span", {
+                    className: "text-white/90 text-sm",
+                    children: an
+                })]
+            }, an))
+        })
+    })
+}
+  , CampaignRewardPopup = () => {
+    const {t: tt} = useTranslation(["common"])
+      , [_t,Yt] = reactExports.useState(null)
+      , [Kt,Xt] = reactExports.useState(!1)
+      , [Jt,Zt] = reactExports.useState(0);
+    if (reactExports.useEffect( () => {
+        const an = WebSocketClient.getInstance().onCampaignReward(un => {
+            Yt(un),
+            Xt(!0)
+        }
+        );
+        return () => {
+            an()
+        }
+    }
+    , []),
+    reactExports.useEffect( () => {
+        if (!Kt)
+            return;
+        const an = getComputedStyle(document.documentElement).getPropertyValue("--safe-area-top");
+        Zt((parseInt(an) || 0) + 108),
+        nl.expand.isAvailable() && nl.expand(),
+        sl.disableVertical.isAvailable() && sl.disableVertical()
+    }
+    , [Kt]),
+    !Kt || !_t)
+        return null;
+    const tn = () => Xt(!1);
+    return jsxRuntimeExports.jsx("div", {
+        className: "fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] flex items-center justify-center p-4 pb-20",
+        style: {
+            paddingTop: Jt,
+            paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)"
+        },
+        children: jsxRuntimeExports.jsx("div", {
+            className: "w-full max-w-sm bg-[#1E1E1E] rounded-2xl overflow-hidden animate-scale-up",
+            children: jsxRuntimeExports.jsxs("div", {
+                className: "p-6",
+                children: [jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-between mb-6",
+                    children: [jsxRuntimeExports.jsx("h2", {
+                        className: "text-white text-xl font-bold",
+                        children: tt("CAMPAIGN_REWARD.TITLE")
+                    }), jsxRuntimeExports.jsx("button", {
+                        onClick: tn,
+                        className: "text-white/60 hover:text-white transition-colors",
+                        children: jsxRuntimeExports.jsx(X, {
+                            size: 24
+                        })
+                    })]
+                }), jsxRuntimeExports.jsxs("div", {
+                    className: "flex items-center justify-center gap-4 mb-5",
+                    children: [jsxRuntimeExports.jsxs("span", {
+                        className: "text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#8774E1] to-[#7B68D4]",
+                        children: ["+", Number(_t.amount).toFixed(2)]
+                    }), jsxRuntimeExports.jsx("img", {
+                        src: "/assets/images/ton_symbol.svg",
+                        alt: tt("LABELS.TON"),
+                        className: "w-10 h-10"
+                    })]
+                }), jsxRuntimeExports.jsx("div", {
+                    className: "text-center mb-8",
+                    children: jsxRuntimeExports.jsx("p", {
+                        className: "text-white text-base",
+                        children: tt("CAMPAIGN_REWARD.SUBTITLE")
+                    })
+                }), jsxRuntimeExports.jsx("button", {
+                    onClick: tn,
+                    className: "w-full bg-gradient-to-r from-[#8774E1] to-[#7B68D4] text-white px-6 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-all",
+                    children: tt("CAMPAIGN_REWARD.OK")
+                })]
+            })
+        })
+    })
+}
+;
+function SessionExpiredOverlay() {
+    const {t: tt} = useTranslation("errors");
+    if (!useSessionStore(Kt => Kt.sessionExpired))
+        return null;
+    const Yt = () => {
+        try {
+            window.Telegram?.WebApp?.close?.()
+        } catch {}
+    }
+    ;
+    return jsxRuntimeExports.jsx("div", {
+        role: "alertdialog",
+        "aria-modal": "true",
+        className: "fixed inset-0 z-[2147483647] flex items-center justify-center p-6 bg-[#121212]",
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "max-w-[340px] w-full text-center",
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "text-5xl leading-none mb-4",
+                children: "â³"
+            }), jsxRuntimeExports.jsx("h2", {
+                className: "text-lg font-semibold mb-3 text-white",
+                children: tt("APP.SESSION_EXPIRED_TITLE")
+            }), jsxRuntimeExports.jsx("p", {
+                className: "text-sm leading-relaxed text-[#A0A0A0] mb-2",
+                children: tt("APP.SESSION_EXPIRED_MESSAGE")
+            }), jsxRuntimeExports.jsx("p", {
+                className: "text-xs leading-relaxed text-[#666] mb-6",
+                children: tt("APP.SESSION_EXPIRED_HINT")
+            }), jsxRuntimeExports.jsx("button", {
+                type: "button",
+                onClick: Yt,
+                className: "bg-[#8774E1] hover:bg-[#7B68D4] text-white border-none px-7 py-3 rounded-xl text-sm font-semibold cursor-pointer transition-colors",
+                children: tt("APP.SESSION_EXPIRED_BUTTON")
+            })]
+        })
+    })
+}
+const API_BASE = "https://api.epicgift.app"
+  , QUEUE_KEY = "__eg_error_beacons"
+  , MAX_QUEUE = 20;
+function nextHopSummary() {
+    try {
+        const tt = performance.getEntriesByType("navigation")[0]
+          , _t = performance.getEntriesByType("resource").filter(Kt => Kt.name.startsWith(API_BASE) && Kt.nextHopProtocol)
+          , Yt = _t.length ? _t[_t.length - 1].nextHopProtocol : "none";
+        return `page=${tt?.nextHopProtocol || "?"} api=${Yt}`
+    } catch {
+        return "?"
+    }
+}
+function connectionSummary() {
+    const tt = navigator.connection;
+    return `${tt ? `${tt.effectiveType ?? "?"} rtt=${tt.rtt ?? "?"}` : "?"} ${navigator.onLine ? "online" : "offline"}`
+}
+function buildEvent(tt) {
+    const _t = {
+        type: "user_fetch_error",
+        id: Math.random().toString(36).slice(2, 12),
+        ts: Date.now(),
+        msg: tt,
+        url: location.href.split("#")[0],
+        proto: nextHopSummary(),
+        conn: connectionSummary(),
+        mode: isProxyMode() ? "proxy" : "direct",
+        errs: getRecentDebugEntries().join(" | ").slice(0, 1200) || "none"
+    };
+    try {
+        const {tgWebAppData: Yt} = he$1()
+          , Kt = Yt;
+        Kt?.user?.id && (_t.uid = Kt.user.id),
+        Kt?.auth_date instanceof Date && (_t.age = Math.round((Date.now() - Kt.auth_date.getTime()) / 1e3))
+    } catch {}
+    return _t
+}
+function readQueue() {
+    try {
+        const tt = localStorage.getItem(QUEUE_KEY)
+          , _t = tt ? JSON.parse(tt) : [];
+        return Array.isArray(_t) ? _t : []
+    } catch {
+        return []
+    }
+}
+function writeQueue(tt) {
+    try {
+        localStorage.setItem(QUEUE_KEY, JSON.stringify(tt.slice(-MAX_QUEUE)))
+    } catch {}
+}
+function fireAndForget(tt) {
+    const _t = JSON.stringify(tt);
+    try {
+        navigator.sendBeacon("/client-error", _t)
+    } catch {}
+    try {
+        navigator.sendBeacon(`${API_BASE}/client-error`, _t)
+    } catch {}
+}
+let reportedThisSession = !1;
+function reportUserFetchError(tt) {
+    if (reportedThisSession)
+        return;
+    reportedThisSession = !0;
+    const _t = buildEvent(tt);
+    writeQueue([...readQueue(), _t]),
+    fireAndForget(_t)
+}
+let flushing = !1;
+async function flushErrorBeacons() {
+    if (flushing)
+        return;
+    const tt = readQueue();
+    if (tt.length !== 0) {
+        flushing = !0;
+        try {
+            const _t = [...tt];
+            for (const Yt of tt) {
+                if (!(await fetch(`${API_BASE}/client-error`, {
+                    method: "POST",
+                    body: JSON.stringify(Yt),
+                    keepalive: !0
+                })).ok)
+                    break;
+                _t.shift()
+            }
+            writeQueue(_t)
+        } catch {} finally {
+            flushing = !1
+        }
+    }
+}
+function copyToClipboard(tt) {
+    if (navigator.clipboard?.writeText)
+        return navigator.clipboard.writeText(tt);
+    const _t = document.createElement("textarea");
+    return _t.value = tt,
+    _t.style.position = "fixed",
+    _t.style.opacity = "0",
+    document.body.appendChild(_t),
+    _t.select(),
+    document.execCommand("copy"),
+    document.body.removeChild(_t),
+    Promise.resolve()
+}
+function UserFetchErrorOverlay() {
+    const {t: tt} = useTranslation(["errors", "environment"])
+      , {user: _t, error: Yt, isLoading: Kt, refetchUser: Xt} = useUser()
+      , Jt = useSessionStore(mn => mn.sessionExpired)
+      , Zt = useServiceStatusStore(selectOutage)
+      , [tn,nn] = reactExports.useState(!1)
+      , an = reactExports.useRef(null);
+    reactExports.useEffect( () => () => {
+        an.current && clearTimeout(an.current)
+    }
+    , []);
+    const un = async () => {
+        try {
+            await copyToClipboard(buildDebugReport()),
+            nn(!0),
+            an.current && clearTimeout(an.current),
+            an.current = setTimeout( () => nn(!1), 2e3)
+        } catch {}
+    }
+      , [dn,fn] = reactExports.useState(!1);
+    reactExports.useEffect( () => {
+        Yt ? fn(!0) : _t !== null && fn(!1)
+    }
+    , [Yt, _t]);
+    const hn = !Jt && Zt === null && _t === null && (!!Yt || dn);
+    return reactExports.useEffect( () => {
+        hn && reportUserFetchError(Yt instanceof Error ? Yt.message.slice(0, 120) : "latched")
+    }
+    , [hn, Yt]),
+    reactExports.useEffect( () => {
+        _t !== null && flushErrorBeacons()
+    }
+    , [_t]),
+    hn ? jsxRuntimeExports.jsx("div", {
+        role: "alertdialog",
+        "aria-modal": "true",
+        className: "fixed inset-0 z-[2147483646]",
+        children: jsxRuntimeExports.jsx(StatusScreen, {
+            icon: jsxRuntimeExports.jsx(WifiOff, {
+                className: "w-12 h-12 text-white"
+            }),
+            title: tt("APP.CONNECTION_ERROR_TITLE"),
+            description: tt("APP.CONNECTION_ERROR_MESSAGE"),
+            footer: jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+                children: [jsxRuntimeExports.jsxs("button", {
+                    type: "button",
+                    onClick: () => Xt(),
+                    disabled: Kt,
+                    className: "bg-gradient-to-r from-[#8774E1] to-[#7B68D4] hover:opacity-90 disabled:opacity-60 text-white border-none px-7 py-3 rounded-xl text-sm font-semibold cursor-pointer transition-opacity inline-flex items-center justify-center gap-2 w-full",
+                    children: [Kt ? jsxRuntimeExports.jsx(LoaderCircle, {
+                        className: "w-4 h-4 animate-spin"
+                    }) : jsxRuntimeExports.jsx(RefreshCw, {
+                        className: "w-4 h-4"
+                    }), tt("APP.CONNECTION_ERROR_RETRY")]
+                }), jsxRuntimeExports.jsx("button", {
+                    type: "button",
+                    onClick: un,
+                    className: "bg-transparent text-white/60 hover:text-white border border-[#444444]/60 px-5 py-2.5 rounded-xl text-xs font-medium cursor-pointer transition-colors",
+                    children: tt(tn ? "APP.CONNECTION_ERROR_COPIED" : "APP.CONNECTION_ERROR_COPY")
+                })]
+            }),
+            children: jsxRuntimeExports.jsx("p", {
+                className: "text-white/70 text-sm",
+                children: tt("APP.CONNECTION_ERROR_HINT")
+            })
+        })
+    }) : null
+}
+const walletsListJson = JSON.parse('[{"app_name":"telegram-wallet","name":"Walt (ex. Wallet)","image":"https://wallet.tg/images/logo-288.png","about_url":"https://walt.io/","universal_url":"https://t.me/wallet?attach=wallet","bridge":[{"type":"sse","url":"https://walletbot.me/tonconnect-bridge/bridge"}],"platforms":["ios","android","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":true},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"gramwallet","name":"Gram Wallet","image":"https://static.gramwallet.io/gramwallet/icon-288.png","about_url":"https://gramwallet.io","universal_url":"https://connect.gramwallet.io","deepLink":"gramwallet-tc://","bridge":[{"type":"js","key":"gramwallet"},{"type":"sse","url":"https://tonconnectbridge.mytonwallet.org/bridge/"}],"platforms":["ios","android"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"tonkeeper","name":"Keeper","image":"https://tonkeeper.com/assets/tonconnect-icon.png","tondns":"tonkeeper.ton","about_url":"https://tonkeeper.com","universal_url":"https://app.tonkeeper.com/ton-connect","deepLink":"tonkeeper-tc://","bridge":[{"type":"sse","url":"https://bridge.tonapi.io/bridge"},{"type":"js","key":"tonkeeper"}],"platforms":["ios","android","chrome","firefox","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":true},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"mytonwallet","name":"My Wallet","image":"https://static.mywallet.io/mywallet/icon-288.png","about_url":"https://mywallet.io/?utm_source=tc","universal_url":"https://connect.mytonwallet.org","deepLink":"mytonwallet-tc://","bridge":[{"type":"js","key":"mytonwallet"},{"type":"sse","url":"https://tonconnectbridge.mytonwallet.org/bridge/"}],"platforms":["chrome","windows","macos","linux","ios","android","firefox"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"tonhub","name":"Tonhub","image":"https://tonhub.com/tonconnect_logo.png","about_url":"https://tonhub.com","universal_url":"https://tonhub.com/ton-connect","bridge":[{"type":"js","key":"tonhub"},{"type":"sse","url":"https://connect.tonhubapi.com/tonconnect"}],"platforms":["ios","android"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":true},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"bitgetTonWallet","name":"Bitget Wallet","image":"https://raw.githubusercontent.com/bitgetwallet/download/refs/heads/main/logo/png/bitget_wallet_logo_288_mini.png","about_url":"https://web3.bitget.com","deepLink":"bitkeep://","bridge":[{"type":"js","key":"bitgetTonWallet"},{"type":"sse","url":"https://ton-connect-bridge.bgwapi.io/bridge"}],"platforms":["ios","android","chrome"],"universal_url":"https://bkcode.vip/ton-connect","features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"binanceWeb3TonWallet","name":"Binance Wallet","image":"https://public.bnbstatic.com/static/binance-w3w/ton-provider/binancew3w.png","about_url":"https://www.binance.com/en/web3wallet","deepLink":"bnc://app.binance.com/cedefi/ton-connect","bridge":[{"type":"js","key":"binancew3w"},{"type":"sse","url":"https://wallet.binance.com/tonbridge/bridge"}],"platforms":["ios","android","macos","windows","linux","chrome"],"universal_url":"https://app.binance.com/cedefi/ton-connect","features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"okxWallet","name":"OKX Wallet","image":"https://static.okx.com/cdn/web3/assets/imgs/70d223c0-8527-40c1-8292-b3cc10b53d88.png","about_url":"https://web3.okx.com","universal_url":"https://web3.okx.com/download?appendQuery=true&deeplink=okxwallet://web3/wallet/tonconnect","bridge":[{"type":"js","key":"okxTonWallet"},{"type":"sse","url":"https://web3.okx.com/tonbridge/discover/rpc/bridge"}],"platforms":["chrome","safari","firefox","ios","android"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"okxTonWallet","name":"OKX","image":"https://static.okx.com/cdn/web3/assets/imgs/be493af9-09fe-4e93-af0d-d6c4b040cea9.png","about_url":"https://www.okx.com/web3","universal_url":"https://www.okx.com/download?appendQuery=true&deeplink=okx://web3/wallet/tonconnect","bridge":[{"type":"js","key":"okxTonWallet"},{"type":"sse","url":"https://www.okx.com/tonbridge/discover/rpc/bridge"}],"platforms":["chrome","safari","firefox","ios","android"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"hot","name":"HOT","image":"https://raw.githubusercontent.com/hot-dao/media/main/logo.png","about_url":"https://hot-labs.org/","universal_url":"https://t.me/herewalletbot?attach=wallet","bridge":[{"type":"sse","url":"https://sse-bridge.hot-labs.org"},{"type":"js","key":"hotWallet"}],"platforms":["ios","android","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"bybitTonWallet","name":"Bybit Wallet","image":"https://raw.githubusercontent.com/bybit-web3/bybit-web3.github.io/main/docs/images/bybit-logo.png","about_url":"https://www.bybit.com/web3","universal_url":"https://app.bybit.com/ton-connect","deepLink":"bybitapp://","bridge":[{"type":"js","key":"bybitTonWallet"},{"type":"sse","url":"https://api-node.bybit.com/spot/api/web3/bridge/ton/bridge"}],"platforms":["ios","android","chrome"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"safepalwallet","name":"SafePal","image":"https://s.pvcliping.com/web/public_image/SafePal_x288.png","about_url":"https://www.safepal.com","universal_url":"https://link.safepal.io/ton-connect","deepLink":"safepal-tc://","bridge":[{"type":"sse","url":"https://ton-bridge.safepal.com/tonbridge/v1/bridge"},{"type":"js","key":"safepalwallet"}],"platforms":["ios","android","chrome","firefox"],"features":[{"name":"SendTransaction","maxMessages":1,"extraCurrencySupported":false}]},{"app_name":"GateWallet","name":"GateWallet","image":"https://img.gatedataimg.com/prd-ordinal-imgs/036f07bb8730716e/gateio-0925.png","about_url":"https://www.gate.io/","bridge":[{"type":"js","key":"gatetonwallet"},{"type":"sse","url":"https://dapp.gateio.services/tonbridge_api/bridge/v1"}],"platforms":["ios","android"],"universal_url":"https://gate.onelink.me/Hls0/web3?gate_web3_wallet_universal_type=ton_connect","features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"openmask","name":"OpenMask","image":"https://raw.githubusercontent.com/OpenProduct/openmask-extension/main/public/openmask-logo-288.png","about_url":"https://www.openmask.app/","bridge":[{"type":"js","key":"openmask"}],"platforms":["chrome"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"BitgetWeb3","name":"BitgetWeb3","image":"https://img.bitgetimg.com/image/third/1731638059795.png","about_url":"https://www.bitget.com","universal_url":"https://t.me/BitgetOfficialBot?attach=wallet","bridge":[{"type":"sse","url":"https://ton-connect-bridge.bgwapi.io/bridge"}],"platforms":["ios","android","windows","macos","linux"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"xtonwallet","name":"XTONWallet","image":"https://xtonwallet.com/assets/img/icon-256-back.png","about_url":"https://xtonwallet.com","bridge":[{"type":"js","key":"xtonwallet"}],"platforms":["chrome","firefox"],"features":[{"name":"SendTransaction","maxMessages":1,"extraCurrencySupported":false}]},{"app_name":"tonwallet","name":"TON Wallet","image":"https://wallet.ton.org/assets/ui/qr-logo.png","about_url":"https://chrome.google.com/webstore/detail/ton-wallet/nphplpgoakhhjchkkhmiggakijnkhfnd","bridge":[{"type":"js","key":"tonwallet"}],"platforms":["chrome"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"bitgetWalletLite","name":"Bitget Wallet Lite","image":"https://raw.githubusercontent.com/bitgetwallet/download/refs/heads/main/logo/png/bitget_wallet_lite_logo_288.png","about_url":"https://web3.bitget.com","universal_url":"https://t.me/BitgetWallet_TGBot?attach=wallet","bridge":[{"type":"sse","url":"https://ton-connect-bridge.bgwapi.io/bridge"}],"platforms":["ios","android","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false}]},{"app_name":"tomoWallet","name":"Tomo Wallet","image":"https://pub.tomo.inc/logo.png","about_url":"https://www.tomo.inc/","universal_url":"https://t.me/tomowalletbot?attach=wallet","bridge":[{"type":"sse","url":"https://go-bridge.tomo.inc/bridge"}],"platforms":["ios","android","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"miraiapp-tg","name":"Mirai Mini App","image":"https://cdn.mirailabs.co/miraihub/miraiapp-tg-icon-288.png","about_url":"https://mirai.app","universal_url":"https://t.me/MiraiAppBot?attach=wallet","bridge":[{"type":"sse","url":"https://bridge.mirai.app"}],"platforms":["ios","android","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"Architec.ton","name":"Architec.ton","image":"https://raw.githubusercontent.com/Architec-Ton/wallet-tma/refs/heads/dev/public/images/arcwallet_logo.png","about_url":"https://architecton.tech","universal_url":"https://t.me/architec_ton_bot?attach=wallet","bridge":[{"type":"sse","url":"https://tc.architecton.su/bridge"}],"platforms":["ios","android","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false}]},{"app_name":"tokenpocket","name":"TokenPocket","image":"https://hk.tpstatic.net/logo/tokenpocket.png","about_url":"https://www.tokenpocket.pro","universal_url":"https://tp-lab.tptool.pro/ton-connect/","bridge":[{"type":"js","key":"tokenpocket"},{"type":"sse","url":"https://ton-connect.mytokenpocket.vip/bridge"}],"platforms":["ios","android"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"uxuyWallet","name":"UXUY Wallet","image":"https://chain-cdn.uxuy.com/logo/square_288.png","about_url":"https://docs.uxuy.com","universal_url":"https://t.me/UXUYbot?attach=wallet","bridge":[{"type":"sse","url":"https://bridge.uxuy.me/bridge"}],"platforms":["ios","android","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"tonkeeper-pro","name":"Tonkeeper Pro","image":"https://tonkeeper.com/assets/tonconnect-icon-pro.png","tondns":"tonkeeper.ton","about_url":"https://tonkeeper.com/pro","universal_url":"https://app.tonkeeper.com/pro/ton-connect","deepLink":"tonkeeper-pro-tc://","bridge":[{"type":"sse","url":"https://bridge.tonapi.io/bridge"}],"platforms":["ios","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":true},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"echoooTonWallet","name":"EchoooWallet","image":"https://cdn.echooo.xyz/front-end/source/images/logo/echooo-ton.png","about_url":"https://www.echooo.xyz","universal_url":"https://www.echooo.xyz/ton-connect","deepLink":"echooo://","bridge":[{"type":"js","key":"echoooTonWallet"},{"type":"sse","url":"https://ton-connect-bridge.echooo.link/bridge"}],"platforms":["ios","android"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false}]},{"app_name":"koloWeb3Wallet","name":"Kolo","image":"https://raw.githubusercontent.com/onidev1/tc-assets/refs/heads/main/kolo_logo_288.png","about_url":"https://kolo.xyz","universal_url":"https://t.me/kolo?attach=wallet","bridge":[{"type":"sse","url":"https://web3-bridge.kolo.in/bridge"}],"platforms":["ios","android","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false}]},{"app_name":"imToken","name":"imToken","image":"https://aws-v2-cdn.token.im/orbit/token-v2/icons/logo-ton-connect.png","about_url":"https://token.im","universal_url":"https://connect.token.im/link/ton-connect","deepLink":"imtokenv2://link/ton-connect","bridge":[{"type":"sse","url":"https://connect.token.im/tonbridge"},{"type":"js","key":"imToken"}],"platforms":["ios","android"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false}]},{"app_name":"cactuslink","name":"Cactus Link","image":"https://downloads.mycactus.com/288_cactus_link.png","about_url":"https://www.mycactus.com/defi-connector","bridge":[{"type":"js","key":"cactuslink_ton"}],"platforms":["chrome"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false},{"name":"SignData","types":["text","binary"]}]},{"app_name":"onekey","name":"OneKey","image":"https://uni.onekey-asset.com/static/logo/onekey-x288.png","about_url":"https://onekey.so","bridge":[{"type":"js","key":"onekeyTonWallet"}],"platforms":["chrome"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"defiway","name":"Defiway","image":"https://fs.defiway.com/icons/tonconnect-icon.png","about_url":"https://wallet.defiway.com","universal_url":"https://wallet.defiway.com/ton-connect","deepLink":"defiway-tc://","bridge":[{"type":"sse","url":"https://api.defiway.com/ton-connect"},{"type":"js","key":"defiway"}],"platforms":["ios","chrome","safari"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"sparx","name":"SparX Wallet","image":"https://raw.githubusercontent.com/broxus/sparx-networks/refs/heads/master/icons/sparx/sparx.png","about_url":"https://sparxwallet.com","universal_url":"https://l.sparxwallet.com","bridge":[{"type":"js","key":"sparx"},{"type":"sse","url":"https://connect.ton.org/bridge"}],"platforms":["ios","android","chrome","firefox"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false}]},{"app_name":"stower","name":"STOWER","image":"https://assets.stower.money/STOWER-logo_288x288.png","about_url":"https://stower.money","universal_url":"https://connect.stower.money","deepLink":"stower-tc://","bridge":[{"type":"sse","url":"https://bridge.stower.money/bridge"}],"platforms":["ios","android"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"walletverse","name":"Walletverse","image":"https://bridge.walletverse.io/logo.png","about_url":"https://walletverse.io","universal_url":"https://bridge.walletverse.io/tonconnect","deepLink":"walletverse-tc://","bridge":[{"type":"sse","url":"https://connect.ton.org/bridge"},{"type":"js","key":"walletverse"}],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false},{"name":"SignData","types":["text","binary","cell"]}],"platforms":["ios","android"]},{"app_name":"bron","name":"Bron","image":"https://cdn.bron.org/static/ton-connect/bron-logo-288.png","about_url":"https://bron.org","universal_url":"https://app.bron.org/ton-connect","deepLink":"bron://ton-connect","bridge":[{"type":"sse","url":"https://connect.ton.org/bridge"}],"platforms":["ios","android","windows","macos"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"sociawallet","name":"SociaWallet","image":"https://wallet.sociafober.me/logos/sociawallet.png","about_url":"https://socia.ton.run","universal_url":"https://t.me/SociaWalletBot/main","bridge":[{"type":"sse","url":"https://connect.ton.org/bridge"}],"platforms":["ios","android","macos","windows","linux","chrome","firefox"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":true},{"name":"SignData","types":["text","binary","cell"]}]},{"app_name":"giftpass","name":"GiftPass Wallet","image":"https://premium.nexastore.cn/wallet/giftpass-288.png","about_url":"https://premium.nexastore.cn/wallet/","bridge":[{"type":"js","key":"giftpass"}],"platforms":["chrome"],"features":[{"name":"SendTransaction","maxMessages":1,"extraCurrencySupported":false}]},{"app_name":"dewallet","name":"DeWallet","image":"https://storage.coffee.agency/generic/delab/dewallet_logo.png","about_url":"https://t.me/dewallet","universal_url":"https://t.me/dewallet?attach=wallet","bridge":[{"type":"sse","url":"https://bridge.wallet.coffee.agency/bridge"}],"platforms":["ios","android","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":4,"extraCurrencySupported":false}]},{"app_name":"telegram","name":"Telegram","image":"https://telegram.org/img/t_logo_2x.png","about_url":"https://telegram.org","universal_url":"https://t.me/sendgrams","deepLink":"tg://sendgrams","bridge":[{"type":"sse","url":"https://tonbridge.telegram.org"}],"platforms":["ios","android","chrome","firefox","macos","windows","linux"],"features":[{"name":"SendTransaction","maxMessages":255,"extraCurrencySupported":false},{"name":"SignData","types":["text","binary","cell"]}]}]')
+  , vendoredWalletsList = walletsListJson;
+let cachedSource;
+function getWalletsListSource() {
+    if (cachedSource)
+        return cachedSource;
+    if (!(typeof Blob > "u" || typeof URL > "u" || typeof URL.createObjectURL != "function"))
+        return cachedSource = URL.createObjectURL(new Blob([JSON.stringify(vendoredWalletsList)],{
+            type: "application/json"
+        })),
+        cachedSource
+}
+let connector;
+function getTonConnector() {
+    return connector || (connector = new TonConnect({
+        manifestUrl: `${window.location.origin}/tonconnect-manifest.json`,
+        walletsListSource: getWalletsListSource()
+    })),
+    connector
+}
+class TonService {
+    static async getProofPayload() {
+        try {
+            const {data: _t} = await apiClient.get("/ton/proof-payload");
+            return _t.payload
+        } catch {
+            throw new Error(instance$1.t("errors:TON.PROOF_PAYLOAD_FAILED"))
+        }
+    }
+    static async verifyProof(_t, Yt) {
+        try {
+            const {data: Kt} = await apiClient.post("/ton/verify-proof", {
+                proof: {
+                    ..._t,
+                    state_init: Yt.walletStateInit
+                },
+                address: Yt.address,
+                public_key: Yt.publicKey
+            });
+            if (!Kt.verified)
+                throw new Error(instance$1.t("errors:TON.PROOF_VERIFICATION_FAILED"));
+            return Kt.verified
+        } catch (Kt) {
+            const Xt = axios.isAxiosError(Kt) ? Kt.response?.data?.error : void 0;
+            throw new Error(typeof Xt == "string" && Xt ? Xt : instance$1.t("errors:TON.PROOF_VERIFY_FAILED"))
+        }
+    }
+    static async getWalletBalance(_t) {
+        try {
+            const Yt = await fetch(`https://tonapi.io/v2/blockchain/accounts/${_t}`, {
+                headers: {
+                    Accept: "application/json"
+                }
+            });
+            if (!Yt.ok)
+                throw new Error(instance$1.t("errors:TON.FETCH_BALANCE_FAILED"));
+            const Kt = await Yt.json()
+              , Xt = Number(Kt?.balance);
+            if (!Number.isFinite(Xt))
+                throw new Error("Malformed balance response");
+            return formatTonBalance(Xt / 1e9)
+        } catch {
+            throw new Error(instance$1.t("errors:TON.WALLET_BALANCE_FAILED"))
+        }
+    }
+}
+const PAYLOAD_TTL_MS = 1e3 * 60 * 20
+  , LOCAL_STORAGE_KEY = "ton-proof-token"
+  , WALLET_CONNECTED_KEY = "ton-wallet-connected"
+  , WALLET_VERIFIED_KEY = "ton-wallet-verified";
+function useTonProofAuth() {
+    const {t: tt} = useTranslation("toasts")
+      , {setToken: _t} = useTonProof()
+      , Yt = useIsConnectionRestored()
+      , Kt = useTonWallet()
+      , [Xt] = useTonConnectUI()
+      , Jt = reactExports.useRef();
+    reactExports.useEffect( () => {
+        if (!Yt)
+            return;
+        Jt.current && clearInterval(Jt.current);
+        const Zt = localStorage.getItem(WALLET_CONNECTED_KEY) === "true"
+          , tn = localStorage.getItem(WALLET_VERIFIED_KEY) === "true";
+        if (!Kt) {
+            if (localStorage.removeItem(LOCAL_STORAGE_KEY),
+            localStorage.removeItem(WALLET_CONNECTED_KEY),
+            _t(null),
+            !Zt) {
+                const nn = async () => {
+                    Xt.setConnectRequestParameters({
+                        state: "loading"
+                    });
+                    try {
+                        const an = await TonService.getProofPayload();
+                        an ? Xt.setConnectRequestParameters({
+                            state: "ready",
+                            value: {
+                                tonProof: an
+                            }
+                        }) : Xt.setConnectRequestParameters(null)
+                    } catch (an) {
+                        console.error("Failed to refresh payload:", an),
+                        Xt.setConnectRequestParameters(null)
+                    }
+                }
+                ;
+                nn(),
+                Jt.current = setInterval(nn, PAYLOAD_TTL_MS)
+            }
+            return
+        }
+        if (localStorage.setItem(WALLET_CONNECTED_KEY, "true"),
+        !tn) {
+            if (Kt.connectItems?.tonProof && !("error" in Kt.connectItems.tonProof)) {
+                const nn = Kt.connectItems.tonProof;
+                TonService.verifyProof(nn.proof, Kt.account).then(an => {
+                    an ? localStorage.setItem(WALLET_VERIFIED_KEY, "true") : (toast.error(tt("ERROR.WALLET_VERIFICATION_FAILED"), {
+                        description: tt("ERROR.WALLET_VERIFICATION_DESCRIPTION"),
+                        duration: 5e3
+                    }),
+                    localStorage.removeItem(WALLET_CONNECTED_KEY),
+                    localStorage.removeItem(WALLET_VERIFIED_KEY),
+                    Xt.disconnect())
+                }
+                ).catch(an => {
+                    const un = an instanceof Error ? an.message : void 0;
+                    toast.error(un || tt("ERROR.CONNECTION_ERROR"), {
+                        description: un ? void 0 : tt("ERROR.CONNECTION_ERROR_DESCRIPTION"),
+                        duration: 5e3
+                    }),
+                    localStorage.removeItem(WALLET_CONNECTED_KEY),
+                    localStorage.removeItem(WALLET_VERIFIED_KEY),
+                    Xt.disconnect()
+                }
+                )
+            } else
+                tn || (toast.error(tt("ERROR.INVALID_WALLET"), {
+                    description: tt("ERROR.INVALID_WALLET_DESCRIPTION"),
+                    duration: 5e3
+                }),
+                localStorage.removeItem(WALLET_CONNECTED_KEY),
+                localStorage.removeItem(WALLET_VERIFIED_KEY),
+                Xt.disconnect());
+            return () => {
+                Jt.current && clearInterval(Jt.current)
+            }
+        }
+    }
+    , [Kt, Yt, _t, Xt])
+}
+const HEALTH_POLL_MS = 1e4
+  , HEALTHY_POLLS_TO_RECOVER = 3
+  , USER_RETRY_DELAYS_MS = [5e3, 1e4, 2e4, 3e4]
+  , isDeviceOffline = () => typeof navigator < "u" && navigator.onLine === !1
+  , classifyHealth = (tt, _t=isDeviceOffline()) => tt.isNetworkError ? _t ? "network" : "overload" : tt.maintenance ? "maintenance" : tt.status === "error" ? "overload" : null
+  , useMaintenanceMode = () => {
+    const tt = useServiceStatusStore(selectOutage)
+      , _t = useServiceStatusStore(fn => fn.healthOutage)
+      , Yt = useServiceStatusStore(fn => fn.userOutage)
+      , Kt = useServiceStatusStore(fn => fn.setHealthOutage)
+      , {refetchUser: Xt} = useUser()
+      , [Jt,Zt] = reactExports.useState(!0)
+      , tn = reactExports.useRef(null);
+    tn.current = _t;
+    const nn = reactExports.useRef(0)
+      , an = reactExports.useRef()
+      , un = reactExports.useRef(!1)
+      , dn = reactExports.useCallback(async (fn=!0) => {
+        fn && Zt(!0);
+        try {
+            const hn = classifyHealth(await HealthService.checkHealth());
+            if (hn) {
+                nn.current = 0,
+                tn.current !== hn && Kt(hn);
+                return
+            }
+            if (!tn.current)
+                return;
+            nn.current += 1,
+            nn.current >= HEALTHY_POLLS_TO_RECOVER && !un.current && (un.current = !0,
+            console.log("ðŸŽ‰ Service recovered, reloading page..."),
+            an.current = setTimeout( () => window.location.reload(), 1e3))
+        } finally {
+            fn && Zt(!1)
+        }
+    }
+    , [Kt]);
+    return reactExports.useEffect( () => {
+        dn();
+        const fn = setInterval( () => {
+            dn(!1)
+        }
+        , HEALTH_POLL_MS);
+        return () => {
+            clearInterval(fn),
+            an.current && clearTimeout(an.current)
+        }
+    }
+    , [dn]),
+    reactExports.useEffect( () => {
+        if (!Yt || _t)
+            return;
+        let fn = 0, hn;
+        const mn = () => {
+            const En = USER_RETRY_DELAYS_MS[Math.min(fn, USER_RETRY_DELAYS_MS.length - 1)];
+            fn += 1,
+            hn = setTimeout(async () => {
+                await Xt(),
+                useServiceStatusStore.getState().userOutage && mn()
+            }
+            , En)
+        }
+        ;
+        return mn(),
+        () => clearTimeout(hn)
+    }
+    , [Yt, _t, Xt]),
+    {
+        isMaintenanceMode: tt !== null,
+        outageReason: tt,
+        isCheckingHealth: Jt,
+        checkHealth: () => dn(!0)
+    }
+}
+;
+function ErrorBoundaryError({error: tt}) {
+    const {t: _t} = useTranslation("common");
+    return jsxRuntimeExports.jsxs("div", {
+        children: [jsxRuntimeExports.jsx("p", {
+            children: _t("APP.ERROR_OCCURRED")
+        }), jsxRuntimeExports.jsx("blockquote", {
+            children: jsxRuntimeExports.jsx("code", {
+                children: tt instanceof Error ? tt.message : typeof tt == "string" ? tt : JSON.stringify(tt)
+            })
+        })]
+    })
+}
+function AppInitializer() {
+    const tt = useStore(Xt => Xt.fetchGiftBoxes);
+    useTonProofAuth();
+    const {isMaintenanceMode: _t, outageReason: Yt, isCheckingHealth: Kt} = useMaintenanceMode();
+    return reactExports.useEffect( () => {
+        socketManager.connect()
+    }
+    , []),
+    reactExports.useEffect( () => {
+        tt()
+    }
+    , [tt]),
+    _t && Yt ? jsxRuntimeExports.jsx(MaintenanceMode, {
+        reason: Yt
+    }) : Kt ? jsxRuntimeExports.jsx("div", {
+        className: "min-h-screen bg-gradient-to-b from-[#1a1a1a] to-[#121212] flex items-center justify-center",
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "text-center",
+            children: [jsxRuntimeExports.jsx("div", {
+                className: "w-12 h-12 border-2 border-[#8774E1] border-t-transparent rounded-full animate-spin mx-auto mb-4"
+            }), jsxRuntimeExports.jsx("p", {
+                className: "text-white/60",
+                children: "Checking system status..."
+            })]
+        })
+    }) : jsxRuntimeExports.jsx(App, {})
+}
+function Root() {
+    const tt = getTonConnector();
+    return jsxRuntimeExports.jsx(ErrorBoundary, {
+        fallback: ErrorBoundaryError,
+        children: jsxRuntimeExports.jsx(I18nextProvider, {
+            i18n: instance$1,
+            children: jsxRuntimeExports.jsx(TonProofProvider, {
+                children: jsxRuntimeExports.jsx(UserProvider, {
+                    children: jsxRuntimeExports.jsxs(TonConnectUIProvider$1, {
+                        connector: tt,
+                        actionsConfiguration: {
+                            twaReturnUrl: "https://t.me/epic_gift_bot/app"
+                        },
+                        children: [reactDomExports.createPortal(jsxRuntimeExports.jsx(Toaster, {
+                            position: "top-center",
+                            expand: !1,
+                            richColors: !0,
+                            closeButton: !0,
+                            theme: "dark",
+                            style: {
+                                top: "calc(var(--safe-area-top, 0px) + var(--tma-top-bar-height, 48px) + 8px)",
+                                zIndex: 2e3
+                            },
+                            toastOptions: {
+                                style: {
+                                    background: "rgba(44, 44, 44, 0.95)",
+                                    border: "1px solid rgba(68, 68, 68, 0.3)",
+                                    backdropFilter: "blur(8px)",
+                                    color: "white",
+                                    fontSize: "14px",
+                                    borderRadius: "12px",
+                                    padding: "12px 16px"
+                                },
+                                classNames: {
+                                    toast: "flex items-center gap-3",
+                                    title: "flex-1 min-w-0",
+                                    description: "flex-1 min-w-0",
+                                    closeButton: "flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors",
+                                    success: "bg-gradient-to-r from-[#8774E1] to-[#7B68D4] border-none text-white",
+                                    error: "bg-gradient-to-r from-red-500 to-red-600 border-none text-white"
+                                }
+                            }
+                        }), document.body), jsxRuntimeExports.jsx(CampaignRewardPopup, {}), jsxRuntimeExports.jsx(AppInitializer, {}), jsxRuntimeExports.jsx(SessionExpiredOverlay, {}), jsxRuntimeExports.jsx(UserFetchErrorOverlay, {})]
+                    })
+                })
+            })
+        })
+    })
+}
+function EnvUnsupported({error: tt}) {
+    const {t: _t} = useTranslation("environment")
+      , Yt = tt instanceof Error ? tt.message : typeof tt == "string" ? tt : _t("UNSUPPORTED.MESSAGE");
+    return jsxRuntimeExports.jsx("div", {
+        className: "min-h-screen flex items-center justify-center bg-[#1E1E1E] p-4",
+        children: jsxRuntimeExports.jsxs("div", {
+            className: "max-w-md w-full bg-[#2C2C2C] rounded-2xl p-8 text-center",
+            children: [jsxRuntimeExports.jsx("h1", {
+                className: "text-2xl font-bold text-white mb-4",
+                children: _t("UNSUPPORTED.TITLE")
+            }), jsxRuntimeExports.jsx("p", {
+                className: "text-gray-400 mb-6",
+                children: Yt
+            }), jsxRuntimeExports.jsx("img", {
+                alt: "Telegram sticker",
+                src: "https://xelene.me/telegram.gif",
+                className: "w-36 h-36 mx-auto mb-6"
+            }), jsxRuntimeExports.jsx("p", {
+                className: "text-sm text-gray-500",
+                children: _t("UNSUPPORTED.INSTRUCTION")
+            })]
+        })
+    })
+}
+let startY = 0
+  , scrollTarget = null;
+function findScrollableAncestor(tt) {
+    let _t = tt;
+    for (; _t && _t !== document.body && _t !== document.documentElement; ) {
+        if (_t instanceof HTMLElement && /(auto|scroll)/.test(getComputedStyle(_t).overflowY) && _t.scrollHeight > _t.clientHeight)
+            return _t;
+        _t = _t.parentElement
+    }
+    return document.scrollingElement
+}
+function onTouchStart(tt) {
+    tt.touches.length === 1 && (startY = tt.touches[0].clientY,
+    scrollTarget = findScrollableAncestor(tt.target))
+}
+function onTouchMove(tt) {
+    if (tt.touches.length !== 1 || !scrollTarget)
+        return;
+    const _t = tt.touches[0].clientY - startY
+      , {scrollTop: Yt, scrollHeight: Kt, clientHeight: Xt} = scrollTarget
+      , Jt = Yt <= 0
+      , Zt = Yt + Xt >= Kt - 1;
+    (_t > 0 && Jt || _t < 0 && Zt) && tt.preventDefault()
+}
+function blockSwipeCollapseFallback() {
+    document.addEventListener("touchstart", onTouchStart, {
+        passive: !0
+    }),
+    document.addEventListener("touchmove", onTouchMove, {
+        passive: !1
+    })
+}
+const HEADER_COLOR = "#242424"
+  , APP_BG_COLOR = "#121212"
+  , ANDROID_SAFE_AREA_BOTTOM = 36;
+function withTimeout(tt, _t, Yt) {
+    return Promise.race([tt, new Promise( (Kt, Xt) => setTimeout( () => Xt(new Error(`${Yt} timed out after ${_t}ms`)), _t))])
+}
+async function init(tt) {
+    if (Pu(tt.debug),
+    Gl(),
+    tt.eruda) {
+        console.time("eruda");
+        const {default: Kt} = await __vitePreload(async () => {
+            const {default: Xt} = await import("./eruda-DF9RsHUq.js").then(Jt => Jt.e);
+            return {
+                default: Xt
+            }
+        }
+        , []);
+        Kt.init(),
+        Kt.position({
+            x: window.innerWidth - 50,
+            y: 8
+        }),
+        console.timeEnd("eruda")
+    }
+    if (tt.mockForMacOS) {
+        console.log("%c[macOS] mockTelegramEnv enabled", "color:#8b5cf6");
+        let Kt = !0;
+        $e$1({
+            onEvent([Xt,Jt], Zt) {
+                if (console.log("%c[macOS] â†", "color:#8b5cf6", Xt, Jt),
+                Xt === "web_app_request_theme") {
+                    const tn = Kt ? (Kt = !1,
+                    he$1().tgWebAppThemeParams) : K();
+                    console.log("%c[macOS] â†’ theme_changed", "color:#8b5cf6", tn),
+                    T("theme_changed", {
+                        theme_params: tn
+                    });
+                    return
+                }
+                if (Xt === "web_app_request_safe_area" || Xt === "web_app_request_content_safe_area") {
+                    const tn = {
+                        left: 0,
+                        top: 0,
+                        right: 0,
+                        bottom: 0
+                    };
+                    T("safe_area_changed", tn),
+                    T("content_safe_area_changed", tn);
+                    return
+                }
+                Zt()
+            }
+        })
+    }
+    Hn.ifAvailable(),
+    Sc.ifAvailable(),
+    gc.ifAvailable(),
+    gc.isAvailable() || blockSwipeCollapseFallback(),
+    jr();
+    const _t = []
+      , Yt = 500;
+    hi.isAvailable() && _t.push(withTimeout((async () => {
+        await hi(),
+        ei(),
+        Zu.setHeaderColor.isAvailable() && Zu.setHeaderColor(HEADER_COLOR),
+        Zu.setBackgroundColor.isAvailable() && Zu.setBackgroundColor(APP_BG_COLOR)
+    }
+    )(), Yt, "mountMiniApp").catch(Kt => console.warn("mountMiniApp:", Kt.message))),
+    Tc.isAvailable() && _t.push(withTimeout((async () => {
+        await Tc(),
+        Nc();
+        const Kt = he$1().tgWebAppPlatform;
+        if (Kt === "android" || Kt === "ios") {
+            const Jt = nl;
+            typeof Jt.requestFullscreen == "function" ? await Jt.requestFullscreen().catch(dn => {
+                console.debug("requestFullscreen failed, falling back to viewport.expand()", dn),
+                nl.expand.isAvailable() && nl.expand()
+            }
+            ) : nl.expand.isAvailable() && nl.expand();
+            const Zt = Jt.contentSafeAreaInsets?.() ?? Jt.safeAreaInsets?.()
+              , tn = Zt?.top ?? 0
+              , nn = Kt === "android" ? ANDROID_SAFE_AREA_BOTTOM : Zt?.bottom ?? 0
+              , an = Kt === "ios" ? 52 : 48
+              , un = Kt === "ios" ? 44 : 24;
+            document.documentElement.style.setProperty("--safe-area-top", `${tn}px`),
+            document.documentElement.style.setProperty("--safe-area-bottom", `${nn}px`),
+            document.documentElement.style.setProperty("--tma-top-bar-height", `${an}px`),
+            document.documentElement.style.setProperty("--header-extra-offset", `${un}px`),
+            K$1("content_safe_area_changed", dn => {
+                document.documentElement.style.setProperty("--safe-area-top", `${dn.top}px`)
+            }
+            ),
+            K$1("safe_area_changed", dn => {
+                parseInt(document.documentElement.style.getPropertyValue("--safe-area-top") || "0", 10) === 0 && dn.top > 0 && document.documentElement.style.setProperty("--safe-area-top", `${dn.top}px`)
+            }
+            )
+        }
+    }
+    )(), Yt, "mountViewport").catch(Kt => console.warn("mountViewport:", Kt.message))),
+    await Promise.all(_t),
+    Zu.ready.isAvailable() && Zu.ready()
+}
+blockGestureZoom();
+const SENTRY_DSN = "https://624d9fe9b3d1c3133809359abbfa3e90@o4510642305499136.ingest.de.sentry.io/4510642516721744"
+  , ENVIRONMENT = "production"
+  , API_URL = "https://api.epicgift.app";
+init$1({
+    dsn: SENTRY_DSN,
+    environment: ENVIRONMENT,
+    integrations: [browserTracingIntegration(), replayIntegration()],
+    tracesSampleRate: .1,
+    tracePropagationTargets: ["localhost", new RegExp(`^${API_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`)],
+    replaysSessionSampleRate: .1,
+    replaysOnErrorSampleRate: 1,
+    sendDefaultPii: !0
+}),
+console.log(`ðŸ” Sentry initialized for ${ENVIRONMENT} environment`);
+installDebugLogListeners();
+window.addEventListener("vite:preloadError", tt => {
+    let _t = !1;
+    try {
+        const Yt = parseInt(sessionStorage.getItem("__eg_chunk_reload") || "0", 10);
+        _t = Date.now() - Yt < 6e4,
+        _t || sessionStorage.setItem("__eg_chunk_reload", String(Date.now()))
+    } catch {}
+    _t || (tt.preventDefault(),
+    window.location.reload())
+}
+);
+const root = ReactDOM$1.createRoot(document.getElementById("root"));
+async function initApp() {
+    try {
+        if (!await Re$1("complete", {
+            timeout: 200
+        }))
+            throw new Error(instance$1.t("errors:APP.TELEGRAM_REQUIRED"));
+        const _t = he$1()
+          , {tgWebAppPlatform: Yt} = _t
+          , Kt = (_t.tgWebAppStartParam || "").includes("platformer_debug") || !1;
+        await init({
+            debug: Kt,
+            eruda: Kt && ["ios", "android"].includes(Yt),
+            mockForMacOS: Yt === "macos"
+        }).then( () => {
+            ConfigService.getConfig().catch( () => {}
+            ),
+            root.render(jsxRuntimeExports.jsx(reactExports.StrictMode, {
+                children: jsxRuntimeExports.jsx(Root, {})
+            }))
+        }
+        )
+    } catch (tt) {
+        console.error("Initialization error:", tt),
+        captureException(tt),
+        root.render(jsxRuntimeExports.jsx(EnvUnsupported, {
+            error: tt instanceof Error ? tt.message : instance$1.t("errors:APP.TELEGRAM_REQUIRED")
+        }))
+    }
+}
+function checkInitDataFreshness() {
+    try {
+        const tt = window.Telegram?.WebApp?.initData;
+        if (!tt)
+            return;
+        const _t = new URLSearchParams(tt)
+          , Yt = parseInt(_t.get("auth_date") || "0", 10);
+        if (!Yt)
+            return;
+        if (Math.floor(Date.now() / 1e3) - Yt > 86400) {
+            const Kt = "__tma_auth_reload"
+              , Xt = parseInt(sessionStorage.getItem(Kt) || "0", 10);
+            Date.now() - Xt > 1e4 && (sessionStorage.setItem(Kt, String(Date.now())),
+            window.location.reload())
+        }
+    } catch {}
+}
+window.addEventListener("pageshow", tt => {
+    tt.persisted && checkInitDataFreshness()
+}
+);
+document.addEventListener("visibilitychange", () => {
+    document.visibilityState === "visible" && checkInitDataFreshness()
+}
+);
+initApp();
+export {getReportDialogEndpoint as $, addBreadcrumb as A, getFramesFromEvent as B, CONSOLE_LEVELS$1 as C, DEBUG_BUILD$3 as D, getCurrentScope as E, getActiveSpan as F, GLOBAL_OBJ as G, spanToJSON as H, fill as I, isPrimitive as J, _INTERNAL_captureMetric as K, startSpanManual as L, handleCallbackErrors as M, getLocationHref as N, isBrowser$1 as O, addIntegration as P, getIsolationScope as Q, getGlobalScope as R, SPAN_STATUS_ERROR as S, SDK_VERSION as T, DEBUG_BUILD$1 as U, dsnToString as V, WINDOW$2 as W, getNativeImplementation as X, serializeEnvelope as Y, lastEventId as Z, _INTERNAL_captureLog as _, dsnFromString as a, setMeasurement as a$, supportsReportingObserver as a0, captureMessage as a1, supportsNativeFetch as a2, addFetchInstrumentationHandler as a3, addXhrInstrumentationHandler as a4, SENTRY_XHR_DATA_KEY as a5, captureEvent as a6, isSentryRequestUrl as a7, stripUrlQueryAndFragment as a8, addContextToFrame as a9, SEMANTIC_ATTRIBUTE_SENTRY_SOURCE as aA, startBrowserTracingNavigationSpan as aB, isThenable$1 as aC, init$1 as aD, SEMANTIC_ATTRIBUTE_SENTRY_SAMPLE_RATE as aE, Scope as aF, addEventProcessor as aG, captureSession as aH, close as aI, continueTrace as aJ, createTransport as aK, dedupeIntegration as aL, endSession as aM, eventFiltersIntegration as aN, flush as aO, functionToStringIntegration as aP, getSpanDescendants as aQ, getSpanStatusFromHttpCode as aR, getTraceData as aS, inboundFiltersIntegration as aT, isEnabled as aU, isInitialized as aV, registerSpanErrorInstrumentation as aW, setContext as aX, setCurrentClient as aY, setExtra as aZ, setExtras as a_, SEMANTIC_ATTRIBUTE_URL_FULL as aa, SEMANTIC_ATTRIBUTE_HTTP_REQUEST_METHOD as ab, isString$3 as ac, stringMatchesSomePattern as ad, getBodyString as ae, getFetchRequestArgBody as af, _setSpanForScope as ag, makeFetchTransport as ah, parseEnvelope as ai, uuid4 as aj, timestampInSeconds as ak, DEFAULT_ENVIRONMENT as al, browserPerformanceTimeOrigin as am, getDebugImagesForResources as an, getRootSpan as ao, getSdkMetadataForEnvelopeHeader as ap, hasSpansEnabled as aq, suppressTracing as ar, _getUnhandledRejectionError as as, _eventFromRejectionWithPrimitive as at, eventFromUnknownInput as au, reactExports as av, startInactiveSpan as aw, withActiveSpan as ax, browserTracingIntegration as ay, startBrowserTracingPageLoadSpan as az, getEnvelopeEndpointWithUrlEncodedAuth as b, setTag as b0, setTags as b1, setUser as b2, spanToBaggageHeader as b3, spanToTraceHeader as b4, startNewTrace as b5, startSession as b6, updateSpanName as b7, withIsolationScope as b8, BrowserClient as b9, chromeStackLineParser as ba, defaultStackLineParsers as bb, defaultStackParser as bc, geckoStackLineParser as bd, opera10StackLineParser as be, opera11StackLineParser as bf, winjsStackLineParser as bg, eventFromException as bh, eventFromMessage as bi, exceptionFromError as bj, forceLoad as bk, getDefaultIntegrations as bl, onLoad as bm, breadcrumbsIntegration as bn, globalHandlersIntegration as bo, httpContextIntegration as bp, linkedErrorsIntegration as bq, browserApiErrorsIntegration as br, getReplay as bs, replayIntegration as bt, defaultRequestInstrumentationOptions as bu, instrumentOutgoingRequests as bv, browserSessionIntegration as bw, createEnvelope as c, debug$1 as d, envelopeContainsItemType as e, forEachEnvelopeItem as f, getDefaultExportFromCjs as g, defineIntegration as h, addConsoleInstrumentationHandler as i, getClient as j, addExceptionMechanism as k, severityLevelFromString as l, captureException as m, isError as n, normalize$3 as o, parseRetryAfterHeader as p, isPlainObject$2 as q, addNonEnumerableProperty as r, safeJoin as s, truncate as t, startSpan as u, SPAN_STATUS_OK as v, withScope as w, SEMANTIC_ATTRIBUTE_SENTRY_OP as x, SEMANTIC_ATTRIBUTE_SENTRY_ORIGIN as y, setHttpStatus as z};
