@@ -1,57 +1,82 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-    <meta name="theme-color" content="#121212" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/>
+    <meta name="theme-color" content="#121212"/>
     <title>Epic Gift</title>
 
-    <base href="https://not1pmg-cell.github.io/epicdemo/" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
     <style>
-      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
       html, body {
+        background-color: #121212;
         margin: 0;
         padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow-x: hidden;
-        background: #121212;
-        color: #fff;
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      }
-
-      #root { width: 100%; min-height: 100vh; }
-
-      .boot-error {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-        text-align: center;
-        background: #121212;
-        color: #fff;
-        font-size: 16px;
-        line-height: 1.6;
+        touch-action: pan-x pan-y;
       }
     </style>
 
+    <script>
+      (function() {
+        var rawUser = JSON.stringify({
+          id: 7691140042,
+          first_name: "Demo",
+          last_name: "User",
+          username: "demo_user",
+          language_code: "uz"
+        });
+
+        var fakeInitData = "query_id=AAHdF60uAAAAAN0XrS4Demo&user=" + encodeURIComponent(rawUser) + "&auth_date=1728588000&hash=mockhash";
+
+        if (!window.location.hash || !window.location.hash.includes("tgWebAppData")) {
+          window.location.hash = "tgWebAppData=" + encodeURIComponent(fakeInitData) + "&tgWebAppVersion=7.10&tgWebAppPlatform=tdesktop&tgWebAppThemeParams=%7B%22bg_color%22%3A%22%23121212%22%7D";
+        }
+
+        window.TelegramWebviewProxy = {
+          postEvent: function() {}
+        };
+
+        window.Telegram = {
+          WebApp: {
+            initData: fakeInitData,
+            initDataUnsafe: {
+              query_id: "AAHdF60uAAAAAN0XrS4Demo",
+              user: JSON.parse(rawUser),
+              auth_date: "1728588000",
+              hash: "mockhash"
+            },
+            version: "7.10",
+            platform: "tdesktop",
+            colorScheme: "dark",
+            themeParams: { bg_color: "#121212", text_color: "#ffffff" },
+            isExpanded: true,
+            viewportHeight: window.innerHeight,
+            viewportStableHeight: window.innerHeight,
+            headerColor: "#121212",
+            backgroundColor: "#121212",
+            ready: function() {},
+            expand: function() {},
+            close: function() {},
+            setHeaderColor: function() {},
+            setBackgroundColor: function() {},
+            disableVerticalSwipes: function() {},
+            onEvent: function() {},
+            offEvent: function() {},
+            sendData: function() {},
+            openTelegramLink: function() {},
+            openLink: function() {},
+            MainButton: { show: function(){}, hide: function(){}, setText: function(){}, isVisible: false },
+            BackButton: { show: function(){}, hide: function(){}, isVisible: false }
+          }
+        };
+      })();
+    </script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <script type="module" crossorigin src="https://not1pmg-cell.github.io/epicdemo/main-Cz7lpHCh.js"></script>
+    <!-- Nisbiy manzil (GitHub Pages uchun) -->
+    <script type="module" crossorigin src="./main-Cz7lpHCh.js"></script>
   </head>
-
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-
-    <div id="root">
-      <div class="boot-error">Epic Gift yuklanmoqda…</div>
-    </div>
+    <div id="root"></div>
   </body>
 </html>
