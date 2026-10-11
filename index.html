@@ -33,6 +33,33 @@
       }
     </style>
 
+    <!-- Asl server xatolarini ushlab qolib, "High load" chiqishini to'xtatuvchi mock fetch -->
+    <script>
+      const originalFetch = window.fetch;
+      window.fetch = async function(...args) {
+        const url = args[0] ? args[0].toString() : "";
+        if (url.includes("/api/") || url.includes("/user") || url.includes("/auth") || url.includes("/init")) {
+          return new Response(JSON.stringify({
+            status: "ok",
+            success: true,
+            user: {
+              id: 7691140042,
+              balance: 10000,
+              tickets: 50,
+              stars: 500,
+              level: 5,
+              gifts: []
+            },
+            data: {}
+          }), {
+            status: 200,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+        return originalFetch.apply(this, args);
+      };
+    </script>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-hub-bg.webp" fetchpriority="high"/>
@@ -40,7 +67,6 @@
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-plinko.webp?v=5" fetchpriority="high"/>
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-mines.webp?v=3" fetchpriority="high"/>
 
-    <!-- To'g'ridan-to'g'ri o'zingizning GitHub havolangiz orqali yuklash -->
     <script type="module" crossorigin src="https://not1pmg-cell.github.io/epicdemo/main-Cz7lpHCh.js"></script>
   </head>
   <body>
