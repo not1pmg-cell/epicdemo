@@ -113948,7 +113948,7 @@ function StartParameterHandler() {
                 if (Xt) {
                     if (typeof Xt == "string" && Xt.startsWith("giveaway_")) {
                         const Jt = Xt.replace("giveaway_", "");
-                        if (Jt && !isNaN(Number(Jt))) {
+                                        if (Jt && !isNaN(Number(Jt))) {
                             _t.current = !0,
                             sessionStorage.setItem("hasProcessedStartParam", "true"),
                             setTimeout( () => {
@@ -114172,7 +114172,7 @@ const StatusScreen = ({icon: tt, decorations: _t, title: Yt, description: Kt, ch
     if (tt === "network")
         return jsxRuntimeExports.jsx(StatusScreen, {
             icon: jsxRuntimeExports.jsx(WifiOff, {
-                className: "w-12 h-12 text-white"
+className: "w-12 h-12 text-white"
             }),
             title: _t("NO_CONNECTION.TITLE"),
             description: _t("NO_CONNECTION.DESCRIPTION"),
@@ -114183,6 +114183,7 @@ const StatusScreen = ({icon: tt, decorations: _t, title: Yt, description: Kt, ch
                 children: _t("NO_CONNECTION.HINT")
             })
         });
+  return null;
   if (false && tt === "overload")
         return jsxRuntimeExports.jsx(StatusScreen, {
             icon: jsxRuntimeExports.jsx(Activity, {
@@ -114202,6 +114203,7 @@ const StatusScreen = ({icon: tt, decorations: _t, title: Yt, description: Kt, ch
                 children: _t("OVERLOAD.HINT")
             })
         });
+    return null;
     const Zt = [{
         icon: Zap,
         gradient: "from-[#8774E1] to-[#7B68D4]",
