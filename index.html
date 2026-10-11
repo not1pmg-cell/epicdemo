@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
     <meta name="theme-color" content="#121212" />
     <title>Epic Gift</title>
 
@@ -10,23 +13,34 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
 
-      html, body {
+      html,
+      body {
         margin: 0;
         padding: 0;
         width: 100%;
         height: 100%;
         overflow-x: hidden;
         background: #121212;
-        color: #fff;
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #ffffff;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
       }
 
-      #root { width: 100%; min-height: 100vh; }
+      #root {
+        width: 100%;
+        min-height: 100vh;
+      }
 
       .boot-error {
         min-height: 100vh;
@@ -36,9 +50,18 @@
         padding: 24px;
         text-align: center;
         background: #121212;
-        color: #fff;
+        color: #ffffff;
         font-size: 16px;
         line-height: 1.6;
+      }
+
+      .boot-error pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        text-align: left;
+        max-width: 100%;
+        font-size: 13px;
+        line-height: 1.5;
       }
     </style>
 
@@ -47,13 +70,64 @@
     <script>
       window.__epicJsLoaded = false;
 
-      window.addEventListener("error", function (event) {
-        console.error("Global error:", event.error || event.message);
-      });
+      (function () {
+        function showError(text) {
+          var root = document.getElementById("root");
 
-      window.addEventListener("unhandledrejection", function (event) {
-        console.error("Unhandled rejection:", event.reason);
-      });
+          if (!root) return;
+
+          root.innerHTML =
+            "<div class='boot-error'>" +
+            "<b>Xatolik topildi:</b><br><br>" +
+            "<pre>" +
+            String(text)
+              .slice(0, 2500)
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;") +
+            "</pre>" +
+            "</div>";
+        }
+
+        var originalConsoleError = console.error;
+
+        console.error = function () {
+          var args = Array.prototype.slice.call(arguments);
+
+          var text = args
+            .map(function (item) {
+              try {
+                if (typeof item === "string") return item;
+                if (item instanceof Error) {
+                  return item.stack || item.message;
+                }
+                return JSON.stringify(item);
+              } catch (error) {
+                return String(item);
+              }
+            })
+            .join(" ");
+
+          showError(text);
+
+          originalConsoleError.apply(console, args);
+        };
+
+        window.addEventListener("error", function (event) {
+          showError(event.message || "Unknown JavaScript error");
+        });
+
+        window.addEventListener("unhandledrejection", function (event) {
+          var reason = event.reason;
+
+          showError(
+            reason && reason.stack
+              ? reason.stack
+              : reason && reason.message
+              ? reason.message
+              : String(reason)
+          );
+        });
+      })();
     </script>
 
     <script
@@ -76,17 +150,21 @@
         var root = document.getElementById("root");
         var tg = window.Telegram && window.Telegram.WebApp;
 
-        if (root && root.textContent.trim() === "Epic Gift yuklanmoqda…") {
+        if (
+          root &&
+          root.textContent.trim() === "Epic Gift yuklanmoqda…"
+        ) {
           root.innerHTML =
             "<div class='boot-error'>" +
             "<b>Diagnostika</b><br><br>" +
             "Telegram: " + (tg ? "HA" : "YO‘Q") + "<br>" +
             "Platform: " + (tg && tg.platform ? tg.platform : "aniqlanmadi") + "<br>" +
             "initData: " + (tg && tg.initData ? "BOR" : "YO‘Q") + "<br>" +
-            "JS yuklandi: " + (window.__epicJsLoaded ? "HA" : "YO‘Q") + "<br>" +
+            "JS yuklandi: " + (window.__epicJsLoaded ? "HA" : "YO‘Q") + "<br><br>" +
+            "Agar bularning barchasi HA/BOR bo‘lsa, ilova `api.epicgift.app` bilan ishlashda xato berayotgan bo‘lishi mumkin." +
             "</div>";
         }
-      }, 6000);
+      }, 8000);
     </script>
   </body>
 </html>
