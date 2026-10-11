@@ -6896,7 +6896,7 @@ function addPerformanceEntries(tt, _t) {
 function isReact19MeasureEntry(tt) {
     if (tt?.entryType === "measure")
         try {
-            return tt.detail.devtools.track === "Components ⚛"
+            return tt.detail.devtools.track === "Components âš›"
         } catch {
             return
         }
@@ -12456,12 +12456,12 @@ function normalizeConsoleBreadcrumb(tt) {
             return Xt;
         if (typeof Xt == "string")
             return Xt.length > CONSOLE_ARG_MAX_SIZE ? (Yt = !0,
-            `${Xt.slice(0, CONSOLE_ARG_MAX_SIZE)}…`) : Xt;
+            `${Xt.slice(0, CONSOLE_ARG_MAX_SIZE)}â€¦`) : Xt;
         if (typeof Xt == "object")
             try {
                 const Jt = normalize$3(Xt, 7);
                 return JSON.stringify(Jt).length > CONSOLE_ARG_MAX_SIZE ? (Yt = !0,
-                `${JSON.stringify(Jt, null, 2).slice(0, CONSOLE_ARG_MAX_SIZE)}…`) : Jt
+                `${JSON.stringify(Jt, null, 2).slice(0, CONSOLE_ARG_MAX_SIZE)}â€¦`) : Jt
             } catch {}
         return Xt
     }
@@ -12715,7 +12715,7 @@ function normalizeNetworkBody(tt) {
             body: Kt,
             warnings: ["MAYBE_JSON_TRUNCATED"]
         } : {
-            body: `${Kt}…`,
+            body: `${Kt}â€¦`,
             warnings: ["TEXT_TRUNCATED"]
         }
     }
@@ -16453,7 +16453,7 @@ const [K$1,pe$1,_e$1,ue$1] = se( () => {
   , [we$1,Te$1] = p$4("MethodParameterUnsupportedError", (tt, _t, Yt) => [`Parameter "${_t}" of "${tt}" method is unsupported in Mini Apps version ${Yt}`])
   , [fe,Le$1] = l$1("LaunchParamsRetrieveError", tt => ({
     errors: tt
-}), tt => [["Unable to retrieve launch parameters from any known source. Perhaps, you have opened your app outside Telegram?", "📖 Refer to docs for more information:", "https://docs.telegram-mini-apps.com/packages/telegram-apps-bridge/environment", "", "Collected errors:", ...tt.map( ([_t,Yt]) => `Source: ${_t} / ${Yt instanceof Error ? Yt.message : String(Yt)}`)].join(`
+}), tt => [["Unable to retrieve launch parameters from any known source. Perhaps, you have opened your app outside Telegram?", "ðŸ“– Refer to docs for more information:", "https://docs.telegram-mini-apps.com/packages/telegram-apps-bridge/environment", "", "Collected errors:", ...tt.map( ([_t,Yt]) => `Source: ${_t} / ${Yt instanceof Error ? Yt.message : String(Yt)}`)].join(`
 `)])
   , [me$1,Ce] = p$4("InvalidLaunchParamsError", (tt, _t) => [`Invalid value for launch params: ${tt}`, {
     cause: _t
@@ -32976,7 +32976,7 @@ const FALLBACK_WALLETS_LIST = [{
     app_name: "BitgetWeb3",
     name: "BitgetWeb3",
     image: "https://img.bitgetimg.com/image/third/1731638059795.png",
-    about_url: "​https://www.bitget.com",
+    about_url: "â€‹https://www.bitget.com",
     universal_url: "https://t.me/BitgetOfficialBot?attach=wallet",
     bridge: [{
         type: "sse",
@@ -35915,15 +35915,15 @@ const [lastSelectedWalletInfo,_setLastSelectedWalletInfo] = createSignal(lastSel
 }
   , notifications$1 = {
     confirm: {
-        header: "Open {{ name }} to confirm the transaction."
+        header: "Open {{ name }} toÂ confirm theÂ transaction."
     },
     transactionSent: {
         header: "Transaction sent",
-        text: "Your transaction will be processed in a few seconds."
+        text: "Your transactionÂ will beÂ processed inÂ aÂ few seconds."
     },
     transactionCanceled: {
         header: "Transaction canceled",
-        text: "There will be no changes to your account."
+        text: "There will be no changes toÂ your account."
     }
 }
   , walletItem$1 = {
@@ -35936,12 +35936,12 @@ const [lastSelectedWalletInfo,_setLastSelectedWalletInfo] = createSignal(lastSel
     loading: "Loading wallets",
     wallets: "Wallets",
     mobileUniversalModal: {
-        connectYourWallet: "Connect your TON wallet",
+        connectYourWallet: "Connect your TONÂ wallet",
         openWalletOnTelegramOrSelect: "Use Wallet in Telegram or choose other application",
         openWalletOnTelegram: "Connect Wallet in Telegram",
         chooseOtherApplication: "Choose other application",
         openLink: "Open Link",
-        scan: "Scan with your mobile wallet"
+        scan: "Scan with your mobileÂ wallet"
     },
     desktopUniversalModal: {
         connectYourWallet: "Connect your TON wallet",
@@ -35950,46 +35950,46 @@ const [lastSelectedWalletInfo,_setLastSelectedWalletInfo] = createSignal(lastSel
     },
     mobileConnectionModal: {
         showQR: "Show QR Code",
-        scanQR: "Scan the QR code below with your phone’s or {{ name }}’s camera",
+        scanQR: "Scan theÂ QR code below with your phoneâ€™sÂ orÂ {{ name }}â€™s camera",
         missingFeatures: "Please update {{ name }}, your version does not support required features for this dApp",
-        notSupportedWallet: "{{ name }} doesn’t support the requested action. Please connect another wallet that supports it",
-        continueIn: "Continue in {{ name }}…",
+        notSupportedWallet: "{{ name }} doesnâ€™t support the requested action. Please connect another wallet that supports it",
+        continueIn: "Continue in {{ name }}â€¦",
         updateWallet: "Update {{ name }}",
         chooseAnotherWallet: "Choose Another Wallet",
         connectionDeclined: "Connection declined"
     },
     desktopConnectionModal: {
-        scanQR: "Scan the QR code below with your phone’s or {{ name }}’s camera",
-        continueInExtension: "Continue in {{ name }} browser extension…",
-        dontHaveExtension: "Seems you don't have installed {{ name }} browser extension",
+        scanQR: "Scan theÂ QR code below with your phoneâ€™sÂ orÂ {{ name }}â€™s camera",
+        continueInExtension: "Continue inÂ {{ name }} browser extensionâ€¦",
+        dontHaveExtension: "Seems you don't have installed {{ name }}Â browserÂ extension",
         missingFeatures: "Please update {{ name }}, your version does not support required features for this dApp",
-        notSupportedWallet: "{{ name }} doesn’t support the requested action. Please connect another wallet that supports it",
+        notSupportedWallet: "{{ name }} doesnâ€™t support the requested action. Please connect another wallet that supports it",
         getWallet: "Get {{ name }}",
         updateWallet: "Update {{ name }}",
         chooseAnotherWallet: "Choose Another Wallet",
-        continueOnDesktop: "Continue in {{ name }} on desktop…",
+        continueOnDesktop: "Continue inÂ {{ name }} on desktopâ€¦",
         openWalletOnTelegram: "Connect Wallet in Telegram on desktop",
         connectionDeclined: "Connection declined"
     },
     infoModal: {
         whatIsAWallet: "What is a wallet",
         secureDigitalAssets: "Secure digital assets storage",
-        walletProtects: "A wallet protects and manages your digital assets including TON, tokens and collectables.",
+        walletProtects: "A wallet protects and manages your digital assetsÂ including TON, tokens and collectables.",
         controlIdentity: "Control your Web3 identity",
-        manageIdentity: "Manage your digital identity and access decentralized applications with ease. Maintain control over your data and engage securely in the blockchain ecosystem.",
+        manageIdentity: "Manage your digital identity and access decentralized applications with ease. Maintain control over your data and engage securely inÂ theÂ blockchain ecosystem.",
         effortlessCryptoTransactions: "Effortless crypto transactions",
-        easilySend: "Easily send, receive, monitor your cryptocurrencies. Streamline your operations with decentralized applications.",
+        easilySend: "Easily send, receive, monitor your cryptocurrencies.Â Streamline your operations withÂ decentralized applications.",
         getAWallet: "Get a Wallet"
     },
     allWallets: {
-        walletsBelowNotSupported: "The wallets below don’t support all features of the connected service. You can use your recovery phrase in one of the supported wallets above.",
-        walletNotSupportService: "{{ name }} doesn’t support connected service"
+        walletsBelowNotSupported: "The wallets below donâ€™t support all features ofÂ the connected service. You can use your recovery phrase in one of the supported wallets above.",
+        walletNotSupportService: "{{ name }} doesnâ€™t support connected service"
     }
 }
   , actionModal$1 = {
     confirmTransaction: {
-        header: "Confirm the transaction in {{ name }}",
-        text: "It will only take a moment."
+        header: "Confirm theÂ transaction inÂ {{ name }}",
+        text: "It will only take aÂ moment."
     },
     transactionSent: "$notifications.transactionSent",
     transactionCanceled: "$notifications.transactionCanceled"
@@ -36003,103 +36003,103 @@ const [lastSelectedWalletInfo,_setLastSelectedWalletInfo] = createSignal(lastSel
     actionModal: actionModal$1
 }
   , common = {
-    close: "Закрыть",
-    openWallet: "Открыть кошелёк",
-    copyLink: "Скопировать",
-    linkCopied: "Ссылка скопирована",
-    copied: "Скопировано",
-    yourWallet: "Ваш кошелёк",
-    retry: "Повторить",
-    get: "Скачать",
-    mobile: "Мобильный",
-    browserExtension: "Расширение",
-    desktop: "Десктоп"
+    close: "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ",
+    openWallet: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
+    copyLink: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ",
+    linkCopied: "Ð¡ÑÑ‹Ð»ÐºÐ° ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð°",
+    copied: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾",
+    yourWallet: "Ð’Ð°Ñˆ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
+    retry: "ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ",
+    get: "Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ",
+    mobile: "ÐœÐ¾Ð±Ð¸Ð»ÑŒÐ½Ñ‹Ð¹",
+    browserExtension: "Ð Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð¸Ðµ",
+    desktop: "Ð”ÐµÑÐºÑ‚Ð¾Ð¿"
 }
   , button = {
-    connectWallet: "Подключить кошелёк",
+    connectWallet: "ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
     dropdown: {
-        copy: "Скопировать адрес",
-        copied: "Адрес скопирован!",
-        disconnect: "Отключить кошелёк"
+        copy: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð°Ð´Ñ€ÐµÑ",
+        copied: "ÐÐ´Ñ€ÐµÑ ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½!",
+        disconnect: "ÐžÑ‚ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº"
     }
 }
   , notifications = {
     confirm: {
-        header: "Откройте {{ name }}, чтобы подтвердить транзакцию."
+        header: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ {{ name }}, Ñ‡Ñ‚Ð¾Ð±Ñ‹Â Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸Ñ‚ÑŒ Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸ÑŽ."
     },
     transactionSent: {
-        header: "Транзакция отправлена",
-        text: "Ваша транзакция будет обработана через несколько секунд."
+        header: "Ð¢Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ñ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð°",
+        text: "Ð’Ð°ÑˆÐ° Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸ÑÂ Ð±ÑƒÐ´ÐµÑ‚ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ð½Ð° Ñ‡ÐµÑ€ÐµÐ·Â Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ ÑÐµÐºÑƒÐ½Ð´."
     },
     transactionCanceled: {
-        header: "Транзакция отменена",
-        text: "Состояние вашего счёта не изменится."
+        header: "Ð¢Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ñ Ð¾Ñ‚Ð¼ÐµÐ½ÐµÐ½Ð°",
+        text: "Ð¡Ð¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð²Ð°ÑˆÐµÐ³Ð¾ ÑÑ‡Ñ‘Ñ‚Ð° Ð½ÐµÂ Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑÑ."
     }
 }
   , walletItem = {
-    walletOn: "Wallet в",
-    recent: "Недавний",
-    installed: "Установлен",
-    popular: "Популярен"
+    walletOn: "Wallet Ð²",
+    recent: "ÐÐµÐ´Ð°Ð²Ð½Ð¸Ð¹",
+    installed: "Ð£ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½",
+    popular: "ÐŸÐ¾Ð¿ÑƒÐ»ÑÑ€ÐµÐ½"
 }
   , walletModal = {
-    loading: "Кошельки загружаются",
-    wallets: "Кошельки",
+    loading: "ÐšÐ¾ÑˆÐµÐ»ÑŒÐºÐ¸ Ð·Ð°Ð³Ñ€ÑƒÐ¶Ð°ÑŽÑ‚ÑÑ",
+    wallets: "ÐšÐ¾ÑˆÐµÐ»ÑŒÐºÐ¸",
     mobileUniversalModal: {
-        connectYourWallet: "Подключите TON кошелёк",
-        openWalletOnTelegramOrSelect: "Подключите Wallet в Telegram или выберете другое приложение",
-        openWalletOnTelegram: "Открыть Wallet в Telegram",
-        chooseOtherApplication: "Выберите другое приложение",
-        openLink: "Открыть",
-        scan: "Отсканируйте камерой вашего телефона"
+        connectYourWallet: "ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚Ðµ TONÂ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
+        openWalletOnTelegramOrSelect: "ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚Ðµ Wallet Ð²Â Telegram Ð¸Ð»Ð¸Â Ð²Ñ‹Ð±ÐµÑ€ÐµÑ‚Ðµ Ð´Ñ€ÑƒÐ³Ð¾Ðµ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+        openWalletOnTelegram: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Wallet Ð² Telegram",
+        chooseOtherApplication: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´Ñ€ÑƒÐ³Ð¾Ðµ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+        openLink: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ",
+        scan: "ÐžÑ‚ÑÐºÐ°Ð½Ð¸Ñ€ÑƒÐ¹Ñ‚Ðµ ÐºÐ°Ð¼ÐµÑ€Ð¾Ð¹ Ð²Ð°ÑˆÐµÐ³Ð¾Â Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½Ð°"
     },
     desktopUniversalModal: {
-        connectYourWallet: "Подключите TON кошелёк",
-        scan: "Отсканируйте QR-код камерой вашего телефона",
-        availableWallets: "Доступные кошельки"
+        connectYourWallet: "ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚Ðµ TON ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
+        scan: "ÐžÑ‚ÑÐºÐ°Ð½Ð¸Ñ€ÑƒÐ¹Ñ‚Ðµ QR-ÐºÐ¾Ð´ ÐºÐ°Ð¼ÐµÑ€Ð¾Ð¹ Ð²Ð°ÑˆÐµÐ³Ð¾Â Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½Ð°",
+        availableWallets: "Ð”Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ðµ ÐºÐ¾ÑˆÐµÐ»ÑŒÐºÐ¸"
     },
     mobileConnectionModal: {
-        showQR: "Показать QR-код",
-        scanQR: "Отсканируйте QR-код ниже камерой в приложении {{ name }}, или камерой телефона",
-        missingFeatures: "Обновите {{ name }}, ваша версия не поддерживает необходимые функции для этого dApp",
-        notSupportedWallet: "{{ name }} не поддерживает запрошенное действие. Пожалуйста, подключите другой кошелёк, который поддерживает это",
-        continueIn: "Продолжите в {{ name }}…",
-        updateWallet: "Обновить {{ name }}",
-        chooseAnotherWallet: "Выбрать другой кошелёк",
-        connectionDeclined: "Подключение отклонено"
+        showQR: "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ QR-ÐºÐ¾Ð´",
+        scanQR: "ÐžÑ‚ÑÐºÐ°Ð½Ð¸Ñ€ÑƒÐ¹Ñ‚Ðµ QR-ÐºÐ¾Ð´ Ð½Ð¸Ð¶Ðµ ÐºÐ°Ð¼ÐµÑ€Ð¾Ð¹ Ð²Â Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¸ {{ name }}, Ð¸Ð»Ð¸Â ÐºÐ°Ð¼ÐµÑ€Ð¾Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½Ð°",
+        missingFeatures: "ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚Ðµ {{ name }}, Ð²Ð°ÑˆÐ° Ð²ÐµÑ€ÑÐ¸Ñ Ð½Ðµ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÑ‚ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ñ‹Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð´Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ dApp",
+        notSupportedWallet: "{{ name }} Ð½Ðµ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÑ‚ Ð·Ð°Ð¿Ñ€Ð¾ÑˆÐµÐ½Ð½Ð¾Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ. ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚Ðµ Ð´Ñ€ÑƒÐ³Ð¾Ð¹ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÑ‚ ÑÑ‚Ð¾",
+        continueIn: "ÐŸÑ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚Ðµ Ð² {{ name }}â€¦",
+        updateWallet: "ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ {{ name }}",
+        chooseAnotherWallet: "Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð´Ñ€ÑƒÐ³Ð¾Ð¹ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
+        connectionDeclined: "ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð¾"
     },
     desktopConnectionModal: {
-        scanQR: "Отсканируйте QR-код ниже камерой в приложении {{ name }}, или камерой телефона",
-        continueInExtension: "Откройте браузерное расширение {{ name }}",
-        dontHaveExtension: "Похоже, у вас не установлено браузерное расширение {{ name }}",
-        missingFeatures: "Обновите {{ name }}, ваша версия не поддерживает необходимые функции для этого dApp",
-        notSupportedWallet: "{{ name }} не поддерживает запрошенное действие. Пожалуйста, подключите другой кошелёк, который поддерживает это",
-        getWallet: "Скачать {{ name }}",
-        updateWallet: "Обновить {{ name }}",
-        chooseAnotherWallet: "Выбрать другой кошелёк",
-        continueOnDesktop: "Откройте {{ name }} на компьютере…",
-        openWalletOnTelegram: "Открыть Wallet в Telegram",
-        connectionDeclined: "Подключение отклонено"
+        scanQR: "ÐžÑ‚ÑÐºÐ°Ð½Ð¸Ñ€ÑƒÐ¹Ñ‚Ðµ QR-ÐºÐ¾Ð´ Ð½Ð¸Ð¶Ðµ ÐºÐ°Ð¼ÐµÑ€Ð¾Ð¹ Ð²Â Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¸ {{ name }}, Ð¸Ð»Ð¸Â ÐºÐ°Ð¼ÐµÑ€Ð¾Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½Ð°",
+        continueInExtension: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ð½Ð¾Ðµ Ñ€Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð¸Ðµ {{ name }}",
+        dontHaveExtension: "ÐŸÐ¾Ñ…Ð¾Ð¶Ðµ, Ñƒ Ð²Ð°Ñ Ð½ÐµÂ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾ Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ð½Ð¾ÐµÂ Ñ€Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð¸ÐµÂ {{ name }}",
+        missingFeatures: "ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚Ðµ {{ name }}, Ð²Ð°ÑˆÐ° Ð²ÐµÑ€ÑÐ¸Ñ Ð½Ðµ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÑ‚ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ñ‹Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð´Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ dApp",
+        notSupportedWallet: "{{ name }} Ð½Ðµ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÑ‚ Ð·Ð°Ð¿Ñ€Ð¾ÑˆÐµÐ½Ð½Ð¾Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ. ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚Ðµ Ð´Ñ€ÑƒÐ³Ð¾Ð¹ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÑ‚ ÑÑ‚Ð¾",
+        getWallet: "Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ {{ name }}",
+        updateWallet: "ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ {{ name }}",
+        chooseAnotherWallet: "Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð´Ñ€ÑƒÐ³Ð¾Ð¹ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
+        continueOnDesktop: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ {{ name }} Ð½Ð°Â ÐºÐ¾Ð¼Ð¿ÑŒÑŽÑ‚ÐµÑ€Ðµâ€¦",
+        openWalletOnTelegram: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Wallet Ð²Â Telegram",
+        connectionDeclined: "ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð¾"
     },
     infoModal: {
-        whatIsAWallet: "Что такое кошелёк?",
-        secureDigitalAssets: "Надежное хранилище цифровых активов",
-        walletProtects: "Кошелёк защищает ваши цифровые активы, включая TON, токены и предметы коллекционирования, и управляет ими.",
-        controlIdentity: "Контроль своей личности Web3",
-        manageIdentity: "Управляйте своей цифровой идентификацией и с легкостью получайте доступ к децентрализованным приложениям. Сохраняйте контроль над своими данными и безопасно участвуйте в экосистеме блокчейна.",
-        effortlessCryptoTransactions: "Простые криптотранзакции",
-        easilySend: "Легко отправляйте, получайте и отслеживайте свои криптовалюты. Оптимизируйте свои операции с помощью децентрализованных приложений.",
-        getAWallet: "Скачать кошелёк"
+        whatIsAWallet: "Ð§Ñ‚Ð¾ Ñ‚Ð°ÐºÐ¾Ðµ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº?",
+        secureDigitalAssets: "ÐÐ°Ð´ÐµÐ¶Ð½Ð¾Ðµ Ñ…Ñ€Ð°Ð½Ð¸Ð»Ð¸Ñ‰Ðµ Ñ†Ð¸Ñ„Ñ€Ð¾Ð²Ñ‹Ñ… Ð°ÐºÑ‚Ð¸Ð²Ð¾Ð²",
+        walletProtects: "ÐšÐ¾ÑˆÐµÐ»Ñ‘Ðº Ð·Ð°Ñ‰Ð¸Ñ‰Ð°ÐµÑ‚ Ð²Ð°ÑˆÐ¸ Ñ†Ð¸Ñ„Ñ€Ð¾Ð²Ñ‹Ðµ Ð°ÐºÑ‚Ð¸Ð²Ñ‹, Ð²ÐºÐ»ÑŽÑ‡Ð°Ñ TON, Ñ‚Ð¾ÐºÐµÐ½Ñ‹ Ð¸Â Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚Ñ‹ ÐºÐ¾Ð»Ð»ÐµÐºÑ†Ð¸Ð¾Ð½Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ, Ð¸Â ÑƒÐ¿Ñ€Ð°Ð²Ð»ÑÐµÑ‚ Ð¸Ð¼Ð¸.",
+        controlIdentity: "ÐšÐ¾Ð½Ñ‚Ñ€Ð¾Ð»ÑŒ ÑÐ²Ð¾ÐµÐ¹ Ð»Ð¸Ñ‡Ð½Ð¾ÑÑ‚Ð¸ Web3",
+        manageIdentity: "Ð£Ð¿Ñ€Ð°Ð²Ð»ÑÐ¹Ñ‚Ðµ ÑÐ²Ð¾ÐµÐ¹ Ñ†Ð¸Ñ„Ñ€Ð¾Ð²Ð¾Ð¹ Ð¸Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸ÐµÐ¹ Ð¸Â ÑÂ Ð»ÐµÐ³ÐºÐ¾ÑÑ‚ÑŒÑŽ Ð¿Ð¾Ð»ÑƒÑ‡Ð°Ð¹Ñ‚Ðµ Ð´Ð¾ÑÑ‚ÑƒÐ¿ ÐºÂ Ð´ÐµÑ†ÐµÐ½Ñ‚Ñ€Ð°Ð»Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¼ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸ÑÐ¼. Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÑÐ¹Ñ‚Ðµ ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»ÑŒ Ð½Ð°Ð´Â ÑÐ²Ð¾Ð¸Ð¼Ð¸ Ð´Ð°Ð½Ð½Ñ‹Ð¼Ð¸ Ð¸Â Ð±ÐµÐ·Ð¾Ð¿Ð°ÑÐ½Ð¾ ÑƒÑ‡Ð°ÑÑ‚Ð²ÑƒÐ¹Ñ‚Ðµ Ð²Â ÑÐºÐ¾ÑÐ¸ÑÑ‚ÐµÐ¼ÐµÂ Ð±Ð»Ð¾ÐºÑ‡ÐµÐ¹Ð½Ð°.",
+        effortlessCryptoTransactions: "ÐŸÑ€Ð¾ÑÑ‚Ñ‹Ðµ ÐºÑ€Ð¸Ð¿Ñ‚Ð¾Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ð¸",
+        easilySend: "Ð›ÐµÐ³ÐºÐ¾ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÑÐ¹Ñ‚Ðµ, Ð¿Ð¾Ð»ÑƒÑ‡Ð°Ð¹Ñ‚Ðµ Ð¸Â Ð¾Ñ‚ÑÐ»ÐµÐ¶Ð¸Ð²Ð°Ð¹Ñ‚Ðµ ÑÐ²Ð¾Ð¸ ÐºÑ€Ð¸Ð¿Ñ‚Ð¾Ð²Ð°Ð»ÑŽÑ‚Ñ‹. ÐžÐ¿Ñ‚Ð¸Ð¼Ð¸Ð·Ð¸Ñ€ÑƒÐ¹Ñ‚Ðµ ÑÐ²Ð¾Ð¸ Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸ ÑÂ Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒÑŽ Ð´ÐµÑ†ÐµÐ½Ñ‚Ñ€Ð°Ð»Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ñ… Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¹.",
+        getAWallet: "Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº"
     },
     allWallets: {
-        walletsBelowNotSupported: "Кошельки ниже не поддерживают все функции подключённого сервиса. Вы можете использовать свою фразу восстановления в одном из поддерживаемых выше кошельков.",
-        walletNotSupportService: "{{ name }} не поддерживает подключённый сервис"
+        walletsBelowNotSupported: "ÐšÐ¾ÑˆÐµÐ»ÑŒÐºÐ¸ Ð½Ð¸Ð¶Ðµ Ð½Ðµ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÑŽÑ‚ Ð²ÑÐµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ñ‘Ð½Ð½Ð¾Ð³Ð¾ ÑÐµÑ€Ð²Ð¸ÑÐ°. Ð’Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ²Ð¾ÑŽ Ñ„Ñ€Ð°Ð·Ñƒ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ Ð² Ð¾Ð´Ð½Ð¾Ð¼ Ð¸Ð· Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÐ¼Ñ‹Ñ… Ð²Ñ‹ÑˆÐµ ÐºÐ¾ÑˆÐµÐ»ÑŒÐºÐ¾Ð².",
+        walletNotSupportService: "{{ name }} Ð½Ðµ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÑ‚ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ñ‘Ð½Ð½Ñ‹Ð¹ ÑÐµÑ€Ð²Ð¸Ñ"
     }
 }
   , actionModal = {
     confirmTransaction: {
-        header: "Подтвердите действие в {{ name }}",
-        text: "Это займет пару секунд."
+        header: "ÐŸÐ¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð²Â {{ name }}",
+        text: "Ð­Ñ‚Ð¾ Ð·Ð°Ð¹Ð¼ÐµÑ‚ Ð¿Ð°Ñ€Ñƒ ÑÐµÐºÑƒÐ½Ð´."
     },
     transactionSent: "$notifications.transactionSent",
     transactionCanceled: "$notifications.transactionCanceled"
@@ -37998,28 +37998,28 @@ var qrcode$1 = {
                 var ti = 1;
                 ni = typeof ni > "u" ? ti * 2 : ni;
                 var xi = Cr.getModuleCount() * ti + ni * 2, vi = ni, Bi = xi - ni, zi, Yi, to, ya, Ia, mo = {
-                    "██": "█",
-                    "█ ": "▀",
-                    " █": "▄",
+                    "â–ˆâ–ˆ": "â–ˆ",
+                    "â–ˆ ": "â–€",
+                    " â–ˆ": "â–„",
                     "  ": " "
                 }, Ea = {
-                    "██": "▀",
-                    "█ ": "▀",
-                    " █": " ",
+                    "â–ˆâ–ˆ": "â–€",
+                    "â–ˆ ": "â–€",
+                    " â–ˆ": " ",
                     "  ": " "
                 }, xa = "";
                 for (zi = 0; zi < xi; zi += 2) {
                     for (to = Math.floor((zi - vi) / ti),
                     ya = Math.floor((zi + 1 - vi) / ti),
                     Yi = 0; Yi < xi; Yi += 1)
-                        Ia = "█",
+                        Ia = "â–ˆ",
                         vi <= Yi && Yi < Bi && vi <= zi && zi < Bi && Cr.isDark(to, Math.floor((Yi - vi) / ti)) && (Ia = " "),
-                        vi <= Yi && Yi < Bi && vi <= zi + 1 && zi + 1 < Bi && Cr.isDark(ya, Math.floor((Yi - vi) / ti)) ? Ia += " " : Ia += "█",
+                        vi <= Yi && Yi < Bi && vi <= zi + 1 && zi + 1 < Bi && Cr.isDark(ya, Math.floor((Yi - vi) / ti)) ? Ia += " " : Ia += "â–ˆ",
                         xa += ni < 1 && zi + 1 >= Bi ? Ea[Ia] : mo[Ia];
                     xa += `
 `
                 }
-                return xi % 2 && ni > 0 ? xa.substring(0, xa.length - xi - 1) + Array(xi + 1).join("▀") : xa.substring(0, xa.length - 1)
+                return xi % 2 && ni > 0 ? xa.substring(0, xa.length - xi - 1) + Array(xi + 1).join("â–€") : xa.substring(0, xa.length - 1)
             };
             return Cr.createASCII = function(ni, ti) {
                 if (ni = ni || 1,
@@ -38027,7 +38027,7 @@ var qrcode$1 = {
                     return Ri(ti);
                 ni -= 1,
                 ti = typeof ti > "u" ? ni * 2 : ti;
-                var xi = Cr.getModuleCount() * ni + ti * 2, vi = ti, Bi = xi - ti, zi, Yi, to, ya, Ia = Array(ni + 1).join("██"), mo = Array(ni + 1).join("  "), Ea = "", xa = "";
+                var xi = Cr.getModuleCount() * ni + ti * 2, vi = ti, Bi = xi - ti, zi, Yi, to, ya, Ia = Array(ni + 1).join("â–ˆâ–ˆ"), mo = Array(ni + 1).join("  "), Ea = "", xa = "";
                 for (zi = 0; zi < xi; zi += 1) {
                     for (to = Math.floor((zi - vi) / ni),
                     xa = "",
@@ -38519,7 +38519,7 @@ var qrcode$1 = {
                 if (Wn.length != 2 || (Wn[0] << 8 | Wn[1]) != Mn)
                     throw "sjis not supported."
             }
-            )("友", 38726);
+            )("å‹", 38726);
             var An = wn(Pn)
               , Bn = {};
             return Bn.getMode = function() {
@@ -41117,7 +41117,7 @@ const _tmpl$$4 = template$1('<tc-root data-tc-dropdown-container="true"></tc-roo
         const yn = Jt();
         if (yn) {
             const bn = toUserFriendlyAddress(yn.address, yn.chain === CHAIN.TESTNET);
-            return bn.slice(0, 4) + "…" + bn.slice(-4)
+            return bn.slice(0, 4) + "â€¦" + bn.slice(-4)
         }
         return ""
     }
@@ -41614,7 +41614,7 @@ const StyledIconButton$3 = styled(IconButton)`
                                 get children() {
                                     return [createComponent(WalletsNotSupportedNotifierText, {
                                         translationKey: "walletModal.allWallets.walletsBelowNotSupported",
-                                        children: "The wallets below don’t support all features of the connected service. You can use your recovery phrase in one of the supported wallets above."
+                                        children: "The wallets below donâ€™t support all features of the connected service. You can use your recovery phrase in one of the supported wallets above."
                                     }), createComponent(ExclamationIcon, {
                                         size: "28"
                                     })]
@@ -41685,7 +41685,7 @@ const StyledIconButton$3 = styled(IconButton)`
                                                             }
                                                         },
                                                         get children() {
-                                                            return [createMemo( () => Yt().name), " doesn’t support connected service"]
+                                                            return [createMemo( () => Yt().name), " doesnâ€™t support connected service"]
                                                         }
                                                     })]
                                                 }
@@ -42078,7 +42078,7 @@ const DesktopConnectionModal = tt => {
                             }
                         },
                         get children() {
-                            return ["Scan the QR code below with your phone’s or ", createMemo( () => tt.wallet.name), "’s camera"]
+                            return ["Scan the QR code below with your phoneâ€™s or ", createMemo( () => tt.wallet.name), "â€™s camera"]
                         }
                     })
                 }
@@ -42136,7 +42136,7 @@ const DesktopConnectionModal = tt => {
                                                             }
                                                         },
                                                         get children() {
-                                                            return [createMemo( () => tt.wallet.name), " doesn’t support the requested action. Please connect another wallet that supports it."]
+                                                            return [createMemo( () => tt.wallet.name), " doesnâ€™t support the requested action. Please connect another wallet that supports it."]
                                                         }
                                                     })
                                                 }
@@ -42250,7 +42250,7 @@ const DesktopConnectionModal = tt => {
                                                     }
                                                 },
                                                 get children() {
-                                                    return ["Continue in ", createMemo( () => tt.wallet.name), " browser extension…"]
+                                                    return ["Continue in ", createMemo( () => tt.wallet.name), " browser extensionâ€¦"]
                                                 }
                                             }), createComponent(ButtonsContainerStyled$1, {
                                                 get children() {
@@ -42333,7 +42333,7 @@ const DesktopConnectionModal = tt => {
                                             }
                                         },
                                         get children() {
-                                            return ["Continue in ", createMemo( () => tt.wallet.name), " on desktop…"]
+                                            return ["Continue in ", createMemo( () => tt.wallet.name), " on desktopâ€¦"]
                                         }
                                     }), createComponent(ButtonsContainerStyled$1, {
                                         get children() {
@@ -42685,7 +42685,7 @@ const DesktopConnectionModal = tt => {
         }
     },
     get children() {
-        return ["Scan the QR code below with your phone’s or ", createMemo( () => tt.walletInfo.name), "’s camera"]
+        return ["Scan the QR code below with your phoneâ€™s or ", createMemo( () => tt.walletInfo.name), "â€™s camera"]
     }
 }), createComponent(QrCodeWrapper$1, {
     get children() {
@@ -42897,7 +42897,7 @@ const DesktopConnectionModal = tt => {
                                                             }
                                                         },
                                                         get children() {
-                                                            return [createMemo( () => tt.wallet.name), " doesn’t support the requested action. Please connect another wallet that supports it."]
+                                                            return [createMemo( () => tt.wallet.name), " doesnâ€™t support the requested action. Please connect another wallet that supports it."]
                                                         }
                                                     })
                                                 }
@@ -43019,7 +43019,7 @@ const DesktopConnectionModal = tt => {
                                             }
                                         },
                                         get children() {
-                                            return ["Continue in ", createMemo( () => tt.wallet.name), "…"]
+                                            return ["Continue in ", createMemo( () => tt.wallet.name), "â€¦"]
                                         }
                                     }), createComponent(ButtonsContainerStyled, {
                                         get children() {
@@ -46087,12 +46087,12 @@ const warn = (tt, _t, Yt, Kt) => {
     "&#34;": '"',
     "&nbsp;": " ",
     "&#160;": " ",
-    "&copy;": "©",
-    "&#169;": "©",
-    "&reg;": "®",
-    "&#174;": "®",
-    "&hellip;": "…",
-    "&#8230;": "…",
+    "&copy;": "Â©",
+    "&#169;": "Â©",
+    "&reg;": "Â®",
+    "&#174;": "Â®",
+    "&hellip;": "â€¦",
+    "&#8230;": "â€¦",
     "&#x2F;": "/",
     "&#47;": "/"
 }
@@ -51471,7 +51471,7 @@ const APP$7 = {
     RANDOM: "Random",
     FAILED_TO_LOAD: "Failed to load",
     LOADING_GIFTS: "Loading gifts...",
-    THANK_YOU_PATIENCE: "Thank you for your patience! 🙏"
+    THANK_YOU_PATIENCE: "Thank you for your patience! ðŸ™"
 }
   , ACTIONS$J = {
     HIDE: "Hide",
@@ -51520,7 +51520,7 @@ const APP$7 = {
   , CAMPAIGN_REWARD$3 = {
     TITLE: "Grab your bonus!",
     SUBTITLE: "Use it to play Rocket Mode and PvP",
-    OK: "Play Now  🚀"
+    OK: "Play NowÂ Â ðŸš€"
 }
   , enCommon = {
     APP: APP$7,
@@ -51558,7 +51558,7 @@ const APP$7 = {
     FREE: "FREE",
     RESTOCK: "Restock",
     HASH_PREFIX: "Hash:",
-    HASH_EMPTY: "—",
+    HASH_EMPTY: "â€”",
     ROCKET: "Rocket",
     PROCESSING: "Processing...",
     OUT_OF_STOCK: "Out of Stock",
@@ -51704,9 +51704,9 @@ const APP$7 = {
     NO_PLAYERS_YET: "No Players Yet",
     WAITING: "Waiting for next round...",
     WAITING_SHORT: "Waiting...",
-    RECONNECTING: "Reconnecting to game server…",
-    CONNECTING: "Connecting to game server…",
-    POOR_CONNECTION: "Poor connection, resyncing…"
+    RECONNECTING: "Reconnecting to game serverâ€¦",
+    CONNECTING: "Connecting to game serverâ€¦",
+    POOR_CONNECTION: "Poor connection, resyncingâ€¦"
 }
   , SETTINGS$1 = {}
   , PLACEHOLDERS$j = {
@@ -52002,7 +52002,7 @@ Please contact support for more information: @epic_gift_support`
   , BOX_SUFFIX$3 = "Box"
   , BOOST$3 = {
     LABEL: "BOOST",
-    HINT: "Higher boost — better drops"
+    HINT: "Higher boost â€” better drops"
 }
   , CHECK_COMMUNITY$3 = "Check our community for new codes"
   , LOADING$3 = "Loading..."
@@ -52022,7 +52022,7 @@ Please contact support for more information: @epic_gift_support`
     OPEN: "Open for {{price}} TON",
     OPEN_FREE_BOX: "Open Free Box",
     TOP_UP_BALANCE: "Top Up Balance",
-    PROCESSING: "Processing…",
+    PROCESSING: "Processingâ€¦",
     SKIP: "Skip",
     DEPOSIT_AND_CONTINUE: "Deposit 1 TON & Continue",
     DO_LATER: "I'll Do This Later",
@@ -52095,7 +52095,7 @@ Please contact support for more information: @epic_gift_support`
 }
   , MESSAGES$m = {
     NO_INVITES: "No invites yet",
-    INVITE_TEXT: `🎁 Open the Free Box on Epic Gift and grab your Telegram NFT gifts!
+    INVITE_TEXT: `ðŸŽ Open the Free Box on Epic Gift and grab your Telegram NFT gifts!
 
 It's 100% free, and you can try your luck every 24 hours!`,
     TRY_AGAIN: "Try again"
@@ -52111,7 +52111,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
     INFO_2: "You earn TON rewards while your referrals play. The more actively they play, the more you can earn.",
     INFO_3: "Rewards are calculated automatically as a share of the profit generated by each referral and credited directly to your balance.",
     INFO_4: "Your total rewards from each referral can reach up to {{pct}} of their deposits. Rewards may be credited at different times depending on their gameplay.",
-    FOOTER: "Deposits alone do not generate an instant reward. Reward amounts and timing depend on each referral’s gameplay results."
+    FOOTER: "Deposits alone do not generate an instant reward. Reward amounts and timing depend on each referralâ€™s gameplay results."
 }
   , enInvite = {
     EARN_HEADER: EARN_HEADER$3,
@@ -52207,7 +52207,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , SUCCESS$3 = {
     LINK_COPIED: "Link copied to clipboard!",
-    LINK_COPIED_SHARE: "Link copied – paste it into friends chat!",
+    LINK_COPIED_SHARE: "Link copied â€“ paste it into friends chat!",
     GIFT_SOLD: "Gift sold successfully!",
     GIFT_ADDED_TO_BACKPACK: "Gift added to your backpack!",
     GIFT_WITHDRAWN: "Gift successfully withdrawn to Telegram!",
@@ -52342,7 +52342,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
   , LOCK$3 = {
     TITLE: "Gift Locked",
     LOCKED: "Locked",
-    DESCRIPTION: "After the gift was transferred, Telegram placed a temporary lock on it. Please wait until the lock expires — the gift will become available automatically.",
+    DESCRIPTION: "After the gift was transferred, Telegram placed a temporary lock on it. Please wait until the lock expires â€” the gift will become available automatically.",
     GOT_IT: "Got it",
     TIME_DAYS: "{{days}}d {{hours}}h",
     TIME_HOURS: "{{hours}}h {{minutes}}m",
@@ -52353,12 +52353,12 @@ It's 100% free, and you can try your luck every 24 hours!`,
     BADGE_REJECTED: "Withdraw only",
     GOT_IT: "Got it",
     PENDING: {
-        TITLE: "We’re verifying this gift",
-        DESCRIPTION: "This gift was flagged for an additional check. Verification usually takes a few hours. During this time, the gift will stay safely in your Backpack and will be available to use once the review is complete. We’ll notify you as soon as it’s ready."
+        TITLE: "Weâ€™re verifying this gift",
+        DESCRIPTION: "This gift was flagged for an additional check. Verification usually takes a few hours. During this time, the gift will stay safely in your Backpack and will be available to use once the review is complete. Weâ€™ll notify you as soon as itâ€™s ready."
     },
     REJECTED: {
         TITLE: "Available for withdrawal only",
-        DESCRIPTION: "This gift isn’t supported on the app, so it can’t be sold, upgraded, or used in games. It’s still yours and can be withdrawn back to Telegram at any time."
+        DESCRIPTION: "This gift isnâ€™t supported on the app, so it canâ€™t be sold, upgraded, or used in games. Itâ€™s still yours and can be withdrawn back to Telegram at any time."
     }
 }
   , enBackpack = {
@@ -52397,7 +52397,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , SEND_GIFTS_TO$3 = "Send gifts to"
   , STARS$3 = {
-    AMOUNT_LABEL: "Amount in Stars ({{min}} – {{max}})",
+    AMOUNT_LABEL: "Amount in Stars ({{min}} â€“ {{max}})",
     PAYMENT_SUCCESS: "Stars payment successful! Balance updated.",
     PAYMENT_FAILED: "Stars payment failed. Please try again.",
     TEMPORARILY_UNAVAILABLE: "Stars top-up unavailable",
@@ -52554,7 +52554,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
     STEP_1: "Server creates <strong>random seed</strong> and publishes <strong>hash</strong> before game starts",
     STEP_2: "Each player gets unique <strong>client seed</strong> when placing bet",
     STEP_3: "After game: combine server seed + all client seeds + nonce",
-    STEP_4: "Result = cryptographic hash → determines winner",
+    STEP_4: "Result = cryptographic hash â†’ determines winner",
     NO_CHEAT: "<strong>No one can cheat:</strong> Server can't predict (client seeds unknown), players can't manipulate (server seed committed)",
     PASSED: "Verification Passed",
     FAILED: "Verification Failed",
@@ -52617,11 +52617,11 @@ It's 100% free, and you can try your luck every 24 hours!`,
     CONTRACT_MODE: "Craft Mode",
     TOO_SMALL: "Craft value too small",
     SAFE: "Safe",
-    SAFE_DESC: "Low risk — smaller multiplier with higher chance to win.",
+    SAFE_DESC: "Low risk â€” smaller multiplier with higher chance to win.",
     NORMAL: "Normal",
-    NORMAL_DESC: "Balanced risk and reward — a good middle ground.",
+    NORMAL_DESC: "Balanced risk and reward â€” a good middle ground.",
     RISKY: "Risky",
-    RISKY_DESC: "High risk — big multiplier with a lower chance to win.",
+    RISKY_DESC: "High risk â€” big multiplier with a lower chance to win.",
     NEED_MORE_BUTTON: "Add {{amount}} TON for {{mode}} Craft",
     MIN_LABEL: "min cost"
 }
@@ -52744,7 +52744,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , ERRORS$a = {
     ALREADY_CLAIMED: "Reward already claimed",
-    NO_GIFT_AVAILABLE: "No gift available right now — try again later",
+    NO_GIFT_AVAILABLE: "No gift available right now â€” try again later",
     PLAYBONUS_LOCKED: "PLAYBONUS claim is not unlocked yet",
     NOTHING_TO_CLAIM: "Nothing to claim yet",
     VIP_DISABLED: "VIP system is currently unavailable"
@@ -52899,13 +52899,13 @@ It's 100% free, and you can try your luck every 24 hours!`,
     WINNERS: "Winners",
     WINNERS_COUNT: "{{count}} winners",
     TIME_REMAINING: "Time Remaining",
-    CANCELLED: "Cancelled — Tickets Refunded",
+    CANCELLED: "Cancelled â€” Tickets Refunded",
     NOT_ENOUGH_TICKETS: "Not enough tickets",
     REQUIREMENTS: "Requirements",
     ENTER_TICKETS_CTA: "1 ticket = 1 chance to win",
     YOUR_TICKETS_IN_GIVEAWAY: "You have {{count}} ticket(s) in this giveaway!",
     JOIN_CTA: "Join now for a chance to win!",
-    JOINED_CTA: "🎉 You're in! Good luck! 🍀",
+    JOINED_CTA: "ðŸŽ‰ You're in! Good luck! ðŸ€",
     REQUIREMENT_JOIN_CHANNEL: "Join channel {{channel}}",
     REQUIREMENT_MIN_DEPOSIT: "Min deposit: {{amount}} TON",
     REQUIREMENT_UNBOX_GIFTBOX: "Open a gift box",
@@ -52958,7 +52958,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
     HOT: "HOT",
     NEW: "NEW",
     BACK: "Back",
-    EMPTY: "Games are temporarily unavailable — check back soon",
+    EMPTY: "Games are temporarily unavailable â€” check back soon",
     BANNERS: {
         UPGRADE: {
             TITLE: "Upgrade",
@@ -52996,7 +52996,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , LOAD_FAILED$6 = "Couldn't load the game"
   , LOAD_RETRY$3 = "Retry"
-  , LOAD_RETRYING$3 = "Loading…"
+  , LOAD_RETRYING$3 = "Loadingâ€¦"
   , CONTROLS$6 = {
     MULTIPLIER: "Multiplier",
     HIGHER: "Higher",
@@ -53019,15 +53019,15 @@ It's 100% free, and you can try your luck every 24 hours!`,
     SELECT: "Select gifts",
     SELECTED_one: "{{count}} gift selected",
     SELECTED_other: "{{count}} gifts selected",
-    CONFIRM_one: "Bet {{count}} Gift · {{amount}} TON",
-    CONFIRM_other: "Bet {{count}} Gifts · {{amount}} TON",
+    CONFIRM_one: "Bet {{count}} Gift Â· {{amount}} TON",
+    CONFIRM_other: "Bet {{count}} Gifts Â· {{amount}} TON",
     PRUNED_one: "{{count}} gift no longer fits the bet limits",
     PRUNED_other: "{{count}} gifts no longer fit the bet limits"
 }
   , BET$8 = {
     PLACE_TON: "Place {{amount}} TON Bet",
     PLACE_BET_EMPTY: "Place Bet",
-    PLACING: "Placing bet…",
+    PLACING: "Placing betâ€¦",
     EMPTY_GIFTS: "Send gifts to @giftbackpack and play Dice"
 }
   , HISTORY$d = {
@@ -53060,7 +53060,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
     INVALID: "Verification failed",
     COPY: "Copy",
     COPIED: "Copied",
-    NOTE: "Verified. The seeds were locked in before your bet, and your browser just recomputed both checks: the SHA-256 hash of the server seed, and the roll as floor(HMAC-SHA256(serverSeed, clientSeed:nonce) · 100).",
+    NOTE: "Verified. The seeds were locked in before your bet, and your browser just recomputed both checks: the SHA-256 hash of the server seed, and the roll as floor(HMAC-SHA256(serverSeed, clientSeed:nonce) Â· 100).",
     COPY_FAILED: "Could not copy, select it by hand"
 }
   , HOW_IT_WORKS$e = {
@@ -53093,7 +53093,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
         RATE_LIMITED: "Too fast. Slow down a little.",
         MAINTENANCE: "Dice is under maintenance",
         DEDUP_TIMEOUT: "Network hiccup. Try again.",
-        NOT_CONNECTED: "No connection. Reconnecting…",
+        NOT_CONNECTED: "No connection. Reconnectingâ€¦",
         ACK_TIMEOUT: "The server did not respond. Try again.",
         INTERNAL: "Something went wrong. Try again."
     }
@@ -53116,7 +53116,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
     HOW_IT_WORKS: HOW_IT_WORKS$e,
     TOASTS: TOASTS$b
 }
-  , MAINTENANCE$d = "Plinko is under maintenance — try again later"
+  , MAINTENANCE$d = "Plinko is under maintenance â€” try again later"
   , UNAVAILABLE$a = {
     TITLE: "Plinko is unavailable",
     DESCRIPTION: "The game is temporarily turned off. Check back soon.",
@@ -53137,7 +53137,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
   , BANNER$6 = {
     TITLE: "PLINKO",
     NEW: "New",
-    TAGLINE: "Drop the ball · win up to ×1000"
+    TAGLINE: "Drop the ball Â· win up to Ã—1000"
 }
   , PLAY_HUB$6 = {
     TITLE: "Play Hub",
@@ -53198,7 +53198,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
     STEP_3_TITLE: "Watch it drop",
     STEP_3_BODY: "The ball bounces through the pegs and lands in a slot. The multiplier of that slot determines your win.",
     STEP_4_TITLE: "Get your win",
-    STEP_4_BODY: "Your bet is multiplied by the multiplier where the ball lands. Smaller wins are credited to your TON balance instantly. If your win is large enough, it will be paid as the closest available gift instead of TON. The gift’s value may differ from the exact win amount.",
+    STEP_4_BODY: "Your bet is multiplied by the multiplier where the ball lands. Smaller wins are credited to your TON balance instantly. If your win is large enough, it will be paid as the closest available gift instead of TON. The giftâ€™s value may differ from the exact win amount.",
     CLOSE: "Close"
 }
   , GIFT_MODAL$a = {
@@ -53206,8 +53206,8 @@ It's 100% free, and you can try your luck every 24 hours!`,
     SELECT: "Select gifts",
     SELECTED_one: "{{count}} gift selected",
     SELECTED_other: "{{count}} gifts selected",
-    CONFIRM_one: "Drop {{count}} Gift · {{amount}} TON",
-    CONFIRM_other: "Drop {{count}} Gifts · {{amount}} TON"
+    CONFIRM_one: "Drop {{count}} Gift Â· {{amount}} TON",
+    CONFIRM_other: "Drop {{count}} Gifts Â· {{amount}} TON"
 }
   , TOASTS$a = {
     MAX_BET: "Max bet for this mode is {{max}} TON",
@@ -53314,7 +53314,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TITLE: "How it works",
     CLOSE: "Close",
     STEP_1_TITLE: "Choose how many mines",
-    STEP_1_BODY: "Mines are hidden under the cells of a 5×5 board, and every other cell contains a gem. More mines mean higher multipliers and higher risk.",
+    STEP_1_BODY: "Mines are hidden under the cells of a 5Ã—5 board, and every other cell contains a gem. More mines mean higher multipliers and higher risk.",
     STEP_2_TITLE: "Place your bet",
     STEP_2_BODY: "Use TON or pick a gift from your Backpack. A gift is played as one full stake for the round.",
     STEP_3_TITLE: "Open cells",
@@ -53372,7 +53372,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
     GENERIC: "Something went wrong. Please try again."
 }
   , BET$7 = {
-    PLACING: "Placing bet…",
+    PLACING: "Placing betâ€¦",
     PLACE_GIFT: "Place Bet",
     PLACE_TON: "Place Bet {{amount}}",
     PLACE_BET_EMPTY: "Enter a bet amount",
@@ -53389,8 +53389,8 @@ It's 100% free, and you can try your luck every 24 hours!`,
     SELECT: "Select a gift",
     SELECTED_one: "{{count}} gift selected",
     SELECTED_other: "{{count}} gifts selected",
-    CONFIRM_one: "Play {{count}} Gift · {{amount}} TON",
-    CONFIRM_other: "Play {{count}} Gifts · {{amount}} TON",
+    CONFIRM_one: "Play {{count}} Gift Â· {{amount}} TON",
+    CONFIRM_other: "Play {{count}} Gifts Â· {{amount}} TON",
     PRUNED_one: "{{count}} gift no longer fits the bet limits",
     PRUNED_other: "{{count}} gifts no longer fit the bet limits",
     CONFIRM_ONE: "Bet {{amount}}",
@@ -53419,64 +53419,64 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TOGGLE: TOGGLE$9
 }
   , APP$5 = {
-    ERROR_OCCURRED: "Произошла необработанная ошибка:",
-    CLOSE: "Закрыть",
-    ANIMATION_FAILED: "Анимация не удалась",
-    OR: "ИЛИ",
-    VARIANT: "Вариант",
-    RANDOM: "Случайный",
-    FAILED_TO_LOAD: "Не удалось загрузить",
-    LOADING_GIFTS: "Загрузка подарков...",
-    THANK_YOU_PATIENCE: "Спасибо за терпение! 🙏"
+    ERROR_OCCURRED: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð½ÐµÐ¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ð½Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°:",
+    CLOSE: "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ",
+    ANIMATION_FAILED: "ÐÐ½Ð¸Ð¼Ð°Ñ†Ð¸Ñ Ð½Ðµ ÑƒÐ´Ð°Ð»Ð°ÑÑŒ",
+    OR: "Ð˜Ð›Ð˜",
+    VARIANT: "Ð’Ð°Ñ€Ð¸Ð°Ð½Ñ‚",
+    RANDOM: "Ð¡Ð»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ð¹",
+    FAILED_TO_LOAD: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ",
+    LOADING_GIFTS: "Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²...",
+    THANK_YOU_PATIENCE: "Ð¡Ð¿Ð°ÑÐ¸Ð±Ð¾ Ð·Ð° Ñ‚ÐµÑ€Ð¿ÐµÐ½Ð¸Ðµ! ðŸ™"
 }
   , ACTIONS$x = {
-    HIDE: "Скрыть",
-    SHOW: "Показать",
-    CONTINUE: "Продолжить"
+    HIDE: "Ð¡ÐºÑ€Ñ‹Ñ‚ÑŒ",
+    SHOW: "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ",
+    CONTINUE: "ÐŸÑ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ"
 }
   , LABELS$I = {
-    STEPS: "шаги",
-    NO_ATTRIBUTE_DATA: "Данные об атрибутах недоступны.",
+    STEPS: "ÑˆÐ°Ð³Ð¸",
+    NO_ATTRIBUTE_DATA: "Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð¾Ð± Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚Ð°Ñ… Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹.",
     TON: "TON",
-    GIFTS_AVAILABLE: "{{count}} подарка доступно",
-    GIFTS_AVAILABLE_plural: "{{count}} подарков доступно",
-    SORTED_BY: "Сортировка: {{sort}}",
-    SORT_BY: "Сортировка",
-    AVAILABLE_BALANCE: "Доступный баланс",
-    PROFILE: "Профиль",
-    BET_AMOUNT: "Сумма ставки",
-    SEARCH_GIFTS: "Поиск по имени"
+    GIFTS_AVAILABLE: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾",
+    GIFTS_AVAILABLE_plural: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾",
+    SORTED_BY: "Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ°: {{sort}}",
+    SORT_BY: "Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ°",
+    AVAILABLE_BALANCE: "Ð”Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ð¹ Ð±Ð°Ð»Ð°Ð½Ñ",
+    PROFILE: "ÐŸÑ€Ð¾Ñ„Ð¸Ð»ÑŒ",
+    BET_AMOUNT: "Ð¡ÑƒÐ¼Ð¼Ð° ÑÑ‚Ð°Ð²ÐºÐ¸",
+    SEARCH_GIFTS: "ÐŸÐ¾Ð¸ÑÐº Ð¿Ð¾ Ð¸Ð¼ÐµÐ½Ð¸"
 }
   , SORT$5 = {
-    RECOMMENDED: "Рекомендуемые",
-    RECENT: "Недавно добавленные",
-    PRICE_HIGH: "Цена: по убыванию",
-    PRICE_LOW: "Цена: по возрастанию"
+    RECOMMENDED: "Ð ÐµÐºÐ¾Ð¼ÐµÐ½Ð´ÑƒÐµÐ¼Ñ‹Ðµ",
+    RECENT: "ÐÐµÐ´Ð°Ð²Ð½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ñ‹Ðµ",
+    PRICE_HIGH: "Ð¦ÐµÐ½Ð°: Ð¿Ð¾ ÑƒÐ±Ñ‹Ð²Ð°Ð½Ð¸ÑŽ",
+    PRICE_LOW: "Ð¦ÐµÐ½Ð°: Ð¿Ð¾ Ð²Ð¾Ð·Ñ€Ð°ÑÑ‚Ð°Ð½Ð¸ÑŽ"
 }
   , STATUS$o = {
-    PROCESSING: "Обработка..."
+    PROCESSING: "ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°..."
 }
   , PLACEHOLDERS$f = {
-    ENTER_AMOUNT: "Введите сумму...",
-    ENTER_PROMO_CODE: "Введите промокод для открытия кейса",
+    ENTER_AMOUNT: "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑƒÐ¼Ð¼Ñƒ...",
+    ENTER_PROMO_CODE: "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ñ€Ð¾Ð¼Ð¾ÐºÐ¾Ð´ Ð´Ð»Ñ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ñ ÐºÐµÐ¹ÑÐ°",
     TON_AMOUNT: "0 TON"
 }
   , NAVIGATION$5 = {
-    CONTRACTS: "КРАФТ",
-    UPGRADE: "УЛУЧШЕНИЕ"
+    CONTRACTS: "ÐšÐ ÐÐ¤Ð¢",
+    UPGRADE: "Ð£Ð›Ð£Ð§Ð¨Ð•ÐÐ˜Ð•"
 }
   , GIFT_EMPTY_STATE$2 = {
-    NO_GIFTS_AVAILABLE: "Нет доступных подарков",
-    SEND_GIFTS_TO: "Отправьте подарки в",
-    AND_PLAY: "и играйте",
-    SEND_GIFTS: "Отправить подарки",
-    OPEN_BOXES_DESC: "Откройте кейсы, чтобы получить подарки",
-    OPEN_BOXES: "Открыть кейсы"
+    NO_GIFTS_AVAILABLE: "ÐÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ñ… Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²",
+    SEND_GIFTS_TO: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð²",
+    AND_PLAY: "Ð¸ Ð¸Ð³Ñ€Ð°Ð¹Ñ‚Ðµ",
+    SEND_GIFTS: "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    OPEN_BOXES_DESC: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ ÐºÐµÐ¹ÑÑ‹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    OPEN_BOXES: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ ÐºÐµÐ¹ÑÑ‹"
 }
   , CAMPAIGN_REWARD$2 = {
-    TITLE: "Лови бонус!",
-    SUBTITLE: "Используй для игры в Ракетку и PvP",
-    OK: "Играть  🚀"
+    TITLE: "Ð›Ð¾Ð²Ð¸ Ð±Ð¾Ð½ÑƒÑ!",
+    SUBTITLE: "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐ¹ Ð´Ð»Ñ Ð¸Ð³Ñ€Ñ‹ Ð² Ð Ð°ÐºÐµÑ‚ÐºÑƒ Ð¸ PvP",
+    OK: "Ð˜Ð³Ñ€Ð°Ñ‚ÑŒÂ Â ðŸš€"
 }
   , ruCommon = {
     APP: APP$5,
@@ -53490,11 +53490,11 @@ It's 100% free, and you can try your luck every 24 hours!`,
     CAMPAIGN_REWARD: CAMPAIGN_REWARD$2
 }
   , NAVBAR$2 = {
-    HOME: "Главная",
-    BACKPACK: "Инвентарь",
-    INVITE: "Пригласить",
-    LEADERBOARD: "Рейтинг",
-    EARN: "Награды"
+    HOME: "Ð“Ð»Ð°Ð²Ð½Ð°Ñ",
+    BACKPACK: "Ð˜Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ",
+    INVITE: "ÐŸÑ€Ð¸Ð³Ð»Ð°ÑÐ¸Ñ‚ÑŒ",
+    LEADERBOARD: "Ð ÐµÐ¹Ñ‚Ð¸Ð½Ð³",
+    EARN: "ÐÐ°Ð³Ñ€Ð°Ð´Ñ‹"
 }
   , MENU = {}
   , BREADCRUMBS = {}
@@ -53507,42 +53507,42 @@ It's 100% free, and you can try your luck every 24 hours!`,
   , FILTERS = {}
   , RARITY = {}
   , STATUS$n = {
-    OUT_OF_STOCK: "Нет в наличии"
+    OUT_OF_STOCK: "ÐÐµÑ‚ Ð² Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ð¸"
 }
   , LABELS$H = {
-    NEW: "НОВОЕ",
+    NEW: "ÐÐžÐ’ÐžÐ•",
     FREE: "FREE",
-    RESTOCK: "Пополнение",
-    HASH_PREFIX: "Хеш:",
-    HASH_EMPTY: "—",
-    ROCKET: "Ракетка",
-    PROCESSING: "Обработка...",
-    OUT_OF_STOCK: "Нет в наличии",
-    NEW_BADGE: "НОВОЕ",
-    LIMITED: "Лимитирован"
+    RESTOCK: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ",
+    HASH_PREFIX: "Ð¥ÐµÑˆ:",
+    HASH_EMPTY: "â€”",
+    ROCKET: "Ð Ð°ÐºÐµÑ‚ÐºÐ°",
+    PROCESSING: "ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°...",
+    OUT_OF_STOCK: "ÐÐµÑ‚ Ð² Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ð¸",
+    NEW_BADGE: "ÐÐžÐ’ÐžÐ•",
+    LIMITED: "Ð›Ð¸Ð¼Ð¸Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½"
 }
   , TAGS$2 = {
-    RANDOM: "Случайный",
-    BALANCE: "Баланс",
-    VARIANT: "Вариант"
+    RANDOM: "Ð¡Ð»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ð¹",
+    BALANCE: "Ð‘Ð°Ð»Ð°Ð½Ñ",
+    VARIANT: "Ð’Ð°Ñ€Ð¸Ð°Ð½Ñ‚"
 }
   , BUTTONS$h = {
-    COPY_HASH: "Копировать хеш",
-    UPGRADE: "Улучшить",
-    UPGRADE_GIFT: "Улучшить подарок"
+    COPY_HASH: "ÐšÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ…ÐµÑˆ",
+    UPGRADE: "Ð£Ð»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ",
+    UPGRADE_GIFT: "Ð£Ð»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº"
 }
   , MESSAGES$h = {
-    HASH_COPIED: "скопировано",
-    NOTHING_COLLECTION: "Ничего"
+    HASH_COPIED: "ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾",
+    NOTHING_COLLECTION: "ÐÐ¸Ñ‡ÐµÐ³Ð¾"
 }
   , SECTIONS$8 = {
-    POSSIBLE_OUTCOMES: "Возможные результаты",
-    DAILY_REWARDS: "Ежедневные награды",
-    COLLECTIONS_IN_BOX: "Коллекции в этом кейсе"
+    POSSIBLE_OUTCOMES: "Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ñ‹Ðµ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ñ‹",
+    DAILY_REWARDS: "Ð•Ð¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ðµ Ð½Ð°Ð³Ñ€Ð°Ð´Ñ‹",
+    COLLECTIONS_IN_BOX: "ÐšÐ¾Ð»Ð»ÐµÐºÑ†Ð¸Ð¸ Ð² ÑÑ‚Ð¾Ð¼ ÐºÐµÐ¹ÑÐµ"
 }
   , EMPTY$g = {
-    NO_BOXES: "Кейсы недоступны",
-    CHECK_LATER: "Зайдите позже, чтобы увидеть новые кейсы!"
+    NO_BOXES: "ÐšÐµÐ¹ÑÑ‹ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹",
+    CHECK_LATER: "Ð—Ð°Ð¹Ð´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑƒÐ²Ð¸Ð´ÐµÑ‚ÑŒ Ð½Ð¾Ð²Ñ‹Ðµ ÐºÐµÐ¹ÑÑ‹!"
 }
   , ruGifts = {
     ACTIONS: ACTIONS$w,
@@ -53557,56 +53557,56 @@ It's 100% free, and you can try your luck every 24 hours!`,
     EMPTY: EMPTY$g
 }
   , ACTIONS$v = {
-    JOIN: "Присоединиться к битве",
-    INCREASE: "Увеличить ставку",
-    PLACE_BET: "Сделать ставку"
+    JOIN: "ÐŸÑ€Ð¸ÑÐ¾ÐµÐ´Ð¸Ð½Ð¸Ñ‚ÑŒÑÑ Ðº Ð±Ð¸Ñ‚Ð²Ðµ",
+    INCREASE: "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    PLACE_BET: "Ð¡Ð´ÐµÐ»Ð°Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ"
 }
   , LABELS$G = {
-    WINNER: "Победитель",
-    PLAYERS: "Игроки",
-    TOTAL_POOL: "Общий банк",
+    WINNER: "ÐŸÐ¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»ÑŒ",
+    PLAYERS: "Ð˜Ð³Ñ€Ð¾ÐºÐ¸",
+    TOTAL_POOL: "ÐžÐ±Ñ‰Ð¸Ð¹ Ð±Ð°Ð½Ðº",
     TON: "TON",
-    REWARDS: "Награды",
-    LAST_GAME: "Последняя игра",
-    TOP_OF_THE_DAY: "Топ дня",
-    INCREASE_BET: "Увеличить ставку",
-    BET_PREVIEW: "Предпросмотр ставки",
-    CURRENT: "Текущая",
-    NEW_TOTAL: "Новая общая",
-    NEW_TOTAL_VALUE: "Новая сумма: {{value}} TON",
-    NO_GIFTS_SELECTED: "Подарки не выбраны",
-    GIFTS_SELECTED: "{{count}} подарок выбран",
-    GIFTS_SELECTED_plural: "{{count}} подарков выбрано",
-    GAME_ID: "Игра #{{id}}",
+    REWARDS: "ÐÐ°Ð³Ñ€Ð°Ð´Ñ‹",
+    LAST_GAME: "ÐŸÐ¾ÑÐ»ÐµÐ´Ð½ÑÑ Ð¸Ð³Ñ€Ð°",
+    TOP_OF_THE_DAY: "Ð¢Ð¾Ð¿ Ð´Ð½Ñ",
+    INCREASE_BET: "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    BET_PREVIEW: "ÐŸÑ€ÐµÐ´Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    CURRENT: "Ð¢ÐµÐºÑƒÑ‰Ð°Ñ",
+    NEW_TOTAL: "ÐÐ¾Ð²Ð°Ñ Ð¾Ð±Ñ‰Ð°Ñ",
+    NEW_TOTAL_VALUE: "ÐÐ¾Ð²Ð°Ñ ÑÑƒÐ¼Ð¼Ð°: {{value}} TON",
+    NO_GIFTS_SELECTED: "ÐŸÐ¾Ð´Ð°Ñ€ÐºÐ¸ Ð½Ðµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ñ‹",
+    GIFTS_SELECTED: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð²Ñ‹Ð±Ñ€Ð°Ð½",
+    GIFTS_SELECTED_plural: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð¾",
+    GAME_ID: "Ð˜Ð³Ñ€Ð° #{{id}}",
     EPIC: "EPIC",
     GIFT: "GIFT",
     PVP_LABEL: "PVP",
-    GAME_DETAILS: "Детали игры",
-    TON_BET: "Ставка TON",
-    BET_DETAILS: "Детали ставки",
-    RANDOM: "Случайный",
-    SELECT_GIFTS: "Выберите подарки:",
-    SELECT_MORE_GIFTS: "Выберите ещё подарки:",
-    INCREASE_BY_TON: "Увеличить на {{amount}} TON",
-    PLACE_TON_BET: "Поставить {{amount}} TON",
-    WIN_CHANCE: "{{chance}} шанс",
-    TON_PRIZE: "TON Баланс"
+    GAME_DETAILS: "Ð”ÐµÑ‚Ð°Ð»Ð¸ Ð¸Ð³Ñ€Ñ‹",
+    TON_BET: "Ð¡Ñ‚Ð°Ð²ÐºÐ° TON",
+    BET_DETAILS: "Ð”ÐµÑ‚Ð°Ð»Ð¸ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    RANDOM: "Ð¡Ð»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ð¹",
+    SELECT_GIFTS: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸:",
+    SELECT_MORE_GIFTS: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÐµÑ‰Ñ‘ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸:",
+    INCREASE_BY_TON: "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸Ñ‚ÑŒ Ð½Ð° {{amount}} TON",
+    PLACE_TON_BET: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ {{amount}} TON",
+    WIN_CHANCE: "{{chance}} ÑˆÐ°Ð½Ñ",
+    TON_PRIZE: "TON Ð‘Ð°Ð»Ð°Ð½Ñ"
 }
   , STATUS$m = {
-    LOADING_USER_DATA: "Загрузка данных...",
-    WAITING_FOR_PLAYERS: "Ожидание игроков",
-    WAITING_FOR_MORE: "Ожидание других игроков",
-    INCREASING: "Повышаем...",
-    PLACING_BET: "Делаем ставку..."
+    LOADING_USER_DATA: "Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° Ð´Ð°Ð½Ð½Ñ‹Ñ…...",
+    WAITING_FOR_PLAYERS: "ÐžÐ¶Ð¸Ð´Ð°Ð½Ð¸Ðµ Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð²",
+    WAITING_FOR_MORE: "ÐžÐ¶Ð¸Ð´Ð°Ð½Ð¸Ðµ Ð´Ñ€ÑƒÐ³Ð¸Ñ… Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð²",
+    INCREASING: "ÐŸÐ¾Ð²Ñ‹ÑˆÐ°ÐµÐ¼...",
+    PLACING_BET: "Ð”ÐµÐ»Ð°ÐµÐ¼ ÑÑ‚Ð°Ð²ÐºÑƒ..."
 }
   , TABS$a = {}
   , PLACEHOLDERS$e = {}
   , EMPTY$f = {}
   , ERRORS$8 = {
-    BET_FAILED: "Ставка не удалась",
-    ROUND_IN_PROGRESS: "Раунд в процессе",
-    INSUFFICIENT_BALANCE: "Недостаточно средств",
-    ALREADY_IN_GAME: "У вас уже есть ставка в этом раунде"
+    BET_FAILED: "Ð¡Ñ‚Ð°Ð²ÐºÐ° Ð½Ðµ ÑƒÐ´Ð°Ð»Ð°ÑÑŒ",
+    ROUND_IN_PROGRESS: "Ð Ð°ÑƒÐ½Ð´ Ð² Ð¿Ñ€Ð¾Ñ†ÐµÑÑÐµ",
+    INSUFFICIENT_BALANCE: "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ ÑÑ€ÐµÐ´ÑÑ‚Ð²",
+    ALREADY_IN_GAME: "Ð£ Ð²Ð°Ñ ÑƒÐ¶Ðµ ÐµÑÑ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÐ° Ð² ÑÑ‚Ð¾Ð¼ Ñ€Ð°ÑƒÐ½Ð´Ðµ"
 }
   , ruPvp = {
     ACTIONS: ACTIONS$v,
@@ -53619,55 +53619,55 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , APP_NAME$2 = "Epic Gift"
   , ACTIONS$u = {
-    PLACE_BET: "Сделать ставку",
-    PLACE_BET_IN_ROCKET: "Поставить в Ракетке",
-    PLACE_TON_BET: "Поставить TON",
-    PLACE_TON_BET_AMOUNT: "Поставить {{amount}} TON",
-    CASHOUT: "Забрать",
-    CANCEL: "Отменить ставку",
-    SEND_GIFTS: "Отправить подарки",
-    SEND_GIFT: "Отправить подарок",
-    OPEN_BOXES: "Открыть кейсы"
+    PLACE_BET: "Ð¡Ð´ÐµÐ»Ð°Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    PLACE_BET_IN_ROCKET: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ð² Ð Ð°ÐºÐµÑ‚ÐºÐµ",
+    PLACE_TON_BET: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ TON",
+    PLACE_TON_BET_AMOUNT: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ {{amount}} TON",
+    CASHOUT: "Ð—Ð°Ð±Ñ€Ð°Ñ‚ÑŒ",
+    CANCEL: "ÐžÑ‚Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    SEND_GIFTS: "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    SEND_GIFT: "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    OPEN_BOXES: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ ÐºÐµÐ¹ÑÑ‹"
 }
   , LABELS$F = {
-    BET_AMOUNT: "Сумма ставки",
-    BALANCE: "Баланс",
-    AVAILABLE_BALANCE: "Доступный баланс",
-    YOUR_BET: "Ваша ставка",
-    CASHED_OUT_AT: "Выведено на",
-    AUTO_CASHOUT: "Авто вывод",
-    AUTO_MULTIPLIER: "Авто {{value}}x",
-    PLACING_BET: "Размещение ставки...",
-    SELLING: "Продажа...",
-    SELL: "Продать",
-    KEEP: "Оставить",
-    ROCKET: "РАКЕТКА",
-    ROCKET_REWARD: "Награда в Ракетке!",
-    BALANCE_REWARD: "TON Баланс",
-    HOT: "ХИТ",
-    CHOOSE_DIFFERENT_GIFT: "Выберите другой подарок:",
-    NO_GIFTS_AVAILABLE: "Нет доступных подарков",
-    AND_PLAY_CRASH: "и играй в Ракетку",
-    TO_USE_IN_CRASH: "для игры в Ракетку",
-    OPEN_BOXES_FOR_CRASH: "Откройте кейсы, чтобы получить подарки для Ракетки",
-    OR: "ИЛИ"
+    BET_AMOUNT: "Ð¡ÑƒÐ¼Ð¼Ð° ÑÑ‚Ð°Ð²ÐºÐ¸",
+    BALANCE: "Ð‘Ð°Ð»Ð°Ð½Ñ",
+    AVAILABLE_BALANCE: "Ð”Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ð¹ Ð±Ð°Ð»Ð°Ð½Ñ",
+    YOUR_BET: "Ð’Ð°ÑˆÐ° ÑÑ‚Ð°Ð²ÐºÐ°",
+    CASHED_OUT_AT: "Ð’Ñ‹Ð²ÐµÐ´ÐµÐ½Ð¾ Ð½Ð°",
+    AUTO_CASHOUT: "ÐÐ²Ñ‚Ð¾ Ð²Ñ‹Ð²Ð¾Ð´",
+    AUTO_MULTIPLIER: "ÐÐ²Ñ‚Ð¾ {{value}}x",
+    PLACING_BET: "Ð Ð°Ð·Ð¼ÐµÑ‰ÐµÐ½Ð¸Ðµ ÑÑ‚Ð°Ð²ÐºÐ¸...",
+    SELLING: "ÐŸÑ€Ð¾Ð´Ð°Ð¶Ð°...",
+    SELL: "ÐŸÑ€Ð¾Ð´Ð°Ñ‚ÑŒ",
+    KEEP: "ÐžÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ",
+    ROCKET: "Ð ÐÐšÐ•Ð¢ÐšÐ",
+    ROCKET_REWARD: "ÐÐ°Ð³Ñ€Ð°Ð´Ð° Ð² Ð Ð°ÐºÐµÑ‚ÐºÐµ!",
+    BALANCE_REWARD: "TON Ð‘Ð°Ð»Ð°Ð½Ñ",
+    HOT: "Ð¥Ð˜Ð¢",
+    CHOOSE_DIFFERENT_GIFT: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´Ñ€ÑƒÐ³Ð¾Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº:",
+    NO_GIFTS_AVAILABLE: "ÐÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ñ… Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²",
+    AND_PLAY_CRASH: "Ð¸ Ð¸Ð³Ñ€Ð°Ð¹ Ð² Ð Ð°ÐºÐµÑ‚ÐºÑƒ",
+    TO_USE_IN_CRASH: "Ð´Ð»Ñ Ð¸Ð³Ñ€Ñ‹ Ð² Ð Ð°ÐºÐµÑ‚ÐºÑƒ",
+    OPEN_BOXES_FOR_CRASH: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ ÐºÐµÐ¹ÑÑ‹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð´Ð»Ñ Ð Ð°ÐºÐµÑ‚ÐºÐ¸",
+    OR: "Ð˜Ð›Ð˜"
 }
   , TABS$9 = {
-    GIFTS: "Подарки",
+    GIFTS: "ÐŸÐ¾Ð´Ð°Ñ€ÐºÐ¸",
     TON: "TON"
 }
   , STATUS$l = {
-    NO_PLAYERS_YET: "Игроков пока нет",
-    WAITING: "Ожидание следующего раунда...",
-    WAITING_SHORT: "Ожидание...",
-    RECONNECTING: "Переподключение к серверу…",
-    CONNECTING: "Подключение к серверу…",
-    POOR_CONNECTION: "Плохое соединение, синхронизация…"
+    NO_PLAYERS_YET: "Ð˜Ð³Ñ€Ð¾ÐºÐ¾Ð² Ð¿Ð¾ÐºÐ° Ð½ÐµÑ‚",
+    WAITING: "ÐžÐ¶Ð¸Ð´Ð°Ð½Ð¸Ðµ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ Ñ€Ð°ÑƒÐ½Ð´Ð°...",
+    WAITING_SHORT: "ÐžÐ¶Ð¸Ð´Ð°Ð½Ð¸Ðµ...",
+    RECONNECTING: "ÐŸÐµÑ€ÐµÐ¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº ÑÐµÑ€Ð²ÐµÑ€Ñƒâ€¦",
+    CONNECTING: "ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº ÑÐµÑ€Ð²ÐµÑ€Ñƒâ€¦",
+    POOR_CONNECTION: "ÐŸÐ»Ð¾Ñ…Ð¾Ðµ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ, ÑÐ¸Ð½Ñ…Ñ€Ð¾Ð½Ð¸Ð·Ð°Ñ†Ð¸Ñâ€¦"
 }
   , SETTINGS = {}
   , PLACEHOLDERS$d = {
-    TON_AMOUNT: "Сумма TON",
-    AUTO_CASHOUT_MULTIPLIER: "Множитель автовывода"
+    TON_AMOUNT: "Ð¡ÑƒÐ¼Ð¼Ð° TON",
+    AUTO_CASHOUT_MULTIPLIER: "ÐœÐ½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ Ð°Ð²Ñ‚Ð¾Ð²Ñ‹Ð²Ð¾Ð´Ð°"
 }
   , HISTORY$a = {}
   , ruCrash = {
@@ -53684,51 +53684,51 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TON: "TON"
 }
   , ACTIONS$t = {
-    TOP_UP: "Пополнить",
-    WITHDRAW: "Вывести",
-    SELL_FOR: "Продать",
-    UPGRADE: "Улучшить"
+    TOP_UP: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ",
+    WITHDRAW: "Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸",
+    SELL_FOR: "ÐŸÑ€Ð¾Ð´Ð°Ñ‚ÑŒ",
+    UPGRADE: "Ð£Ð»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ"
 }
   , LABELS$E = {
-    BALANCE: "Ваш баланс",
-    LOADING: "Загрузка..."
+    BALANCE: "Ð’Ð°Ñˆ Ð±Ð°Ð»Ð°Ð½Ñ",
+    LOADING: "Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ°..."
 }
   , TOP_UP$2 = {
-    TITLE: "Пополнение баланса",
-    ACTION: "Пополнить",
-    OTHER_CRYPTO: "Крипто Бот",
+    TITLE: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ð±Ð°Ð»Ð°Ð½ÑÐ°",
+    ACTION: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ",
+    OTHER_CRYPTO: "ÐšÑ€Ð¸Ð¿Ñ‚Ð¾ Ð‘Ð¾Ñ‚",
     STARS: "Stars",
-    GIFTS: "Подарки"
+    GIFTS: "ÐŸÐ¾Ð´Ð°Ñ€ÐºÐ¸"
 }
   , WITHDRAW$5 = {
-    GIFT_WITHDRAWAL: "Вывод подарка",
-    CHOOSE_METHOD: "Выберите способ вывода",
-    TO_TELEGRAM: "Вывести в Telegram",
-    TO_TELEGRAM_DESC: "Выведите подарок напрямую в ваш Telegram",
-    COST: "Стоимость вывода {{fee}} TON",
-    CONFIRM_COST: "Вывести за {{fee}} TON",
+    GIFT_WITHDRAWAL: "Ð’Ñ‹Ð²Ð¾Ð´ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    CHOOSE_METHOD: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÑÐ¿Ð¾ÑÐ¾Ð± Ð²Ñ‹Ð²Ð¾Ð´Ð°",
+    TO_TELEGRAM: "Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð² Telegram",
+    TO_TELEGRAM_DESC: "Ð’Ñ‹Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ð°Ð¿Ñ€ÑÐ¼ÑƒÑŽ Ð² Ð²Ð°Ñˆ Telegram",
+    COST: "Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð²Ñ‹Ð²Ð¾Ð´Ð° {{fee}} TON",
+    CONFIRM_COST: "Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð·Ð° {{fee}} TON",
     STATUSES: {
-        WITHDRAWAL_PROCESSING: "Подарок будет отправлен автоматически",
-        PROCESSING_WITHDRAWAL: "Подарок будет отправлен автоматически",
-        PROCESSING_DESC: "Закройте окно и ожидайте поступления",
-        PROCESSING_TO_DESC: "Ваш подарок обрабатывается для вывода в {{destination}}.",
-        WITHDRAWAL_SUCCESSFUL: "Вывод успешен",
-        SUCCESSFUL_DESC: "Ваш подарок успешно отправлен в {{destination}}.",
-        GIFT_DEPOSITED: "Подарок внесён",
-        DEPOSITED_DESC: "Ваш подарок внесён и готов к выводу.",
-        WITHDRAWAL_FAILED: "Вывод не удался",
-        FAILED_DESC: "Что-то пошло не так. Попробуйте еще раз. Если проблема сохраняется, обратитесь в поддержку.",
-        MESSAGE_REQUIRED: "Требуется сообщение",
-        MESSAGE_REQUIRED_DESC: "Пожалуйста, отправьте любое сообщение боту @giftbackpack для завершения вывода.",
-        MESSAGE_BOT_TOOLTIP: "Пожалуйста, сначала напишите боту @giftbackpack, чтобы включить вывод.",
-        FAILED_TOOLTIP: "Предыдущая попытка вывода не удалась. Пожалуйста, попробуйте еще раз.",
-        CHECKING_STATUS: "Проверка статуса",
-        CHECKING_STATUS_DESC: "Проверяем статус вывода...",
-        WITHDRAWAL_STATUS: "Статус вывода",
-        MESSAGE_BOT: "Написать @giftbackpack",
-        TRY_AGAIN: "Попробовать ещё",
-        RETRY_WITHDRAWAL: "Повторить вывод",
-        CONTINUE: "Продолжить"
+        WITHDRAWAL_PROCESSING: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð±ÑƒÐ´ÐµÑ‚ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸",
+        PROCESSING_WITHDRAWAL: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð±ÑƒÐ´ÐµÑ‚ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸",
+        PROCESSING_DESC: "Ð—Ð°ÐºÑ€Ð¾Ð¹Ñ‚Ðµ Ð¾ÐºÐ½Ð¾ Ð¸ Ð¾Ð¶Ð¸Ð´Ð°Ð¹Ñ‚Ðµ Ð¿Ð¾ÑÑ‚ÑƒÐ¿Ð»ÐµÐ½Ð¸Ñ",
+        PROCESSING_TO_DESC: "Ð’Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð¾Ð±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð´Ð»Ñ Ð²Ñ‹Ð²Ð¾Ð´Ð° Ð² {{destination}}.",
+        WITHDRAWAL_SUCCESSFUL: "Ð’Ñ‹Ð²Ð¾Ð´ ÑƒÑÐ¿ÐµÑˆÐµÐ½",
+        SUCCESSFUL_DESC: "Ð’Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½ Ð² {{destination}}.",
+        GIFT_DEPOSITED: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð²Ð½ÐµÑÑ‘Ð½",
+        DEPOSITED_DESC: "Ð’Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð²Ð½ÐµÑÑ‘Ð½ Ð¸ Ð³Ð¾Ñ‚Ð¾Ð² Ðº Ð²Ñ‹Ð²Ð¾Ð´Ñƒ.",
+        WITHDRAWAL_FAILED: "Ð’Ñ‹Ð²Ð¾Ð´ Ð½Ðµ ÑƒÐ´Ð°Ð»ÑÑ",
+        FAILED_DESC: "Ð§Ñ‚Ð¾-Ñ‚Ð¾ Ð¿Ð¾ÑˆÐ»Ð¾ Ð½Ðµ Ñ‚Ð°Ðº. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ðµ Ñ€Ð°Ð·. Ð•ÑÐ»Ð¸ Ð¿Ñ€Ð¾Ð±Ð»ÐµÐ¼Ð° ÑÐ¾Ñ…Ñ€Ð°Ð½ÑÐµÑ‚ÑÑ, Ð¾Ð±Ñ€Ð°Ñ‚Ð¸Ñ‚ÐµÑÑŒ Ð² Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶ÐºÑƒ.",
+        MESSAGE_REQUIRED: "Ð¢Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ",
+        MESSAGE_REQUIRED_DESC: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð»ÑŽÐ±Ð¾Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð±Ð¾Ñ‚Ñƒ @giftbackpack Ð´Ð»Ñ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ñ Ð²Ñ‹Ð²Ð¾Ð´Ð°.",
+        MESSAGE_BOT_TOOLTIP: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, ÑÐ½Ð°Ñ‡Ð°Ð»Ð° Ð½Ð°Ð¿Ð¸ÑˆÐ¸Ñ‚Ðµ Ð±Ð¾Ñ‚Ñƒ @giftbackpack, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð²ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒ Ð²Ñ‹Ð²Ð¾Ð´.",
+        FAILED_TOOLTIP: "ÐŸÑ€ÐµÐ´Ñ‹Ð´ÑƒÑ‰Ð°Ñ Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð²Ñ‹Ð²Ð¾Ð´Ð° Ð½Ðµ ÑƒÐ´Ð°Ð»Ð°ÑÑŒ. ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ðµ Ñ€Ð°Ð·.",
+        CHECKING_STATUS: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ð°Ñ‚ÑƒÑÐ°",
+        CHECKING_STATUS_DESC: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ ÑÑ‚Ð°Ñ‚ÑƒÑ Ð²Ñ‹Ð²Ð¾Ð´Ð°...",
+        WITHDRAWAL_STATUS: "Ð¡Ñ‚Ð°Ñ‚ÑƒÑ Ð²Ñ‹Ð²Ð¾Ð´Ð°",
+        MESSAGE_BOT: "ÐÐ°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ @giftbackpack",
+        TRY_AGAIN: "ÐŸÐ¾Ð¿Ñ€Ð¾Ð±Ð¾Ð²Ð°Ñ‚ÑŒ ÐµÑ‰Ñ‘",
+        RETRY_WITHDRAWAL: "ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ Ð²Ñ‹Ð²Ð¾Ð´",
+        CONTINUE: "ÐŸÑ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ"
     }
 }
   , HISTORY$9 = {
@@ -53746,122 +53746,122 @@ It's 100% free, and you can try your luck every 24 hours!`,
   , AUTH = {}
   , GIFTS$1 = {}
   , PVP$2 = {
-    NOT_CONNECTED: "Нет подключения",
-    UNABLE_TO_PLACE_BET: "Невозможно сделать ставку. Попробуйте переподключиться."
+    NOT_CONNECTED: "ÐÐµÑ‚ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ",
+    UNABLE_TO_PLACE_BET: "ÐÐµÐ²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ð¿ÐµÑ€ÐµÐ¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒÑÑ."
 }
   , VALIDATION = {}
   , SERVER = {}
   , UNBOX$2 = {
-    INVALID_BOX_ID: "Неверный ID кейса",
-    UNEXPECTED_ERROR: "Произошла непредвиденная ошибка",
-    PROMO_REQUIRED: "Требуется промокод",
-    INVALID_PROMO: "Неверный промокод",
-    PROMO_EXPIRED: "Срок действия промокода истёк",
-    PROMO_USED: "Этот промокод уже использован",
-    OUT_OF_STOCK: "Кейс закончился на складе",
-    JOIN_CHANNEL_REQUIRED: "Присоединитесь к нашему Telegram-каналу для доступа к ежедневным подаркам.",
-    DEPOSIT_REQUIRED: "Пополните счёт минимум на 0.1 TON чтобы продолжить играть.",
-    DEPOSIT1_REQUIRED: "Пополните счёт минимум на 1 TON чтобы продолжить играть.",
-    INSUFFICIENT_STARS: "У вас недостаточно звёзд чтобы открыть этот кейс.",
-    TOO_FAST: "Вы уже недавно открывали подарок. Пожалуйста, подождите.",
-    DAILY_ALREADY_CLAIMED: "Вы уже получили ежедневный подарок. Пожалуйста, подождите."
+    INVALID_BOX_ID: "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ ID ÐºÐµÐ¹ÑÐ°",
+    UNEXPECTED_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð½ÐµÐ¿Ñ€ÐµÐ´Ð²Ð¸Ð´ÐµÐ½Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°",
+    PROMO_REQUIRED: "Ð¢Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ Ð¿Ñ€Ð¾Ð¼Ð¾ÐºÐ¾Ð´",
+    INVALID_PROMO: "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð¿Ñ€Ð¾Ð¼Ð¾ÐºÐ¾Ð´",
+    PROMO_EXPIRED: "Ð¡Ñ€Ð¾Ðº Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ Ð¿Ñ€Ð¾Ð¼Ð¾ÐºÐ¾Ð´Ð° Ð¸ÑÑ‚Ñ‘Ðº",
+    PROMO_USED: "Ð­Ñ‚Ð¾Ñ‚ Ð¿Ñ€Ð¾Ð¼Ð¾ÐºÐ¾Ð´ ÑƒÐ¶Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½",
+    OUT_OF_STOCK: "ÐšÐµÐ¹Ñ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ð»ÑÑ Ð½Ð° ÑÐºÐ»Ð°Ð´Ðµ",
+    JOIN_CHANNEL_REQUIRED: "ÐŸÑ€Ð¸ÑÐ¾ÐµÐ´Ð¸Ð½Ð¸Ñ‚ÐµÑÑŒ Ðº Ð½Ð°ÑˆÐµÐ¼Ñƒ Telegram-ÐºÐ°Ð½Ð°Ð»Ñƒ Ð´Ð»Ñ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ðº ÐµÐ¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ð¼ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼.",
+    DEPOSIT_REQUIRED: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚Ðµ ÑÑ‡Ñ‘Ñ‚ Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼ Ð½Ð° 0.1 TON Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ Ð¸Ð³Ñ€Ð°Ñ‚ÑŒ.",
+    DEPOSIT1_REQUIRED: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚Ðµ ÑÑ‡Ñ‘Ñ‚ Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼ Ð½Ð° 1 TON Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ Ð¸Ð³Ñ€Ð°Ñ‚ÑŒ.",
+    INSUFFICIENT_STARS: "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð·Ð²Ñ‘Ð·Ð´ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ ÑÑ‚Ð¾Ñ‚ ÐºÐµÐ¹Ñ.",
+    TOO_FAST: "Ð’Ñ‹ ÑƒÐ¶Ðµ Ð½ÐµÐ´Ð°Ð²Ð½Ð¾ Ð¾Ñ‚ÐºÑ€Ñ‹Ð²Ð°Ð»Ð¸ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº. ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´Ð¾Ð¶Ð´Ð¸Ñ‚Ðµ.",
+    DAILY_ALREADY_CLAIMED: "Ð’Ñ‹ ÑƒÐ¶Ðµ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ð»Ð¸ ÐµÐ¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº. ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´Ð¾Ð¶Ð´Ð¸Ñ‚Ðµ."
 }
   , UPGRADE$2 = {
-    USER_NOT_FOUND: "Пользователь не найден",
-    GIFT_NOT_UPGRADEABLE: "Подарок не найден или не может быть улучшен",
-    TARGET_NOT_FOUND: "Целевая коллекция не найдена",
-    RESOURCE_NOT_FOUND: "Ресурс не найден",
-    GIFT_BUSY: "Подарок занят другим действием",
-    TOO_FAST: "Пожалуйста, подождите перед повторной попыткой",
-    SERVER_ERROR: "Произошла ошибка сервера",
-    NETWORK_ERROR: "Произошла ошибка сети",
-    UNEXPECTED_ERROR: "Произошла непредвиденная ошибка",
-    PRICE_UNDER_REVIEW: "Этот подарок сейчас на проверке. Улучшить его можно будет сразу после её завершения."
+    USER_NOT_FOUND: "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½",
+    GIFT_NOT_UPGRADEABLE: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð¸Ð»Ð¸ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½",
+    TARGET_NOT_FOUND: "Ð¦ÐµÐ»ÐµÐ²Ð°Ñ ÐºÐ¾Ð»Ð»ÐµÐºÑ†Ð¸Ñ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°",
+    RESOURCE_NOT_FOUND: "Ð ÐµÑÑƒÑ€Ñ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½",
+    GIFT_BUSY: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð·Ð°Ð½ÑÑ‚ Ð´Ñ€ÑƒÐ³Ð¸Ð¼ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸ÐµÐ¼",
+    TOO_FAST: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´Ð¾Ð¶Ð´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€ÐµÐ´ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð½Ð¾Ð¹ Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÐ¾Ð¹",
+    SERVER_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ€Ð²ÐµÑ€Ð°",
+    NETWORK_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ‚Ð¸",
+    UNEXPECTED_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð½ÐµÐ¿Ñ€ÐµÐ´Ð²Ð¸Ð´ÐµÐ½Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°",
+    PRICE_UNDER_REVIEW: "Ð­Ñ‚Ð¾Ñ‚ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ÑÐµÐ¹Ñ‡Ð°Ñ Ð½Ð° Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐµ. Ð£Ð»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ ÐµÐ³Ð¾ Ð¼Ð¾Ð¶Ð½Ð¾ Ð±ÑƒÐ´ÐµÑ‚ ÑÑ€Ð°Ð·Ñƒ Ð¿Ð¾ÑÐ»Ðµ ÐµÑ‘ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ñ."
 }
   , TON$2 = {
-    PROOF_PAYLOAD_FAILED: "Не удалось получить proof payload",
-    PROOF_VERIFICATION_FAILED: "Проверка proof не удалась",
-    PROOF_VERIFY_FAILED: "Не удалось проверить proof",
-    FETCH_BALANCE_FAILED: "Не удалось получить баланс",
-    WALLET_BALANCE_FAILED: "Не удалось получить баланс кошелька"
+    PROOF_PAYLOAD_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ proof payload",
+    PROOF_VERIFICATION_FAILED: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° proof Ð½Ðµ ÑƒÐ´Ð°Ð»Ð°ÑÑŒ",
+    PROOF_VERIFY_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ proof",
+    FETCH_BALANCE_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð±Ð°Ð»Ð°Ð½Ñ",
+    WALLET_BALANCE_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð±Ð°Ð»Ð°Ð½Ñ ÐºÐ¾ÑˆÐµÐ»ÑŒÐºÐ°"
 }
   , TASKS$2 = {
-    FETCH_FAILED: "Не удалось загрузить задания",
-    COMPLETE_FAILED: "Не удалось выполнить задание",
-    VERIFICATION_FAILED: "Проверка не удалась",
-    CHANNEL_VERIFY_FAILED: "Не удалось проверить подписку на канал",
-    CLAIM_FAILED: "Не удалось получить награду"
+    FETCH_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ",
+    COMPLETE_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð´Ð°Ð½Ð¸Ðµ",
+    VERIFICATION_FAILED: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ðµ ÑƒÐ´Ð°Ð»Ð°ÑÑŒ",
+    CHANNEL_VERIFY_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÑƒ Ð½Ð° ÐºÐ°Ð½Ð°Ð»",
+    CLAIM_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð½Ð°Ð³Ñ€Ð°Ð´Ñƒ"
 }
   , RATE$2 = {
-    FETCH_FAILED: "Не удалось получить курс TON"
+    FETCH_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ ÐºÑƒÑ€Ñ TON"
 }
   , LEADERBOARD$2 = {
     NO_ACTIVE: "no_active_leaderboard",
-    NOT_FOUND: "Таблица лидеров не найдена",
-    UNAUTHORIZED: "Неавторизованный доступ",
-    SERVER_ERROR: "Произошла ошибка сервера",
-    NETWORK_ERROR: "Произошла ошибка сети",
-    UNEXPECTED_ERROR: "Произошла непредвиденная ошибка",
-    USER_NOT_FOUND: "Пользователь не найден в таблице лидеров"
+    NOT_FOUND: "Ð¢Ð°Ð±Ð»Ð¸Ñ†Ð° Ð»Ð¸Ð´ÐµÑ€Ð¾Ð² Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°",
+    UNAUTHORIZED: "ÐÐµÐ°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð´Ð¾ÑÑ‚ÑƒÐ¿",
+    SERVER_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ€Ð²ÐµÑ€Ð°",
+    NETWORK_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ‚Ð¸",
+    UNEXPECTED_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð½ÐµÐ¿Ñ€ÐµÐ´Ð²Ð¸Ð´ÐµÐ½Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°",
+    USER_NOT_FOUND: "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð² Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ðµ Ð»Ð¸Ð´ÐµÑ€Ð¾Ð²"
 }
   , GIVEAWAY$2 = {
-    UNAUTHORIZED: "Неавторизованный доступ",
-    SERVER_ERROR: "Произошла ошибка сервера",
-    NETWORK_ERROR: "Произошла ошибка сети",
-    UNEXPECTED_ERROR: "Произошла непредвиденная ошибка",
-    NOT_FOUND: "Розыгрыш не найден",
-    ALREADY_JOINED: "Вы уже участвуете в этом розыгрыше",
-    REQUIREMENTS_NOT_MET: "Требования не выполнены",
-    NOT_ENOUGH_TICKETS: "Недостаточно билетов",
-    BELOW_MIN_ENTRY: "Меньше минимального количества билетов",
-    VIP_LEVEL_TOO_LOW: "Для этого розыгрыша нужен VIP-уровень выше",
-    ENTER_GIVEAWAY_FAILED: "Не удалось войти в розыгрыш",
-    ADD_TICKETS_FAILED: "Не удалось добавить билеты"
+    UNAUTHORIZED: "ÐÐµÐ°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð´Ð¾ÑÑ‚ÑƒÐ¿",
+    SERVER_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ€Ð²ÐµÑ€Ð°",
+    NETWORK_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ‚Ð¸",
+    UNEXPECTED_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð½ÐµÐ¿Ñ€ÐµÐ´Ð²Ð¸Ð´ÐµÐ½Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°",
+    NOT_FOUND: "Ð Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½",
+    ALREADY_JOINED: "Ð’Ñ‹ ÑƒÐ¶Ðµ ÑƒÑ‡Ð°ÑÑ‚Ð²ÑƒÐµÑ‚Ðµ Ð² ÑÑ‚Ð¾Ð¼ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐµ",
+    REQUIREMENTS_NOT_MET: "Ð¢Ñ€ÐµÐ±Ð¾Ð²Ð°Ð½Ð¸Ñ Ð½Ðµ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ñ‹",
+    NOT_ENOUGH_TICKETS: "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð²",
+    BELOW_MIN_ENTRY: "ÐœÐµÐ½ÑŒÑˆÐµ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð° Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð²",
+    VIP_LEVEL_TOO_LOW: "Ð”Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ° Ð½ÑƒÐ¶ÐµÐ½ VIP-ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ Ð²Ñ‹ÑˆÐµ",
+    ENTER_GIVEAWAY_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð²Ð¾Ð¹Ñ‚Ð¸ Ð² Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ",
+    ADD_TICKETS_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð±Ð¸Ð»ÐµÑ‚Ñ‹"
 }
   , GIFT$2 = {
-    NO_UPGRADE_TARGETS: "Подарок не найден или нет доступных целей для улучшения",
-    UNAUTHORIZED: "Неавторизованный доступ",
-    SERVER_ERROR: "Произошла ошибка сервера",
-    NETWORK_ERROR: "Произошла ошибка сети",
-    UNEXPECTED_ERROR: "Произошла непредвиденная ошибка",
-    DEPOSIT_PRICES_NOT_FOUND: "Цены на пополнение не найдены",
-    TOP_GIFTS_NOT_FOUND: "Топ подарки не найдены",
-    NEEDS_PM: "Пожалуйста, сначала напишите отправителю подарка, чтобы включить вывод.",
-    RATE_UNAVAILABLE: "Курс временно недоступен. Пожалуйста, попробуйте снова через некоторое время.",
-    PRICE_UNDER_REVIEW: "Этот подарок сейчас на проверке. Продать его можно будет сразу после её завершения."
+    NO_UPGRADE_TARGETS: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð¸Ð»Ð¸ Ð½ÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ñ… Ñ†ÐµÐ»ÐµÐ¹ Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    UNAUTHORIZED: "ÐÐµÐ°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð´Ð¾ÑÑ‚ÑƒÐ¿",
+    SERVER_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ€Ð²ÐµÑ€Ð°",
+    NETWORK_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ‚Ð¸",
+    UNEXPECTED_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð½ÐµÐ¿Ñ€ÐµÐ´Ð²Ð¸Ð´ÐµÐ½Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°",
+    DEPOSIT_PRICES_NOT_FOUND: "Ð¦ÐµÐ½Ñ‹ Ð½Ð° Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ñ‹",
+    TOP_GIFTS_NOT_FOUND: "Ð¢Ð¾Ð¿ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ñ‹",
+    NEEDS_PM: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, ÑÐ½Ð°Ñ‡Ð°Ð»Ð° Ð½Ð°Ð¿Ð¸ÑˆÐ¸Ñ‚Ðµ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŽ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð²ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒ Ð²Ñ‹Ð²Ð¾Ð´.",
+    RATE_UNAVAILABLE: "ÐšÑƒÑ€Ñ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½. ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð° Ñ‡ÐµÑ€ÐµÐ· Ð½ÐµÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ.",
+    PRICE_UNDER_REVIEW: "Ð­Ñ‚Ð¾Ñ‚ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ÑÐµÐ¹Ñ‡Ð°Ñ Ð½Ð° Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐµ. ÐŸÑ€Ð¾Ð´Ð°Ñ‚ÑŒ ÐµÐ³Ð¾ Ð¼Ð¾Ð¶Ð½Ð¾ Ð±ÑƒÐ´ÐµÑ‚ ÑÑ€Ð°Ð·Ñƒ Ð¿Ð¾ÑÐ»Ðµ ÐµÑ‘ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ñ."
 }
   , USER$2 = {
-    FETCH_FAILED: "Не удалось загрузить данные пользователя",
-    BALANCE_UPDATE_FAILED: "Не удалось обновить баланс",
-    LOCALE_UPDATE_FAILED: "Не удалось обновить язык"
+    FETCH_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ",
+    BALANCE_UPDATE_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ð±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð±Ð°Ð»Ð°Ð½Ñ",
+    LOCALE_UPDATE_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ð±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ ÑÐ·Ñ‹Ðº"
 }
   , REFERRAL$2 = {
-    FETCH_FAILED: "Не удалось загрузить рефералов",
-    EARNED_FETCH_FAILED: "Не удалось загрузить общий заработок",
-    TOO_MANY_REQUESTS: "Слишком много запросов, подождите немного"
+    FETCH_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ñ€ÐµÑ„ÐµÑ€Ð°Ð»Ð¾Ð²",
+    EARNED_FETCH_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð¾Ð±Ñ‰Ð¸Ð¹ Ð·Ð°Ñ€Ð°Ð±Ð¾Ñ‚Ð¾Ðº",
+    TOO_MANY_REQUESTS: "Ð¡Ð»Ð¸ÑˆÐºÐ¾Ð¼ Ð¼Ð½Ð¾Ð³Ð¾ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ¾Ð², Ð¿Ð¾Ð´Ð¾Ð¶Ð´Ð¸Ñ‚Ðµ Ð½ÐµÐ¼Ð½Ð¾Ð³Ð¾"
 }
   , TRANSACTION$2 = {
-    CREATE_FAILED: "Не удалось создать транзакцию"
+    CREATE_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸ÑŽ"
 }
   , PAYMENT$2 = {
-    CREATE_FAILED: "Не удалось создать платёж"
+    CREATE_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ð¿Ð»Ð°Ñ‚Ñ‘Ð¶"
 }
   , BALANCE = {}
   , APP$4 = {
-    TELEGRAM_REQUIRED: "Это приложение должно быть открыто в Telegram",
-    SESSION_EXPIRED_TITLE: "Сессия истекла",
-    SESSION_EXPIRED_MESSAGE: "Закройте приложение и откройте его заново из чата с ботом.",
-    SESSION_EXPIRED_HINT: "Если не помогло — полностью закройте Telegram (свайп вверх → смахнуть из переключателя приложений) и откройте снова.",
-    SESSION_EXPIRED_BUTTON: "Закрыть",
-    CONNECTION_ERROR_TITLE: "Проблема с соединением",
-    CONNECTION_ERROR_MESSAGE: "Не удалось связаться с сервером. Проверьте подключение к интернету и попробуйте ещё раз.",
-    CONNECTION_ERROR_HINT: "Если не помогает, попробуйте другую сеть или переоткройте приложение.",
-    CONNECTION_ERROR_RETRY: "Повторить",
-    CONNECTION_ERROR_COPY: "Скопировать детали ошибки",
-    CONNECTION_ERROR_COPIED: "Скопировано"
+    TELEGRAM_REQUIRED: "Ð­Ñ‚Ð¾ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¾ Ð² Telegram",
+    SESSION_EXPIRED_TITLE: "Ð¡ÐµÑÑÐ¸Ñ Ð¸ÑÑ‚ÐµÐºÐ»Ð°",
+    SESSION_EXPIRED_MESSAGE: "Ð—Ð°ÐºÑ€Ð¾Ð¹Ñ‚Ðµ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¸ Ð¾Ñ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ ÐµÐ³Ð¾ Ð·Ð°Ð½Ð¾Ð²Ð¾ Ð¸Ð· Ñ‡Ð°Ñ‚Ð° Ñ Ð±Ð¾Ñ‚Ð¾Ð¼.",
+    SESSION_EXPIRED_HINT: "Ð•ÑÐ»Ð¸ Ð½Ðµ Ð¿Ð¾Ð¼Ð¾Ð³Ð»Ð¾ â€” Ð¿Ð¾Ð»Ð½Ð¾ÑÑ‚ÑŒÑŽ Ð·Ð°ÐºÑ€Ð¾Ð¹Ñ‚Ðµ Telegram (ÑÐ²Ð°Ð¹Ð¿ Ð²Ð²ÐµÑ€Ñ… â†’ ÑÐ¼Ð°Ñ…Ð½ÑƒÑ‚ÑŒ Ð¸Ð· Ð¿ÐµÑ€ÐµÐºÐ»ÑŽÑ‡Ð°Ñ‚ÐµÐ»Ñ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¹) Ð¸ Ð¾Ñ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°.",
+    SESSION_EXPIRED_BUTTON: "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ",
+    CONNECTION_ERROR_TITLE: "ÐŸÑ€Ð¾Ð±Ð»ÐµÐ¼Ð° Ñ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸ÐµÐ¼",
+    CONNECTION_ERROR_MESSAGE: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ²ÑÐ·Ð°Ñ‚ÑŒÑÑ Ñ ÑÐµÑ€Ð²ÐµÑ€Ð¾Ð¼. ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒÑ‚Ðµ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº Ð¸Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚Ñƒ Ð¸ Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·.",
+    CONNECTION_ERROR_HINT: "Ð•ÑÐ»Ð¸ Ð½Ðµ Ð¿Ð¾Ð¼Ð¾Ð³Ð°ÐµÑ‚, Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ð´Ñ€ÑƒÐ³ÑƒÑŽ ÑÐµÑ‚ÑŒ Ð¸Ð»Ð¸ Ð¿ÐµÑ€ÐµÐ¾Ñ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ.",
+    CONNECTION_ERROR_RETRY: "ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ",
+    CONNECTION_ERROR_COPY: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÑ‚Ð°Ð»Ð¸ Ð¾ÑˆÐ¸Ð±ÐºÐ¸",
+    CONNECTION_ERROR_COPIED: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾"
 }
   , LIVE_FEED$2 = {
-    FETCH_FAILED: "Не удалось загрузить ленту дропов"
+    FETCH_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð»ÐµÐ½Ñ‚Ñƒ Ð´Ñ€Ð¾Ð¿Ð¾Ð²"
 }
   , CONTRACT = {}
   , ruErrors = {
@@ -53890,55 +53890,55 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , REWARD$2 = {
     TITLES: {
-        CONGRATULATIONS: "Поздравляем!",
-        BALANCE_INCREASED: "Баланс увеличен!",
-        UPGRADE_SUCCESSFUL: "Апгрейд успешен!"
+        CONGRATULATIONS: "ÐŸÐ¾Ð·Ð´Ñ€Ð°Ð²Ð»ÑÐµÐ¼!",
+        BALANCE_INCREASED: "Ð‘Ð°Ð»Ð°Ð½Ñ ÑƒÐ²ÐµÐ»Ð¸Ñ‡ÐµÐ½!",
+        UPGRADE_SUCCESSFUL: "ÐÐ¿Ð³Ñ€ÐµÐ¹Ð´ ÑƒÑÐ¿ÐµÑˆÐµÐ½!"
     },
     DESCRIPTIONS: {
-        RECEIVED_GIFT: "Вы получили особый подарок",
-        BALANCE_UPDATED: "Ваш баланс обновлён",
-        GIFT_UPGRADED: "Ваш подарок улучшен!"
+        RECEIVED_GIFT: "Ð’Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ð»Ð¸ Ð¾ÑÐ¾Ð±Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+        BALANCE_UPDATED: "Ð’Ð°Ñˆ Ð±Ð°Ð»Ð°Ð½Ñ Ð¾Ð±Ð½Ð¾Ð²Ð»Ñ‘Ð½",
+        GIFT_UPGRADED: "Ð’Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½!"
     },
     ACTIONS: {
-        UPGRADE_AGAIN: "Улучшить еще раз!"
+        UPGRADE_AGAIN: "Ð£Ð»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ ÐµÑ‰Ðµ Ñ€Ð°Ð·!"
     }
 }
   , NOTHING$2 = {
-    TITLE: "Не в этот раз",
-    SUBTITLE: "В следующий раз повезёт!",
-    DESCRIPTION: "Не сдавайтесь! Попробуйте ещё раз, чтобы сорвать джекпот!",
-    MAYBE_LATER: "Может быть позже",
-    TRY_AGAIN_FOR: "Попробовать ещё раз за {{price}}"
+    TITLE: "ÐÐµ Ð² ÑÑ‚Ð¾Ñ‚ Ñ€Ð°Ð·",
+    SUBTITLE: "Ð’ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ Ñ€Ð°Ð· Ð¿Ð¾Ð²ÐµÐ·Ñ‘Ñ‚!",
+    DESCRIPTION: "ÐÐµ ÑÐ´Ð°Ð²Ð°Ð¹Ñ‚ÐµÑÑŒ! ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑÐ¾Ñ€Ð²Ð°Ñ‚ÑŒ Ð´Ð¶ÐµÐºÐ¿Ð¾Ñ‚!",
+    MAYBE_LATER: "ÐœÐ¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¿Ð¾Ð·Ð¶Ðµ",
+    TRY_AGAIN_FOR: "ÐŸÐ¾Ð¿Ñ€Ð¾Ð±Ð¾Ð²Ð°Ñ‚ÑŒ ÐµÑ‰Ñ‘ Ñ€Ð°Ð· Ð·Ð° {{price}}"
 }
   , WITHDRAW$4 = {
-    TRY_AGAIN: "Попробовать снова"
+    TRY_AGAIN: "ÐŸÐ¾Ð¿Ñ€Ð¾Ð±Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ½Ð¾Ð²Ð°"
 }
   , PM_REQUIRED$2 = {
-    TITLE: "Еще один шаг",
-    DESCRIPTION: "Чтобы получить подарок, вам нужно отправить любое сообщение нашему боту передачи подарков. Это одноразовое требование Telegram.",
-    MESSAGE_BOT: "Написать @giftbackpack",
-    MESSAGE_BOT_TITLE: "Сначала напишите нашему боту",
-    DO_IT_LATER: "Сделаю это позже"
+    TITLE: "Ð•Ñ‰Ðµ Ð¾Ð´Ð¸Ð½ ÑˆÐ°Ð³",
+    DESCRIPTION: "Ð§Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº, Ð²Ð°Ð¼ Ð½ÑƒÐ¶Ð½Ð¾ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð»ÑŽÐ±Ð¾Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð½Ð°ÑˆÐµÐ¼Ñƒ Ð±Ð¾Ñ‚Ñƒ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‡Ð¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð². Ð­Ñ‚Ð¾ Ð¾Ð´Ð½Ð¾Ñ€Ð°Ð·Ð¾Ð²Ð¾Ðµ Ñ‚Ñ€ÐµÐ±Ð¾Ð²Ð°Ð½Ð¸Ðµ Telegram.",
+    MESSAGE_BOT: "ÐÐ°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ @giftbackpack",
+    MESSAGE_BOT_TITLE: "Ð¡Ð½Ð°Ñ‡Ð°Ð»Ð° Ð½Ð°Ð¿Ð¸ÑˆÐ¸Ñ‚Ðµ Ð½Ð°ÑˆÐµÐ¼Ñƒ Ð±Ð¾Ñ‚Ñƒ",
+    DO_IT_LATER: "Ð¡Ð´ÐµÐ»Ð°ÑŽ ÑÑ‚Ð¾ Ð¿Ð¾Ð·Ð¶Ðµ"
 }
   , STARS_LOCK$2 = {
-    TITLE: "Вывод временно недоступен",
-    DESCRIPTION: `72-часовой период удержания действует после каждого пополнения через Telegram Stars. В это время вывод недоступен. Он разблокируется автоматически по окончании периода.
+    TITLE: "Ð’Ñ‹Ð²Ð¾Ð´ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    DESCRIPTION: `72-Ñ‡Ð°ÑÐ¾Ð²Ð¾Ð¹ Ð¿ÐµÑ€Ð¸Ð¾Ð´ ÑƒÐ´ÐµÑ€Ð¶Ð°Ð½Ð¸Ñ Ð´ÐµÐ¹ÑÑ‚Ð²ÑƒÐµÑ‚ Ð¿Ð¾ÑÐ»Ðµ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ‡ÐµÑ€ÐµÐ· Telegram Stars. Ð’ ÑÑ‚Ð¾ Ð²Ñ€ÐµÐ¼Ñ Ð²Ñ‹Ð²Ð¾Ð´ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½. ÐžÐ½ Ñ€Ð°Ð·Ð±Ð»Ð¾ÐºÐ¸Ñ€ÑƒÐµÑ‚ÑÑ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸ Ð¿Ð¾ Ð¾ÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ð¸ Ð¿ÐµÑ€Ð¸Ð¾Ð´Ð°.
 
-Нужна помощь? Обратитесь в поддержку: @epic_gift_support`,
-    OK: "Понятно",
-    SUPPORT: "Написать в поддержку"
+ÐÑƒÐ¶Ð½Ð° Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒ? ÐžÐ±Ñ€Ð°Ñ‚Ð¸Ñ‚ÐµÑÑŒ Ð² Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶ÐºÑƒ: @epic_gift_support`,
+    OK: "ÐŸÐ¾Ð½ÑÑ‚Ð½Ð¾",
+    SUPPORT: "ÐÐ°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð² Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶ÐºÑƒ"
 }
   , PVP_STARS_LOCK$2 = {
-    TITLE: "PvP временно недоступен",
-    DESCRIPTION: `72-часовой период удержания действует после каждого пополнения через Telegram Stars. В это время PvP-батлы недоступны. Они разблокируются автоматически по окончании периода.
+    TITLE: "PvP Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    DESCRIPTION: `72-Ñ‡Ð°ÑÐ¾Ð²Ð¾Ð¹ Ð¿ÐµÑ€Ð¸Ð¾Ð´ ÑƒÐ´ÐµÑ€Ð¶Ð°Ð½Ð¸Ñ Ð´ÐµÐ¹ÑÑ‚Ð²ÑƒÐµÑ‚ Ð¿Ð¾ÑÐ»Ðµ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ‡ÐµÑ€ÐµÐ· Telegram Stars. Ð’ ÑÑ‚Ð¾ Ð²Ñ€ÐµÐ¼Ñ PvP-Ð±Ð°Ñ‚Ð»Ñ‹ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹. ÐžÐ½Ð¸ Ñ€Ð°Ð·Ð±Ð»Ð¾ÐºÐ¸Ñ€ÑƒÑŽÑ‚ÑÑ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸ Ð¿Ð¾ Ð¾ÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ð¸ Ð¿ÐµÑ€Ð¸Ð¾Ð´Ð°.
 
-Нужна помощь? Обратитесь в поддержку: @epic_gift_support`
+ÐÑƒÐ¶Ð½Ð° Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒ? ÐžÐ±Ñ€Ð°Ñ‚Ð¸Ñ‚ÐµÑÑŒ Ð² Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶ÐºÑƒ: @epic_gift_support`
 }
   , PVP_RESTRICTED$2 = {
-    TITLE: "PVP временно недоступен",
-    DESCRIPTION: `PVP-батлы временно недоступны для вашего аккаунта.
+    TITLE: "PVP Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    DESCRIPTION: `PVP-Ð±Ð°Ñ‚Ð»Ñ‹ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹ Ð´Ð»Ñ Ð²Ð°ÑˆÐµÐ³Ð¾ Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°.
 
-Для получения дополнительной информации обратитесь в поддержку: @epic_gift_support`
+Ð”Ð»Ñ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð¹ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ Ð¾Ð±Ñ€Ð°Ñ‚Ð¸Ñ‚ÐµÑÑŒ Ð² Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶ÐºÑƒ: @epic_gift_support`
 }
   , BET$6 = {}
   , GIFT_DETAIL = {
@@ -53955,69 +53955,69 @@ It's 100% free, and you can try your luck every 24 hours!`,
     BET: BET$6,
     GIFT_DETAIL
 }
-  , BOX_SUFFIX$2 = "Кейс"
+  , BOX_SUFFIX$2 = "ÐšÐµÐ¹Ñ"
   , BOOST$2 = {
-    LABEL: "БУСТ",
-    HINT: "Больше буст — лучше дроп"
+    LABEL: "Ð‘Ð£Ð¡Ð¢",
+    HINT: "Ð‘Ð¾Ð»ÑŒÑˆÐµ Ð±ÑƒÑÑ‚ â€” Ð»ÑƒÑ‡ÑˆÐµ Ð´Ñ€Ð¾Ð¿"
 }
-  , CHECK_COMMUNITY$2 = "Следите за новыми кодами в нашем сообществе"
-  , LOADING$2 = "Загрузка..."
+  , CHECK_COMMUNITY$2 = "Ð¡Ð»ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð° Ð½Ð¾Ð²Ñ‹Ð¼Ð¸ ÐºÐ¾Ð´Ð°Ð¼Ð¸ Ð² Ð½Ð°ÑˆÐµÐ¼ ÑÐ¾Ð¾Ð±Ñ‰ÐµÑÑ‚Ð²Ðµ"
+  , LOADING$2 = "Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ°..."
   , DAILY$2 = {
-    TITLE: "Ежедневный кейс",
-    COME_BACK_IN: "Возвращайтесь через",
-    SKIP_ANIMATION: "Пропустить анимацию",
-    CHECKING_AVAILABILITY: "Проверка доступности...",
-    NOT_AVAILABLE: "Недоступно",
-    OPEN_DAILY_BOX: "Открыть ежедневный кейс",
-    ANTI_ABUSE: "Защита от злоупотреблений",
-    JOIN_COMMUNITY: "Присоединяйтесь к нашему сообществу",
-    LATEST_TOP_DROPS: "Последние ТОП дропы",
-    HOT: "ХИТ"
+    TITLE: "Ð•Ð¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ð¹ ÐºÐµÐ¹Ñ",
+    COME_BACK_IN: "Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°Ð¹Ñ‚ÐµÑÑŒ Ñ‡ÐµÑ€ÐµÐ·",
+    SKIP_ANIMATION: "ÐŸÑ€Ð¾Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸ÑŽ",
+    CHECKING_AVAILABILITY: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾ÑÑ‚Ð¸...",
+    NOT_AVAILABLE: "ÐÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾",
+    OPEN_DAILY_BOX: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ ÐµÐ¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ð¹ ÐºÐµÐ¹Ñ",
+    ANTI_ABUSE: "Ð—Ð°Ñ‰Ð¸Ñ‚Ð° Ð¾Ñ‚ Ð·Ð»Ð¾ÑƒÐ¿Ð¾Ñ‚Ñ€ÐµÐ±Ð»ÐµÐ½Ð¸Ð¹",
+    JOIN_COMMUNITY: "ÐŸÑ€Ð¸ÑÐ¾ÐµÐ´Ð¸Ð½ÑÐ¹Ñ‚ÐµÑÑŒ Ðº Ð½Ð°ÑˆÐµÐ¼Ñƒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÑÑ‚Ð²Ñƒ",
+    LATEST_TOP_DROPS: "ÐŸÐ¾ÑÐ»ÐµÐ´Ð½Ð¸Ðµ Ð¢ÐžÐŸ Ð´Ñ€Ð¾Ð¿Ñ‹",
+    HOT: "Ð¥Ð˜Ð¢"
 }
   , ACTIONS$s = {
-    OPEN: "Открыть за {{price}} TON",
-    OPEN_FREE_BOX: "Открыть бесплатный кейс",
-    TOP_UP_BALANCE: "Пополнить баланс",
-    PROCESSING: "Обработка…",
-    SKIP: "Пропустить",
-    DEPOSIT_AND_CONTINUE: "Пополнить 1 TON и продолжить",
-    DO_LATER: "Сделаю позже",
-    MAYBE_LATER: "Возможно, позже",
-    DEPOSIT_ACTIVATE: "Пополнить и активировать",
-    QUICK_STARS: "Пополнить"
+    OPEN: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ð·Ð° {{price}} TON",
+    OPEN_FREE_BOX: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ð±ÐµÑÐ¿Ð»Ð°Ñ‚Ð½Ñ‹Ð¹ ÐºÐµÐ¹Ñ",
+    TOP_UP_BALANCE: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð±Ð°Ð»Ð°Ð½Ñ",
+    PROCESSING: "ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°â€¦",
+    SKIP: "ÐŸÑ€Ð¾Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ",
+    DEPOSIT_AND_CONTINUE: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ 1 TON Ð¸ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ",
+    DO_LATER: "Ð¡Ð´ÐµÐ»Ð°ÑŽ Ð¿Ð¾Ð·Ð¶Ðµ",
+    MAYBE_LATER: "Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾, Ð¿Ð¾Ð·Ð¶Ðµ",
+    DEPOSIT_ACTIVATE: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð¸ Ð°ÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ",
+    QUICK_STARS: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ"
 }
   , STATUS$k = {}
   , WARNINGS = {}
   , DEPOSIT_MODAL$2 = {
-    TITLE: "Верификация",
-    ANTI_BOT_TITLE: "Защита от ботов",
-    DESCRIPTION: "Обнаружена подозрительная активность. Чтобы продолжить игру и защитить наше сообщество от ботов, пожалуйста, пройдите активацию.",
-    ACTIVATION_REQUIRED: "Требуется активация",
-    ACTIVATION_TEXT: "Сделайте любой депозит, чтобы подтвердить, что вы реальный пользователь. Минимальная сумма — <bold>0.1 TON</bold>.",
-    FOOTER: "Это разовая верификация для обеспечения честной игры для всех пользователей"
+    TITLE: "Ð’ÐµÑ€Ð¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ñ",
+    ANTI_BOT_TITLE: "Ð—Ð°Ñ‰Ð¸Ñ‚Ð° Ð¾Ñ‚ Ð±Ð¾Ñ‚Ð¾Ð²",
+    DESCRIPTION: "ÐžÐ±Ð½Ð°Ñ€ÑƒÐ¶ÐµÐ½Ð° Ð¿Ð¾Ð´Ð¾Ð·Ñ€Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð°Ñ Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾ÑÑ‚ÑŒ. Ð§Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ Ð¸Ð³Ñ€Ñƒ Ð¸ Ð·Ð°Ñ‰Ð¸Ñ‚Ð¸Ñ‚ÑŒ Ð½Ð°ÑˆÐµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÑÑ‚Ð²Ð¾ Ð¾Ñ‚ Ð±Ð¾Ñ‚Ð¾Ð², Ð¿Ð¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ñ€Ð¾Ð¹Ð´Ð¸Ñ‚Ðµ Ð°ÐºÑ‚Ð¸Ð²Ð°Ñ†Ð¸ÑŽ.",
+    ACTIVATION_REQUIRED: "Ð¢Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ Ð°ÐºÑ‚Ð¸Ð²Ð°Ñ†Ð¸Ñ",
+    ACTIVATION_TEXT: "Ð¡Ð´ÐµÐ»Ð°Ð¹Ñ‚Ðµ Ð»ÑŽÐ±Ð¾Ð¹ Ð´ÐµÐ¿Ð¾Ð·Ð¸Ñ‚, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸Ñ‚ÑŒ, Ñ‡Ñ‚Ð¾ Ð²Ñ‹ Ñ€ÐµÐ°Ð»ÑŒÐ½Ñ‹Ð¹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ. ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑƒÐ¼Ð¼Ð° â€” <bold>0.1 TON</bold>.",
+    FOOTER: "Ð­Ñ‚Ð¾ Ñ€Ð°Ð·Ð¾Ð²Ð°Ñ Ð²ÐµÑ€Ð¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ñ Ð´Ð»Ñ Ð¾Ð±ÐµÑÐ¿ÐµÑ‡ÐµÐ½Ð¸Ñ Ñ‡ÐµÑÑ‚Ð½Ð¾Ð¹ Ð¸Ð³Ñ€Ñ‹ Ð´Ð»Ñ Ð²ÑÐµÑ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹"
 }
   , DEPOSIT_1_MODAL$2 = {
-    SECURITY_CHECK: "Расширенная проверка безопасности",
-    DESCRIPTION: "Обнаружено несколько подозрительных действий. Для защиты нашей платформы и обеспечения честной игры для всех пользователей требуется расширенная верификация.",
-    VERIFICATION_REQUIRED: "Требуется расширенная верификация",
-    VERIFICATION_TEXT: "Пожалуйста, пополните баланс минимум на <bold>1 TON</bold>, чтобы продолжить игру и помочь нам поддерживать безопасную среду для всех.",
-    FOOTER: "Эта расширенная верификация помогает нам предотвращать злоупотребления и поддерживать целостность платформы"
+    SECURITY_CHECK: "Ð Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð½Ð°Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð±ÐµÐ·Ð¾Ð¿Ð°ÑÐ½Ð¾ÑÑ‚Ð¸",
+    DESCRIPTION: "ÐžÐ±Ð½Ð°Ñ€ÑƒÐ¶ÐµÐ½Ð¾ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¿Ð¾Ð´Ð¾Ð·Ñ€Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ð¹. Ð”Ð»Ñ Ð·Ð°Ñ‰Ð¸Ñ‚Ñ‹ Ð½Ð°ÑˆÐµÐ¹ Ð¿Ð»Ð°Ñ‚Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð¸ Ð¾Ð±ÐµÑÐ¿ÐµÑ‡ÐµÐ½Ð¸Ñ Ñ‡ÐµÑÑ‚Ð½Ð¾Ð¹ Ð¸Ð³Ñ€Ñ‹ Ð´Ð»Ñ Ð²ÑÐµÑ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹ Ñ‚Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ Ñ€Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð½Ð°Ñ Ð²ÐµÑ€Ð¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ñ.",
+    VERIFICATION_REQUIRED: "Ð¢Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ Ñ€Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð½Ð°Ñ Ð²ÐµÑ€Ð¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ñ",
+    VERIFICATION_TEXT: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚Ðµ Ð±Ð°Ð»Ð°Ð½Ñ Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼ Ð½Ð° <bold>1 TON</bold>, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ Ð¸Ð³Ñ€Ñƒ Ð¸ Ð¿Ð¾Ð¼Ð¾Ñ‡ÑŒ Ð½Ð°Ð¼ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°Ñ‚ÑŒ Ð±ÐµÐ·Ð¾Ð¿Ð°ÑÐ½ÑƒÑŽ ÑÑ€ÐµÐ´Ñƒ Ð´Ð»Ñ Ð²ÑÐµÑ….",
+    FOOTER: "Ð­Ñ‚Ð° Ñ€Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð½Ð°Ñ Ð²ÐµÑ€Ð¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ñ Ð¿Ð¾Ð¼Ð¾Ð³Ð°ÐµÑ‚ Ð½Ð°Ð¼ Ð¿Ñ€ÐµÐ´Ð¾Ñ‚Ð²Ñ€Ð°Ñ‰Ð°Ñ‚ÑŒ Ð·Ð»Ð¾ÑƒÐ¿Ð¾Ñ‚Ñ€ÐµÐ±Ð»ÐµÐ½Ð¸Ñ Ð¸ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°Ñ‚ÑŒ Ñ†ÐµÐ»Ð¾ÑÑ‚Ð½Ð¾ÑÑ‚ÑŒ Ð¿Ð»Ð°Ñ‚Ñ„Ð¾Ñ€Ð¼Ñ‹"
 }
   , CHANNEL_MODAL$2 = {
-    TITLE: "Требуется подписка на канал",
-    DESCRIPTION: "Чтобы получить доступ к ежедневному кейсу и быть в курсе последних новостей, пожалуйста, подпишитесь на наш официальный Telegram-канал.",
-    WHY_JOIN: "Зачем подписываться на наш канал?",
-    BENEFIT_UPDATES: "Последние обновления и анонсы",
-    BENEFIT_PROMOS: "Эксклюзивные промокоды и розыгрыши",
-    BENEFIT_ACCESS: "Доступ к ежедневному кейсу",
-    BENEFIT_EARLY: "Ранний доступ к новым функциям",
-    JOIN_BUTTON: "Подписаться на @epic_gift_official",
-    FOOTER: "После подписки вернитесь и попробуйте открыть ежедневный кейс снова"
+    TITLE: "Ð¢Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÐ° Ð½Ð° ÐºÐ°Ð½Ð°Ð»",
+    DESCRIPTION: "Ð§Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð¾ÑÑ‚ÑƒÐ¿ Ðº ÐµÐ¶ÐµÐ´Ð½ÐµÐ²Ð½Ð¾Ð¼Ñƒ ÐºÐµÐ¹ÑÑƒ Ð¸ Ð±Ñ‹Ñ‚ÑŒ Ð² ÐºÑƒÑ€ÑÐµ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ñ… Ð½Ð¾Ð²Ð¾ÑÑ‚ÐµÐ¹, Ð¿Ð¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´Ð¿Ð¸ÑˆÐ¸Ñ‚ÐµÑÑŒ Ð½Ð° Ð½Ð°Ñˆ Ð¾Ñ„Ð¸Ñ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Telegram-ÐºÐ°Ð½Ð°Ð».",
+    WHY_JOIN: "Ð—Ð°Ñ‡ÐµÐ¼ Ð¿Ð¾Ð´Ð¿Ð¸ÑÑ‹Ð²Ð°Ñ‚ÑŒÑÑ Ð½Ð° Ð½Ð°Ñˆ ÐºÐ°Ð½Ð°Ð»?",
+    BENEFIT_UPDATES: "ÐŸÐ¾ÑÐ»ÐµÐ´Ð½Ð¸Ðµ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ Ð¸ Ð°Ð½Ð¾Ð½ÑÑ‹",
+    BENEFIT_PROMOS: "Ð­ÐºÑÐºÐ»ÑŽÐ·Ð¸Ð²Ð½Ñ‹Ðµ Ð¿Ñ€Ð¾Ð¼Ð¾ÐºÐ¾Ð´Ñ‹ Ð¸ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ¸",
+    BENEFIT_ACCESS: "Ð”Ð¾ÑÑ‚ÑƒÐ¿ Ðº ÐµÐ¶ÐµÐ´Ð½ÐµÐ²Ð½Ð¾Ð¼Ñƒ ÐºÐµÐ¹ÑÑƒ",
+    BENEFIT_EARLY: "Ð Ð°Ð½Ð½Ð¸Ð¹ Ð´Ð¾ÑÑ‚ÑƒÐ¿ Ðº Ð½Ð¾Ð²Ñ‹Ð¼ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑÐ¼",
+    JOIN_BUTTON: "ÐŸÐ¾Ð´Ð¿Ð¸ÑÐ°Ñ‚ÑŒÑÑ Ð½Ð° @epic_gift_official",
+    FOOTER: "ÐŸÐ¾ÑÐ»Ðµ Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÐ¸ Ð²ÐµÑ€Ð½Ð¸Ñ‚ÐµÑÑŒ Ð¸ Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ ÐµÐ¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ð¹ ÐºÐµÐ¹Ñ ÑÐ½Ð¾Ð²Ð°"
 }
   , PROMO_ERRORS$2 = {
-    SUBSCRIBE_TO_CHANNEL: "Пожалуйста, подпишитесь на {{channelName}}, чтобы использовать этот код",
-    SUBSCRIBE_TO_REQUIRED_CHANNEL: "Пожалуйста, подпишитесь на требуемый канал, чтобы использовать этот код",
-    FAILED_TO_UNBOX: "Не удалось открыть подарок"
+    SUBSCRIBE_TO_CHANNEL: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´Ð¿Ð¸ÑˆÐ¸Ñ‚ÐµÑÑŒ Ð½Ð° {{channelName}}, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑ‚Ð¾Ñ‚ ÐºÐ¾Ð´",
+    SUBSCRIBE_TO_REQUIRED_CHANNEL: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´Ð¿Ð¸ÑˆÐ¸Ñ‚ÐµÑÑŒ Ð½Ð° Ñ‚Ñ€ÐµÐ±ÑƒÐµÐ¼Ñ‹Ð¹ ÐºÐ°Ð½Ð°Ð», Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑ‚Ð¾Ñ‚ ÐºÐ¾Ð´",
+    FAILED_TO_UNBOX: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº"
 }
   , ruOpenGift = {
     BOX_SUFFIX: BOX_SUFFIX$2,
@@ -54033,41 +54033,41 @@ It's 100% free, and you can try your luck every 24 hours!`,
     CHANNEL_MODAL: CHANNEL_MODAL$2,
     PROMO_ERRORS: PROMO_ERRORS$2
 }
-  , EARN_HEADER$2 = "Зарабатывай"
+  , EARN_HEADER$2 = "Ð—Ð°Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°Ð¹"
   , ACTIONS$r = {
-    INVITE_FRIENDS: "Пригласить друзей",
-    COPY_REFERRAL_LINK: "Скопировать ссылку"
+    INVITE_FRIENDS: "ÐŸÑ€Ð¸Ð³Ð»Ð°ÑÐ¸Ñ‚ÑŒ Ð´Ñ€ÑƒÐ·ÐµÐ¹",
+    COPY_REFERRAL_LINK: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑÑ‹Ð»ÐºÑƒ"
 }
   , SECTIONS$7 = {
-    MY_INVITES: "Мои рефералы"
+    MY_INVITES: "ÐœÐ¾Ð¸ Ñ€ÐµÑ„ÐµÑ€Ð°Ð»Ñ‹"
 }
   , LABELS$D = {
-    TOTAL_EARNED: "Всего заработано",
-    EARNED_TODAY: "Сегодня заработано",
-    PER_INVITE_REWARD: "<b>А также по</b><badge><icon/>{{count}}</badge><b>за каждого</b>",
-    DAILY_LIMIT: "но не более {{cap}} в день",
-    UP_TO: "до",
-    ACCRUAL_NOTE: "с их пополнений"
+    TOTAL_EARNED: "Ð’ÑÐµÐ³Ð¾ Ð·Ð°Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ð½Ð¾",
+    EARNED_TODAY: "Ð¡ÐµÐ³Ð¾Ð´Ð½Ñ Ð·Ð°Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ð½Ð¾",
+    PER_INVITE_REWARD: "<b>Ð Ñ‚Ð°ÐºÐ¶Ðµ Ð¿Ð¾</b><badge><icon/>{{count}}</badge><b>Ð·Ð° ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾</b>",
+    DAILY_LIMIT: "Ð½Ð¾ Ð½Ðµ Ð±Ð¾Ð»ÐµÐµ {{cap}} Ð² Ð´ÐµÐ½ÑŒ",
+    UP_TO: "Ð´Ð¾",
+    ACCRUAL_NOTE: "Ñ Ð¸Ñ… Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ð¹"
 }
   , MESSAGES$g = {
-    NO_INVITES: "Пока нет приглашений",
-    INVITE_TEXT: `🎁 Открывай Free Box в Epic Gift и забирай свои NFT-подарки!
+    NO_INVITES: "ÐŸÐ¾ÐºÐ° Ð½ÐµÑ‚ Ð¿Ñ€Ð¸Ð³Ð»Ð°ÑˆÐµÐ½Ð¸Ð¹",
+    INVITE_TEXT: `ðŸŽ ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°Ð¹ Free Box Ð² Epic Gift Ð¸ Ð·Ð°Ð±Ð¸Ñ€Ð°Ð¹ ÑÐ²Ð¾Ð¸ NFT-Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸!
 
-Это на 100% бесплатно, можешь испытывать удачу каждые 24 часа!`,
-    TRY_AGAIN: "Попробовать снова"
+Ð­Ñ‚Ð¾ Ð½Ð° 100% Ð±ÐµÑÐ¿Ð»Ð°Ñ‚Ð½Ð¾, Ð¼Ð¾Ð¶ÐµÑˆÑŒ Ð¸ÑÐ¿Ñ‹Ñ‚Ñ‹Ð²Ð°Ñ‚ÑŒ ÑƒÐ´Ð°Ñ‡Ñƒ ÐºÐ°Ð¶Ð´Ñ‹Ðµ 24 Ñ‡Ð°ÑÐ°!`,
+    TRY_AGAIN: "ÐŸÐ¾Ð¿Ñ€Ð¾Ð±Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ½Ð¾Ð²Ð°"
 }
   , TITLES$5 = {
-    COPY_REFERRAL_LINK: "Скопировать вашу реферальную ссылку",
-    HOW_IT_WORKS: "Как работает реферальная программа"
+    COPY_REFERRAL_LINK: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²Ð°ÑˆÑƒ Ñ€ÐµÑ„ÐµÑ€Ð°Ð»ÑŒÐ½ÑƒÑŽ ÑÑÑ‹Ð»ÐºÑƒ",
+    HOW_IT_WORKS: "ÐšÐ°Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ Ñ€ÐµÑ„ÐµÑ€Ð°Ð»ÑŒÐ½Ð°Ñ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð°"
 }
-  , BY_INVITING$2 = "приглашая друзей"
+  , BY_INVITING$2 = "Ð¿Ñ€Ð¸Ð³Ð»Ð°ÑˆÐ°Ñ Ð´Ñ€ÑƒÐ·ÐµÐ¹"
   , HOW_IT_WORKS$b = {
-    TITLE: "Как это работает",
-    INFO_1: "Делитесь своей персональной ссылкой. Каждый новый пользователь, который зарегистрируется по ней, станет вашим рефералом.",
-    INFO_2: "Вы получаете награды в TON, пока ваши рефералы играют. Чем активнее они играют, тем больше вы можете заработать.",
-    INFO_3: "Награды рассчитываются автоматически как доля прибыли, которую приносит каждый реферал, и сразу зачисляются на ваш баланс.",
-    INFO_4: "Общая сумма наград от каждого реферала может достигать {{pct}} от суммы его депозитов. Награды могут начисляться в разное время в зависимости от результатов его игры.",
-    FOOTER: "Сам по себе депозит не приносит мгновенную награду. Размер и время начисления зависят от результатов игры каждого реферала."
+    TITLE: "ÐšÐ°Ðº ÑÑ‚Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚",
+    INFO_1: "Ð”ÐµÐ»Ð¸Ñ‚ÐµÑÑŒ ÑÐ²Ð¾ÐµÐ¹ Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð»ÑŒÐ½Ð¾Ð¹ ÑÑÑ‹Ð»ÐºÐ¾Ð¹. ÐšÐ°Ð¶Ð´Ñ‹Ð¹ Ð½Ð¾Ð²Ñ‹Ð¹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð·Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€ÑƒÐµÑ‚ÑÑ Ð¿Ð¾ Ð½ÐµÐ¹, ÑÑ‚Ð°Ð½ÐµÑ‚ Ð²Ð°ÑˆÐ¸Ð¼ Ñ€ÐµÑ„ÐµÑ€Ð°Ð»Ð¾Ð¼.",
+    INFO_2: "Ð’Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÑ‚Ðµ Ð½Ð°Ð³Ñ€Ð°Ð´Ñ‹ Ð² TON, Ð¿Ð¾ÐºÐ° Ð²Ð°ÑˆÐ¸ Ñ€ÐµÑ„ÐµÑ€Ð°Ð»Ñ‹ Ð¸Ð³Ñ€Ð°ÑŽÑ‚. Ð§ÐµÐ¼ Ð°ÐºÑ‚Ð¸Ð²Ð½ÐµÐµ Ð¾Ð½Ð¸ Ð¸Ð³Ñ€Ð°ÑŽÑ‚, Ñ‚ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð²Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð·Ð°Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ñ‚ÑŒ.",
+    INFO_3: "ÐÐ°Ð³Ñ€Ð°Ð´Ñ‹ Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÑŽÑ‚ÑÑ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸ ÐºÐ°Ðº Ð´Ð¾Ð»Ñ Ð¿Ñ€Ð¸Ð±Ñ‹Ð»Ð¸, ÐºÐ¾Ñ‚Ð¾Ñ€ÑƒÑŽ Ð¿Ñ€Ð¸Ð½Ð¾ÑÐ¸Ñ‚ ÐºÐ°Ð¶Ð´Ñ‹Ð¹ Ñ€ÐµÑ„ÐµÑ€Ð°Ð», Ð¸ ÑÑ€Ð°Ð·Ñƒ Ð·Ð°Ñ‡Ð¸ÑÐ»ÑÑŽÑ‚ÑÑ Ð½Ð° Ð²Ð°Ñˆ Ð±Ð°Ð»Ð°Ð½Ñ.",
+    INFO_4: "ÐžÐ±Ñ‰Ð°Ñ ÑÑƒÐ¼Ð¼Ð° Ð½Ð°Ð³Ñ€Ð°Ð´ Ð¾Ñ‚ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ñ€ÐµÑ„ÐµÑ€Ð°Ð»Ð° Ð¼Ð¾Ð¶ÐµÑ‚ Ð´Ð¾ÑÑ‚Ð¸Ð³Ð°Ñ‚ÑŒ {{pct}} Ð¾Ñ‚ ÑÑƒÐ¼Ð¼Ñ‹ ÐµÐ³Ð¾ Ð´ÐµÐ¿Ð¾Ð·Ð¸Ñ‚Ð¾Ð². ÐÐ°Ð³Ñ€Ð°Ð´Ñ‹ Ð¼Ð¾Ð³ÑƒÑ‚ Ð½Ð°Ñ‡Ð¸ÑÐ»ÑÑ‚ÑŒÑÑ Ð² Ñ€Ð°Ð·Ð½Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ Ð² Ð·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¾Ñ‚ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð² ÐµÐ³Ð¾ Ð¸Ð³Ñ€Ñ‹.",
+    FOOTER: "Ð¡Ð°Ð¼ Ð¿Ð¾ ÑÐµÐ±Ðµ Ð´ÐµÐ¿Ð¾Ð·Ð¸Ñ‚ Ð½Ðµ Ð¿Ñ€Ð¸Ð½Ð¾ÑÐ¸Ñ‚ Ð¼Ð³Ð½Ð¾Ð²ÐµÐ½Ð½ÑƒÑŽ Ð½Ð°Ð³Ñ€Ð°Ð´Ñƒ. Ð Ð°Ð·Ð¼ÐµÑ€ Ð¸ Ð²Ñ€ÐµÐ¼Ñ Ð½Ð°Ñ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ñ Ð·Ð°Ð²Ð¸ÑÑÑ‚ Ð¾Ñ‚ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð² Ð¸Ð³Ñ€Ñ‹ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ñ€ÐµÑ„ÐµÑ€Ð°Ð»Ð°."
 }
   , ruInvite = {
     EARN_HEADER: EARN_HEADER$2,
@@ -54079,77 +54079,77 @@ It's 100% free, and you can try your luck every 24 hours!`,
     BY_INVITING: BY_INVITING$2,
     HOW_IT_WORKS: HOW_IT_WORKS$b
 }
-  , TITLE$8 = "Рейтинг"
+  , TITLE$8 = "Ð ÐµÐ¹Ñ‚Ð¸Ð½Ð³"
   , TABS$8 = {}
   , LABELS$C = {
-    POINTS: "Очки",
-    YOU: "ВЫ",
-    PRIZE: "Приз",
-    ENDS_IN: "Заканчивается через",
-    CHECK_NEW_CYCLE: "Проверить новый цикл",
-    TOP_PLAYERS: "Топ игроков",
-    EXCLUSIVE_PRIZES: "Эксклюзивные призы",
-    WEEKLY_CYCLES: "Еженедельные циклы",
-    FAIR_COMPETITION: "Честная конкуренция",
-    PRIZES_AND_WINNERS: "Призы и победители",
+    POINTS: "ÐžÑ‡ÐºÐ¸",
+    YOU: "Ð’Ð«",
+    PRIZE: "ÐŸÑ€Ð¸Ð·",
+    ENDS_IN: "Ð—Ð°ÐºÐ°Ð½Ñ‡Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ñ‡ÐµÑ€ÐµÐ·",
+    CHECK_NEW_CYCLE: "ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ†Ð¸ÐºÐ»",
+    TOP_PLAYERS: "Ð¢Ð¾Ð¿ Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð²",
+    EXCLUSIVE_PRIZES: "Ð­ÐºÑÐºÐ»ÑŽÐ·Ð¸Ð²Ð½Ñ‹Ðµ Ð¿Ñ€Ð¸Ð·Ñ‹",
+    WEEKLY_CYCLES: "Ð•Ð¶ÐµÐ½ÐµÐ´ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ñ†Ð¸ÐºÐ»Ñ‹",
+    FAIR_COMPETITION: "Ð§ÐµÑÑ‚Ð½Ð°Ñ ÐºÐ¾Ð½ÐºÑƒÑ€ÐµÐ½Ñ†Ð¸Ñ",
+    PRIZES_AND_WINNERS: "ÐŸÑ€Ð¸Ð·Ñ‹ Ð¸ Ð¿Ð¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»Ð¸",
     NEW: "New",
-    CLOSE: "Закрыть"
+    CLOSE: "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ"
 }
   , ACTIONS$q = {
-    EARN_POINTS: "Заработать очки",
-    EXCHANGE_TICKETS: "Обменять билеты"
+    EARN_POINTS: "Ð—Ð°Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ñ‚ÑŒ Ð¾Ñ‡ÐºÐ¸",
+    EXCHANGE_TICKETS: "ÐžÐ±Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð±Ð¸Ð»ÐµÑ‚Ñ‹"
 }
   , EXCHANGE_MODAL$2 = {
-    TITLE: "Обмен билетов на очки",
-    DESCRIPTION: "Потратьте билеты, чтобы мгновенно добавить очки в ваш счёт на текущий цикл рейтинга.",
-    RATE_HINT: "1 билет = {{points}} очков",
-    AMOUNT_LABEL: "Сколько обменять",
-    BALANCE_LABEL: "У вас билетов",
-    POINTS_LABEL: "Получите",
-    MAX: "Макс.",
-    CTA: "Обменять",
-    CANCEL: "Отмена",
-    INSUFFICIENT: "Недостаточно билетов",
-    INVALID_AMOUNT: "Введите положительное целое число",
-    SUCCESS_TOAST: "+{{points}} очков добавлено в ваш рейтинг",
-    NO_ACTIVE_CYCLE: "Нет активного цикла рейтинга",
-    DISABLED: "Обмен сейчас недоступен",
-    ERROR_TOAST: "Не удалось выполнить обмен. Попробуйте ещё раз."
+    TITLE: "ÐžÐ±Ð¼ÐµÐ½ Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð² Ð½Ð° Ð¾Ñ‡ÐºÐ¸",
+    DESCRIPTION: "ÐŸÐ¾Ñ‚Ñ€Ð°Ñ‚ÑŒÑ‚Ðµ Ð±Ð¸Ð»ÐµÑ‚Ñ‹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¼Ð³Ð½Ð¾Ð²ÐµÐ½Ð½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¾Ñ‡ÐºÐ¸ Ð² Ð²Ð°Ñˆ ÑÑ‡Ñ‘Ñ‚ Ð½Ð° Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ñ†Ð¸ÐºÐ» Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³Ð°.",
+    RATE_HINT: "1 Ð±Ð¸Ð»ÐµÑ‚ = {{points}} Ð¾Ñ‡ÐºÐ¾Ð²",
+    AMOUNT_LABEL: "Ð¡ÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¾Ð±Ð¼ÐµÐ½ÑÑ‚ÑŒ",
+    BALANCE_LABEL: "Ð£ Ð²Ð°Ñ Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð²",
+    POINTS_LABEL: "ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚Ðµ",
+    MAX: "ÐœÐ°ÐºÑ.",
+    CTA: "ÐžÐ±Ð¼ÐµÐ½ÑÑ‚ÑŒ",
+    CANCEL: "ÐžÑ‚Ð¼ÐµÐ½Ð°",
+    INSUFFICIENT: "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð²",
+    INVALID_AMOUNT: "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾",
+    SUCCESS_TOAST: "+{{points}} Ð¾Ñ‡ÐºÐ¾Ð² Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾ Ð² Ð²Ð°Ñˆ Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³",
+    NO_ACTIVE_CYCLE: "ÐÐµÑ‚ Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾Ð³Ð¾ Ñ†Ð¸ÐºÐ»Ð° Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³Ð°",
+    DISABLED: "ÐžÐ±Ð¼ÐµÐ½ ÑÐµÐ¹Ñ‡Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    ERROR_TOAST: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð¾Ð±Ð¼ÐµÐ½. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·."
 }
   , MESSAGES$f = {
-    NO_DATA: "Нет данных",
-    CHECK_BACK_SOON: "Загляните позже за потрясающими призами и жесткой конкуренцией",
-    COMPETE_AND_WIN: "Соревнуйтесь с другими пользователями и выигрывайте потрясающие призы!",
-    CYCLE_ENDED: "Цикл завершён",
-    PLEASE_LOGIN: "Войдите, чтобы увидеть рейтинг",
-    NETWORK_ERROR: "Ошибка сети. Проверьте подключение.",
-    SERVER_ERROR: "Ошибка сервера. Попробуйте позже.",
-    PREPARING_NEW_CYCLE: "Готовим новый цикл",
-    SETTING_UP_COMPETITION: "Мы готовим следующее соревнование!",
-    CHECKING: "Проверка..."
+    NO_DATA: "ÐÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ…",
+    CHECK_BACK_SOON: "Ð—Ð°Ð³Ð»ÑÐ½Ð¸Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ Ð·Ð° Ð¿Ð¾Ñ‚Ñ€ÑÑÐ°ÑŽÑ‰Ð¸Ð¼Ð¸ Ð¿Ñ€Ð¸Ð·Ð°Ð¼Ð¸ Ð¸ Ð¶ÐµÑÑ‚ÐºÐ¾Ð¹ ÐºÐ¾Ð½ÐºÑƒÑ€ÐµÐ½Ñ†Ð¸ÐµÐ¹",
+    COMPETE_AND_WIN: "Ð¡Ð¾Ñ€ÐµÐ²Ð½ÑƒÐ¹Ñ‚ÐµÑÑŒ Ñ Ð´Ñ€ÑƒÐ³Ð¸Ð¼Ð¸ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑÐ¼Ð¸ Ð¸ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ð²Ð°Ð¹Ñ‚Ðµ Ð¿Ð¾Ñ‚Ñ€ÑÑÐ°ÑŽÑ‰Ð¸Ðµ Ð¿Ñ€Ð¸Ð·Ñ‹!",
+    CYCLE_ENDED: "Ð¦Ð¸ÐºÐ» Ð·Ð°Ð²ÐµÑ€ÑˆÑ‘Ð½",
+    PLEASE_LOGIN: "Ð’Ð¾Ð¹Ð´Ð¸Ñ‚Ðµ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑƒÐ²Ð¸Ð´ÐµÑ‚ÑŒ Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³",
+    NETWORK_ERROR: "ÐžÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ‚Ð¸. ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒÑ‚Ðµ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ.",
+    SERVER_ERROR: "ÐžÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ€Ð²ÐµÑ€Ð°. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ.",
+    PREPARING_NEW_CYCLE: "Ð“Ð¾Ñ‚Ð¾Ð²Ð¸Ð¼ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ†Ð¸ÐºÐ»",
+    SETTING_UP_COMPETITION: "ÐœÑ‹ Ð³Ð¾Ñ‚Ð¾Ð²Ð¸Ð¼ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐµ ÑÐ¾Ñ€ÐµÐ²Ð½Ð¾Ð²Ð°Ð½Ð¸Ðµ!",
+    CHECKING: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ°..."
 }
   , EMPTY$e = {
-    NO_DATA: "Данные рейтинга недоступны"
+    NO_DATA: "Ð”Ð°Ð½Ð½Ñ‹Ðµ Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³Ð° Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹"
 }
   , HOW_TO_EARN$2 = {
-    TITLE: "Как заработать очки",
-    DEPOSIT_TON: "Пополняйте баланс TON",
-    DEPOSIT_DESC: "Пополняйте ваш баланс. Чем больше сумма пополнения, тем больше очков!",
-    OPEN_BOXES: "Открывайте кейсы",
-    OPEN_BOXES_DESC: "Очки зависят от цены кейса и стоимости полученных подарков. Более дорогие кейсы = больше очков!",
-    PLAY_ROCKET_PVP: "Играйте в Ракетку и PVP",
-    PLAY_ROCKET_PVP_DESC: "Сражайтесь с другими игроками в реальном времени! Чем выше ваши ставки и выигрыши, тем больше очков. В этих режимах вы получаете в 2 раза больше очков, чем за любые другие действия.",
-    UPGRADE_GIFTS: "Улучшайте подарки",
-    UPGRADE_DESC: "Очки начисляются за стоимость подарка и исход улучшения. Успешный апгрейд приносит дополнительные бонусы!",
-    EXECUTE_CONTRACTS: "Выполняйте крафты",
-    CONTRACTS_DESC: "Объединяйте подарки в крафтах, чтобы зарабатывать очки на основе общей стоимости использованных подарков.",
-    SELL_GIFTS: "Продавайте подарки",
-    SELL_DESC: "Продажа подарков за TON также приносит вам очки в зависимости от стоимости подарка.",
-    STAY_ACTIVE: "Оставайтесь активным",
-    STAY_ACTIVE_DESC: "Почти любое действие приносит очки! Чем чаще вы заходите и играете, тем выше поднимаетесь в рейтинге.",
-    COMPETITION_CYCLES: "Циклы соревнований",
-    CYCLES_DESC: "Таблица лидеров обновляется еженедельно. Более ценные действия приносят больше очков. Будьте активны, чтобы оставаться в топе и выигрывать эксклюзивные призы!",
-    START_EARNING: "Начать зарабатывать очки"
+    TITLE: "ÐšÐ°Ðº Ð·Ð°Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ñ‚ÑŒ Ð¾Ñ‡ÐºÐ¸",
+    DEPOSIT_TON: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½ÑÐ¹Ñ‚Ðµ Ð±Ð°Ð»Ð°Ð½Ñ TON",
+    DEPOSIT_DESC: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½ÑÐ¹Ñ‚Ðµ Ð²Ð°Ñˆ Ð±Ð°Ð»Ð°Ð½Ñ. Ð§ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ ÑÑƒÐ¼Ð¼Ð° Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ, Ñ‚ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð¾Ñ‡ÐºÐ¾Ð²!",
+    OPEN_BOXES: "ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°Ð¹Ñ‚Ðµ ÐºÐµÐ¹ÑÑ‹",
+    OPEN_BOXES_DESC: "ÐžÑ‡ÐºÐ¸ Ð·Ð°Ð²Ð¸ÑÑÑ‚ Ð¾Ñ‚ Ñ†ÐµÐ½Ñ‹ ÐºÐµÐ¹ÑÐ° Ð¸ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð½Ñ‹Ñ… Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð². Ð‘Ð¾Ð»ÐµÐµ Ð´Ð¾Ñ€Ð¾Ð³Ð¸Ðµ ÐºÐµÐ¹ÑÑ‹ = Ð±Ð¾Ð»ÑŒÑˆÐµ Ð¾Ñ‡ÐºÐ¾Ð²!",
+    PLAY_ROCKET_PVP: "Ð˜Ð³Ñ€Ð°Ð¹Ñ‚Ðµ Ð² Ð Ð°ÐºÐµÑ‚ÐºÑƒ Ð¸ PVP",
+    PLAY_ROCKET_PVP_DESC: "Ð¡Ñ€Ð°Ð¶Ð°Ð¹Ñ‚ÐµÑÑŒ Ñ Ð´Ñ€ÑƒÐ³Ð¸Ð¼Ð¸ Ð¸Ð³Ñ€Ð¾ÐºÐ°Ð¼Ð¸ Ð² Ñ€ÐµÐ°Ð»ÑŒÐ½Ð¾Ð¼ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸! Ð§ÐµÐ¼ Ð²Ñ‹ÑˆÐµ Ð²Ð°ÑˆÐ¸ ÑÑ‚Ð°Ð²ÐºÐ¸ Ð¸ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ¸, Ñ‚ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð¾Ñ‡ÐºÐ¾Ð². Ð’ ÑÑ‚Ð¸Ñ… Ñ€ÐµÐ¶Ð¸Ð¼Ð°Ñ… Ð²Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÑ‚Ðµ Ð² 2 Ñ€Ð°Ð·Ð° Ð±Ð¾Ð»ÑŒÑˆÐµ Ð¾Ñ‡ÐºÐ¾Ð², Ñ‡ÐµÐ¼ Ð·Ð° Ð»ÑŽÐ±Ñ‹Ðµ Ð´Ñ€ÑƒÐ³Ð¸Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ.",
+    UPGRADE_GIFTS: "Ð£Ð»ÑƒÑ‡ÑˆÐ°Ð¹Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    UPGRADE_DESC: "ÐžÑ‡ÐºÐ¸ Ð½Ð°Ñ‡Ð¸ÑÐ»ÑÑŽÑ‚ÑÑ Ð·Ð° ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð¸ Ð¸ÑÑ…Ð¾Ð´ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ. Ð£ÑÐ¿ÐµÑˆÐ½Ñ‹Ð¹ Ð°Ð¿Ð³Ñ€ÐµÐ¹Ð´ Ð¿Ñ€Ð¸Ð½Ð¾ÑÐ¸Ñ‚ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ð±Ð¾Ð½ÑƒÑÑ‹!",
+    EXECUTE_CONTRACTS: "Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐ¹Ñ‚Ðµ ÐºÑ€Ð°Ñ„Ñ‚Ñ‹",
+    CONTRACTS_DESC: "ÐžÐ±ÑŠÐµÐ´Ð¸Ð½ÑÐ¹Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð² ÐºÑ€Ð°Ñ„Ñ‚Ð°Ñ…, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð·Ð°Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¾Ñ‡ÐºÐ¸ Ð½Ð° Ð¾ÑÐ½Ð¾Ð²Ðµ Ð¾Ð±Ñ‰ÐµÐ¹ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ñ… Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð².",
+    SELL_GIFTS: "ÐŸÑ€Ð¾Ð´Ð°Ð²Ð°Ð¹Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    SELL_DESC: "ÐŸÑ€Ð¾Ð´Ð°Ð¶Ð° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð·Ð° TON Ñ‚Ð°ÐºÐ¶Ðµ Ð¿Ñ€Ð¸Ð½Ð¾ÑÐ¸Ñ‚ Ð²Ð°Ð¼ Ð¾Ñ‡ÐºÐ¸ Ð² Ð·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¾Ñ‚ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°.",
+    STAY_ACTIVE: "ÐžÑÑ‚Ð°Ð²Ð°Ð¹Ñ‚ÐµÑÑŒ Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹Ð¼",
+    STAY_ACTIVE_DESC: "ÐŸÐ¾Ñ‡Ñ‚Ð¸ Ð»ÑŽÐ±Ð¾Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ñ€Ð¸Ð½Ð¾ÑÐ¸Ñ‚ Ð¾Ñ‡ÐºÐ¸! Ð§ÐµÐ¼ Ñ‡Ð°Ñ‰Ðµ Ð²Ñ‹ Ð·Ð°Ñ…Ð¾Ð´Ð¸Ñ‚Ðµ Ð¸ Ð¸Ð³Ñ€Ð°ÐµÑ‚Ðµ, Ñ‚ÐµÐ¼ Ð²Ñ‹ÑˆÐµ Ð¿Ð¾Ð´Ð½Ð¸Ð¼Ð°ÐµÑ‚ÐµÑÑŒ Ð² Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³Ðµ.",
+    COMPETITION_CYCLES: "Ð¦Ð¸ÐºÐ»Ñ‹ ÑÐ¾Ñ€ÐµÐ²Ð½Ð¾Ð²Ð°Ð½Ð¸Ð¹",
+    CYCLES_DESC: "Ð¢Ð°Ð±Ð»Ð¸Ñ†Ð° Ð»Ð¸Ð´ÐµÑ€Ð¾Ð² Ð¾Ð±Ð½Ð¾Ð²Ð»ÑÐµÑ‚ÑÑ ÐµÐ¶ÐµÐ½ÐµÐ´ÐµÐ»ÑŒÐ½Ð¾. Ð‘Ð¾Ð»ÐµÐµ Ñ†ÐµÐ½Ð½Ñ‹Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ Ð¿Ñ€Ð¸Ð½Ð¾ÑÑÑ‚ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð¾Ñ‡ÐºÐ¾Ð². Ð‘ÑƒÐ´ÑŒÑ‚Ðµ Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¾ÑÑ‚Ð°Ð²Ð°Ñ‚ÑŒÑÑ Ð² Ñ‚Ð¾Ð¿Ðµ Ð¸ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ð²Ð°Ñ‚ÑŒ ÑÐºÑÐºÐ»ÑŽÐ·Ð¸Ð²Ð½Ñ‹Ðµ Ð¿Ñ€Ð¸Ð·Ñ‹!",
+    START_EARNING: "ÐÐ°Ñ‡Ð°Ñ‚ÑŒ Ð·Ð°Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¾Ñ‡ÐºÐ¸"
 }
   , ruLeaderboard = {
     TITLE: TITLE$8,
@@ -54162,159 +54162,159 @@ It's 100% free, and you can try your luck every 24 hours!`,
     HOW_TO_EARN: HOW_TO_EARN$2
 }
   , SUCCESS$2 = {
-    LINK_COPIED: "Ссылка скопирована в буфер обмена!",
-    LINK_COPIED_SHARE: "Ссылка скопирована – вставьте её в чат с друзьями!",
-    GIFT_SOLD: "Подарок успешно продан!",
-    GIFT_ADDED_TO_BACKPACK: "Подарок добавлен в ваш инвентарь!",
-    GIFT_WITHDRAWN: "Подарок успешно выведен в Telegram!",
-    TASK_CLAIMED: "Награда за задание получена!",
-    CHANNEL_JOINED_CLAIMED: "Канал подписан и награда получена!",
-    CHANNEL_JOINED: "Канал подписан! Заберите награду.",
-    GIVEAWAY_JOINED: "Вы успешно участвуете в розыгрыше!",
-    CONTRACT_EXECUTED: "Крафт успешно выполнен!",
-    TRANSACTION_PROCESSING: "Транзакция обрабатывается, пожалуйста подождите...",
-    PAYMENT_CREATED: "Счёт на оплату создан",
-    DATA_COPIED: "{{label}} скопировано в буфер обмена",
-    DATA_DOWNLOADED: "Данные игры скачаны",
-    VERIFICATION_PASSED: "Проверка пройдена!",
-    NEW_BOX_AVAILABLE: "Доступен новый кейс: {{title}}",
-    BOX_BACK_IN_STOCK: "{{title}} снова в наличии!",
-    BETTER_LUCK_NEXT_TIME: "Больше удачи в следующий раз!",
-    SETTINGS_SAVED: "Настройки успешно сохранены"
+    LINK_COPIED: "Ð¡ÑÑ‹Ð»ÐºÐ° ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð° Ð² Ð±ÑƒÑ„ÐµÑ€ Ð¾Ð±Ð¼ÐµÐ½Ð°!",
+    LINK_COPIED_SHARE: "Ð¡ÑÑ‹Ð»ÐºÐ° ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð° â€“ Ð²ÑÑ‚Ð°Ð²ÑŒÑ‚Ðµ ÐµÑ‘ Ð² Ñ‡Ð°Ñ‚ Ñ Ð´Ñ€ÑƒÐ·ÑŒÑÐ¼Ð¸!",
+    GIFT_SOLD: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¿Ñ€Ð¾Ð´Ð°Ð½!",
+    GIFT_ADDED_TO_BACKPACK: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½ Ð² Ð²Ð°Ñˆ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ!",
+    GIFT_WITHDRAWN: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð²Ñ‹Ð²ÐµÐ´ÐµÐ½ Ð² Telegram!",
+    TASK_CLAIMED: "ÐÐ°Ð³Ñ€Ð°Ð´Ð° Ð·Ð° Ð·Ð°Ð´Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð°!",
+    CHANNEL_JOINED_CLAIMED: "ÐšÐ°Ð½Ð°Ð» Ð¿Ð¾Ð´Ð¿Ð¸ÑÐ°Ð½ Ð¸ Ð½Ð°Ð³Ñ€Ð°Ð´Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð°!",
+    CHANNEL_JOINED: "ÐšÐ°Ð½Ð°Ð» Ð¿Ð¾Ð´Ð¿Ð¸ÑÐ°Ð½! Ð—Ð°Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½Ð°Ð³Ñ€Ð°Ð´Ñƒ.",
+    GIVEAWAY_JOINED: "Ð’Ñ‹ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÑ‡Ð°ÑÑ‚Ð²ÑƒÐµÑ‚Ðµ Ð² Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐµ!",
+    CONTRACT_EXECUTED: "ÐšÑ€Ð°Ñ„Ñ‚ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½!",
+    TRANSACTION_PROCESSING: "Ð¢Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ñ Ð¾Ð±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ÑÑ, Ð¿Ð¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð° Ð¿Ð¾Ð´Ð¾Ð¶Ð´Ð¸Ñ‚Ðµ...",
+    PAYMENT_CREATED: "Ð¡Ñ‡Ñ‘Ñ‚ Ð½Ð° Ð¾Ð¿Ð»Ð°Ñ‚Ñƒ ÑÐ¾Ð·Ð´Ð°Ð½",
+    DATA_COPIED: "{{label}} ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾ Ð² Ð±ÑƒÑ„ÐµÑ€ Ð¾Ð±Ð¼ÐµÐ½Ð°",
+    DATA_DOWNLOADED: "Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð¸Ð³Ñ€Ñ‹ ÑÐºÐ°Ñ‡Ð°Ð½Ñ‹",
+    VERIFICATION_PASSED: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ñ€Ð¾Ð¹Ð´ÐµÐ½Ð°!",
+    NEW_BOX_AVAILABLE: "Ð”Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½ Ð½Ð¾Ð²Ñ‹Ð¹ ÐºÐµÐ¹Ñ: {{title}}",
+    BOX_BACK_IN_STOCK: "{{title}} ÑÐ½Ð¾Ð²Ð° Ð² Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ð¸!",
+    BETTER_LUCK_NEXT_TIME: "Ð‘Ð¾Ð»ÑŒÑˆÐµ ÑƒÐ´Ð°Ñ‡Ð¸ Ð² ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ Ñ€Ð°Ð·!",
+    SETTINGS_SAVED: "ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ñ‹"
 }
   , ERROR$2 = {
-    FAILED_TO_LOAD_REFERRALS: "Не удалось загрузить рефералов",
-    FAILED_TO_COPY: "Не удалось скопировать ссылку",
-    FAILED_TO_LOAD_GIFTS: "Не удалось загрузить ваши подарки",
-    FAILED_TO_LOAD_UPGRADE_TARGETS: "Не удалось загрузить цели для улучшения этого подарка",
-    INVALID_TARGET_GIFT: "Выбран недопустимый целевой подарок. Попробуйте выбрать другой.",
-    USER_NOT_FOUND: "Пользователь не найден. Пожалуйста, войдите снова.",
-    GIFT_NOT_UPGRADEABLE: "Этот подарок нельзя улучшить или он не найден.",
-    TARGET_GIFT_NOT_FOUND: "Целевой подарок не найден. Выберите другую цель.",
-    GIFT_LOCKED: "Этот подарок сейчас используется в другом действии.",
-    PLEASE_WAIT: "Пожалуйста, подождите перед следующей попыткой улучшения.",
-    NETWORK_ERROR: "Ошибка сети. Проверьте подключение.",
-    SERVER_ERROR: "Ошибка сервера. Попробуйте позже.",
-    FAILED_TO_UPGRADE: "Не удалось улучшить подарок",
-    UNEXPECTED_ERROR: "Произошла неожиданная ошибка при улучшении",
-    NO_GIFT_TO_SELL: "Нет подарка для продажи",
-    FAILED_TO_SELL: "Не удалось продать подарок",
-    NO_GIFT_FOR_UPGRADE: "Нет подарка для улучшения",
-    DAILY_GIFT_NOT_FOUND: "Ежедневный подарочный кейс не найден",
-    PLEASE_LOGIN: "Пожалуйста, войдите для проверки доступности",
-    FAILED_TO_CHECK: "Не удалось проверить доступность",
-    DAILY_ALREADY_CLAIMED: "Ежедневный подарок уже получен",
-    DAILY_ALREADY_CLAIMED_DESCRIPTION: "Пожалуйста, дождитесь следующего сброса",
-    FAILED_TO_UNBOX: "Не удалось открыть подарок",
-    MISSING_VERIFICATION_DATA: "Отсутствуют данные для проверки",
-    VERIFICATION_DATA_DESCRIPTION: "Невозможно проверить эту игру без необходимых данных",
-    VERIFICATION_FAILED: "Проверка не прошла",
-    VERIFICATION_FAILED_DESCRIPTION: "Данные игры не соответствуют ожидаемому результату",
-    FAILED_TO_LOAD_LEADERBOARD: "Не удалось загрузить таблицу лидеров",
-    FAILED_TO_LOAD_TASKS: "Не удалось загрузить задания",
-    PLEASE_JOIN_CHANNEL: "Сначала подпишитесь на канал",
-    FAILED_TO_VERIFY_SUBSCRIPTION: "Не удалось проверить подписку на канал",
-    FAILED_TO_COMPLETE_TASK: "Не удалось выполнить задание",
-    FAILED_TO_CLAIM_TASK: "Не удалось забрать награду",
-    STORIES_MOBILE_ONLY: "Поделиться сторис можно только в мобильном Telegram",
-    FAILED_TO_JOIN_GIVEAWAY: "Не удалось присоединиться к розыгрышу",
-    COMPLETE_REQUIREMENTS: "Сначала выполните все требования",
-    GIVEAWAY_NOT_FOUND: "Розыгрыш не найден",
-    CHANNEL_LINK_NOT_AVAILABLE: "Ссылка на канал недоступна",
-    FAILED_TO_LOAD_AVAILABLE_GIFTS: "Не удалось загрузить доступные подарки",
-    GAME_SERVICE_NOT_AVAILABLE: "Игровой сервис недоступен",
-    CANNOT_PLACE_BET: "Невозможно сделать ставку в данный момент",
-    PLEASE_SELECT_GIFT: "Пожалуйста, выберите подарок для ставки",
-    MINIMUM_BET: "Минимальная ставка 0.1 TON",
-    CANNOT_CASH_OUT: "Невозможно забрать выигрыш в данный момент",
-    ROUND_ALREADY_CRASHED: "Раунд уже завершился",
-    GIFT_ALREADY_IN_CONTRACT: "Этот подарок уже в крафте",
-    NO_GIFT_RECEIVED: "Ошибка: Подарок не получен из крафта",
-    CONTRACT_CANNOT_EXECUTE: "Крафт не может быть выполнен",
-    FAILED_TO_EXECUTE_CONTRACT: "Не удалось выполнить крафт",
-    GIFT_NOT_FOUND: "Подарок не найден",
-    PLEASE_MESSAGE_BOT: "Сначала напишите нашему боту",
-    GIFT_NOT_FOUND_TRY_AGAIN: "Подарок не найден. Попробуйте ещё раз.",
-    PLEASE_LOGIN_TO_WITHDRAW: "Войдите для вывода подарка",
-    FAILED_TO_WITHDRAW: "Не удалось вывести подарок",
-    GIFT_NOT_FOUND_REFRESH: "Подарок не найден. Обновите страницу.",
-    PLEASE_LOGIN_TO_SELL: "Войдите для продажи подарка",
-    NOT_CONNECTED_TO_SERVER: "Нет подключения к серверу",
-    FAILED_TO_PLACE_BET: "Не удалось сделать ставку",
-    FAILED_TO_INCREASE_BET: "Не удалось увеличить ставку",
-    CONNECTION_LOST: "Соединение потеряно. Обновите страницу.",
-    FAILED_TO_CONNECT: "Не удалось подключиться к игровому серверу",
-    NOT_CONNECTED_TO_GAME_SERVER: "Нет подключения к игровому серверу",
-    WALLET_VERIFICATION_FAILED: "Проверка кошелька не удалась",
-    WALLET_VERIFICATION_DESCRIPTION: "Попробуйте отключить и снова подключить кошелёк",
-    CONNECTION_ERROR: "Ошибка подключения",
-    CONNECTION_ERROR_DESCRIPTION: "Проверьте интернет-соединение и попробуйте снова",
-    INVALID_WALLET: "Недопустимый кошелёк",
-    INVALID_WALLET_DESCRIPTION: "Используйте действительный TON кошелёк",
-    FAILED_TO_CREATE_PAYMENT: "Не удалось создать платёж",
-    TRANSACTION_CANCELLED: "Транзакция отменена",
-    FAILED_TO_TOP_UP: "Не удалось пополнить баланс",
-    BETS_CLOSED: "Ставки закрыты для этого раунда",
-    GIFT_NOT_AVAILABLE: "Выбранный подарок недоступен",
-    INSUFFICIENT_BALANCE: "Недостаточно средств",
-    MINIMUM_BET_AMOUNT: "Минимальная ставка 0.1 TON",
-    FAILED_TO_CASH_OUT: "Не удалось вывести",
-    FAILED_TO_SAVE_SETTINGS: "Не удалось сохранить настройки",
-    RATE_UNAVAILABLE: "Пожалуйста, попробуйте снова через мгновение"
+    FAILED_TO_LOAD_REFERRALS: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ñ€ÐµÑ„ÐµÑ€Ð°Ð»Ð¾Ð²",
+    FAILED_TO_COPY: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑÑ‹Ð»ÐºÑƒ",
+    FAILED_TO_LOAD_GIFTS: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð²Ð°ÑˆÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    FAILED_TO_LOAD_UPGRADE_TARGETS: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ñ†ÐµÐ»Ð¸ Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ ÑÑ‚Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    INVALID_TARGET_GIFT: "Ð’Ñ‹Ð±Ñ€Ð°Ð½ Ð½ÐµÐ´Ð¾Ð¿ÑƒÑÑ‚Ð¸Ð¼Ñ‹Ð¹ Ñ†ÐµÐ»ÐµÐ²Ð¾Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ð²Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð´Ñ€ÑƒÐ³Ð¾Ð¹.",
+    USER_NOT_FOUND: "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½. ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð²Ð¾Ð¹Ð´Ð¸Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°.",
+    GIFT_NOT_UPGRADEABLE: "Ð­Ñ‚Ð¾Ñ‚ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð½ÐµÐ»ÑŒÐ·Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ Ð¸Ð»Ð¸ Ð¾Ð½ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½.",
+    TARGET_GIFT_NOT_FOUND: "Ð¦ÐµÐ»ÐµÐ²Ð¾Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½. Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´Ñ€ÑƒÐ³ÑƒÑŽ Ñ†ÐµÐ»ÑŒ.",
+    GIFT_LOCKED: "Ð­Ñ‚Ð¾Ñ‚ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ÑÐµÐ¹Ñ‡Ð°Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð² Ð´Ñ€ÑƒÐ³Ð¾Ð¼ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ð¸.",
+    PLEASE_WAIT: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´Ð¾Ð¶Ð´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€ÐµÐ´ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ¹ Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÐ¾Ð¹ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ.",
+    NETWORK_ERROR: "ÐžÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ‚Ð¸. ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒÑ‚Ðµ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ.",
+    SERVER_ERROR: "ÐžÑˆÐ¸Ð±ÐºÐ° ÑÐµÑ€Ð²ÐµÑ€Ð°. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ.",
+    FAILED_TO_UPGRADE: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑƒÐ»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    UNEXPECTED_ERROR: "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð½ÐµÐ¾Ð¶Ð¸Ð´Ð°Ð½Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ð¸",
+    NO_GIFT_TO_SELL: "ÐÐµÑ‚ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ð¸",
+    FAILED_TO_SELL: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ñ€Ð¾Ð´Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    NO_GIFT_FOR_UPGRADE: "ÐÐµÑ‚ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    DAILY_GIFT_NOT_FOUND: "Ð•Ð¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ñ‡Ð½Ñ‹Ð¹ ÐºÐµÐ¹Ñ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½",
+    PLEASE_LOGIN: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð²Ð¾Ð¹Ð´Ð¸Ñ‚Ðµ Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾ÑÑ‚Ð¸",
+    FAILED_TO_CHECK: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾ÑÑ‚ÑŒ",
+    DAILY_ALREADY_CLAIMED: "Ð•Ð¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ÑƒÐ¶Ðµ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½",
+    DAILY_ALREADY_CLAIMED_DESCRIPTION: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð´Ð¾Ð¶Ð´Ð¸Ñ‚ÐµÑÑŒ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ ÑÐ±Ñ€Ð¾ÑÐ°",
+    FAILED_TO_UNBOX: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    MISSING_VERIFICATION_DATA: "ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸",
+    VERIFICATION_DATA_DESCRIPTION: "ÐÐµÐ²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ ÑÑ‚Ñƒ Ð¸Ð³Ñ€Ñƒ Ð±ÐµÐ· Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ…",
+    VERIFICATION_FAILED: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð°",
+    VERIFICATION_FAILED_DESCRIPTION: "Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð¸Ð³Ñ€Ñ‹ Ð½Ðµ ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‚ Ð¾Ð¶Ð¸Ð´Ð°ÐµÐ¼Ð¾Ð¼Ñƒ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ñƒ",
+    FAILED_TO_LOAD_LEADERBOARD: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ Ð»Ð¸Ð´ÐµÑ€Ð¾Ð²",
+    FAILED_TO_LOAD_TASKS: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ",
+    PLEASE_JOIN_CHANNEL: "Ð¡Ð½Ð°Ñ‡Ð°Ð»Ð° Ð¿Ð¾Ð´Ð¿Ð¸ÑˆÐ¸Ñ‚ÐµÑÑŒ Ð½Ð° ÐºÐ°Ð½Ð°Ð»",
+    FAILED_TO_VERIFY_SUBSCRIPTION: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÑƒ Ð½Ð° ÐºÐ°Ð½Ð°Ð»",
+    FAILED_TO_COMPLETE_TASK: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð´Ð°Ð½Ð¸Ðµ",
+    FAILED_TO_CLAIM_TASK: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð±Ñ€Ð°Ñ‚ÑŒ Ð½Ð°Ð³Ñ€Ð°Ð´Ñƒ",
+    STORIES_MOBILE_ONLY: "ÐŸÐ¾Ð´ÐµÐ»Ð¸Ñ‚ÑŒÑÑ ÑÑ‚Ð¾Ñ€Ð¸Ñ Ð¼Ð¾Ð¶Ð½Ð¾ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð² Ð¼Ð¾Ð±Ð¸Ð»ÑŒÐ½Ð¾Ð¼ Telegram",
+    FAILED_TO_JOIN_GIVEAWAY: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ñ€Ð¸ÑÐ¾ÐµÐ´Ð¸Ð½Ð¸Ñ‚ÑŒÑÑ Ðº Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÑƒ",
+    COMPLETE_REQUIREMENTS: "Ð¡Ð½Ð°Ñ‡Ð°Ð»Ð° Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚Ðµ Ð²ÑÐµ Ñ‚Ñ€ÐµÐ±Ð¾Ð²Ð°Ð½Ð¸Ñ",
+    GIVEAWAY_NOT_FOUND: "Ð Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½",
+    CHANNEL_LINK_NOT_AVAILABLE: "Ð¡ÑÑ‹Ð»ÐºÐ° Ð½Ð° ÐºÐ°Ð½Ð°Ð» Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð°",
+    FAILED_TO_LOAD_AVAILABLE_GIFTS: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    GAME_SERVICE_NOT_AVAILABLE: "Ð˜Ð³Ñ€Ð¾Ð²Ð¾Ð¹ ÑÐµÑ€Ð²Ð¸Ñ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    CANNOT_PLACE_BET: "ÐÐµÐ²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ Ð² Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ‚",
+    PLEASE_SELECT_GIFT: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð²Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð´Ð»Ñ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    MINIMUM_BET: "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ° 0.1 TON",
+    CANNOT_CASH_OUT: "ÐÐµÐ²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ð·Ð°Ð±Ñ€Ð°Ñ‚ÑŒ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ Ð² Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ‚",
+    ROUND_ALREADY_CRASHED: "Ð Ð°ÑƒÐ½Ð´ ÑƒÐ¶Ðµ Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ð»ÑÑ",
+    GIFT_ALREADY_IN_CONTRACT: "Ð­Ñ‚Ð¾Ñ‚ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ÑƒÐ¶Ðµ Ð² ÐºÑ€Ð°Ñ„Ñ‚Ðµ",
+    NO_GIFT_RECEIVED: "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½ Ð¸Ð· ÐºÑ€Ð°Ñ„Ñ‚Ð°",
+    CONTRACT_CANNOT_EXECUTE: "ÐšÑ€Ð°Ñ„Ñ‚ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½",
+    FAILED_TO_EXECUTE_CONTRACT: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ ÐºÑ€Ð°Ñ„Ñ‚",
+    GIFT_NOT_FOUND: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½",
+    PLEASE_MESSAGE_BOT: "Ð¡Ð½Ð°Ñ‡Ð°Ð»Ð° Ð½Ð°Ð¿Ð¸ÑˆÐ¸Ñ‚Ðµ Ð½Ð°ÑˆÐµÐ¼Ñƒ Ð±Ð¾Ñ‚Ñƒ",
+    GIFT_NOT_FOUND_TRY_AGAIN: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·.",
+    PLEASE_LOGIN_TO_WITHDRAW: "Ð’Ð¾Ð¹Ð´Ð¸Ñ‚Ðµ Ð´Ð»Ñ Ð²Ñ‹Ð²Ð¾Ð´Ð° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    FAILED_TO_WITHDRAW: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð²Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    GIFT_NOT_FOUND_REFRESH: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½. ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚Ðµ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñƒ.",
+    PLEASE_LOGIN_TO_SELL: "Ð’Ð¾Ð¹Ð´Ð¸Ñ‚Ðµ Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ð¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    NOT_CONNECTED_TO_SERVER: "ÐÐµÑ‚ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ Ðº ÑÐµÑ€Ð²ÐµÑ€Ñƒ",
+    FAILED_TO_PLACE_BET: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    FAILED_TO_INCREASE_BET: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    CONNECTION_LOST: "Ð¡Ð¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ñ‚ÐµÑ€ÑÐ½Ð¾. ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚Ðµ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñƒ.",
+    FAILED_TO_CONNECT: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒÑÑ Ðº Ð¸Ð³Ñ€Ð¾Ð²Ð¾Ð¼Ñƒ ÑÐµÑ€Ð²ÐµÑ€Ñƒ",
+    NOT_CONNECTED_TO_GAME_SERVER: "ÐÐµÑ‚ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ Ðº Ð¸Ð³Ñ€Ð¾Ð²Ð¾Ð¼Ñƒ ÑÐµÑ€Ð²ÐµÑ€Ñƒ",
+    WALLET_VERIFICATION_FAILED: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÐºÐ¾ÑˆÐµÐ»ÑŒÐºÐ° Ð½Ðµ ÑƒÐ´Ð°Ð»Ð°ÑÑŒ",
+    WALLET_VERIFICATION_DESCRIPTION: "ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ð¾Ñ‚ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒ Ð¸ ÑÐ½Ð¾Ð²Ð° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
+    CONNECTION_ERROR: "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ",
+    CONNECTION_ERROR_DESCRIPTION: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒÑ‚Ðµ Ð¸Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚-ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ð¸ Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°",
+    INVALID_WALLET: "ÐÐµÐ´Ð¾Ð¿ÑƒÑÑ‚Ð¸Ð¼Ñ‹Ð¹ ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
+    INVALID_WALLET_DESCRIPTION: "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐ¹Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¹ TON ÐºÐ¾ÑˆÐµÐ»Ñ‘Ðº",
+    FAILED_TO_CREATE_PAYMENT: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ð¿Ð»Ð°Ñ‚Ñ‘Ð¶",
+    TRANSACTION_CANCELLED: "Ð¢Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ñ Ð¾Ñ‚Ð¼ÐµÐ½ÐµÐ½Ð°",
+    FAILED_TO_TOP_UP: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð±Ð°Ð»Ð°Ð½Ñ",
+    BETS_CLOSED: "Ð¡Ñ‚Ð°Ð²ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ñ‹ Ð´Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ Ñ€Ð°ÑƒÐ½Ð´Ð°",
+    GIFT_NOT_AVAILABLE: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    INSUFFICIENT_BALANCE: "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ ÑÑ€ÐµÐ´ÑÑ‚Ð²",
+    MINIMUM_BET_AMOUNT: "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ° 0.1 TON",
+    FAILED_TO_CASH_OUT: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð²Ñ‹Ð²ÐµÑÑ‚Ð¸",
+    FAILED_TO_SAVE_SETTINGS: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸",
+    RATE_UNAVAILABLE: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð° Ñ‡ÐµÑ€ÐµÐ· Ð¼Ð³Ð½Ð¾Ð²ÐµÐ½Ð¸Ðµ"
 }
   , ruToasts = {
     SUCCESS: SUCCESS$2,
     ERROR: ERROR$2
 }
-  , PAGE_TITLE$2 = "Ваши подарки"
+  , PAGE_TITLE$2 = "Ð’Ð°ÑˆÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸"
   , EMPTY$d = {
-    TITLE: "Ваш инвентарь пуст",
-    DESCRIPTION_PART1: "Отправьте подарки в",
-    DESCRIPTION_PART2: "чтобы использовать их для пополнения баланса, апгрейдов, крафтов или играя в пвп и ракетку.",
-    SEND_GIFT: "Отправить подарок",
-    GIFTS_APPEAR_HERE: "Подарки, отправленные боту, появятся здесь автоматически.",
-    OPEN_BOXES_MESSAGE: "Откройте кейсы, чтобы получить крутые подарки и использовать их для пополнения баланса, апгрейдов, крафтов или играя в пвп и ракетку."
+    TITLE: "Ð’Ð°Ñˆ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ Ð¿ÑƒÑÑ‚",
+    DESCRIPTION_PART1: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð²",
+    DESCRIPTION_PART2: "Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ Ð¸Ñ… Ð´Ð»Ñ Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ°, Ð°Ð¿Ð³Ñ€ÐµÐ¹Ð´Ð¾Ð², ÐºÑ€Ð°Ñ„Ñ‚Ð¾Ð² Ð¸Ð»Ð¸ Ð¸Ð³Ñ€Ð°Ñ Ð² Ð¿Ð²Ð¿ Ð¸ Ñ€Ð°ÐºÐµÑ‚ÐºÑƒ.",
+    SEND_GIFT: "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    GIFTS_APPEAR_HERE: "ÐŸÐ¾Ð´Ð°Ñ€ÐºÐ¸, Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð½Ñ‹Ðµ Ð±Ð¾Ñ‚Ñƒ, Ð¿Ð¾ÑÐ²ÑÑ‚ÑÑ Ð·Ð´ÐµÑÑŒ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸.",
+    OPEN_BOXES_MESSAGE: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ ÐºÐµÐ¹ÑÑ‹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ ÐºÑ€ÑƒÑ‚Ñ‹Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð¸ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ Ð¸Ñ… Ð´Ð»Ñ Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ°, Ð°Ð¿Ð³Ñ€ÐµÐ¹Ð´Ð¾Ð², ÐºÑ€Ð°Ñ„Ñ‚Ð¾Ð² Ð¸Ð»Ð¸ Ð¸Ð³Ñ€Ð°Ñ Ð² Ð¿Ð²Ð¿ Ð¸ Ñ€Ð°ÐºÐµÑ‚ÐºÑƒ."
 }
   , ACTIONS$p = {
     OPEN_BOT: "@giftbackpack",
-    BUY_GIFTS: "Купить подарки"
+    BUY_GIFTS: "ÐšÑƒÐ¿Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸"
 }
   , BANNER$5 = {
-    SEND_GIFTS_TO: "Отправьте свои подарки в",
-    USE_IN_UPGRADES: "Используйте их для пополнения баланса, апгрейдов, крафтов или играя в пвп и ракетку",
-    SEND: "Отправить"
+    SEND_GIFTS_TO: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ ÑÐ²Ð¾Ð¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð²",
+    USE_IN_UPGRADES: "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐ¹Ñ‚Ðµ Ð¸Ñ… Ð´Ð»Ñ Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ°, Ð°Ð¿Ð³Ñ€ÐµÐ¹Ð´Ð¾Ð², ÐºÑ€Ð°Ñ„Ñ‚Ð¾Ð² Ð¸Ð»Ð¸ Ð¸Ð³Ñ€Ð°Ñ Ð² Ð¿Ð²Ð¿ Ð¸ Ñ€Ð°ÐºÐµÑ‚ÐºÑƒ",
+    SEND: "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ"
 }
   , SUPPORT$2 = {
-    NEED_HELP: "Нужна помощь с выводом подарков? Наша команда готова помочь! Свяжитесь с нами:"
+    NEED_HELP: "ÐÑƒÐ¶Ð½Ð° Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒ Ñ Ð²Ñ‹Ð²Ð¾Ð´Ð¾Ð¼ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²? ÐÐ°ÑˆÐ° ÐºÐ¾Ð¼Ð°Ð½Ð´Ð° Ð³Ð¾Ñ‚Ð¾Ð²Ð° Ð¿Ð¾Ð¼Ð¾Ñ‡ÑŒ! Ð¡Ð²ÑÐ¶Ð¸Ñ‚ÐµÑÑŒ Ñ Ð½Ð°Ð¼Ð¸:"
 }
   , SELL$2 = {
-    CONFIRM_SALE: "Подтвердите продажу",
-    SELL_FOR: "Продать",
-    CONFIRM_MESSAGE: "Вы уверены, что хотите продать этот подарок? Это действие нельзя отменить.",
-    PROCESSING: "Обработка...",
-    CONFIRM: "Подтвердить продажу",
-    CANCEL: "Отмена"
+    CONFIRM_SALE: "ÐŸÐ¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸Ñ‚Ðµ Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ",
+    SELL_FOR: "ÐŸÑ€Ð¾Ð´Ð°Ñ‚ÑŒ",
+    CONFIRM_MESSAGE: "Ð’Ñ‹ ÑƒÐ²ÐµÑ€ÐµÐ½Ñ‹, Ñ‡Ñ‚Ð¾ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð¿Ñ€Ð¾Ð´Ð°Ñ‚ÑŒ ÑÑ‚Ð¾Ñ‚ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº? Ð­Ñ‚Ð¾ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð½ÐµÐ»ÑŒÐ·Ñ Ð¾Ñ‚Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ.",
+    PROCESSING: "ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°...",
+    CONFIRM: "ÐŸÐ¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸Ñ‚ÑŒ Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ",
+    CANCEL: "ÐžÑ‚Ð¼ÐµÐ½Ð°"
 }
   , LOCK$2 = {
-    TITLE: "Подарок заблокирован",
-    LOCKED: "Заблокирован",
-    DESCRIPTION: "После передачи подарка Telegram установил на него временную блокировку. Пожалуйста, подождите — подарок станет доступен автоматически после снятия блокировки.",
-    GOT_IT: "Понятно",
-    TIME_DAYS: "{{days}}д {{hours}}ч",
-    TIME_HOURS: "{{hours}}ч {{minutes}}м",
-    TIME_MINUTES: "{{minutes}}м"
+    TITLE: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½",
+    LOCKED: "Ð—Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½",
+    DESCRIPTION: "ÐŸÐ¾ÑÐ»Ðµ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‡Ð¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Telegram ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ð» Ð½Ð° Ð½ÐµÐ³Ð¾ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½ÑƒÑŽ Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²ÐºÑƒ. ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿Ð¾Ð´Ð¾Ð¶Ð´Ð¸Ñ‚Ðµ â€” Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ÑÑ‚Ð°Ð½ÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸ Ð¿Ð¾ÑÐ»Ðµ ÑÐ½ÑÑ‚Ð¸Ñ Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²ÐºÐ¸.",
+    GOT_IT: "ÐŸÐ¾Ð½ÑÑ‚Ð½Ð¾",
+    TIME_DAYS: "{{days}}Ð´ {{hours}}Ñ‡",
+    TIME_HOURS: "{{hours}}Ñ‡ {{minutes}}Ð¼",
+    TIME_MINUTES: "{{minutes}}Ð¼"
 }
   , REVIEW$2 = {
-    BADGE_PENDING: "Проверка",
-    BADGE_REJECTED: "Только для вывода",
-    GOT_IT: "Понятно",
+    BADGE_PENDING: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ°",
+    BADGE_REJECTED: "Ð¢Ð¾Ð»ÑŒÐºÐ¾ Ð´Ð»Ñ Ð²Ñ‹Ð²Ð¾Ð´Ð°",
+    GOT_IT: "ÐŸÐ¾Ð½ÑÑ‚Ð½Ð¾",
     PENDING: {
-        TITLE: "Мы проверяем этот подарок",
-        DESCRIPTION: "Этот подарок был отправлен на дополнительную проверку. Обычно она занимает несколько часов. В это время подарок будет храниться в вашем инвентаре и станет доступен для использования сразу после завершения проверки. Мы сообщим вам, как только всё будет готово."
+        TITLE: "ÐœÑ‹ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ ÑÑ‚Ð¾Ñ‚ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+        DESCRIPTION: "Ð­Ñ‚Ð¾Ñ‚ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð±Ñ‹Ð» Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½ Ð½Ð° Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½ÑƒÑŽ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÑƒ. ÐžÐ±Ñ‹Ñ‡Ð½Ð¾ Ð¾Ð½Ð° Ð·Ð°Ð½Ð¸Ð¼Ð°ÐµÑ‚ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ñ‡Ð°ÑÐ¾Ð². Ð’ ÑÑ‚Ð¾ Ð²Ñ€ÐµÐ¼Ñ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð±ÑƒÐ´ÐµÑ‚ Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒÑÑ Ð² Ð²Ð°ÑˆÐµÐ¼ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€Ðµ Ð¸ ÑÑ‚Ð°Ð½ÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½ Ð´Ð»Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ ÑÑ€Ð°Ð·Ñƒ Ð¿Ð¾ÑÐ»Ðµ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸. ÐœÑ‹ ÑÐ¾Ð¾Ð±Ñ‰Ð¸Ð¼ Ð²Ð°Ð¼, ÐºÐ°Ðº Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð²ÑÑ‘ Ð±ÑƒÐ´ÐµÑ‚ Ð³Ð¾Ñ‚Ð¾Ð²Ð¾."
     },
     REJECTED: {
-        TITLE: "Доступен только для вывода",
-        DESCRIPTION: "Этот подарок не поддерживается в приложении, поэтому его нельзя продать, улучшить или использовать в играх. Он по-прежнему принадлежит вам, и вы можете в любой момент вывести его обратно в Telegram."
+        TITLE: "Ð”Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð´Ð»Ñ Ð²Ñ‹Ð²Ð¾Ð´Ð°",
+        DESCRIPTION: "Ð­Ñ‚Ð¾Ñ‚ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ð² Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¸, Ð¿Ð¾ÑÑ‚Ð¾Ð¼Ñƒ ÐµÐ³Ð¾ Ð½ÐµÐ»ÑŒÐ·Ñ Ð¿Ñ€Ð¾Ð´Ð°Ñ‚ÑŒ, ÑƒÐ»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ Ð¸Ð»Ð¸ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ Ð² Ð¸Ð³Ñ€Ð°Ñ…. ÐžÐ½ Ð¿Ð¾-Ð¿Ñ€ÐµÐ¶Ð½ÐµÐ¼Ñƒ Ð¿Ñ€Ð¸Ð½Ð°Ð´Ð»ÐµÐ¶Ð¸Ñ‚ Ð²Ð°Ð¼, Ð¸ Ð²Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð² Ð»ÑŽÐ±Ð¾Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ‚ Ð²Ñ‹Ð²ÐµÑÑ‚Ð¸ ÐµÐ³Ð¾ Ð¾Ð±Ñ€Ð°Ñ‚Ð½Ð¾ Ð² Telegram."
     }
 }
   , ruBackpack = {
@@ -54328,56 +54328,56 @@ It's 100% free, and you can try your luck every 24 hours!`,
     REVIEW: REVIEW$2
 }
   , WALLET$2 = {
-    BALANCE: "Баланс кошелька"
+    BALANCE: "Ð‘Ð°Ð»Ð°Ð½Ñ ÐºÐ¾ÑˆÐµÐ»ÑŒÐºÐ°"
 }
   , METHODS = {}
   , GIFT_METHOD$2 = {
-    TITLE_TOP_UP: "Пополнить подарками",
-    DESCRIPTION: "Отправьте подарки нашему боту, и они появятся в вашем инвентаре",
-    OPEN_BOT: "Открыть @giftbackpack",
-    OPEN_GIFT_BOT: "Откройте бота подарков",
-    HOW_IT_WORKS: "Как это работает",
-    STEP1_DESC: "Нажмите кнопку ниже, чтобы открыть бота @giftbackpack",
-    STEP2: "Отправьте подарок",
-    STEP2_DESC: "Отправьте подарок напрямую боту.",
-    STEP3: "Подарок добавлен в инвентарь",
-    STEP3_DESC: "Ваш подарок появится в инвентаре в течение нескольких секунд. Затем вы можете быстро продать его за баланс TON!",
-    INSTANT_PROCESSING: "Подарки появляются в инвентаре сразу после отправки",
-    INSTANT_PROCESSING_LABEL: "Мгновенная обработка:",
-    QUICK_SELL: "Продавайте подарки из инвентаря за мгновенный баланс TON",
-    QUICK_SELL_LABEL: "Быстрая продажа:",
-    AFTER_SENDING: "После отправки подарков:",
-    CHECK_BACKPACK: "Проверьте",
-    BACKPACK: "Инвентарь",
-    TO_QUICK_SELL: "чтобы быстро продать за баланс TON. Нужна помощь? Свяжитесь с"
+    TITLE_TOP_UP: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸",
+    DESCRIPTION: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð½Ð°ÑˆÐµÐ¼Ñƒ Ð±Ð¾Ñ‚Ñƒ, Ð¸ Ð¾Ð½Ð¸ Ð¿Ð¾ÑÐ²ÑÑ‚ÑÑ Ð² Ð²Ð°ÑˆÐµÐ¼ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€Ðµ",
+    OPEN_BOT: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ @giftbackpack",
+    OPEN_GIFT_BOT: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ Ð±Ð¾Ñ‚Ð° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²",
+    HOW_IT_WORKS: "ÐšÐ°Ðº ÑÑ‚Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚",
+    STEP1_DESC: "ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ ÐºÐ½Ð¾Ð¿ÐºÑƒ Ð½Ð¸Ð¶Ðµ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ð±Ð¾Ñ‚Ð° @giftbackpack",
+    STEP2: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    STEP2_DESC: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ð°Ð¿Ñ€ÑÐ¼ÑƒÑŽ Ð±Ð¾Ñ‚Ñƒ.",
+    STEP3: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½ Ð² Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ",
+    STEP3_DESC: "Ð’Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð¿Ð¾ÑÐ²Ð¸Ñ‚ÑÑ Ð² Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€Ðµ Ð² Ñ‚ÐµÑ‡ÐµÐ½Ð¸Ðµ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¸Ñ… ÑÐµÐºÑƒÐ½Ð´. Ð—Ð°Ñ‚ÐµÐ¼ Ð²Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð±Ñ‹ÑÑ‚Ñ€Ð¾ Ð¿Ñ€Ð¾Ð´Ð°Ñ‚ÑŒ ÐµÐ³Ð¾ Ð·Ð° Ð±Ð°Ð»Ð°Ð½Ñ TON!",
+    INSTANT_PROCESSING: "ÐŸÐ¾Ð´Ð°Ñ€ÐºÐ¸ Ð¿Ð¾ÑÐ²Ð»ÑÑŽÑ‚ÑÑ Ð² Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€Ðµ ÑÑ€Ð°Ð·Ñƒ Ð¿Ð¾ÑÐ»Ðµ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐ¸",
+    INSTANT_PROCESSING_LABEL: "ÐœÐ³Ð½Ð¾Ð²ÐµÐ½Ð½Ð°Ñ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°:",
+    QUICK_SELL: "ÐŸÑ€Ð¾Ð´Ð°Ð²Ð°Ð¹Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð¸Ð· Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€Ñ Ð·Ð° Ð¼Ð³Ð½Ð¾Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð±Ð°Ð»Ð°Ð½Ñ TON",
+    QUICK_SELL_LABEL: "Ð‘Ñ‹ÑÑ‚Ñ€Ð°Ñ Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ð°:",
+    AFTER_SENDING: "ÐŸÐ¾ÑÐ»Ðµ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²:",
+    CHECK_BACKPACK: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒÑ‚Ðµ",
+    BACKPACK: "Ð˜Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ",
+    TO_QUICK_SELL: "Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð±Ñ‹ÑÑ‚Ñ€Ð¾ Ð¿Ñ€Ð¾Ð´Ð°Ñ‚ÑŒ Ð·Ð° Ð±Ð°Ð»Ð°Ð½Ñ TON. ÐÑƒÐ¶Ð½Ð° Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒ? Ð¡Ð²ÑÐ¶Ð¸Ñ‚ÐµÑÑŒ Ñ"
 }
-  , SEND_GIFTS_TO$2 = "Отправьте подарки в"
+  , SEND_GIFTS_TO$2 = "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð²"
   , STARS$2 = {
-    AMOUNT_LABEL: "Количество Stars ({{min}} – {{max}})",
-    PAYMENT_SUCCESS: "Оплата Stars прошла успешно! Баланс обновлён.",
-    PAYMENT_FAILED: "Оплата Stars не удалась. Попробуйте ещё раз.",
-    TEMPORARILY_UNAVAILABLE: "Пополнение Stars недоступно",
-    TEMPORARILY_UNAVAILABLE_DESC: "Пожалуйста, используйте TON для пополнения баланса. Пополнение через Stars временно недоступно.",
-    SWITCH_TO_TON: "Переключиться на TON",
-    LIMIT_REACHED: "Достигнут лимит пополнения через Stars. Попробуйте позже или выберите другой способ пополнения.",
-    DEPOSITS_DISABLED: "Пополнение через Stars отключено для вашего аккаунта"
+    AMOUNT_LABEL: "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Stars ({{min}} â€“ {{max}})",
+    PAYMENT_SUCCESS: "ÐžÐ¿Ð»Ð°Ñ‚Ð° Stars Ð¿Ñ€Ð¾ÑˆÐ»Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾! Ð‘Ð°Ð»Ð°Ð½Ñ Ð¾Ð±Ð½Ð¾Ð²Ð»Ñ‘Ð½.",
+    PAYMENT_FAILED: "ÐžÐ¿Ð»Ð°Ñ‚Ð° Stars Ð½Ðµ ÑƒÐ´Ð°Ð»Ð°ÑÑŒ. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·.",
+    TEMPORARILY_UNAVAILABLE: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Stars Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾",
+    TEMPORARILY_UNAVAILABLE_DESC: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐ¹Ñ‚Ðµ TON Ð´Ð»Ñ Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð±Ð°Ð»Ð°Ð½ÑÐ°. ÐŸÐ¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ñ‡ÐµÑ€ÐµÐ· Stars Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾.",
+    SWITCH_TO_TON: "ÐŸÐµÑ€ÐµÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒÑÑ Ð½Ð° TON",
+    LIMIT_REACHED: "Ð”Ð¾ÑÑ‚Ð¸Ð³Ð½ÑƒÑ‚ Ð»Ð¸Ð¼Ð¸Ñ‚ Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ‡ÐµÑ€ÐµÐ· Stars. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ Ð¸Ð»Ð¸ Ð²Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´Ñ€ÑƒÐ³Ð¾Ð¹ ÑÐ¿Ð¾ÑÐ¾Ð± Ð¿Ð¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ.",
+    DEPOSITS_DISABLED: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ñ‡ÐµÑ€ÐµÐ· Stars Ð¾Ñ‚ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¾ Ð´Ð»Ñ Ð²Ð°ÑˆÐµÐ³Ð¾ Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°"
 }
   , TERMS$2 = {
-    AGREE_TO: "Пополняя баланс TON, вы соглашаетесь с нашими",
-    TERMS_OF_SERVICE: "Условиями использования",
-    NO_REFUNDS: "Все покупки являются окончательными. Возврат средств не предусмотрен ни при каких обстоятельствах."
+    AGREE_TO: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½ÑÑ Ð±Ð°Ð»Ð°Ð½Ñ TON, Ð²Ñ‹ ÑÐ¾Ð³Ð»Ð°ÑˆÐ°ÐµÑ‚ÐµÑÑŒ Ñ Ð½Ð°ÑˆÐ¸Ð¼Ð¸",
+    TERMS_OF_SERVICE: "Ð£ÑÐ»Ð¾Ð²Ð¸ÑÐ¼Ð¸ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ",
+    NO_REFUNDS: "Ð’ÑÐµ Ð¿Ð¾ÐºÑƒÐ¿ÐºÐ¸ ÑÐ²Ð»ÑÑŽÑ‚ÑÑ Ð¾ÐºÐ¾Ð½Ñ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¼Ð¸. Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‚ ÑÑ€ÐµÐ´ÑÑ‚Ð² Ð½Ðµ Ð¿Ñ€ÐµÐ´ÑƒÑÐ¼Ð¾Ñ‚Ñ€ÐµÐ½ Ð½Ð¸ Ð¿Ñ€Ð¸ ÐºÐ°ÐºÐ¸Ñ… Ð¾Ð±ÑÑ‚Ð¾ÑÑ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð°Ñ…."
 }
   , BUTTONS$g = {
-    TOP_UP: "Пополнить",
-    SEND_GIFT: "Отправить подарок"
+    TOP_UP: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ",
+    SEND_GIFT: "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº"
 }
   , MESSAGES$e = {
-    COMPLETE_PAYMENT_CRYPTOBOT: "Пожалуйста, завершите оплату в CryptoBot",
-    TO_USE_THEM: "для использования"
+    COMPLETE_PAYMENT_CRYPTOBOT: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ñ‚Ðµ Ð¾Ð¿Ð»Ð°Ñ‚Ñƒ Ð² CryptoBot",
+    TO_USE_THEM: "Ð´Ð»Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ"
 }
   , AMOUNT$2 = {
-    LABEL: "Сумма (минимум {{minAmount}} TON)",
-    YOU_WILL_RECEIVE: "Вы получите: {{amount}} TON"
+    LABEL: "Ð¡ÑƒÐ¼Ð¼Ð° (Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼ {{minAmount}} TON)",
+    YOU_WILL_RECEIVE: "Ð’Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚Ðµ: {{amount}} TON"
 }
   , ruTopup = {
     WALLET: WALLET$2,
@@ -54391,87 +54391,87 @@ It's 100% free, and you can try your luck every 24 hours!`,
     AMOUNT: AMOUNT$2
 }
   , TITLES$4 = {
-    SELECT_YOUR_GIFT: "Выберите ваш подарок",
-    SELECT_TARGET_GIFT: "Выберите цель",
-    GIFT_UPGRADE: "Улучшение подарка",
-    HOW_IT_WORKS: "Как работают улучшения",
-    UPGRADE_TARGET: "Цель улучшения",
-    UPGRADED_GIFT: "Улучшенный подарок"
+    SELECT_YOUR_GIFT: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð²Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    SELECT_TARGET_GIFT: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ†ÐµÐ»ÑŒ",
+    GIFT_UPGRADE: "Ð£Ð»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    HOW_IT_WORKS: "ÐšÐ°Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÑŽÑ‚ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    UPGRADE_TARGET: "Ð¦ÐµÐ»ÑŒ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    UPGRADED_GIFT: "Ð£Ð»ÑƒÑ‡ÑˆÐµÐ½Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº"
 }
   , ACTIONS$o = {
-    UPGRADE_WITH_CHANCE: "Улучшить подарок ({{chance}}% шанс)",
-    SELECT_BOTH_GIFTS: "Выберите оба подарка для улучшения",
-    UPGRADE_AGAIN: "Улучшить снова",
-    TRY_AGAIN: "Попробовать снова",
-    KEEP_GIFT: "Оставить подарок",
-    HIDE: "Скрыть",
-    SHOW: "Показать"
+    UPGRADE_WITH_CHANCE: "Ð£Ð»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ({{chance}}% ÑˆÐ°Ð½Ñ)",
+    SELECT_BOTH_GIFTS: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¾Ð±Ð° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    UPGRADE_AGAIN: "Ð£Ð»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ ÑÐ½Ð¾Ð²Ð°",
+    TRY_AGAIN: "ÐŸÐ¾Ð¿Ñ€Ð¾Ð±Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ½Ð¾Ð²Ð°",
+    KEEP_GIFT: "ÐžÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    HIDE: "Ð¡ÐºÑ€Ñ‹Ñ‚ÑŒ",
+    SHOW: "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ"
 }
   , STATUS$j = {
-    UPGRADING: "Улучшение...",
-    PROCESSING: "Обработка...",
-    SUCCESS: "Улучшение успешно!",
-    FAILED: "Улучшение не удалось!"
+    UPGRADING: "Ð£Ð»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ðµ...",
+    PROCESSING: "ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°...",
+    SUCCESS: "Ð£Ð»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾!",
+    FAILED: "Ð£Ð»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ðµ Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ!"
 }
   , MESSAGES$d = {
-    SUCCESS_DESCRIPTION: "Поздравляем! Ваш подарок был улучшен.",
-    FAILURE_DESCRIPTION: "К сожалению, улучшение не удалось и ваш подарок был потерян.",
-    TRANSFORM_DESCRIPTION: "Превратите ваш подарок в нечто лучшее",
-    SEND_GIFTS_TO: "Отправьте подарки в",
-    AND_UPGRADE_THEM: "и улучшите их",
-    TO_USE_IN_UPGRADES: "для использования в улучшениях",
-    UPGRADE_DESCRIPTION: "Превратите ваши подарки в нечто лучшее",
-    NO_GIFTS_IN_RANGE: "Нет подарков в диапазоне",
-    NO_UPGRADEABLE_GIFTS: "Нет подарков для улучшения",
-    NO_GIFTS_IN_RANGE_DESC: "Не найдено подарков в диапазоне {{range}}",
-    NO_GIFTS_FOR_UPGRADE: "Нет доступных подарков для улучшения",
-    SHOW_ALL_UPGRADEABLE: "Показать все подарки для улучшения",
-    OPEN_BOXES_FOR_UPGRADES: "Откройте кейсы, чтобы получить подарки для улучшений"
+    SUCCESS_DESCRIPTION: "ÐŸÐ¾Ð·Ð´Ñ€Ð°Ð²Ð»ÑÐµÐ¼! Ð’Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð±Ñ‹Ð» ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½.",
+    FAILURE_DESCRIPTION: "Ðš ÑÐ¾Ð¶Ð°Ð»ÐµÐ½Ð¸ÑŽ, ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ðµ Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¸ Ð²Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð±Ñ‹Ð» Ð¿Ð¾Ñ‚ÐµÑ€ÑÐ½.",
+    TRANSFORM_DESCRIPTION: "ÐŸÑ€ÐµÐ²Ñ€Ð°Ñ‚Ð¸Ñ‚Ðµ Ð²Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð² Ð½ÐµÑ‡Ñ‚Ð¾ Ð»ÑƒÑ‡ÑˆÐµÐµ",
+    SEND_GIFTS_TO: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð²",
+    AND_UPGRADE_THEM: "Ð¸ ÑƒÐ»ÑƒÑ‡ÑˆÐ¸Ñ‚Ðµ Ð¸Ñ…",
+    TO_USE_IN_UPGRADES: "Ð´Ð»Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ Ð² ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸ÑÑ…",
+    UPGRADE_DESCRIPTION: "ÐŸÑ€ÐµÐ²Ñ€Ð°Ñ‚Ð¸Ñ‚Ðµ Ð²Ð°ÑˆÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð² Ð½ÐµÑ‡Ñ‚Ð¾ Ð»ÑƒÑ‡ÑˆÐµÐµ",
+    NO_GIFTS_IN_RANGE: "ÐÐµÑ‚ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð² Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ðµ",
+    NO_UPGRADEABLE_GIFTS: "ÐÐµÑ‚ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    NO_GIFTS_IN_RANGE_DESC: "ÐÐµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð¾ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð² Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ðµ {{range}}",
+    NO_GIFTS_FOR_UPGRADE: "ÐÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ñ… Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    SHOW_ALL_UPGRADEABLE: "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð²ÑÐµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    OPEN_BOXES_FOR_UPGRADES: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ ÐºÐµÐ¹ÑÑ‹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ð¹"
 }
   , GRID$2 = {
-    VERY_HIGH: "ОЧЕНЬ ВЫСОКИЙ",
-    VERY_LOW: "ОЧЕНЬ НИЗКИЙ"
+    VERY_HIGH: "ÐžÐ§Ð•ÐÐ¬ Ð’Ð«Ð¡ÐžÐšÐ˜Ð™",
+    VERY_LOW: "ÐžÐ§Ð•ÐÐ¬ ÐÐ˜Ð—ÐšÐ˜Ð™"
 }
   , STEPS$8 = {
     SELECT: {
-        DESCRIPTION: "Выберите подарок из вашего инвентаря для улучшения"
+        DESCRIPTION: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð¸Ð· Ð²Ð°ÑˆÐµÐ³Ð¾ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€Ñ Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ"
     },
     TARGET: {
-        TITLE: "Выберите цель",
-        DESCRIPTION: "Выберите подарок, до которого вы хотите улучшить из доступного пула"
+        TITLE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ†ÐµÐ»ÑŒ",
+        DESCRIPTION: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº, Ð´Ð¾ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ð²Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ Ð¸Ð· Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾Ð³Ð¾ Ð¿ÑƒÐ»Ð°"
     },
     SPIN: {
-        TITLE: "Крутите колесо",
-        DESCRIPTION: "Нажмите кнопку улучшения и наблюдайте, как ваш подарок улучшается до более высокой стоимости или теряется в попытке"
+        TITLE: "ÐšÑ€ÑƒÑ‚Ð¸Ñ‚Ðµ ÐºÐ¾Ð»ÐµÑÐ¾",
+        DESCRIPTION: "ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ ÐºÐ½Ð¾Ð¿ÐºÑƒ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ Ð¸ Ð½Ð°Ð±Ð»ÑŽÐ´Ð°Ð¹Ñ‚Ðµ, ÐºÐ°Ðº Ð²Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº ÑƒÐ»ÑƒÑ‡ÑˆÐ°ÐµÑ‚ÑÑ Ð´Ð¾ Ð±Ð¾Ð»ÐµÐµ Ð²Ñ‹ÑÐ¾ÐºÐ¾Ð¹ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¸Ð»Ð¸ Ñ‚ÐµÑ€ÑÐµÑ‚ÑÑ Ð² Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÐµ"
     },
     OUTCOME: {
         SUCCESS: {
-            TITLE: "Успех",
-            DESCRIPTION: "Если вы выиграете, вы получите целевой подарок из пула улучшений"
+            TITLE: "Ð£ÑÐ¿ÐµÑ…",
+            DESCRIPTION: "Ð•ÑÐ»Ð¸ Ð²Ñ‹ Ð²Ñ‹Ð¸Ð³Ñ€Ð°ÐµÑ‚Ðµ, Ð²Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚Ðµ Ñ†ÐµÐ»ÐµÐ²Ð¾Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð¸Ð· Ð¿ÑƒÐ»Ð° ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ð¹"
         },
         FAILURE: {
-            TITLE: "Неудача",
-            DESCRIPTION: "Если вы проиграете, ваш подарок будет потерян и отправится в пул улучшений"
+            TITLE: "ÐÐµÑƒÐ´Ð°Ñ‡Ð°",
+            DESCRIPTION: "Ð•ÑÐ»Ð¸ Ð²Ñ‹ Ð¿Ñ€Ð¾Ð¸Ð³Ñ€Ð°ÐµÑ‚Ðµ, Ð²Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð±ÑƒÐ´ÐµÑ‚ Ð¿Ð¾Ñ‚ÐµÑ€ÑÐ½ Ð¸ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑÑ Ð² Ð¿ÑƒÐ» ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ð¹"
         }
     }
 }
   , LABELS$B = {
-    YOUR_GIFT: "Ваш подарок",
-    SELECT_GIFT: "Выбрать подарок",
-    TARGET_GIFT: "Цель",
-    SELECT_TARGET: "Выбрать цель",
-    SELECT_GIFT_FIRST: "Сначала выберите подарок",
-    CHOOSE_UPGRADE: "Выберите цель улучшения",
-    SELECT_GIFT_TO_CONTINUE: "Выберите подарок, чтобы продолжить",
-    CHOOSE_TO_UPGRADE: "Выберите подарок для улучшения",
-    POTENTIAL_PROFIT: "Потенциальная прибыль:"
+    YOUR_GIFT: "Ð’Ð°Ñˆ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    SELECT_GIFT: "Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    TARGET_GIFT: "Ð¦ÐµÐ»ÑŒ",
+    SELECT_TARGET: "Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ñ†ÐµÐ»ÑŒ",
+    SELECT_GIFT_FIRST: "Ð¡Ð½Ð°Ñ‡Ð°Ð»Ð° Ð²Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    CHOOSE_UPGRADE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ†ÐµÐ»ÑŒ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    SELECT_GIFT_TO_CONTINUE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ",
+    CHOOSE_TO_UPGRADE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð´Ð»Ñ ÑƒÐ»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ñ",
+    POTENTIAL_PROFIT: "ÐŸÐ¾Ñ‚ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð°Ñ Ð¿Ñ€Ð¸Ð±Ñ‹Ð»ÑŒ:"
 }
   , BUTTONS$f = {
-    SELL: "Продать за {{price}}",
-    SEND_GIFT: "Отправить подарок"
+    SELL: "ÐŸÑ€Ð¾Ð´Ð°Ñ‚ÑŒ Ð·Ð° {{price}}",
+    SEND_GIFT: "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº"
 }
   , SORT$4 = {
-    SORT_BY: "Сортировка: {{label}}"
+    SORT_BY: "Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ°: {{label}}"
 }
   , ruUpgrade = {
     TITLES: TITLES$4,
@@ -54484,48 +54484,48 @@ It's 100% free, and you can try your luck every 24 hours!`,
     BUTTONS: BUTTONS$f,
     SORT: SORT$4
 }
-  , TITLE$7 = "История PvP"
+  , TITLE$7 = "Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ PvP"
   , LABELS$A = {
-    ALL_GAMES: "Все игры",
-    MY_GAMES: "Мои игры",
-    ROUND: "Игра",
-    PLAYERS: "Игроки",
-    LOADING_HISTORY: "Загрузка истории...",
-    NO_GAMES_YET: "Игр пока нет",
-    NO_GAMES_PLAYED: "Ещё не сыграно ни одной игры",
-    WINNER: "Победитель",
-    RANDOM_RESULT: "Случайный результат",
-    PLAYER_NUMBER: "Игрок #{{number}}",
-    WIN_CHANCE: "{{chance}} шанс",
-    ITEMS_COUNT: "{{count}} подарков"
+    ALL_GAMES: "Ð’ÑÐµ Ð¸Ð³Ñ€Ñ‹",
+    MY_GAMES: "ÐœÐ¾Ð¸ Ð¸Ð³Ñ€Ñ‹",
+    ROUND: "Ð˜Ð³Ñ€Ð°",
+    PLAYERS: "Ð˜Ð³Ñ€Ð¾ÐºÐ¸",
+    LOADING_HISTORY: "Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° Ð¸ÑÑ‚Ð¾Ñ€Ð¸Ð¸...",
+    NO_GAMES_YET: "Ð˜Ð³Ñ€ Ð¿Ð¾ÐºÐ° Ð½ÐµÑ‚",
+    NO_GAMES_PLAYED: "Ð•Ñ‰Ñ‘ Ð½Ðµ ÑÑ‹Ð³Ñ€Ð°Ð½Ð¾ Ð½Ð¸ Ð¾Ð´Ð½Ð¾Ð¹ Ð¸Ð³Ñ€Ñ‹",
+    WINNER: "ÐŸÐ¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»ÑŒ",
+    RANDOM_RESULT: "Ð¡Ð»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚",
+    PLAYER_NUMBER: "Ð˜Ð³Ñ€Ð¾Ðº #{{number}}",
+    WIN_CHANCE: "{{chance}} ÑˆÐ°Ð½Ñ",
+    ITEMS_COUNT: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²"
 }
   , VERIFICATION$2 = {
-    TITLE: "Проверка честности",
-    DOWNLOAD_TITLE: "Скачать данные игры для оффлайн проверки",
-    VERIFIED: "Проверено",
-    SERVER_HASH: "Хеш сервера (предварительно зафиксирован)",
-    SERVER_SEED: "Сид сервера (раскрыт после игры)",
-    CLIENT_SEEDS: "Сиды клиентов ({{count}} игроков)",
-    HOW_IT_WORKS: "Как работает проверка",
-    STEP_1: "Сервер создаёт <strong>случайный сид</strong> и публикует <strong>хеш</strong> до начала игры",
-    STEP_2: "Каждый игрок получает уникальный <strong>клиентский сид</strong> при ставке",
-    STEP_3: "После игры: комбинируем сид сервера + все клиентские сиды",
-    STEP_4: "Результат = криптографический хеш → определяет победителя",
-    NO_CHEAT: "<strong>Никто не может обмануть:</strong> Сервер не может предсказать (клиентские сиды неизвестны), игроки не могут манипулировать (сид сервера зафиксирован)",
-    PASSED: "Проверка пройдена",
-    FAILED: "Проверка не пройдена",
-    HASH_VERIFICATION: "Проверка хеша",
-    RESULT_VERIFICATION: "Проверка результата",
-    VALID: "Верно",
-    INVALID: "Неверно",
-    CALCULATED_RESULT: "Вычисленный результат",
-    EXPECTED_RESULT: "Ожидаемый результат",
-    VERIFYING: "Проверка...",
-    VERIFY_AGAIN: "Проверить снова",
-    VERIFY_NOW: "Проверить",
-    CHECK_DATA_TRY_AGAIN: "Проверьте данные и попробуйте снова",
-    SERVER_SEED_HASH: "Хеш сида сервера",
-    NA: "Н/Д"
+    TITLE: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ‡ÐµÑÑ‚Ð½Ð¾ÑÑ‚Ð¸",
+    DOWNLOAD_TITLE: "Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¸Ð³Ñ€Ñ‹ Ð´Ð»Ñ Ð¾Ñ„Ñ„Ð»Ð°Ð¹Ð½ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸",
+    VERIFIED: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐµÐ½Ð¾",
+    SERVER_HASH: "Ð¥ÐµÑˆ ÑÐµÑ€Ð²ÐµÑ€Ð° (Ð¿Ñ€ÐµÐ´Ð²Ð°Ñ€Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½)",
+    SERVER_SEED: "Ð¡Ð¸Ð´ ÑÐµÑ€Ð²ÐµÑ€Ð° (Ñ€Ð°ÑÐºÑ€Ñ‹Ñ‚ Ð¿Ð¾ÑÐ»Ðµ Ð¸Ð³Ñ€Ñ‹)",
+    CLIENT_SEEDS: "Ð¡Ð¸Ð´Ñ‹ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð¾Ð² ({{count}} Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð²)",
+    HOW_IT_WORKS: "ÐšÐ°Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ°",
+    STEP_1: "Ð¡ÐµÑ€Ð²ÐµÑ€ ÑÐ¾Ð·Ð´Ð°Ñ‘Ñ‚ <strong>ÑÐ»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ð¹ ÑÐ¸Ð´</strong> Ð¸ Ð¿ÑƒÐ±Ð»Ð¸ÐºÑƒÐµÑ‚ <strong>Ñ…ÐµÑˆ</strong> Ð´Ð¾ Ð½Ð°Ñ‡Ð°Ð»Ð° Ð¸Ð³Ñ€Ñ‹",
+    STEP_2: "ÐšÐ°Ð¶Ð´Ñ‹Ð¹ Ð¸Ð³Ñ€Ð¾Ðº Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÑ‚ ÑƒÐ½Ð¸ÐºÐ°Ð»ÑŒÐ½Ñ‹Ð¹ <strong>ÐºÐ»Ð¸ÐµÐ½Ñ‚ÑÐºÐ¸Ð¹ ÑÐ¸Ð´</strong> Ð¿Ñ€Ð¸ ÑÑ‚Ð°Ð²ÐºÐµ",
+    STEP_3: "ÐŸÐ¾ÑÐ»Ðµ Ð¸Ð³Ñ€Ñ‹: ÐºÐ¾Ð¼Ð±Ð¸Ð½Ð¸Ñ€ÑƒÐµÐ¼ ÑÐ¸Ð´ ÑÐµÑ€Ð²ÐµÑ€Ð° + Ð²ÑÐµ ÐºÐ»Ð¸ÐµÐ½Ñ‚ÑÐºÐ¸Ðµ ÑÐ¸Ð´Ñ‹",
+    STEP_4: "Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ = ÐºÑ€Ð¸Ð¿Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ Ñ…ÐµÑˆ â†’ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÑ‚ Ð¿Ð¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»Ñ",
+    NO_CHEAT: "<strong>ÐÐ¸ÐºÑ‚Ð¾ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð¾Ð±Ð¼Ð°Ð½ÑƒÑ‚ÑŒ:</strong> Ð¡ÐµÑ€Ð²ÐµÑ€ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð¿Ñ€ÐµÐ´ÑÐºÐ°Ð·Ð°Ñ‚ÑŒ (ÐºÐ»Ð¸ÐµÐ½Ñ‚ÑÐºÐ¸Ðµ ÑÐ¸Ð´Ñ‹ Ð½ÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ñ‹), Ð¸Ð³Ñ€Ð¾ÐºÐ¸ Ð½Ðµ Ð¼Ð¾Ð³ÑƒÑ‚ Ð¼Ð°Ð½Ð¸Ð¿ÑƒÐ»Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ (ÑÐ¸Ð´ ÑÐµÑ€Ð²ÐµÑ€Ð° Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½)",
+    PASSED: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ñ€Ð¾Ð¹Ð´ÐµÐ½Ð°",
+    FAILED: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ðµ Ð¿Ñ€Ð¾Ð¹Ð´ÐµÐ½Ð°",
+    HASH_VERIFICATION: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ…ÐµÑˆÐ°",
+    RESULT_VERIFICATION: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°",
+    VALID: "Ð’ÐµÑ€Ð½Ð¾",
+    INVALID: "ÐÐµÐ²ÐµÑ€Ð½Ð¾",
+    CALCULATED_RESULT: "Ð’Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð½Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚",
+    EXPECTED_RESULT: "ÐžÐ¶Ð¸Ð´Ð°ÐµÐ¼Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚",
+    VERIFYING: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ°...",
+    VERIFY_AGAIN: "ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ ÑÐ½Ð¾Ð²Ð°",
+    VERIFY_NOW: "ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ",
+    CHECK_DATA_TRY_AGAIN: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒÑ‚Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¸ Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°",
+    SERVER_SEED_HASH: "Ð¥ÐµÑˆ ÑÐ¸Ð´Ð° ÑÐµÑ€Ð²ÐµÑ€Ð°",
+    NA: "Ð/Ð”"
 }
   , ruPvpHistory = {
     TITLE: TITLE$7,
@@ -54533,31 +54533,31 @@ It's 100% free, and you can try your luck every 24 hours!`,
     VERIFICATION: VERIFICATION$2
 }
   , UNSUPPORTED$2 = {
-    TITLE: "Ошибка окружения",
-    MESSAGE: "Это приложение должно быть открыто в Telegram",
-    INSTRUCTION: "Пожалуйста, откройте это приложение напрямую через Telegram"
+    TITLE: "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¾ÐºÑ€ÑƒÐ¶ÐµÐ½Ð¸Ñ",
+    MESSAGE: "Ð­Ñ‚Ð¾ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¾ Ð² Telegram",
+    INSTRUCTION: "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¾Ñ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ ÑÑ‚Ð¾ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¿Ñ€ÑÐ¼ÑƒÑŽ Ñ‡ÐµÑ€ÐµÐ· Telegram"
 }
   , NO_CONNECTION$2 = {
-    TITLE: "Нет соединения",
-    DESCRIPTION: "Проверьте подключение к интернету",
-    HINT: "Убедитесь, что интернет работает, и повторите попытку",
-    CHECKING: "Проверяем соединение..."
+    TITLE: "ÐÐµÑ‚ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ñ",
+    DESCRIPTION: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒÑ‚Ðµ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº Ð¸Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚Ñƒ",
+    HINT: "Ð£Ð±ÐµÐ´Ð¸Ñ‚ÐµÑÑŒ, Ñ‡Ñ‚Ð¾ Ð¸Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚, Ð¸ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÑƒ",
+    CHECKING: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ..."
 }
   , MAINTENANCE$b = {
-    TITLE: "Идут технические работы",
-    DESCRIPTION_PART1: "Мы обновляем приложение",
+    TITLE: "Ð˜Ð´ÑƒÑ‚ Ñ‚ÐµÑ…Ð½Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹",
+    DESCRIPTION_PART1: "ÐœÑ‹ Ð¾Ð±Ð½Ð¾Ð²Ð»ÑÐµÐ¼ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
     BUTTONS: {},
-    UPGRADING: "Обновляем наши системы",
-    SECURITY: "Улучшаем безопасность",
-    FEATURES: "Добавляем новые функции",
-    BACK_SHORTLY: "Скоро вернёмся",
-    AUTO_REFRESH: "Страница обновится автоматически"
+    UPGRADING: "ÐžÐ±Ð½Ð¾Ð²Ð»ÑÐµÐ¼ Ð½Ð°ÑˆÐ¸ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹",
+    SECURITY: "Ð£Ð»ÑƒÑ‡ÑˆÐ°ÐµÐ¼ Ð±ÐµÐ·Ð¾Ð¿Ð°ÑÐ½Ð¾ÑÑ‚ÑŒ",
+    FEATURES: "Ð”Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ Ð½Ð¾Ð²Ñ‹Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸",
+    BACK_SHORTLY: "Ð¡ÐºÐ¾Ñ€Ð¾ Ð²ÐµÑ€Ð½Ñ‘Ð¼ÑÑ",
+    AUTO_REFRESH: "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð¾Ð±Ð½Ð¾Ð²Ð¸Ñ‚ÑÑ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸"
 }
   , OVERLOAD$2 = {
-    TITLE: "Высокая нагрузка",
-    DESCRIPTION: "Наши серверы сейчас перегружены и не могут ответить.",
-    HINT: "Проблема на нашей стороне, а не в вашем соединении. Ничего делать не нужно.",
-    CHECKING: "Переподключаемся автоматически..."
+    TITLE: "Ð’Ñ‹ÑÐ¾ÐºÐ°Ñ Ð½Ð°Ð³Ñ€ÑƒÐ·ÐºÐ°",
+    DESCRIPTION: "ÐÐ°ÑˆÐ¸ ÑÐµÑ€Ð²ÐµÑ€Ñ‹ ÑÐµÐ¹Ñ‡Ð°Ñ Ð¿ÐµÑ€ÐµÐ³Ñ€ÑƒÐ¶ÐµÐ½Ñ‹ Ð¸ Ð½Ðµ Ð¼Ð¾Ð³ÑƒÑ‚ Ð¾Ñ‚Ð²ÐµÑ‚Ð¸Ñ‚ÑŒ.",
+    HINT: "ÐŸÑ€Ð¾Ð±Ð»ÐµÐ¼Ð° Ð½Ð° Ð½Ð°ÑˆÐµÐ¹ ÑÑ‚Ð¾Ñ€Ð¾Ð½Ðµ, Ð° Ð½Ðµ Ð² Ð²Ð°ÑˆÐµÐ¼ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ð¸. ÐÐ¸Ñ‡ÐµÐ³Ð¾ Ð´ÐµÐ»Ð°Ñ‚ÑŒ Ð½Ðµ Ð½ÑƒÐ¶Ð½Ð¾.",
+    CHECKING: "ÐŸÐµÑ€ÐµÐ¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ÑÑ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸..."
 }
   , ruEnvironment = {
     UNSUPPORTED: UNSUPPORTED$2,
@@ -54566,77 +54566,77 @@ It's 100% free, and you can try your luck every 24 hours!`,
     OVERLOAD: OVERLOAD$2
 }
   , HEADER$b = {
-    TITLE: "Крафт",
-    SUBTITLE: "Объедините свои подарки, чтобы создать новый"
+    TITLE: "ÐšÑ€Ð°Ñ„Ñ‚",
+    SUBTITLE: "ÐžÐ±ÑŠÐµÐ´Ð¸Ð½Ð¸Ñ‚Ðµ ÑÐ²Ð¾Ð¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ð½Ð¾Ð²Ñ‹Ð¹"
 }
   , MODES$2 = {
-    CONTRACT_MODE: "Режим крафта",
-    TOO_SMALL: "Стоимость крафта слишком мала",
+    CONTRACT_MODE: "Ð ÐµÐ¶Ð¸Ð¼ ÐºÑ€Ð°Ñ„Ñ‚Ð°",
+    TOO_SMALL: "Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ ÐºÑ€Ð°Ñ„Ñ‚Ð° ÑÐ»Ð¸ÑˆÐºÐ¾Ð¼ Ð¼Ð°Ð»Ð°",
     SAFE: "Safe",
-    SAFE_DESC: "Низкий риск — меньший множитель и более высокая вероятность выигрыша.",
+    SAFE_DESC: "ÐÐ¸Ð·ÐºÐ¸Ð¹ Ñ€Ð¸ÑÐº â€” Ð¼ÐµÐ½ÑŒÑˆÐ¸Ð¹ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð±Ð¾Ð»ÐµÐµ Ð²Ñ‹ÑÐ¾ÐºÐ°Ñ Ð²ÐµÑ€Ð¾ÑÑ‚Ð½Ð¾ÑÑ‚ÑŒ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ°.",
     NORMAL: "Normal",
-    NORMAL_DESC: "Сбалансированный риск и награда — хороший компромисс.",
+    NORMAL_DESC: "Ð¡Ð±Ð°Ð»Ð°Ð½ÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ñ€Ð¸ÑÐº Ð¸ Ð½Ð°Ð³Ñ€Ð°Ð´Ð° â€” Ñ…Ð¾Ñ€Ð¾ÑˆÐ¸Ð¹ ÐºÐ¾Ð¼Ð¿Ñ€Ð¾Ð¼Ð¸ÑÑ.",
     RISKY: "Risky",
-    RISKY_DESC: "Высокий риск — большой множитель при низкой вероятности выигрыша.",
-    NEED_MORE_BUTTON: "Добавьте {{amount}} TON для {{mode}}",
-    MIN_LABEL: "мин цена"
+    RISKY_DESC: "Ð’Ñ‹ÑÐ¾ÐºÐ¸Ð¹ Ñ€Ð¸ÑÐº â€” Ð±Ð¾Ð»ÑŒÑˆÐ¾Ð¹ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ Ð¿Ñ€Ð¸ Ð½Ð¸Ð·ÐºÐ¾Ð¹ Ð²ÐµÑ€Ð¾ÑÑ‚Ð½Ð¾ÑÑ‚Ð¸ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ°.",
+    NEED_MORE_BUTTON: "Ð”Ð¾Ð±Ð°Ð²ÑŒÑ‚Ðµ {{amount}} TON Ð´Ð»Ñ {{mode}}",
+    MIN_LABEL: "Ð¼Ð¸Ð½ Ñ†ÐµÐ½Ð°"
 }
   , LABELS$z = {
-    CONTRACT_VALUE: "Стоимость крафта",
-    CONTRACT_SLOTS: "Слоты крафта",
-    EXECUTING_CONTRACT: "Выполнение крафта...",
-    EXECUTE_CONTRACT: "Выполнить {{mode}} крафт",
-    ADD_GIFTS: "Минимум 2 подарка для начала",
-    POTENTIAL_PROFIT: "Потенциальная прибыль:",
-    SELECT_GIFT: "Выберите подарок",
-    SEND_GIFTS_TO: "Отправьте подарки в",
-    HOW_IT_WORKS: "Как это работает",
-    HIDE_DETAILS: "Скрыть детали",
-    SHOW_DETAILS: "Показать детали",
-    MODE_RESTRICTIONS: "Ограничения режимов",
-    RESTRICTION_TOO_SMALL: "Режимы могут быть недоступны при малой стоимости крафта",
-    RESTRICTION_ADD_MORE: "Добавьте более ценные подарки для доступа к рискованным режимам"
+    CONTRACT_VALUE: "Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ ÐºÑ€Ð°Ñ„Ñ‚Ð°",
+    CONTRACT_SLOTS: "Ð¡Ð»Ð¾Ñ‚Ñ‹ ÐºÑ€Ð°Ñ„Ñ‚Ð°",
+    EXECUTING_CONTRACT: "Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ ÐºÑ€Ð°Ñ„Ñ‚Ð°...",
+    EXECUTE_CONTRACT: "Ð’Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ {{mode}} ÐºÑ€Ð°Ñ„Ñ‚",
+    ADD_GIFTS: "ÐœÐ¸Ð½Ð¸Ð¼ÑƒÐ¼ 2 Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð´Ð»Ñ Ð½Ð°Ñ‡Ð°Ð»Ð°",
+    POTENTIAL_PROFIT: "ÐŸÐ¾Ñ‚ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð°Ñ Ð¿Ñ€Ð¸Ð±Ñ‹Ð»ÑŒ:",
+    SELECT_GIFT: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    SEND_GIFTS_TO: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð²",
+    HOW_IT_WORKS: "ÐšÐ°Ðº ÑÑ‚Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚",
+    HIDE_DETAILS: "Ð¡ÐºÑ€Ñ‹Ñ‚ÑŒ Ð´ÐµÑ‚Ð°Ð»Ð¸",
+    SHOW_DETAILS: "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð´ÐµÑ‚Ð°Ð»Ð¸",
+    MODE_RESTRICTIONS: "ÐžÐ³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð¸Ñ Ñ€ÐµÐ¶Ð¸Ð¼Ð¾Ð²",
+    RESTRICTION_TOO_SMALL: "Ð ÐµÐ¶Ð¸Ð¼Ñ‹ Ð¼Ð¾Ð³ÑƒÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹ Ð¿Ñ€Ð¸ Ð¼Ð°Ð»Ð¾Ð¹ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚Ð¸ ÐºÑ€Ð°Ñ„Ñ‚Ð°",
+    RESTRICTION_ADD_MORE: "Ð”Ð¾Ð±Ð°Ð²ÑŒÑ‚Ðµ Ð±Ð¾Ð»ÐµÐµ Ñ†ÐµÐ½Ð½Ñ‹Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð´Ð»Ñ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ðº Ñ€Ð¸ÑÐºÐ¾Ð²Ð°Ð½Ð½Ñ‹Ð¼ Ñ€ÐµÐ¶Ð¸Ð¼Ð°Ð¼"
 }
   , STEPS$7 = {
     ADD_GIFTS: {
-        TITLE: "Добавьте подарки",
-        DESCRIPTION: "Выберите от 2 до 10 подарков из своего инвентаря, чтобы создать крафт"
+        TITLE: "Ð”Ð¾Ð±Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+        DESCRIPTION: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¾Ñ‚ 2 Ð´Ð¾ 10 Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð¸Ð· ÑÐ²Ð¾ÐµÐ³Ð¾ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€Ñ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ ÐºÑ€Ð°Ñ„Ñ‚"
     },
     CHOOSE_RISK: {
-        TITLE: "Выберите уровень риска",
-        DESCRIPTION: "Выберите режим SAFE, NORMAL или RISKY в зависимости от вашей стратегии"
+        TITLE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ Ñ€Ð¸ÑÐºÐ°",
+        DESCRIPTION: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ€ÐµÐ¶Ð¸Ð¼ SAFE, NORMAL Ð¸Ð»Ð¸ RISKY Ð² Ð·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¾Ñ‚ Ð²Ð°ÑˆÐµÐ¹ ÑÑ‚Ñ€Ð°Ñ‚ÐµÐ³Ð¸Ð¸"
     },
     EXECUTE: {
-        TITLE: "Запустите крафт",
-        DESCRIPTION: "Подтвердите действие, чтобы объединить выбранные подарки в один новый"
+        TITLE: "Ð—Ð°Ð¿ÑƒÑÑ‚Ð¸Ñ‚Ðµ ÐºÑ€Ð°Ñ„Ñ‚",
+        DESCRIPTION: "ÐŸÐ¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¾Ð±ÑŠÐµÐ´Ð¸Ð½Ð¸Ñ‚ÑŒ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð² Ð¾Ð´Ð¸Ð½ Ð½Ð¾Ð²Ñ‹Ð¹"
     },
     RECEIVE: {
-        TITLE: "Получите награду",
-        DESCRIPTION: "Заберите новый подарок, ценность которого зависит от условий крафта"
+        TITLE: "ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚Ðµ Ð½Ð°Ð³Ñ€Ð°Ð´Ñƒ",
+        DESCRIPTION: "Ð—Ð°Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº, Ñ†ÐµÐ½Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ð·Ð°Ð²Ð¸ÑÐ¸Ñ‚ Ð¾Ñ‚ ÑƒÑÐ»Ð¾Ð²Ð¸Ð¹ ÐºÑ€Ð°Ñ„Ñ‚Ð°"
     }
 }
   , HOW_IT_WORKS_MODES$2 = {
-    TITLE: "Описание режимов",
-    SAFE: "Безопасно и стабильно. Минимальный риск потери, но и потенциальный выигрыш будет небольшим.",
-    NORMAL: "Честная игра. Сбалансированные шансы: равная вероятность как выиграть, так и проиграть. Средние награды.",
-    RISKY: "Всё или ничего. Высокий риск потерять всё, но один удачный крафт может принести до 100x.",
-    MIN_NOTE: "У каждого режима есть минимальная стоимость. Пометка «Мин. Цена» на кнопках режимов - это общая сумма, которую нужно набрать подарками, чтобы запустить крафт."
+    TITLE: "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ñ€ÐµÐ¶Ð¸Ð¼Ð¾Ð²",
+    SAFE: "Ð‘ÐµÐ·Ð¾Ð¿Ð°ÑÐ½Ð¾ Ð¸ ÑÑ‚Ð°Ð±Ð¸Ð»ÑŒÐ½Ð¾. ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Ñ€Ð¸ÑÐº Ð¿Ð¾Ñ‚ÐµÑ€Ð¸, Ð½Ð¾ Ð¸ Ð¿Ð¾Ñ‚ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ Ð±ÑƒÐ´ÐµÑ‚ Ð½ÐµÐ±Ð¾Ð»ÑŒÑˆÐ¸Ð¼.",
+    NORMAL: "Ð§ÐµÑÑ‚Ð½Ð°Ñ Ð¸Ð³Ñ€Ð°. Ð¡Ð±Ð°Ð»Ð°Ð½ÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ðµ ÑˆÐ°Ð½ÑÑ‹: Ñ€Ð°Ð²Ð½Ð°Ñ Ð²ÐµÑ€Ð¾ÑÑ‚Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ°Ðº Ð²Ñ‹Ð¸Ð³Ñ€Ð°Ñ‚ÑŒ, Ñ‚Ð°Ðº Ð¸ Ð¿Ñ€Ð¾Ð¸Ð³Ñ€Ð°Ñ‚ÑŒ. Ð¡Ñ€ÐµÐ´Ð½Ð¸Ðµ Ð½Ð°Ð³Ñ€Ð°Ð´Ñ‹.",
+    RISKY: "Ð’ÑÑ‘ Ð¸Ð»Ð¸ Ð½Ð¸Ñ‡ÐµÐ³Ð¾. Ð’Ñ‹ÑÐ¾ÐºÐ¸Ð¹ Ñ€Ð¸ÑÐº Ð¿Ð¾Ñ‚ÐµÑ€ÑÑ‚ÑŒ Ð²ÑÑ‘, Ð½Ð¾ Ð¾Ð´Ð¸Ð½ ÑƒÐ´Ð°Ñ‡Ð½Ñ‹Ð¹ ÐºÑ€Ð°Ñ„Ñ‚ Ð¼Ð¾Ð¶ÐµÑ‚ Ð¿Ñ€Ð¸Ð½ÐµÑÑ‚Ð¸ Ð´Ð¾ 100x.",
+    MIN_NOTE: "Ð£ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ñ€ÐµÐ¶Ð¸Ð¼Ð° ÐµÑÑ‚ÑŒ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ. ÐŸÐ¾Ð¼ÐµÑ‚ÐºÐ° Â«ÐœÐ¸Ð½. Ð¦ÐµÐ½Ð°Â» Ð½Ð° ÐºÐ½Ð¾Ð¿ÐºÐ°Ñ… Ñ€ÐµÐ¶Ð¸Ð¼Ð¾Ð² - ÑÑ‚Ð¾ Ð¾Ð±Ñ‰Ð°Ñ ÑÑƒÐ¼Ð¼Ð°, ÐºÐ¾Ñ‚Ð¾Ñ€ÑƒÑŽ Ð½ÑƒÐ¶Ð½Ð¾ Ð½Ð°Ð±Ñ€Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð·Ð°Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ ÐºÑ€Ð°Ñ„Ñ‚."
 }
   , STATUS$i = {
-    PROCESSING: "Обработка...",
-    SUCCESS: "Крафт успешен!"
+    PROCESSING: "ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°...",
+    SUCCESS: "ÐšÑ€Ð°Ñ„Ñ‚ ÑƒÑÐ¿ÐµÑˆÐµÐ½!"
 }
   , MESSAGES$c = {
-    EMPTY_STATE_DESCRIPTION: "Откройте кейсы, чтобы получить подарки для крафтов",
-    SEND_GIFTS_TO: "Отправьте ваши подарки в",
-    TO_USE_IN_CONTRACTS: "для использования в крафтах"
+    EMPTY_STATE_DESCRIPTION: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ ÐºÐµÐ¹ÑÑ‹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð´Ð»Ñ ÐºÑ€Ð°Ñ„Ñ‚Ð¾Ð²",
+    SEND_GIFTS_TO: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð²Ð°ÑˆÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð²",
+    TO_USE_IN_CONTRACTS: "Ð´Ð»Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ Ð² ÐºÑ€Ð°Ñ„Ñ‚Ð°Ñ…"
 }
   , BUTTONS$e = {
-    SELL: "Продать за {{price}}",
-    KEEP_GIFT: "Оставить подарок",
-    UPGRADE: "Апгрейд",
-    CONTRACT: "Крафт",
-    SEND_GIFT: "Отправить подарок"
+    SELL: "ÐŸÑ€Ð¾Ð´Ð°Ñ‚ÑŒ Ð·Ð° {{price}}",
+    KEEP_GIFT: "ÐžÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    UPGRADE: "ÐÐ¿Ð³Ñ€ÐµÐ¹Ð´",
+    CONTRACT: "ÐšÑ€Ð°Ñ„Ñ‚",
+    SEND_GIFT: "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº"
 }
   , ruContracts = {
     HEADER: HEADER$b,
@@ -54648,62 +54648,62 @@ It's 100% free, and you can try your luck every 24 hours!`,
     MESSAGES: MESSAGES$c,
     BUTTONS: BUTTONS$e
 }
-  , VIP_STATUS_LABEL$2 = "VIP-СТАТУС"
-  , NO_STATUS$2 = "Нет статуса"
-  , LOAD_FAILED$5 = "Не удалось загрузить VIP-статус"
-  , RETRY$2 = "Попробовать снова"
-  , TURNOVER$2 = "Оборот"
-  , TURNOVER_HINT$2 = "оборот в TON"
-  , TO_LEVEL_PREFIX$2 = "До уровня"
+  , VIP_STATUS_LABEL$2 = "VIP-Ð¡Ð¢ÐÐ¢Ð£Ð¡"
+  , NO_STATUS$2 = "ÐÐµÑ‚ ÑÑ‚Ð°Ñ‚ÑƒÑÐ°"
+  , LOAD_FAILED$5 = "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ VIP-ÑÑ‚Ð°Ñ‚ÑƒÑ"
+  , RETRY$2 = "ÐŸÐ¾Ð¿Ñ€Ð¾Ð±Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ½Ð¾Ð²Ð°"
+  , TURNOVER$2 = "ÐžÐ±Ð¾Ñ€Ð¾Ñ‚"
+  , TURNOVER_HINT$2 = "Ð¾Ð±Ð¾Ñ€Ð¾Ñ‚ Ð² TON"
+  , TO_LEVEL_PREFIX$2 = "Ð”Ð¾ ÑƒÑ€Ð¾Ð²Ð½Ñ"
   , TO_LEVEL_SUFFIX$2 = ""
-  , LEFT_TON$2 = "осталось {{amount}} TON"
-  , MAX_LEVEL$2 = "максимальный уровень"
-  , MAX_REACHED$2 = "максимум достигнут"
-  , LEVELS_TITLE$2 = "VIP уровни"
-  , CURRENT$2 = "Текущий"
-  , CLAIM$2 = "Забрать"
-  , CLAIMED$2 = "Получено"
-  , REWARD_CLAIMED$2 = "Награда получена"
-  , CREDITED_TO_BALANCE$2 = "Зачислено на баланс"
-  , NFT_IN_BACKPACK$2 = "Подарок ждёт в рюкзаке"
-  , AWESOME$2 = "Отлично"
+  , LEFT_TON$2 = "Ð¾ÑÑ‚Ð°Ð»Ð¾ÑÑŒ {{amount}} TON"
+  , MAX_LEVEL$2 = "Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¹ ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ"
+  , MAX_REACHED$2 = "Ð¼Ð°ÐºÑÐ¸Ð¼ÑƒÐ¼ Ð´Ð¾ÑÑ‚Ð¸Ð³Ð½ÑƒÑ‚"
+  , LEVELS_TITLE$2 = "VIP ÑƒÑ€Ð¾Ð²Ð½Ð¸"
+  , CURRENT$2 = "Ð¢ÐµÐºÑƒÑ‰Ð¸Ð¹"
+  , CLAIM$2 = "Ð—Ð°Ð±Ñ€Ð°Ñ‚ÑŒ"
+  , CLAIMED$2 = "ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¾"
+  , REWARD_CLAIMED$2 = "ÐÐ°Ð³Ñ€Ð°Ð´Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð°"
+  , CREDITED_TO_BALANCE$2 = "Ð—Ð°Ñ‡Ð¸ÑÐ»ÐµÐ½Ð¾ Ð½Ð° Ð±Ð°Ð»Ð°Ð½Ñ"
+  , NFT_IN_BACKPACK$2 = "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð¶Ð´Ñ‘Ñ‚ Ð² Ñ€ÑŽÐºÐ·Ð°ÐºÐµ"
+  , AWESOME$2 = "ÐžÑ‚Ð»Ð¸Ñ‡Ð½Ð¾"
   , PERKS$2 = {
-    TASK_TICKETS: "Разовое задание: {{tickets}} билетов",
-    REWARD_NFT: "Бонусный NFT Gift за достижение уровня",
-    REWARD_TON: "Бонус {{amount}} TON за достижение уровня",
-    PROMO: "Эксклюзивные промокоды",
-    DROPS: "Спонтанные раздачи подарков",
-    RAFFLES: "Эксклюзивные VIP-розыгрыши",
+    TASK_TICKETS: "Ð Ð°Ð·Ð¾Ð²Ð¾Ðµ Ð·Ð°Ð´Ð°Ð½Ð¸Ðµ: {{tickets}} Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð²",
+    REWARD_NFT: "Ð‘Ð¾Ð½ÑƒÑÐ½Ñ‹Ð¹ NFT Gift Ð·Ð° Ð´Ð¾ÑÑ‚Ð¸Ð¶ÐµÐ½Ð¸Ðµ ÑƒÑ€Ð¾Ð²Ð½Ñ",
+    REWARD_TON: "Ð‘Ð¾Ð½ÑƒÑ {{amount}} TON Ð·Ð° Ð´Ð¾ÑÑ‚Ð¸Ð¶ÐµÐ½Ð¸Ðµ ÑƒÑ€Ð¾Ð²Ð½Ñ",
+    PROMO: "Ð­ÐºÑÐºÐ»ÑŽÐ·Ð¸Ð²Ð½Ñ‹Ðµ Ð¿Ñ€Ð¾Ð¼Ð¾ÐºÐ¾Ð´Ñ‹",
+    DROPS: "Ð¡Ð¿Ð¾Ð½Ñ‚Ð°Ð½Ð½Ñ‹Ðµ Ñ€Ð°Ð·Ð´Ð°Ñ‡Ð¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²",
+    RAFFLES: "Ð­ÐºÑÐºÐ»ÑŽÐ·Ð¸Ð²Ð½Ñ‹Ðµ VIP-Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ¸",
     PLAYBONUS: "PLAYBONUS",
-    MANAGER: "Персональный VIP-менеджер",
-    MANAGER_BONUS: "Бонусы от VIP-менеджера"
+    MANAGER: "ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð»ÑŒÐ½Ñ‹Ð¹ VIP-Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€",
+    MANAGER_BONUS: "Ð‘Ð¾Ð½ÑƒÑÑ‹ Ð¾Ñ‚ VIP-Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€Ð°"
 }
   , PLAYBONUS$2 = {
     TITLE: "PLAYBONUS",
-    CLAIM: "Забрать",
-    LOCKED_CLAIM: "Достигните {{level}}, чтобы забрать",
-    NOTE: "PLAYBONUS накапливается автоматически, а забрать его можно после достижения уровня {{level}}.",
-    INFO_TITLE: "Как работает PLAYBONUS",
-    INFO_1: "PLAYBONUS это кешбэк, который начисляется за вашу игру. Он накапливается автоматически, пока вы играете.",
-    INFO_2: "Бонус растёт только за счёт вашей собственной игры. Чем больше вы играете, тем быстрее он накапливается.",
-    INFO_3: "Возможность забрать бонус открывается на уровне {{level}}. До этого момента он продолжает накапливаться и не сгорает.",
-    INFO_4: "Чем выше ваш VIP-уровень, тем больший процент возвращается в виде PLAYBONUS."
+    CLAIM: "Ð—Ð°Ð±Ñ€Ð°Ñ‚ÑŒ",
+    LOCKED_CLAIM: "Ð”Ð¾ÑÑ‚Ð¸Ð³Ð½Ð¸Ñ‚Ðµ {{level}}, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð·Ð°Ð±Ñ€Ð°Ñ‚ÑŒ",
+    NOTE: "PLAYBONUS Ð½Ð°ÐºÐ°Ð¿Ð»Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸, Ð° Ð·Ð°Ð±Ñ€Ð°Ñ‚ÑŒ ÐµÐ³Ð¾ Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ð¾ÑÐ»Ðµ Ð´Ð¾ÑÑ‚Ð¸Ð¶ÐµÐ½Ð¸Ñ ÑƒÑ€Ð¾Ð²Ð½Ñ {{level}}.",
+    INFO_TITLE: "ÐšÐ°Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ PLAYBONUS",
+    INFO_1: "PLAYBONUS ÑÑ‚Ð¾ ÐºÐµÑˆÐ±ÑÐº, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð½Ð°Ñ‡Ð¸ÑÐ»ÑÐµÑ‚ÑÑ Ð·Ð° Ð²Ð°ÑˆÑƒ Ð¸Ð³Ñ€Ñƒ. ÐžÐ½ Ð½Ð°ÐºÐ°Ð¿Ð»Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸, Ð¿Ð¾ÐºÐ° Ð²Ñ‹ Ð¸Ð³Ñ€Ð°ÐµÑ‚Ðµ.",
+    INFO_2: "Ð‘Ð¾Ð½ÑƒÑ Ñ€Ð°ÑÑ‚Ñ‘Ñ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð·Ð° ÑÑ‡Ñ‘Ñ‚ Ð²Ð°ÑˆÐµÐ¹ ÑÐ¾Ð±ÑÑ‚Ð²ÐµÐ½Ð½Ð¾Ð¹ Ð¸Ð³Ñ€Ñ‹. Ð§ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð²Ñ‹ Ð¸Ð³Ñ€Ð°ÐµÑ‚Ðµ, Ñ‚ÐµÐ¼ Ð±Ñ‹ÑÑ‚Ñ€ÐµÐµ Ð¾Ð½ Ð½Ð°ÐºÐ°Ð¿Ð»Ð¸Ð²Ð°ÐµÑ‚ÑÑ.",
+    INFO_3: "Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚ÑŒ Ð·Ð°Ð±Ñ€Ð°Ñ‚ÑŒ Ð±Ð¾Ð½ÑƒÑ Ð¾Ñ‚ÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð½Ð° ÑƒÑ€Ð¾Ð²Ð½Ðµ {{level}}. Ð”Ð¾ ÑÑ‚Ð¾Ð³Ð¾ Ð¼Ð¾Ð¼ÐµÐ½Ñ‚Ð° Ð¾Ð½ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð°ÐµÑ‚ Ð½Ð°ÐºÐ°Ð¿Ð»Ð¸Ð²Ð°Ñ‚ÑŒÑÑ Ð¸ Ð½Ðµ ÑÐ³Ð¾Ñ€Ð°ÐµÑ‚.",
+    INFO_4: "Ð§ÐµÐ¼ Ð²Ñ‹ÑˆÐµ Ð²Ð°Ñˆ VIP-ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ, Ñ‚ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐ¸Ð¹ Ð¿Ñ€Ð¾Ñ†ÐµÐ½Ñ‚ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ÑÑ Ð² Ð²Ð¸Ð´Ðµ PLAYBONUS."
 }
   , INFO$2 = {
-    TITLE: "Как работает VIP-статус",
-    LEVEL_T: "Уровень",
-    LEVEL_X: "Ваш VIP-уровень повышается вместе с общим оборотом. Чем больше вы играете, тем выше ваш уровень и тем больше наград вы открываете.",
-    PRIVILEGES_T: "Привилегии",
-    PRIVILEGES_X: "С каждым уровнем награды становятся ценнее: увеличиваются бонусы, открываются эксклюзивные розыгрыши, промокоды, а на высоких уровнях становится доступен персональный VIP-менеджер.",
-    PLAYBONUS_X: "Часть ваших ставок возвращается в виде бонуса. Подробнее в разделе PLAYBONUS.",
-    FOOTER: "VIP-уровни зависят от вашего общего оборота и не сбрасываются. Некоторые бонусы могут начисляться индивидуально в зависимости от вашей активности."
+    TITLE: "ÐšÐ°Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ VIP-ÑÑ‚Ð°Ñ‚ÑƒÑ",
+    LEVEL_T: "Ð£Ñ€Ð¾Ð²ÐµÐ½ÑŒ",
+    LEVEL_X: "Ð’Ð°Ñˆ VIP-ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ Ð¿Ð¾Ð²Ñ‹ÑˆÐ°ÐµÑ‚ÑÑ Ð²Ð¼ÐµÑÑ‚Ðµ Ñ Ð¾Ð±Ñ‰Ð¸Ð¼ Ð¾Ð±Ð¾Ñ€Ð¾Ñ‚Ð¾Ð¼. Ð§ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð²Ñ‹ Ð¸Ð³Ñ€Ð°ÐµÑ‚Ðµ, Ñ‚ÐµÐ¼ Ð²Ñ‹ÑˆÐµ Ð²Ð°Ñˆ ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ Ð¸ Ñ‚ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½Ð°Ð³Ñ€Ð°Ð´ Ð²Ñ‹ Ð¾Ñ‚ÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚Ðµ.",
+    PRIVILEGES_T: "ÐŸÑ€Ð¸Ð²Ð¸Ð»ÐµÐ³Ð¸Ð¸",
+    PRIVILEGES_X: "Ð¡ ÐºÐ°Ð¶Ð´Ñ‹Ð¼ ÑƒÑ€Ð¾Ð²Ð½ÐµÐ¼ Ð½Ð°Ð³Ñ€Ð°Ð´Ñ‹ ÑÑ‚Ð°Ð½Ð¾Ð²ÑÑ‚ÑÑ Ñ†ÐµÐ½Ð½ÐµÐµ: ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ð²Ð°ÑŽÑ‚ÑÑ Ð±Ð¾Ð½ÑƒÑÑ‹, Ð¾Ñ‚ÐºÑ€Ñ‹Ð²Ð°ÑŽÑ‚ÑÑ ÑÐºÑÐºÐ»ÑŽÐ·Ð¸Ð²Ð½Ñ‹Ðµ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ¸, Ð¿Ñ€Ð¾Ð¼Ð¾ÐºÐ¾Ð´Ñ‹, Ð° Ð½Ð° Ð²Ñ‹ÑÐ¾ÐºÐ¸Ñ… ÑƒÑ€Ð¾Ð²Ð½ÑÑ… ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑÑ Ð´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½ Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð»ÑŒÐ½Ñ‹Ð¹ VIP-Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€.",
+    PLAYBONUS_X: "Ð§Ð°ÑÑ‚ÑŒ Ð²Ð°ÑˆÐ¸Ñ… ÑÑ‚Ð°Ð²Ð¾Ðº Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ÑÑ Ð² Ð²Ð¸Ð´Ðµ Ð±Ð¾Ð½ÑƒÑÐ°. ÐŸÐ¾Ð´Ñ€Ð¾Ð±Ð½ÐµÐµ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ PLAYBONUS.",
+    FOOTER: "VIP-ÑƒÑ€Ð¾Ð²Ð½Ð¸ Ð·Ð°Ð²Ð¸ÑÑÑ‚ Ð¾Ñ‚ Ð²Ð°ÑˆÐµÐ³Ð¾ Ð¾Ð±Ñ‰ÐµÐ³Ð¾ Ð¾Ð±Ð¾Ñ€Ð¾Ñ‚Ð° Ð¸ Ð½Ðµ ÑÐ±Ñ€Ð°ÑÑ‹Ð²Ð°ÑŽÑ‚ÑÑ. ÐÐµÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ð±Ð¾Ð½ÑƒÑÑ‹ Ð¼Ð¾Ð³ÑƒÑ‚ Ð½Ð°Ñ‡Ð¸ÑÐ»ÑÑ‚ÑŒÑÑ Ð¸Ð½Ð´Ð¸Ð²Ð¸Ð´ÑƒÐ°Ð»ÑŒÐ½Ð¾ Ð² Ð·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¾Ñ‚ Ð²Ð°ÑˆÐµÐ¹ Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾ÑÑ‚Ð¸."
 }
   , ERRORS$7 = {
-    ALREADY_CLAIMED: "Награда уже получена",
-    NO_GIFT_AVAILABLE: "Сейчас нет доступного подарка — попробуйте позже",
-    PLAYBONUS_LOCKED: "Клейм PLAYBONUS ещё не разблокирован",
-    NOTHING_TO_CLAIM: "Пока нечего забирать",
-    VIP_DISABLED: "VIP-система временно недоступна"
+    ALREADY_CLAIMED: "ÐÐ°Ð³Ñ€Ð°Ð´Ð° ÑƒÐ¶Ðµ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð°",
+    NO_GIFT_AVAILABLE: "Ð¡ÐµÐ¹Ñ‡Ð°Ñ Ð½ÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° â€” Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ",
+    PLAYBONUS_LOCKED: "ÐšÐ»ÐµÐ¹Ð¼ PLAYBONUS ÐµÑ‰Ñ‘ Ð½Ðµ Ñ€Ð°Ð·Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½",
+    NOTHING_TO_CLAIM: "ÐŸÐ¾ÐºÐ° Ð½ÐµÑ‡ÐµÐ³Ð¾ Ð·Ð°Ð±Ð¸Ñ€Ð°Ñ‚ÑŒ",
+    VIP_DISABLED: "VIP-ÑÐ¸ÑÑ‚ÐµÐ¼Ð° Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð°"
 }
   , ruVip = {
     VIP_STATUS_LABEL: VIP_STATUS_LABEL$2,
@@ -54730,70 +54730,70 @@ It's 100% free, and you can try your luck every 24 hours!`,
     INFO: INFO$2,
     ERRORS: ERRORS$7
 }
-  , TITLE$6 = "Задания"
+  , TITLE$6 = "Ð—Ð°Ð´Ð°Ð½Ð¸Ñ"
   , TABS$7 = {
-    GIVEAWAYS: "Розыгрыши"
+    GIVEAWAYS: "Ð Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ¸"
 }
   , SECTIONS$6 = {
-    COMPLETE_TASKS: "Выполняй задания",
-    EARN_TON: "Получай TON"
+    COMPLETE_TASKS: "Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐ¹ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ",
+    EARN_TON: "ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ð¹ TON"
 }
   , BUTTONS$d = {
-    CLAIMED: "Получено",
-    CLAIM: "Получить",
-    JOIN: "Присоединиться",
-    GO: "Перейти",
-    INVITE: "Пригласить",
-    UPGRADE: "Улучшить",
-    BET: "Ставка",
-    START: "Начать",
+    CLAIMED: "ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¾",
+    CLAIM: "ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ",
+    JOIN: "ÐŸÑ€Ð¸ÑÐ¾ÐµÐ´Ð¸Ð½Ð¸Ñ‚ÑŒÑÑ",
+    GO: "ÐŸÐµÑ€ÐµÐ¹Ñ‚Ð¸",
+    INVITE: "ÐŸÑ€Ð¸Ð³Ð»Ð°ÑÐ¸Ñ‚ÑŒ",
+    UPGRADE: "Ð£Ð»ÑƒÑ‡ÑˆÐ¸Ñ‚ÑŒ",
+    BET: "Ð¡Ñ‚Ð°Ð²ÐºÐ°",
+    START: "ÐÐ°Ñ‡Ð°Ñ‚ÑŒ",
     VIP: "VIP",
-    VERIFY: "Проверка",
-    UNAVAILABLE: "Недоступно",
-    SHARE: "Поделиться",
-    SHARE_STORY: "В сторис",
-    CLAIM_DAILY: "Получить"
+    VERIFY: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ°",
+    UNAVAILABLE: "ÐÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾",
+    SHARE: "ÐŸÐ¾Ð´ÐµÐ»Ð¸Ñ‚ÑŒÑÑ",
+    SHARE_STORY: "Ð’ ÑÑ‚Ð¾Ñ€Ð¸Ñ",
+    CLAIM_DAILY: "ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ"
 }
   , PROGRESS$2 = {
-    LABEL: "Прогресс: {{current}}/{{total}}",
-    REMAINING: "Осталось: {{count}}"
+    LABEL: "ÐŸÑ€Ð¾Ð³Ñ€ÐµÑÑ: {{current}}/{{total}}",
+    REMAINING: "ÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ: {{count}}"
 }
   , TICKETS$2 = {
-    YOUR_TICKETS: "Ваши билеты",
-    EARN_TICKETS: "доступно"
+    YOUR_TICKETS: "Ð’Ð°ÑˆÐ¸ Ð±Ð¸Ð»ÐµÑ‚Ñ‹",
+    EARN_TICKETS: "Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾"
 }
   , EXTRA_TASKS$2 = {
-    TITLE: "Дополнительно",
-    DEPOSIT_CASHBACK: "Пополните баланс",
-    RATE: "{{rate}} билетов за каждый 1 TON депозита",
-    ACCRUED: "Накоплено:"
+    TITLE: "Ð”Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾",
+    DEPOSIT_CASHBACK: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚Ðµ Ð±Ð°Ð»Ð°Ð½Ñ",
+    RATE: "{{rate}} Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð² Ð·Ð° ÐºÐ°Ð¶Ð´Ñ‹Ð¹ 1 TON Ð´ÐµÐ¿Ð¾Ð·Ð¸Ñ‚Ð°",
+    ACCRUED: "ÐÐ°ÐºÐ¾Ð¿Ð»ÐµÐ½Ð¾:"
 }
   , TICKETS_INFO$2 = {
-    TITLE: "Как работают билеты",
-    STEP_1: "Выполняйте задания и получайте билеты.",
-    STEP_2: "1 билет = 1 участие в розыгрыше.",
-    STEP_3: "Используйте больше билетов в одном розыгрыше, чтобы повысить шанс на победу.",
-    STEP_4: "Победители выбираются случайным образом среди всех отправленных билетов. Если несколько ваших билетов выиграют, вы получите несколько подарков.",
-    CTA_SEE_GIVEAWAYS: "Смотреть розыгрыши"
+    TITLE: "ÐšÐ°Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÑŽÑ‚ Ð±Ð¸Ð»ÐµÑ‚Ñ‹",
+    STEP_1: "Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐ¹Ñ‚Ðµ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ Ð¸ Ð¿Ð¾Ð»ÑƒÑ‡Ð°Ð¹Ñ‚Ðµ Ð±Ð¸Ð»ÐµÑ‚Ñ‹.",
+    STEP_2: "1 Ð±Ð¸Ð»ÐµÑ‚ = 1 ÑƒÑ‡Ð°ÑÑ‚Ð¸Ðµ Ð² Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐµ.",
+    STEP_3: "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐ¹Ñ‚Ðµ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð² Ð² Ð¾Ð´Ð½Ð¾Ð¼ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐµ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð²Ñ‹ÑÐ¸Ñ‚ÑŒ ÑˆÐ°Ð½Ñ Ð½Ð° Ð¿Ð¾Ð±ÐµÐ´Ñƒ.",
+    STEP_4: "ÐŸÐ¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»Ð¸ Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÑŽÑ‚ÑÑ ÑÐ»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ð¼ Ð¾Ð±Ñ€Ð°Ð·Ð¾Ð¼ ÑÑ€ÐµÐ´Ð¸ Ð²ÑÐµÑ… Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð½Ñ‹Ñ… Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð². Ð•ÑÐ»Ð¸ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð²Ð°ÑˆÐ¸Ñ… Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð² Ð²Ñ‹Ð¸Ð³Ñ€Ð°ÑŽÑ‚, Ð²Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚Ðµ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð².",
+    CTA_SEE_GIVEAWAYS: "Ð¡Ð¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ¸"
 }
   , LABELS$y = {
-    "10_GIFTS_GIVEAWAY": "Розыгрыш 10 подарков",
-    HOSTED_ON_PORTALS: "Размещено на Portals",
-    DAYS: "дней",
-    HOURS: "часов",
-    MINUTES: "минуты",
-    SECONDS: "секунды",
-    ENDED: "Завершено",
-    LIMITED_TASKS: "Лимитированные задания",
-    DAILY_TASKS: "Ежедневные задания",
-    ONE_TIME_TASKS: "Одноразовые задания"
+    "10_GIFTS_GIVEAWAY": "Ð Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ 10 Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²",
+    HOSTED_ON_PORTALS: "Ð Ð°Ð·Ð¼ÐµÑ‰ÐµÐ½Ð¾ Ð½Ð° Portals",
+    DAYS: "Ð´Ð½ÐµÐ¹",
+    HOURS: "Ñ‡Ð°ÑÐ¾Ð²",
+    MINUTES: "Ð¼Ð¸Ð½ÑƒÑ‚Ñ‹",
+    SECONDS: "ÑÐµÐºÑƒÐ½Ð´Ñ‹",
+    ENDED: "Ð—Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¾",
+    LIMITED_TASKS: "Ð›Ð¸Ð¼Ð¸Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ðµ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ",
+    DAILY_TASKS: "Ð•Ð¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ðµ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ",
+    ONE_TIME_TASKS: "ÐžÐ´Ð½Ð¾Ñ€Ð°Ð·Ð¾Ð²Ñ‹Ðµ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ"
 }
   , STATUS$h = {
-    EXPIRED: "Истекло"
+    EXPIRED: "Ð˜ÑÑ‚ÐµÐºÐ»Ð¾"
 }
   , EMPTY$c = {
-    NO_TASKS: "На данный момент нет доступных заданий",
-    CHECK_BACK_LATER: "Зайдите позже, чтобы увидеть новые задания!"
+    NO_TASKS: "ÐÐ° Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ‚ Ð½ÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ñ… Ð·Ð°Ð´Ð°Ð½Ð¸Ð¹",
+    CHECK_BACK_LATER: "Ð—Ð°Ð¹Ð´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑƒÐ²Ð¸Ð´ÐµÑ‚ÑŒ Ð½Ð¾Ð²Ñ‹Ðµ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ!"
 }
   , ruEarn = {
     TITLE: TITLE$6,
@@ -54809,91 +54809,91 @@ It's 100% free, and you can try your luck every 24 hours!`,
     EMPTY: EMPTY$c
 }
   , HEADER$a = {
-    TITLE: "Розыгрыши",
-    SUBTITLE: "Участвуйте и выигрывайте потрясающие подарки"
+    TITLE: "Ð Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ¸",
+    SUBTITLE: "Ð£Ñ‡Ð°ÑÑ‚Ð²ÑƒÐ¹Ñ‚Ðµ Ð¸ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ð²Ð°Ð¹Ñ‚Ðµ Ð¿Ð¾Ñ‚Ñ€ÑÑÐ°ÑŽÑ‰Ð¸Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸"
 }
   , TABS$6 = {
-    ACTIVE: "Активные",
-    FINISHED: "Завершённые"
+    ACTIVE: "ÐÐºÑ‚Ð¸Ð²Ð½Ñ‹Ðµ",
+    FINISHED: "Ð—Ð°Ð²ÐµÑ€ÑˆÑ‘Ð½Ð½Ñ‹Ðµ"
 }
   , CONTROLS$5 = {
-    SORT_LABEL: "Сортировка",
-    SORT_BY_END_DATE: "По дате",
-    SORT_BY_POOL: "По пулу",
-    FILTER_LABEL: "Фильтр",
-    FILTER_ALL: "Все",
-    FILTER_MINE: "Мои",
-    EMPTY_MINE_ACTIVE: "Вы пока не участвуете в активных розыгрышах.",
-    EMPTY_MINE_FINISHED: "Вы не участвовали в прошедших розыгрышах.",
-    PREVIOUS_PAGE: "Предыдущая страница",
-    NEXT_PAGE: "Следующая страница"
+    SORT_LABEL: "Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ°",
+    SORT_BY_END_DATE: "ÐŸÐ¾ Ð´Ð°Ñ‚Ðµ",
+    SORT_BY_POOL: "ÐŸÐ¾ Ð¿ÑƒÐ»Ñƒ",
+    FILTER_LABEL: "Ð¤Ð¸Ð»ÑŒÑ‚Ñ€",
+    FILTER_ALL: "Ð’ÑÐµ",
+    FILTER_MINE: "ÐœÐ¾Ð¸",
+    EMPTY_MINE_ACTIVE: "Ð’Ñ‹ Ð¿Ð¾ÐºÐ° Ð½Ðµ ÑƒÑ‡Ð°ÑÑ‚Ð²ÑƒÐµÑ‚Ðµ Ð² Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹Ñ… Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ°Ñ….",
+    EMPTY_MINE_FINISHED: "Ð’Ñ‹ Ð½Ðµ ÑƒÑ‡Ð°ÑÑ‚Ð²Ð¾Ð²Ð°Ð»Ð¸ Ð² Ð¿Ñ€Ð¾ÑˆÐµÐ´ÑˆÐ¸Ñ… Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ°Ñ….",
+    PREVIOUS_PAGE: "ÐŸÑ€ÐµÐ´Ñ‹Ð´ÑƒÑ‰Ð°Ñ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ð°",
+    NEXT_PAGE: "Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰Ð°Ñ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ð°"
 }
   , LABELS$x = {
-    GIVEAWAY: "Розыгрыш",
-    NOT_FOUND: "Розыгрыш не найден",
-    NOT_EXIST_OR_REMOVED: "Этот розыгрыш не существует или был удалён.",
-    PARTICIPANTS: "Участники",
-    TICKET_POOL: "Билетный пул",
-    TOTAL_GIFTS: "Подарки",
-    TOP_ENTRIES: "Топ участников",
-    ENDED: "Розыгрыш завершен",
-    COMING_SOON: "Скоро",
-    NO_WINNERS: "Победители еще не объявлены",
-    NO_ACTIVE_GIVEAWAYS: "Нет активных розыгрышей",
-    NO_PAST_GIVEAWAYS: "Пока нет завершённых розыгрышей.",
-    CHECK_BACK_SOON: "Загляните позже за захватывающими розыгрышами!",
-    BIG_PRIZE_POOLS: "Большие призовые фонды",
-    EASY_TO_JOIN: "Легко участвовать",
-    MULTIPLE_WINNERS: "Несколько победителей",
-    TOTAL_POOL: "Общий пул",
-    YOUR_TICKETS: "Ваши билеты",
-    YOUR_BALANCE: "Ваш баланс",
-    MIN_ENTRY: "Мин",
-    ALL_PRIZES: "Все призы",
-    ALL_GIFTS: "Все подарки",
-    SHOW_ALL: "Показать все {{count}}",
-    WINNERS: "Победители",
-    WINNERS_COUNT: "{{count}} победителей",
-    TIME_REMAINING: "Осталось времени",
-    CANCELLED: "Отменён — билеты возвращены",
-    NOT_ENOUGH_TICKETS: "Недостаточно билетов",
-    REQUIREMENTS: "Требования",
-    ENTER_TICKETS_CTA: "1 билет = 1 шанс на победу",
-    YOUR_TICKETS_IN_GIVEAWAY: "У вас {{count}} билет(ов) в этом розыгрыше!",
-    JOIN_CTA: "Участвуйте и выигрывайте!",
-    JOINED_CTA: "🎉 Вы в деле! Удачи! 🍀",
-    REQUIREMENT_JOIN_CHANNEL: "Подпишитесь на канал {{channel}}",
-    REQUIREMENT_MIN_DEPOSIT: "Мин. депозит: {{amount}} TON",
-    REQUIREMENT_UNBOX_GIFTBOX: "Откройте гифтбокс",
-    REQUIREMENT_VIP_LEVEL: "VIP-статус {{level}} или выше",
-    VIP_LOCKED_CTA: "Эксклюзивный розыгрыш для VIP {{level}}+",
-    BACK: "Назад",
-    ACTIVE: "Активен",
-    STATUS: "Статус"
+    GIVEAWAY: "Ð Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ",
+    NOT_FOUND: "Ð Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½",
+    NOT_EXIST_OR_REMOVED: "Ð­Ñ‚Ð¾Ñ‚ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚ Ð¸Ð»Ð¸ Ð±Ñ‹Ð» ÑƒÐ´Ð°Ð»Ñ‘Ð½.",
+    PARTICIPANTS: "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸",
+    TICKET_POOL: "Ð‘Ð¸Ð»ÐµÑ‚Ð½Ñ‹Ð¹ Ð¿ÑƒÐ»",
+    TOTAL_GIFTS: "ÐŸÐ¾Ð´Ð°Ñ€ÐºÐ¸",
+    TOP_ENTRIES: "Ð¢Ð¾Ð¿ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²",
+    ENDED: "Ð Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½",
+    COMING_SOON: "Ð¡ÐºÐ¾Ñ€Ð¾",
+    NO_WINNERS: "ÐŸÐ¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»Ð¸ ÐµÑ‰Ðµ Ð½Ðµ Ð¾Ð±ÑŠÑÐ²Ð»ÐµÐ½Ñ‹",
+    NO_ACTIVE_GIVEAWAYS: "ÐÐµÑ‚ Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹Ñ… Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐµÐ¹",
+    NO_PAST_GIVEAWAYS: "ÐŸÐ¾ÐºÐ° Ð½ÐµÑ‚ Ð·Ð°Ð²ÐµÑ€ÑˆÑ‘Ð½Ð½Ñ‹Ñ… Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐµÐ¹.",
+    CHECK_BACK_SOON: "Ð—Ð°Ð³Ð»ÑÐ½Ð¸Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ Ð·Ð° Ð·Ð°Ñ…Ð²Ð°Ñ‚Ñ‹Ð²Ð°ÑŽÑ‰Ð¸Ð¼Ð¸ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ°Ð¼Ð¸!",
+    BIG_PRIZE_POOLS: "Ð‘Ð¾Ð»ÑŒÑˆÐ¸Ðµ Ð¿Ñ€Ð¸Ð·Ð¾Ð²Ñ‹Ðµ Ñ„Ð¾Ð½Ð´Ñ‹",
+    EASY_TO_JOIN: "Ð›ÐµÐ³ÐºÐ¾ ÑƒÑ‡Ð°ÑÑ‚Ð²Ð¾Ð²Ð°Ñ‚ÑŒ",
+    MULTIPLE_WINNERS: "ÐÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¿Ð¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»ÐµÐ¹",
+    TOTAL_POOL: "ÐžÐ±Ñ‰Ð¸Ð¹ Ð¿ÑƒÐ»",
+    YOUR_TICKETS: "Ð’Ð°ÑˆÐ¸ Ð±Ð¸Ð»ÐµÑ‚Ñ‹",
+    YOUR_BALANCE: "Ð’Ð°Ñˆ Ð±Ð°Ð»Ð°Ð½Ñ",
+    MIN_ENTRY: "ÐœÐ¸Ð½",
+    ALL_PRIZES: "Ð’ÑÐµ Ð¿Ñ€Ð¸Ð·Ñ‹",
+    ALL_GIFTS: "Ð’ÑÐµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    SHOW_ALL: "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð²ÑÐµ {{count}}",
+    WINNERS: "ÐŸÐ¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»Ð¸",
+    WINNERS_COUNT: "{{count}} Ð¿Ð¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»ÐµÐ¹",
+    TIME_REMAINING: "ÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸",
+    CANCELLED: "ÐžÑ‚Ð¼ÐµÐ½Ñ‘Ð½ â€” Ð±Ð¸Ð»ÐµÑ‚Ñ‹ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰ÐµÐ½Ñ‹",
+    NOT_ENOUGH_TICKETS: "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ð¸Ð»ÐµÑ‚Ð¾Ð²",
+    REQUIREMENTS: "Ð¢Ñ€ÐµÐ±Ð¾Ð²Ð°Ð½Ð¸Ñ",
+    ENTER_TICKETS_CTA: "1 Ð±Ð¸Ð»ÐµÑ‚ = 1 ÑˆÐ°Ð½Ñ Ð½Ð° Ð¿Ð¾Ð±ÐµÐ´Ñƒ",
+    YOUR_TICKETS_IN_GIVEAWAY: "Ð£ Ð²Ð°Ñ {{count}} Ð±Ð¸Ð»ÐµÑ‚(Ð¾Ð²) Ð² ÑÑ‚Ð¾Ð¼ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐµ!",
+    JOIN_CTA: "Ð£Ñ‡Ð°ÑÑ‚Ð²ÑƒÐ¹Ñ‚Ðµ Ð¸ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ð²Ð°Ð¹Ñ‚Ðµ!",
+    JOINED_CTA: "ðŸŽ‰ Ð’Ñ‹ Ð² Ð´ÐµÐ»Ðµ! Ð£Ð´Ð°Ñ‡Ð¸! ðŸ€",
+    REQUIREMENT_JOIN_CHANNEL: "ÐŸÐ¾Ð´Ð¿Ð¸ÑˆÐ¸Ñ‚ÐµÑÑŒ Ð½Ð° ÐºÐ°Ð½Ð°Ð» {{channel}}",
+    REQUIREMENT_MIN_DEPOSIT: "ÐœÐ¸Ð½. Ð´ÐµÐ¿Ð¾Ð·Ð¸Ñ‚: {{amount}} TON",
+    REQUIREMENT_UNBOX_GIFTBOX: "ÐžÑ‚ÐºÑ€Ð¾Ð¹Ñ‚Ðµ Ð³Ð¸Ñ„Ñ‚Ð±Ð¾ÐºÑ",
+    REQUIREMENT_VIP_LEVEL: "VIP-ÑÑ‚Ð°Ñ‚ÑƒÑ {{level}} Ð¸Ð»Ð¸ Ð²Ñ‹ÑˆÐµ",
+    VIP_LOCKED_CTA: "Ð­ÐºÑÐºÐ»ÑŽÐ·Ð¸Ð²Ð½Ñ‹Ð¹ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ Ð´Ð»Ñ VIP {{level}}+",
+    BACK: "ÐÐ°Ð·Ð°Ð´",
+    ACTIVE: "ÐÐºÑ‚Ð¸Ð²ÐµÐ½",
+    STATUS: "Ð¡Ñ‚Ð°Ñ‚ÑƒÑ"
 }
   , BUTTONS$c = {
-    JOIN: "Открыть розыгрыш",
-    JOIN_VIP: "Открыть VIP-розыгрыш",
-    JOINING: "Присоединение...",
-    ENTER_WITH_TICKETS: "Участвовать с {{count}} билет(ами)",
-    ADD_TICKETS: "Добавить {{count}} билет(ов)",
-    PROCESSING: "Обработка...",
-    VIP_ONLY: "Только для VIP {{level}}+"
+    JOIN: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ",
+    JOIN_VIP: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ VIP-Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ",
+    JOINING: "ÐŸÑ€Ð¸ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ...",
+    ENTER_WITH_TICKETS: "Ð£Ñ‡Ð°ÑÑ‚Ð²Ð¾Ð²Ð°Ñ‚ÑŒ Ñ {{count}} Ð±Ð¸Ð»ÐµÑ‚(Ð°Ð¼Ð¸)",
+    ADD_TICKETS: "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ {{count}} Ð±Ð¸Ð»ÐµÑ‚(Ð¾Ð²)",
+    PROCESSING: "ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°...",
+    VIP_ONLY: "Ð¢Ð¾Ð»ÑŒÐºÐ¾ Ð´Ð»Ñ VIP {{level}}+"
 }
   , VIP_GATE$2 = {
-    TITLE: "Только для VIP {{level}}+",
-    BODY: "Этот розыгрыш доступен только игрокам со статусом {{level}} и выше. Продолжайте играть, повышайте свой VIP уровень, и такие розыгрыши откроются и для вас.",
-    NO_STATUS: "Без статуса",
-    CTA: "Мой VIP прогресс",
-    LATER: "Позже"
+    TITLE: "Ð¢Ð¾Ð»ÑŒÐºÐ¾ Ð´Ð»Ñ VIP {{level}}+",
+    BODY: "Ð­Ñ‚Ð¾Ñ‚ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ Ð´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¸Ð³Ñ€Ð¾ÐºÐ°Ð¼ ÑÐ¾ ÑÑ‚Ð°Ñ‚ÑƒÑÐ¾Ð¼ {{level}} Ð¸ Ð²Ñ‹ÑˆÐµ. ÐŸÑ€Ð¾Ð´Ð¾Ð»Ð¶Ð°Ð¹Ñ‚Ðµ Ð¸Ð³Ñ€Ð°Ñ‚ÑŒ, Ð¿Ð¾Ð²Ñ‹ÑˆÐ°Ð¹Ñ‚Ðµ ÑÐ²Ð¾Ð¹ VIP ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ, Ð¸ Ñ‚Ð°ÐºÐ¸Ðµ Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹ÑˆÐ¸ Ð¾Ñ‚ÐºÑ€Ð¾ÑŽÑ‚ÑÑ Ð¸ Ð´Ð»Ñ Ð²Ð°Ñ.",
+    NO_STATUS: "Ð‘ÐµÐ· ÑÑ‚Ð°Ñ‚ÑƒÑÐ°",
+    CTA: "ÐœÐ¾Ð¹ VIP Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑ",
+    LATER: "ÐŸÐ¾Ð·Ð¶Ðµ"
 }
   , STATUS$g = {
-    JOINED: "Успешно присоединились!",
-    ENTERED_GIVEAWAY: "Участвуете с {{count}} билет(ами)!",
-    ADDED_TICKETS: "Добавлено {{count}} билет(ов)!",
-    ALREADY_JOINED: "Вы уже участвуете",
-    FAILED_TO_ENTER: "Не удалось войти в розыгрыш",
-    FAILED_TO_ADD_TICKETS: "Не удалось добавить билеты"
+    JOINED: "Ð£ÑÐ¿ÐµÑˆÐ½Ð¾ Ð¿Ñ€Ð¸ÑÐ¾ÐµÐ´Ð¸Ð½Ð¸Ð»Ð¸ÑÑŒ!",
+    ENTERED_GIVEAWAY: "Ð£Ñ‡Ð°ÑÑ‚Ð²ÑƒÐµÑ‚Ðµ Ñ {{count}} Ð±Ð¸Ð»ÐµÑ‚(Ð°Ð¼Ð¸)!",
+    ADDED_TICKETS: "Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾ {{count}} Ð±Ð¸Ð»ÐµÑ‚(Ð¾Ð²)!",
+    ALREADY_JOINED: "Ð’Ñ‹ ÑƒÐ¶Ðµ ÑƒÑ‡Ð°ÑÑ‚Ð²ÑƒÐµÑ‚Ðµ",
+    FAILED_TO_ENTER: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð²Ð¾Ð¹Ñ‚Ð¸ Ð² Ñ€Ð¾Ð·Ñ‹Ð³Ñ€Ñ‹Ñˆ",
+    FAILED_TO_ADD_TICKETS: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð±Ð¸Ð»ÐµÑ‚Ñ‹"
 }
   , ruGiveaway = {
     HEADER: HEADER$a,
@@ -54904,37 +54904,37 @@ It's 100% free, and you can try your luck every 24 hours!`,
     VIP_GATE: VIP_GATE$2,
     STATUS: STATUS$g
 }
-  , LANGUAGE$2 = "Язык"
+  , LANGUAGE$2 = "Ð¯Ð·Ñ‹Ðº"
   , ruSettings = {
     LANGUAGE: LANGUAGE$2
 }
   , PLAY_HUB$5 = {
     TITLE: "Play Hub",
     TITLE_UPPER: "PLAY HUB",
-    HOT: "ХИТ",
+    HOT: "Ð¥Ð˜Ð¢",
     NEW: "NEW",
-    BACK: "Назад",
-    EMPTY: "Игры временно недоступны — загляни позже",
+    BACK: "ÐÐ°Ð·Ð°Ð´",
+    EMPTY: "Ð˜Ð³Ñ€Ñ‹ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹ â€” Ð·Ð°Ð³Ð»ÑÐ½Ð¸ Ð¿Ð¾Ð·Ð¶Ðµ",
     BANNERS: {
         UPGRADE: {
-            TITLE: "Улучшение",
-            TAGLINE: "Выбери подарок мечты"
+            TITLE: "Ð£Ð»ÑƒÑ‡ÑˆÐµÐ½Ð¸Ðµ",
+            TAGLINE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð¼ÐµÑ‡Ñ‚Ñ‹"
         },
         PLINKO: {
             TITLE: "Plinko",
-            TAGLINE: "Выигрывай до 1000x"
+            TAGLINE: "Ð’Ñ‹Ð¸Ð³Ñ€Ñ‹Ð²Ð°Ð¹ Ð´Ð¾ 1000x"
         },
         CRAFTS: {
-            TITLE: "Крафт",
-            TAGLINE: "Объединяй подарки"
+            TITLE: "ÐšÑ€Ð°Ñ„Ñ‚",
+            TAGLINE: "ÐžÐ±ÑŠÐµÐ´Ð¸Ð½ÑÐ¹ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸"
         },
         DICE: {
             TITLE: "Dice",
-            TAGLINE: "Больше Меньше"
+            TAGLINE: "Ð‘Ð¾Ð»ÑŒÑˆÐµ ÐœÐµÐ½ÑŒÑˆÐµ"
         },
         MINES: {
             TITLE: "Mines",
-            TAGLINE: "Обходи мины"
+            TAGLINE: "ÐžÐ±Ñ…Ð¾Ð´Ð¸ Ð¼Ð¸Ð½Ñ‹"
         }
     }
 }
@@ -54944,122 +54944,122 @@ It's 100% free, and you can try your luck every 24 hours!`,
   , TILE$4 = {
     TITLE: "DICE"
 }
-  , MAINTENANCE$a = "Dice на техобслуживании. Загляни позже."
+  , MAINTENANCE$a = "Dice Ð½Ð° Ñ‚ÐµÑ…Ð¾Ð±ÑÐ»ÑƒÐ¶Ð¸Ð²Ð°Ð½Ð¸Ð¸. Ð—Ð°Ð³Ð»ÑÐ½Ð¸ Ð¿Ð¾Ð·Ð¶Ðµ."
   , UNAVAILABLE$8 = {
-    TITLE: "Dice недоступен",
-    DESCRIPTION: "Игра временно отключена. Загляни позже.",
-    BACK: "Назад к играм"
+    TITLE: "Dice Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    DESCRIPTION: "Ð˜Ð³Ñ€Ð° Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð¾Ñ‚ÐºÐ»ÑŽÑ‡ÐµÐ½Ð°. Ð—Ð°Ð³Ð»ÑÐ½Ð¸ Ð¿Ð¾Ð·Ð¶Ðµ.",
+    BACK: "ÐÐ°Ð·Ð°Ð´ Ðº Ð¸Ð³Ñ€Ð°Ð¼"
 }
-  , LOAD_FAILED$4 = "Не удалось загрузить игру"
-  , LOAD_RETRY$2 = "Повторить"
-  , LOAD_RETRYING$2 = "Загрузка…"
+  , LOAD_FAILED$4 = "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð¸Ð³Ñ€Ñƒ"
+  , LOAD_RETRY$2 = "ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ"
+  , LOAD_RETRYING$2 = "Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ°â€¦"
   , CONTROLS$4 = {
-    MULTIPLIER: "Множитель",
-    HIGHER: "Больше",
-    LOWER: "Меньше",
-    CHANCE: "Шанс выигрыша",
-    FLIP_DIRECTION: "Переключить Больше/Меньше"
+    MULTIPLIER: "ÐœÐ½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ",
+    HIGHER: "Ð‘Ð¾Ð»ÑŒÑˆÐµ",
+    LOWER: "ÐœÐµÐ½ÑŒÑˆÐµ",
+    CHANCE: "Ð¨Ð°Ð½Ñ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ°",
+    FLIP_DIRECTION: "ÐŸÐµÑ€ÐµÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒ Ð‘Ð¾Ð»ÑŒÑˆÐµ/ÐœÐµÐ½ÑŒÑˆÐµ"
 }
   , LABELS$w = {
-    GIFT: "Подарок"
+    GIFT: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº"
 }
   , TOGGLE$8 = {
-    GIFTS: "Подарки",
+    GIFTS: "ÐŸÐ¾Ð´Ð°Ñ€ÐºÐ¸",
     TON: "GRAM"
 }
   , PLACEHOLDERS$c = {
-    TON_AMOUNT: "Сумма TON"
+    TON_AMOUNT: "Ð¡ÑƒÐ¼Ð¼Ð° TON"
 }
   , GIFT_MODAL$8 = {
-    TITLE: "Ставка подарками",
-    SELECT: "Выбери подарки",
-    SELECTED_one: "Выбран {{count}} подарок",
-    SELECTED_few: "Выбрано {{count}} подарка",
-    SELECTED_many: "Выбрано {{count}} подарков",
-    SELECTED_other: "Выбрано {{count}} подарка",
-    CONFIRM_one: "Поставить {{count}} подарок · {{amount}} TON",
-    CONFIRM_few: "Поставить {{count}} подарка · {{amount}} TON",
-    CONFIRM_many: "Поставить {{count}} подарков · {{amount}} TON",
-    CONFIRM_other: "Поставить {{count}} подарка · {{amount}} TON",
-    PRUNED_one: "{{count}} подарок больше не проходит по лимитам ставки",
-    PRUNED_few: "{{count}} подарка больше не проходят по лимитам ставки",
-    PRUNED_many: "{{count}} подарков больше не проходят по лимитам ставки",
-    PRUNED_other: "{{count}} подарка больше не проходят по лимитам ставки"
+    TITLE: "Ð¡Ñ‚Ð°Ð²ÐºÐ° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸",
+    SELECT: "Ð’Ñ‹Ð±ÐµÑ€Ð¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    SELECTED_one: "Ð’Ñ‹Ð±Ñ€Ð°Ð½ {{count}} Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    SELECTED_few: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð¾ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    SELECTED_many: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð¾ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²",
+    SELECTED_other: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð¾ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    CONFIRM_one: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ {{count}} Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Â· {{amount}} TON",
+    CONFIRM_few: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Â· {{amount}} TON",
+    CONFIRM_many: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Â· {{amount}} TON",
+    CONFIRM_other: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Â· {{amount}} TON",
+    PRUNED_one: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½Ðµ Ð¿Ñ€Ð¾Ñ…Ð¾Ð´Ð¸Ñ‚ Ð¿Ð¾ Ð»Ð¸Ð¼Ð¸Ñ‚Ð°Ð¼ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    PRUNED_few: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½Ðµ Ð¿Ñ€Ð¾Ñ…Ð¾Ð´ÑÑ‚ Ð¿Ð¾ Ð»Ð¸Ð¼Ð¸Ñ‚Ð°Ð¼ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    PRUNED_many: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½Ðµ Ð¿Ñ€Ð¾Ñ…Ð¾Ð´ÑÑ‚ Ð¿Ð¾ Ð»Ð¸Ð¼Ð¸Ñ‚Ð°Ð¼ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    PRUNED_other: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½Ðµ Ð¿Ñ€Ð¾Ñ…Ð¾Ð´ÑÑ‚ Ð¿Ð¾ Ð»Ð¸Ð¼Ð¸Ñ‚Ð°Ð¼ ÑÑ‚Ð°Ð²ÐºÐ¸"
 }
   , BET$5 = {
-    PLACE_TON: "Ставка {{amount}} TON",
-    PLACE_BET_EMPTY: "Сделать ставку",
-    PLACING: "Ставим…",
-    EMPTY_GIFTS: "Отправь подарки @giftbackpack и играй в Dice"
+    PLACE_TON: "Ð¡Ñ‚Ð°Ð²ÐºÐ° {{amount}} TON",
+    PLACE_BET_EMPTY: "Ð¡Ð´ÐµÐ»Ð°Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    PLACING: "Ð¡Ñ‚Ð°Ð²Ð¸Ð¼â€¦",
+    EMPTY_GIFTS: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ @giftbackpack Ð¸ Ð¸Ð³Ñ€Ð°Ð¹ Ð² Dice"
 }
   , HISTORY$8 = {
-    TITLE: "История",
-    BACK: "Назад",
-    EMPTY: "Бросков пока нет. Сделай первую ставку!",
-    YOUR_BET: "Твоя ставка",
-    MULTIPLIER: "Множитель",
-    PAYOUT: "Выплата",
-    LEGIT_CHECK: "Проверка честности"
+    TITLE: "Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ",
+    BACK: "ÐÐ°Ð·Ð°Ð´",
+    EMPTY: "Ð‘Ñ€Ð¾ÑÐºÐ¾Ð² Ð¿Ð¾ÐºÐ° Ð½ÐµÑ‚. Ð¡Ð´ÐµÐ»Ð°Ð¹ Ð¿ÐµÑ€Ð²ÑƒÑŽ ÑÑ‚Ð°Ð²ÐºÑƒ!",
+    YOUR_BET: "Ð¢Ð²Ð¾Ñ ÑÑ‚Ð°Ð²ÐºÐ°",
+    MULTIPLIER: "ÐœÐ½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ",
+    PAYOUT: "Ð’Ñ‹Ð¿Ð»Ð°Ñ‚Ð°",
+    LEGIT_CHECK: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ‡ÐµÑÑ‚Ð½Ð¾ÑÑ‚Ð¸"
 }
   , FAIRNESS$8 = {
-    NEXT_HASH: "Хеш следующего броска, зафиксирован до ставки",
-    UNAVAILABLE: "Для этого броска данные проверки недоступны",
-    SERVER_SEED_HASH: "Хеш серверного сида (зафиксирован до ставки)",
-    SERVER_SEED: "Серверный сид (раскрывается после броска)",
-    CLIENT_SEED: "Клиентский сид",
+    NEXT_HASH: "Ð¥ÐµÑˆ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ Ð±Ñ€Ð¾ÑÐºÐ°, Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½ Ð´Ð¾ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    UNAVAILABLE: "Ð”Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ Ð±Ñ€Ð¾ÑÐºÐ° Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹",
+    SERVER_SEED_HASH: "Ð¥ÐµÑˆ ÑÐµÑ€Ð²ÐµÑ€Ð½Ð¾Ð³Ð¾ ÑÐ¸Ð´Ð° (Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½ Ð´Ð¾ ÑÑ‚Ð°Ð²ÐºÐ¸)",
+    SERVER_SEED: "Ð¡ÐµÑ€Ð²ÐµÑ€Ð½Ñ‹Ð¹ ÑÐ¸Ð´ (Ñ€Ð°ÑÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð¿Ð¾ÑÐ»Ðµ Ð±Ñ€Ð¾ÑÐºÐ°)",
+    CLIENT_SEED: "ÐšÐ»Ð¸ÐµÐ½Ñ‚ÑÐºÐ¸Ð¹ ÑÐ¸Ð´",
     NONCE: "Nonce",
-    ROLL: "Выпавшее число",
-    HASH_CHECK: "Хеш сида",
-    ROLL_CHECK: "Число",
-    VALID_SHORT: "Совпадает",
-    INVALID_SHORT: "Не совпадает",
-    ROLL_MATCH: "Совпадает",
-    ROLL_MISMATCH: "Не совпадает",
-    CALCULATED: "Вычисленный результат",
-    EXPECTED: "Ожидаемый результат",
-    VERIFY: "Проверить рандом",
-    VERIFY_AGAIN: "Проверить ещё раз",
-    INVALID: "Проверка не пройдена",
-    COPY: "Скопировать",
-    COPIED: "Скопировано",
-    NOTE: "Проверено. Сиды были зафиксированы до твоей ставки, а браузер только что пересчитал обе проверки: SHA-256 хеш серверного сида и число как floor(HMAC-SHA256(serverSeed, clientSeed:nonce) · 100).",
-    COPY_FAILED: "Не удалось скопировать, выделите вручную"
+    ROLL: "Ð’Ñ‹Ð¿Ð°Ð²ÑˆÐµÐµ Ñ‡Ð¸ÑÐ»Ð¾",
+    HASH_CHECK: "Ð¥ÐµÑˆ ÑÐ¸Ð´Ð°",
+    ROLL_CHECK: "Ð§Ð¸ÑÐ»Ð¾",
+    VALID_SHORT: "Ð¡Ð¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    INVALID_SHORT: "ÐÐµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    ROLL_MATCH: "Ð¡Ð¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    ROLL_MISMATCH: "ÐÐµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    CALCULATED: "Ð’Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð½Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚",
+    EXPECTED: "ÐžÐ¶Ð¸Ð´Ð°ÐµÐ¼Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚",
+    VERIFY: "ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ñ€Ð°Ð½Ð´Ð¾Ð¼",
+    VERIFY_AGAIN: "ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·",
+    INVALID: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ðµ Ð¿Ñ€Ð¾Ð¹Ð´ÐµÐ½Ð°",
+    COPY: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ",
+    COPIED: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾",
+    NOTE: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐµÐ½Ð¾. Ð¡Ð¸Ð´Ñ‹ Ð±Ñ‹Ð»Ð¸ Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ñ‹ Ð´Ð¾ Ñ‚Ð²Ð¾ÐµÐ¹ ÑÑ‚Ð°Ð²ÐºÐ¸, Ð° Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ‡Ñ‚Ð¾ Ð¿ÐµÑ€ÐµÑÑ‡Ð¸Ñ‚Ð°Ð» Ð¾Ð±Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸: SHA-256 Ñ…ÐµÑˆ ÑÐµÑ€Ð²ÐµÑ€Ð½Ð¾Ð³Ð¾ ÑÐ¸Ð´Ð° Ð¸ Ñ‡Ð¸ÑÐ»Ð¾ ÐºÐ°Ðº floor(HMAC-SHA256(serverSeed, clientSeed:nonce) Â· 100).",
+    COPY_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, Ð²Ñ‹Ð´ÐµÐ»Ð¸Ñ‚Ðµ Ð²Ñ€ÑƒÑ‡Ð½ÑƒÑŽ"
 }
   , HOW_IT_WORKS$a = {
-    TITLE: "Как это работает",
-    CLOSE: "Закрыть",
-    STEP_1_TITLE: "Выберите цель",
-    STEP_1_BODY: "Выберите число от 0 до 100 и укажите, должен ли результат выпасть выше или ниже него.",
-    STEP_2_TITLE: "Выберите риск и награду",
-    STEP_2_BODY: "Выбранное число определяет шанс выигрыша и множитель. Чем ниже шанс выигрыша, тем выше потенциальный множитель.",
-    STEP_3_TITLE: "Сделайте ставку",
-    STEP_3_BODY: "Используйте TON или выберите подарки из рюкзака. Каждый выбранный подарок играет как отдельная ставка.",
-    STEP_4_TITLE: "Бросайте и выигрывайте",
-    STEP_4_BODY: "Генерируется случайное число от 0.00 до 99.99. Если оно выпадает с выбранной вами стороны от цели, ставка умножается на указанный множитель. Небольшие выигрыши мгновенно зачисляются на баланс в TON. Если сумма выигрыша достаточно большая, вместо TON вы получите ближайший по стоимости доступный подарок. Стоимость подарка может отличаться от точной суммы выигрыша."
+    TITLE: "ÐšÐ°Ðº ÑÑ‚Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚",
+    CLOSE: "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ",
+    STEP_1_TITLE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ†ÐµÐ»ÑŒ",
+    STEP_1_BODY: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð¾Ñ‚ 0 Ð´Ð¾ 100 Ð¸ ÑƒÐºÐ°Ð¶Ð¸Ñ‚Ðµ, Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð»Ð¸ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ Ð²Ñ‹Ð¿Ð°ÑÑ‚ÑŒ Ð²Ñ‹ÑˆÐµ Ð¸Ð»Ð¸ Ð½Ð¸Ð¶Ðµ Ð½ÐµÐ³Ð¾.",
+    STEP_2_TITLE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ€Ð¸ÑÐº Ð¸ Ð½Ð°Ð³Ñ€Ð°Ð´Ñƒ",
+    STEP_2_BODY: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÑ‚ ÑˆÐ°Ð½Ñ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ° Ð¸ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ. Ð§ÐµÐ¼ Ð½Ð¸Ð¶Ðµ ÑˆÐ°Ð½Ñ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ°, Ñ‚ÐµÐ¼ Ð²Ñ‹ÑˆÐµ Ð¿Ð¾Ñ‚ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ.",
+    STEP_3_TITLE: "Ð¡Ð´ÐµÐ»Ð°Ð¹Ñ‚Ðµ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    STEP_3_BODY: "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐ¹Ñ‚Ðµ TON Ð¸Ð»Ð¸ Ð²Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð¸Ð· Ñ€ÑŽÐºÐ·Ð°ÐºÐ°. ÐšÐ°Ð¶Ð´Ñ‹Ð¹ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð¸Ð³Ñ€Ð°ÐµÑ‚ ÐºÐ°Ðº Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°.",
+    STEP_4_TITLE: "Ð‘Ñ€Ð¾ÑÐ°Ð¹Ñ‚Ðµ Ð¸ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ð²Ð°Ð¹Ñ‚Ðµ",
+    STEP_4_BODY: "Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€ÑƒÐµÑ‚ÑÑ ÑÐ»ÑƒÑ‡Ð°Ð¹Ð½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð¾Ñ‚ 0.00 Ð´Ð¾ 99.99. Ð•ÑÐ»Ð¸ Ð¾Ð½Ð¾ Ð²Ñ‹Ð¿Ð°Ð´Ð°ÐµÑ‚ Ñ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð¹ Ð²Ð°Ð¼Ð¸ ÑÑ‚Ð¾Ñ€Ð¾Ð½Ñ‹ Ð¾Ñ‚ Ñ†ÐµÐ»Ð¸, ÑÑ‚Ð°Ð²ÐºÐ° ÑƒÐ¼Ð½Ð¾Ð¶Ð°ÐµÑ‚ÑÑ Ð½Ð° ÑƒÐºÐ°Ð·Ð°Ð½Ð½Ñ‹Ð¹ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ. ÐÐµÐ±Ð¾Ð»ÑŒÑˆÐ¸Ðµ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ¸ Ð¼Ð³Ð½Ð¾Ð²ÐµÐ½Ð½Ð¾ Ð·Ð°Ñ‡Ð¸ÑÐ»ÑÑŽÑ‚ÑÑ Ð½Ð° Ð±Ð°Ð»Ð°Ð½Ñ Ð² TON. Ð•ÑÐ»Ð¸ ÑÑƒÐ¼Ð¼Ð° Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ° Ð´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ð¾Ð»ÑŒÑˆÐ°Ñ, Ð²Ð¼ÐµÑÑ‚Ð¾ TON Ð²Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚Ðµ Ð±Ð»Ð¸Ð¶Ð°Ð¹ÑˆÐ¸Ð¹ Ð¿Ð¾ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚Ð¸ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº. Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð¼Ð¾Ð¶ÐµÑ‚ Ð¾Ñ‚Ð»Ð¸Ñ‡Ð°Ñ‚ÑŒÑÑ Ð¾Ñ‚ Ñ‚Ð¾Ñ‡Ð½Ð¾Ð¹ ÑÑƒÐ¼Ð¼Ñ‹ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ°."
 }
   , TOASTS$8 = {
-    MAX_BET: "Максимальная ставка: {{max}} TON",
-    MIN_BET: "Минимальная ставка: {{min}} TON",
-    GIFTS_FAILED_one: "{{count}} ставка подарком не прошла",
-    GIFTS_FAILED_few: "{{count}} ставки подарками не прошли",
-    GIFTS_FAILED_many: "{{count}} ставок подарками не прошло",
-    GIFTS_FAILED_other: "{{count}} ставки подарками не прошли",
+    MAX_BET: "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°: {{max}} TON",
+    MIN_BET: "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°: {{min}} TON",
+    GIFTS_FAILED_one: "{{count}} ÑÑ‚Ð°Ð²ÐºÐ° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð¼ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð°",
+    GIFTS_FAILED_few: "{{count}} ÑÑ‚Ð°Ð²ÐºÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¸",
+    GIFTS_FAILED_many: "{{count}} ÑÑ‚Ð°Ð²Ð¾Ðº Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¾",
+    GIFTS_FAILED_other: "{{count}} ÑÑ‚Ð°Ð²ÐºÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¸",
     ERROR: {
-        UNAUTHORIZED: "Сессия истекла. Перезапусти приложение.",
-        BAD_INPUT: "Некорректная ставка. Поправь и попробуй снова.",
-        BET_TOO_SMALL: "Ставка ниже минимума",
-        BET_TOO_LARGE: "Ставка выше максимума",
-        MAX_PAYOUT_EXCEEDED: "Потенциальный выигрыш выше лимита. Уменьши ставку или множитель.",
-        INSUFFICIENT_BALANCE: "Недостаточно баланса",
-        GIFT_NOT_FOUND: "Подарок не найден. Обнови инвентарь.",
-        GIFT_NOT_OWNED: "Это не твой подарок",
-        GIFT_LOCKED: "Подарок занят. Обнови инвентарь.",
-        RATE_LIMITED: "Слишком быстро. Чуть помедленнее.",
-        MAINTENANCE: "Dice на техобслуживании",
-        DEDUP_TIMEOUT: "Сбой сети. Попробуй ещё раз.",
-        NOT_CONNECTED: "Нет соединения. Переподключаемся…",
-        ACK_TIMEOUT: "Сервер не ответил. Попробуй ещё раз.",
-        INTERNAL: "Что-то пошло не так. Попробуй ещё раз."
+        UNAUTHORIZED: "Ð¡ÐµÑÑÐ¸Ñ Ð¸ÑÑ‚ÐµÐºÐ»Ð°. ÐŸÐµÑ€ÐµÐ·Ð°Ð¿ÑƒÑÑ‚Ð¸ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ.",
+        BAD_INPUT: "ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°. ÐŸÐ¾Ð¿Ñ€Ð°Ð²ÑŒ Ð¸ Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ ÑÐ½Ð¾Ð²Ð°.",
+        BET_TOO_SMALL: "Ð¡Ñ‚Ð°Ð²ÐºÐ° Ð½Ð¸Ð¶Ðµ Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼Ð°",
+        BET_TOO_LARGE: "Ð¡Ñ‚Ð°Ð²ÐºÐ° Ð²Ñ‹ÑˆÐµ Ð¼Ð°ÐºÑÐ¸Ð¼ÑƒÐ¼Ð°",
+        MAX_PAYOUT_EXCEEDED: "ÐŸÐ¾Ñ‚ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ Ð²Ñ‹ÑˆÐµ Ð»Ð¸Ð¼Ð¸Ñ‚Ð°. Ð£Ð¼ÐµÐ½ÑŒÑˆÐ¸ ÑÑ‚Ð°Ð²ÐºÑƒ Ð¸Ð»Ð¸ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ.",
+        INSUFFICIENT_BALANCE: "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ð°Ð»Ð°Ð½ÑÐ°",
+        GIFT_NOT_FOUND: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½. ÐžÐ±Ð½Ð¾Ð²Ð¸ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ.",
+        GIFT_NOT_OWNED: "Ð­Ñ‚Ð¾ Ð½Ðµ Ñ‚Ð²Ð¾Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+        GIFT_LOCKED: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð·Ð°Ð½ÑÑ‚. ÐžÐ±Ð½Ð¾Ð²Ð¸ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ.",
+        RATE_LIMITED: "Ð¡Ð»Ð¸ÑˆÐºÐ¾Ð¼ Ð±Ñ‹ÑÑ‚Ñ€Ð¾. Ð§ÑƒÑ‚ÑŒ Ð¿Ð¾Ð¼ÐµÐ´Ð»ÐµÐ½Ð½ÐµÐµ.",
+        MAINTENANCE: "Dice Ð½Ð° Ñ‚ÐµÑ…Ð¾Ð±ÑÐ»ÑƒÐ¶Ð¸Ð²Ð°Ð½Ð¸Ð¸",
+        DEDUP_TIMEOUT: "Ð¡Ð±Ð¾Ð¹ ÑÐµÑ‚Ð¸. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·.",
+        NOT_CONNECTED: "ÐÐµÑ‚ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ñ. ÐŸÐµÑ€ÐµÐ¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ÑÑâ€¦",
+        ACK_TIMEOUT: "Ð¡ÐµÑ€Ð²ÐµÑ€ Ð½Ðµ Ð¾Ñ‚Ð²ÐµÑ‚Ð¸Ð». ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·.",
+        INTERNAL: "Ð§Ñ‚Ð¾-Ñ‚Ð¾ Ð¿Ð¾ÑˆÐ»Ð¾ Ð½Ðµ Ñ‚Ð°Ðº. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·."
     }
 }
   , ruDice = {
@@ -55080,124 +55080,124 @@ It's 100% free, and you can try your luck every 24 hours!`,
     HOW_IT_WORKS: HOW_IT_WORKS$a,
     TOASTS: TOASTS$8
 }
-  , MAINTENANCE$9 = "Plinko на техобслуживании — загляни позже"
+  , MAINTENANCE$9 = "Plinko Ð½Ð° Ñ‚ÐµÑ…Ð¾Ð±ÑÐ»ÑƒÐ¶Ð¸Ð²Ð°Ð½Ð¸Ð¸ â€” Ð·Ð°Ð³Ð»ÑÐ½Ð¸ Ð¿Ð¾Ð·Ð¶Ðµ"
   , UNAVAILABLE$7 = {
-    TITLE: "Plinko недоступен",
-    DESCRIPTION: "Игра временно отключена. Загляни позже.",
-    BACK: "Назад к играм"
+    TITLE: "Plinko Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    DESCRIPTION: "Ð˜Ð³Ñ€Ð° Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð¾Ñ‚ÐºÐ»ÑŽÑ‡ÐµÐ½Ð°. Ð—Ð°Ð³Ð»ÑÐ½Ð¸ Ð¿Ð¾Ð·Ð¶Ðµ.",
+    BACK: "ÐÐ°Ð·Ð°Ð´ Ðº Ð¸Ð³Ñ€Ð°Ð¼"
 }
   , DIFFICULTY$2 = {
-    EASY: "Лёгкая",
-    MEDIUM: "Средняя",
-    HARD: "Сложная"
+    EASY: "Ð›Ñ‘Ð³ÐºÐ°Ñ",
+    MEDIUM: "Ð¡Ñ€ÐµÐ´Ð½ÑÑ",
+    HARD: "Ð¡Ð»Ð¾Ð¶Ð½Ð°Ñ"
 }
   , LABELS$v = {
-    GIFT: "Подарок",
-    AUTO_BET: "Авто-ставка",
-    AUTO_COUNT: "Броски",
-    AUTO_INTERVAL: "Интервал",
-    SECONDS: "сек"
+    GIFT: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº",
+    AUTO_BET: "ÐÐ²Ñ‚Ð¾-ÑÑ‚Ð°Ð²ÐºÐ°",
+    AUTO_COUNT: "Ð‘Ñ€Ð¾ÑÐºÐ¸",
+    AUTO_INTERVAL: "Ð˜Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»",
+    SECONDS: "ÑÐµÐº"
 }
   , BANNER$4 = {
     TITLE: "PLINKO",
     NEW: "New",
-    TAGLINE: "Брось шарик · выигрыш до ×1000"
+    TAGLINE: "Ð‘Ñ€Ð¾ÑÑŒ ÑˆÐ°Ñ€Ð¸Ðº Â· Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ Ð´Ð¾ Ã—1000"
 }
   , PLAY_HUB$4 = {
     TITLE: "Play Hub",
     TITLE_UPPER: "PLAY HUB"
 }
   , TOGGLE$7 = {
-    GIFTS: "Подарки",
+    GIFTS: "ÐŸÐ¾Ð´Ð°Ñ€ÐºÐ¸",
     TON: "TON"
 }
   , PLACEHOLDERS$b = {
-    TON_AMOUNT: "Сумма TON"
+    TON_AMOUNT: "Ð¡ÑƒÐ¼Ð¼Ð° TON"
 }
   , ACTIONS$n = {
-    PLACE_BET: "Сделать ставку {{amount}} TON",
-    PLACE_BET_EMPTY: "Сделать ставку",
-    MAINTENANCE: "Техработы"
+    PLACE_BET: "Ð¡Ð´ÐµÐ»Ð°Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ {{amount}} TON",
+    PLACE_BET_EMPTY: "Ð¡Ð´ÐµÐ»Ð°Ñ‚ÑŒ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    MAINTENANCE: "Ð¢ÐµÑ…Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"
 }
   , HISTORY$7 = {
-    TITLE: "История",
-    EMPTY: "Пока нет бросков",
-    WIN: "Выигрыш"
+    TITLE: "Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ",
+    EMPTY: "ÐŸÐ¾ÐºÐ° Ð½ÐµÑ‚ Ð±Ñ€Ð¾ÑÐºÐ¾Ð²",
+    WIN: "Ð’Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ"
 }
   , FAIRNESS$7 = {
-    NEXT_HASH: "Хеш следующего броска (зафиксирован до ставки)",
-    SERVER_SEED_HASH: "Хеш серверного сида (зафиксирован до ставки)",
-    SERVER_SEED: "Серверный сид (раскрывается после броска)",
-    CLIENT_SEED: "Клиентский сид",
+    NEXT_HASH: "Ð¥ÐµÑˆ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ Ð±Ñ€Ð¾ÑÐºÐ° (Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½ Ð´Ð¾ ÑÑ‚Ð°Ð²ÐºÐ¸)",
+    SERVER_SEED_HASH: "Ð¥ÐµÑˆ ÑÐµÑ€Ð²ÐµÑ€Ð½Ð¾Ð³Ð¾ ÑÐ¸Ð´Ð° (Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½ Ð´Ð¾ ÑÑ‚Ð°Ð²ÐºÐ¸)",
+    SERVER_SEED: "Ð¡ÐµÑ€Ð²ÐµÑ€Ð½Ñ‹Ð¹ ÑÐ¸Ð´ (Ñ€Ð°ÑÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð¿Ð¾ÑÐ»Ðµ Ð±Ñ€Ð¾ÑÐºÐ°)",
+    CLIENT_SEED: "ÐšÐ»Ð¸ÐµÐ½Ñ‚ÑÐºÐ¸Ð¹ ÑÐ¸Ð´",
     NONCE: "Nonce",
-    VERIFY: "Проверить рандом",
-    VERIFY_AGAIN: "Проверить ещё раз",
-    INVALID: "Проверка не пройдена!",
-    ROLL: "Случайное число броска",
-    HASH_CHECK: "Хеш сида",
-    ROLL_CHECK: "Число",
-    VALID_SHORT: "Совпадает",
-    INVALID_SHORT: "Не совпадает",
-    ROLL_MATCH: "Совпадает",
-    ROLL_MISMATCH: "Не совпадает",
-    CALCULATED: "Вычисленный результат",
-    EXPECTED: "Ожидаемый результат",
-    COPY: "Скопировать",
-    COPIED: "Скопировано",
-    UNAVAILABLE: "Для этого броска данные проверки недоступны",
-    NOTE: "Проверка выполняется прямо в вашем браузере: SHA-256 сида и HMAC-SHA256(serverSeed, clientSeed:nonce) пересчитываются заново и доказывают, что результат был зафиксирован до ставки. Точные вероятности лунок мы не публикуем, это коммерческая информация.",
-    COPY_FAILED: "Не удалось скопировать, выделите вручную"
+    VERIFY: "ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ñ€Ð°Ð½Ð´Ð¾Ð¼",
+    VERIFY_AGAIN: "ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·",
+    INVALID: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ðµ Ð¿Ñ€Ð¾Ð¹Ð´ÐµÐ½Ð°!",
+    ROLL: "Ð¡Ð»ÑƒÑ‡Ð°Ð¹Ð½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð±Ñ€Ð¾ÑÐºÐ°",
+    HASH_CHECK: "Ð¥ÐµÑˆ ÑÐ¸Ð´Ð°",
+    ROLL_CHECK: "Ð§Ð¸ÑÐ»Ð¾",
+    VALID_SHORT: "Ð¡Ð¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    INVALID_SHORT: "ÐÐµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    ROLL_MATCH: "Ð¡Ð¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    ROLL_MISMATCH: "ÐÐµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    CALCULATED: "Ð’Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð½Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚",
+    EXPECTED: "ÐžÐ¶Ð¸Ð´Ð°ÐµÐ¼Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚",
+    COPY: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ",
+    COPIED: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾",
+    UNAVAILABLE: "Ð”Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ Ð±Ñ€Ð¾ÑÐºÐ° Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹",
+    NOTE: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ÑÑ Ð¿Ñ€ÑÐ¼Ð¾ Ð² Ð²Ð°ÑˆÐµÐ¼ Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ðµ: SHA-256 ÑÐ¸Ð´Ð° Ð¸ HMAC-SHA256(serverSeed, clientSeed:nonce) Ð¿ÐµÑ€ÐµÑÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÑŽÑ‚ÑÑ Ð·Ð°Ð½Ð¾Ð²Ð¾ Ð¸ Ð´Ð¾ÐºÐ°Ð·Ñ‹Ð²Ð°ÑŽÑ‚, Ñ‡Ñ‚Ð¾ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ Ð±Ñ‹Ð» Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½ Ð´Ð¾ ÑÑ‚Ð°Ð²ÐºÐ¸. Ð¢Ð¾Ñ‡Ð½Ñ‹Ðµ Ð²ÐµÑ€Ð¾ÑÑ‚Ð½Ð¾ÑÑ‚Ð¸ Ð»ÑƒÐ½Ð¾Ðº Ð¼Ñ‹ Ð½Ðµ Ð¿ÑƒÐ±Ð»Ð¸ÐºÑƒÐµÐ¼, ÑÑ‚Ð¾ ÐºÐ¾Ð¼Ð¼ÐµÑ€Ñ‡ÐµÑÐºÐ°Ñ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ.",
+    COPY_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, Ð²Ñ‹Ð´ÐµÐ»Ð¸Ñ‚Ðµ Ð²Ñ€ÑƒÑ‡Ð½ÑƒÑŽ"
 }
   , REPLAY$2 = {
-    TITLE: "Реплей",
-    REPEAT: "Повторить",
-    CLOSE: "Закрыть"
+    TITLE: "Ð ÐµÐ¿Ð»ÐµÐ¹",
+    REPEAT: "ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ",
+    CLOSE: "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ"
 }
   , HOW_IT_WORKS$9 = {
-    TITLE: "Как это работает",
-    STEP_1_TITLE: "Выберите сложность",
-    STEP_1_BODY: "Чем больше рядов, тем выше потенциальные множители и выше риск.",
-    STEP_2_TITLE: "Сделайте ставку",
-    STEP_2_BODY: "Используйте TON или выберите подарки из рюкзака. Каждый выбранный подарок падает как отдельный шарик.",
-    STEP_3_TITLE: "Следите за падением",
-    STEP_3_BODY: "Шарик отскакивает от колышков и попадает в одну из ячеек. Множитель этой ячейки определяет ваш выигрыш.",
-    STEP_4_TITLE: "Получите выигрыш",
-    STEP_4_BODY: "Ваша ставка умножается на множитель ячейки, в которую попал шарик. Небольшие выигрыши мгновенно зачисляются на баланс в TON. Если сумма выигрыша достаточно большая, вместо TON вы получите ближайший по стоимости доступный подарок. Стоимость подарка может отличаться от точной суммы выигрыша.",
-    CLOSE: "Закрыть"
+    TITLE: "ÐšÐ°Ðº ÑÑ‚Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚",
+    STEP_1_TITLE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÑÐ»Ð¾Ð¶Ð½Ð¾ÑÑ‚ÑŒ",
+    STEP_1_BODY: "Ð§ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ Ñ€ÑÐ´Ð¾Ð², Ñ‚ÐµÐ¼ Ð²Ñ‹ÑˆÐµ Ð¿Ð¾Ñ‚ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ðµ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»Ð¸ Ð¸ Ð²Ñ‹ÑˆÐµ Ñ€Ð¸ÑÐº.",
+    STEP_2_TITLE: "Ð¡Ð´ÐµÐ»Ð°Ð¹Ñ‚Ðµ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    STEP_2_BODY: "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐ¹Ñ‚Ðµ TON Ð¸Ð»Ð¸ Ð²Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð¸Ð· Ñ€ÑŽÐºÐ·Ð°ÐºÐ°. ÐšÐ°Ð¶Ð´Ñ‹Ð¹ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð¿Ð°Ð´Ð°ÐµÑ‚ ÐºÐ°Ðº Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ñ‹Ð¹ ÑˆÐ°Ñ€Ð¸Ðº.",
+    STEP_3_TITLE: "Ð¡Ð»ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð° Ð¿Ð°Ð´ÐµÐ½Ð¸ÐµÐ¼",
+    STEP_3_BODY: "Ð¨Ð°Ñ€Ð¸Ðº Ð¾Ñ‚ÑÐºÐ°ÐºÐ¸Ð²Ð°ÐµÑ‚ Ð¾Ñ‚ ÐºÐ¾Ð»Ñ‹ÑˆÐºÐ¾Ð² Ð¸ Ð¿Ð¾Ð¿Ð°Ð´Ð°ÐµÑ‚ Ð² Ð¾Ð´Ð½Ñƒ Ð¸Ð· ÑÑ‡ÐµÐµÐº. ÐœÐ½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ ÑÑ‚Ð¾Ð¹ ÑÑ‡ÐµÐ¹ÐºÐ¸ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÑ‚ Ð²Ð°Ñˆ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ.",
+    STEP_4_TITLE: "ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚Ðµ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ",
+    STEP_4_BODY: "Ð’Ð°ÑˆÐ° ÑÑ‚Ð°Ð²ÐºÐ° ÑƒÐ¼Ð½Ð¾Ð¶Ð°ÐµÑ‚ÑÑ Ð½Ð° Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ ÑÑ‡ÐµÐ¹ÐºÐ¸, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€ÑƒÑŽ Ð¿Ð¾Ð¿Ð°Ð» ÑˆÐ°Ñ€Ð¸Ðº. ÐÐµÐ±Ð¾Ð»ÑŒÑˆÐ¸Ðµ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ¸ Ð¼Ð³Ð½Ð¾Ð²ÐµÐ½Ð½Ð¾ Ð·Ð°Ñ‡Ð¸ÑÐ»ÑÑŽÑ‚ÑÑ Ð½Ð° Ð±Ð°Ð»Ð°Ð½Ñ Ð² TON. Ð•ÑÐ»Ð¸ ÑÑƒÐ¼Ð¼Ð° Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ° Ð´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ð¾Ð»ÑŒÑˆÐ°Ñ, Ð²Ð¼ÐµÑÑ‚Ð¾ TON Ð²Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚Ðµ Ð±Ð»Ð¸Ð¶Ð°Ð¹ÑˆÐ¸Ð¹ Ð¿Ð¾ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚Ð¸ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº. Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð¼Ð¾Ð¶ÐµÑ‚ Ð¾Ñ‚Ð»Ð¸Ñ‡Ð°Ñ‚ÑŒÑÑ Ð¾Ñ‚ Ñ‚Ð¾Ñ‡Ð½Ð¾Ð¹ ÑÑƒÐ¼Ð¼Ñ‹ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ°.",
+    CLOSE: "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ"
 }
   , GIFT_MODAL$7 = {
-    TITLE: "Ставка подарками",
-    SELECT: "Выберите подарки",
-    SELECTED_one: "Выбран {{count}} подарок",
-    SELECTED_few: "Выбрано {{count}} подарка",
-    SELECTED_many: "Выбрано {{count}} подарков",
-    SELECTED_other: "Выбрано {{count}} подарка",
-    CONFIRM_one: "Бросить {{count}} подарок · {{amount}} TON",
-    CONFIRM_few: "Бросить {{count}} подарка · {{amount}} TON",
-    CONFIRM_many: "Бросить {{count}} подарков · {{amount}} TON",
-    CONFIRM_other: "Бросить {{count}} подарка · {{amount}} TON"
+    TITLE: "Ð¡Ñ‚Ð°Ð²ÐºÐ° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸",
+    SELECT: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸",
+    SELECTED_one: "Ð’Ñ‹Ð±Ñ€Ð°Ð½ {{count}} Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    SELECTED_few: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð¾ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    SELECTED_many: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð¾ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²",
+    SELECTED_other: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð¾ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    CONFIRM_one: "Ð‘Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ {{count}} Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Â· {{amount}} TON",
+    CONFIRM_few: "Ð‘Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Â· {{amount}} TON",
+    CONFIRM_many: "Ð‘Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Â· {{amount}} TON",
+    CONFIRM_other: "Ð‘Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Â· {{amount}} TON"
 }
   , TOASTS$7 = {
-    MAX_BET: "Максимальная ставка в этом режиме: {{max}} TON",
-    MIN_BET: "Минимальная ставка: {{min}} TON",
-    AUTO_STOPPED_BALANCE: "Авто-ставка остановлена: недостаточно баланса",
-    GIFTS_FAILED_one: "{{count}} ставка подарком не прошла",
-    GIFTS_FAILED_few: "{{count}} ставки подарками не прошли",
-    GIFTS_FAILED_many: "{{count}} ставок подарками не прошло",
-    GIFTS_FAILED_other: "{{count}} ставки подарками не прошли",
+    MAX_BET: "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ° Ð² ÑÑ‚Ð¾Ð¼ Ñ€ÐµÐ¶Ð¸Ð¼Ðµ: {{max}} TON",
+    MIN_BET: "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°: {{min}} TON",
+    AUTO_STOPPED_BALANCE: "ÐÐ²Ñ‚Ð¾-ÑÑ‚Ð°Ð²ÐºÐ° Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð°: Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ð°Ð»Ð°Ð½ÑÐ°",
+    GIFTS_FAILED_one: "{{count}} ÑÑ‚Ð°Ð²ÐºÐ° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð¼ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð°",
+    GIFTS_FAILED_few: "{{count}} ÑÑ‚Ð°Ð²ÐºÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¸",
+    GIFTS_FAILED_many: "{{count}} ÑÑ‚Ð°Ð²Ð¾Ðº Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¾",
+    GIFTS_FAILED_other: "{{count}} ÑÑ‚Ð°Ð²ÐºÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¸",
     ERROR: {
-        BAD_INPUT: "Некорректная ставка",
-        BET_TOO_SMALL: "Ставка меньше минимальной",
-        BET_TOO_LARGE: "Ставка выше максимума для этой сложности",
-        INSUFFICIENT_BALANCE: "Недостаточно баланса",
-        GIFT_NOT_FOUND: "Подарок не найден",
-        GIFT_NOT_OWNED: "Это не твой подарок",
-        GIFT_LOCKED: "Подарок уже в игре, обнови инвентарь",
-        RATE_LIMITED: "Слишком быстро! Попробуй через секунду",
-        MAINTENANCE: "Plinko на техработах",
-        DEDUP_TIMEOUT: "Сбой соединения, попробуй ещё раз",
-        UNAUTHORIZED: "Сессия истекла, перезапусти приложение",
-        INTERNAL: "Что-то пошло не так, попробуй ещё раз"
+        BAD_INPUT: "ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°",
+        BET_TOO_SMALL: "Ð¡Ñ‚Ð°Ð²ÐºÐ° Ð¼ÐµÐ½ÑŒÑˆÐµ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ð¹",
+        BET_TOO_LARGE: "Ð¡Ñ‚Ð°Ð²ÐºÐ° Ð²Ñ‹ÑˆÐµ Ð¼Ð°ÐºÑÐ¸Ð¼ÑƒÐ¼Ð° Ð´Ð»Ñ ÑÑ‚Ð¾Ð¹ ÑÐ»Ð¾Ð¶Ð½Ð¾ÑÑ‚Ð¸",
+        INSUFFICIENT_BALANCE: "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ð°Ð»Ð°Ð½ÑÐ°",
+        GIFT_NOT_FOUND: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½",
+        GIFT_NOT_OWNED: "Ð­Ñ‚Ð¾ Ð½Ðµ Ñ‚Ð²Ð¾Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+        GIFT_LOCKED: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº ÑƒÐ¶Ðµ Ð² Ð¸Ð³Ñ€Ðµ, Ð¾Ð±Ð½Ð¾Ð²Ð¸ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ",
+        RATE_LIMITED: "Ð¡Ð»Ð¸ÑˆÐºÐ¾Ð¼ Ð±Ñ‹ÑÑ‚Ñ€Ð¾! ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ Ñ‡ÐµÑ€ÐµÐ· ÑÐµÐºÑƒÐ½Ð´Ñƒ",
+        MAINTENANCE: "Plinko Ð½Ð° Ñ‚ÐµÑ…Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ñ…",
+        DEDUP_TIMEOUT: "Ð¡Ð±Ð¾Ð¹ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ñ, Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·",
+        UNAUTHORIZED: "Ð¡ÐµÑÑÐ¸Ñ Ð¸ÑÑ‚ÐµÐºÐ»Ð°, Ð¿ÐµÑ€ÐµÐ·Ð°Ð¿ÑƒÑÑ‚Ð¸ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+        INTERNAL: "Ð§Ñ‚Ð¾-Ñ‚Ð¾ Ð¿Ð¾ÑˆÐ»Ð¾ Ð½Ðµ Ñ‚Ð°Ðº, Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·"
     }
 }
   , ruPlinko = {
@@ -55218,164 +55218,164 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TOASTS: TOASTS$7
 }
   , HEADER$9 = {
-    BACK: "Назад",
-    HISTORY: "История",
-    HELP: "Как играть",
-    TOPUP: "Пополнить"
+    BACK: "ÐÐ°Ð·Ð°Ð´",
+    HISTORY: "Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ",
+    HELP: "ÐšÐ°Ðº Ð¸Ð³Ñ€Ð°Ñ‚ÑŒ",
+    TOPUP: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ"
 }
   , ruGameKit = {
     HEADER: HEADER$9
 }
   , HEADER$8 = {
-    TITLE: "Мины",
-    SUBTITLE: "Находи кристаллы, избегай мин",
-    BACK: "Назад",
-    HISTORY: "История",
-    HELP: "Как это работает",
-    TOPUP: "Пополнить"
+    TITLE: "ÐœÐ¸Ð½Ñ‹",
+    SUBTITLE: "ÐÐ°Ñ…Ð¾Ð´Ð¸ ÐºÑ€Ð¸ÑÑ‚Ð°Ð»Ð»Ñ‹, Ð¸Ð·Ð±ÐµÐ³Ð°Ð¹ Ð¼Ð¸Ð½",
+    BACK: "ÐÐ°Ð·Ð°Ð´",
+    HISTORY: "Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ",
+    HELP: "ÐšÐ°Ðº ÑÑ‚Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚",
+    TOPUP: "ÐŸÐ¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ"
 }
-  , MAINTENANCE$8 = "Mines на техработах. Загляните позже."
+  , MAINTENANCE$8 = "Mines Ð½Ð° Ñ‚ÐµÑ…Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ñ…. Ð—Ð°Ð³Ð»ÑÐ½Ð¸Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ."
   , UNAVAILABLE$6 = {
-    TITLE: "Mines недоступен",
-    DESCRIPTION: "Игра временно выключена. Загляните позже.",
-    BACK: "К играм"
+    TITLE: "Mines Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    DESCRIPTION: "Ð˜Ð³Ñ€Ð° Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð²Ñ‹ÐºÐ»ÑŽÑ‡ÐµÐ½Ð°. Ð—Ð°Ð³Ð»ÑÐ½Ð¸Ñ‚Ðµ Ð¿Ð¾Ð·Ð¶Ðµ.",
+    BACK: "Ðš Ð¸Ð³Ñ€Ð°Ð¼"
 }
   , NAVIGATION$4 = {
-    MAX_WIN: "Максимум",
-    MINES: "Мины"
+    MAX_WIN: "ÐœÐ°ÐºÑÐ¸Ð¼ÑƒÐ¼",
+    MINES: "ÐœÐ¸Ð½Ñ‹"
 }
   , ACTIONS$m = {
-    AUTOBET_DISABLE: "Выключить",
-    AUTOBET_DONE: "Готово",
-    PLAY_AGAIN: "Играть снова",
-    CASH_OUT: "Забрать",
-    CASH_OUT_AMOUNT: "Забрать {{amount}} TON",
-    CANCEL_BET: "Отменить",
-    START_AUTOBET: "Запустить автоставку",
-    STOP_AUTOBET: "Остановить автоставку",
-    NEXT_GIFT_few: "Следующий подарок · осталось {{count}}",
-    NEXT_GIFT_many: "Следующий подарок · осталось {{count}}",
-    DISMISS: "Скрыть",
-    RETRY: "Повторить",
-    CONTINUE: "Продолжить"
+    AUTOBET_DISABLE: "Ð’Ñ‹ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒ",
+    AUTOBET_DONE: "Ð“Ð¾Ñ‚Ð¾Ð²Ð¾",
+    PLAY_AGAIN: "Ð˜Ð³Ñ€Ð°Ñ‚ÑŒ ÑÐ½Ð¾Ð²Ð°",
+    CASH_OUT: "Ð—Ð°Ð±Ñ€Ð°Ñ‚ÑŒ",
+    CASH_OUT_AMOUNT: "Ð—Ð°Ð±Ñ€Ð°Ñ‚ÑŒ {{amount}} TON",
+    CANCEL_BET: "ÐžÑ‚Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ",
+    START_AUTOBET: "Ð—Ð°Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ Ð°Ð²Ñ‚Ð¾ÑÑ‚Ð°Ð²ÐºÑƒ",
+    STOP_AUTOBET: "ÐžÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð°Ð²Ñ‚Ð¾ÑÑ‚Ð°Ð²ÐºÑƒ",
+    NEXT_GIFT_few: "Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Â· Ð¾ÑÑ‚Ð°Ð»Ð¾ÑÑŒ {{count}}",
+    NEXT_GIFT_many: "Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Â· Ð¾ÑÑ‚Ð°Ð»Ð¾ÑÑŒ {{count}}",
+    DISMISS: "Ð¡ÐºÑ€Ñ‹Ñ‚ÑŒ",
+    RETRY: "ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ",
+    CONTINUE: "ÐŸÑ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ"
 }
   , LABELS$u = {
-    AUTOBET_ON: "Вкл",
-    AUTOBET_OFF: "Выкл",
-    AUTOBET_HINT: "Каждый раунд открывает выбранное число кристаллов и забирает выигрыш сам. Подрыв останавливает прогон.",
-    AVAILABLE_BALANCE: "Доступный баланс",
-    BET_AMOUNT: "Сумма ставки",
-    MINES: "Мины",
-    AUTO_BET: "Автоставка",
-    NUMBER_OF_BETS: "Количество ставок",
-    AUTOBET_STOPPED: "Автоставка остановлена после {{played}} из {{total}} раундов",
-    GEMS_TO_OPEN: "Открыть гемов",
-    GIFT: "Подарок"
+    AUTOBET_ON: "Ð’ÐºÐ»",
+    AUTOBET_OFF: "Ð’Ñ‹ÐºÐ»",
+    AUTOBET_HINT: "ÐšÐ°Ð¶Ð´Ñ‹Ð¹ Ñ€Ð°ÑƒÐ½Ð´ Ð¾Ñ‚ÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ ÐºÑ€Ð¸ÑÑ‚Ð°Ð»Ð»Ð¾Ð² Ð¸ Ð·Ð°Ð±Ð¸Ñ€Ð°ÐµÑ‚ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ ÑÐ°Ð¼. ÐŸÐ¾Ð´Ñ€Ñ‹Ð² Ð¾ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÑ‚ Ð¿Ñ€Ð¾Ð³Ð¾Ð½.",
+    AVAILABLE_BALANCE: "Ð”Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ð¹ Ð±Ð°Ð»Ð°Ð½Ñ",
+    BET_AMOUNT: "Ð¡ÑƒÐ¼Ð¼Ð° ÑÑ‚Ð°Ð²ÐºÐ¸",
+    MINES: "ÐœÐ¸Ð½Ñ‹",
+    AUTO_BET: "ÐÐ²Ñ‚Ð¾ÑÑ‚Ð°Ð²ÐºÐ°",
+    NUMBER_OF_BETS: "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÑ‚Ð°Ð²Ð¾Ðº",
+    AUTOBET_STOPPED: "ÐÐ²Ñ‚Ð¾ÑÑ‚Ð°Ð²ÐºÐ° Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð° Ð¿Ð¾ÑÐ»Ðµ {{played}} Ð¸Ð· {{total}} Ñ€Ð°ÑƒÐ½Ð´Ð¾Ð²",
+    GEMS_TO_OPEN: "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ð³ÐµÐ¼Ð¾Ð²",
+    GIFT: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº"
 }
   , PLACEHOLDERS$a = {
-    TON_AMOUNT: "Сумма"
+    TON_AMOUNT: "Ð¡ÑƒÐ¼Ð¼Ð°"
 }
   , EMPTY$b = {
-    GIFTS_COMING_SOON: "Ставки подарками скоро появятся. Пока играйте на TON."
+    GIFTS_COMING_SOON: "Ð¡Ñ‚Ð°Ð²ÐºÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸ ÑÐºÐ¾Ñ€Ð¾ Ð¿Ð¾ÑÐ²ÑÑ‚ÑÑ. ÐŸÐ¾ÐºÐ° Ð¸Ð³Ñ€Ð°Ð¹Ñ‚Ðµ Ð½Ð° TON."
 }
   , TOASTS$6 = {
-    MIN_BET: "Минимальная ставка: {{min}} TON",
-    MAX_BET: "Максимальная ставка: {{max}} TON",
-    GIFTS_FAILED_few: "{{count}} ставки подарками не прошли",
-    GIFTS_FAILED_many: "{{count}} ставок подарками не прошло"
+    MIN_BET: "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°: {{min}} TON",
+    MAX_BET: "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°: {{max}} TON",
+    GIFTS_FAILED_few: "{{count}} ÑÑ‚Ð°Ð²ÐºÐ¸ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¸",
+    GIFTS_FAILED_many: "{{count}} ÑÑ‚Ð°Ð²Ð¾Ðº Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°Ð¼Ð¸ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¾"
 }
   , HOW_IT_WORKS$8 = {
-    TITLE: "Как это работает",
-    CLOSE: "Закрыть",
-    STEP_1_TITLE: "Выберите количество мин",
-    STEP_1_BODY: "Мины скрыты под клетками поля 5×5, а во всех остальных клетках находятся кристаллы. Чем больше мин, тем выше множители и выше риск.",
-    STEP_2_TITLE: "Сделайте ставку",
-    STEP_2_BODY: "Используйте TON или выберите подарок из рюкзака. Подарок учитывается как одна полная ставка на раунд.",
-    STEP_3_TITLE: "Открывайте клетки",
-    STEP_3_BODY: "Каждый найденный кристалл увеличивает множитель. Если вы попадаете на мину, раунд заканчивается, а ставка сгорает.",
-    STEP_4_TITLE: "Заберите выигрыш",
-    STEP_4_BODY: "Вы можете забрать выигрыш после любого найденного кристалла. Ваша ставка умножается на текущий множитель. Небольшие выигрыши мгновенно зачисляются на баланс в TON. Если сумма выигрыша достаточно большая, вместо TON вы получите ближайший по стоимости доступный подарок. Стоимость подарка может отличаться от точной суммы выигрыша."
+    TITLE: "ÐšÐ°Ðº ÑÑ‚Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚",
+    CLOSE: "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ",
+    STEP_1_TITLE: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¼Ð¸Ð½",
+    STEP_1_BODY: "ÐœÐ¸Ð½Ñ‹ ÑÐºÑ€Ñ‹Ñ‚Ñ‹ Ð¿Ð¾Ð´ ÐºÐ»ÐµÑ‚ÐºÐ°Ð¼Ð¸ Ð¿Ð¾Ð»Ñ 5Ã—5, Ð° Ð²Ð¾ Ð²ÑÐµÑ… Ð¾ÑÑ‚Ð°Ð»ÑŒÐ½Ñ‹Ñ… ÐºÐ»ÐµÑ‚ÐºÐ°Ñ… Ð½Ð°Ñ…Ð¾Ð´ÑÑ‚ÑÑ ÐºÑ€Ð¸ÑÑ‚Ð°Ð»Ð»Ñ‹. Ð§ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð¼Ð¸Ð½, Ñ‚ÐµÐ¼ Ð²Ñ‹ÑˆÐµ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»Ð¸ Ð¸ Ð²Ñ‹ÑˆÐµ Ñ€Ð¸ÑÐº.",
+    STEP_2_TITLE: "Ð¡Ð´ÐµÐ»Ð°Ð¹Ñ‚Ðµ ÑÑ‚Ð°Ð²ÐºÑƒ",
+    STEP_2_BODY: "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐ¹Ñ‚Ðµ TON Ð¸Ð»Ð¸ Ð²Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð¸Ð· Ñ€ÑŽÐºÐ·Ð°ÐºÐ°. ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº ÑƒÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ÑÑ ÐºÐ°Ðº Ð¾Ð´Ð½Ð° Ð¿Ð¾Ð»Ð½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ° Ð½Ð° Ñ€Ð°ÑƒÐ½Ð´.",
+    STEP_3_TITLE: "ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°Ð¹Ñ‚Ðµ ÐºÐ»ÐµÑ‚ÐºÐ¸",
+    STEP_3_BODY: "ÐšÐ°Ð¶Ð´Ñ‹Ð¹ Ð½Ð°Ð¹Ð´ÐµÐ½Ð½Ñ‹Ð¹ ÐºÑ€Ð¸ÑÑ‚Ð°Ð»Ð» ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ð²Ð°ÐµÑ‚ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ. Ð•ÑÐ»Ð¸ Ð²Ñ‹ Ð¿Ð¾Ð¿Ð°Ð´Ð°ÐµÑ‚Ðµ Ð½Ð° Ð¼Ð¸Ð½Ñƒ, Ñ€Ð°ÑƒÐ½Ð´ Ð·Ð°ÐºÐ°Ð½Ñ‡Ð¸Ð²Ð°ÐµÑ‚ÑÑ, Ð° ÑÑ‚Ð°Ð²ÐºÐ° ÑÐ³Ð¾Ñ€Ð°ÐµÑ‚.",
+    STEP_4_TITLE: "Ð—Ð°Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ",
+    STEP_4_BODY: "Ð’Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð·Ð°Ð±Ñ€Ð°Ñ‚ÑŒ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ Ð¿Ð¾ÑÐ»Ðµ Ð»ÑŽÐ±Ð¾Ð³Ð¾ Ð½Ð°Ð¹Ð´ÐµÐ½Ð½Ð¾Ð³Ð¾ ÐºÑ€Ð¸ÑÑ‚Ð°Ð»Ð»Ð°. Ð’Ð°ÑˆÐ° ÑÑ‚Ð°Ð²ÐºÐ° ÑƒÐ¼Ð½Ð¾Ð¶Ð°ÐµÑ‚ÑÑ Ð½Ð° Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ. ÐÐµÐ±Ð¾Ð»ÑŒÑˆÐ¸Ðµ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ¸ Ð¼Ð³Ð½Ð¾Ð²ÐµÐ½Ð½Ð¾ Ð·Ð°Ñ‡Ð¸ÑÐ»ÑÑŽÑ‚ÑÑ Ð½Ð° Ð±Ð°Ð»Ð°Ð½Ñ Ð² TON. Ð•ÑÐ»Ð¸ ÑÑƒÐ¼Ð¼Ð° Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ° Ð´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ð¾Ð»ÑŒÑˆÐ°Ñ, Ð²Ð¼ÐµÑÑ‚Ð¾ TON Ð²Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚Ðµ Ð±Ð»Ð¸Ð¶Ð°Ð¹ÑˆÐ¸Ð¹ Ð¿Ð¾ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚Ð¸ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº. Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð¼Ð¾Ð¶ÐµÑ‚ Ð¾Ñ‚Ð»Ð¸Ñ‡Ð°Ñ‚ÑŒÑÑ Ð¾Ñ‚ Ñ‚Ð¾Ñ‡Ð½Ð¾Ð¹ ÑÑƒÐ¼Ð¼Ñ‹ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹ÑˆÐ°."
 }
   , FAIRNESS$6 = {
-    SERVER_SEED_HASH: "Хеш серверного сида: обязательство до раунда",
-    SERVER_SEED: "Серверный сид (раскрывается после раунда)",
-    PENDING_REVEAL: "Этот раунд сыгран на паре сидов, которая ещё используется: так работали раунды до перехода на посидовую смену. Сыграйте ещё один раунд, на его завершении пара закроется, и сид раскроется для всех раундов на ней, включая этот. Новые раунды проверяются сразу после завершения.",
-    CLIENT_SEED: "Клиентский сид",
+    SERVER_SEED_HASH: "Ð¥ÐµÑˆ ÑÐµÑ€Ð²ÐµÑ€Ð½Ð¾Ð³Ð¾ ÑÐ¸Ð´Ð°: Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð¾ Ð´Ð¾ Ñ€Ð°ÑƒÐ½Ð´Ð°",
+    SERVER_SEED: "Ð¡ÐµÑ€Ð²ÐµÑ€Ð½Ñ‹Ð¹ ÑÐ¸Ð´ (Ñ€Ð°ÑÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð¿Ð¾ÑÐ»Ðµ Ñ€Ð°ÑƒÐ½Ð´Ð°)",
+    PENDING_REVEAL: "Ð­Ñ‚Ð¾Ñ‚ Ñ€Ð°ÑƒÐ½Ð´ ÑÑ‹Ð³Ñ€Ð°Ð½ Ð½Ð° Ð¿Ð°Ñ€Ðµ ÑÐ¸Ð´Ð¾Ð², ÐºÐ¾Ñ‚Ð¾Ñ€Ð°Ñ ÐµÑ‰Ñ‘ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ: Ñ‚Ð°Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ð»Ð¸ Ñ€Ð°ÑƒÐ½Ð´Ñ‹ Ð´Ð¾ Ð¿ÐµÑ€ÐµÑ…Ð¾Ð´Ð° Ð½Ð° Ð¿Ð¾ÑÐ¸Ð´Ð¾Ð²ÑƒÑŽ ÑÐ¼ÐµÐ½Ñƒ. Ð¡Ñ‹Ð³Ñ€Ð°Ð¹Ñ‚Ðµ ÐµÑ‰Ñ‘ Ð¾Ð´Ð¸Ð½ Ñ€Ð°ÑƒÐ½Ð´, Ð½Ð° ÐµÐ³Ð¾ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ð¸ Ð¿Ð°Ñ€Ð° Ð·Ð°ÐºÑ€Ð¾ÐµÑ‚ÑÑ, Ð¸ ÑÐ¸Ð´ Ñ€Ð°ÑÐºÑ€Ð¾ÐµÑ‚ÑÑ Ð´Ð»Ñ Ð²ÑÐµÑ… Ñ€Ð°ÑƒÐ½Ð´Ð¾Ð² Ð½Ð° Ð½ÐµÐ¹, Ð²ÐºÐ»ÑŽÑ‡Ð°Ñ ÑÑ‚Ð¾Ñ‚. ÐÐ¾Ð²Ñ‹Ðµ Ñ€Ð°ÑƒÐ½Ð´Ñ‹ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÑŽÑ‚ÑÑ ÑÑ€Ð°Ð·Ñƒ Ð¿Ð¾ÑÐ»Ðµ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ñ.",
+    CLIENT_SEED: "ÐšÐ»Ð¸ÐµÐ½Ñ‚ÑÐºÐ¸Ð¹ ÑÐ¸Ð´",
     NONCE: "Nonce",
-    MINE_POSITIONS: "Позиции мин",
-    HASH_CHECK: "Хеш сида",
-    BOARD_CHECK: "Расположение мин",
-    RECOMPUTED: "Ваше устройство получило",
-    VERIFIED: "Совпадает",
-    NOT_VERIFIED: "Не совпадает",
-    VERIFY: "Показать данные проверки",
-    VERIFY_AGAIN: "Проверить ещё раз",
-    ERROR: "Не удалось загрузить данные проверки",
-    INVALID: "Раунд не сходится со своими сидами",
-    LOCAL_CHECK_ERROR: "Не удалось выполнить проверку на устройстве",
-    COPY: "Копировать",
-    COPIED: "Скопировано",
-    NOTE: "Проверка выполняется здесь, на вашем телефоне, по той же открытой формуле, что и на сервере. От нас она берёт только сиды и расположение мин; вердикт выше ваш, а не наш.",
-    PENDING_TITLE: "Пока нельзя проверить",
-    SERVER_SEED_SECRET: "Закрыт до конца раунда",
-    VERIFIED_TITLE: "Проверено на вашем устройстве",
-    VERIFIED_TEXT: "Раскрытый серверный сид совпадает с хешем, опубликованным до раунда, а расположение мин, пересчитанное здесь, совпадает с полем, на котором вы играли.",
-    NOT_VERIFIED_TITLE: "Раунд не сходится со своими сидами",
-    NOT_VERIFIED_TEXT: "Ваше устройство получило из тех же сидов другой результат. Сохраните id раунда и напишите в поддержку.",
-    CHECKING: "Проверяем на вашем устройстве",
-    NEXT_HASH: "Хеш следующего раунда, зафиксирован до ставки",
-    STILL_SEALED: "Серверный сид ещё закрыт: этот раунд станет проверяемым, когда его пара закроется",
-    VERIFIED_TOAST: "Раунд сошёлся со своими сидами",
-    CHECKED_AT: "Проверено в {{time}}",
-    COPY_FAILED: "Не удалось скопировать, выделите вручную"
+    MINE_POSITIONS: "ÐŸÐ¾Ð·Ð¸Ñ†Ð¸Ð¸ Ð¼Ð¸Ð½",
+    HASH_CHECK: "Ð¥ÐµÑˆ ÑÐ¸Ð´Ð°",
+    BOARD_CHECK: "Ð Ð°ÑÐ¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¸Ð½",
+    RECOMPUTED: "Ð’Ð°ÑˆÐµ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ð»Ð¾",
+    VERIFIED: "Ð¡Ð¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    NOT_VERIFIED: "ÐÐµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚",
+    VERIFY: "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸",
+    VERIFY_AGAIN: "ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·",
+    ERROR: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸",
+    INVALID: "Ð Ð°ÑƒÐ½Ð´ Ð½Ðµ ÑÑ…Ð¾Ð´Ð¸Ñ‚ÑÑ ÑÐ¾ ÑÐ²Ð¾Ð¸Ð¼Ð¸ ÑÐ¸Ð´Ð°Ð¼Ð¸",
+    LOCAL_CHECK_ERROR: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÑƒ Ð½Ð° ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ðµ",
+    COPY: "ÐšÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ",
+    COPIED: "Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾",
+    NOTE: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ÑÑ Ð·Ð´ÐµÑÑŒ, Ð½Ð° Ð²Ð°ÑˆÐµÐ¼ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½Ðµ, Ð¿Ð¾ Ñ‚Ð¾Ð¹ Ð¶Ðµ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼ÑƒÐ»Ðµ, Ñ‡Ñ‚Ð¾ Ð¸ Ð½Ð° ÑÐµÑ€Ð²ÐµÑ€Ðµ. ÐžÑ‚ Ð½Ð°Ñ Ð¾Ð½Ð° Ð±ÐµÑ€Ñ‘Ñ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ ÑÐ¸Ð´Ñ‹ Ð¸ Ñ€Ð°ÑÐ¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¸Ð½; Ð²ÐµÑ€Ð´Ð¸ÐºÑ‚ Ð²Ñ‹ÑˆÐµ Ð²Ð°Ñˆ, Ð° Ð½Ðµ Ð½Ð°Ñˆ.",
+    PENDING_TITLE: "ÐŸÐ¾ÐºÐ° Ð½ÐµÐ»ÑŒÐ·Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ",
+    SERVER_SEED_SECRET: "Ð—Ð°ÐºÑ€Ñ‹Ñ‚ Ð´Ð¾ ÐºÐ¾Ð½Ñ†Ð° Ñ€Ð°ÑƒÐ½Ð´Ð°",
+    VERIFIED_TITLE: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐµÐ½Ð¾ Ð½Ð° Ð²Ð°ÑˆÐµÐ¼ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ðµ",
+    VERIFIED_TEXT: "Ð Ð°ÑÐºÑ€Ñ‹Ñ‚Ñ‹Ð¹ ÑÐµÑ€Ð²ÐµÑ€Ð½Ñ‹Ð¹ ÑÐ¸Ð´ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚ Ñ Ñ…ÐµÑˆÐµÐ¼, Ð¾Ð¿ÑƒÐ±Ð»Ð¸ÐºÐ¾Ð²Ð°Ð½Ð½Ñ‹Ð¼ Ð´Ð¾ Ñ€Ð°ÑƒÐ½Ð´Ð°, Ð° Ñ€Ð°ÑÐ¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¸Ð½, Ð¿ÐµÑ€ÐµÑÑ‡Ð¸Ñ‚Ð°Ð½Ð½Ð¾Ðµ Ð·Ð´ÐµÑÑŒ, ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚ Ñ Ð¿Ð¾Ð»ÐµÐ¼, Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¼ Ð²Ñ‹ Ð¸Ð³Ñ€Ð°Ð»Ð¸.",
+    NOT_VERIFIED_TITLE: "Ð Ð°ÑƒÐ½Ð´ Ð½Ðµ ÑÑ…Ð¾Ð´Ð¸Ñ‚ÑÑ ÑÐ¾ ÑÐ²Ð¾Ð¸Ð¼Ð¸ ÑÐ¸Ð´Ð°Ð¼Ð¸",
+    NOT_VERIFIED_TEXT: "Ð’Ð°ÑˆÐµ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ð»Ð¾ Ð¸Ð· Ñ‚ÐµÑ… Ð¶Ðµ ÑÐ¸Ð´Ð¾Ð² Ð´Ñ€ÑƒÐ³Ð¾Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚. Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚Ðµ id Ñ€Ð°ÑƒÐ½Ð´Ð° Ð¸ Ð½Ð°Ð¿Ð¸ÑˆÐ¸Ñ‚Ðµ Ð² Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶ÐºÑƒ.",
+    CHECKING: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ Ð½Ð° Ð²Ð°ÑˆÐµÐ¼ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ðµ",
+    NEXT_HASH: "Ð¥ÐµÑˆ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ Ñ€Ð°ÑƒÐ½Ð´Ð°, Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½ Ð´Ð¾ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    STILL_SEALED: "Ð¡ÐµÑ€Ð²ÐµÑ€Ð½Ñ‹Ð¹ ÑÐ¸Ð´ ÐµÑ‰Ñ‘ Ð·Ð°ÐºÑ€Ñ‹Ñ‚: ÑÑ‚Ð¾Ñ‚ Ñ€Ð°ÑƒÐ½Ð´ ÑÑ‚Ð°Ð½ÐµÑ‚ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼Ñ‹Ð¼, ÐºÐ¾Ð³Ð´Ð° ÐµÐ³Ð¾ Ð¿Ð°Ñ€Ð° Ð·Ð°ÐºÑ€Ð¾ÐµÑ‚ÑÑ",
+    VERIFIED_TOAST: "Ð Ð°ÑƒÐ½Ð´ ÑÐ¾ÑˆÑ‘Ð»ÑÑ ÑÐ¾ ÑÐ²Ð¾Ð¸Ð¼Ð¸ ÑÐ¸Ð´Ð°Ð¼Ð¸",
+    CHECKED_AT: "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐµÐ½Ð¾ Ð² {{time}}",
+    COPY_FAILED: "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, Ð²Ñ‹Ð´ÐµÐ»Ð¸Ñ‚Ðµ Ð²Ñ€ÑƒÑ‡Ð½ÑƒÑŽ"
 }
   , HISTORY$6 = {
-    TITLE: "История",
-    BACK: "Назад",
-    EMPTY: "Пока нет раундов",
-    PAYOUT: "Выплата",
-    LOAD_MORE: "Показать ещё",
-    GEMS_OF: "{{opened}} из {{total}}",
-    MINES_SHORT: "Мины: {{count}}"
+    TITLE: "Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ",
+    BACK: "ÐÐ°Ð·Ð°Ð´",
+    EMPTY: "ÐŸÐ¾ÐºÐ° Ð½ÐµÑ‚ Ñ€Ð°ÑƒÐ½Ð´Ð¾Ð²",
+    PAYOUT: "Ð’Ñ‹Ð¿Ð»Ð°Ñ‚Ð°",
+    LOAD_MORE: "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ ÐµÑ‰Ñ‘",
+    GEMS_OF: "{{opened}} Ð¸Ð· {{total}}",
+    MINES_SHORT: "ÐœÐ¸Ð½Ñ‹: {{count}}"
 }
   , ERRORS$6 = {
-    GAME_DISABLED: "Mines временно недоступен",
-    INSUFFICIENT_BALANCE: "Недостаточно средств для ставки",
-    BET_LIMITS: "Ставка вне допустимых лимитов",
-    MAX_WIN_EXCEEDED: "Возможный выигрыш превышает максимум. Уменьшите ставку или увеличьте число мин.",
-    GENERIC: "Что-то пошло не так. Попробуйте ещё раз."
+    GAME_DISABLED: "Mines Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿ÐµÐ½",
+    INSUFFICIENT_BALANCE: "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ ÑÑ€ÐµÐ´ÑÑ‚Ð² Ð´Ð»Ñ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    BET_LIMITS: "Ð¡Ñ‚Ð°Ð²ÐºÐ° Ð²Ð½Ðµ Ð´Ð¾Ð¿ÑƒÑÑ‚Ð¸Ð¼Ñ‹Ñ… Ð»Ð¸Ð¼Ð¸Ñ‚Ð¾Ð²",
+    MAX_WIN_EXCEEDED: "Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ñ‹Ð¹ Ð²Ñ‹Ð¸Ð³Ñ€Ñ‹Ñˆ Ð¿Ñ€ÐµÐ²Ñ‹ÑˆÐ°ÐµÑ‚ Ð¼Ð°ÐºÑÐ¸Ð¼ÑƒÐ¼. Ð£Ð¼ÐµÐ½ÑŒÑˆÐ¸Ñ‚Ðµ ÑÑ‚Ð°Ð²ÐºÑƒ Ð¸Ð»Ð¸ ÑƒÐ²ÐµÐ»Ð¸Ñ‡ÑŒÑ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð¼Ð¸Ð½.",
+    GENERIC: "Ð§Ñ‚Ð¾-Ñ‚Ð¾ Ð¿Ð¾ÑˆÐ»Ð¾ Ð½Ðµ Ñ‚Ð°Ðº. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·."
 }
   , BET$4 = {
-    PLACING: "Ставим…",
-    PLACE_GIFT: "Поставить",
-    PLACE_TON: "Поставить {{amount}}",
-    PLACE_BET_EMPTY: "Введите сумму ставки",
-    EMPTY_GIFTS: "Отправьте подарки в @giftbackpack и играйте в Mines",
-    TAP_TO_START: "Нажмите на клетку, чтобы начать раунд",
-    MIN_BET: "Минимальная ставка: {{min}}",
-    MAX_BET: "Максимальная ставка: {{max}}",
-    NOT_ENOUGH_BALANCE: "Недостаточно средств на балансе",
-    GIFT_OVER_LIMIT: "Подарок дороже лимита при этом числе мин: {{max}}",
-    GIFT_UNDER_LIMIT: "Подарок дешевле минимальной ставки: {{min}}"
+    PLACING: "Ð¡Ñ‚Ð°Ð²Ð¸Ð¼â€¦",
+    PLACE_GIFT: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ",
+    PLACE_TON: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ {{amount}}",
+    PLACE_BET_EMPTY: "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑƒÐ¼Ð¼Ñƒ ÑÑ‚Ð°Ð²ÐºÐ¸",
+    EMPTY_GIFTS: "ÐžÑ‚Ð¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸ Ð² @giftbackpack Ð¸ Ð¸Ð³Ñ€Ð°Ð¹Ñ‚Ðµ Ð² Mines",
+    TAP_TO_START: "ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð½Ð° ÐºÐ»ÐµÑ‚ÐºÑƒ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð½Ð°Ñ‡Ð°Ñ‚ÑŒ Ñ€Ð°ÑƒÐ½Ð´",
+    MIN_BET: "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°: {{min}}",
+    MAX_BET: "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚Ð°Ð²ÐºÐ°: {{max}}",
+    NOT_ENOUGH_BALANCE: "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ ÑÑ€ÐµÐ´ÑÑ‚Ð² Ð½Ð° Ð±Ð°Ð»Ð°Ð½ÑÐµ",
+    GIFT_OVER_LIMIT: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð´Ð¾Ñ€Ð¾Ð¶Ðµ Ð»Ð¸Ð¼Ð¸Ñ‚Ð° Ð¿Ñ€Ð¸ ÑÑ‚Ð¾Ð¼ Ñ‡Ð¸ÑÐ»Ðµ Ð¼Ð¸Ð½: {{max}}",
+    GIFT_UNDER_LIMIT: "ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð´ÐµÑˆÐµÐ²Ð»Ðµ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ð¹ ÑÑ‚Ð°Ð²ÐºÐ¸: {{min}}"
 }
   , GIFT_MODAL$6 = {
-    TITLE: "Ставка подарком",
-    SELECT: "Выберите подарок",
-    SELECTED_one: "Выбран {{count}} подарок",
-    SELECTED_few: "Выбрано {{count}} подарка",
-    SELECTED_many: "Выбрано {{count}} подарков",
-    CONFIRM_one: "Играть на {{count}} подарок · {{amount}} TON",
-    CONFIRM_few: "Играть на {{count}} подарка · {{amount}} TON",
-    CONFIRM_many: "Играть на {{count}} подарков · {{amount}} TON",
-    PRUNED_one: "{{count}} подарок больше не проходит по лимитам",
-    PRUNED_few: "{{count}} подарка больше не проходят по лимитам",
-    PRUNED_many: "{{count}} подарков больше не проходят по лимитам",
-    CONFIRM_ONE: "Поставить {{amount}}",
-    PICK_ANOTHER: "Выберите другой подарок:"
+    TITLE: "Ð¡Ñ‚Ð°Ð²ÐºÐ° Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð¼",
+    SELECT: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    SELECTED_one: "Ð’Ñ‹Ð±Ñ€Ð°Ð½ {{count}} Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº",
+    SELECTED_few: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð¾ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ°",
+    SELECTED_many: "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð¾ {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð²",
+    CONFIRM_one: "Ð˜Ð³Ñ€Ð°Ñ‚ÑŒ Ð½Ð° {{count}} Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Â· {{amount}} TON",
+    CONFIRM_few: "Ð˜Ð³Ñ€Ð°Ñ‚ÑŒ Ð½Ð° {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Â· {{amount}} TON",
+    CONFIRM_many: "Ð˜Ð³Ñ€Ð°Ñ‚ÑŒ Ð½Ð° {{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Â· {{amount}} TON",
+    PRUNED_one: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½Ðµ Ð¿Ñ€Ð¾Ñ…Ð¾Ð´Ð¸Ñ‚ Ð¿Ð¾ Ð»Ð¸Ð¼Ð¸Ñ‚Ð°Ð¼",
+    PRUNED_few: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ° Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½Ðµ Ð¿Ñ€Ð¾Ñ…Ð¾Ð´ÑÑ‚ Ð¿Ð¾ Ð»Ð¸Ð¼Ð¸Ñ‚Ð°Ð¼",
+    PRUNED_many: "{{count}} Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¾Ð² Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½Ðµ Ð¿Ñ€Ð¾Ñ…Ð¾Ð´ÑÑ‚ Ð¿Ð¾ Ð»Ð¸Ð¼Ð¸Ñ‚Ð°Ð¼",
+    CONFIRM_ONE: "ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ {{amount}}",
+    PICK_ANOTHER: "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´Ñ€ÑƒÐ³Ð¾Ð¹ Ð¿Ð¾Ð´Ð°Ñ€Ð¾Ðº:"
 }
   , TOGGLE$6 = {
     TON: "GRAM",
-    GIFTS: "Подарки"
+    GIFTS: "ÐŸÐ¾Ð´Ð°Ñ€ÐºÐ¸"
 }
   , ruMines = {
     HEADER: HEADER$8,
@@ -55396,64 +55396,64 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TOGGLE: TOGGLE$6
 }
   , APP$3 = {
-    ERROR_OCCURRED: "خطای مدیریت‌نشده رخ داد:",
-    CLOSE: "بستن",
-    ANIMATION_FAILED: "پویانمایی ناموفق بود",
-    OR: "یا",
-    VARIANT: "مدل",
-    RANDOM: "تصادفی",
-    FAILED_TO_LOAD: "بارگذاری ناموفق بود",
-    LOADING_GIFTS: "در حال بارگذاری هدایا...",
-    THANK_YOU_PATIENCE: "از شکیبایی شما سپاسگزاریم! 🙏"
+    ERROR_OCCURRED: "Ø®Ø·Ø§ÛŒ Ù…Ø¯ÛŒØ±ÛŒØªâ€ŒÙ†Ø´Ø¯Ù‡ Ø±Ø® Ø¯Ø§Ø¯:",
+    CLOSE: "Ø¨Ø³ØªÙ†",
+    ANIMATION_FAILED: "Ù¾ÙˆÛŒØ§Ù†Ù…Ø§ÛŒÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    OR: "ÛŒØ§",
+    VARIANT: "Ù…Ø¯Ù„",
+    RANDOM: "ØªØµØ§Ø¯ÙÛŒ",
+    FAILED_TO_LOAD: "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    LOADING_GIFTS: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù‡Ø¯Ø§ÛŒØ§...",
+    THANK_YOU_PATIENCE: "Ø§Ø² Ø´Ú©ÛŒØ¨Ø§ÛŒÛŒ Ø´Ù…Ø§ Ø³Ù¾Ø§Ø³Ú¯Ø²Ø§Ø±ÛŒÙ…! ðŸ™"
 }
   , ACTIONS$l = {
-    HIDE: "پنهان کردن",
-    SHOW: "نمایش",
-    CONTINUE: "ادامه"
+    HIDE: "Ù¾Ù†Ù‡Ø§Ù† Ú©Ø±Ø¯Ù†",
+    SHOW: "Ù†Ù…Ø§ÛŒØ´",
+    CONTINUE: "Ø§Ø¯Ø§Ù…Ù‡"
 }
   , LABELS$t = {
-    STEPS: "مرحله‌ها",
-    NO_ATTRIBUTE_DATA: "اطلاعات ویژگی در دسترس نیست.",
+    STEPS: "Ù…Ø±Ø­Ù„Ù‡â€ŒÙ‡Ø§",
+    NO_ATTRIBUTE_DATA: "Ø§Ø·Ù„Ø§Ø¹Ø§Øª ÙˆÛŒÚ˜Ú¯ÛŒ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª.",
     TON: "TON",
-    GIFTS_AVAILABLE: "{{count}} هدیه موجود است",
-    GIFTS_AVAILABLE_plural: "{{count}} هدیه موجود هستند",
-    SORTED_BY: "مرتب‌شده بر اساس {{sort}}",
-    SORT_BY: "مرتب‌سازی بر اساس",
-    AVAILABLE_BALANCE: "موجودی قابل استفاده",
-    PROFILE: "نمایه",
-    BET_AMOUNT: "مبلغ شرط",
-    SEARCH_GIFTS: "جست‌وجو بر اساس نام"
+    GIFTS_AVAILABLE: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ù…ÙˆØ¬ÙˆØ¯ Ø§Ø³Øª",
+    GIFTS_AVAILABLE_plural: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ù…ÙˆØ¬ÙˆØ¯ Ù‡Ø³ØªÙ†Ø¯",
+    SORTED_BY: "Ù…Ø±ØªØ¨â€ŒØ´Ø¯Ù‡ Ø¨Ø± Ø§Ø³Ø§Ø³ {{sort}}",
+    SORT_BY: "Ù…Ø±ØªØ¨â€ŒØ³Ø§Ø²ÛŒ Ø¨Ø± Ø§Ø³Ø§Ø³",
+    AVAILABLE_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ù‚Ø§Ø¨Ù„ Ø§Ø³ØªÙØ§Ø¯Ù‡",
+    PROFILE: "Ù†Ù…Ø§ÛŒÙ‡",
+    BET_AMOUNT: "Ù…Ø¨Ù„Øº Ø´Ø±Ø·",
+    SEARCH_GIFTS: "Ø¬Ø³Øªâ€ŒÙˆØ¬Ùˆ Ø¨Ø± Ø§Ø³Ø§Ø³ Ù†Ø§Ù…"
 }
   , SORT$3 = {
-    RECOMMENDED: "پیشنهادی",
-    RECENT: "جدیدترین‌ها",
-    PRICE_HIGH: "قیمت: از زیاد به کم",
-    PRICE_LOW: "قیمت: از کم به زیاد"
+    RECOMMENDED: "Ù¾ÛŒØ´Ù†Ù‡Ø§Ø¯ÛŒ",
+    RECENT: "Ø¬Ø¯ÛŒØ¯ØªØ±ÛŒÙ†â€ŒÙ‡Ø§",
+    PRICE_HIGH: "Ù‚ÛŒÙ…Øª: Ø§Ø² Ø²ÛŒØ§Ø¯ Ø¨Ù‡ Ú©Ù…",
+    PRICE_LOW: "Ù‚ÛŒÙ…Øª: Ø§Ø² Ú©Ù… Ø¨Ù‡ Ø²ÛŒØ§Ø¯"
 }
   , STATUS$f = {
-    PROCESSING: "در حال پردازش..."
+    PROCESSING: "Ø¯Ø± Ø­Ø§Ù„ Ù¾Ø±Ø¯Ø§Ø²Ø´..."
 }
   , PLACEHOLDERS$9 = {
-    ENTER_AMOUNT: "مبلغ را وارد کنید...",
-    ENTER_PROMO_CODE: "برای باز کردن جعبه، کد تبلیغاتی را وارد کنید",
-    TON_AMOUNT: "۰ TON"
+    ENTER_AMOUNT: "Ù…Ø¨Ù„Øº Ø±Ø§ ÙˆØ§Ø±Ø¯ Ú©Ù†ÛŒØ¯...",
+    ENTER_PROMO_CODE: "Ø¨Ø±Ø§ÛŒ Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¬Ø¹Ø¨Ù‡ØŒ Ú©Ø¯ ØªØ¨Ù„ÛŒØºØ§ØªÛŒ Ø±Ø§ ÙˆØ§Ø±Ø¯ Ú©Ù†ÛŒØ¯",
+    TON_AMOUNT: "Û° TON"
 }
   , NAVIGATION$3 = {
     CONTRACTS: "CRAFTS",
     UPGRADE: "UPGRADE"
 }
   , GIFT_EMPTY_STATE$1 = {
-    NO_GIFTS_AVAILABLE: "هدیه‌ای موجود نیست",
-    SEND_GIFTS_TO: "هدایا را ارسال کنید به",
-    AND_PLAY: "و بازی کنید",
-    SEND_GIFTS: "ارسال هدایا",
-    OPEN_BOXES_DESC: "برای دریافت هدیه، جعبه باز کنید",
-    OPEN_BOXES: "باز کردن جعبه‌ها"
+    NO_GIFTS_AVAILABLE: "Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    SEND_GIFTS_TO: "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø§Ø±Ø³Ø§Ù„ Ú©Ù†ÛŒØ¯ Ø¨Ù‡",
+    AND_PLAY: "Ùˆ Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯",
+    SEND_GIFTS: "Ø§Ø±Ø³Ø§Ù„ Ù‡Ø¯Ø§ÛŒØ§",
+    OPEN_BOXES_DESC: "Ø¨Ø±Ø§ÛŒ Ø¯Ø±ÛŒØ§ÙØª Ù‡Ø¯ÛŒÙ‡ØŒ Ø¬Ø¹Ø¨Ù‡ Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯",
+    OPEN_BOXES: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¬Ø¹Ø¨Ù‡â€ŒÙ‡Ø§"
 }
   , CAMPAIGN_REWARD$1 = {
-    TITLE: "جایزه‌تان را بگیرید!",
-    SUBTITLE: "از آن برای بازی در حالت Rocket و PVP استفاده کنید",
-    OK: "همین حالا بازی کنید  🚀"
+    TITLE: "Ø¬Ø§ÛŒØ²Ù‡â€ŒØªØ§Ù† Ø±Ø§ Ø¨Ú¯ÛŒØ±ÛŒØ¯!",
+    SUBTITLE: "Ø§Ø² Ø¢Ù† Ø¨Ø±Ø§ÛŒ Ø¨Ø§Ø²ÛŒ Ø¯Ø± Ø­Ø§Ù„Øª Rocket Ùˆ PVP Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÛŒØ¯",
+    OK: "Ù‡Ù…ÛŒÙ† Ø­Ø§Ù„Ø§ Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯Â Â ðŸš€"
 }
   , faCommon = {
     APP: APP$3,
@@ -55467,52 +55467,52 @@ It's 100% free, and you can try your luck every 24 hours!`,
     CAMPAIGN_REWARD: CAMPAIGN_REWARD$1
 }
   , NAVBAR$1 = {
-    HOME: "خانه",
-    BACKPACK: "کوله‌پشتی",
-    INVITE: "دعوت",
-    LEADERBOARD: "جدول رتبه‌بندی",
-    EARN: "کسب درآمد"
+    HOME: "Ø®Ø§Ù†Ù‡",
+    BACKPACK: "Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒ",
+    INVITE: "Ø¯Ø¹ÙˆØª",
+    LEADERBOARD: "Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ",
+    EARN: "Ú©Ø³Ø¨ Ø¯Ø±Ø¢Ù…Ø¯"
 }
   , faNavigation = {
     NAVBAR: NAVBAR$1
 }
   , STATUS$e = {
-    OUT_OF_STOCK: "ناموجود"
+    OUT_OF_STOCK: "Ù†Ø§Ù…ÙˆØ¬ÙˆØ¯"
 }
   , LABELS$s = {
-    NEW: "جدید",
-    FREE: "رایگان",
-    RESTOCK: "موجود شدن مجدد",
-    HASH_PREFIX: "هش:",
-    HASH_EMPTY: "—",
+    NEW: "Ø¬Ø¯ÛŒØ¯",
+    FREE: "Ø±Ø§ÛŒÚ¯Ø§Ù†",
+    RESTOCK: "Ù…ÙˆØ¬ÙˆØ¯ Ø´Ø¯Ù† Ù…Ø¬Ø¯Ø¯",
+    HASH_PREFIX: "Ù‡Ø´:",
+    HASH_EMPTY: "â€”",
     ROCKET: "Rocket",
-    PROCESSING: "در حال پردازش...",
-    OUT_OF_STOCK: "ناموجود",
-    NEW_BADGE: "جدید",
-    LIMITED: "محدود"
+    PROCESSING: "Ø¯Ø± Ø­Ø§Ù„ Ù¾Ø±Ø¯Ø§Ø²Ø´...",
+    OUT_OF_STOCK: "Ù†Ø§Ù…ÙˆØ¬ÙˆØ¯",
+    NEW_BADGE: "Ø¬Ø¯ÛŒØ¯",
+    LIMITED: "Ù…Ø­Ø¯ÙˆØ¯"
 }
   , TAGS$1 = {
-    RANDOM: "تصادفی",
-    BALANCE: "موجودی",
-    VARIANT: "نوع"
+    RANDOM: "ØªØµØ§Ø¯ÙÛŒ",
+    BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ",
+    VARIANT: "Ù†ÙˆØ¹"
 }
   , BUTTONS$b = {
-    COPY_HASH: "کپی هش",
-    UPGRADE: "ارتقا",
-    UPGRADE_GIFT: "ارتقای هدیه"
+    COPY_HASH: "Ú©Ù¾ÛŒ Ù‡Ø´",
+    UPGRADE: "Ø§Ø±ØªÙ‚Ø§",
+    UPGRADE_GIFT: "Ø§Ø±ØªÙ‚Ø§ÛŒ Ù‡Ø¯ÛŒÙ‡"
 }
   , MESSAGES$b = {
-    HASH_COPIED: "کپی شد",
-    NOTHING_COLLECTION: "هیچ‌چیز"
+    HASH_COPIED: "Ú©Ù¾ÛŒ Ø´Ø¯",
+    NOTHING_COLLECTION: "Ù‡ÛŒÚ†â€ŒÚ†ÛŒØ²"
 }
   , SECTIONS$5 = {
-    POSSIBLE_OUTCOMES: "جوایز احتمالی",
-    DAILY_REWARDS: "پاداش‌های روزانه",
-    COLLECTIONS_IN_BOX: "محتویات این جعبه"
+    POSSIBLE_OUTCOMES: "Ø¬ÙˆØ§ÛŒØ² Ø§Ø­ØªÙ…Ø§Ù„ÛŒ",
+    DAILY_REWARDS: "Ù¾Ø§Ø¯Ø§Ø´â€ŒÙ‡Ø§ÛŒ Ø±ÙˆØ²Ø§Ù†Ù‡",
+    COLLECTIONS_IN_BOX: "Ù…Ø­ØªÙˆÛŒØ§Øª Ø§ÛŒÙ† Ø¬Ø¹Ø¨Ù‡"
 }
   , EMPTY$a = {
-    NO_BOXES: "در حال حاضر جعبهٔ هدیه‌ای موجود نیست",
-    CHECK_LATER: "برای دیدن جعبه‌های جدید، بعداً دوباره سر بزنید!"
+    NO_BOXES: "Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± Ø¬Ø¹Ø¨Ù‡Ù” Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    CHECK_LATER: "Ø¨Ø±Ø§ÛŒ Ø¯ÛŒØ¯Ù† Ø¬Ø¹Ø¨Ù‡â€ŒÙ‡Ø§ÛŒ Ø¬Ø¯ÛŒØ¯ØŒ Ø¨Ø¹Ø¯Ø§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø³Ø± Ø¨Ø²Ù†ÛŒØ¯!"
 }
   , faGifts = {
     STATUS: STATUS$e,
@@ -55524,53 +55524,53 @@ It's 100% free, and you can try your luck every 24 hours!`,
     EMPTY: EMPTY$a
 }
   , ACTIONS$k = {
-    JOIN: "وارد رقابت شوید",
-    INCREASE: "شرط خود را افزایش دهید",
-    PLACE_BET: "ثبت شرط"
+    JOIN: "ÙˆØ§Ø±Ø¯ Ø±Ù‚Ø§Ø¨Øª Ø´ÙˆÛŒØ¯",
+    INCREASE: "Ø´Ø±Ø· Ø®ÙˆØ¯ Ø±Ø§ Ø§ÙØ²Ø§ÛŒØ´ Ø¯Ù‡ÛŒØ¯",
+    PLACE_BET: "Ø«Ø¨Øª Ø´Ø±Ø·"
 }
   , LABELS$r = {
-    WINNER: "برنده",
-    PLAYERS: "بازیکنان",
-    TOTAL_POOL: "مجموع جوایز",
+    WINNER: "Ø¨Ø±Ù†Ø¯Ù‡",
+    PLAYERS: "Ø¨Ø§Ø²ÛŒÚ©Ù†Ø§Ù†",
+    TOTAL_POOL: "Ù…Ø¬Ù…ÙˆØ¹ Ø¬ÙˆØ§ÛŒØ²",
     TON: "TON",
-    REWARDS: "جوایز",
-    LAST_GAME: "بازی قبلی",
-    TOP_OF_THE_DAY: "برترینِ روز",
-    INCREASE_BET: "افزایش شرط",
-    BET_PREVIEW: "پیش‌نمایش شرط",
-    CURRENT: "فعلی",
-    NEW_TOTAL: "مجموع جدید",
-    NEW_TOTAL_VALUE: "مجموع جدید: {{value}} TON",
-    NO_GIFTS_SELECTED: "هیچ هدیه‌ای انتخاب نشده است",
-    GIFTS_SELECTED: "{{count}} هدیه انتخاب شد",
-    GIFTS_SELECTED_plural: "{{count}} هدیه انتخاب شدند",
-    GAME_ID: "بازی شمارهٔ {{id}}",
+    REWARDS: "Ø¬ÙˆØ§ÛŒØ²",
+    LAST_GAME: "Ø¨Ø§Ø²ÛŒ Ù‚Ø¨Ù„ÛŒ",
+    TOP_OF_THE_DAY: "Ø¨Ø±ØªØ±ÛŒÙ†Ù Ø±ÙˆØ²",
+    INCREASE_BET: "Ø§ÙØ²Ø§ÛŒØ´ Ø´Ø±Ø·",
+    BET_PREVIEW: "Ù¾ÛŒØ´â€ŒÙ†Ù…Ø§ÛŒØ´ Ø´Ø±Ø·",
+    CURRENT: "ÙØ¹Ù„ÛŒ",
+    NEW_TOTAL: "Ù…Ø¬Ù…ÙˆØ¹ Ø¬Ø¯ÛŒØ¯",
+    NEW_TOTAL_VALUE: "Ù…Ø¬Ù…ÙˆØ¹ Ø¬Ø¯ÛŒØ¯: {{value}} TON",
+    NO_GIFTS_SELECTED: "Ù‡ÛŒÚ† Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ù†Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    GIFTS_SELECTED: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ø´Ø¯",
+    GIFTS_SELECTED_plural: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ø´Ø¯Ù†Ø¯",
+    GAME_ID: "Ø¨Ø§Ø²ÛŒ Ø´Ù…Ø§Ø±Ù‡Ù” {{id}}",
     EPIC: "EPIC",
     GIFT: "GIFT",
     PVP_LABEL: "PVP",
-    GAME_DETAILS: "جزئیات بازی",
-    TON_BET: "شرط با TON",
-    BET_DETAILS: "جزئیات شرط",
-    RANDOM: "تصادفی",
-    SELECT_GIFTS: "انتخاب هدایا:",
-    SELECT_MORE_GIFTS: "هدیه‌های بیشتری انتخاب کنید:",
-    INCREASE_BY_TON: "افزایش به میزان {{amount}} TON",
-    PLACE_TON_BET: "ثبت شرط {{amount}} TON",
-    WIN_CHANCE: "احتمال {{chance}}",
-    TON_PRIZE: "جایزه به TON"
+    GAME_DETAILS: "Ø¬Ø²Ø¦ÛŒØ§Øª Ø¨Ø§Ø²ÛŒ",
+    TON_BET: "Ø´Ø±Ø· Ø¨Ø§ TON",
+    BET_DETAILS: "Ø¬Ø²Ø¦ÛŒØ§Øª Ø´Ø±Ø·",
+    RANDOM: "ØªØµØ§Ø¯ÙÛŒ",
+    SELECT_GIFTS: "Ø§Ù†ØªØ®Ø§Ø¨ Ù‡Ø¯Ø§ÛŒØ§:",
+    SELECT_MORE_GIFTS: "Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ø¨ÛŒØ´ØªØ±ÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯:",
+    INCREASE_BY_TON: "Ø§ÙØ²Ø§ÛŒØ´ Ø¨Ù‡ Ù…ÛŒØ²Ø§Ù† {{amount}} TON",
+    PLACE_TON_BET: "Ø«Ø¨Øª Ø´Ø±Ø· {{amount}} TON",
+    WIN_CHANCE: "Ø§Ø­ØªÙ…Ø§Ù„ {{chance}}",
+    TON_PRIZE: "Ø¬Ø§ÛŒØ²Ù‡ Ø¨Ù‡ TON"
 }
   , STATUS$d = {
-    LOADING_USER_DATA: "در حال بارگذاری اطلاعات کاربر...",
-    WAITING_FOR_PLAYERS: "در انتظار بازیکنان",
-    WAITING_FOR_MORE: "در انتظار پیوستن بازیکنان دیگر",
-    INCREASING: "در حال افزایش...",
-    PLACING_BET: "در حال ثبت شرط..."
+    LOADING_USER_DATA: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ú©Ø§Ø±Ø¨Ø±...",
+    WAITING_FOR_PLAYERS: "Ø¯Ø± Ø§Ù†ØªØ¸Ø§Ø± Ø¨Ø§Ø²ÛŒÚ©Ù†Ø§Ù†",
+    WAITING_FOR_MORE: "Ø¯Ø± Ø§Ù†ØªØ¸Ø§Ø± Ù¾ÛŒÙˆØ³ØªÙ† Ø¨Ø§Ø²ÛŒÚ©Ù†Ø§Ù† Ø¯ÛŒÚ¯Ø±",
+    INCREASING: "Ø¯Ø± Ø­Ø§Ù„ Ø§ÙØ²Ø§ÛŒØ´...",
+    PLACING_BET: "Ø¯Ø± Ø­Ø§Ù„ Ø«Ø¨Øª Ø´Ø±Ø·..."
 }
   , ERRORS$5 = {
-    BET_FAILED: "ثبت شرط ناموفق بود",
-    ROUND_IN_PROGRESS: "دور در حال اجراست",
-    INSUFFICIENT_BALANCE: "موجودی کافی نیست",
-    ALREADY_IN_GAME: "شما در این دور از قبل شرط بسته‌اید"
+    BET_FAILED: "Ø«Ø¨Øª Ø´Ø±Ø· Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    ROUND_IN_PROGRESS: "Ø¯ÙˆØ± Ø¯Ø± Ø­Ø§Ù„ Ø§Ø¬Ø±Ø§Ø³Øª",
+    INSUFFICIENT_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ú©Ø§ÙÛŒ Ù†ÛŒØ³Øª",
+    ALREADY_IN_GAME: "Ø´Ù…Ø§ Ø¯Ø± Ø§ÛŒÙ† Ø¯ÙˆØ± Ø§Ø² Ù‚Ø¨Ù„ Ø´Ø±Ø· Ø¨Ø³ØªÙ‡â€ŒØ§ÛŒØ¯"
 }
   , faPvp = {
     ACTIONS: ACTIONS$k,
@@ -55580,54 +55580,54 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , APP_NAME$1 = "Epic Gift"
   , ACTIONS$j = {
-    PLACE_BET: "ثبت شرط",
-    PLACE_BET_IN_ROCKET: "ثبت شرط در Rocket",
-    PLACE_TON_BET: "ثبت شرط با TON",
-    PLACE_TON_BET_AMOUNT: "ثبت شرط {{amount}} TON",
-    CASHOUT: "برداشت",
-    CANCEL: "لغو شرط",
-    SEND_GIFTS: "ارسال هدایا",
-    SEND_GIFT: "ارسال هدیه",
-    OPEN_BOXES: "باز کردن جعبه‌ها"
+    PLACE_BET: "Ø«Ø¨Øª Ø´Ø±Ø·",
+    PLACE_BET_IN_ROCKET: "Ø«Ø¨Øª Ø´Ø±Ø· Ø¯Ø± Rocket",
+    PLACE_TON_BET: "Ø«Ø¨Øª Ø´Ø±Ø· Ø¨Ø§ TON",
+    PLACE_TON_BET_AMOUNT: "Ø«Ø¨Øª Ø´Ø±Ø· {{amount}} TON",
+    CASHOUT: "Ø¨Ø±Ø¯Ø§Ø´Øª",
+    CANCEL: "Ù„ØºÙˆ Ø´Ø±Ø·",
+    SEND_GIFTS: "Ø§Ø±Ø³Ø§Ù„ Ù‡Ø¯Ø§ÛŒØ§",
+    SEND_GIFT: "Ø§Ø±Ø³Ø§Ù„ Ù‡Ø¯ÛŒÙ‡",
+    OPEN_BOXES: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¬Ø¹Ø¨Ù‡â€ŒÙ‡Ø§"
 }
   , LABELS$q = {
-    BET_AMOUNT: "مبلغ شرط",
-    BALANCE: "موجودی",
-    AVAILABLE_BALANCE: "موجودی قابل استفاده",
-    YOUR_BET: "شرط شما",
-    CASHED_OUT_AT: "ضریب برداشت",
-    AUTO_CASHOUT: "برداشت خودکار",
-    AUTO_MULTIPLIER: "خودکار {{value}}x",
-    PLACING_BET: "در حال ثبت شرط...",
-    SELLING: "در حال فروش...",
-    SELL: "فروش",
-    KEEP: "نگه داشتن",
+    BET_AMOUNT: "Ù…Ø¨Ù„Øº Ø´Ø±Ø·",
+    BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ",
+    AVAILABLE_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ù‚Ø§Ø¨Ù„ Ø§Ø³ØªÙØ§Ø¯Ù‡",
+    YOUR_BET: "Ø´Ø±Ø· Ø´Ù…Ø§",
+    CASHED_OUT_AT: "Ø¶Ø±ÛŒØ¨ Ø¨Ø±Ø¯Ø§Ø´Øª",
+    AUTO_CASHOUT: "Ø¨Ø±Ø¯Ø§Ø´Øª Ø®ÙˆØ¯Ú©Ø§Ø±",
+    AUTO_MULTIPLIER: "Ø®ÙˆØ¯Ú©Ø§Ø± {{value}}x",
+    PLACING_BET: "Ø¯Ø± Ø­Ø§Ù„ Ø«Ø¨Øª Ø´Ø±Ø·...",
+    SELLING: "Ø¯Ø± Ø­Ø§Ù„ ÙØ±ÙˆØ´...",
+    SELL: "ÙØ±ÙˆØ´",
+    KEEP: "Ù†Ú¯Ù‡ Ø¯Ø§Ø´ØªÙ†",
     ROCKET: "ROCKET",
-    ROCKET_REWARD: "جایزهٔ Rocket!",
-    BALANCE_REWARD: "جایزهٔ موجودی",
-    HOT: "داغ!",
-    CHOOSE_DIFFERENT_GIFT: "هدیهٔ دیگری انتخاب کنید:",
-    NO_GIFTS_AVAILABLE: "هدیه‌ای موجود نیست",
-    AND_PLAY_CRASH: "و Rocket بازی کنید",
-    TO_USE_IN_CRASH: "برای استفاده در Rocket",
-    OPEN_BOXES_FOR_CRASH: "جعبه‌های هدیه را باز کنید تا برای بازی Rocket هدیه دریافت کنید",
-    OR: "یا"
+    ROCKET_REWARD: "Ø¬Ø§ÛŒØ²Ù‡Ù” Rocket!",
+    BALANCE_REWARD: "Ø¬Ø§ÛŒØ²Ù‡Ù” Ù…ÙˆØ¬ÙˆØ¯ÛŒ",
+    HOT: "Ø¯Ø§Øº!",
+    CHOOSE_DIFFERENT_GIFT: "Ù‡Ø¯ÛŒÙ‡Ù” Ø¯ÛŒÚ¯Ø±ÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯:",
+    NO_GIFTS_AVAILABLE: "Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    AND_PLAY_CRASH: "Ùˆ Rocket Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯",
+    TO_USE_IN_CRASH: "Ø¨Ø±Ø§ÛŒ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø¯Ø± Rocket",
+    OPEN_BOXES_FOR_CRASH: "Ø¬Ø¹Ø¨Ù‡â€ŒÙ‡Ø§ÛŒ Ù‡Ø¯ÛŒÙ‡ Ø±Ø§ Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯ ØªØ§ Ø¨Ø±Ø§ÛŒ Ø¨Ø§Ø²ÛŒ Rocket Ù‡Ø¯ÛŒÙ‡ Ø¯Ø±ÛŒØ§ÙØª Ú©Ù†ÛŒØ¯",
+    OR: "ÛŒØ§"
 }
   , TABS$5 = {
-    GIFTS: "هدایا",
+    GIFTS: "Ù‡Ø¯Ø§ÛŒØ§",
     TON: "TON"
 }
   , STATUS$c = {
-    NO_PLAYERS_YET: "هنوز بازیکنی نیست",
-    WAITING: "در انتظار دور بعدی...",
-    WAITING_SHORT: "در انتظار...",
-    RECONNECTING: "اتصال مجدد به سرور بازی...",
-    CONNECTING: "در حال اتصال به سرور بازی…",
-    POOR_CONNECTION: "اتصال ضعیف است، همگام‌سازی مجدد..."
+    NO_PLAYERS_YET: "Ù‡Ù†ÙˆØ² Ø¨Ø§Ø²ÛŒÚ©Ù†ÛŒ Ù†ÛŒØ³Øª",
+    WAITING: "Ø¯Ø± Ø§Ù†ØªØ¸Ø§Ø± Ø¯ÙˆØ± Ø¨Ø¹Ø¯ÛŒ...",
+    WAITING_SHORT: "Ø¯Ø± Ø§Ù†ØªØ¸Ø§Ø±...",
+    RECONNECTING: "Ø§ØªØµØ§Ù„ Ù…Ø¬Ø¯Ø¯ Ø¨Ù‡ Ø³Ø±ÙˆØ± Ø¨Ø§Ø²ÛŒ...",
+    CONNECTING: "Ø¯Ø± Ø­Ø§Ù„ Ø§ØªØµØ§Ù„ Ø¨Ù‡ Ø³Ø±ÙˆØ± Ø¨Ø§Ø²ÛŒâ€¦",
+    POOR_CONNECTION: "Ø§ØªØµØ§Ù„ Ø¶Ø¹ÛŒÙ Ø§Ø³ØªØŒ Ù‡Ù…Ú¯Ø§Ù…â€ŒØ³Ø§Ø²ÛŒ Ù…Ø¬Ø¯Ø¯..."
 }
   , PLACEHOLDERS$8 = {
-    TON_AMOUNT: "مقدار TON",
-    AUTO_CASHOUT_MULTIPLIER: "ضریب برداشت خودکار"
+    TON_AMOUNT: "Ù…Ù‚Ø¯Ø§Ø± TON",
+    AUTO_CASHOUT_MULTIPLIER: "Ø¶Ø±ÛŒØ¨ Ø¨Ø±Ø¯Ø§Ø´Øª Ø®ÙˆØ¯Ú©Ø§Ø±"
 }
   , faCrash = {
     APP_NAME: APP_NAME$1,
@@ -55641,51 +55641,51 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TON: "TON"
 }
   , ACTIONS$i = {
-    TOP_UP: "واریز",
-    WITHDRAW: "برداشت",
-    SELL_FOR: "فروش به قیمت",
-    UPGRADE: "ارتقا"
+    TOP_UP: "ÙˆØ§Ø±ÛŒØ²",
+    WITHDRAW: "Ø¨Ø±Ø¯Ø§Ø´Øª",
+    SELL_FOR: "ÙØ±ÙˆØ´ Ø¨Ù‡ Ù‚ÛŒÙ…Øª",
+    UPGRADE: "Ø§Ø±ØªÙ‚Ø§"
 }
   , LABELS$p = {
-    BALANCE: "موجودی شما",
-    LOADING: "در حال بارگذاری..."
+    BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø´Ù…Ø§",
+    LOADING: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ..."
 }
   , TOP_UP$1 = {
-    TITLE: "افزایش موجودی",
-    ACTION: "افزایش موجودی",
-    OTHER_CRYPTO: "ارز دیجیتال دیگر",
-    STARS: "استارز",
-    GIFTS: "هدایا"
+    TITLE: "Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ",
+    ACTION: "Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ",
+    OTHER_CRYPTO: "Ø§Ø±Ø² Ø¯ÛŒØ¬ÛŒØªØ§Ù„ Ø¯ÛŒÚ¯Ø±",
+    STARS: "Ø§Ø³ØªØ§Ø±Ø²",
+    GIFTS: "Ù‡Ø¯Ø§ÛŒØ§"
 }
   , WITHDRAW$3 = {
-    GIFT_WITHDRAWAL: "برداشت هدیه",
-    CHOOSE_METHOD: "انتخاب روش برداشت",
-    TO_TELEGRAM: "برداشت به تلگرام",
-    TO_TELEGRAM_DESC: "هدیه را مستقیماً به حساب تلگرامتان برداشت کنید",
-    COST: "هزینهٔ برداشت {{fee}} TON",
-    CONFIRM_COST: "برداشت با کارمزد {{fee}} TON",
+    GIFT_WITHDRAWAL: "Ø¨Ø±Ø¯Ø§Ø´Øª Ù‡Ø¯ÛŒÙ‡",
+    CHOOSE_METHOD: "Ø§Ù†ØªØ®Ø§Ø¨ Ø±ÙˆØ´ Ø¨Ø±Ø¯Ø§Ø´Øª",
+    TO_TELEGRAM: "Ø¨Ø±Ø¯Ø§Ø´Øª Ø¨Ù‡ ØªÙ„Ú¯Ø±Ø§Ù…",
+    TO_TELEGRAM_DESC: "Ù‡Ø¯ÛŒÙ‡ Ø±Ø§ Ù…Ø³ØªÙ‚ÛŒÙ…Ø§Ù‹ Ø¨Ù‡ Ø­Ø³Ø§Ø¨ ØªÙ„Ú¯Ø±Ø§Ù…ØªØ§Ù† Ø¨Ø±Ø¯Ø§Ø´Øª Ú©Ù†ÛŒØ¯",
+    COST: "Ù‡Ø²ÛŒÙ†Ù‡Ù” Ø¨Ø±Ø¯Ø§Ø´Øª {{fee}} TON",
+    CONFIRM_COST: "Ø¨Ø±Ø¯Ø§Ø´Øª Ø¨Ø§ Ú©Ø§Ø±Ù…Ø²Ø¯ {{fee}} TON",
     STATUSES: {
-        WITHDRAWAL_PROCESSING: "هدیه به‌طور خودکار ارسال می‌شود",
-        PROCESSING_WITHDRAWAL: "هدیه به‌طور خودکار ارسال می‌شود",
-        PROCESSING_DESC: "پنجره را ببندید و منتظر تحویل بمانید.",
-        PROCESSING_TO_DESC: "درخواست برداشت هدیهٔ شما به {{destination}} در حال پردازش است.",
-        WITHDRAWAL_SUCCESSFUL: "برداشت با موفقیت انجام شد",
-        SUCCESSFUL_DESC: "هدیهٔ شما با موفقیت به {{destination}} ارسال شد.",
-        GIFT_DEPOSITED: "هدیه واریز شد",
-        DEPOSITED_DESC: "هدیهٔ شما واریز شده و آمادهٔ برداشت است.",
-        WITHDRAWAL_FAILED: "برداشت ناموفق بود",
-        FAILED_DESC: "مشکلی پیش آمد. لطفاً دوباره تلاش کنید. اگر مشکل ادامه داشت، با پشتیبانی تماس بگیرید.",
-        MESSAGE_REQUIRED: "ارسال پیام الزامی است",
-        MESSAGE_REQUIRED_DESC: "برای تکمیل برداشت، هر پیامی به ربات @giftbackpack ارسال کنید.",
-        MESSAGE_BOT_TOOLTIP: "برای فعال‌شدن برداشت، ابتدا به ربات @giftbackpack پیام بدهید.",
-        FAILED_TOOLTIP: "برداشت قبلی ناموفق بود. لطفاً دوباره تلاش کنید.",
-        CHECKING_STATUS: "بررسی وضعیت",
-        CHECKING_STATUS_DESC: "در حال بررسی وضعیت برداشت...",
-        WITHDRAWAL_STATUS: "وضعیت برداشت",
-        MESSAGE_BOT: "ارسال پیام به @giftbackpack",
-        TRY_AGAIN: "دوباره تلاش کنید",
-        RETRY_WITHDRAWAL: "تلاش دوباره برای برداشت",
-        CONTINUE: "ادامه"
+        WITHDRAWAL_PROCESSING: "Ù‡Ø¯ÛŒÙ‡ Ø¨Ù‡â€ŒØ·ÙˆØ± Ø®ÙˆØ¯Ú©Ø§Ø± Ø§Ø±Ø³Ø§Ù„ Ù…ÛŒâ€ŒØ´ÙˆØ¯",
+        PROCESSING_WITHDRAWAL: "Ù‡Ø¯ÛŒÙ‡ Ø¨Ù‡â€ŒØ·ÙˆØ± Ø®ÙˆØ¯Ú©Ø§Ø± Ø§Ø±Ø³Ø§Ù„ Ù…ÛŒâ€ŒØ´ÙˆØ¯",
+        PROCESSING_DESC: "Ù¾Ù†Ø¬Ø±Ù‡ Ø±Ø§ Ø¨Ø¨Ù†Ø¯ÛŒØ¯ Ùˆ Ù…Ù†ØªØ¸Ø± ØªØ­ÙˆÛŒÙ„ Ø¨Ù…Ø§Ù†ÛŒØ¯.",
+        PROCESSING_TO_DESC: "Ø¯Ø±Ø®ÙˆØ§Ø³Øª Ø¨Ø±Ø¯Ø§Ø´Øª Ù‡Ø¯ÛŒÙ‡Ù” Ø´Ù…Ø§ Ø¨Ù‡ {{destination}} Ø¯Ø± Ø­Ø§Ù„ Ù¾Ø±Ø¯Ø§Ø²Ø´ Ø§Ø³Øª.",
+        WITHDRAWAL_SUCCESSFUL: "Ø¨Ø±Ø¯Ø§Ø´Øª Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯",
+        SUCCESSFUL_DESC: "Ù‡Ø¯ÛŒÙ‡Ù” Ø´Ù…Ø§ Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø¨Ù‡ {{destination}} Ø§Ø±Ø³Ø§Ù„ Ø´Ø¯.",
+        GIFT_DEPOSITED: "Ù‡Ø¯ÛŒÙ‡ ÙˆØ§Ø±ÛŒØ² Ø´Ø¯",
+        DEPOSITED_DESC: "Ù‡Ø¯ÛŒÙ‡Ù” Ø´Ù…Ø§ ÙˆØ§Ø±ÛŒØ² Ø´Ø¯Ù‡ Ùˆ Ø¢Ù…Ø§Ø¯Ù‡Ù” Ø¨Ø±Ø¯Ø§Ø´Øª Ø§Ø³Øª.",
+        WITHDRAWAL_FAILED: "Ø¨Ø±Ø¯Ø§Ø´Øª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+        FAILED_DESC: "Ù…Ø´Ú©Ù„ÛŒ Ù¾ÛŒØ´ Ø¢Ù…Ø¯. Ù„Ø·ÙØ§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯. Ø§Ú¯Ø± Ù…Ø´Ú©Ù„ Ø§Ø¯Ø§Ù…Ù‡ Ø¯Ø§Ø´ØªØŒ Ø¨Ø§ Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ ØªÙ…Ø§Ø³ Ø¨Ú¯ÛŒØ±ÛŒØ¯.",
+        MESSAGE_REQUIRED: "Ø§Ø±Ø³Ø§Ù„ Ù¾ÛŒØ§Ù… Ø§Ù„Ø²Ø§Ù…ÛŒ Ø§Ø³Øª",
+        MESSAGE_REQUIRED_DESC: "Ø¨Ø±Ø§ÛŒ ØªÚ©Ù…ÛŒÙ„ Ø¨Ø±Ø¯Ø§Ø´ØªØŒ Ù‡Ø± Ù¾ÛŒØ§Ù…ÛŒ Ø¨Ù‡ Ø±Ø¨Ø§Øª @giftbackpack Ø§Ø±Ø³Ø§Ù„ Ú©Ù†ÛŒØ¯.",
+        MESSAGE_BOT_TOOLTIP: "Ø¨Ø±Ø§ÛŒ ÙØ¹Ø§Ù„â€ŒØ´Ø¯Ù† Ø¨Ø±Ø¯Ø§Ø´ØªØŒ Ø§Ø¨ØªØ¯Ø§ Ø¨Ù‡ Ø±Ø¨Ø§Øª @giftbackpack Ù¾ÛŒØ§Ù… Ø¨Ø¯Ù‡ÛŒØ¯.",
+        FAILED_TOOLTIP: "Ø¨Ø±Ø¯Ø§Ø´Øª Ù‚Ø¨Ù„ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯. Ù„Ø·ÙØ§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+        CHECKING_STATUS: "Ø¨Ø±Ø±Ø³ÛŒ ÙˆØ¶Ø¹ÛŒØª",
+        CHECKING_STATUS_DESC: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø±Ø±Ø³ÛŒ ÙˆØ¶Ø¹ÛŒØª Ø¨Ø±Ø¯Ø§Ø´Øª...",
+        WITHDRAWAL_STATUS: "ÙˆØ¶Ø¹ÛŒØª Ø¨Ø±Ø¯Ø§Ø´Øª",
+        MESSAGE_BOT: "Ø§Ø±Ø³Ø§Ù„ Ù¾ÛŒØ§Ù… Ø¨Ù‡ @giftbackpack",
+        TRY_AGAIN: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯",
+        RETRY_WITHDRAWAL: "ØªÙ„Ø§Ø´ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø¨Ø±Ø§ÛŒ Ø¨Ø±Ø¯Ø§Ø´Øª",
+        CONTINUE: "Ø§Ø¯Ø§Ù…Ù‡"
     }
 }
   , faBalance = {
@@ -55696,119 +55696,119 @@ It's 100% free, and you can try your luck every 24 hours!`,
     WITHDRAW: WITHDRAW$3
 }
   , PVP$1 = {
-    NOT_CONNECTED: "اتصال برقرار نیست",
-    UNABLE_TO_PLACE_BET: "ثبت شرط ناموفق بود. دوباره متصل شوید."
+    NOT_CONNECTED: "Ø§ØªØµØ§Ù„ Ø¨Ø±Ù‚Ø±Ø§Ø± Ù†ÛŒØ³Øª",
+    UNABLE_TO_PLACE_BET: "Ø«Ø¨Øª Ø´Ø±Ø· Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯. Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ù…ØªØµÙ„ Ø´ÙˆÛŒØ¯."
 }
   , UNBOX$1 = {
-    INVALID_BOX_ID: "شناسهٔ جعبه نامعتبر است",
-    UNEXPECTED_ERROR: "خطای غیرمنتظره‌ای رخ داد",
-    PROMO_REQUIRED: "وارد کردن کد تبلیغاتی الزامی است",
-    INVALID_PROMO: "کد تبلیغاتی نامعتبر است",
-    PROMO_EXPIRED: "مهلت این کد تبلیغاتی به پایان رسیده است",
-    PROMO_USED: "این کد تبلیغاتی قبلاً استفاده شده است",
-    OUT_OF_STOCK: "موجودی جعبهٔ هدیه تمام شده است",
-    JOIN_CHANNEL_REQUIRED: "برای دسترسی به هدیه‌های روزانه، به کانال تلگرام ما بپیوندید.",
-    DEPOSIT_REQUIRED: "برای ادامهٔ بازی دست‌کم ۰٫۱ TON واریز کنید.",
-    DEPOSIT1_REQUIRED: "برای ادامهٔ بازی دست‌کم ۱ TON واریز کنید.",
-    INSUFFICIENT_STARS: "برای باز کردن این جعبهٔ هدیه، استارز کافی ندارید.",
-    TOO_FAST: "اخیراً هدیه‌ای باز کرده‌اید. لطفاً کمی صبر کنید.",
-    DAILY_ALREADY_CLAIMED: "پاداش روزانه را قبلاً گرفته‌اید. لطفاً صبر کنید."
+    INVALID_BOX_ID: "Ø´Ù†Ø§Ø³Ù‡Ù” Ø¬Ø¹Ø¨Ù‡ Ù†Ø§Ù…Ø¹ØªØ¨Ø± Ø§Ø³Øª",
+    UNEXPECTED_ERROR: "Ø®Ø·Ø§ÛŒ ØºÛŒØ±Ù…Ù†ØªØ¸Ø±Ù‡â€ŒØ§ÛŒ Ø±Ø® Ø¯Ø§Ø¯",
+    PROMO_REQUIRED: "ÙˆØ§Ø±Ø¯ Ú©Ø±Ø¯Ù† Ú©Ø¯ ØªØ¨Ù„ÛŒØºØ§ØªÛŒ Ø§Ù„Ø²Ø§Ù…ÛŒ Ø§Ø³Øª",
+    INVALID_PROMO: "Ú©Ø¯ ØªØ¨Ù„ÛŒØºØ§ØªÛŒ Ù†Ø§Ù…Ø¹ØªØ¨Ø± Ø§Ø³Øª",
+    PROMO_EXPIRED: "Ù…Ù‡Ù„Øª Ø§ÛŒÙ† Ú©Ø¯ ØªØ¨Ù„ÛŒØºØ§ØªÛŒ Ø¨Ù‡ Ù¾Ø§ÛŒØ§Ù† Ø±Ø³ÛŒØ¯Ù‡ Ø§Ø³Øª",
+    PROMO_USED: "Ø§ÛŒÙ† Ú©Ø¯ ØªØ¨Ù„ÛŒØºØ§ØªÛŒ Ù‚Ø¨Ù„Ø§Ù‹ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    OUT_OF_STOCK: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø¬Ø¹Ø¨Ù‡Ù” Ù‡Ø¯ÛŒÙ‡ ØªÙ…Ø§Ù… Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    JOIN_CHANNEL_REQUIRED: "Ø¨Ø±Ø§ÛŒ Ø¯Ø³ØªØ±Ø³ÛŒ Ø¨Ù‡ Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ø±ÙˆØ²Ø§Ù†Ù‡ØŒ Ø¨Ù‡ Ú©Ø§Ù†Ø§Ù„ ØªÙ„Ú¯Ø±Ø§Ù… Ù…Ø§ Ø¨Ù¾ÛŒÙˆÙ†Ø¯ÛŒØ¯.",
+    DEPOSIT_REQUIRED: "Ø¨Ø±Ø§ÛŒ Ø§Ø¯Ø§Ù…Ù‡Ù” Ø¨Ø§Ø²ÛŒ Ø¯Ø³Øªâ€ŒÚ©Ù… Û°Ù«Û± TON ÙˆØ§Ø±ÛŒØ² Ú©Ù†ÛŒØ¯.",
+    DEPOSIT1_REQUIRED: "Ø¨Ø±Ø§ÛŒ Ø§Ø¯Ø§Ù…Ù‡Ù” Ø¨Ø§Ø²ÛŒ Ø¯Ø³Øªâ€ŒÚ©Ù… Û± TON ÙˆØ§Ø±ÛŒØ² Ú©Ù†ÛŒØ¯.",
+    INSUFFICIENT_STARS: "Ø¨Ø±Ø§ÛŒ Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø§ÛŒÙ† Ø¬Ø¹Ø¨Ù‡Ù” Ù‡Ø¯ÛŒÙ‡ØŒ Ø§Ø³ØªØ§Ø±Ø² Ú©Ø§ÙÛŒ Ù†Ø¯Ø§Ø±ÛŒØ¯.",
+    TOO_FAST: "Ø§Ø®ÛŒØ±Ø§Ù‹ Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø¨Ø§Ø² Ú©Ø±Ø¯Ù‡â€ŒØ§ÛŒØ¯. Ù„Ø·ÙØ§Ù‹ Ú©Ù…ÛŒ ØµØ¨Ø± Ú©Ù†ÛŒØ¯.",
+    DAILY_ALREADY_CLAIMED: "Ù¾Ø§Ø¯Ø§Ø´ Ø±ÙˆØ²Ø§Ù†Ù‡ Ø±Ø§ Ù‚Ø¨Ù„Ø§Ù‹ Ú¯Ø±ÙØªÙ‡â€ŒØ§ÛŒØ¯. Ù„Ø·ÙØ§Ù‹ ØµØ¨Ø± Ú©Ù†ÛŒØ¯."
 }
   , UPGRADE$1 = {
-    USER_NOT_FOUND: "کاربر پیدا نشد",
-    GIFT_NOT_UPGRADEABLE: "هدیه پیدا نشد یا قابل ارتقا نیست",
-    TARGET_NOT_FOUND: "مجموعهٔ هدف پیدا نشد",
-    RESOURCE_NOT_FOUND: "منبع پیدا نشد",
-    GIFT_BUSY: "هدیه در حال انجام عملیات دیگری است",
-    TOO_FAST: "پیش از تلاش دوباره کمی صبر کنید",
-    SERVER_ERROR: "خطای سرور رخ داد",
-    NETWORK_ERROR: "خطای شبکه رخ داد",
-    UNEXPECTED_ERROR: "خطای غیرمنتظره‌ای رخ داد",
-    PRICE_UNDER_REVIEW: "این هدیه در حال بررسی است. پس از پایان بررسی می‌توانید آن را ارتقا دهید."
+    USER_NOT_FOUND: "Ú©Ø§Ø±Ø¨Ø± Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    GIFT_NOT_UPGRADEABLE: "Ù‡Ø¯ÛŒÙ‡ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯ ÛŒØ§ Ù‚Ø§Ø¨Ù„ Ø§Ø±ØªÙ‚Ø§ Ù†ÛŒØ³Øª",
+    TARGET_NOT_FOUND: "Ù…Ø¬Ù…ÙˆØ¹Ù‡Ù” Ù‡Ø¯Ù Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    RESOURCE_NOT_FOUND: "Ù…Ù†Ø¨Ø¹ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    GIFT_BUSY: "Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ø­Ø§Ù„ Ø§Ù†Ø¬Ø§Ù… Ø¹Ù…Ù„ÛŒØ§Øª Ø¯ÛŒÚ¯Ø±ÛŒ Ø§Ø³Øª",
+    TOO_FAST: "Ù¾ÛŒØ´ Ø§Ø² ØªÙ„Ø§Ø´ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ú©Ù…ÛŒ ØµØ¨Ø± Ú©Ù†ÛŒØ¯",
+    SERVER_ERROR: "Ø®Ø·Ø§ÛŒ Ø³Ø±ÙˆØ± Ø±Ø® Ø¯Ø§Ø¯",
+    NETWORK_ERROR: "Ø®Ø·Ø§ÛŒ Ø´Ø¨Ú©Ù‡ Ø±Ø® Ø¯Ø§Ø¯",
+    UNEXPECTED_ERROR: "Ø®Ø·Ø§ÛŒ ØºÛŒØ±Ù…Ù†ØªØ¸Ø±Ù‡â€ŒØ§ÛŒ Ø±Ø® Ø¯Ø§Ø¯",
+    PRICE_UNDER_REVIEW: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø±Ø±Ø³ÛŒ Ø§Ø³Øª. Ù¾Ø³ Ø§Ø² Ù¾Ø§ÛŒØ§Ù† Ø¨Ø±Ø±Ø³ÛŒ Ù…ÛŒâ€ŒØªÙˆØ§Ù†ÛŒØ¯ Ø¢Ù† Ø±Ø§ Ø§Ø±ØªÙ‚Ø§ Ø¯Ù‡ÛŒØ¯."
 }
   , TON$1 = {
-    PROOF_PAYLOAD_FAILED: "دریافت دادهٔ اثبات ناموفق بود",
-    PROOF_VERIFICATION_FAILED: "راستی‌آزمایی اثبات ناموفق بود",
-    PROOF_VERIFY_FAILED: "بررسی اثبات ناموفق بود",
-    FETCH_BALANCE_FAILED: "دریافت موجودی ناموفق بود",
-    WALLET_BALANCE_FAILED: "دریافت موجودی کیف پول ناموفق بود"
+    PROOF_PAYLOAD_FAILED: "Ø¯Ø±ÛŒØ§ÙØª Ø¯Ø§Ø¯Ù‡Ù” Ø§Ø«Ø¨Ø§Øª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    PROOF_VERIFICATION_FAILED: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ø§Ø«Ø¨Ø§Øª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    PROOF_VERIFY_FAILED: "Ø¨Ø±Ø±Ø³ÛŒ Ø§Ø«Ø¨Ø§Øª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FETCH_BALANCE_FAILED: "Ø¯Ø±ÛŒØ§ÙØª Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    WALLET_BALANCE_FAILED: "Ø¯Ø±ÛŒØ§ÙØª Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ú©ÛŒÙ Ù¾ÙˆÙ„ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , TASKS$1 = {
-    FETCH_FAILED: "دریافت وظایف ناموفق بود",
-    COMPLETE_FAILED: "تکمیل وظیفه ناموفق بود",
-    VERIFICATION_FAILED: "راستی‌آزمایی ناموفق بود",
-    CHANNEL_VERIFY_FAILED: "بررسی عضویت در کانال ناموفق بود",
-    CLAIM_FAILED: "دریافت پاداش وظیفه ناموفق بود"
+    FETCH_FAILED: "Ø¯Ø±ÛŒØ§ÙØª ÙˆØ¸Ø§ÛŒÙ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    COMPLETE_FAILED: "ØªÚ©Ù…ÛŒÙ„ ÙˆØ¸ÛŒÙÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    VERIFICATION_FAILED: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    CHANNEL_VERIFY_FAILED: "Ø¨Ø±Ø±Ø³ÛŒ Ø¹Ø¶ÙˆÛŒØª Ø¯Ø± Ú©Ø§Ù†Ø§Ù„ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    CLAIM_FAILED: "Ø¯Ø±ÛŒØ§ÙØª Ù¾Ø§Ø¯Ø§Ø´ ÙˆØ¸ÛŒÙÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , RATE$1 = {
-    FETCH_FAILED: "دریافت نرخ TON ناموفق بود"
+    FETCH_FAILED: "Ø¯Ø±ÛŒØ§ÙØª Ù†Ø±Ø® TON Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , LEADERBOARD$1 = {
     NO_ACTIVE: "no_active_leaderboard",
-    NOT_FOUND: "جدول رتبه‌بندی پیدا نشد",
-    UNAUTHORIZED: "دسترسی غیرمجاز",
-    SERVER_ERROR: "خطای سرور رخ داد",
-    NETWORK_ERROR: "خطای شبکه رخ داد",
-    UNEXPECTED_ERROR: "خطای غیرمنتظره‌ای رخ داد",
-    USER_NOT_FOUND: "کاربر در جدول رتبه‌بندی پیدا نشد"
+    NOT_FOUND: "Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    UNAUTHORIZED: "Ø¯Ø³ØªØ±Ø³ÛŒ ØºÛŒØ±Ù…Ø¬Ø§Ø²",
+    SERVER_ERROR: "Ø®Ø·Ø§ÛŒ Ø³Ø±ÙˆØ± Ø±Ø® Ø¯Ø§Ø¯",
+    NETWORK_ERROR: "Ø®Ø·Ø§ÛŒ Ø´Ø¨Ú©Ù‡ Ø±Ø® Ø¯Ø§Ø¯",
+    UNEXPECTED_ERROR: "Ø®Ø·Ø§ÛŒ ØºÛŒØ±Ù…Ù†ØªØ¸Ø±Ù‡â€ŒØ§ÛŒ Ø±Ø® Ø¯Ø§Ø¯",
+    USER_NOT_FOUND: "Ú©Ø§Ø±Ø¨Ø± Ø¯Ø± Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯"
 }
   , GIVEAWAY$1 = {
-    UNAUTHORIZED: "دسترسی غیرمجاز",
-    SERVER_ERROR: "خطای سرور رخ داد",
-    NETWORK_ERROR: "خطای شبکه رخ داد",
-    UNEXPECTED_ERROR: "خطای غیرمنتظره‌ای رخ داد",
-    NOT_FOUND: "قرعه‌کشی پیدا نشد",
-    ALREADY_JOINED: "قبلاً به این قرعه‌کشی پیوسته‌اید",
-    REQUIREMENTS_NOT_MET: "شرایط لازم را ندارید",
-    NOT_ENOUGH_TICKETS: "بلیت کافی ندارید",
-    BELOW_MIN_ENTRY: "تعداد بلیت کمتر از حداقل است",
-    VIP_LEVEL_TOO_LOW: "این قرعه‌کشی به سطح VIP بالاتری نیاز دارد",
-    ENTER_GIVEAWAY_FAILED: "پیوستن به قرعه‌کشی ناموفق بود",
-    ADD_TICKETS_FAILED: "افزودن بلیت ناموفق بود"
+    UNAUTHORIZED: "Ø¯Ø³ØªØ±Ø³ÛŒ ØºÛŒØ±Ù…Ø¬Ø§Ø²",
+    SERVER_ERROR: "Ø®Ø·Ø§ÛŒ Ø³Ø±ÙˆØ± Ø±Ø® Ø¯Ø§Ø¯",
+    NETWORK_ERROR: "Ø®Ø·Ø§ÛŒ Ø´Ø¨Ú©Ù‡ Ø±Ø® Ø¯Ø§Ø¯",
+    UNEXPECTED_ERROR: "Ø®Ø·Ø§ÛŒ ØºÛŒØ±Ù…Ù†ØªØ¸Ø±Ù‡â€ŒØ§ÛŒ Ø±Ø® Ø¯Ø§Ø¯",
+    NOT_FOUND: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    ALREADY_JOINED: "Ù‚Ø¨Ù„Ø§Ù‹ Ø¨Ù‡ Ø§ÛŒÙ† Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù¾ÛŒÙˆØ³ØªÙ‡â€ŒØ§ÛŒØ¯",
+    REQUIREMENTS_NOT_MET: "Ø´Ø±Ø§ÛŒØ· Ù„Ø§Ø²Ù… Ø±Ø§ Ù†Ø¯Ø§Ø±ÛŒØ¯",
+    NOT_ENOUGH_TICKETS: "Ø¨Ù„ÛŒØª Ú©Ø§ÙÛŒ Ù†Ø¯Ø§Ø±ÛŒØ¯",
+    BELOW_MIN_ENTRY: "ØªØ¹Ø¯Ø§Ø¯ Ø¨Ù„ÛŒØª Ú©Ù…ØªØ± Ø§Ø² Ø­Ø¯Ø§Ù‚Ù„ Ø§Ø³Øª",
+    VIP_LEVEL_TOO_LOW: "Ø§ÛŒÙ† Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ø¨Ù‡ Ø³Ø·Ø­ VIP Ø¨Ø§Ù„Ø§ØªØ±ÛŒ Ù†ÛŒØ§Ø² Ø¯Ø§Ø±Ø¯",
+    ENTER_GIVEAWAY_FAILED: "Ù¾ÛŒÙˆØ³ØªÙ† Ø¨Ù‡ Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    ADD_TICKETS_FAILED: "Ø§ÙØ²ÙˆØ¯Ù† Ø¨Ù„ÛŒØª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , GIFT$1 = {
-    NO_UPGRADE_TARGETS: "هدیه پیدا نشد یا هدفی برای ارتقا موجود نیست",
-    UNAUTHORIZED: "دسترسی غیرمجاز",
-    SERVER_ERROR: "خطای سرور رخ داد",
-    NETWORK_ERROR: "خطای شبکه رخ داد",
-    UNEXPECTED_ERROR: "خطای غیرمنتظره‌ای رخ داد",
-    DEPOSIT_PRICES_NOT_FOUND: "قیمت‌های واریز پیدا نشد",
-    TOP_GIFTS_NOT_FOUND: "هدیه‌های برتر پیدا نشدند",
-    NEEDS_PM: "برای فعال‌شدن برداشت، ابتدا به حساب فرستندهٔ هدیه پیام بدهید.",
-    RATE_UNAVAILABLE: "نرخ‌ها موقتاً در دسترس نیستند. کمی بعد دوباره تلاش کنید.",
-    PRICE_UNDER_REVIEW: "این هدیه در حال بررسی است. پس از پایان بررسی می‌توانید آن را بفروشید."
+    NO_UPGRADE_TARGETS: "Ù‡Ø¯ÛŒÙ‡ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯ ÛŒØ§ Ù‡Ø¯ÙÛŒ Ø¨Ø±Ø§ÛŒ Ø§Ø±ØªÙ‚Ø§ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    UNAUTHORIZED: "Ø¯Ø³ØªØ±Ø³ÛŒ ØºÛŒØ±Ù…Ø¬Ø§Ø²",
+    SERVER_ERROR: "Ø®Ø·Ø§ÛŒ Ø³Ø±ÙˆØ± Ø±Ø® Ø¯Ø§Ø¯",
+    NETWORK_ERROR: "Ø®Ø·Ø§ÛŒ Ø´Ø¨Ú©Ù‡ Ø±Ø® Ø¯Ø§Ø¯",
+    UNEXPECTED_ERROR: "Ø®Ø·Ø§ÛŒ ØºÛŒØ±Ù…Ù†ØªØ¸Ø±Ù‡â€ŒØ§ÛŒ Ø±Ø® Ø¯Ø§Ø¯",
+    DEPOSIT_PRICES_NOT_FOUND: "Ù‚ÛŒÙ…Øªâ€ŒÙ‡Ø§ÛŒ ÙˆØ§Ø±ÛŒØ² Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    TOP_GIFTS_NOT_FOUND: "Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ø¨Ø±ØªØ± Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯Ù†Ø¯",
+    NEEDS_PM: "Ø¨Ø±Ø§ÛŒ ÙØ¹Ø§Ù„â€ŒØ´Ø¯Ù† Ø¨Ø±Ø¯Ø§Ø´ØªØŒ Ø§Ø¨ØªØ¯Ø§ Ø¨Ù‡ Ø­Ø³Ø§Ø¨ ÙØ±Ø³ØªÙ†Ø¯Ù‡Ù” Ù‡Ø¯ÛŒÙ‡ Ù¾ÛŒØ§Ù… Ø¨Ø¯Ù‡ÛŒØ¯.",
+    RATE_UNAVAILABLE: "Ù†Ø±Ø®â€ŒÙ‡Ø§ Ù…ÙˆÙ‚ØªØ§Ù‹ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³ØªÙ†Ø¯. Ú©Ù…ÛŒ Ø¨Ø¹Ø¯ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+    PRICE_UNDER_REVIEW: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø±Ø±Ø³ÛŒ Ø§Ø³Øª. Ù¾Ø³ Ø§Ø² Ù¾Ø§ÛŒØ§Ù† Ø¨Ø±Ø±Ø³ÛŒ Ù…ÛŒâ€ŒØªÙˆØ§Ù†ÛŒØ¯ Ø¢Ù† Ø±Ø§ Ø¨ÙØ±ÙˆØ´ÛŒØ¯."
 }
   , USER$1 = {
-    FETCH_FAILED: "دریافت اطلاعات کاربر ناموفق بود",
-    BALANCE_UPDATE_FAILED: "به‌روزرسانی موجودی ناموفق بود",
-    LOCALE_UPDATE_FAILED: "به‌روزرسانی زبان ناموفق بود"
+    FETCH_FAILED: "Ø¯Ø±ÛŒØ§ÙØª Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ú©Ø§Ø±Ø¨Ø± Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    BALANCE_UPDATE_FAILED: "Ø¨Ù‡â€ŒØ±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    LOCALE_UPDATE_FAILED: "Ø¨Ù‡â€ŒØ±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ø²Ø¨Ø§Ù† Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , REFERRAL$1 = {
-    FETCH_FAILED: "دریافت اطلاعات دعوت‌شدگان ناموفق بود",
-    EARNED_FETCH_FAILED: "دریافت مجموع درآمد ناموفق بود",
-    TOO_MANY_REQUESTS: "درخواست‌ها بیش از حد است؛ کمی صبر کنید"
+    FETCH_FAILED: "Ø¯Ø±ÛŒØ§ÙØª Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø¯Ø¹ÙˆØªâ€ŒØ´Ø¯Ú¯Ø§Ù† Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    EARNED_FETCH_FAILED: "Ø¯Ø±ÛŒØ§ÙØª Ù…Ø¬Ù…ÙˆØ¹ Ø¯Ø±Ø¢Ù…Ø¯ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    TOO_MANY_REQUESTS: "Ø¯Ø±Ø®ÙˆØ§Ø³Øªâ€ŒÙ‡Ø§ Ø¨ÛŒØ´ Ø§Ø² Ø­Ø¯ Ø§Ø³ØªØ› Ú©Ù…ÛŒ ØµØ¨Ø± Ú©Ù†ÛŒØ¯"
 }
   , TRANSACTION$1 = {
-    CREATE_FAILED: "ایجاد تراکنش ناموفق بود"
+    CREATE_FAILED: "Ø§ÛŒØ¬Ø§Ø¯ ØªØ±Ø§Ú©Ù†Ø´ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , PAYMENT$1 = {
-    CREATE_FAILED: "ایجاد پرداخت ناموفق بود"
+    CREATE_FAILED: "Ø§ÛŒØ¬Ø§Ø¯ Ù¾Ø±Ø¯Ø§Ø®Øª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , APP$2 = {
-    TELEGRAM_REQUIRED: "این برنامه باید در تلگرام باز شود",
-    SESSION_EXPIRED_TITLE: "مهلت نشست به پایان رسیده است",
-    SESSION_EXPIRED_MESSAGE: "برنامه را ببندید و دوباره از داخل ربات تلگرام باز کنید.",
-    SESSION_EXPIRED_HINT: "اگر کمکی نکرد، تلگرام را کاملاً ببندید (به بالا بکشید و آن را از فهرست برنامه‌های باز حذف کنید) و دوباره باز کنید.",
-    SESSION_EXPIRED_BUTTON: "بستن برنامه",
-    CONNECTION_ERROR_TITLE: "مشکل اتصال",
-    CONNECTION_ERROR_MESSAGE: "نتوانستیم به سرور وصل شویم. اتصال اینترنت را بررسی کنید و دوباره تلاش کنید.",
-    CONNECTION_ERROR_HINT: "اگر کمکی نکرد، شبکهٔ دیگری را امتحان کنید یا برنامه را دوباره باز کنید.",
-    CONNECTION_ERROR_RETRY: "دوباره تلاش کنید",
-    CONNECTION_ERROR_COPY: "کپی جزئیات خطا",
-    CONNECTION_ERROR_COPIED: "کپی شد"
+    TELEGRAM_REQUIRED: "Ø§ÛŒÙ† Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø¨Ø§ÛŒØ¯ Ø¯Ø± ØªÙ„Ú¯Ø±Ø§Ù… Ø¨Ø§Ø² Ø´ÙˆØ¯",
+    SESSION_EXPIRED_TITLE: "Ù…Ù‡Ù„Øª Ù†Ø´Ø³Øª Ø¨Ù‡ Ù¾Ø§ÛŒØ§Ù† Ø±Ø³ÛŒØ¯Ù‡ Ø§Ø³Øª",
+    SESSION_EXPIRED_MESSAGE: "Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø±Ø§ Ø¨Ø¨Ù†Ø¯ÛŒØ¯ Ùˆ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø§Ø² Ø¯Ø§Ø®Ù„ Ø±Ø¨Ø§Øª ØªÙ„Ú¯Ø±Ø§Ù… Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯.",
+    SESSION_EXPIRED_HINT: "Ø§Ú¯Ø± Ú©Ù…Ú©ÛŒ Ù†Ú©Ø±Ø¯ØŒ ØªÙ„Ú¯Ø±Ø§Ù… Ø±Ø§ Ú©Ø§Ù…Ù„Ø§Ù‹ Ø¨Ø¨Ù†Ø¯ÛŒØ¯ (Ø¨Ù‡ Ø¨Ø§Ù„Ø§ Ø¨Ú©Ø´ÛŒØ¯ Ùˆ Ø¢Ù† Ø±Ø§ Ø§Ø² ÙÙ‡Ø±Ø³Øª Ø¨Ø±Ù†Ø§Ù…Ù‡â€ŒÙ‡Ø§ÛŒ Ø¨Ø§Ø² Ø­Ø°Ù Ú©Ù†ÛŒØ¯) Ùˆ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯.",
+    SESSION_EXPIRED_BUTTON: "Ø¨Ø³ØªÙ† Ø¨Ø±Ù†Ø§Ù…Ù‡",
+    CONNECTION_ERROR_TITLE: "Ù…Ø´Ú©Ù„ Ø§ØªØµØ§Ù„",
+    CONNECTION_ERROR_MESSAGE: "Ù†ØªÙˆØ§Ù†Ø³ØªÛŒÙ… Ø¨Ù‡ Ø³Ø±ÙˆØ± ÙˆØµÙ„ Ø´ÙˆÛŒÙ…. Ø§ØªØµØ§Ù„ Ø§ÛŒÙ†ØªØ±Ù†Øª Ø±Ø§ Ø¨Ø±Ø±Ø³ÛŒ Ú©Ù†ÛŒØ¯ Ùˆ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+    CONNECTION_ERROR_HINT: "Ø§Ú¯Ø± Ú©Ù…Ú©ÛŒ Ù†Ú©Ø±Ø¯ØŒ Ø´Ø¨Ú©Ù‡Ù” Ø¯ÛŒÚ¯Ø±ÛŒ Ø±Ø§ Ø§Ù…ØªØ­Ø§Ù† Ú©Ù†ÛŒØ¯ ÛŒØ§ Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø±Ø§ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯.",
+    CONNECTION_ERROR_RETRY: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯",
+    CONNECTION_ERROR_COPY: "Ú©Ù¾ÛŒ Ø¬Ø²Ø¦ÛŒØ§Øª Ø®Ø·Ø§",
+    CONNECTION_ERROR_COPIED: "Ú©Ù¾ÛŒ Ø´Ø¯"
 }
   , LIVE_FEED$1 = {
-    FETCH_FAILED: "دریافت دراپ‌های زنده ناموفق بود"
+    FETCH_FAILED: "Ø¯Ø±ÛŒØ§ÙØª Ø¯Ø±Ø§Ù¾â€ŒÙ‡Ø§ÛŒ Ø²Ù†Ø¯Ù‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , faErrors = {
     PVP: PVP$1,
@@ -55829,55 +55829,55 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , REWARD$1 = {
     TITLES: {
-        CONGRATULATIONS: "تبریک!",
-        BALANCE_INCREASED: "موجودی افزایش یافت!",
-        UPGRADE_SUCCESSFUL: "ارتقا با موفقیت انجام شد!"
+        CONGRATULATIONS: "ØªØ¨Ø±ÛŒÚ©!",
+        BALANCE_INCREASED: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø§ÙØ²Ø§ÛŒØ´ ÛŒØ§ÙØª!",
+        UPGRADE_SUCCESSFUL: "Ø§Ø±ØªÙ‚Ø§ Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯!"
     },
     DESCRIPTIONS: {
-        RECEIVED_GIFT: "یک هدیهٔ ویژه دریافت کرده‌اید",
-        BALANCE_UPDATED: "موجودی شما به‌روزرسانی شد",
-        GIFT_UPGRADED: "هدیهٔ شما ارتقا یافت!"
+        RECEIVED_GIFT: "ÛŒÚ© Ù‡Ø¯ÛŒÙ‡Ù” ÙˆÛŒÚ˜Ù‡ Ø¯Ø±ÛŒØ§ÙØª Ú©Ø±Ø¯Ù‡â€ŒØ§ÛŒØ¯",
+        BALANCE_UPDATED: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø´Ù…Ø§ Ø¨Ù‡â€ŒØ±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ø´Ø¯",
+        GIFT_UPGRADED: "Ù‡Ø¯ÛŒÙ‡Ù” Ø´Ù…Ø§ Ø§Ø±ØªÙ‚Ø§ ÛŒØ§ÙØª!"
     },
     ACTIONS: {
-        UPGRADE_AGAIN: "دوباره ارتقا دهید!"
+        UPGRADE_AGAIN: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø§Ø±ØªÙ‚Ø§ Ø¯Ù‡ÛŒØ¯!"
     }
 }
   , NOTHING$1 = {
-    TITLE: "این بار نشد",
-    SUBTITLE: "امیدواریم دفعهٔ بعد خوش‌شانس باشید!",
-    DESCRIPTION: "ناامید نشوید! دوباره تلاش کنید تا شانس بردن جایزهٔ بزرگ را داشته باشید!",
-    MAYBE_LATER: "شاید بعداً",
-    TRY_AGAIN_FOR: "برای {{price}} دوباره تلاش کنید"
+    TITLE: "Ø§ÛŒÙ† Ø¨Ø§Ø± Ù†Ø´Ø¯",
+    SUBTITLE: "Ø§Ù…ÛŒØ¯ÙˆØ§Ø±ÛŒÙ… Ø¯ÙØ¹Ù‡Ù” Ø¨Ø¹Ø¯ Ø®ÙˆØ´â€ŒØ´Ø§Ù†Ø³ Ø¨Ø§Ø´ÛŒØ¯!",
+    DESCRIPTION: "Ù†Ø§Ø§Ù…ÛŒØ¯ Ù†Ø´ÙˆÛŒØ¯! Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯ ØªØ§ Ø´Ø§Ù†Ø³ Ø¨Ø±Ø¯Ù† Ø¬Ø§ÛŒØ²Ù‡Ù” Ø¨Ø²Ø±Ú¯ Ø±Ø§ Ø¯Ø§Ø´ØªÙ‡ Ø¨Ø§Ø´ÛŒØ¯!",
+    MAYBE_LATER: "Ø´Ø§ÛŒØ¯ Ø¨Ø¹Ø¯Ø§Ù‹",
+    TRY_AGAIN_FOR: "Ø¨Ø±Ø§ÛŒ {{price}} Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯"
 }
   , WITHDRAW$2 = {
-    TRY_AGAIN: "دوباره تلاش کنید"
+    TRY_AGAIN: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯"
 }
   , PM_REQUIRED$1 = {
-    TITLE: "یک مرحلهٔ دیگر",
-    DESCRIPTION: "برای دریافت هدیه‌تان، باید یک پیام به ربات انتقال هدیهٔ ما بفرستید. این شرط یک‌باره از طرف تلگرام است.",
-    MESSAGE_BOT: "ارسال پیام به @giftbackpack",
-    MESSAGE_BOT_TITLE: "ابتدا به ربات ما پیام بدهید",
-    DO_IT_LATER: "بعداً انجامش می‌دهم"
+    TITLE: "ÛŒÚ© Ù…Ø±Ø­Ù„Ù‡Ù” Ø¯ÛŒÚ¯Ø±",
+    DESCRIPTION: "Ø¨Ø±Ø§ÛŒ Ø¯Ø±ÛŒØ§ÙØª Ù‡Ø¯ÛŒÙ‡â€ŒØªØ§Ù†ØŒ Ø¨Ø§ÛŒØ¯ ÛŒÚ© Ù¾ÛŒØ§Ù… Ø¨Ù‡ Ø±Ø¨Ø§Øª Ø§Ù†ØªÙ‚Ø§Ù„ Ù‡Ø¯ÛŒÙ‡Ù” Ù…Ø§ Ø¨ÙØ±Ø³ØªÛŒØ¯. Ø§ÛŒÙ† Ø´Ø±Ø· ÛŒÚ©â€ŒØ¨Ø§Ø±Ù‡ Ø§Ø² Ø·Ø±Ù ØªÙ„Ú¯Ø±Ø§Ù… Ø§Ø³Øª.",
+    MESSAGE_BOT: "Ø§Ø±Ø³Ø§Ù„ Ù¾ÛŒØ§Ù… Ø¨Ù‡ @giftbackpack",
+    MESSAGE_BOT_TITLE: "Ø§Ø¨ØªØ¯Ø§ Ø¨Ù‡ Ø±Ø¨Ø§Øª Ù…Ø§ Ù¾ÛŒØ§Ù… Ø¨Ø¯Ù‡ÛŒØ¯",
+    DO_IT_LATER: "Ø¨Ø¹Ø¯Ø§Ù‹ Ø§Ù†Ø¬Ø§Ù…Ø´ Ù…ÛŒâ€ŒØ¯Ù‡Ù…"
 }
   , STARS_LOCK$1 = {
-    TITLE: "برداشت موقتاً در دسترس نیست",
-    DESCRIPTION: `پس از هر واریز با استارز تلگرام، یک دورهٔ انتظار ۷۲ ساعته اعمال می‌شود. در این مدت، برداشت در دسترس نیست. پس از پایان دوره، دسترسی خودکار فعال می‌شود.
+    TITLE: "Ø¨Ø±Ø¯Ø§Ø´Øª Ù…ÙˆÙ‚ØªØ§Ù‹ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    DESCRIPTION: `Ù¾Ø³ Ø§Ø² Ù‡Ø± ÙˆØ§Ø±ÛŒØ² Ø¨Ø§ Ø§Ø³ØªØ§Ø±Ø² ØªÙ„Ú¯Ø±Ø§Ù…ØŒ ÛŒÚ© Ø¯ÙˆØ±Ù‡Ù” Ø§Ù†ØªØ¸Ø§Ø± Û·Û² Ø³Ø§Ø¹ØªÙ‡ Ø§Ø¹Ù…Ø§Ù„ Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø¯Ø± Ø§ÛŒÙ† Ù…Ø¯ØªØŒ Ø¨Ø±Ø¯Ø§Ø´Øª Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª. Ù¾Ø³ Ø§Ø² Ù¾Ø§ÛŒØ§Ù† Ø¯ÙˆØ±Ù‡ØŒ Ø¯Ø³ØªØ±Ø³ÛŒ Ø®ÙˆØ¯Ú©Ø§Ø± ÙØ¹Ø§Ù„ Ù…ÛŒâ€ŒØ´ÙˆØ¯.
 
-راهنمایی می‌خواهید؟ با پشتیبانی تماس بگیرید: @epic_gift_support`,
-    OK: "متوجه شدم",
-    SUPPORT: "تماس با پشتیبانی"
+Ø±Ø§Ù‡Ù†Ù…Ø§ÛŒÛŒ Ù…ÛŒâ€ŒØ®ÙˆØ§Ù‡ÛŒØ¯ØŸ Ø¨Ø§ Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ ØªÙ…Ø§Ø³ Ø¨Ú¯ÛŒØ±ÛŒØ¯: @epic_gift_support`,
+    OK: "Ù…ØªÙˆØ¬Ù‡ Ø´Ø¯Ù…",
+    SUPPORT: "ØªÙ…Ø§Ø³ Ø¨Ø§ Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ"
 }
   , PVP_STARS_LOCK$1 = {
-    TITLE: "PVP موقتاً در دسترس نیست",
-    DESCRIPTION: `پس از هر واریز با استارز تلگرام، یک دورهٔ انتظار ۷۲ ساعته اعمال می‌شود. در این مدت، نبردهای PVP در دسترس نیستند. پس از پایان دوره، دسترسی خودکار فعال می‌شود.
+    TITLE: "PVP Ù…ÙˆÙ‚ØªØ§Ù‹ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    DESCRIPTION: `Ù¾Ø³ Ø§Ø² Ù‡Ø± ÙˆØ§Ø±ÛŒØ² Ø¨Ø§ Ø§Ø³ØªØ§Ø±Ø² ØªÙ„Ú¯Ø±Ø§Ù…ØŒ ÛŒÚ© Ø¯ÙˆØ±Ù‡Ù” Ø§Ù†ØªØ¸Ø§Ø± Û·Û² Ø³Ø§Ø¹ØªÙ‡ Ø§Ø¹Ù…Ø§Ù„ Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø¯Ø± Ø§ÛŒÙ† Ù…Ø¯ØªØŒ Ù†Ø¨Ø±Ø¯Ù‡Ø§ÛŒ PVP Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³ØªÙ†Ø¯. Ù¾Ø³ Ø§Ø² Ù¾Ø§ÛŒØ§Ù† Ø¯ÙˆØ±Ù‡ØŒ Ø¯Ø³ØªØ±Ø³ÛŒ Ø®ÙˆØ¯Ú©Ø§Ø± ÙØ¹Ø§Ù„ Ù…ÛŒâ€ŒØ´ÙˆØ¯.
 
-راهنمایی می‌خواهید؟ با پشتیبانی تماس بگیرید: @epic_gift_support`
+Ø±Ø§Ù‡Ù†Ù…Ø§ÛŒÛŒ Ù…ÛŒâ€ŒØ®ÙˆØ§Ù‡ÛŒØ¯ØŸ Ø¨Ø§ Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ ØªÙ…Ø§Ø³ Ø¨Ú¯ÛŒØ±ÛŒØ¯: @epic_gift_support`
 }
   , PVP_RESTRICTED$1 = {
-    TITLE: "PVP موقتاً در دسترس نیست",
-    DESCRIPTION: `نبردهای PVP موقتاً برای حساب شما در دسترس نیستند.
+    TITLE: "PVP Ù…ÙˆÙ‚ØªØ§Ù‹ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    DESCRIPTION: `Ù†Ø¨Ø±Ø¯Ù‡Ø§ÛŒ PVP Ù…ÙˆÙ‚ØªØ§Ù‹ Ø¨Ø±Ø§ÛŒ Ø­Ø³Ø§Ø¨ Ø´Ù…Ø§ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³ØªÙ†Ø¯.
 
-برای اطلاعات بیشتر با پشتیبانی تماس بگیرید: @epic_gift_support`
+Ø¨Ø±Ø§ÛŒ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø¨ÛŒØ´ØªØ± Ø¨Ø§ Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ ØªÙ…Ø§Ø³ Ø¨Ú¯ÛŒØ±ÛŒØ¯: @epic_gift_support`
 }
   , faModals = {
     REWARD: REWARD$1,
@@ -55888,67 +55888,67 @@ It's 100% free, and you can try your luck every 24 hours!`,
     PVP_STARS_LOCK: PVP_STARS_LOCK$1,
     PVP_RESTRICTED: PVP_RESTRICTED$1
 }
-  , BOX_SUFFIX$1 = "جعبه"
+  , BOX_SUFFIX$1 = "Ø¬Ø¹Ø¨Ù‡"
   , BOOST$1 = {
-    LABEL: "بوست",
-    HINT: "بوست بیشتر، جوایز بهتر"
+    LABEL: "Ø¨ÙˆØ³Øª",
+    HINT: "Ø¨ÙˆØ³Øª Ø¨ÛŒØ´ØªØ±ØŒ Ø¬ÙˆØ§ÛŒØ² Ø¨Ù‡ØªØ±"
 }
-  , CHECK_COMMUNITY$1 = "برای دریافت کدهای جدید، به جمع ما سر بزنید"
-  , LOADING$1 = "در حال بارگذاری..."
+  , CHECK_COMMUNITY$1 = "Ø¨Ø±Ø§ÛŒ Ø¯Ø±ÛŒØ§ÙØª Ú©Ø¯Ù‡Ø§ÛŒ Ø¬Ø¯ÛŒØ¯ØŒ Ø¨Ù‡ Ø¬Ù…Ø¹ Ù…Ø§ Ø³Ø± Ø¨Ø²Ù†ÛŒØ¯"
+  , LOADING$1 = "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ..."
   , DAILY$1 = {
-    TITLE: "جعبهٔ روزانه",
-    COME_BACK_IN: "بازگشت در",
-    SKIP_ANIMATION: "رد کردن انیمیشن",
-    CHECKING_AVAILABILITY: "در حال بررسی موجودی...",
-    NOT_AVAILABLE: "در دسترس نیست",
-    OPEN_DAILY_BOX: "باز کردن جعبهٔ روزانه",
-    ANTI_ABUSE: "محافظت در برابر سوءاستفاده",
-    JOIN_COMMUNITY: "به جمع ما بپیوندید",
-    LATEST_TOP_DROPS: "جدیدترین آیتم‌های برتر",
-    HOT: "داغ"
+    TITLE: "Ø¬Ø¹Ø¨Ù‡Ù” Ø±ÙˆØ²Ø§Ù†Ù‡",
+    COME_BACK_IN: "Ø¨Ø§Ø²Ú¯Ø´Øª Ø¯Ø±",
+    SKIP_ANIMATION: "Ø±Ø¯ Ú©Ø±Ø¯Ù† Ø§Ù†ÛŒÙ…ÛŒØ´Ù†",
+    CHECKING_AVAILABILITY: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø±Ø±Ø³ÛŒ Ù…ÙˆØ¬ÙˆØ¯ÛŒ...",
+    NOT_AVAILABLE: "Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    OPEN_DAILY_BOX: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¬Ø¹Ø¨Ù‡Ù” Ø±ÙˆØ²Ø§Ù†Ù‡",
+    ANTI_ABUSE: "Ù…Ø­Ø§ÙØ¸Øª Ø¯Ø± Ø¨Ø±Ø§Ø¨Ø± Ø³ÙˆØ¡Ø§Ø³ØªÙØ§Ø¯Ù‡",
+    JOIN_COMMUNITY: "Ø¨Ù‡ Ø¬Ù…Ø¹ Ù…Ø§ Ø¨Ù¾ÛŒÙˆÙ†Ø¯ÛŒØ¯",
+    LATEST_TOP_DROPS: "Ø¬Ø¯ÛŒØ¯ØªØ±ÛŒÙ† Ø¢ÛŒØªÙ…â€ŒÙ‡Ø§ÛŒ Ø¨Ø±ØªØ±",
+    HOT: "Ø¯Ø§Øº"
 }
   , ACTIONS$h = {
-    OPEN: "باز کردن با {{price}} TON",
-    OPEN_FREE_BOX: "باز کردن جعبهٔ رایگان",
-    TOP_UP_BALANCE: "افزایش موجودی",
-    PROCESSING: "در حال پردازش…",
-    SKIP: "رد کردن",
-    DEPOSIT_AND_CONTINUE: "۱ TON واریز کنید و ادامه دهید",
-    DO_LATER: "بعداً انجامش می‌دهم",
-    MAYBE_LATER: "شاید بعداً",
-    DEPOSIT_ACTIVATE: "واریز و فعال‌سازی",
-    QUICK_STARS: "شارژ حساب"
+    OPEN: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¨Ø§ {{price}} TON",
+    OPEN_FREE_BOX: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¬Ø¹Ø¨Ù‡Ù” Ø±Ø§ÛŒÚ¯Ø§Ù†",
+    TOP_UP_BALANCE: "Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ",
+    PROCESSING: "Ø¯Ø± Ø­Ø§Ù„ Ù¾Ø±Ø¯Ø§Ø²Ø´â€¦",
+    SKIP: "Ø±Ø¯ Ú©Ø±Ø¯Ù†",
+    DEPOSIT_AND_CONTINUE: "Û± TON ÙˆØ§Ø±ÛŒØ² Ú©Ù†ÛŒØ¯ Ùˆ Ø§Ø¯Ø§Ù…Ù‡ Ø¯Ù‡ÛŒØ¯",
+    DO_LATER: "Ø¨Ø¹Ø¯Ø§Ù‹ Ø§Ù†Ø¬Ø§Ù…Ø´ Ù…ÛŒâ€ŒØ¯Ù‡Ù…",
+    MAYBE_LATER: "Ø´Ø§ÛŒØ¯ Ø¨Ø¹Ø¯Ø§Ù‹",
+    DEPOSIT_ACTIVATE: "ÙˆØ§Ø±ÛŒØ² Ùˆ ÙØ¹Ø§Ù„â€ŒØ³Ø§Ø²ÛŒ",
+    QUICK_STARS: "Ø´Ø§Ø±Ú˜ Ø­Ø³Ø§Ø¨"
 }
   , DEPOSIT_MODAL$1 = {
-    TITLE: "تأیید",
-    ANTI_BOT_TITLE: "محافظت ضدربات",
-    DESCRIPTION: "رفتار مشکوکی شناسایی شد. برای ادامهٔ بازی و محافظت از جامعهٔ ما در برابر ربات‌ها، لطفاً فعال‌سازی را تکمیل کنید.",
-    ACTIVATION_REQUIRED: "فعال‌سازی الزامی است",
-    ACTIVATION_TEXT: "برای تأیید اینکه کاربر واقعی هستید، هر مبلغی واریز کنید. حداقل مبلغ <bold>۰٫۱ TON</bold> است.",
-    FOOTER: "این تأیید یک‌بار انجام می‌شود تا بازی برای همهٔ کاربران منصفانه باشد."
+    TITLE: "ØªØ£ÛŒÛŒØ¯",
+    ANTI_BOT_TITLE: "Ù…Ø­Ø§ÙØ¸Øª Ø¶Ø¯Ø±Ø¨Ø§Øª",
+    DESCRIPTION: "Ø±ÙØªØ§Ø± Ù…Ø´Ú©ÙˆÚ©ÛŒ Ø´Ù†Ø§Ø³Ø§ÛŒÛŒ Ø´Ø¯. Ø¨Ø±Ø§ÛŒ Ø§Ø¯Ø§Ù…Ù‡Ù” Ø¨Ø§Ø²ÛŒ Ùˆ Ù…Ø­Ø§ÙØ¸Øª Ø§Ø² Ø¬Ø§Ù…Ø¹Ù‡Ù” Ù…Ø§ Ø¯Ø± Ø¨Ø±Ø§Ø¨Ø± Ø±Ø¨Ø§Øªâ€ŒÙ‡Ø§ØŒ Ù„Ø·ÙØ§Ù‹ ÙØ¹Ø§Ù„â€ŒØ³Ø§Ø²ÛŒ Ø±Ø§ ØªÚ©Ù…ÛŒÙ„ Ú©Ù†ÛŒØ¯.",
+    ACTIVATION_REQUIRED: "ÙØ¹Ø§Ù„â€ŒØ³Ø§Ø²ÛŒ Ø§Ù„Ø²Ø§Ù…ÛŒ Ø§Ø³Øª",
+    ACTIVATION_TEXT: "Ø¨Ø±Ø§ÛŒ ØªØ£ÛŒÛŒØ¯ Ø§ÛŒÙ†Ú©Ù‡ Ú©Ø§Ø±Ø¨Ø± ÙˆØ§Ù‚Ø¹ÛŒ Ù‡Ø³ØªÛŒØ¯ØŒ Ù‡Ø± Ù…Ø¨Ù„ØºÛŒ ÙˆØ§Ø±ÛŒØ² Ú©Ù†ÛŒØ¯. Ø­Ø¯Ø§Ù‚Ù„ Ù…Ø¨Ù„Øº <bold>Û°Ù«Û± TON</bold> Ø§Ø³Øª.",
+    FOOTER: "Ø§ÛŒÙ† ØªØ£ÛŒÛŒØ¯ ÛŒÚ©â€ŒØ¨Ø§Ø± Ø§Ù†Ø¬Ø§Ù… Ù…ÛŒâ€ŒØ´ÙˆØ¯ ØªØ§ Ø¨Ø§Ø²ÛŒ Ø¨Ø±Ø§ÛŒ Ù‡Ù…Ù‡Ù” Ú©Ø§Ø±Ø¨Ø±Ø§Ù† Ù…Ù†ØµÙØ§Ù†Ù‡ Ø¨Ø§Ø´Ø¯."
 }
   , DEPOSIT_1_MODAL$1 = {
-    SECURITY_CHECK: "بررسی امنیتی پیشرفته",
-    DESCRIPTION: "چندین مورد فعالیت مشکوک شناسایی شده است. برای محافظت از پلتفرم و تضمین بازی منصفانه برای همهٔ کاربران، تأیید پیشرفته لازم است.",
-    VERIFICATION_REQUIRED: "تأیید پیشرفته الزامی است",
-    VERIFICATION_TEXT: "برای ادامهٔ بازی و کمک به حفظ محیطی امن برای همه، لطفاً دست‌کم <bold>۱ TON</bold> واریز کنید.",
-    FOOTER: "این تأیید پیشرفته به ما کمک می‌کند از سوءاستفاده جلوگیری کنیم و یکپارچگی پلتفرم را حفظ کنیم."
+    SECURITY_CHECK: "Ø¨Ø±Ø±Ø³ÛŒ Ø§Ù…Ù†ÛŒØªÛŒ Ù¾ÛŒØ´Ø±ÙØªÙ‡",
+    DESCRIPTION: "Ú†Ù†Ø¯ÛŒÙ† Ù…ÙˆØ±Ø¯ ÙØ¹Ø§Ù„ÛŒØª Ù…Ø´Ú©ÙˆÚ© Ø´Ù†Ø§Ø³Ø§ÛŒÛŒ Ø´Ø¯Ù‡ Ø§Ø³Øª. Ø¨Ø±Ø§ÛŒ Ù…Ø­Ø§ÙØ¸Øª Ø§Ø² Ù¾Ù„ØªÙØ±Ù… Ùˆ ØªØ¶Ù…ÛŒÙ† Ø¨Ø§Ø²ÛŒ Ù…Ù†ØµÙØ§Ù†Ù‡ Ø¨Ø±Ø§ÛŒ Ù‡Ù…Ù‡Ù” Ú©Ø§Ø±Ø¨Ø±Ø§Ù†ØŒ ØªØ£ÛŒÛŒØ¯ Ù¾ÛŒØ´Ø±ÙØªÙ‡ Ù„Ø§Ø²Ù… Ø§Ø³Øª.",
+    VERIFICATION_REQUIRED: "ØªØ£ÛŒÛŒØ¯ Ù¾ÛŒØ´Ø±ÙØªÙ‡ Ø§Ù„Ø²Ø§Ù…ÛŒ Ø§Ø³Øª",
+    VERIFICATION_TEXT: "Ø¨Ø±Ø§ÛŒ Ø§Ø¯Ø§Ù…Ù‡Ù” Ø¨Ø§Ø²ÛŒ Ùˆ Ú©Ù…Ú© Ø¨Ù‡ Ø­ÙØ¸ Ù…Ø­ÛŒØ·ÛŒ Ø§Ù…Ù† Ø¨Ø±Ø§ÛŒ Ù‡Ù…Ù‡ØŒ Ù„Ø·ÙØ§Ù‹ Ø¯Ø³Øªâ€ŒÚ©Ù… <bold>Û± TON</bold> ÙˆØ§Ø±ÛŒØ² Ú©Ù†ÛŒØ¯.",
+    FOOTER: "Ø§ÛŒÙ† ØªØ£ÛŒÛŒØ¯ Ù¾ÛŒØ´Ø±ÙØªÙ‡ Ø¨Ù‡ Ù…Ø§ Ú©Ù…Ú© Ù…ÛŒâ€ŒÚ©Ù†Ø¯ Ø§Ø² Ø³ÙˆØ¡Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø¬Ù„ÙˆÚ¯ÛŒØ±ÛŒ Ú©Ù†ÛŒÙ… Ùˆ ÛŒÚ©Ù¾Ø§Ø±Ú†Ú¯ÛŒ Ù¾Ù„ØªÙØ±Ù… Ø±Ø§ Ø­ÙØ¸ Ú©Ù†ÛŒÙ…."
 }
   , CHANNEL_MODAL$1 = {
-    TITLE: "عضویت در کانال الزامی است",
-    DESCRIPTION: "برای دسترسی به جعبهٔ هدیهٔ روزانه و باخبر ماندن از آخرین اخبار، لطفاً به کانال رسمی تلگرام ما بپیوندید.",
-    WHY_JOIN: "چرا به کانال ما بپیوندید؟",
-    BENEFIT_UPDATES: "آخرین به‌روزرسانی‌ها و اطلاعیه‌ها",
-    BENEFIT_PROMOS: "کدهای تبلیغاتی اختصاصی و جوایز رایگان",
-    BENEFIT_ACCESS: "دسترسی به جعبهٔ هدیهٔ روزانه",
-    BENEFIT_EARLY: "دسترسی زودهنگام به قابلیت‌های جدید",
-    JOIN_BUTTON: "عضویت در @epic_gift_official",
-    FOOTER: "پس از عضویت، دوباره برگردید و جعبهٔ روزانه را باز کنید."
+    TITLE: "Ø¹Ø¶ÙˆÛŒØª Ø¯Ø± Ú©Ø§Ù†Ø§Ù„ Ø§Ù„Ø²Ø§Ù…ÛŒ Ø§Ø³Øª",
+    DESCRIPTION: "Ø¨Ø±Ø§ÛŒ Ø¯Ø³ØªØ±Ø³ÛŒ Ø¨Ù‡ Ø¬Ø¹Ø¨Ù‡Ù” Ù‡Ø¯ÛŒÙ‡Ù” Ø±ÙˆØ²Ø§Ù†Ù‡ Ùˆ Ø¨Ø§Ø®Ø¨Ø± Ù…Ø§Ù†Ø¯Ù† Ø§Ø² Ø¢Ø®Ø±ÛŒÙ† Ø§Ø®Ø¨Ø§Ø±ØŒ Ù„Ø·ÙØ§Ù‹ Ø¨Ù‡ Ú©Ø§Ù†Ø§Ù„ Ø±Ø³Ù…ÛŒ ØªÙ„Ú¯Ø±Ø§Ù… Ù…Ø§ Ø¨Ù¾ÛŒÙˆÙ†Ø¯ÛŒØ¯.",
+    WHY_JOIN: "Ú†Ø±Ø§ Ø¨Ù‡ Ú©Ø§Ù†Ø§Ù„ Ù…Ø§ Ø¨Ù¾ÛŒÙˆÙ†Ø¯ÛŒØ¯ØŸ",
+    BENEFIT_UPDATES: "Ø¢Ø®Ø±ÛŒÙ† Ø¨Ù‡â€ŒØ±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒâ€ŒÙ‡Ø§ Ùˆ Ø§Ø·Ù„Ø§Ø¹ÛŒÙ‡â€ŒÙ‡Ø§",
+    BENEFIT_PROMOS: "Ú©Ø¯Ù‡Ø§ÛŒ ØªØ¨Ù„ÛŒØºØ§ØªÛŒ Ø§Ø®ØªØµØ§ØµÛŒ Ùˆ Ø¬ÙˆØ§ÛŒØ² Ø±Ø§ÛŒÚ¯Ø§Ù†",
+    BENEFIT_ACCESS: "Ø¯Ø³ØªØ±Ø³ÛŒ Ø¨Ù‡ Ø¬Ø¹Ø¨Ù‡Ù” Ù‡Ø¯ÛŒÙ‡Ù” Ø±ÙˆØ²Ø§Ù†Ù‡",
+    BENEFIT_EARLY: "Ø¯Ø³ØªØ±Ø³ÛŒ Ø²ÙˆØ¯Ù‡Ù†Ú¯Ø§Ù… Ø¨Ù‡ Ù‚Ø§Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø¬Ø¯ÛŒØ¯",
+    JOIN_BUTTON: "Ø¹Ø¶ÙˆÛŒØª Ø¯Ø± @epic_gift_official",
+    FOOTER: "Ù¾Ø³ Ø§Ø² Ø¹Ø¶ÙˆÛŒØªØŒ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø¨Ø±Ú¯Ø±Ø¯ÛŒØ¯ Ùˆ Ø¬Ø¹Ø¨Ù‡Ù” Ø±ÙˆØ²Ø§Ù†Ù‡ Ø±Ø§ Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯."
 }
   , PROMO_ERRORS$1 = {
-    SUBSCRIBE_TO_CHANNEL: "برای استفاده از این کد، لطفاً در {{channelName}} عضو شوید",
-    SUBSCRIBE_TO_REQUIRED_CHANNEL: "برای استفاده از این کد، لطفاً در کانال موردنیاز عضو شوید",
-    FAILED_TO_UNBOX: "باز کردن جعبهٔ هدیه ناموفق بود"
+    SUBSCRIBE_TO_CHANNEL: "Ø¨Ø±Ø§ÛŒ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø² Ø§ÛŒÙ† Ú©Ø¯ØŒ Ù„Ø·ÙØ§Ù‹ Ø¯Ø± {{channelName}} Ø¹Ø¶Ùˆ Ø´ÙˆÛŒØ¯",
+    SUBSCRIBE_TO_REQUIRED_CHANNEL: "Ø¨Ø±Ø§ÛŒ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø² Ø§ÛŒÙ† Ú©Ø¯ØŒ Ù„Ø·ÙØ§Ù‹ Ø¯Ø± Ú©Ø§Ù†Ø§Ù„ Ù…ÙˆØ±Ø¯Ù†ÛŒØ§Ø² Ø¹Ø¶Ùˆ Ø´ÙˆÛŒØ¯",
+    FAILED_TO_UNBOX: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¬Ø¹Ø¨Ù‡Ù” Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , faOpenGift = {
     BOX_SUFFIX: BOX_SUFFIX$1,
@@ -55962,41 +55962,41 @@ It's 100% free, and you can try your luck every 24 hours!`,
     CHANNEL_MODAL: CHANNEL_MODAL$1,
     PROMO_ERRORS: PROMO_ERRORS$1
 }
-  , EARN_HEADER$1 = "کسب درآمد"
+  , EARN_HEADER$1 = "Ú©Ø³Ø¨ Ø¯Ø±Ø¢Ù…Ø¯"
   , ACTIONS$g = {
-    INVITE_FRIENDS: "دعوت از دوستان",
-    COPY_REFERRAL_LINK: "کپی پیوند"
+    INVITE_FRIENDS: "Ø¯Ø¹ÙˆØª Ø§Ø² Ø¯ÙˆØ³ØªØ§Ù†",
+    COPY_REFERRAL_LINK: "Ú©Ù¾ÛŒ Ù¾ÛŒÙˆÙ†Ø¯"
 }
   , SECTIONS$4 = {
-    MY_INVITES: "دعوت‌شدگان من"
+    MY_INVITES: "Ø¯Ø¹ÙˆØªâ€ŒØ´Ø¯Ú¯Ø§Ù† Ù…Ù†"
 }
   , LABELS$o = {
-    TOTAL_EARNED: "مجموع درآمد",
-    EARNED_TODAY: "درآمد امروز",
-    PER_INVITE_REWARD: "<b>همچنین</b><badge><icon/>{{count}}</badge><b>به‌ازای هر</b>",
-    DAILY_LIMIT: "اما حداکثر {{cap}} در روز",
-    UP_TO: "تا سقف",
-    ACCRUAL_NOTE: "از واریزی‌های آن‌ها"
+    TOTAL_EARNED: "Ù…Ø¬Ù…ÙˆØ¹ Ø¯Ø±Ø¢Ù…Ø¯",
+    EARNED_TODAY: "Ø¯Ø±Ø¢Ù…Ø¯ Ø§Ù…Ø±ÙˆØ²",
+    PER_INVITE_REWARD: "<b>Ù‡Ù…Ú†Ù†ÛŒÙ†</b><badge><icon/>{{count}}</badge><b>Ø¨Ù‡â€ŒØ§Ø²Ø§ÛŒ Ù‡Ø±</b>",
+    DAILY_LIMIT: "Ø§Ù…Ø§ Ø­Ø¯Ø§Ú©Ø«Ø± {{cap}} Ø¯Ø± Ø±ÙˆØ²",
+    UP_TO: "ØªØ§ Ø³Ù‚Ù",
+    ACCRUAL_NOTE: "Ø§Ø² ÙˆØ§Ø±ÛŒØ²ÛŒâ€ŒÙ‡Ø§ÛŒ Ø¢Ù†â€ŒÙ‡Ø§"
 }
   , MESSAGES$a = {
-    NO_INVITES: "هنوز کسی را دعوت نکرده‌اید",
-    INVITE_TEXT: `🎁 جعبهٔ رایگان را در Epic Gift باز کنید و هدیه‌های NFT تلگرامی‌تان را بگیرید!
+    NO_INVITES: "Ù‡Ù†ÙˆØ² Ú©Ø³ÛŒ Ø±Ø§ Ø¯Ø¹ÙˆØª Ù†Ú©Ø±Ø¯Ù‡â€ŒØ§ÛŒØ¯",
+    INVITE_TEXT: `ðŸŽ Ø¬Ø¹Ø¨Ù‡Ù” Ø±Ø§ÛŒÚ¯Ø§Ù† Ø±Ø§ Ø¯Ø± Epic Gift Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯ Ùˆ Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ NFT ØªÙ„Ú¯Ø±Ø§Ù…ÛŒâ€ŒØªØ§Ù† Ø±Ø§ Ø¨Ú¯ÛŒØ±ÛŒØ¯!
 
-کاملاً رایگان است و می‌توانید هر ۲۴ ساعت یک‌بار شانس‌تان را امتحان کنید!`,
-    TRY_AGAIN: "دوباره تلاش کنید"
+Ú©Ø§Ù…Ù„Ø§Ù‹ Ø±Ø§ÛŒÚ¯Ø§Ù† Ø§Ø³Øª Ùˆ Ù…ÛŒâ€ŒØªÙˆØ§Ù†ÛŒØ¯ Ù‡Ø± Û²Û´ Ø³Ø§Ø¹Øª ÛŒÚ©â€ŒØ¨Ø§Ø± Ø´Ø§Ù†Ø³â€ŒØªØ§Ù† Ø±Ø§ Ø§Ù…ØªØ­Ø§Ù† Ú©Ù†ÛŒØ¯!`,
+    TRY_AGAIN: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯"
 }
   , TITLES$3 = {
-    COPY_REFERRAL_LINK: "پیوند دعوت خود را کپی کنید",
-    HOW_IT_WORKS: "برنامهٔ دعوت چگونه کار می‌کند؟"
+    COPY_REFERRAL_LINK: "Ù¾ÛŒÙˆÙ†Ø¯ Ø¯Ø¹ÙˆØª Ø®ÙˆØ¯ Ø±Ø§ Ú©Ù¾ÛŒ Ú©Ù†ÛŒØ¯",
+    HOW_IT_WORKS: "Ø¨Ø±Ù†Ø§Ù…Ù‡Ù” Ø¯Ø¹ÙˆØª Ú†Ú¯ÙˆÙ†Ù‡ Ú©Ø§Ø± Ù…ÛŒâ€ŒÚ©Ù†Ø¯ØŸ"
 }
-  , BY_INVITING$1 = "با دعوت از دوستان"
+  , BY_INVITING$1 = "Ø¨Ø§ Ø¯Ø¹ÙˆØª Ø§Ø² Ø¯ÙˆØ³ØªØ§Ù†"
   , HOW_IT_WORKS$7 = {
-    TITLE: "روش کار",
-    INFO_1: "پیوند شخصی‌تان را به اشتراک بگذارید. هر کاربر جدیدی که از طریق آن وارد شود، به فهرست دعوت‌شدگان شما اضافه می‌شود.",
-    INFO_2: "وقتی افراد دعوت‌شده بازی می‌کنند، پاداش TON می‌گیرید. هرچه فعال‌تر بازی کنند، درآمد شما بیشتر می‌شود.",
-    INFO_3: "پاداش‌ها به‌طور خودکار و بر اساس سهمی از سود هر فرد دعوت‌شده محاسبه می‌شوند و مستقیماً به موجودی شما واریز می‌شوند.",
-    INFO_4: "مجموع پاداش شما از هر فرد دعوت‌شده می‌تواند به {{pct}} از واریزی‌های او برسد. زمان واریز پاداش‌ها ممکن است با توجه به نحوهٔ بازی او متفاوت باشد.",
-    FOOTER: "صرفاً واریز کردن پاداش فوری ایجاد نمی‌کند. مبلغ و زمان پرداخت پاداش به نتیجهٔ بازی هر فرد دعوت‌شده بستگی دارد."
+    TITLE: "Ø±ÙˆØ´ Ú©Ø§Ø±",
+    INFO_1: "Ù¾ÛŒÙˆÙ†Ø¯ Ø´Ø®ØµÛŒâ€ŒØªØ§Ù† Ø±Ø§ Ø¨Ù‡ Ø§Ø´ØªØ±Ø§Ú© Ø¨Ú¯Ø°Ø§Ø±ÛŒØ¯. Ù‡Ø± Ú©Ø§Ø±Ø¨Ø± Ø¬Ø¯ÛŒØ¯ÛŒ Ú©Ù‡ Ø§Ø² Ø·Ø±ÛŒÙ‚ Ø¢Ù† ÙˆØ§Ø±Ø¯ Ø´ÙˆØ¯ØŒ Ø¨Ù‡ ÙÙ‡Ø±Ø³Øª Ø¯Ø¹ÙˆØªâ€ŒØ´Ø¯Ú¯Ø§Ù† Ø´Ù…Ø§ Ø§Ø¶Ø§ÙÙ‡ Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    INFO_2: "ÙˆÙ‚ØªÛŒ Ø§ÙØ±Ø§Ø¯ Ø¯Ø¹ÙˆØªâ€ŒØ´Ø¯Ù‡ Ø¨Ø§Ø²ÛŒ Ù…ÛŒâ€ŒÚ©Ù†Ù†Ø¯ØŒ Ù¾Ø§Ø¯Ø§Ø´ TON Ù…ÛŒâ€ŒÚ¯ÛŒØ±ÛŒØ¯. Ù‡Ø±Ú†Ù‡ ÙØ¹Ø§Ù„â€ŒØªØ± Ø¨Ø§Ø²ÛŒ Ú©Ù†Ù†Ø¯ØŒ Ø¯Ø±Ø¢Ù…Ø¯ Ø´Ù…Ø§ Ø¨ÛŒØ´ØªØ± Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    INFO_3: "Ù¾Ø§Ø¯Ø§Ø´â€ŒÙ‡Ø§ Ø¨Ù‡â€ŒØ·ÙˆØ± Ø®ÙˆØ¯Ú©Ø§Ø± Ùˆ Ø¨Ø± Ø§Ø³Ø§Ø³ Ø³Ù‡Ù…ÛŒ Ø§Ø² Ø³ÙˆØ¯ Ù‡Ø± ÙØ±Ø¯ Ø¯Ø¹ÙˆØªâ€ŒØ´Ø¯Ù‡ Ù…Ø­Ø§Ø³Ø¨Ù‡ Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯ Ùˆ Ù…Ø³ØªÙ‚ÛŒÙ…Ø§Ù‹ Ø¨Ù‡ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø´Ù…Ø§ ÙˆØ§Ø±ÛŒØ² Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯.",
+    INFO_4: "Ù…Ø¬Ù…ÙˆØ¹ Ù¾Ø§Ø¯Ø§Ø´ Ø´Ù…Ø§ Ø§Ø² Ù‡Ø± ÙØ±Ø¯ Ø¯Ø¹ÙˆØªâ€ŒØ´Ø¯Ù‡ Ù…ÛŒâ€ŒØªÙˆØ§Ù†Ø¯ Ø¨Ù‡ {{pct}} Ø§Ø² ÙˆØ§Ø±ÛŒØ²ÛŒâ€ŒÙ‡Ø§ÛŒ Ø§Ùˆ Ø¨Ø±Ø³Ø¯. Ø²Ù…Ø§Ù† ÙˆØ§Ø±ÛŒØ² Ù¾Ø§Ø¯Ø§Ø´â€ŒÙ‡Ø§ Ù…Ù…Ú©Ù† Ø§Ø³Øª Ø¨Ø§ ØªÙˆØ¬Ù‡ Ø¨Ù‡ Ù†Ø­ÙˆÙ‡Ù” Ø¨Ø§Ø²ÛŒ Ø§Ùˆ Ù…ØªÙØ§ÙˆØª Ø¨Ø§Ø´Ø¯.",
+    FOOTER: "ØµØ±ÙØ§Ù‹ ÙˆØ§Ø±ÛŒØ² Ú©Ø±Ø¯Ù† Ù¾Ø§Ø¯Ø§Ø´ ÙÙˆØ±ÛŒ Ø§ÛŒØ¬Ø§Ø¯ Ù†Ù…ÛŒâ€ŒÚ©Ù†Ø¯. Ù…Ø¨Ù„Øº Ùˆ Ø²Ù…Ø§Ù† Ù¾Ø±Ø¯Ø§Ø®Øª Ù¾Ø§Ø¯Ø§Ø´ Ø¨Ù‡ Ù†ØªÛŒØ¬Ù‡Ù” Ø¨Ø§Ø²ÛŒ Ù‡Ø± ÙØ±Ø¯ Ø¯Ø¹ÙˆØªâ€ŒØ´Ø¯Ù‡ Ø¨Ø³ØªÚ¯ÛŒ Ø¯Ø§Ø±Ø¯."
 }
   , faInvite = {
     EARN_HEADER: EARN_HEADER$1,
@@ -56008,76 +56008,76 @@ It's 100% free, and you can try your luck every 24 hours!`,
     BY_INVITING: BY_INVITING$1,
     HOW_IT_WORKS: HOW_IT_WORKS$7
 }
-  , TITLE$5 = "جدول رتبه‌بندی"
+  , TITLE$5 = "Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ"
   , LABELS$n = {
-    POINTS: "امتیازها",
-    YOU: "شما",
-    PRIZE: "جایزه",
-    ENDS_IN: "پایان تا",
-    CHECK_NEW_CYCLE: "بررسی شروع دورهٔ جدید",
-    TOP_PLAYERS: "بازیکنان برتر",
-    EXCLUSIVE_PRIZES: "جوایز ویژه",
-    WEEKLY_CYCLES: "دوره‌های هفتگی",
-    FAIR_COMPETITION: "رقابت منصفانه",
-    PRIZES_AND_WINNERS: "جوایز و برندگان",
-    NEW: "جدید",
-    CLOSE: "بستن"
+    POINTS: "Ø§Ù…ØªÛŒØ§Ø²Ù‡Ø§",
+    YOU: "Ø´Ù…Ø§",
+    PRIZE: "Ø¬Ø§ÛŒØ²Ù‡",
+    ENDS_IN: "Ù¾Ø§ÛŒØ§Ù† ØªØ§",
+    CHECK_NEW_CYCLE: "Ø¨Ø±Ø±Ø³ÛŒ Ø´Ø±ÙˆØ¹ Ø¯ÙˆØ±Ù‡Ù” Ø¬Ø¯ÛŒØ¯",
+    TOP_PLAYERS: "Ø¨Ø§Ø²ÛŒÚ©Ù†Ø§Ù† Ø¨Ø±ØªØ±",
+    EXCLUSIVE_PRIZES: "Ø¬ÙˆØ§ÛŒØ² ÙˆÛŒÚ˜Ù‡",
+    WEEKLY_CYCLES: "Ø¯ÙˆØ±Ù‡â€ŒÙ‡Ø§ÛŒ Ù‡ÙØªÚ¯ÛŒ",
+    FAIR_COMPETITION: "Ø±Ù‚Ø§Ø¨Øª Ù…Ù†ØµÙØ§Ù†Ù‡",
+    PRIZES_AND_WINNERS: "Ø¬ÙˆØ§ÛŒØ² Ùˆ Ø¨Ø±Ù†Ø¯Ú¯Ø§Ù†",
+    NEW: "Ø¬Ø¯ÛŒØ¯",
+    CLOSE: "Ø¨Ø³ØªÙ†"
 }
   , ACTIONS$f = {
-    EARN_POINTS: "کسب امتیاز",
-    EXCHANGE_TICKETS: "تبدیل بلیت‌ها"
+    EARN_POINTS: "Ú©Ø³Ø¨ Ø§Ù…ØªÛŒØ§Ø²",
+    EXCHANGE_TICKETS: "ØªØ¨Ø¯ÛŒÙ„ Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§"
 }
   , EXCHANGE_MODAL$1 = {
-    TITLE: "تبدیل بلیت به امتیاز",
-    DESCRIPTION: "بلیت‌هایتان را خرج کنید تا امتیاز جدول رتبه‌بندی دورهٔ جاری فوراً افزایش پیدا کند.",
-    RATE_HINT: "هر بلیت = {{points}} امتیاز",
-    AMOUNT_LABEL: "بلیت‌های قابل‌خرج",
-    BALANCE_LABEL: "بلیت‌های شما",
-    POINTS_LABEL: "دریافت خواهید کرد",
-    MAX: "حداکثر",
-    CTA: "تبدیل",
-    CANCEL: "لغو",
-    INSUFFICIENT: "بلیت کافی ندارید",
-    INVALID_AMOUNT: "یک عدد صحیح مثبت وارد کنید",
-    SUCCESS_TOAST: "{{points}} امتیاز به امتیازتان اضافه شد",
-    NO_ACTIVE_CYCLE: "در حال حاضر دورهٔ فعالی در جدول رتبه‌بندی وجود ندارد",
-    DISABLED: "تبدیل در حال حاضر غیرفعال است",
-    ERROR_TOAST: "تبدیل ناموفق بود. لطفاً دوباره تلاش کنید."
+    TITLE: "ØªØ¨Ø¯ÛŒÙ„ Ø¨Ù„ÛŒØª Ø¨Ù‡ Ø§Ù…ØªÛŒØ§Ø²",
+    DESCRIPTION: "Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒØªØ§Ù† Ø±Ø§ Ø®Ø±Ø¬ Ú©Ù†ÛŒØ¯ ØªØ§ Ø§Ù…ØªÛŒØ§Ø² Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ Ø¯ÙˆØ±Ù‡Ù” Ø¬Ø§Ø±ÛŒ ÙÙˆØ±Ø§Ù‹ Ø§ÙØ²Ø§ÛŒØ´ Ù¾ÛŒØ¯Ø§ Ú©Ù†Ø¯.",
+    RATE_HINT: "Ù‡Ø± Ø¨Ù„ÛŒØª = {{points}} Ø§Ù…ØªÛŒØ§Ø²",
+    AMOUNT_LABEL: "Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ù‚Ø§Ø¨Ù„â€ŒØ®Ø±Ø¬",
+    BALANCE_LABEL: "Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø´Ù…Ø§",
+    POINTS_LABEL: "Ø¯Ø±ÛŒØ§ÙØª Ø®ÙˆØ§Ù‡ÛŒØ¯ Ú©Ø±Ø¯",
+    MAX: "Ø­Ø¯Ø§Ú©Ø«Ø±",
+    CTA: "ØªØ¨Ø¯ÛŒÙ„",
+    CANCEL: "Ù„ØºÙˆ",
+    INSUFFICIENT: "Ø¨Ù„ÛŒØª Ú©Ø§ÙÛŒ Ù†Ø¯Ø§Ø±ÛŒØ¯",
+    INVALID_AMOUNT: "ÛŒÚ© Ø¹Ø¯Ø¯ ØµØ­ÛŒØ­ Ù…Ø«Ø¨Øª ÙˆØ§Ø±Ø¯ Ú©Ù†ÛŒØ¯",
+    SUCCESS_TOAST: "{{points}} Ø§Ù…ØªÛŒØ§Ø² Ø¨Ù‡ Ø§Ù…ØªÛŒØ§Ø²ØªØ§Ù† Ø§Ø¶Ø§ÙÙ‡ Ø´Ø¯",
+    NO_ACTIVE_CYCLE: "Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± Ø¯ÙˆØ±Ù‡Ù” ÙØ¹Ø§Ù„ÛŒ Ø¯Ø± Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯",
+    DISABLED: "ØªØ¨Ø¯ÛŒÙ„ Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± ØºÛŒØ±ÙØ¹Ø§Ù„ Ø§Ø³Øª",
+    ERROR_TOAST: "ØªØ¨Ø¯ÛŒÙ„ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯. Ù„Ø·ÙØ§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯."
 }
   , MESSAGES$9 = {
-    NO_DATA: "داده‌ای در دسترس نیست",
-    CHECK_BACK_SOON: "برای دیدن جوایز جذاب و رقابت‌های هیجان‌انگیز، به‌زودی دوباره سر بزنید",
-    COMPETE_AND_WIN: "با دیگران رقابت کنید و جوایز شگفت‌انگیز ببرید!",
-    CYCLE_ENDED: "دوره پایان یافت",
-    PLEASE_LOGIN: "برای دیدن جدول رتبه‌بندی، وارد حساب شوید",
-    NETWORK_ERROR: "خطای شبکه. اتصال اینترنت خود را بررسی کنید.",
-    SERVER_ERROR: "خطای سرور. لطفاً بعداً دوباره تلاش کنید.",
-    PREPARING_NEW_CYCLE: "آماده‌سازی دورهٔ جدید",
-    SETTING_UP_COMPETITION: "در حال آماده‌سازی رقابت بعدی جدول رتبه‌بندی هستیم!",
-    CHECKING: "در حال بررسی..."
+    NO_DATA: "Ø¯Ø§Ø¯Ù‡â€ŒØ§ÛŒ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    CHECK_BACK_SOON: "Ø¨Ø±Ø§ÛŒ Ø¯ÛŒØ¯Ù† Ø¬ÙˆØ§ÛŒØ² Ø¬Ø°Ø§Ø¨ Ùˆ Ø±Ù‚Ø§Ø¨Øªâ€ŒÙ‡Ø§ÛŒ Ù‡ÛŒØ¬Ø§Ù†â€ŒØ§Ù†Ú¯ÛŒØ²ØŒ Ø¨Ù‡â€ŒØ²ÙˆØ¯ÛŒ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø³Ø± Ø¨Ø²Ù†ÛŒØ¯",
+    COMPETE_AND_WIN: "Ø¨Ø§ Ø¯ÛŒÚ¯Ø±Ø§Ù† Ø±Ù‚Ø§Ø¨Øª Ú©Ù†ÛŒØ¯ Ùˆ Ø¬ÙˆØ§ÛŒØ² Ø´Ú¯ÙØªâ€ŒØ§Ù†Ú¯ÛŒØ² Ø¨Ø¨Ø±ÛŒØ¯!",
+    CYCLE_ENDED: "Ø¯ÙˆØ±Ù‡ Ù¾Ø§ÛŒØ§Ù† ÛŒØ§ÙØª",
+    PLEASE_LOGIN: "Ø¨Ø±Ø§ÛŒ Ø¯ÛŒØ¯Ù† Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒØŒ ÙˆØ§Ø±Ø¯ Ø­Ø³Ø§Ø¨ Ø´ÙˆÛŒØ¯",
+    NETWORK_ERROR: "Ø®Ø·Ø§ÛŒ Ø´Ø¨Ú©Ù‡. Ø§ØªØµØ§Ù„ Ø§ÛŒÙ†ØªØ±Ù†Øª Ø®ÙˆØ¯ Ø±Ø§ Ø¨Ø±Ø±Ø³ÛŒ Ú©Ù†ÛŒØ¯.",
+    SERVER_ERROR: "Ø®Ø·Ø§ÛŒ Ø³Ø±ÙˆØ±. Ù„Ø·ÙØ§Ù‹ Ø¨Ø¹Ø¯Ø§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+    PREPARING_NEW_CYCLE: "Ø¢Ù…Ø§Ø¯Ù‡â€ŒØ³Ø§Ø²ÛŒ Ø¯ÙˆØ±Ù‡Ù” Ø¬Ø¯ÛŒØ¯",
+    SETTING_UP_COMPETITION: "Ø¯Ø± Ø­Ø§Ù„ Ø¢Ù…Ø§Ø¯Ù‡â€ŒØ³Ø§Ø²ÛŒ Ø±Ù‚Ø§Ø¨Øª Ø¨Ø¹Ø¯ÛŒ Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ Ù‡Ø³ØªÛŒÙ…!",
+    CHECKING: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø±Ø±Ø³ÛŒ..."
 }
   , EMPTY$9 = {
-    NO_DATA: "اطلاعات جدول رتبه‌بندی در دسترس نیست"
+    NO_DATA: "Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª"
 }
   , HOW_TO_EARN$1 = {
-    TITLE: "روش‌های کسب امتیاز",
-    DEPOSIT_TON: "واریز TON",
-    DEPOSIT_DESC: "موجودی‌تان را افزایش دهید. هرچه مبلغ واریزی بیشتر باشد، امتیاز بیشتری می‌گیرید!",
-    OPEN_BOXES: "باز کردن جعبه‌های هدیه",
-    OPEN_BOXES_DESC: "بر اساس قیمت جعبه و ارزش هدیه‌هایی که می‌گیرید امتیاز دریافت کنید. جعبه‌های گران‌تر = امتیاز بیشتر!",
-    PLAY_ROCKET_PVP: "بازی Rocket و PVP",
-    PLAY_ROCKET_PVP_DESC: "در لحظه با بازیکنان دیگر رقابت کنید! هرچه مبلغ شرط و بردتان بیشتر باشد، امتیاز بیشتری می‌گیرید. این حالت‌ها نسبت به بقیهٔ فعالیت‌ها ۲ برابر امتیاز می‌دهند.",
-    UPGRADE_GIFTS: "ارتقای هدایا",
-    UPGRADE_DESC: "امتیازها بر اساس ارزش هدیه و نتیجهٔ ارتقا داده می‌شوند. ارتقای موفق امتیاز اضافه دارد!",
-    EXECUTE_CONTRACTS: "اجرای ساخت",
-    CONTRACTS_DESC: "هدیه‌ها را در بخش Crafts ترکیب کنید تا بر اساس ارزش کل آن‌ها امتیاز بگیرید.",
-    SELL_GIFTS: "فروش هدایا",
-    SELL_DESC: "فروش دوبارهٔ هدیه‌ها در ازای TON هم متناسب با ارزش هدیه برایتان امتیاز دارد.",
-    STAY_ACTIVE: "فعال بمانید",
-    STAY_ACTIVE_DESC: "تقریباً هر فعالیتی در برنامه به شما امتیاز می‌دهد! هرچه بیشتر فعالیت کنید، رتبه‌تان بالاتر می‌رود.",
-    COMPETITION_CYCLES: "دوره‌های رقابت",
-    CYCLES_DESC: "جدول رتبه‌بندی هر هفته از نو شروع می‌شود. فعالیت‌های باارزش‌تر امتیاز بیشتری دارند. فعال بمانید تا جوایز ویژه ببرید!",
-    START_EARNING: "شروع کسب امتیاز"
+    TITLE: "Ø±ÙˆØ´â€ŒÙ‡Ø§ÛŒ Ú©Ø³Ø¨ Ø§Ù…ØªÛŒØ§Ø²",
+    DEPOSIT_TON: "ÙˆØ§Ø±ÛŒØ² TON",
+    DEPOSIT_DESC: "Ù…ÙˆØ¬ÙˆØ¯ÛŒâ€ŒØªØ§Ù† Ø±Ø§ Ø§ÙØ²Ø§ÛŒØ´ Ø¯Ù‡ÛŒØ¯. Ù‡Ø±Ú†Ù‡ Ù…Ø¨Ù„Øº ÙˆØ§Ø±ÛŒØ²ÛŒ Ø¨ÛŒØ´ØªØ± Ø¨Ø§Ø´Ø¯ØŒ Ø§Ù…ØªÛŒØ§Ø² Ø¨ÛŒØ´ØªØ±ÛŒ Ù…ÛŒâ€ŒÚ¯ÛŒØ±ÛŒØ¯!",
+    OPEN_BOXES: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¬Ø¹Ø¨Ù‡â€ŒÙ‡Ø§ÛŒ Ù‡Ø¯ÛŒÙ‡",
+    OPEN_BOXES_DESC: "Ø¨Ø± Ø§Ø³Ø§Ø³ Ù‚ÛŒÙ…Øª Ø¬Ø¹Ø¨Ù‡ Ùˆ Ø§Ø±Ø²Ø´ Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒÛŒ Ú©Ù‡ Ù…ÛŒâ€ŒÚ¯ÛŒØ±ÛŒØ¯ Ø§Ù…ØªÛŒØ§Ø² Ø¯Ø±ÛŒØ§ÙØª Ú©Ù†ÛŒØ¯. Ø¬Ø¹Ø¨Ù‡â€ŒÙ‡Ø§ÛŒ Ú¯Ø±Ø§Ù†â€ŒØªØ± = Ø§Ù…ØªÛŒØ§Ø² Ø¨ÛŒØ´ØªØ±!",
+    PLAY_ROCKET_PVP: "Ø¨Ø§Ø²ÛŒ Rocket Ùˆ PVP",
+    PLAY_ROCKET_PVP_DESC: "Ø¯Ø± Ù„Ø­Ø¸Ù‡ Ø¨Ø§ Ø¨Ø§Ø²ÛŒÚ©Ù†Ø§Ù† Ø¯ÛŒÚ¯Ø± Ø±Ù‚Ø§Ø¨Øª Ú©Ù†ÛŒØ¯! Ù‡Ø±Ú†Ù‡ Ù…Ø¨Ù„Øº Ø´Ø±Ø· Ùˆ Ø¨Ø±Ø¯ØªØ§Ù† Ø¨ÛŒØ´ØªØ± Ø¨Ø§Ø´Ø¯ØŒ Ø§Ù…ØªÛŒØ§Ø² Ø¨ÛŒØ´ØªØ±ÛŒ Ù…ÛŒâ€ŒÚ¯ÛŒØ±ÛŒØ¯. Ø§ÛŒÙ† Ø­Ø§Ù„Øªâ€ŒÙ‡Ø§ Ù†Ø³Ø¨Øª Ø¨Ù‡ Ø¨Ù‚ÛŒÙ‡Ù” ÙØ¹Ø§Ù„ÛŒØªâ€ŒÙ‡Ø§ Û² Ø¨Ø±Ø§Ø¨Ø± Ø§Ù…ØªÛŒØ§Ø² Ù…ÛŒâ€ŒØ¯Ù‡Ù†Ø¯.",
+    UPGRADE_GIFTS: "Ø§Ø±ØªÙ‚Ø§ÛŒ Ù‡Ø¯Ø§ÛŒØ§",
+    UPGRADE_DESC: "Ø§Ù…ØªÛŒØ§Ø²Ù‡Ø§ Ø¨Ø± Ø§Ø³Ø§Ø³ Ø§Ø±Ø²Ø´ Ù‡Ø¯ÛŒÙ‡ Ùˆ Ù†ØªÛŒØ¬Ù‡Ù” Ø§Ø±ØªÙ‚Ø§ Ø¯Ø§Ø¯Ù‡ Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯. Ø§Ø±ØªÙ‚Ø§ÛŒ Ù…ÙˆÙÙ‚ Ø§Ù…ØªÛŒØ§Ø² Ø§Ø¶Ø§ÙÙ‡ Ø¯Ø§Ø±Ø¯!",
+    EXECUTE_CONTRACTS: "Ø§Ø¬Ø±Ø§ÛŒ Ø³Ø§Ø®Øª",
+    CONTRACTS_DESC: "Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ Ø±Ø§ Ø¯Ø± Ø¨Ø®Ø´ Crafts ØªØ±Ú©ÛŒØ¨ Ú©Ù†ÛŒØ¯ ØªØ§ Ø¨Ø± Ø§Ø³Ø§Ø³ Ø§Ø±Ø²Ø´ Ú©Ù„ Ø¢Ù†â€ŒÙ‡Ø§ Ø§Ù…ØªÛŒØ§Ø² Ø¨Ú¯ÛŒØ±ÛŒØ¯.",
+    SELL_GIFTS: "ÙØ±ÙˆØ´ Ù‡Ø¯Ø§ÛŒØ§",
+    SELL_DESC: "ÙØ±ÙˆØ´ Ø¯ÙˆØ¨Ø§Ø±Ù‡Ù” Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ Ø¯Ø± Ø§Ø²Ø§ÛŒ TON Ù‡Ù… Ù…ØªÙ†Ø§Ø³Ø¨ Ø¨Ø§ Ø§Ø±Ø²Ø´ Ù‡Ø¯ÛŒÙ‡ Ø¨Ø±Ø§ÛŒØªØ§Ù† Ø§Ù…ØªÛŒØ§Ø² Ø¯Ø§Ø±Ø¯.",
+    STAY_ACTIVE: "ÙØ¹Ø§Ù„ Ø¨Ù…Ø§Ù†ÛŒØ¯",
+    STAY_ACTIVE_DESC: "ØªÙ‚Ø±ÛŒØ¨Ø§Ù‹ Ù‡Ø± ÙØ¹Ø§Ù„ÛŒØªÛŒ Ø¯Ø± Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø¨Ù‡ Ø´Ù…Ø§ Ø§Ù…ØªÛŒØ§Ø² Ù…ÛŒâ€ŒØ¯Ù‡Ø¯! Ù‡Ø±Ú†Ù‡ Ø¨ÛŒØ´ØªØ± ÙØ¹Ø§Ù„ÛŒØª Ú©Ù†ÛŒØ¯ØŒ Ø±ØªØ¨Ù‡â€ŒØªØ§Ù† Ø¨Ø§Ù„Ø§ØªØ± Ù…ÛŒâ€ŒØ±ÙˆØ¯.",
+    COMPETITION_CYCLES: "Ø¯ÙˆØ±Ù‡â€ŒÙ‡Ø§ÛŒ Ø±Ù‚Ø§Ø¨Øª",
+    CYCLES_DESC: "Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ Ù‡Ø± Ù‡ÙØªÙ‡ Ø§Ø² Ù†Ùˆ Ø´Ø±ÙˆØ¹ Ù…ÛŒâ€ŒØ´ÙˆØ¯. ÙØ¹Ø§Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø¨Ø§Ø§Ø±Ø²Ø´â€ŒØªØ± Ø§Ù…ØªÛŒØ§Ø² Ø¨ÛŒØ´ØªØ±ÛŒ Ø¯Ø§Ø±Ù†Ø¯. ÙØ¹Ø§Ù„ Ø¨Ù…Ø§Ù†ÛŒØ¯ ØªØ§ Ø¬ÙˆØ§ÛŒØ² ÙˆÛŒÚ˜Ù‡ Ø¨Ø¨Ø±ÛŒØ¯!",
+    START_EARNING: "Ø´Ø±ÙˆØ¹ Ú©Ø³Ø¨ Ø§Ù…ØªÛŒØ§Ø²"
 }
   , faLeaderboard = {
     TITLE: TITLE$5,
@@ -56089,159 +56089,159 @@ It's 100% free, and you can try your luck every 24 hours!`,
     HOW_TO_EARN: HOW_TO_EARN$1
 }
   , SUCCESS$1 = {
-    LINK_COPIED: "پیوند در کلیپ‌بورد کپی شد!",
-    LINK_COPIED_SHARE: "پیوند کپی شد — آن را در گفت‌وگوی دوستانتان بچسبانید!",
-    GIFT_SOLD: "هدیه با موفقیت فروخته شد!",
-    GIFT_ADDED_TO_BACKPACK: "هدیه به کوله‌پشتی شما اضافه شد!",
-    GIFT_WITHDRAWN: "هدیه با موفقیت به تلگرام برداشت شد!",
-    TASK_CLAIMED: "پاداش وظیفه دریافت شد!",
-    CHANNEL_JOINED_CLAIMED: "به کانال پیوستید و جایزه را دریافت کردید!",
-    CHANNEL_JOINED: "به کانال پیوستید! جایزه‌تان را دریافت کنید.",
-    GIVEAWAY_JOINED: "با موفقیت به قرعه‌کشی پیوستید!",
-    CONTRACT_EXECUTED: "ساخت با موفقیت انجام شد!",
-    TRANSACTION_PROCESSING: "تراکنش در حال انجام است؛ لطفاً صبر کنید...",
-    PAYMENT_CREATED: "صورتحساب پرداخت ایجاد شد",
-    DATA_COPIED: "{{label}} در کلیپ‌بورد کپی شد",
-    DATA_DOWNLOADED: "داده‌های بازی دانلود شد",
-    VERIFICATION_PASSED: "راستی‌آزمایی موفق بود!",
-    NEW_BOX_AVAILABLE: "جعبهٔ جدید موجود است: {{title}}",
-    BOX_BACK_IN_STOCK: "{{title}} دوباره موجود شده است!",
-    BETTER_LUCK_NEXT_TIME: "امیدواریم دفعهٔ بعد خوش‌شانس باشید!",
-    SETTINGS_SAVED: "تنظیمات با موفقیت ذخیره شد"
+    LINK_COPIED: "Ù¾ÛŒÙˆÙ†Ø¯ Ø¯Ø± Ú©Ù„ÛŒÙ¾â€ŒØ¨ÙˆØ±Ø¯ Ú©Ù¾ÛŒ Ø´Ø¯!",
+    LINK_COPIED_SHARE: "Ù¾ÛŒÙˆÙ†Ø¯ Ú©Ù¾ÛŒ Ø´Ø¯ â€” Ø¢Ù† Ø±Ø§ Ø¯Ø± Ú¯ÙØªâ€ŒÙˆÚ¯ÙˆÛŒ Ø¯ÙˆØ³ØªØ§Ù†ØªØ§Ù† Ø¨Ú†Ø³Ø¨Ø§Ù†ÛŒØ¯!",
+    GIFT_SOLD: "Ù‡Ø¯ÛŒÙ‡ Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª ÙØ±ÙˆØ®ØªÙ‡ Ø´Ø¯!",
+    GIFT_ADDED_TO_BACKPACK: "Ù‡Ø¯ÛŒÙ‡ Ø¨Ù‡ Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒ Ø´Ù…Ø§ Ø§Ø¶Ø§ÙÙ‡ Ø´Ø¯!",
+    GIFT_WITHDRAWN: "Ù‡Ø¯ÛŒÙ‡ Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø¨Ù‡ ØªÙ„Ú¯Ø±Ø§Ù… Ø¨Ø±Ø¯Ø§Ø´Øª Ø´Ø¯!",
+    TASK_CLAIMED: "Ù¾Ø§Ø¯Ø§Ø´ ÙˆØ¸ÛŒÙÙ‡ Ø¯Ø±ÛŒØ§ÙØª Ø´Ø¯!",
+    CHANNEL_JOINED_CLAIMED: "Ø¨Ù‡ Ú©Ø§Ù†Ø§Ù„ Ù¾ÛŒÙˆØ³ØªÛŒØ¯ Ùˆ Ø¬Ø§ÛŒØ²Ù‡ Ø±Ø§ Ø¯Ø±ÛŒØ§ÙØª Ú©Ø±Ø¯ÛŒØ¯!",
+    CHANNEL_JOINED: "Ø¨Ù‡ Ú©Ø§Ù†Ø§Ù„ Ù¾ÛŒÙˆØ³ØªÛŒØ¯! Ø¬Ø§ÛŒØ²Ù‡â€ŒØªØ§Ù† Ø±Ø§ Ø¯Ø±ÛŒØ§ÙØª Ú©Ù†ÛŒØ¯.",
+    GIVEAWAY_JOINED: "Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø¨Ù‡ Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù¾ÛŒÙˆØ³ØªÛŒØ¯!",
+    CONTRACT_EXECUTED: "Ø³Ø§Ø®Øª Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯!",
+    TRANSACTION_PROCESSING: "ØªØ±Ø§Ú©Ù†Ø´ Ø¯Ø± Ø­Ø§Ù„ Ø§Ù†Ø¬Ø§Ù… Ø§Ø³ØªØ› Ù„Ø·ÙØ§Ù‹ ØµØ¨Ø± Ú©Ù†ÛŒØ¯...",
+    PAYMENT_CREATED: "ØµÙˆØ±ØªØ­Ø³Ø§Ø¨ Ù¾Ø±Ø¯Ø§Ø®Øª Ø§ÛŒØ¬Ø§Ø¯ Ø´Ø¯",
+    DATA_COPIED: "{{label}} Ø¯Ø± Ú©Ù„ÛŒÙ¾â€ŒØ¨ÙˆØ±Ø¯ Ú©Ù¾ÛŒ Ø´Ø¯",
+    DATA_DOWNLOADED: "Ø¯Ø§Ø¯Ù‡â€ŒÙ‡Ø§ÛŒ Ø¨Ø§Ø²ÛŒ Ø¯Ø§Ù†Ù„ÙˆØ¯ Ø´Ø¯",
+    VERIFICATION_PASSED: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯!",
+    NEW_BOX_AVAILABLE: "Ø¬Ø¹Ø¨Ù‡Ù” Ø¬Ø¯ÛŒØ¯ Ù…ÙˆØ¬ÙˆØ¯ Ø§Ø³Øª: {{title}}",
+    BOX_BACK_IN_STOCK: "{{title}} Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ù…ÙˆØ¬ÙˆØ¯ Ø´Ø¯Ù‡ Ø§Ø³Øª!",
+    BETTER_LUCK_NEXT_TIME: "Ø§Ù…ÛŒØ¯ÙˆØ§Ø±ÛŒÙ… Ø¯ÙØ¹Ù‡Ù” Ø¨Ø¹Ø¯ Ø®ÙˆØ´â€ŒØ´Ø§Ù†Ø³ Ø¨Ø§Ø´ÛŒØ¯!",
+    SETTINGS_SAVED: "ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø°Ø®ÛŒØ±Ù‡ Ø´Ø¯"
 }
   , ERROR$1 = {
-    FAILED_TO_LOAD_REFERRALS: "بارگذاری دعوت‌شدگان ناموفق بود",
-    FAILED_TO_COPY: "کپی پیوند ناموفق بود",
-    FAILED_TO_LOAD_GIFTS: "بارگذاری هدیه‌های شما ناموفق بود",
-    FAILED_TO_LOAD_UPGRADE_TARGETS: "بارگذاری هدف‌های ارتقا برای این هدیه ناموفق بود",
-    INVALID_TARGET_GIFT: "هدیهٔ هدف انتخاب‌شده نامعتبر است. لطفاً هدف دیگری انتخاب کنید.",
-    USER_NOT_FOUND: "کاربر پیدا نشد. لطفاً دوباره وارد حساب شوید.",
-    GIFT_NOT_UPGRADEABLE: "این هدیه قابل ارتقا نیست یا پیدا نشد.",
-    TARGET_GIFT_NOT_FOUND: "هدیهٔ هدف پیدا نشد. لطفاً هدف دیگری انتخاب کنید.",
-    GIFT_LOCKED: "این هدیه در حال حاضر در عملیات دیگری استفاده می‌شود.",
-    PLEASE_WAIT: "پیش از تلاش دوباره برای ارتقا صبر کنید.",
-    NETWORK_ERROR: "خطای شبکه. اتصال خود را بررسی کنید.",
-    SERVER_ERROR: "خطای سرور. لطفاً بعداً دوباره تلاش کنید.",
-    FAILED_TO_UPGRADE: "ارتقای هدیه ناموفق بود",
-    UNEXPECTED_ERROR: "هنگام ارتقای هدیه خطای غیرمنتظره‌ای رخ داد",
-    NO_GIFT_TO_SELL: "هدیه‌ای برای فروش موجود نیست",
-    FAILED_TO_SELL: "فروش هدیه ناموفق بود",
-    NO_GIFT_FOR_UPGRADE: "هدیه‌ای برای ارتقا موجود نیست",
-    DAILY_GIFT_NOT_FOUND: "جعبهٔ هدیهٔ روزانه پیدا نشد",
-    PLEASE_LOGIN: "برای بررسی موجودی روزانه وارد حساب شوید",
-    FAILED_TO_CHECK: "بررسی موجودی روزانه ناموفق بود",
-    DAILY_ALREADY_CLAIMED: "پاداش روزانه قبلاً دریافت شده است",
-    DAILY_ALREADY_CLAIMED_DESCRIPTION: "لطفاً تا بازنشانی روزانهٔ بعدی صبر کنید",
-    FAILED_TO_UNBOX: "باز کردن جعبهٔ هدیه ناموفق بود",
-    MISSING_VERIFICATION_DATA: "اطلاعات راستی‌آزمایی موجود نیست",
-    VERIFICATION_DATA_DESCRIPTION: "بدون داده‌های لازم، راستی‌آزمایی این بازی ممکن نیست",
-    VERIFICATION_FAILED: "راستی‌آزمایی ناموفق بود",
-    VERIFICATION_FAILED_DESCRIPTION: "داده‌های بازی با نتیجهٔ مورد انتظار مطابقت ندارد",
-    FAILED_TO_LOAD_LEADERBOARD: "بارگذاری جدول رتبه‌بندی ناموفق بود",
-    FAILED_TO_LOAD_TASKS: "بارگذاری وظایف ناموفق بود",
-    PLEASE_JOIN_CHANNEL: "ابتدا به کانال بپیوندید",
-    FAILED_TO_VERIFY_SUBSCRIPTION: "بررسی عضویت در کانال ناموفق بود",
-    FAILED_TO_COMPLETE_TASK: "تکمیل وظیفه ناموفق بود",
-    FAILED_TO_CLAIM_TASK: "دریافت پاداش ناموفق بود",
-    STORIES_MOBILE_ONLY: "اشتراک‌گذاری در استوری فقط در برنامهٔ موبایل تلگرام در دسترس است",
-    FAILED_TO_JOIN_GIVEAWAY: "پیوستن به قرعه‌کشی ناموفق بود",
-    COMPLETE_REQUIREMENTS: "لطفاً ابتدا همهٔ شرایط را تکمیل کنید",
-    GIVEAWAY_NOT_FOUND: "قرعه‌کشی پیدا نشد",
-    CHANNEL_LINK_NOT_AVAILABLE: "پیوند کانال در دسترس نیست",
-    FAILED_TO_LOAD_AVAILABLE_GIFTS: "بارگذاری هدیه‌های موجود ناموفق بود",
-    GAME_SERVICE_NOT_AVAILABLE: "سرویس بازی در دسترس نیست",
-    CANNOT_PLACE_BET: "در حال حاضر امکان ثبت شرط وجود ندارد",
-    PLEASE_SELECT_GIFT: "برای شرط‌بندی، یک هدیه انتخاب کنید",
-    MINIMUM_BET: "حداقل شرط ۰٫۱ TON است",
-    CANNOT_CASH_OUT: "در حال حاضر امکان برداشت وجه وجود ندارد",
-    ROUND_ALREADY_CRASHED: "این دور قبلاً متوقف شده است",
-    GIFT_ALREADY_IN_CONTRACT: "این هدیه از قبل در ساخت استفاده شده است",
-    NO_GIFT_RECEIVED: "خطا: پس از ساخت هدیه‌ای دریافت نشد",
-    CONTRACT_CANNOT_EXECUTE: "ساخت قابل اجرا نیست",
-    FAILED_TO_EXECUTE_CONTRACT: "اجرای ساخت ناموفق بود",
-    GIFT_NOT_FOUND: "هدیه پیدا نشد",
-    PLEASE_MESSAGE_BOT: "ابتدا به ربات ما پیام بدهید",
-    GIFT_NOT_FOUND_TRY_AGAIN: "هدیه پیدا نشد. دوباره تلاش کنید.",
-    PLEASE_LOGIN_TO_WITHDRAW: "برای برداشت هدیه وارد حساب شوید",
-    FAILED_TO_WITHDRAW: "برداشت هدیه ناموفق بود",
-    GIFT_NOT_FOUND_REFRESH: "هدیه پیدا نشد. لطفاً صفحه را تازه‌سازی کنید.",
-    PLEASE_LOGIN_TO_SELL: "برای فروش هدیه وارد حساب شوید",
-    NOT_CONNECTED_TO_SERVER: "به سرور متصل نیستید",
-    FAILED_TO_PLACE_BET: "ثبت شرط ناموفق بود",
-    FAILED_TO_INCREASE_BET: "افزایش شرط ناموفق بود",
-    CONNECTION_LOST: "اتصال قطع شد. لطفاً صفحه را تازه‌سازی کنید.",
-    FAILED_TO_CONNECT: "اتصال به سرور بازی ناموفق بود",
-    NOT_CONNECTED_TO_GAME_SERVER: "به سرور بازی متصل نیستید",
-    WALLET_VERIFICATION_FAILED: "راستی‌آزمایی کیف پول ناموفق بود",
-    WALLET_VERIFICATION_DESCRIPTION: "کیف پول را قطع و دوباره متصل کنید",
-    CONNECTION_ERROR: "خطای اتصال",
-    CONNECTION_ERROR_DESCRIPTION: "اتصال اینترنت را بررسی کنید و دوباره تلاش کنید",
-    INVALID_WALLET: "کیف پول نامعتبر است",
-    INVALID_WALLET_DESCRIPTION: "لطفاً از یک کیف پول TON معتبر استفاده کنید",
-    FAILED_TO_CREATE_PAYMENT: "ایجاد پرداخت ناموفق بود",
-    TRANSACTION_CANCELLED: "تراکنش لغو شد",
-    FAILED_TO_TOP_UP: "افزایش موجودی ناموفق بود",
-    BETS_CLOSED: "شرط‌بندی برای این دور بسته شده است",
-    GIFT_NOT_AVAILABLE: "هدیهٔ انتخاب‌شده در دسترس نیست",
-    INSUFFICIENT_BALANCE: "موجودی کافی نیست",
-    MINIMUM_BET_AMOUNT: "حداقل شرط ۰٫۱ TON است",
-    FAILED_TO_CASH_OUT: "برداشت وجه ناموفق بود",
-    FAILED_TO_SAVE_SETTINGS: "ذخیرهٔ تنظیمات ناموفق بود",
-    RATE_UNAVAILABLE: "کمی بعد دوباره تلاش کنید"
+    FAILED_TO_LOAD_REFERRALS: "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ø¯Ø¹ÙˆØªâ€ŒØ´Ø¯Ú¯Ø§Ù† Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED_TO_COPY: "Ú©Ù¾ÛŒ Ù¾ÛŒÙˆÙ†Ø¯ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED_TO_LOAD_GIFTS: "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ø´Ù…Ø§ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED_TO_LOAD_UPGRADE_TARGETS: "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù‡Ø¯Ùâ€ŒÙ‡Ø§ÛŒ Ø§Ø±ØªÙ‚Ø§ Ø¨Ø±Ø§ÛŒ Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    INVALID_TARGET_GIFT: "Ù‡Ø¯ÛŒÙ‡Ù” Ù‡Ø¯Ù Ø§Ù†ØªØ®Ø§Ø¨â€ŒØ´Ø¯Ù‡ Ù†Ø§Ù…Ø¹ØªØ¨Ø± Ø§Ø³Øª. Ù„Ø·ÙØ§Ù‹ Ù‡Ø¯Ù Ø¯ÛŒÚ¯Ø±ÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯.",
+    USER_NOT_FOUND: "Ú©Ø§Ø±Ø¨Ø± Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯. Ù„Ø·ÙØ§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ÙˆØ§Ø±Ø¯ Ø­Ø³Ø§Ø¨ Ø´ÙˆÛŒØ¯.",
+    GIFT_NOT_UPGRADEABLE: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ù‚Ø§Ø¨Ù„ Ø§Ø±ØªÙ‚Ø§ Ù†ÛŒØ³Øª ÛŒØ§ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯.",
+    TARGET_GIFT_NOT_FOUND: "Ù‡Ø¯ÛŒÙ‡Ù” Ù‡Ø¯Ù Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯. Ù„Ø·ÙØ§Ù‹ Ù‡Ø¯Ù Ø¯ÛŒÚ¯Ø±ÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯.",
+    GIFT_LOCKED: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± Ø¯Ø± Ø¹Ù…Ù„ÛŒØ§Øª Ø¯ÛŒÚ¯Ø±ÛŒ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    PLEASE_WAIT: "Ù¾ÛŒØ´ Ø§Ø² ØªÙ„Ø§Ø´ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø¨Ø±Ø§ÛŒ Ø§Ø±ØªÙ‚Ø§ ØµØ¨Ø± Ú©Ù†ÛŒØ¯.",
+    NETWORK_ERROR: "Ø®Ø·Ø§ÛŒ Ø´Ø¨Ú©Ù‡. Ø§ØªØµØ§Ù„ Ø®ÙˆØ¯ Ø±Ø§ Ø¨Ø±Ø±Ø³ÛŒ Ú©Ù†ÛŒØ¯.",
+    SERVER_ERROR: "Ø®Ø·Ø§ÛŒ Ø³Ø±ÙˆØ±. Ù„Ø·ÙØ§Ù‹ Ø¨Ø¹Ø¯Ø§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+    FAILED_TO_UPGRADE: "Ø§Ø±ØªÙ‚Ø§ÛŒ Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    UNEXPECTED_ERROR: "Ù‡Ù†Ú¯Ø§Ù… Ø§Ø±ØªÙ‚Ø§ÛŒ Ù‡Ø¯ÛŒÙ‡ Ø®Ø·Ø§ÛŒ ØºÛŒØ±Ù…Ù†ØªØ¸Ø±Ù‡â€ŒØ§ÛŒ Ø±Ø® Ø¯Ø§Ø¯",
+    NO_GIFT_TO_SELL: "Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø¨Ø±Ø§ÛŒ ÙØ±ÙˆØ´ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    FAILED_TO_SELL: "ÙØ±ÙˆØ´ Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    NO_GIFT_FOR_UPGRADE: "Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø¨Ø±Ø§ÛŒ Ø§Ø±ØªÙ‚Ø§ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    DAILY_GIFT_NOT_FOUND: "Ø¬Ø¹Ø¨Ù‡Ù” Ù‡Ø¯ÛŒÙ‡Ù” Ø±ÙˆØ²Ø§Ù†Ù‡ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    PLEASE_LOGIN: "Ø¨Ø±Ø§ÛŒ Ø¨Ø±Ø±Ø³ÛŒ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø±ÙˆØ²Ø§Ù†Ù‡ ÙˆØ§Ø±Ø¯ Ø­Ø³Ø§Ø¨ Ø´ÙˆÛŒØ¯",
+    FAILED_TO_CHECK: "Ø¨Ø±Ø±Ø³ÛŒ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø±ÙˆØ²Ø§Ù†Ù‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    DAILY_ALREADY_CLAIMED: "Ù¾Ø§Ø¯Ø§Ø´ Ø±ÙˆØ²Ø§Ù†Ù‡ Ù‚Ø¨Ù„Ø§Ù‹ Ø¯Ø±ÛŒØ§ÙØª Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    DAILY_ALREADY_CLAIMED_DESCRIPTION: "Ù„Ø·ÙØ§Ù‹ ØªØ§ Ø¨Ø§Ø²Ù†Ø´Ø§Ù†ÛŒ Ø±ÙˆØ²Ø§Ù†Ù‡Ù” Ø¨Ø¹Ø¯ÛŒ ØµØ¨Ø± Ú©Ù†ÛŒØ¯",
+    FAILED_TO_UNBOX: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¬Ø¹Ø¨Ù‡Ù” Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    MISSING_VERIFICATION_DATA: "Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    VERIFICATION_DATA_DESCRIPTION: "Ø¨Ø¯ÙˆÙ† Ø¯Ø§Ø¯Ù‡â€ŒÙ‡Ø§ÛŒ Ù„Ø§Ø²Ù…ØŒ Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ø§ÛŒÙ† Ø¨Ø§Ø²ÛŒ Ù…Ù…Ú©Ù† Ù†ÛŒØ³Øª",
+    VERIFICATION_FAILED: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    VERIFICATION_FAILED_DESCRIPTION: "Ø¯Ø§Ø¯Ù‡â€ŒÙ‡Ø§ÛŒ Ø¨Ø§Ø²ÛŒ Ø¨Ø§ Ù†ØªÛŒØ¬Ù‡Ù” Ù…ÙˆØ±Ø¯ Ø§Ù†ØªØ¸Ø§Ø± Ù…Ø·Ø§Ø¨Ù‚Øª Ù†Ø¯Ø§Ø±Ø¯",
+    FAILED_TO_LOAD_LEADERBOARD: "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ø¬Ø¯ÙˆÙ„ Ø±ØªØ¨Ù‡â€ŒØ¨Ù†Ø¯ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED_TO_LOAD_TASKS: "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ ÙˆØ¸Ø§ÛŒÙ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    PLEASE_JOIN_CHANNEL: "Ø§Ø¨ØªØ¯Ø§ Ø¨Ù‡ Ú©Ø§Ù†Ø§Ù„ Ø¨Ù¾ÛŒÙˆÙ†Ø¯ÛŒØ¯",
+    FAILED_TO_VERIFY_SUBSCRIPTION: "Ø¨Ø±Ø±Ø³ÛŒ Ø¹Ø¶ÙˆÛŒØª Ø¯Ø± Ú©Ø§Ù†Ø§Ù„ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED_TO_COMPLETE_TASK: "ØªÚ©Ù…ÛŒÙ„ ÙˆØ¸ÛŒÙÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED_TO_CLAIM_TASK: "Ø¯Ø±ÛŒØ§ÙØª Ù¾Ø§Ø¯Ø§Ø´ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    STORIES_MOBILE_ONLY: "Ø§Ø´ØªØ±Ø§Ú©â€ŒÚ¯Ø°Ø§Ø±ÛŒ Ø¯Ø± Ø§Ø³ØªÙˆØ±ÛŒ ÙÙ‚Ø· Ø¯Ø± Ø¨Ø±Ù†Ø§Ù…Ù‡Ù” Ù…ÙˆØ¨Ø§ÛŒÙ„ ØªÙ„Ú¯Ø±Ø§Ù… Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ø§Ø³Øª",
+    FAILED_TO_JOIN_GIVEAWAY: "Ù¾ÛŒÙˆØ³ØªÙ† Ø¨Ù‡ Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    COMPLETE_REQUIREMENTS: "Ù„Ø·ÙØ§Ù‹ Ø§Ø¨ØªØ¯Ø§ Ù‡Ù…Ù‡Ù” Ø´Ø±Ø§ÛŒØ· Ø±Ø§ ØªÚ©Ù…ÛŒÙ„ Ú©Ù†ÛŒØ¯",
+    GIVEAWAY_NOT_FOUND: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    CHANNEL_LINK_NOT_AVAILABLE: "Ù¾ÛŒÙˆÙ†Ø¯ Ú©Ø§Ù†Ø§Ù„ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    FAILED_TO_LOAD_AVAILABLE_GIFTS: "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ù…ÙˆØ¬ÙˆØ¯ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    GAME_SERVICE_NOT_AVAILABLE: "Ø³Ø±ÙˆÛŒØ³ Ø¨Ø§Ø²ÛŒ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    CANNOT_PLACE_BET: "Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± Ø§Ù…Ú©Ø§Ù† Ø«Ø¨Øª Ø´Ø±Ø· ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯",
+    PLEASE_SELECT_GIFT: "Ø¨Ø±Ø§ÛŒ Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒØŒ ÛŒÚ© Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    MINIMUM_BET: "Ø­Ø¯Ø§Ù‚Ù„ Ø´Ø±Ø· Û°Ù«Û± TON Ø§Ø³Øª",
+    CANNOT_CASH_OUT: "Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± Ø§Ù…Ú©Ø§Ù† Ø¨Ø±Ø¯Ø§Ø´Øª ÙˆØ¬Ù‡ ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯",
+    ROUND_ALREADY_CRASHED: "Ø§ÛŒÙ† Ø¯ÙˆØ± Ù‚Ø¨Ù„Ø§Ù‹ Ù…ØªÙˆÙ‚Ù Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    GIFT_ALREADY_IN_CONTRACT: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ø§Ø² Ù‚Ø¨Ù„ Ø¯Ø± Ø³Ø§Ø®Øª Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    NO_GIFT_RECEIVED: "Ø®Ø·Ø§: Ù¾Ø³ Ø§Ø² Ø³Ø§Ø®Øª Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø¯Ø±ÛŒØ§ÙØª Ù†Ø´Ø¯",
+    CONTRACT_CANNOT_EXECUTE: "Ø³Ø§Ø®Øª Ù‚Ø§Ø¨Ù„ Ø§Ø¬Ø±Ø§ Ù†ÛŒØ³Øª",
+    FAILED_TO_EXECUTE_CONTRACT: "Ø§Ø¬Ø±Ø§ÛŒ Ø³Ø§Ø®Øª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    GIFT_NOT_FOUND: "Ù‡Ø¯ÛŒÙ‡ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    PLEASE_MESSAGE_BOT: "Ø§Ø¨ØªØ¯Ø§ Ø¨Ù‡ Ø±Ø¨Ø§Øª Ù…Ø§ Ù¾ÛŒØ§Ù… Ø¨Ø¯Ù‡ÛŒØ¯",
+    GIFT_NOT_FOUND_TRY_AGAIN: "Ù‡Ø¯ÛŒÙ‡ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯. Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+    PLEASE_LOGIN_TO_WITHDRAW: "Ø¨Ø±Ø§ÛŒ Ø¨Ø±Ø¯Ø§Ø´Øª Ù‡Ø¯ÛŒÙ‡ ÙˆØ§Ø±Ø¯ Ø­Ø³Ø§Ø¨ Ø´ÙˆÛŒØ¯",
+    FAILED_TO_WITHDRAW: "Ø¨Ø±Ø¯Ø§Ø´Øª Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    GIFT_NOT_FOUND_REFRESH: "Ù‡Ø¯ÛŒÙ‡ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯. Ù„Ø·ÙØ§Ù‹ ØµÙØ­Ù‡ Ø±Ø§ ØªØ§Ø²Ù‡â€ŒØ³Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯.",
+    PLEASE_LOGIN_TO_SELL: "Ø¨Ø±Ø§ÛŒ ÙØ±ÙˆØ´ Ù‡Ø¯ÛŒÙ‡ ÙˆØ§Ø±Ø¯ Ø­Ø³Ø§Ø¨ Ø´ÙˆÛŒØ¯",
+    NOT_CONNECTED_TO_SERVER: "Ø¨Ù‡ Ø³Ø±ÙˆØ± Ù…ØªØµÙ„ Ù†ÛŒØ³ØªÛŒØ¯",
+    FAILED_TO_PLACE_BET: "Ø«Ø¨Øª Ø´Ø±Ø· Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED_TO_INCREASE_BET: "Ø§ÙØ²Ø§ÛŒØ´ Ø´Ø±Ø· Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    CONNECTION_LOST: "Ø§ØªØµØ§Ù„ Ù‚Ø·Ø¹ Ø´Ø¯. Ù„Ø·ÙØ§Ù‹ ØµÙØ­Ù‡ Ø±Ø§ ØªØ§Ø²Ù‡â€ŒØ³Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯.",
+    FAILED_TO_CONNECT: "Ø§ØªØµØ§Ù„ Ø¨Ù‡ Ø³Ø±ÙˆØ± Ø¨Ø§Ø²ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    NOT_CONNECTED_TO_GAME_SERVER: "Ø¨Ù‡ Ø³Ø±ÙˆØ± Ø¨Ø§Ø²ÛŒ Ù…ØªØµÙ„ Ù†ÛŒØ³ØªÛŒØ¯",
+    WALLET_VERIFICATION_FAILED: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ú©ÛŒÙ Ù¾ÙˆÙ„ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    WALLET_VERIFICATION_DESCRIPTION: "Ú©ÛŒÙ Ù¾ÙˆÙ„ Ø±Ø§ Ù‚Ø·Ø¹ Ùˆ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ù…ØªØµÙ„ Ú©Ù†ÛŒØ¯",
+    CONNECTION_ERROR: "Ø®Ø·Ø§ÛŒ Ø§ØªØµØ§Ù„",
+    CONNECTION_ERROR_DESCRIPTION: "Ø§ØªØµØ§Ù„ Ø§ÛŒÙ†ØªØ±Ù†Øª Ø±Ø§ Ø¨Ø±Ø±Ø³ÛŒ Ú©Ù†ÛŒØ¯ Ùˆ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯",
+    INVALID_WALLET: "Ú©ÛŒÙ Ù¾ÙˆÙ„ Ù†Ø§Ù…Ø¹ØªØ¨Ø± Ø§Ø³Øª",
+    INVALID_WALLET_DESCRIPTION: "Ù„Ø·ÙØ§Ù‹ Ø§Ø² ÛŒÚ© Ú©ÛŒÙ Ù¾ÙˆÙ„ TON Ù…Ø¹ØªØ¨Ø± Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÛŒØ¯",
+    FAILED_TO_CREATE_PAYMENT: "Ø§ÛŒØ¬Ø§Ø¯ Ù¾Ø±Ø¯Ø§Ø®Øª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    TRANSACTION_CANCELLED: "ØªØ±Ø§Ú©Ù†Ø´ Ù„ØºÙˆ Ø´Ø¯",
+    FAILED_TO_TOP_UP: "Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    BETS_CLOSED: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø¨Ø±Ø§ÛŒ Ø§ÛŒÙ† Ø¯ÙˆØ± Ø¨Ø³ØªÙ‡ Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    GIFT_NOT_AVAILABLE: "Ù‡Ø¯ÛŒÙ‡Ù” Ø§Ù†ØªØ®Ø§Ø¨â€ŒØ´Ø¯Ù‡ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    INSUFFICIENT_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ú©Ø§ÙÛŒ Ù†ÛŒØ³Øª",
+    MINIMUM_BET_AMOUNT: "Ø­Ø¯Ø§Ù‚Ù„ Ø´Ø±Ø· Û°Ù«Û± TON Ø§Ø³Øª",
+    FAILED_TO_CASH_OUT: "Ø¨Ø±Ø¯Ø§Ø´Øª ÙˆØ¬Ù‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED_TO_SAVE_SETTINGS: "Ø°Ø®ÛŒØ±Ù‡Ù” ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    RATE_UNAVAILABLE: "Ú©Ù…ÛŒ Ø¨Ø¹Ø¯ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯"
 }
   , faToasts = {
     SUCCESS: SUCCESS$1,
     ERROR: ERROR$1
 }
-  , PAGE_TITLE$1 = "هدایای شما"
+  , PAGE_TITLE$1 = "Ù‡Ø¯Ø§ÛŒØ§ÛŒ Ø´Ù…Ø§"
   , EMPTY$8 = {
-    TITLE: "کوله‌پشتی شما خالی است",
-    DESCRIPTION_PART1: "هدایا را ارسال کنید به",
-    DESCRIPTION_PART2: "برای فروش سریع و افزودن مبلغ به موجودی، یا استفاده در Upgrade، Crafts، بازی‌های PVP و Rocket.",
-    SEND_GIFT: "ارسال هدیه",
-    GIFTS_APPEAR_HERE: "هدایایی که به ربات ارسال می‌کنید، خودکار اینجا نمایش داده می‌شوند.",
-    OPEN_BOXES_MESSAGE: "چند جعبه باز کنید تا هدیه‌های جذابی بگیرید؛ می‌توانید آن‌ها را سریع بفروشید و موجودی‌تان را افزایش دهید یا برای Upgrade، Crafts، PVP و بازی Rocket استفاده کنید."
+    TITLE: "Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒ Ø´Ù…Ø§ Ø®Ø§Ù„ÛŒ Ø§Ø³Øª",
+    DESCRIPTION_PART1: "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø§Ø±Ø³Ø§Ù„ Ú©Ù†ÛŒØ¯ Ø¨Ù‡",
+    DESCRIPTION_PART2: "Ø¨Ø±Ø§ÛŒ ÙØ±ÙˆØ´ Ø³Ø±ÛŒØ¹ Ùˆ Ø§ÙØ²ÙˆØ¯Ù† Ù…Ø¨Ù„Øº Ø¨Ù‡ Ù…ÙˆØ¬ÙˆØ¯ÛŒØŒ ÛŒØ§ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø¯Ø± UpgradeØŒ CraftsØŒ Ø¨Ø§Ø²ÛŒâ€ŒÙ‡Ø§ÛŒ PVP Ùˆ Rocket.",
+    SEND_GIFT: "Ø§Ø±Ø³Ø§Ù„ Ù‡Ø¯ÛŒÙ‡",
+    GIFTS_APPEAR_HERE: "Ù‡Ø¯Ø§ÛŒØ§ÛŒÛŒ Ú©Ù‡ Ø¨Ù‡ Ø±Ø¨Ø§Øª Ø§Ø±Ø³Ø§Ù„ Ù…ÛŒâ€ŒÚ©Ù†ÛŒØ¯ØŒ Ø®ÙˆØ¯Ú©Ø§Ø± Ø§ÛŒÙ†Ø¬Ø§ Ù†Ù…Ø§ÛŒØ´ Ø¯Ø§Ø¯Ù‡ Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯.",
+    OPEN_BOXES_MESSAGE: "Ú†Ù†Ø¯ Ø¬Ø¹Ø¨Ù‡ Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯ ØªØ§ Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ø¬Ø°Ø§Ø¨ÛŒ Ø¨Ú¯ÛŒØ±ÛŒØ¯Ø› Ù…ÛŒâ€ŒØªÙˆØ§Ù†ÛŒØ¯ Ø¢Ù†â€ŒÙ‡Ø§ Ø±Ø§ Ø³Ø±ÛŒØ¹ Ø¨ÙØ±ÙˆØ´ÛŒØ¯ Ùˆ Ù…ÙˆØ¬ÙˆØ¯ÛŒâ€ŒØªØ§Ù† Ø±Ø§ Ø§ÙØ²Ø§ÛŒØ´ Ø¯Ù‡ÛŒØ¯ ÛŒØ§ Ø¨Ø±Ø§ÛŒ UpgradeØŒ CraftsØŒ PVP Ùˆ Ø¨Ø§Ø²ÛŒ Rocket Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÛŒØ¯."
 }
   , ACTIONS$e = {
     OPEN_BOT: "@giftbackpack",
-    BUY_GIFTS: "خرید هدایا"
+    BUY_GIFTS: "Ø®Ø±ÛŒØ¯ Ù‡Ø¯Ø§ÛŒØ§"
 }
   , BANNER$3 = {
-    SEND_GIFTS_TO: "هدایا را ارسال کنید به",
-    USE_IN_UPGRADES: "از آن‌ها برای Upgrade، Crafts یا فروش سریع استفاده کنید",
-    SEND: "ارسال"
+    SEND_GIFTS_TO: "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø§Ø±Ø³Ø§Ù„ Ú©Ù†ÛŒØ¯ Ø¨Ù‡",
+    USE_IN_UPGRADES: "Ø§Ø² Ø¢Ù†â€ŒÙ‡Ø§ Ø¨Ø±Ø§ÛŒ UpgradeØŒ Crafts ÛŒØ§ ÙØ±ÙˆØ´ Ø³Ø±ÛŒØ¹ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÛŒØ¯",
+    SEND: "Ø§Ø±Ø³Ø§Ù„"
 }
   , SUPPORT$1 = {
-    NEED_HELP: "برای راهنمایی دربارهٔ برداشت هدیه، با تیم پشتیبانی تماس بگیرید:"
+    NEED_HELP: "Ø¨Ø±Ø§ÛŒ Ø±Ø§Ù‡Ù†Ù…Ø§ÛŒÛŒ Ø¯Ø±Ø¨Ø§Ø±Ù‡Ù” Ø¨Ø±Ø¯Ø§Ø´Øª Ù‡Ø¯ÛŒÙ‡ØŒ Ø¨Ø§ ØªÛŒÙ… Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ ØªÙ…Ø§Ø³ Ø¨Ú¯ÛŒØ±ÛŒØ¯:"
 }
   , SELL$1 = {
-    CONFIRM_SALE: "تأیید فروش",
-    SELL_FOR: "فروش به قیمت",
-    CONFIRM_MESSAGE: "مطمئنید می‌خواهید این هدیه را بفروشید؟ این کار قابل بازگشت نیست.",
-    PROCESSING: "در حال پردازش...",
-    CONFIRM: "تأیید فروش",
-    CANCEL: "لغو"
+    CONFIRM_SALE: "ØªØ£ÛŒÛŒØ¯ ÙØ±ÙˆØ´",
+    SELL_FOR: "ÙØ±ÙˆØ´ Ø¨Ù‡ Ù‚ÛŒÙ…Øª",
+    CONFIRM_MESSAGE: "Ù…Ø·Ù…Ø¦Ù†ÛŒØ¯ Ù…ÛŒâ€ŒØ®ÙˆØ§Ù‡ÛŒØ¯ Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ø±Ø§ Ø¨ÙØ±ÙˆØ´ÛŒØ¯ØŸ Ø§ÛŒÙ† Ú©Ø§Ø± Ù‚Ø§Ø¨Ù„ Ø¨Ø§Ø²Ú¯Ø´Øª Ù†ÛŒØ³Øª.",
+    PROCESSING: "Ø¯Ø± Ø­Ø§Ù„ Ù¾Ø±Ø¯Ø§Ø²Ø´...",
+    CONFIRM: "ØªØ£ÛŒÛŒØ¯ ÙØ±ÙˆØ´",
+    CANCEL: "Ù„ØºÙˆ"
 }
   , LOCK$1 = {
-    TITLE: "هدیه قفل شده است",
-    LOCKED: "قفل‌شده",
-    DESCRIPTION: "پس از انتقال هدیه، تلگرام موقتاً آن را قفل کرده است. تا پایان قفل صبر کنید؛ پس از آن هدیه خودکار در دسترس قرار می‌گیرد.",
-    GOT_IT: "متوجه شدم",
-    TIME_DAYS: "{{days}} روز و {{hours}} ساعت",
-    TIME_HOURS: "{{hours}} ساعت و {{minutes}} دقیقه",
-    TIME_MINUTES: "{{minutes}} دقیقه"
+    TITLE: "Ù‡Ø¯ÛŒÙ‡ Ù‚ÙÙ„ Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    LOCKED: "Ù‚ÙÙ„â€ŒØ´Ø¯Ù‡",
+    DESCRIPTION: "Ù¾Ø³ Ø§Ø² Ø§Ù†ØªÙ‚Ø§Ù„ Ù‡Ø¯ÛŒÙ‡ØŒ ØªÙ„Ú¯Ø±Ø§Ù… Ù…ÙˆÙ‚ØªØ§Ù‹ Ø¢Ù† Ø±Ø§ Ù‚ÙÙ„ Ú©Ø±Ø¯Ù‡ Ø§Ø³Øª. ØªØ§ Ù¾Ø§ÛŒØ§Ù† Ù‚ÙÙ„ ØµØ¨Ø± Ú©Ù†ÛŒØ¯Ø› Ù¾Ø³ Ø§Ø² Ø¢Ù† Ù‡Ø¯ÛŒÙ‡ Ø®ÙˆØ¯Ú©Ø§Ø± Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù‚Ø±Ø§Ø± Ù…ÛŒâ€ŒÚ¯ÛŒØ±Ø¯.",
+    GOT_IT: "Ù…ØªÙˆØ¬Ù‡ Ø´Ø¯Ù…",
+    TIME_DAYS: "{{days}} Ø±ÙˆØ² Ùˆ {{hours}} Ø³Ø§Ø¹Øª",
+    TIME_HOURS: "{{hours}} Ø³Ø§Ø¹Øª Ùˆ {{minutes}} Ø¯Ù‚ÛŒÙ‚Ù‡",
+    TIME_MINUTES: "{{minutes}} Ø¯Ù‚ÛŒÙ‚Ù‡"
 }
   , REVIEW$1 = {
-    BADGE_PENDING: "در حال بررسی",
-    BADGE_REJECTED: "فقط قابل برداشت",
-    GOT_IT: "متوجه شدم",
+    BADGE_PENDING: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø±Ø±Ø³ÛŒ",
+    BADGE_REJECTED: "ÙÙ‚Ø· Ù‚Ø§Ø¨Ù„ Ø¨Ø±Ø¯Ø§Ø´Øª",
+    GOT_IT: "Ù…ØªÙˆØ¬Ù‡ Ø´Ø¯Ù…",
     PENDING: {
-        TITLE: "در حال بررسی این هدیه هستیم",
-        DESCRIPTION: "این هدیه برای بررسی بیشتر علامت‌گذاری شده است. بررسی معمولاً چند ساعت طول می‌کشد. در این مدت، هدیه در کوله‌پشتی شما امن می‌ماند و پس از پایان بررسی قابل استفاده خواهد بود. به‌محض آماده‌شدن هدیه به شما اطلاع می‌دهیم."
+        TITLE: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø±Ø±Ø³ÛŒ Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ù‡Ø³ØªÛŒÙ…",
+        DESCRIPTION: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ø¨Ø±Ø§ÛŒ Ø¨Ø±Ø±Ø³ÛŒ Ø¨ÛŒØ´ØªØ± Ø¹Ù„Ø§Ù…Øªâ€ŒÚ¯Ø°Ø§Ø±ÛŒ Ø´Ø¯Ù‡ Ø§Ø³Øª. Ø¨Ø±Ø±Ø³ÛŒ Ù…Ø¹Ù…ÙˆÙ„Ø§Ù‹ Ú†Ù†Ø¯ Ø³Ø§Ø¹Øª Ø·ÙˆÙ„ Ù…ÛŒâ€ŒÚ©Ø´Ø¯. Ø¯Ø± Ø§ÛŒÙ† Ù…Ø¯ØªØŒ Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒ Ø´Ù…Ø§ Ø§Ù…Ù† Ù…ÛŒâ€ŒÙ…Ø§Ù†Ø¯ Ùˆ Ù¾Ø³ Ø§Ø² Ù¾Ø§ÛŒØ§Ù† Ø¨Ø±Ø±Ø³ÛŒ Ù‚Ø§Ø¨Ù„ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø®ÙˆØ§Ù‡Ø¯ Ø¨ÙˆØ¯. Ø¨Ù‡â€ŒÙ…Ø­Ø¶ Ø¢Ù…Ø§Ø¯Ù‡â€ŒØ´Ø¯Ù† Ù‡Ø¯ÛŒÙ‡ Ø¨Ù‡ Ø´Ù…Ø§ Ø§Ø·Ù„Ø§Ø¹ Ù…ÛŒâ€ŒØ¯Ù‡ÛŒÙ…."
     },
     REJECTED: {
-        TITLE: "فقط قابل برداشت",
-        DESCRIPTION: "این هدیه در برنامه پشتیبانی نمی‌شود؛ بنابراین امکان فروش، ارتقا یا استفاده از آن در بازی‌ها وجود ندارد. هدیه همچنان متعلق به شماست و هر زمان بخواهید می‌توانید آن را به تلگرام برداشت کنید."
+        TITLE: "ÙÙ‚Ø· Ù‚Ø§Ø¨Ù„ Ø¨Ø±Ø¯Ø§Ø´Øª",
+        DESCRIPTION: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ø¨Ø±Ù†Ø§Ù…Ù‡ Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ Ù†Ù…ÛŒâ€ŒØ´ÙˆØ¯Ø› Ø¨Ù†Ø§Ø¨Ø±Ø§ÛŒÙ† Ø§Ù…Ú©Ø§Ù† ÙØ±ÙˆØ´ØŒ Ø§Ø±ØªÙ‚Ø§ ÛŒØ§ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø² Ø¢Ù† Ø¯Ø± Ø¨Ø§Ø²ÛŒâ€ŒÙ‡Ø§ ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯. Ù‡Ø¯ÛŒÙ‡ Ù‡Ù…Ú†Ù†Ø§Ù† Ù…ØªØ¹Ù„Ù‚ Ø¨Ù‡ Ø´Ù…Ø§Ø³Øª Ùˆ Ù‡Ø± Ø²Ù…Ø§Ù† Ø¨Ø®ÙˆØ§Ù‡ÛŒØ¯ Ù…ÛŒâ€ŒØªÙˆØ§Ù†ÛŒØ¯ Ø¢Ù† Ø±Ø§ Ø¨Ù‡ ØªÙ„Ú¯Ø±Ø§Ù… Ø¨Ø±Ø¯Ø§Ø´Øª Ú©Ù†ÛŒØ¯."
     }
 }
   , faBackpack = {
@@ -56255,55 +56255,55 @@ It's 100% free, and you can try your luck every 24 hours!`,
     REVIEW: REVIEW$1
 }
   , WALLET$1 = {
-    BALANCE: "موجودی کیف پول"
+    BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ú©ÛŒÙ Ù¾ÙˆÙ„"
 }
   , GIFT_METHOD$1 = {
-    TITLE_TOP_UP: "افزایش موجودی با هدیه",
-    DESCRIPTION: "هدایا را به ربات ما بفرستید تا در کوله‌پشتی‌تان نمایش داده شوند",
-    OPEN_BOT: "باز کردن @giftbackpack",
-    OPEN_GIFT_BOT: "باز کردن ربات هدیه",
-    HOW_IT_WORKS: "روش کار",
-    STEP1_DESC: "برای باز کردن ربات @giftbackpack، روی دکمهٔ زیر بزنید",
-    STEP2: "هدیه‌تان را ارسال کنید",
-    STEP2_DESC: "هدیه‌تان را مستقیماً به ربات بفرستید.",
-    STEP3: "هدیه به کوله‌پشتی اضافه شد",
-    STEP3_DESC: "هدیه‌تان ظرف چند ثانیه در کوله‌پشتی نمایش داده می‌شود. سپس می‌توانید آن را سریع بفروشید و موجودی‌تان را افزایش دهید یا برای Upgrade، Crafts، PVP و بازی Rocket استفاده کنید.",
-    INSTANT_PROCESSING: "هدایا بلافاصله پس از ارسال در کوله‌پشتی‌تان نمایش داده می‌شوند",
-    INSTANT_PROCESSING_LABEL: "پردازش فوری:",
-    QUICK_SELL: "هدیه‌های کوله‌پشتی‌تان را بفروشید و فوراً موجودی TON دریافت کنید",
-    QUICK_SELL_LABEL: "گزینهٔ فروش سریع:",
-    AFTER_SENDING: "پس از ارسال هدایا:",
-    CHECK_BACKPACK: "کوله‌پشتی‌تان را بررسی کنید",
-    BACKPACK: "کوله‌پشتی",
-    TO_QUICK_SELL: "برای فروش سریع و دریافت TON به موجودی‌تان. راهنمایی می‌خواهید؟ تماس بگیرید با"
+    TITLE_TOP_UP: "Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø¨Ø§ Ù‡Ø¯ÛŒÙ‡",
+    DESCRIPTION: "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø¨Ù‡ Ø±Ø¨Ø§Øª Ù…Ø§ Ø¨ÙØ±Ø³ØªÛŒØ¯ ØªØ§ Ø¯Ø± Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ù†Ù…Ø§ÛŒØ´ Ø¯Ø§Ø¯Ù‡ Ø´ÙˆÙ†Ø¯",
+    OPEN_BOT: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† @giftbackpack",
+    OPEN_GIFT_BOT: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø±Ø¨Ø§Øª Ù‡Ø¯ÛŒÙ‡",
+    HOW_IT_WORKS: "Ø±ÙˆØ´ Ú©Ø§Ø±",
+    STEP1_DESC: "Ø¨Ø±Ø§ÛŒ Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø±Ø¨Ø§Øª @giftbackpackØŒ Ø±ÙˆÛŒ Ø¯Ú©Ù…Ù‡Ù” Ø²ÛŒØ± Ø¨Ø²Ù†ÛŒØ¯",
+    STEP2: "Ù‡Ø¯ÛŒÙ‡â€ŒØªØ§Ù† Ø±Ø§ Ø§Ø±Ø³Ø§Ù„ Ú©Ù†ÛŒØ¯",
+    STEP2_DESC: "Ù‡Ø¯ÛŒÙ‡â€ŒØªØ§Ù† Ø±Ø§ Ù…Ø³ØªÙ‚ÛŒÙ…Ø§Ù‹ Ø¨Ù‡ Ø±Ø¨Ø§Øª Ø¨ÙØ±Ø³ØªÛŒØ¯.",
+    STEP3: "Ù‡Ø¯ÛŒÙ‡ Ø¨Ù‡ Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒ Ø§Ø¶Ø§ÙÙ‡ Ø´Ø¯",
+    STEP3_DESC: "Ù‡Ø¯ÛŒÙ‡â€ŒØªØ§Ù† Ø¸Ø±Ù Ú†Ù†Ø¯ Ø«Ø§Ù†ÛŒÙ‡ Ø¯Ø± Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒ Ù†Ù…Ø§ÛŒØ´ Ø¯Ø§Ø¯Ù‡ Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø³Ù¾Ø³ Ù…ÛŒâ€ŒØªÙˆØ§Ù†ÛŒØ¯ Ø¢Ù† Ø±Ø§ Ø³Ø±ÛŒØ¹ Ø¨ÙØ±ÙˆØ´ÛŒØ¯ Ùˆ Ù…ÙˆØ¬ÙˆØ¯ÛŒâ€ŒØªØ§Ù† Ø±Ø§ Ø§ÙØ²Ø§ÛŒØ´ Ø¯Ù‡ÛŒØ¯ ÛŒØ§ Ø¨Ø±Ø§ÛŒ UpgradeØŒ CraftsØŒ PVP Ùˆ Ø¨Ø§Ø²ÛŒ Rocket Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÛŒØ¯.",
+    INSTANT_PROCESSING: "Ù‡Ø¯Ø§ÛŒØ§ Ø¨Ù„Ø§ÙØ§ØµÙ„Ù‡ Ù¾Ø³ Ø§Ø² Ø§Ø±Ø³Ø§Ù„ Ø¯Ø± Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ù†Ù…Ø§ÛŒØ´ Ø¯Ø§Ø¯Ù‡ Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯",
+    INSTANT_PROCESSING_LABEL: "Ù¾Ø±Ø¯Ø§Ø²Ø´ ÙÙˆØ±ÛŒ:",
+    QUICK_SELL: "Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ø±Ø§ Ø¨ÙØ±ÙˆØ´ÛŒØ¯ Ùˆ ÙÙˆØ±Ø§Ù‹ Ù…ÙˆØ¬ÙˆØ¯ÛŒ TON Ø¯Ø±ÛŒØ§ÙØª Ú©Ù†ÛŒØ¯",
+    QUICK_SELL_LABEL: "Ú¯Ø²ÛŒÙ†Ù‡Ù” ÙØ±ÙˆØ´ Ø³Ø±ÛŒØ¹:",
+    AFTER_SENDING: "Ù¾Ø³ Ø§Ø² Ø§Ø±Ø³Ø§Ù„ Ù‡Ø¯Ø§ÛŒØ§:",
+    CHECK_BACKPACK: "Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ø±Ø§ Ø¨Ø±Ø±Ø³ÛŒ Ú©Ù†ÛŒØ¯",
+    BACKPACK: "Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒ",
+    TO_QUICK_SELL: "Ø¨Ø±Ø§ÛŒ ÙØ±ÙˆØ´ Ø³Ø±ÛŒØ¹ Ùˆ Ø¯Ø±ÛŒØ§ÙØª TON Ø¨Ù‡ Ù…ÙˆØ¬ÙˆØ¯ÛŒâ€ŒØªØ§Ù†. Ø±Ø§Ù‡Ù†Ù…Ø§ÛŒÛŒ Ù…ÛŒâ€ŒØ®ÙˆØ§Ù‡ÛŒØ¯ØŸ ØªÙ…Ø§Ø³ Ø¨Ú¯ÛŒØ±ÛŒØ¯ Ø¨Ø§"
 }
-  , SEND_GIFTS_TO$1 = "هدایا را ارسال کنید به"
+  , SEND_GIFTS_TO$1 = "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø§Ø±Ø³Ø§Ù„ Ú©Ù†ÛŒØ¯ Ø¨Ù‡"
   , STARS$1 = {
-    AMOUNT_LABEL: "مبلغ به استارز ({{min}} تا {{max}})",
-    PAYMENT_SUCCESS: "پرداخت استارز با موفقیت انجام شد! موجودی به‌روزرسانی شد.",
-    PAYMENT_FAILED: "پرداخت استارز ناموفق بود. لطفاً دوباره تلاش کنید.",
-    TEMPORARILY_UNAVAILABLE: "افزایش موجودی با استارز در دسترس نیست",
-    TEMPORARILY_UNAVAILABLE_DESC: "لطفاً برای افزایش موجودی از TON استفاده کنید. در حال حاضر افزایش موجودی با استارز در دسترس نیست.",
-    SWITCH_TO_TON: "تغییر به TON",
-    LIMIT_REACHED: "به سقف واریز استارز رسیده‌اید. بعداً دوباره تلاش کنید یا از روش دیگری برای واریز استفاده کنید.",
-    DEPOSITS_DISABLED: "واریز استارز برای حساب شما غیرفعال است"
+    AMOUNT_LABEL: "Ù…Ø¨Ù„Øº Ø¨Ù‡ Ø§Ø³ØªØ§Ø±Ø² ({{min}} ØªØ§ {{max}})",
+    PAYMENT_SUCCESS: "Ù¾Ø±Ø¯Ø§Ø®Øª Ø§Ø³ØªØ§Ø±Ø² Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯! Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø¨Ù‡â€ŒØ±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ø´Ø¯.",
+    PAYMENT_FAILED: "Ù¾Ø±Ø¯Ø§Ø®Øª Ø§Ø³ØªØ§Ø±Ø² Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯. Ù„Ø·ÙØ§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+    TEMPORARILY_UNAVAILABLE: "Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø¨Ø§ Ø§Ø³ØªØ§Ø±Ø² Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    TEMPORARILY_UNAVAILABLE_DESC: "Ù„Ø·ÙØ§Ù‹ Ø¨Ø±Ø§ÛŒ Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø§Ø² TON Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÛŒØ¯. Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø¨Ø§ Ø§Ø³ØªØ§Ø±Ø² Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª.",
+    SWITCH_TO_TON: "ØªØºÛŒÛŒØ± Ø¨Ù‡ TON",
+    LIMIT_REACHED: "Ø¨Ù‡ Ø³Ù‚Ù ÙˆØ§Ø±ÛŒØ² Ø§Ø³ØªØ§Ø±Ø² Ø±Ø³ÛŒØ¯Ù‡â€ŒØ§ÛŒØ¯. Ø¨Ø¹Ø¯Ø§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯ ÛŒØ§ Ø§Ø² Ø±ÙˆØ´ Ø¯ÛŒÚ¯Ø±ÛŒ Ø¨Ø±Ø§ÛŒ ÙˆØ§Ø±ÛŒØ² Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÛŒØ¯.",
+    DEPOSITS_DISABLED: "ÙˆØ§Ø±ÛŒØ² Ø§Ø³ØªØ§Ø±Ø² Ø¨Ø±Ø§ÛŒ Ø­Ø³Ø§Ø¨ Ø´Ù…Ø§ ØºÛŒØ±ÙØ¹Ø§Ù„ Ø§Ø³Øª"
 }
   , TERMS$1 = {
-    AGREE_TO: "با افزایش موجودی از طریق TON، با این موارد موافقت می‌کنید:",
-    TERMS_OF_SERVICE: "شرایط استفاده از خدمات",
-    NO_REFUNDS: "تمام خریدها نهایی هستند. تحت هیچ شرایطی مبلغی بازپرداخت نمی‌شود."
+    AGREE_TO: "Ø¨Ø§ Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø§Ø² Ø·Ø±ÛŒÙ‚ TONØŒ Ø¨Ø§ Ø§ÛŒÙ† Ù…ÙˆØ§Ø±Ø¯ Ù…ÙˆØ§ÙÙ‚Øª Ù…ÛŒâ€ŒÚ©Ù†ÛŒØ¯:",
+    TERMS_OF_SERVICE: "Ø´Ø±Ø§ÛŒØ· Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø² Ø®Ø¯Ù…Ø§Øª",
+    NO_REFUNDS: "ØªÙ…Ø§Ù… Ø®Ø±ÛŒØ¯Ù‡Ø§ Ù†Ù‡Ø§ÛŒÛŒ Ù‡Ø³ØªÙ†Ø¯. ØªØ­Øª Ù‡ÛŒÚ† Ø´Ø±Ø§ÛŒØ·ÛŒ Ù…Ø¨Ù„ØºÛŒ Ø¨Ø§Ø²Ù¾Ø±Ø¯Ø§Ø®Øª Ù†Ù…ÛŒâ€ŒØ´ÙˆØ¯."
 }
   , BUTTONS$a = {
-    TOP_UP: "افزایش موجودی",
-    SEND_GIFT: "ارسال هدیه"
+    TOP_UP: "Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ",
+    SEND_GIFT: "Ø§Ø±Ø³Ø§Ù„ Ù‡Ø¯ÛŒÙ‡"
 }
   , MESSAGES$8 = {
-    COMPLETE_PAYMENT_CRYPTOBOT: "لطفاً پرداخت را در CryptoBot تکمیل کنید",
-    TO_USE_THEM: "برای استفاده از آن‌ها"
+    COMPLETE_PAYMENT_CRYPTOBOT: "Ù„Ø·ÙØ§Ù‹ Ù¾Ø±Ø¯Ø§Ø®Øª Ø±Ø§ Ø¯Ø± CryptoBot ØªÚ©Ù…ÛŒÙ„ Ú©Ù†ÛŒØ¯",
+    TO_USE_THEM: "Ø¨Ø±Ø§ÛŒ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø² Ø¢Ù†â€ŒÙ‡Ø§"
 }
   , AMOUNT$1 = {
-    LABEL: "مبلغ (حداقل {{minAmount}} TON)",
-    YOU_WILL_RECEIVE: "دریافتی شما: {{amount}} TON"
+    LABEL: "Ù…Ø¨Ù„Øº (Ø­Ø¯Ø§Ù‚Ù„ {{minAmount}} TON)",
+    YOU_WILL_RECEIVE: "Ø¯Ø±ÛŒØ§ÙØªÛŒ Ø´Ù…Ø§: {{amount}} TON"
 }
   , faTopup = {
     WALLET: WALLET$1,
@@ -56316,87 +56316,87 @@ It's 100% free, and you can try your luck every 24 hours!`,
     AMOUNT: AMOUNT$1
 }
   , TITLES$2 = {
-    SELECT_YOUR_GIFT: "هدیهٔ خود را انتخاب کنید",
-    SELECT_TARGET_GIFT: "انتخاب هدیهٔ هدف",
+    SELECT_YOUR_GIFT: "Ù‡Ø¯ÛŒÙ‡Ù” Ø®ÙˆØ¯ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    SELECT_TARGET_GIFT: "Ø§Ù†ØªØ®Ø§Ø¨ Ù‡Ø¯ÛŒÙ‡Ù” Ù‡Ø¯Ù",
     GIFT_UPGRADE: "Gift Upgrade",
-    HOW_IT_WORKS: "ارتقا چگونه کار می‌کند؟",
-    UPGRADE_TARGET: "هدف ارتقا",
-    UPGRADED_GIFT: "هدیهٔ ارتقایافته"
+    HOW_IT_WORKS: "Ø§Ø±ØªÙ‚Ø§ Ú†Ú¯ÙˆÙ†Ù‡ Ú©Ø§Ø± Ù…ÛŒâ€ŒÚ©Ù†Ø¯ØŸ",
+    UPGRADE_TARGET: "Ù‡Ø¯Ù Ø§Ø±ØªÙ‚Ø§",
+    UPGRADED_GIFT: "Ù‡Ø¯ÛŒÙ‡Ù” Ø§Ø±ØªÙ‚Ø§ÛŒØ§ÙØªÙ‡"
 }
   , ACTIONS$d = {
-    UPGRADE_WITH_CHANCE: "ارتقای هدیه (احتمال {{chance}}٪)",
-    SELECT_BOTH_GIFTS: "برای ارتقا، هر دو هدیه را انتخاب کنید",
-    UPGRADE_AGAIN: "ارتقا دوباره",
-    TRY_AGAIN: "دوباره تلاش کنید",
-    KEEP_GIFT: "نگه داشتن هدیه",
-    HIDE: "پنهان کردن",
-    SHOW: "نمایش"
+    UPGRADE_WITH_CHANCE: "Ø§Ø±ØªÙ‚Ø§ÛŒ Ù‡Ø¯ÛŒÙ‡ (Ø§Ø­ØªÙ…Ø§Ù„ {{chance}}Ùª)",
+    SELECT_BOTH_GIFTS: "Ø¨Ø±Ø§ÛŒ Ø§Ø±ØªÙ‚Ø§ØŒ Ù‡Ø± Ø¯Ùˆ Ù‡Ø¯ÛŒÙ‡ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    UPGRADE_AGAIN: "Ø§Ø±ØªÙ‚Ø§ Ø¯ÙˆØ¨Ø§Ø±Ù‡",
+    TRY_AGAIN: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯",
+    KEEP_GIFT: "Ù†Ú¯Ù‡ Ø¯Ø§Ø´ØªÙ† Ù‡Ø¯ÛŒÙ‡",
+    HIDE: "Ù¾Ù†Ù‡Ø§Ù† Ú©Ø±Ø¯Ù†",
+    SHOW: "Ù†Ù…Ø§ÛŒØ´"
 }
   , STATUS$b = {
-    UPGRADING: "در حال ارتقا...",
-    PROCESSING: "در حال پردازش...",
-    SUCCESS: "ارتقا با موفقیت انجام شد!",
-    FAILED: "ارتقا ناموفق بود!"
+    UPGRADING: "Ø¯Ø± Ø­Ø§Ù„ Ø§Ø±ØªÙ‚Ø§...",
+    PROCESSING: "Ø¯Ø± Ø­Ø§Ù„ Ù¾Ø±Ø¯Ø§Ø²Ø´...",
+    SUCCESS: "Ø§Ø±ØªÙ‚Ø§ Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯!",
+    FAILED: "Ø§Ø±ØªÙ‚Ø§ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯!"
 }
   , MESSAGES$7 = {
-    SUCCESS_DESCRIPTION: "تبریک! هدیهٔ شما ارتقا یافت.",
-    FAILURE_DESCRIPTION: "متأسفانه، ارتقا ناموفق بود و هدیهٔ شما از دست رفت.",
-    TRANSFORM_DESCRIPTION: "هدیهٔ خود را به چیزی بهتر تبدیل کنید",
-    SEND_GIFTS_TO: "هدایا را ارسال کنید به",
-    AND_UPGRADE_THEM: "و آن‌ها را ارتقا دهید",
-    TO_USE_IN_UPGRADES: "برای استفاده در Upgrade",
-    UPGRADE_DESCRIPTION: "هدیه‌های خود را به چیزهایی بهتر تبدیل کنید",
-    NO_GIFTS_IN_RANGE: "هیچ هدیه‌ای در این بازه نیست",
-    NO_UPGRADEABLE_GIFTS: "هیچ هدیهٔ قابل ارتقایی موجود نیست",
-    NO_GIFTS_IN_RANGE_DESC: "هیچ هدیه‌ای در بازهٔ {{range}} پیدا نشد",
-    NO_GIFTS_FOR_UPGRADE: "هدیه‌ای برای ارتقا موجود نیست",
-    SHOW_ALL_UPGRADEABLE: "نمایش همهٔ هدیه‌های قابل ارتقا",
-    OPEN_BOXES_FOR_UPGRADES: "برای دریافت هدیه جهت Upgrade، جعبه‌های هدیه را باز کنید"
+    SUCCESS_DESCRIPTION: "ØªØ¨Ø±ÛŒÚ©! Ù‡Ø¯ÛŒÙ‡Ù” Ø´Ù…Ø§ Ø§Ø±ØªÙ‚Ø§ ÛŒØ§ÙØª.",
+    FAILURE_DESCRIPTION: "Ù…ØªØ£Ø³ÙØ§Ù†Ù‡ØŒ Ø§Ø±ØªÙ‚Ø§ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯ Ùˆ Ù‡Ø¯ÛŒÙ‡Ù” Ø´Ù…Ø§ Ø§Ø² Ø¯Ø³Øª Ø±ÙØª.",
+    TRANSFORM_DESCRIPTION: "Ù‡Ø¯ÛŒÙ‡Ù” Ø®ÙˆØ¯ Ø±Ø§ Ø¨Ù‡ Ú†ÛŒØ²ÛŒ Ø¨Ù‡ØªØ± ØªØ¨Ø¯ÛŒÙ„ Ú©Ù†ÛŒØ¯",
+    SEND_GIFTS_TO: "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø§Ø±Ø³Ø§Ù„ Ú©Ù†ÛŒØ¯ Ø¨Ù‡",
+    AND_UPGRADE_THEM: "Ùˆ Ø¢Ù†â€ŒÙ‡Ø§ Ø±Ø§ Ø§Ø±ØªÙ‚Ø§ Ø¯Ù‡ÛŒØ¯",
+    TO_USE_IN_UPGRADES: "Ø¨Ø±Ø§ÛŒ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø¯Ø± Upgrade",
+    UPGRADE_DESCRIPTION: "Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ø®ÙˆØ¯ Ø±Ø§ Ø¨Ù‡ Ú†ÛŒØ²Ù‡Ø§ÛŒÛŒ Ø¨Ù‡ØªØ± ØªØ¨Ø¯ÛŒÙ„ Ú©Ù†ÛŒØ¯",
+    NO_GIFTS_IN_RANGE: "Ù‡ÛŒÚ† Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø¯Ø± Ø§ÛŒÙ† Ø¨Ø§Ø²Ù‡ Ù†ÛŒØ³Øª",
+    NO_UPGRADEABLE_GIFTS: "Ù‡ÛŒÚ† Ù‡Ø¯ÛŒÙ‡Ù” Ù‚Ø§Ø¨Ù„ Ø§Ø±ØªÙ‚Ø§ÛŒÛŒ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    NO_GIFTS_IN_RANGE_DESC: "Ù‡ÛŒÚ† Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø¯Ø± Ø¨Ø§Ø²Ù‡Ù” {{range}} Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    NO_GIFTS_FOR_UPGRADE: "Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø¨Ø±Ø§ÛŒ Ø§Ø±ØªÙ‚Ø§ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    SHOW_ALL_UPGRADEABLE: "Ù†Ù…Ø§ÛŒØ´ Ù‡Ù…Ù‡Ù” Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ù‚Ø§Ø¨Ù„ Ø§Ø±ØªÙ‚Ø§",
+    OPEN_BOXES_FOR_UPGRADES: "Ø¨Ø±Ø§ÛŒ Ø¯Ø±ÛŒØ§ÙØª Ù‡Ø¯ÛŒÙ‡ Ø¬Ù‡Øª UpgradeØŒ Ø¬Ø¹Ø¨Ù‡â€ŒÙ‡Ø§ÛŒ Ù‡Ø¯ÛŒÙ‡ Ø±Ø§ Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯"
 }
   , GRID$1 = {
-    VERY_HIGH: "بسیار زیاد",
-    VERY_LOW: "بسیار کم"
+    VERY_HIGH: "Ø¨Ø³ÛŒØ§Ø± Ø²ÛŒØ§Ø¯",
+    VERY_LOW: "Ø¨Ø³ÛŒØ§Ø± Ú©Ù…"
 }
   , STEPS$6 = {
     SELECT: {
-        DESCRIPTION: "برای ارتقا، هدیه‌ای از کوله‌پشتی‌تان انتخاب کنید"
+        DESCRIPTION: "Ø¨Ø±Ø§ÛŒ Ø§Ø±ØªÙ‚Ø§ØŒ Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø§Ø² Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯"
     },
     TARGET: {
-        TITLE: "انتخاب هدف",
-        DESCRIPTION: "هدیه‌ای را که می‌خواهید به آن ارتقا دهید، از میان گزینه‌های موجود انتخاب کنید"
+        TITLE: "Ø§Ù†ØªØ®Ø§Ø¨ Ù‡Ø¯Ù",
+        DESCRIPTION: "Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø±Ø§ Ú©Ù‡ Ù…ÛŒâ€ŒØ®ÙˆØ§Ù‡ÛŒØ¯ Ø¨Ù‡ Ø¢Ù† Ø§Ø±ØªÙ‚Ø§ Ø¯Ù‡ÛŒØ¯ØŒ Ø§Ø² Ù…ÛŒØ§Ù† Ú¯Ø²ÛŒÙ†Ù‡â€ŒÙ‡Ø§ÛŒ Ù…ÙˆØ¬ÙˆØ¯ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯"
     },
     SPIN: {
-        TITLE: "چرخ را بچرخانید",
-        DESCRIPTION: "دکمهٔ ارتقا را بزنید و ببینید هدیه‌تان به هدیه‌ای با ارزش بالاتر تبدیل می‌شود یا در این تلاش از دست می‌رود"
+        TITLE: "Ú†Ø±Ø® Ø±Ø§ Ø¨Ú†Ø±Ø®Ø§Ù†ÛŒØ¯",
+        DESCRIPTION: "Ø¯Ú©Ù…Ù‡Ù” Ø§Ø±ØªÙ‚Ø§ Ø±Ø§ Ø¨Ø²Ù†ÛŒØ¯ Ùˆ Ø¨Ø¨ÛŒÙ†ÛŒØ¯ Ù‡Ø¯ÛŒÙ‡â€ŒØªØ§Ù† Ø¨Ù‡ Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø¨Ø§ Ø§Ø±Ø²Ø´ Ø¨Ø§Ù„Ø§ØªØ± ØªØ¨Ø¯ÛŒÙ„ Ù…ÛŒâ€ŒØ´ÙˆØ¯ ÛŒØ§ Ø¯Ø± Ø§ÛŒÙ† ØªÙ„Ø§Ø´ Ø§Ø² Ø¯Ø³Øª Ù…ÛŒâ€ŒØ±ÙˆØ¯"
     },
     OUTCOME: {
         SUCCESS: {
-            TITLE: "موفقیت",
-            DESCRIPTION: "اگر برنده شوید، هدیهٔ هدف را از مخزن ارتقا دریافت می‌کنید"
+            TITLE: "Ù…ÙˆÙÙ‚ÛŒØª",
+            DESCRIPTION: "Ø§Ú¯Ø± Ø¨Ø±Ù†Ø¯Ù‡ Ø´ÙˆÛŒØ¯ØŒ Ù‡Ø¯ÛŒÙ‡Ù” Ù‡Ø¯Ù Ø±Ø§ Ø§Ø² Ù…Ø®Ø²Ù† Ø§Ø±ØªÙ‚Ø§ Ø¯Ø±ÛŒØ§ÙØª Ù…ÛŒâ€ŒÚ©Ù†ÛŒØ¯"
         },
         FAILURE: {
-            TITLE: "شکست",
-            DESCRIPTION: "اگر ببازید، هدیهٔ شما از دست می‌رود و به مخزن ارتقا برمی‌گردد"
+            TITLE: "Ø´Ú©Ø³Øª",
+            DESCRIPTION: "Ø§Ú¯Ø± Ø¨Ø¨Ø§Ø²ÛŒØ¯ØŒ Ù‡Ø¯ÛŒÙ‡Ù” Ø´Ù…Ø§ Ø§Ø² Ø¯Ø³Øª Ù…ÛŒâ€ŒØ±ÙˆØ¯ Ùˆ Ø¨Ù‡ Ù…Ø®Ø²Ù† Ø§Ø±ØªÙ‚Ø§ Ø¨Ø±Ù…ÛŒâ€ŒÚ¯Ø±Ø¯Ø¯"
         }
     }
 }
   , LABELS$m = {
-    YOUR_GIFT: "هدیهٔ شما",
-    SELECT_GIFT: "انتخاب هدیه",
-    TARGET_GIFT: "هدیهٔ هدف",
-    SELECT_TARGET: "انتخاب هدف",
-    SELECT_GIFT_FIRST: "ابتدا یک هدیه انتخاب کنید",
-    CHOOSE_UPGRADE: "هدف ارتقا را انتخاب کنید",
-    SELECT_GIFT_TO_CONTINUE: "برای ادامه، یک هدیه انتخاب کنید",
-    CHOOSE_TO_UPGRADE: "هدیه‌ای را برای ارتقا انتخاب کنید",
-    POTENTIAL_PROFIT: "سود احتمالی:"
+    YOUR_GIFT: "Ù‡Ø¯ÛŒÙ‡Ù” Ø´Ù…Ø§",
+    SELECT_GIFT: "Ø§Ù†ØªØ®Ø§Ø¨ Ù‡Ø¯ÛŒÙ‡",
+    TARGET_GIFT: "Ù‡Ø¯ÛŒÙ‡Ù” Ù‡Ø¯Ù",
+    SELECT_TARGET: "Ø§Ù†ØªØ®Ø§Ø¨ Ù‡Ø¯Ù",
+    SELECT_GIFT_FIRST: "Ø§Ø¨ØªØ¯Ø§ ÛŒÚ© Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    CHOOSE_UPGRADE: "Ù‡Ø¯Ù Ø§Ø±ØªÙ‚Ø§ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    SELECT_GIFT_TO_CONTINUE: "Ø¨Ø±Ø§ÛŒ Ø§Ø¯Ø§Ù…Ù‡ØŒ ÛŒÚ© Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    CHOOSE_TO_UPGRADE: "Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø±Ø§ Ø¨Ø±Ø§ÛŒ Ø§Ø±ØªÙ‚Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    POTENTIAL_PROFIT: "Ø³ÙˆØ¯ Ø§Ø­ØªÙ…Ø§Ù„ÛŒ:"
 }
   , BUTTONS$9 = {
-    SELL: "فروش به قیمت {{price}}",
-    SEND_GIFT: "ارسال هدیه"
+    SELL: "ÙØ±ÙˆØ´ Ø¨Ù‡ Ù‚ÛŒÙ…Øª {{price}}",
+    SEND_GIFT: "Ø§Ø±Ø³Ø§Ù„ Ù‡Ø¯ÛŒÙ‡"
 }
   , SORT$2 = {
-    SORT_BY: "مرتب‌سازی بر اساس: {{label}}"
+    SORT_BY: "Ù…Ø±ØªØ¨â€ŒØ³Ø§Ø²ÛŒ Ø¨Ø± Ø§Ø³Ø§Ø³: {{label}}"
 }
   , faUpgrade = {
     TITLES: TITLES$2,
@@ -56409,48 +56409,48 @@ It's 100% free, and you can try your luck every 24 hours!`,
     BUTTONS: BUTTONS$9,
     SORT: SORT$2
 }
-  , TITLE$4 = "تاریخچهٔ بازی‌های PVP"
+  , TITLE$4 = "ØªØ§Ø±ÛŒØ®Ú†Ù‡Ù” Ø¨Ø§Ø²ÛŒâ€ŒÙ‡Ø§ÛŒ PVP"
   , LABELS$l = {
-    ALL_GAMES: "همهٔ بازی‌ها",
-    MY_GAMES: "بازی‌های من",
-    ROUND: "دور",
-    PLAYERS: "بازیکنان",
-    LOADING_HISTORY: "در حال بارگذاری تاریخچه...",
-    NO_GAMES_YET: "هنوز بازی‌ای وجود ندارد",
-    NO_GAMES_PLAYED: "هنوز بازی‌ای انجام نشده است",
-    WINNER: "برنده",
-    RANDOM_RESULT: "نتیجهٔ تصادفی",
-    PLAYER_NUMBER: "بازیکن شمارهٔ {{number}}",
-    WIN_CHANCE: "احتمال {{chance}}",
-    ITEMS_COUNT: "{{count}} مورد"
+    ALL_GAMES: "Ù‡Ù…Ù‡Ù” Ø¨Ø§Ø²ÛŒâ€ŒÙ‡Ø§",
+    MY_GAMES: "Ø¨Ø§Ø²ÛŒâ€ŒÙ‡Ø§ÛŒ Ù…Ù†",
+    ROUND: "Ø¯ÙˆØ±",
+    PLAYERS: "Ø¨Ø§Ø²ÛŒÚ©Ù†Ø§Ù†",
+    LOADING_HISTORY: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ ØªØ§Ø±ÛŒØ®Ú†Ù‡...",
+    NO_GAMES_YET: "Ù‡Ù†ÙˆØ² Ø¨Ø§Ø²ÛŒâ€ŒØ§ÛŒ ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯",
+    NO_GAMES_PLAYED: "Ù‡Ù†ÙˆØ² Ø¨Ø§Ø²ÛŒâ€ŒØ§ÛŒ Ø§Ù†Ø¬Ø§Ù… Ù†Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    WINNER: "Ø¨Ø±Ù†Ø¯Ù‡",
+    RANDOM_RESULT: "Ù†ØªÛŒØ¬Ù‡Ù” ØªØµØ§Ø¯ÙÛŒ",
+    PLAYER_NUMBER: "Ø¨Ø§Ø²ÛŒÚ©Ù† Ø´Ù…Ø§Ø±Ù‡Ù” {{number}}",
+    WIN_CHANCE: "Ø§Ø­ØªÙ…Ø§Ù„ {{chance}}",
+    ITEMS_COUNT: "{{count}} Ù…ÙˆØ±Ø¯"
 }
   , VERIFICATION$1 = {
-    TITLE: "راستی‌آزمایی منصفانهٔ قابل اثبات",
-    DOWNLOAD_TITLE: "دانلود داده‌های بازی برای راستی‌آزمایی آفلاین",
-    VERIFIED: "تأیید شد",
-    SERVER_HASH: "هش سرور (از پیش ثبت‌شده)",
-    SERVER_SEED: "بذر سرور (پس از بازی آشکار می‌شود)",
-    CLIENT_SEEDS: "بذرهای کلاینت ({{count}} بازیکن)",
-    HOW_IT_WORKS: "راستی‌آزمایی چگونه کار می‌کند؟",
-    STEP_1: "سرور پیش از شروع بازی، یک <strong>بذر تصادفی</strong> می‌سازد و <strong>هش</strong> آن را منتشر می‌کند",
-    STEP_2: "هر بازیکن هنگام ثبت شرط، یک <strong>بذر کلاینت</strong> منحصربه‌فرد دریافت می‌کند",
-    STEP_3: "پس از بازی: بذر سرور + همهٔ بذرهای کلاینت + نانس با هم ترکیب می‌شوند",
-    STEP_4: "نتیجه = هش رمزنگاری‌شده ← برنده را تعیین می‌کند",
-    NO_CHEAT: "<strong>هیچ‌کس نمی‌تواند تقلب کند:</strong> سرور نمی‌تواند پیش‌بینی کند (بذرهای کلاینت نامشخص‌اند) و بازیکنان نمی‌توانند نتیجه را دستکاری کنند (بذر سرور از پیش ثبت شده است)",
-    PASSED: "راستی‌آزمایی موفق بود",
-    FAILED: "راستی‌آزمایی ناموفق بود",
-    HASH_VERIFICATION: "راستی‌آزمایی هش",
-    RESULT_VERIFICATION: "راستی‌آزمایی نتیجه",
-    VALID: "معتبر",
-    INVALID: "نامعتبر",
-    CALCULATED_RESULT: "نتیجهٔ محاسبه‌شده",
-    EXPECTED_RESULT: "نتیجهٔ مورد انتظار",
-    VERIFYING: "در حال راستی‌آزمایی...",
-    VERIFY_AGAIN: "راستی‌آزمایی دوباره",
-    VERIFY_NOW: "اکنون راستی‌آزمایی کنید",
-    CHECK_DATA_TRY_AGAIN: "لطفاً اطلاعات را بررسی کنید و دوباره تلاش کنید",
-    SERVER_SEED_HASH: "هش بذر سرور",
-    NA: "قابل اعمال نیست"
+    TITLE: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù…Ù†ØµÙØ§Ù†Ù‡Ù” Ù‚Ø§Ø¨Ù„ Ø§Ø«Ø¨Ø§Øª",
+    DOWNLOAD_TITLE: "Ø¯Ø§Ù†Ù„ÙˆØ¯ Ø¯Ø§Ø¯Ù‡â€ŒÙ‡Ø§ÛŒ Ø¨Ø§Ø²ÛŒ Ø¨Ø±Ø§ÛŒ Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ø¢ÙÙ„Ø§ÛŒÙ†",
+    VERIFIED: "ØªØ£ÛŒÛŒØ¯ Ø´Ø¯",
+    SERVER_HASH: "Ù‡Ø´ Ø³Ø±ÙˆØ± (Ø§Ø² Ù¾ÛŒØ´ Ø«Ø¨Øªâ€ŒØ´Ø¯Ù‡)",
+    SERVER_SEED: "Ø¨Ø°Ø± Ø³Ø±ÙˆØ± (Ù¾Ø³ Ø§Ø² Ø¨Ø§Ø²ÛŒ Ø¢Ø´Ú©Ø§Ø± Ù…ÛŒâ€ŒØ´ÙˆØ¯)",
+    CLIENT_SEEDS: "Ø¨Ø°Ø±Ù‡Ø§ÛŒ Ú©Ù„Ø§ÛŒÙ†Øª ({{count}} Ø¨Ø§Ø²ÛŒÚ©Ù†)",
+    HOW_IT_WORKS: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ú†Ú¯ÙˆÙ†Ù‡ Ú©Ø§Ø± Ù…ÛŒâ€ŒÚ©Ù†Ø¯ØŸ",
+    STEP_1: "Ø³Ø±ÙˆØ± Ù¾ÛŒØ´ Ø§Ø² Ø´Ø±ÙˆØ¹ Ø¨Ø§Ø²ÛŒØŒ ÛŒÚ© <strong>Ø¨Ø°Ø± ØªØµØ§Ø¯ÙÛŒ</strong> Ù…ÛŒâ€ŒØ³Ø§Ø²Ø¯ Ùˆ <strong>Ù‡Ø´</strong> Ø¢Ù† Ø±Ø§ Ù…Ù†ØªØ´Ø± Ù…ÛŒâ€ŒÚ©Ù†Ø¯",
+    STEP_2: "Ù‡Ø± Ø¨Ø§Ø²ÛŒÚ©Ù† Ù‡Ù†Ú¯Ø§Ù… Ø«Ø¨Øª Ø´Ø±Ø·ØŒ ÛŒÚ© <strong>Ø¨Ø°Ø± Ú©Ù„Ø§ÛŒÙ†Øª</strong> Ù…Ù†Ø­ØµØ±Ø¨Ù‡â€ŒÙØ±Ø¯ Ø¯Ø±ÛŒØ§ÙØª Ù…ÛŒâ€ŒÚ©Ù†Ø¯",
+    STEP_3: "Ù¾Ø³ Ø§Ø² Ø¨Ø§Ø²ÛŒ: Ø¨Ø°Ø± Ø³Ø±ÙˆØ± + Ù‡Ù…Ù‡Ù” Ø¨Ø°Ø±Ù‡Ø§ÛŒ Ú©Ù„Ø§ÛŒÙ†Øª + Ù†Ø§Ù†Ø³ Ø¨Ø§ Ù‡Ù… ØªØ±Ú©ÛŒØ¨ Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯",
+    STEP_4: "Ù†ØªÛŒØ¬Ù‡ = Ù‡Ø´ Ø±Ù…Ø²Ù†Ú¯Ø§Ø±ÛŒâ€ŒØ´Ø¯Ù‡ â† Ø¨Ø±Ù†Ø¯Ù‡ Ø±Ø§ ØªØ¹ÛŒÛŒÙ† Ù…ÛŒâ€ŒÚ©Ù†Ø¯",
+    NO_CHEAT: "<strong>Ù‡ÛŒÚ†â€ŒÚ©Ø³ Ù†Ù…ÛŒâ€ŒØªÙˆØ§Ù†Ø¯ ØªÙ‚Ù„Ø¨ Ú©Ù†Ø¯:</strong> Ø³Ø±ÙˆØ± Ù†Ù…ÛŒâ€ŒØªÙˆØ§Ù†Ø¯ Ù¾ÛŒØ´â€ŒØ¨ÛŒÙ†ÛŒ Ú©Ù†Ø¯ (Ø¨Ø°Ø±Ù‡Ø§ÛŒ Ú©Ù„Ø§ÛŒÙ†Øª Ù†Ø§Ù…Ø´Ø®Øµâ€ŒØ§Ù†Ø¯) Ùˆ Ø¨Ø§Ø²ÛŒÚ©Ù†Ø§Ù† Ù†Ù…ÛŒâ€ŒØªÙˆØ§Ù†Ù†Ø¯ Ù†ØªÛŒØ¬Ù‡ Ø±Ø§ Ø¯Ø³ØªÚ©Ø§Ø±ÛŒ Ú©Ù†Ù†Ø¯ (Ø¨Ø°Ø± Ø³Ø±ÙˆØ± Ø§Ø² Ù¾ÛŒØ´ Ø«Ø¨Øª Ø´Ø¯Ù‡ Ø§Ø³Øª)",
+    PASSED: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    HASH_VERIFICATION: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù‡Ø´",
+    RESULT_VERIFICATION: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù†ØªÛŒØ¬Ù‡",
+    VALID: "Ù…Ø¹ØªØ¨Ø±",
+    INVALID: "Ù†Ø§Ù…Ø¹ØªØ¨Ø±",
+    CALCULATED_RESULT: "Ù†ØªÛŒØ¬Ù‡Ù” Ù…Ø­Ø§Ø³Ø¨Ù‡â€ŒØ´Ø¯Ù‡",
+    EXPECTED_RESULT: "Ù†ØªÛŒØ¬Ù‡Ù” Ù…ÙˆØ±Ø¯ Ø§Ù†ØªØ¸Ø§Ø±",
+    VERIFYING: "Ø¯Ø± Ø­Ø§Ù„ Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ...",
+    VERIFY_AGAIN: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ø¯ÙˆØ¨Ø§Ø±Ù‡",
+    VERIFY_NOW: "Ø§Ú©Ù†ÙˆÙ† Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ú©Ù†ÛŒØ¯",
+    CHECK_DATA_TRY_AGAIN: "Ù„Ø·ÙØ§Ù‹ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø±Ø§ Ø¨Ø±Ø±Ø³ÛŒ Ú©Ù†ÛŒØ¯ Ùˆ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯",
+    SERVER_SEED_HASH: "Ù‡Ø´ Ø¨Ø°Ø± Ø³Ø±ÙˆØ±",
+    NA: "Ù‚Ø§Ø¨Ù„ Ø§Ø¹Ù…Ø§Ù„ Ù†ÛŒØ³Øª"
 }
   , faPvpHistory = {
     TITLE: TITLE$4,
@@ -56458,30 +56458,30 @@ It's 100% free, and you can try your luck every 24 hours!`,
     VERIFICATION: VERIFICATION$1
 }
   , UNSUPPORTED$1 = {
-    TITLE: "خطای محیط اجرا",
-    MESSAGE: "این برنامه باید در تلگرام باز شود",
-    INSTRUCTION: "لطفاً این برنامه را مستقیماً از طریق تلگرام باز کنید"
+    TITLE: "Ø®Ø·Ø§ÛŒ Ù…Ø­ÛŒØ· Ø§Ø¬Ø±Ø§",
+    MESSAGE: "Ø§ÛŒÙ† Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø¨Ø§ÛŒØ¯ Ø¯Ø± ØªÙ„Ú¯Ø±Ø§Ù… Ø¨Ø§Ø² Ø´ÙˆØ¯",
+    INSTRUCTION: "Ù„Ø·ÙØ§Ù‹ Ø§ÛŒÙ† Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø±Ø§ Ù…Ø³ØªÙ‚ÛŒÙ…Ø§Ù‹ Ø§Ø² Ø·Ø±ÛŒÙ‚ ØªÙ„Ú¯Ø±Ø§Ù… Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯"
 }
   , NO_CONNECTION$1 = {
-    TITLE: "اتصال برقرار نیست",
-    DESCRIPTION: "اتصال اینترنت خود را بررسی کنید",
-    HINT: "مطمئن شوید اینترنت وصل است و دوباره تلاش کنید",
-    CHECKING: "در حال بررسی اتصال..."
+    TITLE: "Ø§ØªØµØ§Ù„ Ø¨Ø±Ù‚Ø±Ø§Ø± Ù†ÛŒØ³Øª",
+    DESCRIPTION: "Ø§ØªØµØ§Ù„ Ø§ÛŒÙ†ØªØ±Ù†Øª Ø®ÙˆØ¯ Ø±Ø§ Ø¨Ø±Ø±Ø³ÛŒ Ú©Ù†ÛŒØ¯",
+    HINT: "Ù…Ø·Ù…Ø¦Ù† Ø´ÙˆÛŒØ¯ Ø§ÛŒÙ†ØªØ±Ù†Øª ÙˆØµÙ„ Ø§Ø³Øª Ùˆ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯",
+    CHECKING: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø±Ø±Ø³ÛŒ Ø§ØªØµØ§Ù„..."
 }
   , MAINTENANCE$7 = {
-    TITLE: "در حال انجام تعمیرات",
-    DESCRIPTION_PART1: "در حال ارتقای برنامه هستیم",
-    UPGRADING: "در حال ارتقای سیستم‌ها",
-    SECURITY: "در حال افزایش امنیت",
-    FEATURES: "در حال افزودن قابلیت‌های جدید",
-    BACK_SHORTLY: "به‌زودی برمی‌گردیم",
-    AUTO_REFRESH: "صفحه به‌طور خودکار تازه‌سازی می‌شود"
+    TITLE: "Ø¯Ø± Ø­Ø§Ù„ Ø§Ù†Ø¬Ø§Ù… ØªØ¹Ù…ÛŒØ±Ø§Øª",
+    DESCRIPTION_PART1: "Ø¯Ø± Ø­Ø§Ù„ Ø§Ø±ØªÙ‚Ø§ÛŒ Ø¨Ø±Ù†Ø§Ù…Ù‡ Ù‡Ø³ØªÛŒÙ…",
+    UPGRADING: "Ø¯Ø± Ø­Ø§Ù„ Ø§Ø±ØªÙ‚Ø§ÛŒ Ø³ÛŒØ³ØªÙ…â€ŒÙ‡Ø§",
+    SECURITY: "Ø¯Ø± Ø­Ø§Ù„ Ø§ÙØ²Ø§ÛŒØ´ Ø§Ù…Ù†ÛŒØª",
+    FEATURES: "Ø¯Ø± Ø­Ø§Ù„ Ø§ÙØ²ÙˆØ¯Ù† Ù‚Ø§Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø¬Ø¯ÛŒØ¯",
+    BACK_SHORTLY: "Ø¨Ù‡â€ŒØ²ÙˆØ¯ÛŒ Ø¨Ø±Ù…ÛŒâ€ŒÚ¯Ø±Ø¯ÛŒÙ…",
+    AUTO_REFRESH: "ØµÙØ­Ù‡ Ø¨Ù‡â€ŒØ·ÙˆØ± Ø®ÙˆØ¯Ú©Ø§Ø± ØªØ§Ø²Ù‡â€ŒØ³Ø§Ø²ÛŒ Ù…ÛŒâ€ŒØ´ÙˆØ¯"
 }
   , OVERLOAD$1 = {
-    TITLE: "در حال حاضر بار سرور زیاد است",
-    DESCRIPTION: "سرورهایمان در حال حاضر شلوغ‌تر از معمول هستند و نمی‌توانند پاسخ دهند.",
-    HINT: "مشکل از سمت ماست، نه اتصال شما. لازم نیست کاری انجام دهید.",
-    CHECKING: "در حال اتصال مجدد خودکار..."
+    TITLE: "Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± Ø¨Ø§Ø± Ø³Ø±ÙˆØ± Ø²ÛŒØ§Ø¯ Ø§Ø³Øª",
+    DESCRIPTION: "Ø³Ø±ÙˆØ±Ù‡Ø§ÛŒÙ…Ø§Ù† Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± Ø´Ù„ÙˆØºâ€ŒØªØ± Ø§Ø² Ù…Ø¹Ù…ÙˆÙ„ Ù‡Ø³ØªÙ†Ø¯ Ùˆ Ù†Ù…ÛŒâ€ŒØªÙˆØ§Ù†Ù†Ø¯ Ù¾Ø§Ø³Ø® Ø¯Ù‡Ù†Ø¯.",
+    HINT: "Ù…Ø´Ú©Ù„ Ø§Ø² Ø³Ù…Øª Ù…Ø§Ø³ØªØŒ Ù†Ù‡ Ø§ØªØµØ§Ù„ Ø´Ù…Ø§. Ù„Ø§Ø²Ù… Ù†ÛŒØ³Øª Ú©Ø§Ø±ÛŒ Ø§Ù†Ø¬Ø§Ù… Ø¯Ù‡ÛŒØ¯.",
+    CHECKING: "Ø¯Ø± Ø­Ø§Ù„ Ø§ØªØµØ§Ù„ Ù…Ø¬Ø¯Ø¯ Ø®ÙˆØ¯Ú©Ø§Ø±..."
 }
   , faEnvironment = {
     UNSUPPORTED: UNSUPPORTED$1,
@@ -56491,76 +56491,76 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , HEADER$7 = {
     TITLE: "Crafts",
-    SUBTITLE: "هدیه‌هایتان را ترکیب کنید تا یک هدیهٔ جدید بسازید"
+    SUBTITLE: "Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒØªØ§Ù† Ø±Ø§ ØªØ±Ú©ÛŒØ¨ Ú©Ù†ÛŒØ¯ ØªØ§ ÛŒÚ© Ù‡Ø¯ÛŒÙ‡Ù” Ø¬Ø¯ÛŒØ¯ Ø¨Ø³Ø§Ø²ÛŒØ¯"
 }
   , MODES$1 = {
-    CONTRACT_MODE: "حالت ساخت",
-    TOO_SMALL: "ارزش ساخت خیلی کم است",
-    SAFE: "ایمن",
-    SAFE_DESC: "ریسک کم — ضریب کمتر، اما احتمال برد بیشتر.",
-    NORMAL: "عادی",
-    NORMAL_DESC: "ریسک و پاداش متعادل — گزینه‌ای میانه و مناسب.",
-    RISKY: "پرریسک",
-    RISKY_DESC: "ریسک بالا — ضریب برد بزرگ، اما احتمال برد کمتر.",
-    NEED_MORE_BUTTON: "برای ساخت در حالت {{mode}}، {{amount}} TON اضافه کنید",
-    MIN_LABEL: "حداقل هزینه"
+    CONTRACT_MODE: "Ø­Ø§Ù„Øª Ø³Ø§Ø®Øª",
+    TOO_SMALL: "Ø§Ø±Ø²Ø´ Ø³Ø§Ø®Øª Ø®ÛŒÙ„ÛŒ Ú©Ù… Ø§Ø³Øª",
+    SAFE: "Ø§ÛŒÙ…Ù†",
+    SAFE_DESC: "Ø±ÛŒØ³Ú© Ú©Ù… â€” Ø¶Ø±ÛŒØ¨ Ú©Ù…ØªØ±ØŒ Ø§Ù…Ø§ Ø§Ø­ØªÙ…Ø§Ù„ Ø¨Ø±Ø¯ Ø¨ÛŒØ´ØªØ±.",
+    NORMAL: "Ø¹Ø§Ø¯ÛŒ",
+    NORMAL_DESC: "Ø±ÛŒØ³Ú© Ùˆ Ù¾Ø§Ø¯Ø§Ø´ Ù…ØªØ¹Ø§Ø¯Ù„ â€” Ú¯Ø²ÛŒÙ†Ù‡â€ŒØ§ÛŒ Ù…ÛŒØ§Ù†Ù‡ Ùˆ Ù…Ù†Ø§Ø³Ø¨.",
+    RISKY: "Ù¾Ø±Ø±ÛŒØ³Ú©",
+    RISKY_DESC: "Ø±ÛŒØ³Ú© Ø¨Ø§Ù„Ø§ â€” Ø¶Ø±ÛŒØ¨ Ø¨Ø±Ø¯ Ø¨Ø²Ø±Ú¯ØŒ Ø§Ù…Ø§ Ø§Ø­ØªÙ…Ø§Ù„ Ø¨Ø±Ø¯ Ú©Ù…ØªØ±.",
+    NEED_MORE_BUTTON: "Ø¨Ø±Ø§ÛŒ Ø³Ø§Ø®Øª Ø¯Ø± Ø­Ø§Ù„Øª {{mode}}ØŒ {{amount}} TON Ø§Ø¶Ø§ÙÙ‡ Ú©Ù†ÛŒØ¯",
+    MIN_LABEL: "Ø­Ø¯Ø§Ù‚Ù„ Ù‡Ø²ÛŒÙ†Ù‡"
 }
   , LABELS$k = {
-    CONTRACT_VALUE: "ارزش ساخت",
-    CONTRACT_SLOTS: "جایگاه‌های ساخت",
-    EXECUTING_CONTRACT: "در حال اجرای ساخت...",
-    EXECUTE_CONTRACT: "اجرای ساخت {{mode}}",
-    ADD_GIFTS: "برای شروع، دست‌کم ۲ هدیه اضافه کنید",
-    POTENTIAL_PROFIT: "سود احتمالی:",
-    SELECT_GIFT: "انتخاب هدیه",
-    SEND_GIFTS_TO: "ارسال هدایا به",
-    HOW_IT_WORKS: "روش کار",
-    HIDE_DETAILS: "پنهان کردن جزئیات",
-    SHOW_DETAILS: "نمایش جزئیات",
-    MODE_RESTRICTIONS: "محدودیت‌های حالت",
-    RESTRICTION_TOO_SMALL: "اگر ارزش ساخت خیلی کم باشد، ممکن است بعضی حالت‌ها غیرفعال شوند",
-    RESTRICTION_ADD_MORE: "برای باز کردن حالت‌های پرریسک‌تر، هدیه‌های باارزش‌تری اضافه کنید"
+    CONTRACT_VALUE: "Ø§Ø±Ø²Ø´ Ø³Ø§Ø®Øª",
+    CONTRACT_SLOTS: "Ø¬Ø§ÛŒÚ¯Ø§Ù‡â€ŒÙ‡Ø§ÛŒ Ø³Ø§Ø®Øª",
+    EXECUTING_CONTRACT: "Ø¯Ø± Ø­Ø§Ù„ Ø§Ø¬Ø±Ø§ÛŒ Ø³Ø§Ø®Øª...",
+    EXECUTE_CONTRACT: "Ø§Ø¬Ø±Ø§ÛŒ Ø³Ø§Ø®Øª {{mode}}",
+    ADD_GIFTS: "Ø¨Ø±Ø§ÛŒ Ø´Ø±ÙˆØ¹ØŒ Ø¯Ø³Øªâ€ŒÚ©Ù… Û² Ù‡Ø¯ÛŒÙ‡ Ø§Ø¶Ø§ÙÙ‡ Ú©Ù†ÛŒØ¯",
+    POTENTIAL_PROFIT: "Ø³ÙˆØ¯ Ø§Ø­ØªÙ…Ø§Ù„ÛŒ:",
+    SELECT_GIFT: "Ø§Ù†ØªØ®Ø§Ø¨ Ù‡Ø¯ÛŒÙ‡",
+    SEND_GIFTS_TO: "Ø§Ø±Ø³Ø§Ù„ Ù‡Ø¯Ø§ÛŒØ§ Ø¨Ù‡",
+    HOW_IT_WORKS: "Ø±ÙˆØ´ Ú©Ø§Ø±",
+    HIDE_DETAILS: "Ù¾Ù†Ù‡Ø§Ù† Ú©Ø±Ø¯Ù† Ø¬Ø²Ø¦ÛŒØ§Øª",
+    SHOW_DETAILS: "Ù†Ù…Ø§ÛŒØ´ Ø¬Ø²Ø¦ÛŒØ§Øª",
+    MODE_RESTRICTIONS: "Ù…Ø­Ø¯ÙˆØ¯ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø­Ø§Ù„Øª",
+    RESTRICTION_TOO_SMALL: "Ø§Ú¯Ø± Ø§Ø±Ø²Ø´ Ø³Ø§Ø®Øª Ø®ÛŒÙ„ÛŒ Ú©Ù… Ø¨Ø§Ø´Ø¯ØŒ Ù…Ù…Ú©Ù† Ø§Ø³Øª Ø¨Ø¹Ø¶ÛŒ Ø­Ø§Ù„Øªâ€ŒÙ‡Ø§ ØºÛŒØ±ÙØ¹Ø§Ù„ Ø´ÙˆÙ†Ø¯",
+    RESTRICTION_ADD_MORE: "Ø¨Ø±Ø§ÛŒ Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø­Ø§Ù„Øªâ€ŒÙ‡Ø§ÛŒ Ù¾Ø±Ø±ÛŒØ³Ú©â€ŒØªØ±ØŒ Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ø¨Ø§Ø§Ø±Ø²Ø´â€ŒØªØ±ÛŒ Ø§Ø¶Ø§ÙÙ‡ Ú©Ù†ÛŒØ¯"
 }
   , STEPS$5 = {
     ADD_GIFTS: {
-        TITLE: "افزودن هدایا",
-        DESCRIPTION: "برای شروع ساخت، ۲ تا ۱۰ هدیه از کوله‌پشتی‌تان انتخاب کنید"
+        TITLE: "Ø§ÙØ²ÙˆØ¯Ù† Ù‡Ø¯Ø§ÛŒØ§",
+        DESCRIPTION: "Ø¨Ø±Ø§ÛŒ Ø´Ø±ÙˆØ¹ Ø³Ø§Ø®ØªØŒ Û² ØªØ§ Û±Û° Ù‡Ø¯ÛŒÙ‡ Ø§Ø² Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯"
     },
     CHOOSE_RISK: {
-        TITLE: "انتخاب سطح ریسک",
-        DESCRIPTION: "بر اساس میزان ریسک‌پذیری خود، حالت ایمن، عادی یا پرریسک را انتخاب کنید"
+        TITLE: "Ø§Ù†ØªØ®Ø§Ø¨ Ø³Ø·Ø­ Ø±ÛŒØ³Ú©",
+        DESCRIPTION: "Ø¨Ø± Ø§Ø³Ø§Ø³ Ù…ÛŒØ²Ø§Ù† Ø±ÛŒØ³Ú©â€ŒÙ¾Ø°ÛŒØ±ÛŒ Ø®ÙˆØ¯ØŒ Ø­Ø§Ù„Øª Ø§ÛŒÙ…Ù†ØŒ Ø¹Ø§Ø¯ÛŒ ÛŒØ§ Ù¾Ø±Ø±ÛŒØ³Ú© Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯"
     },
     EXECUTE: {
-        TITLE: "اجرای ساخت",
-        DESCRIPTION: "ساخت را تأیید و اجرا کنید تا هدیه‌ها با هم ترکیب شوند"
+        TITLE: "Ø§Ø¬Ø±Ø§ÛŒ Ø³Ø§Ø®Øª",
+        DESCRIPTION: "Ø³Ø§Ø®Øª Ø±Ø§ ØªØ£ÛŒÛŒØ¯ Ùˆ Ø§Ø¬Ø±Ø§ Ú©Ù†ÛŒØ¯ ØªØ§ Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ Ø¨Ø§ Ù‡Ù… ØªØ±Ú©ÛŒØ¨ Ø´ÙˆÙ†Ø¯"
     },
     RECEIVE: {
-        TITLE: "دریافت جایزه",
-        DESCRIPTION: "بر اساس نتیجهٔ ساخت، یک هدیهٔ جدید دریافت کنید"
+        TITLE: "Ø¯Ø±ÛŒØ§ÙØª Ø¬Ø§ÛŒØ²Ù‡",
+        DESCRIPTION: "Ø¨Ø± Ø§Ø³Ø§Ø³ Ù†ØªÛŒØ¬Ù‡Ù” Ø³Ø§Ø®ØªØŒ ÛŒÚ© Ù‡Ø¯ÛŒÙ‡Ù” Ø¬Ø¯ÛŒØ¯ Ø¯Ø±ÛŒØ§ÙØª Ú©Ù†ÛŒØ¯"
     }
 }
   , HOW_IT_WORKS_MODES$1 = {
-    TITLE: "هر حالت چه کاری انجام می‌دهد",
-    SAFE: "ایمن و آهسته بازی کنید. خطر از دست دادن هدیه بسیار کم است، اما برد احتمالی نیز کوچک‌تر است.",
-    NORMAL: "بازی منصفانه. شانس‌های متعادل. احتمال برد و باخت برابر. جوایز باارزش متوسط.",
-    RISKY: "همه یا هیچ. خطر زیادِ از دست دادن همه‌چیز، اما یک برد خوش‌شانس می‌تواند تا ۱۰۰ برابر سود داشته باشد.",
-    MIN_NOTE: "هر حالت حداقل ارزش ساخت دارد. «حداقل هزینه» که روی دکمهٔ هر حالت نشان داده شده، مجموع ارزشی است که باید با افزودن هدیه‌ها به آن برسید تا ساخت انجام شود."
+    TITLE: "Ù‡Ø± Ø­Ø§Ù„Øª Ú†Ù‡ Ú©Ø§Ø±ÛŒ Ø§Ù†Ø¬Ø§Ù… Ù…ÛŒâ€ŒØ¯Ù‡Ø¯",
+    SAFE: "Ø§ÛŒÙ…Ù† Ùˆ Ø¢Ù‡Ø³ØªÙ‡ Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯. Ø®Ø·Ø± Ø§Ø² Ø¯Ø³Øª Ø¯Ø§Ø¯Ù† Ù‡Ø¯ÛŒÙ‡ Ø¨Ø³ÛŒØ§Ø± Ú©Ù… Ø§Ø³ØªØŒ Ø§Ù…Ø§ Ø¨Ø±Ø¯ Ø§Ø­ØªÙ…Ø§Ù„ÛŒ Ù†ÛŒØ² Ú©ÙˆÚ†Ú©â€ŒØªØ± Ø§Ø³Øª.",
+    NORMAL: "Ø¨Ø§Ø²ÛŒ Ù…Ù†ØµÙØ§Ù†Ù‡. Ø´Ø§Ù†Ø³â€ŒÙ‡Ø§ÛŒ Ù…ØªØ¹Ø§Ø¯Ù„. Ø§Ø­ØªÙ…Ø§Ù„ Ø¨Ø±Ø¯ Ùˆ Ø¨Ø§Ø®Øª Ø¨Ø±Ø§Ø¨Ø±. Ø¬ÙˆØ§ÛŒØ² Ø¨Ø§Ø§Ø±Ø²Ø´ Ù…ØªÙˆØ³Ø·.",
+    RISKY: "Ù‡Ù…Ù‡ ÛŒØ§ Ù‡ÛŒÚ†. Ø®Ø·Ø± Ø²ÛŒØ§Ø¯Ù Ø§Ø² Ø¯Ø³Øª Ø¯Ø§Ø¯Ù† Ù‡Ù…Ù‡â€ŒÚ†ÛŒØ²ØŒ Ø§Ù…Ø§ ÛŒÚ© Ø¨Ø±Ø¯ Ø®ÙˆØ´â€ŒØ´Ø§Ù†Ø³ Ù…ÛŒâ€ŒØªÙˆØ§Ù†Ø¯ ØªØ§ Û±Û°Û° Ø¨Ø±Ø§Ø¨Ø± Ø³ÙˆØ¯ Ø¯Ø§Ø´ØªÙ‡ Ø¨Ø§Ø´Ø¯.",
+    MIN_NOTE: "Ù‡Ø± Ø­Ø§Ù„Øª Ø­Ø¯Ø§Ù‚Ù„ Ø§Ø±Ø²Ø´ Ø³Ø§Ø®Øª Ø¯Ø§Ø±Ø¯. Â«Ø­Ø¯Ø§Ù‚Ù„ Ù‡Ø²ÛŒÙ†Ù‡Â» Ú©Ù‡ Ø±ÙˆÛŒ Ø¯Ú©Ù…Ù‡Ù” Ù‡Ø± Ø­Ø§Ù„Øª Ù†Ø´Ø§Ù† Ø¯Ø§Ø¯Ù‡ Ø´Ø¯Ù‡ØŒ Ù…Ø¬Ù…ÙˆØ¹ Ø§Ø±Ø²Ø´ÛŒ Ø§Ø³Øª Ú©Ù‡ Ø¨Ø§ÛŒØ¯ Ø¨Ø§ Ø§ÙØ²ÙˆØ¯Ù† Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ Ø¨Ù‡ Ø¢Ù† Ø¨Ø±Ø³ÛŒØ¯ ØªØ§ Ø³Ø§Ø®Øª Ø§Ù†Ø¬Ø§Ù… Ø´ÙˆØ¯."
 }
   , STATUS$a = {
-    PROCESSING: "در حال پردازش...",
-    SUCCESS: "ساخت با موفقیت انجام شد!"
+    PROCESSING: "Ø¯Ø± Ø­Ø§Ù„ Ù¾Ø±Ø¯Ø§Ø²Ø´...",
+    SUCCESS: "Ø³Ø§Ø®Øª Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯!"
 }
   , MESSAGES$6 = {
-    EMPTY_STATE_DESCRIPTION: "برای دریافت هدیه جهت Crafts، جعبه‌های هدیه را باز کنید",
-    SEND_GIFTS_TO: "هدیه‌هایتان را ارسال کنید به",
-    TO_USE_IN_CONTRACTS: "برای استفاده در بخش Crafts"
+    EMPTY_STATE_DESCRIPTION: "Ø¨Ø±Ø§ÛŒ Ø¯Ø±ÛŒØ§ÙØª Ù‡Ø¯ÛŒÙ‡ Ø¬Ù‡Øª CraftsØŒ Ø¬Ø¹Ø¨Ù‡â€ŒÙ‡Ø§ÛŒ Ù‡Ø¯ÛŒÙ‡ Ø±Ø§ Ø¨Ø§Ø² Ú©Ù†ÛŒØ¯",
+    SEND_GIFTS_TO: "Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒØªØ§Ù† Ø±Ø§ Ø§Ø±Ø³Ø§Ù„ Ú©Ù†ÛŒØ¯ Ø¨Ù‡",
+    TO_USE_IN_CONTRACTS: "Ø¨Ø±Ø§ÛŒ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø¯Ø± Ø¨Ø®Ø´ Crafts"
 }
   , BUTTONS$8 = {
-    SELL: "فروش به قیمت {{price}}",
-    KEEP_GIFT: "نگه داشتن هدیه",
-    UPGRADE: "ارتقا",
-    CONTRACT: "ساخت",
-    SEND_GIFT: "ارسال هدیه"
+    SELL: "ÙØ±ÙˆØ´ Ø¨Ù‡ Ù‚ÛŒÙ…Øª {{price}}",
+    KEEP_GIFT: "Ù†Ú¯Ù‡ Ø¯Ø§Ø´ØªÙ† Ù‡Ø¯ÛŒÙ‡",
+    UPGRADE: "Ø§Ø±ØªÙ‚Ø§",
+    CONTRACT: "Ø³Ø§Ø®Øª",
+    SEND_GIFT: "Ø§Ø±Ø³Ø§Ù„ Ù‡Ø¯ÛŒÙ‡"
 }
   , faContracts = {
     HEADER: HEADER$7,
@@ -56572,62 +56572,62 @@ It's 100% free, and you can try your luck every 24 hours!`,
     MESSAGES: MESSAGES$6,
     BUTTONS: BUTTONS$8
 }
-  , VIP_STATUS_LABEL$1 = "وضعیت VIP"
-  , NO_STATUS$1 = "بدون وضعیت"
-  , LOAD_FAILED$3 = "بارگذاری وضعیت VIP انجام نشد"
-  , RETRY$1 = "دوباره تلاش کنید"
-  , TURNOVER$1 = "گردش مالی"
-  , TURNOVER_HINT$1 = "گردش مالی TON"
-  , TO_LEVEL_PREFIX$1 = "به"
-  , TO_LEVEL_SUFFIX$1 = "سطح"
-  , LEFT_TON$1 = "{{amount}} TON باقی‌مانده"
-  , MAX_LEVEL$1 = "بالاترین سطح"
-  , MAX_REACHED$1 = "به حداکثر رسیده است"
-  , LEVELS_TITLE$1 = "سطوح VIP"
-  , CURRENT$1 = "فعلی"
-  , CLAIM$1 = "دریافت"
-  , CLAIMED$1 = "دریافت‌شده"
-  , REWARD_CLAIMED$1 = "جایزه دریافت شد"
-  , CREDITED_TO_BALANCE$1 = "به موجودی شما واریز شد"
-  , NFT_IN_BACKPACK$1 = "هدیه در کوله‌پشتی شما منتظر است"
-  , AWESOME$1 = "عالی"
+  , VIP_STATUS_LABEL$1 = "ÙˆØ¶Ø¹ÛŒØª VIP"
+  , NO_STATUS$1 = "Ø¨Ø¯ÙˆÙ† ÙˆØ¶Ø¹ÛŒØª"
+  , LOAD_FAILED$3 = "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ ÙˆØ¶Ø¹ÛŒØª VIP Ø§Ù†Ø¬Ø§Ù… Ù†Ø´Ø¯"
+  , RETRY$1 = "Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯"
+  , TURNOVER$1 = "Ú¯Ø±Ø¯Ø´ Ù…Ø§Ù„ÛŒ"
+  , TURNOVER_HINT$1 = "Ú¯Ø±Ø¯Ø´ Ù…Ø§Ù„ÛŒ TON"
+  , TO_LEVEL_PREFIX$1 = "Ø¨Ù‡"
+  , TO_LEVEL_SUFFIX$1 = "Ø³Ø·Ø­"
+  , LEFT_TON$1 = "{{amount}} TON Ø¨Ø§Ù‚ÛŒâ€ŒÙ…Ø§Ù†Ø¯Ù‡"
+  , MAX_LEVEL$1 = "Ø¨Ø§Ù„Ø§ØªØ±ÛŒÙ† Ø³Ø·Ø­"
+  , MAX_REACHED$1 = "Ø¨Ù‡ Ø­Ø¯Ø§Ú©Ø«Ø± Ø±Ø³ÛŒØ¯Ù‡ Ø§Ø³Øª"
+  , LEVELS_TITLE$1 = "Ø³Ø·ÙˆØ­ VIP"
+  , CURRENT$1 = "ÙØ¹Ù„ÛŒ"
+  , CLAIM$1 = "Ø¯Ø±ÛŒØ§ÙØª"
+  , CLAIMED$1 = "Ø¯Ø±ÛŒØ§ÙØªâ€ŒØ´Ø¯Ù‡"
+  , REWARD_CLAIMED$1 = "Ø¬Ø§ÛŒØ²Ù‡ Ø¯Ø±ÛŒØ§ÙØª Ø´Ø¯"
+  , CREDITED_TO_BALANCE$1 = "Ø¨Ù‡ Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø´Ù…Ø§ ÙˆØ§Ø±ÛŒØ² Ø´Ø¯"
+  , NFT_IN_BACKPACK$1 = "Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒ Ø´Ù…Ø§ Ù…Ù†ØªØ¸Ø± Ø§Ø³Øª"
+  , AWESOME$1 = "Ø¹Ø§Ù„ÛŒ"
   , PERKS$1 = {
-    TASK_TICKETS: "وظیفهٔ یک‌باره: {{tickets}} بلیت",
-    REWARD_NFT: "هدیهٔ NFT جایزه برای رسیدن به سطح",
-    REWARD_TON: "پاداش {{amount}} TON برای رسیدن به این سطح",
-    PROMO: "کدهای تبلیغاتی ویژه",
-    DROPS: "دریافت ناگهانی هدیه",
-    RAFFLES: "قرعه‌کشی‌های ویژهٔ VIP",
+    TASK_TICKETS: "ÙˆØ¸ÛŒÙÙ‡Ù” ÛŒÚ©â€ŒØ¨Ø§Ø±Ù‡: {{tickets}} Ø¨Ù„ÛŒØª",
+    REWARD_NFT: "Ù‡Ø¯ÛŒÙ‡Ù” NFT Ø¬Ø§ÛŒØ²Ù‡ Ø¨Ø±Ø§ÛŒ Ø±Ø³ÛŒØ¯Ù† Ø¨Ù‡ Ø³Ø·Ø­",
+    REWARD_TON: "Ù¾Ø§Ø¯Ø§Ø´ {{amount}} TON Ø¨Ø±Ø§ÛŒ Ø±Ø³ÛŒØ¯Ù† Ø¨Ù‡ Ø§ÛŒÙ† Ø³Ø·Ø­",
+    PROMO: "Ú©Ø¯Ù‡Ø§ÛŒ ØªØ¨Ù„ÛŒØºØ§ØªÛŒ ÙˆÛŒÚ˜Ù‡",
+    DROPS: "Ø¯Ø±ÛŒØ§ÙØª Ù†Ø§Ú¯Ù‡Ø§Ù†ÛŒ Ù‡Ø¯ÛŒÙ‡",
+    RAFFLES: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒâ€ŒÙ‡Ø§ÛŒ ÙˆÛŒÚ˜Ù‡Ù” VIP",
     PLAYBONUS: "PLAYBONUS",
-    MANAGER: "مدیر VIP اختصاصی",
-    MANAGER_BONUS: "پاداش از مدیر VIP"
+    MANAGER: "Ù…Ø¯ÛŒØ± VIP Ø§Ø®ØªØµØ§ØµÛŒ",
+    MANAGER_BONUS: "Ù¾Ø§Ø¯Ø§Ø´ Ø§Ø² Ù…Ø¯ÛŒØ± VIP"
 }
   , PLAYBONUS$1 = {
     TITLE: "PLAYBONUS",
-    CLAIM: "دریافت",
-    LOCKED_CLAIM: "برای دریافت، به سطح {{level}} برسید",
-    NOTE: "PLAYBONUS خودکار جمع می‌شود و پس از رسیدن به سطح {{level}} قابل دریافت است.",
-    INFO_TITLE: "PLAYBONUS چگونه کار می‌کند؟",
-    INFO_1: "PLAYBONUS پاداشی بر اساس بازی شماست که هنگام بازی‌کردن به‌طور خودکار جمع می‌شود.",
-    INFO_2: "این پاداش فقط از بازی خودتان افزایش پیدا می‌کند. هرچه بیشتر بازی کنید، سریع‌تر جمع می‌شود.",
-    INFO_3: "دریافت پاداش از سطح {{level}} فعال می‌شود. تا آن زمان، پاداش به جمع‌شدن ادامه می‌دهد و منقضی نمی‌شود.",
-    INFO_4: "هرچه سطح VIP شما بالاتر باشد، درصد بیشتری به‌صورت PLAYBONUS به شما برمی‌گردد."
+    CLAIM: "Ø¯Ø±ÛŒØ§ÙØª",
+    LOCKED_CLAIM: "Ø¨Ø±Ø§ÛŒ Ø¯Ø±ÛŒØ§ÙØªØŒ Ø¨Ù‡ Ø³Ø·Ø­ {{level}} Ø¨Ø±Ø³ÛŒØ¯",
+    NOTE: "PLAYBONUS Ø®ÙˆØ¯Ú©Ø§Ø± Ø¬Ù…Ø¹ Ù…ÛŒâ€ŒØ´ÙˆØ¯ Ùˆ Ù¾Ø³ Ø§Ø² Ø±Ø³ÛŒØ¯Ù† Ø¨Ù‡ Ø³Ø·Ø­ {{level}} Ù‚Ø§Ø¨Ù„ Ø¯Ø±ÛŒØ§ÙØª Ø§Ø³Øª.",
+    INFO_TITLE: "PLAYBONUS Ú†Ú¯ÙˆÙ†Ù‡ Ú©Ø§Ø± Ù…ÛŒâ€ŒÚ©Ù†Ø¯ØŸ",
+    INFO_1: "PLAYBONUS Ù¾Ø§Ø¯Ø§Ø´ÛŒ Ø¨Ø± Ø§Ø³Ø§Ø³ Ø¨Ø§Ø²ÛŒ Ø´Ù…Ø§Ø³Øª Ú©Ù‡ Ù‡Ù†Ú¯Ø§Ù… Ø¨Ø§Ø²ÛŒâ€ŒÚ©Ø±Ø¯Ù† Ø¨Ù‡â€ŒØ·ÙˆØ± Ø®ÙˆØ¯Ú©Ø§Ø± Ø¬Ù…Ø¹ Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    INFO_2: "Ø§ÛŒÙ† Ù¾Ø§Ø¯Ø§Ø´ ÙÙ‚Ø· Ø§Ø² Ø¨Ø§Ø²ÛŒ Ø®ÙˆØ¯ØªØ§Ù† Ø§ÙØ²Ø§ÛŒØ´ Ù¾ÛŒØ¯Ø§ Ù…ÛŒâ€ŒÚ©Ù†Ø¯. Ù‡Ø±Ú†Ù‡ Ø¨ÛŒØ´ØªØ± Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯ØŒ Ø³Ø±ÛŒØ¹â€ŒØªØ± Ø¬Ù…Ø¹ Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    INFO_3: "Ø¯Ø±ÛŒØ§ÙØª Ù¾Ø§Ø¯Ø§Ø´ Ø§Ø² Ø³Ø·Ø­ {{level}} ÙØ¹Ø§Ù„ Ù…ÛŒâ€ŒØ´ÙˆØ¯. ØªØ§ Ø¢Ù† Ø²Ù…Ø§Ù†ØŒ Ù¾Ø§Ø¯Ø§Ø´ Ø¨Ù‡ Ø¬Ù…Ø¹â€ŒØ´Ø¯Ù† Ø§Ø¯Ø§Ù…Ù‡ Ù…ÛŒâ€ŒØ¯Ù‡Ø¯ Ùˆ Ù…Ù†Ù‚Ø¶ÛŒ Ù†Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    INFO_4: "Ù‡Ø±Ú†Ù‡ Ø³Ø·Ø­ VIP Ø´Ù…Ø§ Ø¨Ø§Ù„Ø§ØªØ± Ø¨Ø§Ø´Ø¯ØŒ Ø¯Ø±ØµØ¯ Ø¨ÛŒØ´ØªØ±ÛŒ Ø¨Ù‡â€ŒØµÙˆØ±Øª PLAYBONUS Ø¨Ù‡ Ø´Ù…Ø§ Ø¨Ø±Ù…ÛŒâ€ŒÚ¯Ø±Ø¯Ø¯."
 }
   , INFO$1 = {
-    TITLE: "وضعیت VIP چگونه کار می‌کند؟",
-    LEVEL_T: "سطح",
-    LEVEL_X: "سطح VIP شما با گردش مالی کل‌تان افزایش می‌یابد. هرچه بیشتر بازی کنید، سطح و پاداش‌های قابل دریافتتان بالاتر می‌رود.",
-    PRIVILEGES_T: "امتیازهای ویژه",
-    PRIVILEGES_X: "با هر سطح، پاداش‌ها بیشتر می‌شوند: بونوس‌های بزرگ‌تر، قرعه‌کشی‌های ویژه، کدهای تبلیغاتی و در بالاترین سطوح، مدیر VIP اختصاصی.",
-    PLAYBONUS_X: "بخشی از شرط‌های شما به‌صورت پاداش برمی‌گردد. برای جزئیات، بخش PLAYBONUS را ببینید.",
-    FOOTER: "سطوح VIP بر اساس گردش مالی کل شما تعیین می‌شوند و از نو شروع نمی‌شوند. ممکن است بعضی پاداش‌ها با توجه به فعالیت شما به‌صورت اختصاصی داده شوند."
+    TITLE: "ÙˆØ¶Ø¹ÛŒØª VIP Ú†Ú¯ÙˆÙ†Ù‡ Ú©Ø§Ø± Ù…ÛŒâ€ŒÚ©Ù†Ø¯ØŸ",
+    LEVEL_T: "Ø³Ø·Ø­",
+    LEVEL_X: "Ø³Ø·Ø­ VIP Ø´Ù…Ø§ Ø¨Ø§ Ú¯Ø±Ø¯Ø´ Ù…Ø§Ù„ÛŒ Ú©Ù„â€ŒØªØ§Ù† Ø§ÙØ²Ø§ÛŒØ´ Ù…ÛŒâ€ŒÛŒØ§Ø¨Ø¯. Ù‡Ø±Ú†Ù‡ Ø¨ÛŒØ´ØªØ± Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯ØŒ Ø³Ø·Ø­ Ùˆ Ù¾Ø§Ø¯Ø§Ø´â€ŒÙ‡Ø§ÛŒ Ù‚Ø§Ø¨Ù„ Ø¯Ø±ÛŒØ§ÙØªØªØ§Ù† Ø¨Ø§Ù„Ø§ØªØ± Ù…ÛŒâ€ŒØ±ÙˆØ¯.",
+    PRIVILEGES_T: "Ø§Ù…ØªÛŒØ§Ø²Ù‡Ø§ÛŒ ÙˆÛŒÚ˜Ù‡",
+    PRIVILEGES_X: "Ø¨Ø§ Ù‡Ø± Ø³Ø·Ø­ØŒ Ù¾Ø§Ø¯Ø§Ø´â€ŒÙ‡Ø§ Ø¨ÛŒØ´ØªØ± Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯: Ø¨ÙˆÙ†ÙˆØ³â€ŒÙ‡Ø§ÛŒ Ø¨Ø²Ø±Ú¯â€ŒØªØ±ØŒ Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒâ€ŒÙ‡Ø§ÛŒ ÙˆÛŒÚ˜Ù‡ØŒ Ú©Ø¯Ù‡Ø§ÛŒ ØªØ¨Ù„ÛŒØºØ§ØªÛŒ Ùˆ Ø¯Ø± Ø¨Ø§Ù„Ø§ØªØ±ÛŒÙ† Ø³Ø·ÙˆØ­ØŒ Ù…Ø¯ÛŒØ± VIP Ø§Ø®ØªØµØ§ØµÛŒ.",
+    PLAYBONUS_X: "Ø¨Ø®Ø´ÛŒ Ø§Ø² Ø´Ø±Ø·â€ŒÙ‡Ø§ÛŒ Ø´Ù…Ø§ Ø¨Ù‡â€ŒØµÙˆØ±Øª Ù¾Ø§Ø¯Ø§Ø´ Ø¨Ø±Ù…ÛŒâ€ŒÚ¯Ø±Ø¯Ø¯. Ø¨Ø±Ø§ÛŒ Ø¬Ø²Ø¦ÛŒØ§ØªØŒ Ø¨Ø®Ø´ PLAYBONUS Ø±Ø§ Ø¨Ø¨ÛŒÙ†ÛŒØ¯.",
+    FOOTER: "Ø³Ø·ÙˆØ­ VIP Ø¨Ø± Ø§Ø³Ø§Ø³ Ú¯Ø±Ø¯Ø´ Ù…Ø§Ù„ÛŒ Ú©Ù„ Ø´Ù…Ø§ ØªØ¹ÛŒÛŒÙ† Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯ Ùˆ Ø§Ø² Ù†Ùˆ Ø´Ø±ÙˆØ¹ Ù†Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯. Ù…Ù…Ú©Ù† Ø§Ø³Øª Ø¨Ø¹Ø¶ÛŒ Ù¾Ø§Ø¯Ø§Ø´â€ŒÙ‡Ø§ Ø¨Ø§ ØªÙˆØ¬Ù‡ Ø¨Ù‡ ÙØ¹Ø§Ù„ÛŒØª Ø´Ù…Ø§ Ø¨Ù‡â€ŒØµÙˆØ±Øª Ø§Ø®ØªØµØ§ØµÛŒ Ø¯Ø§Ø¯Ù‡ Ø´ÙˆÙ†Ø¯."
 }
   , ERRORS$4 = {
-    ALREADY_CLAIMED: "پاداش قبلاً دریافت شده است",
-    NO_GIFT_AVAILABLE: "فعلاً هدیه‌ای موجود نیست — بعداً دوباره تلاش کنید",
-    PLAYBONUS_LOCKED: "هنوز امکان دریافت PLAYBONUS فعال نشده است",
-    NOTHING_TO_CLAIM: "هنوز چیزی برای دریافت ندارید",
-    VIP_DISABLED: "سیستم VIP در حال حاضر در دسترس نیست"
+    ALREADY_CLAIMED: "Ù¾Ø§Ø¯Ø§Ø´ Ù‚Ø¨Ù„Ø§Ù‹ Ø¯Ø±ÛŒØ§ÙØª Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    NO_GIFT_AVAILABLE: "ÙØ¹Ù„Ø§Ù‹ Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª â€” Ø¨Ø¹Ø¯Ø§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯",
+    PLAYBONUS_LOCKED: "Ù‡Ù†ÙˆØ² Ø§Ù…Ú©Ø§Ù† Ø¯Ø±ÛŒØ§ÙØª PLAYBONUS ÙØ¹Ø§Ù„ Ù†Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    NOTHING_TO_CLAIM: "Ù‡Ù†ÙˆØ² Ú†ÛŒØ²ÛŒ Ø¨Ø±Ø§ÛŒ Ø¯Ø±ÛŒØ§ÙØª Ù†Ø¯Ø§Ø±ÛŒØ¯",
+    VIP_DISABLED: "Ø³ÛŒØ³ØªÙ… VIP Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª"
 }
   , faVip = {
     VIP_STATUS_LABEL: VIP_STATUS_LABEL$1,
@@ -56654,70 +56654,70 @@ It's 100% free, and you can try your luck every 24 hours!`,
     INFO: INFO$1,
     ERRORS: ERRORS$4
 }
-  , TITLE$3 = "کسب درآمد"
+  , TITLE$3 = "Ú©Ø³Ø¨ Ø¯Ø±Ø¢Ù…Ø¯"
   , TABS$4 = {
-    GIVEAWAYS: "قرعه‌کشی‌ها"
+    GIVEAWAYS: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒâ€ŒÙ‡Ø§"
 }
   , SECTIONS$3 = {
-    COMPLETE_TASKS: "انجام وظایف",
-    EARN_TON: "کسب TON"
+    COMPLETE_TASKS: "Ø§Ù†Ø¬Ø§Ù… ÙˆØ¸Ø§ÛŒÙ",
+    EARN_TON: "Ú©Ø³Ø¨ TON"
 }
   , BUTTONS$7 = {
-    CLAIMED: "دریافت‌شده",
-    CLAIM: "دریافت",
-    JOIN: "پیوستن",
-    GO: "برو",
-    INVITE: "دعوت",
-    UPGRADE: "ارتقا",
-    BET: "شرط",
-    START: "شروع",
+    CLAIMED: "Ø¯Ø±ÛŒØ§ÙØªâ€ŒØ´Ø¯Ù‡",
+    CLAIM: "Ø¯Ø±ÛŒØ§ÙØª",
+    JOIN: "Ù¾ÛŒÙˆØ³ØªÙ†",
+    GO: "Ø¨Ø±Ùˆ",
+    INVITE: "Ø¯Ø¹ÙˆØª",
+    UPGRADE: "Ø§Ø±ØªÙ‚Ø§",
+    BET: "Ø´Ø±Ø·",
+    START: "Ø´Ø±ÙˆØ¹",
     VIP: "VIP",
-    VERIFY: "راستی‌آزمایی",
-    UNAVAILABLE: "در دسترس نیست",
-    SHARE: "اشتراک‌گذاری",
-    SHARE_STORY: "اشتراک‌گذاری در استوری",
-    CLAIM_DAILY: "دریافت"
+    VERIFY: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ",
+    UNAVAILABLE: "Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    SHARE: "Ø§Ø´ØªØ±Ø§Ú©â€ŒÚ¯Ø°Ø§Ø±ÛŒ",
+    SHARE_STORY: "Ø§Ø´ØªØ±Ø§Ú©â€ŒÚ¯Ø°Ø§Ø±ÛŒ Ø¯Ø± Ø§Ø³ØªÙˆØ±ÛŒ",
+    CLAIM_DAILY: "Ø¯Ø±ÛŒØ§ÙØª"
 }
   , PROGRESS$1 = {
-    LABEL: "پیشرفت: {{current}}/{{total}}",
-    REMAINING: "{{count}} باقی‌مانده"
+    LABEL: "Ù¾ÛŒØ´Ø±ÙØª: {{current}}/{{total}}",
+    REMAINING: "{{count}} Ø¨Ø§Ù‚ÛŒâ€ŒÙ…Ø§Ù†Ø¯Ù‡"
 }
   , TICKETS$1 = {
-    YOUR_TICKETS: "بلیت‌های شما",
-    EARN_TICKETS: "موجود"
+    YOUR_TICKETS: "Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø´Ù…Ø§",
+    EARN_TICKETS: "Ù…ÙˆØ¬ÙˆØ¯"
 }
   , EXTRA_TASKS$1 = {
-    TITLE: "وظایف ویژه",
-    DEPOSIT_CASHBACK: "واریز",
-    RATE: "به‌ازای هر ۱ TON واریزی، {{rate}} بلیت",
-    ACCRUED: "جمع‌شده:"
+    TITLE: "ÙˆØ¸Ø§ÛŒÙ ÙˆÛŒÚ˜Ù‡",
+    DEPOSIT_CASHBACK: "ÙˆØ§Ø±ÛŒØ²",
+    RATE: "Ø¨Ù‡â€ŒØ§Ø²Ø§ÛŒ Ù‡Ø± Û± TON ÙˆØ§Ø±ÛŒØ²ÛŒØŒ {{rate}} Ø¨Ù„ÛŒØª",
+    ACCRUED: "Ø¬Ù…Ø¹â€ŒØ´Ø¯Ù‡:"
 }
   , TICKETS_INFO$1 = {
-    TITLE: "بلیت‌ها چگونه کار می‌کنند؟",
-    STEP_1: "با انجام وظایف بلیت بگیرید.",
-    STEP_2: "هر بلیت = یک شانس در قرعه‌کشی.",
-    STEP_3: "با استفاده از بلیت‌های بیشتر در یک قرعه‌کشی، شانس بردتان را افزایش دهید.",
-    STEP_4: "برندگان به‌صورت تصادفی از میان همهٔ بلیت‌های ثبت‌شده انتخاب می‌شوند. اگر چند بلیت شما برنده شود، چند هدیه می‌گیرید.",
-    CTA_SEE_GIVEAWAYS: "دیدن قرعه‌کشی‌های فعال"
+    TITLE: "Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ Ú†Ú¯ÙˆÙ†Ù‡ Ú©Ø§Ø± Ù…ÛŒâ€ŒÚ©Ù†Ù†Ø¯ØŸ",
+    STEP_1: "Ø¨Ø§ Ø§Ù†Ø¬Ø§Ù… ÙˆØ¸Ø§ÛŒÙ Ø¨Ù„ÛŒØª Ø¨Ú¯ÛŒØ±ÛŒØ¯.",
+    STEP_2: "Ù‡Ø± Ø¨Ù„ÛŒØª = ÛŒÚ© Ø´Ø§Ù†Ø³ Ø¯Ø± Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ.",
+    STEP_3: "Ø¨Ø§ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø² Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø¨ÛŒØ´ØªØ± Ø¯Ø± ÛŒÚ© Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒØŒ Ø´Ø§Ù†Ø³ Ø¨Ø±Ø¯ØªØ§Ù† Ø±Ø§ Ø§ÙØ²Ø§ÛŒØ´ Ø¯Ù‡ÛŒØ¯.",
+    STEP_4: "Ø¨Ø±Ù†Ø¯Ú¯Ø§Ù† Ø¨Ù‡â€ŒØµÙˆØ±Øª ØªØµØ§Ø¯ÙÛŒ Ø§Ø² Ù…ÛŒØ§Ù† Ù‡Ù…Ù‡Ù” Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø«Ø¨Øªâ€ŒØ´Ø¯Ù‡ Ø§Ù†ØªØ®Ø§Ø¨ Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯. Ø§Ú¯Ø± Ú†Ù†Ø¯ Ø¨Ù„ÛŒØª Ø´Ù…Ø§ Ø¨Ø±Ù†Ø¯Ù‡ Ø´ÙˆØ¯ØŒ Ú†Ù†Ø¯ Ù‡Ø¯ÛŒÙ‡ Ù…ÛŒâ€ŒÚ¯ÛŒØ±ÛŒØ¯.",
+    CTA_SEE_GIVEAWAYS: "Ø¯ÛŒØ¯Ù† Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒâ€ŒÙ‡Ø§ÛŒ ÙØ¹Ø§Ù„"
 }
   , LABELS$j = {
-    "10_GIFTS_GIVEAWAY": "قرعه‌کشی ۱۰ هدیه",
-    HOSTED_ON_PORTALS: "میزبانی‌شده در Portals",
-    DAYS: "روز",
-    HOURS: "ساعت",
-    MINUTES: "دقیقه",
-    SECONDS: "ثانیه",
-    ENDED: "پایان‌یافته",
-    LIMITED_TASKS: "وظایف محدود",
-    DAILY_TASKS: "وظایف روزانه",
-    ONE_TIME_TASKS: "وظایف یک‌باره"
+    "10_GIFTS_GIVEAWAY": "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Û±Û° Ù‡Ø¯ÛŒÙ‡",
+    HOSTED_ON_PORTALS: "Ù…ÛŒØ²Ø¨Ø§Ù†ÛŒâ€ŒØ´Ø¯Ù‡ Ø¯Ø± Portals",
+    DAYS: "Ø±ÙˆØ²",
+    HOURS: "Ø³Ø§Ø¹Øª",
+    MINUTES: "Ø¯Ù‚ÛŒÙ‚Ù‡",
+    SECONDS: "Ø«Ø§Ù†ÛŒÙ‡",
+    ENDED: "Ù¾Ø§ÛŒØ§Ù†â€ŒÛŒØ§ÙØªÙ‡",
+    LIMITED_TASKS: "ÙˆØ¸Ø§ÛŒÙ Ù…Ø­Ø¯ÙˆØ¯",
+    DAILY_TASKS: "ÙˆØ¸Ø§ÛŒÙ Ø±ÙˆØ²Ø§Ù†Ù‡",
+    ONE_TIME_TASKS: "ÙˆØ¸Ø§ÛŒÙ ÛŒÚ©â€ŒØ¨Ø§Ø±Ù‡"
 }
   , STATUS$9 = {
-    EXPIRED: "منقضی‌شده"
+    EXPIRED: "Ù…Ù†Ù‚Ø¶ÛŒâ€ŒØ´Ø¯Ù‡"
 }
   , EMPTY$7 = {
-    NO_TASKS: "در حال حاضر وظیفه‌ای موجود نیست",
-    CHECK_BACK_LATER: "برای دیدن وظایف جدید، بعداً دوباره سر بزنید!"
+    NO_TASKS: "Ø¯Ø± Ø­Ø§Ù„ Ø­Ø§Ø¶Ø± ÙˆØ¸ÛŒÙÙ‡â€ŒØ§ÛŒ Ù…ÙˆØ¬ÙˆØ¯ Ù†ÛŒØ³Øª",
+    CHECK_BACK_LATER: "Ø¨Ø±Ø§ÛŒ Ø¯ÛŒØ¯Ù† ÙˆØ¸Ø§ÛŒÙ Ø¬Ø¯ÛŒØ¯ØŒ Ø¨Ø¹Ø¯Ø§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø³Ø± Ø¨Ø²Ù†ÛŒØ¯!"
 }
   , faEarn = {
     TITLE: TITLE$3,
@@ -56733,91 +56733,91 @@ It's 100% free, and you can try your luck every 24 hours!`,
     EMPTY: EMPTY$7
 }
   , HEADER$6 = {
-    TITLE: "قرعه‌کشی‌ها",
-    SUBTITLE: "شرکت کنید و هدیه‌های شگفت‌انگیز ببرید"
+    TITLE: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒâ€ŒÙ‡Ø§",
+    SUBTITLE: "Ø´Ø±Ú©Øª Ú©Ù†ÛŒØ¯ Ùˆ Ù‡Ø¯ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ Ø´Ú¯ÙØªâ€ŒØ§Ù†Ú¯ÛŒØ² Ø¨Ø¨Ø±ÛŒØ¯"
 }
   , TABS$3 = {
-    ACTIVE: "فعال",
-    FINISHED: "پایان‌یافته"
+    ACTIVE: "ÙØ¹Ø§Ù„",
+    FINISHED: "Ù¾Ø§ÛŒØ§Ù†â€ŒÛŒØ§ÙØªÙ‡"
 }
   , CONTROLS$3 = {
-    SORT_LABEL: "مرتب‌سازی",
-    SORT_BY_END_DATE: "تاریخ پایان",
-    SORT_BY_POOL: "مجموع جوایز",
-    FILTER_LABEL: "فیلتر",
-    FILTER_ALL: "همه",
-    FILTER_MINE: "موارد من",
-    EMPTY_MINE_ACTIVE: "هنوز در هیچ قرعه‌کشی فعالی شرکت نکرده‌اید.",
-    EMPTY_MINE_FINISHED: "هنوز در هیچ قرعه‌کشی قبلی شرکت نکرده‌اید.",
-    PREVIOUS_PAGE: "صفحهٔ قبل",
-    NEXT_PAGE: "صفحهٔ بعد"
+    SORT_LABEL: "Ù…Ø±ØªØ¨â€ŒØ³Ø§Ø²ÛŒ",
+    SORT_BY_END_DATE: "ØªØ§Ø±ÛŒØ® Ù¾Ø§ÛŒØ§Ù†",
+    SORT_BY_POOL: "Ù…Ø¬Ù…ÙˆØ¹ Ø¬ÙˆØ§ÛŒØ²",
+    FILTER_LABEL: "ÙÛŒÙ„ØªØ±",
+    FILTER_ALL: "Ù‡Ù…Ù‡",
+    FILTER_MINE: "Ù…ÙˆØ§Ø±Ø¯ Ù…Ù†",
+    EMPTY_MINE_ACTIVE: "Ù‡Ù†ÙˆØ² Ø¯Ø± Ù‡ÛŒÚ† Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ ÙØ¹Ø§Ù„ÛŒ Ø´Ø±Ú©Øª Ù†Ú©Ø±Ø¯Ù‡â€ŒØ§ÛŒØ¯.",
+    EMPTY_MINE_FINISHED: "Ù‡Ù†ÙˆØ² Ø¯Ø± Ù‡ÛŒÚ† Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù‚Ø¨Ù„ÛŒ Ø´Ø±Ú©Øª Ù†Ú©Ø±Ø¯Ù‡â€ŒØ§ÛŒØ¯.",
+    PREVIOUS_PAGE: "ØµÙØ­Ù‡Ù” Ù‚Ø¨Ù„",
+    NEXT_PAGE: "ØµÙØ­Ù‡Ù” Ø¨Ø¹Ø¯"
 }
   , LABELS$i = {
-    GIVEAWAY: "قرعه‌کشی",
-    NOT_FOUND: "قرعه‌کشی پیدا نشد",
-    NOT_EXIST_OR_REMOVED: "این قرعه‌کشی وجود ندارد یا حذف شده است.",
-    PARTICIPANTS: "شرکت‌کنندگان",
-    TICKET_POOL: "مجموع بلیت‌ها",
-    TOTAL_GIFTS: "هدایا",
-    TOP_ENTRIES: "بیشترین شرکت‌کنندگان",
-    ENDED: "قرعه‌کشی پایان یافت",
-    COMING_SOON: "به‌زودی",
-    NO_WINNERS: "هنوز برنده‌ای اعلام نشده است",
-    NO_ACTIVE_GIVEAWAYS: "قرعه‌کشی فعالی وجود ندارد",
-    NO_PAST_GIVEAWAYS: "هنوز قرعه‌کشی پایان‌یافته‌ای وجود ندارد.",
-    CHECK_BACK_SOON: "برای دیدن قرعه‌کشی‌های هیجان‌انگیز، به‌زودی دوباره سر بزنید!",
-    BIG_PRIZE_POOLS: "مجموع جوایز بزرگ",
-    EASY_TO_JOIN: "پیوستن آسان",
-    MULTIPLE_WINNERS: "چندین برنده",
-    TOTAL_POOL: "مجموع جوایز",
-    YOUR_TICKETS: "بلیت‌های شما",
-    YOUR_BALANCE: "موجودی شما",
-    MIN_ENTRY: "حداقل",
-    ALL_PRIZES: "همهٔ جوایز",
-    ALL_GIFTS: "همهٔ هدایا",
-    SHOW_ALL: "نمایش همهٔ {{count}} مورد",
-    WINNERS: "برندگان",
-    WINNERS_COUNT: "{{count}} برنده",
-    TIME_REMAINING: "زمان باقی‌مانده",
-    CANCELLED: "لغو شد — بلیت‌ها بازپرداخت شدند",
-    NOT_ENOUGH_TICKETS: "بلیت کافی ندارید",
-    REQUIREMENTS: "شرایط",
-    ENTER_TICKETS_CTA: "هر بلیت = یک شانس برد",
-    YOUR_TICKETS_IN_GIVEAWAY: "در این قرعه‌کشی {{count}} بلیت دارید!",
-    JOIN_CTA: "همین حالا بپیوندید و شانس برد داشته باشید!",
-    JOINED_CTA: "🎉 شما شرکت کردید! موفق باشید! 🍀",
-    REQUIREMENT_JOIN_CHANNEL: "عضویت در کانال {{channel}}",
-    REQUIREMENT_MIN_DEPOSIT: "حداقل واریز: {{amount}} TON",
-    REQUIREMENT_UNBOX_GIFTBOX: "باز کردن جعبهٔ هدیه",
-    REQUIREMENT_VIP_LEVEL: "وضعیت VIP {{level}} یا بالاتر",
-    VIP_LOCKED_CTA: "قرعه‌کشی ویژه برای VIP {{level}} به بالا",
-    BACK: "بازگشت",
-    ACTIVE: "فعال",
-    STATUS: "وضعیت"
+    GIVEAWAY: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ",
+    NOT_FOUND: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+    NOT_EXIST_OR_REMOVED: "Ø§ÛŒÙ† Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯ ÛŒØ§ Ø­Ø°Ù Ø´Ø¯Ù‡ Ø§Ø³Øª.",
+    PARTICIPANTS: "Ø´Ø±Ú©Øªâ€ŒÚ©Ù†Ù†Ø¯Ú¯Ø§Ù†",
+    TICKET_POOL: "Ù…Ø¬Ù…ÙˆØ¹ Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§",
+    TOTAL_GIFTS: "Ù‡Ø¯Ø§ÛŒØ§",
+    TOP_ENTRIES: "Ø¨ÛŒØ´ØªØ±ÛŒÙ† Ø´Ø±Ú©Øªâ€ŒÚ©Ù†Ù†Ø¯Ú¯Ø§Ù†",
+    ENDED: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù¾Ø§ÛŒØ§Ù† ÛŒØ§ÙØª",
+    COMING_SOON: "Ø¨Ù‡â€ŒØ²ÙˆØ¯ÛŒ",
+    NO_WINNERS: "Ù‡Ù†ÙˆØ² Ø¨Ø±Ù†Ø¯Ù‡â€ŒØ§ÛŒ Ø§Ø¹Ù„Ø§Ù… Ù†Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    NO_ACTIVE_GIVEAWAYS: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ ÙØ¹Ø§Ù„ÛŒ ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯",
+    NO_PAST_GIVEAWAYS: "Ù‡Ù†ÙˆØ² Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù¾Ø§ÛŒØ§Ù†â€ŒÛŒØ§ÙØªÙ‡â€ŒØ§ÛŒ ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯.",
+    CHECK_BACK_SOON: "Ø¨Ø±Ø§ÛŒ Ø¯ÛŒØ¯Ù† Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒâ€ŒÙ‡Ø§ÛŒ Ù‡ÛŒØ¬Ø§Ù†â€ŒØ§Ù†Ú¯ÛŒØ²ØŒ Ø¨Ù‡â€ŒØ²ÙˆØ¯ÛŒ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø³Ø± Ø¨Ø²Ù†ÛŒØ¯!",
+    BIG_PRIZE_POOLS: "Ù…Ø¬Ù…ÙˆØ¹ Ø¬ÙˆØ§ÛŒØ² Ø¨Ø²Ø±Ú¯",
+    EASY_TO_JOIN: "Ù¾ÛŒÙˆØ³ØªÙ† Ø¢Ø³Ø§Ù†",
+    MULTIPLE_WINNERS: "Ú†Ù†Ø¯ÛŒÙ† Ø¨Ø±Ù†Ø¯Ù‡",
+    TOTAL_POOL: "Ù…Ø¬Ù…ÙˆØ¹ Ø¬ÙˆØ§ÛŒØ²",
+    YOUR_TICKETS: "Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø´Ù…Ø§",
+    YOUR_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø´Ù…Ø§",
+    MIN_ENTRY: "Ø­Ø¯Ø§Ù‚Ù„",
+    ALL_PRIZES: "Ù‡Ù…Ù‡Ù” Ø¬ÙˆØ§ÛŒØ²",
+    ALL_GIFTS: "Ù‡Ù…Ù‡Ù” Ù‡Ø¯Ø§ÛŒØ§",
+    SHOW_ALL: "Ù†Ù…Ø§ÛŒØ´ Ù‡Ù…Ù‡Ù” {{count}} Ù…ÙˆØ±Ø¯",
+    WINNERS: "Ø¨Ø±Ù†Ø¯Ú¯Ø§Ù†",
+    WINNERS_COUNT: "{{count}} Ø¨Ø±Ù†Ø¯Ù‡",
+    TIME_REMAINING: "Ø²Ù…Ø§Ù† Ø¨Ø§Ù‚ÛŒâ€ŒÙ…Ø§Ù†Ø¯Ù‡",
+    CANCELLED: "Ù„ØºÙˆ Ø´Ø¯ â€” Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§ Ø¨Ø§Ø²Ù¾Ø±Ø¯Ø§Ø®Øª Ø´Ø¯Ù†Ø¯",
+    NOT_ENOUGH_TICKETS: "Ø¨Ù„ÛŒØª Ú©Ø§ÙÛŒ Ù†Ø¯Ø§Ø±ÛŒØ¯",
+    REQUIREMENTS: "Ø´Ø±Ø§ÛŒØ·",
+    ENTER_TICKETS_CTA: "Ù‡Ø± Ø¨Ù„ÛŒØª = ÛŒÚ© Ø´Ø§Ù†Ø³ Ø¨Ø±Ø¯",
+    YOUR_TICKETS_IN_GIVEAWAY: "Ø¯Ø± Ø§ÛŒÙ† Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ {{count}} Ø¨Ù„ÛŒØª Ø¯Ø§Ø±ÛŒØ¯!",
+    JOIN_CTA: "Ù‡Ù…ÛŒÙ† Ø­Ø§Ù„Ø§ Ø¨Ù¾ÛŒÙˆÙ†Ø¯ÛŒØ¯ Ùˆ Ø´Ø§Ù†Ø³ Ø¨Ø±Ø¯ Ø¯Ø§Ø´ØªÙ‡ Ø¨Ø§Ø´ÛŒØ¯!",
+    JOINED_CTA: "ðŸŽ‰ Ø´Ù…Ø§ Ø´Ø±Ú©Øª Ú©Ø±Ø¯ÛŒØ¯! Ù…ÙˆÙÙ‚ Ø¨Ø§Ø´ÛŒØ¯! ðŸ€",
+    REQUIREMENT_JOIN_CHANNEL: "Ø¹Ø¶ÙˆÛŒØª Ø¯Ø± Ú©Ø§Ù†Ø§Ù„ {{channel}}",
+    REQUIREMENT_MIN_DEPOSIT: "Ø­Ø¯Ø§Ù‚Ù„ ÙˆØ§Ø±ÛŒØ²: {{amount}} TON",
+    REQUIREMENT_UNBOX_GIFTBOX: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¬Ø¹Ø¨Ù‡Ù” Ù‡Ø¯ÛŒÙ‡",
+    REQUIREMENT_VIP_LEVEL: "ÙˆØ¶Ø¹ÛŒØª VIP {{level}} ÛŒØ§ Ø¨Ø§Ù„Ø§ØªØ±",
+    VIP_LOCKED_CTA: "Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ ÙˆÛŒÚ˜Ù‡ Ø¨Ø±Ø§ÛŒ VIP {{level}} Ø¨Ù‡ Ø¨Ø§Ù„Ø§",
+    BACK: "Ø¨Ø§Ø²Ú¯Ø´Øª",
+    ACTIVE: "ÙØ¹Ø§Ù„",
+    STATUS: "ÙˆØ¶Ø¹ÛŒØª"
 }
   , BUTTONS$6 = {
-    JOIN: "پیوستن به قرعه‌کشی",
-    JOIN_VIP: "پیوستن به قرعه‌کشی VIP",
-    JOINING: "در حال پیوستن...",
-    ENTER_WITH_TICKETS: "پیوستن با {{count}} بلیت",
-    ADD_TICKETS: "افزودن {{count}} بلیت",
-    PROCESSING: "در حال پردازش...",
-    VIP_ONLY: "فقط برای VIP {{level}} به بالا"
+    JOIN: "Ù¾ÛŒÙˆØ³ØªÙ† Ø¨Ù‡ Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ",
+    JOIN_VIP: "Ù¾ÛŒÙˆØ³ØªÙ† Ø¨Ù‡ Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ VIP",
+    JOINING: "Ø¯Ø± Ø­Ø§Ù„ Ù¾ÛŒÙˆØ³ØªÙ†...",
+    ENTER_WITH_TICKETS: "Ù¾ÛŒÙˆØ³ØªÙ† Ø¨Ø§ {{count}} Ø¨Ù„ÛŒØª",
+    ADD_TICKETS: "Ø§ÙØ²ÙˆØ¯Ù† {{count}} Ø¨Ù„ÛŒØª",
+    PROCESSING: "Ø¯Ø± Ø­Ø§Ù„ Ù¾Ø±Ø¯Ø§Ø²Ø´...",
+    VIP_ONLY: "ÙÙ‚Ø· Ø¨Ø±Ø§ÛŒ VIP {{level}} Ø¨Ù‡ Ø¨Ø§Ù„Ø§"
 }
   , VIP_GATE$1 = {
-    TITLE: "فقط برای VIP {{level}} به بالا",
-    BODY: "این قرعه‌کشی فقط برای بازیکنان با وضعیت {{level}} یا بالاتر است. برای افزایش سطح VIP خود به بازی ادامه دهید تا به قرعه‌کشی‌هایی مانند این دسترسی پیدا کنید.",
-    NO_STATUS: "بدون وضعیت",
-    CTA: "مشاهدهٔ پیشرفت VIP من",
-    LATER: "شاید بعداً"
+    TITLE: "ÙÙ‚Ø· Ø¨Ø±Ø§ÛŒ VIP {{level}} Ø¨Ù‡ Ø¨Ø§Ù„Ø§",
+    BODY: "Ø§ÛŒÙ† Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ ÙÙ‚Ø· Ø¨Ø±Ø§ÛŒ Ø¨Ø§Ø²ÛŒÚ©Ù†Ø§Ù† Ø¨Ø§ ÙˆØ¶Ø¹ÛŒØª {{level}} ÛŒØ§ Ø¨Ø§Ù„Ø§ØªØ± Ø§Ø³Øª. Ø¨Ø±Ø§ÛŒ Ø§ÙØ²Ø§ÛŒØ´ Ø³Ø·Ø­ VIP Ø®ÙˆØ¯ Ø¨Ù‡ Ø¨Ø§Ø²ÛŒ Ø§Ø¯Ø§Ù…Ù‡ Ø¯Ù‡ÛŒØ¯ ØªØ§ Ø¨Ù‡ Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒâ€ŒÙ‡Ø§ÛŒÛŒ Ù…Ø§Ù†Ù†Ø¯ Ø§ÛŒÙ† Ø¯Ø³ØªØ±Ø³ÛŒ Ù¾ÛŒØ¯Ø§ Ú©Ù†ÛŒØ¯.",
+    NO_STATUS: "Ø¨Ø¯ÙˆÙ† ÙˆØ¶Ø¹ÛŒØª",
+    CTA: "Ù…Ø´Ø§Ù‡Ø¯Ù‡Ù” Ù¾ÛŒØ´Ø±ÙØª VIP Ù…Ù†",
+    LATER: "Ø´Ø§ÛŒØ¯ Ø¨Ø¹Ø¯Ø§Ù‹"
 }
   , STATUS$8 = {
-    JOINED: "با موفقیت پیوستید!",
-    ENTERED_GIVEAWAY: "با {{count}} بلیت شرکت کردید!",
-    ADDED_TICKETS: "{{count}} بلیت اضافه شد!",
-    ALREADY_JOINED: "قبلاً پیوسته‌اید",
-    FAILED_TO_ENTER: "پیوستن به قرعه‌کشی ناموفق بود",
-    FAILED_TO_ADD_TICKETS: "افزودن بلیت ناموفق بود"
+    JOINED: "Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ù¾ÛŒÙˆØ³ØªÛŒØ¯!",
+    ENTERED_GIVEAWAY: "Ø¨Ø§ {{count}} Ø¨Ù„ÛŒØª Ø´Ø±Ú©Øª Ú©Ø±Ø¯ÛŒØ¯!",
+    ADDED_TICKETS: "{{count}} Ø¨Ù„ÛŒØª Ø§Ø¶Ø§ÙÙ‡ Ø´Ø¯!",
+    ALREADY_JOINED: "Ù‚Ø¨Ù„Ø§Ù‹ Ù¾ÛŒÙˆØ³ØªÙ‡â€ŒØ§ÛŒØ¯",
+    FAILED_TO_ENTER: "Ù¾ÛŒÙˆØ³ØªÙ† Ø¨Ù‡ Ù‚Ø±Ø¹Ù‡â€ŒÚ©Ø´ÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    FAILED_TO_ADD_TICKETS: "Ø§ÙØ²ÙˆØ¯Ù† Ø¨Ù„ÛŒØª Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯"
 }
   , faGiveaway = {
     HEADER: HEADER$6,
@@ -56828,37 +56828,37 @@ It's 100% free, and you can try your luck every 24 hours!`,
     VIP_GATE: VIP_GATE$1,
     STATUS: STATUS$8
 }
-  , LANGUAGE$1 = "زبان"
+  , LANGUAGE$1 = "Ø²Ø¨Ø§Ù†"
   , faSettings = {
     LANGUAGE: LANGUAGE$1
 }
   , PLAY_HUB$3 = {
     TITLE: "Play Hub",
     TITLE_UPPER: "PLAY HUB",
-    HOT: "داغ",
-    NEW: "جدید",
-    BACK: "بازگشت",
-    EMPTY: "بازی‌ها موقتاً در دسترس نیستند — به‌زودی دوباره سر بزنید",
+    HOT: "Ø¯Ø§Øº",
+    NEW: "Ø¬Ø¯ÛŒØ¯",
+    BACK: "Ø¨Ø§Ø²Ú¯Ø´Øª",
+    EMPTY: "Ø¨Ø§Ø²ÛŒâ€ŒÙ‡Ø§ Ù…ÙˆÙ‚ØªØ§Ù‹ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³ØªÙ†Ø¯ â€” Ø¨Ù‡â€ŒØ²ÙˆØ¯ÛŒ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø³Ø± Ø¨Ø²Ù†ÛŒØ¯",
     BANNERS: {
         UPGRADE: {
             TITLE: "Upgrade",
-            TAGLINE: "هدیهٔ رویایی‌تان را انتخاب کنید"
+            TAGLINE: "Ù‡Ø¯ÛŒÙ‡Ù” Ø±ÙˆÛŒØ§ÛŒÛŒâ€ŒØªØ§Ù† Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯"
         },
         PLINKO: {
             TITLE: "Plinko",
-            TAGLINE: "تا ۱۰۰۰ برابر برنده شوید"
+            TAGLINE: "ØªØ§ Û±Û°Û°Û° Ø¨Ø±Ø§Ø¨Ø± Ø¨Ø±Ù†Ø¯Ù‡ Ø´ÙˆÛŒØ¯"
         },
         CRAFTS: {
             TITLE: "Crafts",
-            TAGLINE: "ادغام هدایا"
+            TAGLINE: "Ø§Ø¯ØºØ§Ù… Ù‡Ø¯Ø§ÛŒØ§"
         },
         DICE: {
             TITLE: "Dice",
-            TAGLINE: "بالاتر یا پایین‌تر"
+            TAGLINE: "Ø¨Ø§Ù„Ø§ØªØ± ÛŒØ§ Ù¾Ø§ÛŒÛŒÙ†â€ŒØªØ±"
         },
         MINES: {
             TITLE: "Mines",
-            TAGLINE: "از مین‌ها دوری کنید"
+            TAGLINE: "Ø§Ø² Ù…ÛŒÙ†â€ŒÙ‡Ø§ Ø¯ÙˆØ±ÛŒ Ú©Ù†ÛŒØ¯"
         }
     }
 }
@@ -56868,114 +56868,114 @@ It's 100% free, and you can try your luck every 24 hours!`,
   , TILE$3 = {
     TITLE: "DICE"
 }
-  , MAINTENANCE$6 = "بازی Dice در حال تعمیر است. بعداً دوباره تلاش کنید."
+  , MAINTENANCE$6 = "Ø¨Ø§Ø²ÛŒ Dice Ø¯Ø± Ø­Ø§Ù„ ØªØ¹Ù…ÛŒØ± Ø§Ø³Øª. Ø¨Ø¹Ø¯Ø§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯."
   , UNAVAILABLE$5 = {
-    TITLE: "بازی Dice در دسترس نیست",
-    DESCRIPTION: "بازی موقتاً غیرفعال شده است. به‌زودی دوباره سر بزنید.",
-    BACK: "بازگشت به بازی‌ها"
+    TITLE: "Ø¨Ø§Ø²ÛŒ Dice Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    DESCRIPTION: "Ø¨Ø§Ø²ÛŒ Ù…ÙˆÙ‚ØªØ§Ù‹ ØºÛŒØ±ÙØ¹Ø§Ù„ Ø´Ø¯Ù‡ Ø§Ø³Øª. Ø¨Ù‡â€ŒØ²ÙˆØ¯ÛŒ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø³Ø± Ø¨Ø²Ù†ÛŒØ¯.",
+    BACK: "Ø¨Ø§Ø²Ú¯Ø´Øª Ø¨Ù‡ Ø¨Ø§Ø²ÛŒâ€ŒÙ‡Ø§"
 }
-  , LOAD_FAILED$2 = "بارگذاری بازی انجام نشد"
-  , LOAD_RETRY$1 = "تلاش دوباره"
-  , LOAD_RETRYING$1 = "در حال بارگذاری…"
+  , LOAD_FAILED$2 = "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ø¨Ø§Ø²ÛŒ Ø§Ù†Ø¬Ø§Ù… Ù†Ø´Ø¯"
+  , LOAD_RETRY$1 = "ØªÙ„Ø§Ø´ Ø¯ÙˆØ¨Ø§Ø±Ù‡"
+  , LOAD_RETRYING$1 = "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒâ€¦"
   , CONTROLS$2 = {
-    MULTIPLIER: "ضریب",
-    HIGHER: "بالاتر",
-    LOWER: "پایین‌تر",
-    CHANCE: "احتمال برد",
-    FLIP_DIRECTION: "جابه‌جایی بین بالاتر/پایین‌تر"
+    MULTIPLIER: "Ø¶Ø±ÛŒØ¨",
+    HIGHER: "Ø¨Ø§Ù„Ø§ØªØ±",
+    LOWER: "Ù¾Ø§ÛŒÛŒÙ†â€ŒØªØ±",
+    CHANCE: "Ø§Ø­ØªÙ…Ø§Ù„ Ø¨Ø±Ø¯",
+    FLIP_DIRECTION: "Ø¬Ø§Ø¨Ù‡â€ŒØ¬Ø§ÛŒÛŒ Ø¨ÛŒÙ† Ø¨Ø§Ù„Ø§ØªØ±/Ù¾Ø§ÛŒÛŒÙ†â€ŒØªØ±"
 }
   , LABELS$h = {
-    GIFT: "هدیه"
+    GIFT: "Ù‡Ø¯ÛŒÙ‡"
 }
   , TOGGLE$5 = {
-    GIFTS: "هدایا",
+    GIFTS: "Ù‡Ø¯Ø§ÛŒØ§",
     TON: "GRAM"
 }
   , PLACEHOLDERS$7 = {
-    TON_AMOUNT: "مقدار TON"
+    TON_AMOUNT: "Ù…Ù‚Ø¯Ø§Ø± TON"
 }
   , GIFT_MODAL$5 = {
-    TITLE: "شرط‌بندی با هدایا",
-    SELECT: "هدایا را انتخاب کنید",
-    SELECTED_one: "{{count}} هدیه انتخاب شد",
-    SELECTED_other: "{{count}} هدیه انتخاب شدند",
-    CONFIRM_one: "شرط روی {{count}} هدیه · {{amount}} TON",
-    CONFIRM_other: "شرط روی {{count}} هدیه · {{amount}} TON",
-    PRUNED_one: "{{count}} هدیه دیگر با محدودیت‌های شرط سازگار نیست",
-    PRUNED_other: "{{count}} هدیه دیگر با محدودیت‌های شرط سازگار نیست"
+    TITLE: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø¨Ø§ Ù‡Ø¯Ø§ÛŒØ§",
+    SELECT: "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    SELECTED_one: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ø´Ø¯",
+    SELECTED_other: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ø´Ø¯Ù†Ø¯",
+    CONFIRM_one: "Ø´Ø±Ø· Ø±ÙˆÛŒ {{count}} Ù‡Ø¯ÛŒÙ‡ Â· {{amount}} TON",
+    CONFIRM_other: "Ø´Ø±Ø· Ø±ÙˆÛŒ {{count}} Ù‡Ø¯ÛŒÙ‡ Â· {{amount}} TON",
+    PRUNED_one: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø¯ÛŒÚ¯Ø± Ø¨Ø§ Ù…Ø­Ø¯ÙˆØ¯ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø´Ø±Ø· Ø³Ø§Ø²Ú¯Ø§Ø± Ù†ÛŒØ³Øª",
+    PRUNED_other: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø¯ÛŒÚ¯Ø± Ø¨Ø§ Ù…Ø­Ø¯ÙˆØ¯ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø´Ø±Ø· Ø³Ø§Ø²Ú¯Ø§Ø± Ù†ÛŒØ³Øª"
 }
   , BET$3 = {
-    PLACE_TON: "ثبت شرط {{amount}} TON",
-    PLACE_BET_EMPTY: "ثبت شرط",
-    PLACING: "در حال ثبت شرط…",
-    EMPTY_GIFTS: "هدایا را به @giftbackpack ارسال کنید و Dice بازی کنید"
+    PLACE_TON: "Ø«Ø¨Øª Ø´Ø±Ø· {{amount}} TON",
+    PLACE_BET_EMPTY: "Ø«Ø¨Øª Ø´Ø±Ø·",
+    PLACING: "Ø¯Ø± Ø­Ø§Ù„ Ø«Ø¨Øª Ø´Ø±Ø·â€¦",
+    EMPTY_GIFTS: "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø¨Ù‡ @giftbackpack Ø§Ø±Ø³Ø§Ù„ Ú©Ù†ÛŒØ¯ Ùˆ Dice Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯"
 }
   , HISTORY$5 = {
-    TITLE: "تاریخچه",
-    BACK: "بازگشت",
-    EMPTY: "هنوز پرتابی انجام نشده است. اولین شرط خود را ثبت کنید!",
-    YOUR_BET: "شرط شما",
-    MULTIPLIER: "ضریب",
-    PAYOUT: "مبلغ پرداختی",
-    LEGIT_CHECK: "بررسی انصاف"
+    TITLE: "ØªØ§Ø±ÛŒØ®Ú†Ù‡",
+    BACK: "Ø¨Ø§Ø²Ú¯Ø´Øª",
+    EMPTY: "Ù‡Ù†ÙˆØ² Ù¾Ø±ØªØ§Ø¨ÛŒ Ø§Ù†Ø¬Ø§Ù… Ù†Ø´Ø¯Ù‡ Ø§Ø³Øª. Ø§ÙˆÙ„ÛŒÙ† Ø´Ø±Ø· Ø®ÙˆØ¯ Ø±Ø§ Ø«Ø¨Øª Ú©Ù†ÛŒØ¯!",
+    YOUR_BET: "Ø´Ø±Ø· Ø´Ù…Ø§",
+    MULTIPLIER: "Ø¶Ø±ÛŒØ¨",
+    PAYOUT: "Ù…Ø¨Ù„Øº Ù¾Ø±Ø¯Ø§Ø®ØªÛŒ",
+    LEGIT_CHECK: "Ø¨Ø±Ø±Ø³ÛŒ Ø§Ù†ØµØ§Ù"
 }
   , FAIRNESS$5 = {
-    NEXT_HASH: "هش پرتاب بعدی که پیش از شرط‌بندی ثبت شده است",
-    UNAVAILABLE: "اطلاعات راستی‌آزمایی برای این پرتاب در دسترس نیست",
-    SERVER_SEED_HASH: "هش بذر سرور (پیش از شرط شما تثبیت شده است)",
-    SERVER_SEED: "بذر سرور (پس از پرتاب آشکار می‌شود)",
-    CLIENT_SEED: "بذر کلاینت",
-    NONCE: "نانس",
-    ROLL: "عدد پرتاب‌شده",
-    HASH_CHECK: "هش بذر",
-    ROLL_CHECK: "عدد",
-    VALID_SHORT: "مطابقت دارد",
-    INVALID_SHORT: "مطابقت ندارد",
-    ROLL_MATCH: "مطابقت دارد",
-    ROLL_MISMATCH: "عدم تطابق",
-    CALCULATED: "نتیجهٔ محاسبه‌شده",
-    EXPECTED: "نتیجهٔ مورد انتظار",
-    VERIFY: "راستی‌آزمایی تصادفی‌بودن",
-    VERIFY_AGAIN: "دوباره راستی‌آزمایی کنید",
-    INVALID: "راستی‌آزمایی ناموفق بود",
-    COPY: "کپی",
-    COPIED: "کپی شد",
-    NOTE: "تأیید شد. بذرها پیش از ثبت شرط شما تثبیت شده بودند و مرورگرتان همین حالا هر دو مورد را دوباره محاسبه کرد: هش SHA-256 بذر سرور و عدد پرتاب، با فرمول floor(HMAC-SHA256(serverSeed, clientSeed:nonce) · 100).",
-    COPY_FAILED: "کپی نشد؛ آن را دستی انتخاب کنید"
+    NEXT_HASH: "Ù‡Ø´ Ù¾Ø±ØªØ§Ø¨ Ø¨Ø¹Ø¯ÛŒ Ú©Ù‡ Ù¾ÛŒØ´ Ø§Ø² Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø«Ø¨Øª Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    UNAVAILABLE: "Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ø¨Ø±Ø§ÛŒ Ø§ÛŒÙ† Ù¾Ø±ØªØ§Ø¨ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    SERVER_SEED_HASH: "Ù‡Ø´ Ø¨Ø°Ø± Ø³Ø±ÙˆØ± (Ù¾ÛŒØ´ Ø§Ø² Ø´Ø±Ø· Ø´Ù…Ø§ ØªØ«Ø¨ÛŒØª Ø´Ø¯Ù‡ Ø§Ø³Øª)",
+    SERVER_SEED: "Ø¨Ø°Ø± Ø³Ø±ÙˆØ± (Ù¾Ø³ Ø§Ø² Ù¾Ø±ØªØ§Ø¨ Ø¢Ø´Ú©Ø§Ø± Ù…ÛŒâ€ŒØ´ÙˆØ¯)",
+    CLIENT_SEED: "Ø¨Ø°Ø± Ú©Ù„Ø§ÛŒÙ†Øª",
+    NONCE: "Ù†Ø§Ù†Ø³",
+    ROLL: "Ø¹Ø¯Ø¯ Ù¾Ø±ØªØ§Ø¨â€ŒØ´Ø¯Ù‡",
+    HASH_CHECK: "Ù‡Ø´ Ø¨Ø°Ø±",
+    ROLL_CHECK: "Ø¹Ø¯Ø¯",
+    VALID_SHORT: "Ù…Ø·Ø§Ø¨Ù‚Øª Ø¯Ø§Ø±Ø¯",
+    INVALID_SHORT: "Ù…Ø·Ø§Ø¨Ù‚Øª Ù†Ø¯Ø§Ø±Ø¯",
+    ROLL_MATCH: "Ù…Ø·Ø§Ø¨Ù‚Øª Ø¯Ø§Ø±Ø¯",
+    ROLL_MISMATCH: "Ø¹Ø¯Ù… ØªØ·Ø§Ø¨Ù‚",
+    CALCULATED: "Ù†ØªÛŒØ¬Ù‡Ù” Ù…Ø­Ø§Ø³Ø¨Ù‡â€ŒØ´Ø¯Ù‡",
+    EXPECTED: "Ù†ØªÛŒØ¬Ù‡Ù” Ù…ÙˆØ±Ø¯ Ø§Ù†ØªØ¸Ø§Ø±",
+    VERIFY: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ ØªØµØ§Ø¯ÙÛŒâ€ŒØ¨ÙˆØ¯Ù†",
+    VERIFY_AGAIN: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ú©Ù†ÛŒØ¯",
+    INVALID: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    COPY: "Ú©Ù¾ÛŒ",
+    COPIED: "Ú©Ù¾ÛŒ Ø´Ø¯",
+    NOTE: "ØªØ£ÛŒÛŒØ¯ Ø´Ø¯. Ø¨Ø°Ø±Ù‡Ø§ Ù¾ÛŒØ´ Ø§Ø² Ø«Ø¨Øª Ø´Ø±Ø· Ø´Ù…Ø§ ØªØ«Ø¨ÛŒØª Ø´Ø¯Ù‡ Ø¨ÙˆØ¯Ù†Ø¯ Ùˆ Ù…Ø±ÙˆØ±Ú¯Ø±ØªØ§Ù† Ù‡Ù…ÛŒÙ† Ø­Ø§Ù„Ø§ Ù‡Ø± Ø¯Ùˆ Ù…ÙˆØ±Ø¯ Ø±Ø§ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ù…Ø­Ø§Ø³Ø¨Ù‡ Ú©Ø±Ø¯: Ù‡Ø´ SHA-256 Ø¨Ø°Ø± Ø³Ø±ÙˆØ± Ùˆ Ø¹Ø¯Ø¯ Ù¾Ø±ØªØ§Ø¨ØŒ Ø¨Ø§ ÙØ±Ù…ÙˆÙ„ floor(HMAC-SHA256(serverSeed, clientSeed:nonce) Â· 100).",
+    COPY_FAILED: "Ú©Ù¾ÛŒ Ù†Ø´Ø¯Ø› Ø¢Ù† Ø±Ø§ Ø¯Ø³ØªÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯"
 }
   , HOW_IT_WORKS$6 = {
-    TITLE: "روش کار",
-    CLOSE: "بستن",
-    STEP_1_TITLE: "هدفتان را تعیین کنید",
-    STEP_1_BODY: "عددی بین ۰ تا ۱۰۰ انتخاب کنید و مشخص کنید نتیجه باید بیشتر یا کمتر از آن باشد.",
-    STEP_2_TITLE: "تعادل بین ریسک و پاداش",
-    STEP_2_BODY: "هدف شما هم احتمال برد و هم ضریب را تعیین می‌کند. هرچه احتمال برد کمتر باشد، ضریب احتمالی بیشتر است.",
-    STEP_3_TITLE: "ثبت شرط",
-    STEP_3_BODY: "با TON شرط ببندید یا از کوله‌پشتی‌تان هدیه انتخاب کنید. هر هدیهٔ انتخاب‌شده به‌عنوان یک شرط جداگانه بازی می‌شود.",
-    STEP_4_TITLE: "تاس بیندازید و برنده شوید",
-    STEP_4_BODY: "عددی تصادفی بین ۰٫۰۰ تا ۹۹٫۹۹ تولید می‌شود. اگر عدد در سمت انتخاب‌شدهٔ هدف قرار بگیرد، شرط شما در ضریب نمایش‌داده‌شده ضرب می‌شود. بردهای کوچک فوراً به موجودی TON شما واریز می‌شوند. اگر مبلغ بردتان به‌اندازهٔ کافی زیاد باشد، به‌جای TON نزدیک‌ترین هدیهٔ موجود از نظر ارزش به شما پرداخت می‌شود. ممکن است ارزش هدیه با مبلغ دقیق برد متفاوت باشد."
+    TITLE: "Ø±ÙˆØ´ Ú©Ø§Ø±",
+    CLOSE: "Ø¨Ø³ØªÙ†",
+    STEP_1_TITLE: "Ù‡Ø¯ÙØªØ§Ù† Ø±Ø§ ØªØ¹ÛŒÛŒÙ† Ú©Ù†ÛŒØ¯",
+    STEP_1_BODY: "Ø¹Ø¯Ø¯ÛŒ Ø¨ÛŒÙ† Û° ØªØ§ Û±Û°Û° Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯ Ùˆ Ù…Ø´Ø®Øµ Ú©Ù†ÛŒØ¯ Ù†ØªÛŒØ¬Ù‡ Ø¨Ø§ÛŒØ¯ Ø¨ÛŒØ´ØªØ± ÛŒØ§ Ú©Ù…ØªØ± Ø§Ø² Ø¢Ù† Ø¨Ø§Ø´Ø¯.",
+    STEP_2_TITLE: "ØªØ¹Ø§Ø¯Ù„ Ø¨ÛŒÙ† Ø±ÛŒØ³Ú© Ùˆ Ù¾Ø§Ø¯Ø§Ø´",
+    STEP_2_BODY: "Ù‡Ø¯Ù Ø´Ù…Ø§ Ù‡Ù… Ø§Ø­ØªÙ…Ø§Ù„ Ø¨Ø±Ø¯ Ùˆ Ù‡Ù… Ø¶Ø±ÛŒØ¨ Ø±Ø§ ØªØ¹ÛŒÛŒÙ† Ù…ÛŒâ€ŒÚ©Ù†Ø¯. Ù‡Ø±Ú†Ù‡ Ø§Ø­ØªÙ…Ø§Ù„ Ø¨Ø±Ø¯ Ú©Ù…ØªØ± Ø¨Ø§Ø´Ø¯ØŒ Ø¶Ø±ÛŒØ¨ Ø§Ø­ØªÙ…Ø§Ù„ÛŒ Ø¨ÛŒØ´ØªØ± Ø§Ø³Øª.",
+    STEP_3_TITLE: "Ø«Ø¨Øª Ø´Ø±Ø·",
+    STEP_3_BODY: "Ø¨Ø§ TON Ø´Ø±Ø· Ø¨Ø¨Ù†Ø¯ÛŒØ¯ ÛŒØ§ Ø§Ø² Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯. Ù‡Ø± Ù‡Ø¯ÛŒÙ‡Ù” Ø§Ù†ØªØ®Ø§Ø¨â€ŒØ´Ø¯Ù‡ Ø¨Ù‡â€ŒØ¹Ù†ÙˆØ§Ù† ÛŒÚ© Ø´Ø±Ø· Ø¬Ø¯Ø§Ú¯Ø§Ù†Ù‡ Ø¨Ø§Ø²ÛŒ Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    STEP_4_TITLE: "ØªØ§Ø³ Ø¨ÛŒÙ†Ø¯Ø§Ø²ÛŒØ¯ Ùˆ Ø¨Ø±Ù†Ø¯Ù‡ Ø´ÙˆÛŒØ¯",
+    STEP_4_BODY: "Ø¹Ø¯Ø¯ÛŒ ØªØµØ§Ø¯ÙÛŒ Ø¨ÛŒÙ† Û°Ù«Û°Û° ØªØ§ Û¹Û¹Ù«Û¹Û¹ ØªÙˆÙ„ÛŒØ¯ Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø§Ú¯Ø± Ø¹Ø¯Ø¯ Ø¯Ø± Ø³Ù…Øª Ø§Ù†ØªØ®Ø§Ø¨â€ŒØ´Ø¯Ù‡Ù” Ù‡Ø¯Ù Ù‚Ø±Ø§Ø± Ø¨Ú¯ÛŒØ±Ø¯ØŒ Ø´Ø±Ø· Ø´Ù…Ø§ Ø¯Ø± Ø¶Ø±ÛŒØ¨ Ù†Ù…Ø§ÛŒØ´â€ŒØ¯Ø§Ø¯Ù‡â€ŒØ´Ø¯Ù‡ Ø¶Ø±Ø¨ Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø¨Ø±Ø¯Ù‡Ø§ÛŒ Ú©ÙˆÚ†Ú© ÙÙˆØ±Ø§Ù‹ Ø¨Ù‡ Ù…ÙˆØ¬ÙˆØ¯ÛŒ TON Ø´Ù…Ø§ ÙˆØ§Ø±ÛŒØ² Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯. Ø§Ú¯Ø± Ù…Ø¨Ù„Øº Ø¨Ø±Ø¯ØªØ§Ù† Ø¨Ù‡â€ŒØ§Ù†Ø¯Ø§Ø²Ù‡Ù” Ú©Ø§ÙÛŒ Ø²ÛŒØ§Ø¯ Ø¨Ø§Ø´Ø¯ØŒ Ø¨Ù‡â€ŒØ¬Ø§ÛŒ TON Ù†Ø²Ø¯ÛŒÚ©â€ŒØªØ±ÛŒÙ† Ù‡Ø¯ÛŒÙ‡Ù” Ù…ÙˆØ¬ÙˆØ¯ Ø§Ø² Ù†Ø¸Ø± Ø§Ø±Ø²Ø´ Ø¨Ù‡ Ø´Ù…Ø§ Ù¾Ø±Ø¯Ø§Ø®Øª Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ù…Ù…Ú©Ù† Ø§Ø³Øª Ø§Ø±Ø²Ø´ Ù‡Ø¯ÛŒÙ‡ Ø¨Ø§ Ù…Ø¨Ù„Øº Ø¯Ù‚ÛŒÙ‚ Ø¨Ø±Ø¯ Ù…ØªÙØ§ÙˆØª Ø¨Ø§Ø´Ø¯."
 }
   , TOASTS$5 = {
-    MAX_BET: "حداکثر شرط {{max}} TON است",
-    MIN_BET: "حداقل شرط {{min}} TON است",
-    GIFTS_FAILED_one: "شرط‌بندی با {{count}} هدیه ناموفق بود",
-    GIFTS_FAILED_other: "شرط‌بندی با {{count}} هدیه ناموفق بود",
+    MAX_BET: "Ø­Ø¯Ø§Ú©Ø«Ø± Ø´Ø±Ø· {{max}} TON Ø§Ø³Øª",
+    MIN_BET: "Ø­Ø¯Ø§Ù‚Ù„ Ø´Ø±Ø· {{min}} TON Ø§Ø³Øª",
+    GIFTS_FAILED_one: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø¨Ø§ {{count}} Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    GIFTS_FAILED_other: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø¨Ø§ {{count}} Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
     ERROR: {
-        UNAUTHORIZED: "مهلت نشست به پایان رسیده است. برنامه را دوباره راه‌اندازی کنید.",
-        BAD_INPUT: "شرط نامعتبر است. آن را اصلاح کنید و دوباره تلاش کنید.",
-        BET_TOO_SMALL: "مبلغ شرط از حداقل کمتر است",
-        BET_TOO_LARGE: "مبلغ شرط از حداکثر بیشتر است",
-        MAX_PAYOUT_EXCEEDED: "برد احتمالی از حداکثر مبلغ پرداختی بیشتر است. مبلغ شرط یا ضریب را کاهش دهید.",
-        INSUFFICIENT_BALANCE: "موجودی کافی نیست",
-        GIFT_NOT_FOUND: "هدیه پیدا نشد. کوله‌پشتی‌تان را تازه‌سازی کنید.",
-        GIFT_NOT_OWNED: "این هدیه متعلق به شما نیست",
-        GIFT_LOCKED: "این هدیه در حال استفاده است. کوله‌پشتی‌تان را تازه‌سازی کنید.",
-        RATE_LIMITED: "خیلی سریع است. کمی آهسته‌تر پیش بروید.",
-        MAINTENANCE: "بازی Dice در حال تعمیر است",
-        DEDUP_TIMEOUT: "اختلال شبکه رخ داد. دوباره تلاش کنید.",
-        NOT_CONNECTED: "اتصال برقرار نیست. در حال اتصال مجدد…",
-        ACK_TIMEOUT: "سرور پاسخ نداد. دوباره تلاش کنید.",
-        INTERNAL: "مشکلی پیش آمد. دوباره تلاش کنید."
+        UNAUTHORIZED: "Ù…Ù‡Ù„Øª Ù†Ø´Ø³Øª Ø¨Ù‡ Ù¾Ø§ÛŒØ§Ù† Ø±Ø³ÛŒØ¯Ù‡ Ø§Ø³Øª. Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø±Ø§ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø±Ø§Ù‡â€ŒØ§Ù†Ø¯Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯.",
+        BAD_INPUT: "Ø´Ø±Ø· Ù†Ø§Ù…Ø¹ØªØ¨Ø± Ø§Ø³Øª. Ø¢Ù† Ø±Ø§ Ø§ØµÙ„Ø§Ø­ Ú©Ù†ÛŒØ¯ Ùˆ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+        BET_TOO_SMALL: "Ù…Ø¨Ù„Øº Ø´Ø±Ø· Ø§Ø² Ø­Ø¯Ø§Ù‚Ù„ Ú©Ù…ØªØ± Ø§Ø³Øª",
+        BET_TOO_LARGE: "Ù…Ø¨Ù„Øº Ø´Ø±Ø· Ø§Ø² Ø­Ø¯Ø§Ú©Ø«Ø± Ø¨ÛŒØ´ØªØ± Ø§Ø³Øª",
+        MAX_PAYOUT_EXCEEDED: "Ø¨Ø±Ø¯ Ø§Ø­ØªÙ…Ø§Ù„ÛŒ Ø§Ø² Ø­Ø¯Ø§Ú©Ø«Ø± Ù…Ø¨Ù„Øº Ù¾Ø±Ø¯Ø§Ø®ØªÛŒ Ø¨ÛŒØ´ØªØ± Ø§Ø³Øª. Ù…Ø¨Ù„Øº Ø´Ø±Ø· ÛŒØ§ Ø¶Ø±ÛŒØ¨ Ø±Ø§ Ú©Ø§Ù‡Ø´ Ø¯Ù‡ÛŒØ¯.",
+        INSUFFICIENT_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ú©Ø§ÙÛŒ Ù†ÛŒØ³Øª",
+        GIFT_NOT_FOUND: "Ù‡Ø¯ÛŒÙ‡ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯. Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ø±Ø§ ØªØ§Ø²Ù‡â€ŒØ³Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯.",
+        GIFT_NOT_OWNED: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ù…ØªØ¹Ù„Ù‚ Ø¨Ù‡ Ø´Ù…Ø§ Ù†ÛŒØ³Øª",
+        GIFT_LOCKED: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ø­Ø§Ù„ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø³Øª. Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ø±Ø§ ØªØ§Ø²Ù‡â€ŒØ³Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯.",
+        RATE_LIMITED: "Ø®ÛŒÙ„ÛŒ Ø³Ø±ÛŒØ¹ Ø§Ø³Øª. Ú©Ù…ÛŒ Ø¢Ù‡Ø³ØªÙ‡â€ŒØªØ± Ù¾ÛŒØ´ Ø¨Ø±ÙˆÛŒØ¯.",
+        MAINTENANCE: "Ø¨Ø§Ø²ÛŒ Dice Ø¯Ø± Ø­Ø§Ù„ ØªØ¹Ù…ÛŒØ± Ø§Ø³Øª",
+        DEDUP_TIMEOUT: "Ø§Ø®ØªÙ„Ø§Ù„ Ø´Ø¨Ú©Ù‡ Ø±Ø® Ø¯Ø§Ø¯. Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+        NOT_CONNECTED: "Ø§ØªØµØ§Ù„ Ø¨Ø±Ù‚Ø±Ø§Ø± Ù†ÛŒØ³Øª. Ø¯Ø± Ø­Ø§Ù„ Ø§ØªØµØ§Ù„ Ù…Ø¬Ø¯Ø¯â€¦",
+        ACK_TIMEOUT: "Ø³Ø±ÙˆØ± Ù¾Ø§Ø³Ø® Ù†Ø¯Ø§Ø¯. Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯.",
+        INTERNAL: "Ù…Ø´Ú©Ù„ÛŒ Ù¾ÛŒØ´ Ø¢Ù…Ø¯. Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯."
     }
 }
   , faDice = {
@@ -56996,118 +56996,118 @@ It's 100% free, and you can try your luck every 24 hours!`,
     HOW_IT_WORKS: HOW_IT_WORKS$6,
     TOASTS: TOASTS$5
 }
-  , MAINTENANCE$5 = "بازی Plinko در حال تعمیر است — بعداً دوباره تلاش کنید"
+  , MAINTENANCE$5 = "Ø¨Ø§Ø²ÛŒ Plinko Ø¯Ø± Ø­Ø§Ù„ ØªØ¹Ù…ÛŒØ± Ø§Ø³Øª â€” Ø¨Ø¹Ø¯Ø§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯"
   , UNAVAILABLE$4 = {
-    TITLE: "بازی Plinko در دسترس نیست",
-    DESCRIPTION: "بازی موقتاً غیرفعال شده است. به‌زودی دوباره سر بزنید.",
-    BACK: "بازگشت به بازی‌ها"
+    TITLE: "Ø¨Ø§Ø²ÛŒ Plinko Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    DESCRIPTION: "Ø¨Ø§Ø²ÛŒ Ù…ÙˆÙ‚ØªØ§Ù‹ ØºÛŒØ±ÙØ¹Ø§Ù„ Ø´Ø¯Ù‡ Ø§Ø³Øª. Ø¨Ù‡â€ŒØ²ÙˆØ¯ÛŒ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø³Ø± Ø¨Ø²Ù†ÛŒØ¯.",
+    BACK: "Ø¨Ø§Ø²Ú¯Ø´Øª Ø¨Ù‡ Ø¨Ø§Ø²ÛŒâ€ŒÙ‡Ø§"
 }
   , DIFFICULTY$1 = {
-    EASY: "آسان",
-    MEDIUM: "متوسط",
-    HARD: "سخت"
+    EASY: "Ø¢Ø³Ø§Ù†",
+    MEDIUM: "Ù…ØªÙˆØ³Ø·",
+    HARD: "Ø³Ø®Øª"
 }
   , LABELS$g = {
-    GIFT: "هدیه",
-    AUTO_BET: "شرط‌بندی خودکار",
-    AUTO_COUNT: "پرتاب‌ها",
-    AUTO_INTERVAL: "فاصلهٔ زمانی",
-    SECONDS: "ثانیه"
+    GIFT: "Ù‡Ø¯ÛŒÙ‡",
+    AUTO_BET: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø®ÙˆØ¯Ú©Ø§Ø±",
+    AUTO_COUNT: "Ù¾Ø±ØªØ§Ø¨â€ŒÙ‡Ø§",
+    AUTO_INTERVAL: "ÙØ§ØµÙ„Ù‡Ù” Ø²Ù…Ø§Ù†ÛŒ",
+    SECONDS: "Ø«Ø§Ù†ÛŒÙ‡"
 }
   , BANNER$2 = {
     TITLE: "PLINKO",
-    NEW: "جدید",
-    TAGLINE: "توپ را رها کنید · تا ×۱۰۰۰ برنده شوید"
+    NEW: "Ø¬Ø¯ÛŒØ¯",
+    TAGLINE: "ØªÙˆÙ¾ Ø±Ø§ Ø±Ù‡Ø§ Ú©Ù†ÛŒØ¯ Â· ØªØ§ Ã—Û±Û°Û°Û° Ø¨Ø±Ù†Ø¯Ù‡ Ø´ÙˆÛŒØ¯"
 }
   , PLAY_HUB$2 = {
     TITLE: "Play Hub",
     TITLE_UPPER: "PLAY HUB"
 }
   , TOGGLE$4 = {
-    GIFTS: "هدایا",
+    GIFTS: "Ù‡Ø¯Ø§ÛŒØ§",
     TON: "TON"
 }
   , PLACEHOLDERS$6 = {
-    TON_AMOUNT: "مقدار TON"
+    TON_AMOUNT: "Ù…Ù‚Ø¯Ø§Ø± TON"
 }
   , ACTIONS$c = {
-    PLACE_BET: "ثبت شرط {{amount}} TON",
-    PLACE_BET_EMPTY: "ثبت شرط",
-    MAINTENANCE: "در حال تعمیر"
+    PLACE_BET: "Ø«Ø¨Øª Ø´Ø±Ø· {{amount}} TON",
+    PLACE_BET_EMPTY: "Ø«Ø¨Øª Ø´Ø±Ø·",
+    MAINTENANCE: "Ø¯Ø± Ø­Ø§Ù„ ØªØ¹Ù…ÛŒØ±"
 }
   , HISTORY$4 = {
-    TITLE: "تاریخچه",
-    EMPTY: "هنوز پرتابی انجام نشده است",
-    WIN: "برد"
+    TITLE: "ØªØ§Ø±ÛŒØ®Ú†Ù‡",
+    EMPTY: "Ù‡Ù†ÙˆØ² Ù¾Ø±ØªØ§Ø¨ÛŒ Ø§Ù†Ø¬Ø§Ù… Ù†Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    WIN: "Ø¨Ø±Ø¯"
 }
   , FAIRNESS$4 = {
-    NEXT_HASH: "هش پرتاب بعدی (پیش از شرط شما تثبیت شده است)",
-    SERVER_SEED_HASH: "هش بذر سرور (پیش از شرط شما تثبیت شده است)",
-    SERVER_SEED: "بذر سرور (پس از پرتاب آشکار می‌شود)",
-    CLIENT_SEED: "بذر کلاینت",
-    NONCE: "نانس",
-    VERIFY: "راستی‌آزمایی تصادفی‌بودن",
-    VERIFY_AGAIN: "دوباره راستی‌آزمایی کنید",
-    INVALID: "راستی‌آزمایی ناموفق بود!",
-    ROLL: "عدد پرتاب‌شده",
-    HASH_CHECK: "هش بذر",
-    ROLL_CHECK: "پرتاب",
-    VALID_SHORT: "مطابقت دارد",
-    INVALID_SHORT: "مغایرت دارد",
-    ROLL_MATCH: "مطابقت دارد",
-    ROLL_MISMATCH: "مغایرت دارد",
-    CALCULATED: "نتیجهٔ محاسبه‌شده",
-    EXPECTED: "نتیجهٔ مورد انتظار",
-    COPY: "کپی",
-    COPIED: "کپی شد",
-    UNAVAILABLE: "اطلاعات راستی‌آزمایی برای این پرتاب در دسترس نیست",
-    NOTE: "این بررسی مستقیماً در مرورگر شما انجام می‌شود: هش SHA-256 بذر و پرتاب HMAC-SHA256(serverSeed, clientSeed:nonce) را دوباره محاسبه می‌کند تا ثابت کند نتیجه پیش از شرط شما تثبیت شده است. احتمال دقیق هر خانه اطلاعات تجاری است و منتشر نمی‌شود.",
-    COPY_FAILED: "کپی نشد؛ آن را دستی انتخاب کنید"
+    NEXT_HASH: "Ù‡Ø´ Ù¾Ø±ØªØ§Ø¨ Ø¨Ø¹Ø¯ÛŒ (Ù¾ÛŒØ´ Ø§Ø² Ø´Ø±Ø· Ø´Ù…Ø§ ØªØ«Ø¨ÛŒØª Ø´Ø¯Ù‡ Ø§Ø³Øª)",
+    SERVER_SEED_HASH: "Ù‡Ø´ Ø¨Ø°Ø± Ø³Ø±ÙˆØ± (Ù¾ÛŒØ´ Ø§Ø² Ø´Ø±Ø· Ø´Ù…Ø§ ØªØ«Ø¨ÛŒØª Ø´Ø¯Ù‡ Ø§Ø³Øª)",
+    SERVER_SEED: "Ø¨Ø°Ø± Ø³Ø±ÙˆØ± (Ù¾Ø³ Ø§Ø² Ù¾Ø±ØªØ§Ø¨ Ø¢Ø´Ú©Ø§Ø± Ù…ÛŒâ€ŒØ´ÙˆØ¯)",
+    CLIENT_SEED: "Ø¨Ø°Ø± Ú©Ù„Ø§ÛŒÙ†Øª",
+    NONCE: "Ù†Ø§Ù†Ø³",
+    VERIFY: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ ØªØµØ§Ø¯ÙÛŒâ€ŒØ¨ÙˆØ¯Ù†",
+    VERIFY_AGAIN: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ú©Ù†ÛŒØ¯",
+    INVALID: "Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯!",
+    ROLL: "Ø¹Ø¯Ø¯ Ù¾Ø±ØªØ§Ø¨â€ŒØ´Ø¯Ù‡",
+    HASH_CHECK: "Ù‡Ø´ Ø¨Ø°Ø±",
+    ROLL_CHECK: "Ù¾Ø±ØªØ§Ø¨",
+    VALID_SHORT: "Ù…Ø·Ø§Ø¨Ù‚Øª Ø¯Ø§Ø±Ø¯",
+    INVALID_SHORT: "Ù…ØºØ§ÛŒØ±Øª Ø¯Ø§Ø±Ø¯",
+    ROLL_MATCH: "Ù…Ø·Ø§Ø¨Ù‚Øª Ø¯Ø§Ø±Ø¯",
+    ROLL_MISMATCH: "Ù…ØºØ§ÛŒØ±Øª Ø¯Ø§Ø±Ø¯",
+    CALCULATED: "Ù†ØªÛŒØ¬Ù‡Ù” Ù…Ø­Ø§Ø³Ø¨Ù‡â€ŒØ´Ø¯Ù‡",
+    EXPECTED: "Ù†ØªÛŒØ¬Ù‡Ù” Ù…ÙˆØ±Ø¯ Ø§Ù†ØªØ¸Ø§Ø±",
+    COPY: "Ú©Ù¾ÛŒ",
+    COPIED: "Ú©Ù¾ÛŒ Ø´Ø¯",
+    UNAVAILABLE: "Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ø¨Ø±Ø§ÛŒ Ø§ÛŒÙ† Ù¾Ø±ØªØ§Ø¨ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    NOTE: "Ø§ÛŒÙ† Ø¨Ø±Ø±Ø³ÛŒ Ù…Ø³ØªÙ‚ÛŒÙ…Ø§Ù‹ Ø¯Ø± Ù…Ø±ÙˆØ±Ú¯Ø± Ø´Ù…Ø§ Ø§Ù†Ø¬Ø§Ù… Ù…ÛŒâ€ŒØ´ÙˆØ¯: Ù‡Ø´ SHA-256 Ø¨Ø°Ø± Ùˆ Ù¾Ø±ØªØ§Ø¨ HMAC-SHA256(serverSeed, clientSeed:nonce) Ø±Ø§ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ù…Ø­Ø§Ø³Ø¨Ù‡ Ù…ÛŒâ€ŒÚ©Ù†Ø¯ ØªØ§ Ø«Ø§Ø¨Øª Ú©Ù†Ø¯ Ù†ØªÛŒØ¬Ù‡ Ù¾ÛŒØ´ Ø§Ø² Ø´Ø±Ø· Ø´Ù…Ø§ ØªØ«Ø¨ÛŒØª Ø´Ø¯Ù‡ Ø§Ø³Øª. Ø§Ø­ØªÙ…Ø§Ù„ Ø¯Ù‚ÛŒÙ‚ Ù‡Ø± Ø®Ø§Ù†Ù‡ Ø§Ø·Ù„Ø§Ø¹Ø§Øª ØªØ¬Ø§Ø±ÛŒ Ø§Ø³Øª Ùˆ Ù…Ù†ØªØ´Ø± Ù†Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    COPY_FAILED: "Ú©Ù¾ÛŒ Ù†Ø´Ø¯Ø› Ø¢Ù† Ø±Ø§ Ø¯Ø³ØªÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯"
 }
   , REPLAY$1 = {
-    TITLE: "بازی دوباره",
-    REPEAT: "تکرار",
-    CLOSE: "بستن"
+    TITLE: "Ø¨Ø§Ø²ÛŒ Ø¯ÙˆØ¨Ø§Ø±Ù‡",
+    REPEAT: "ØªÚ©Ø±Ø§Ø±",
+    CLOSE: "Ø¨Ø³ØªÙ†"
 }
   , HOW_IT_WORKS$5 = {
-    TITLE: "روش کار",
-    STEP_1_TITLE: "درجهٔ سختی را انتخاب کنید",
-    STEP_1_BODY: "هرچه تعداد ردیف‌ها بیشتر باشد، ضریب احتمالی بالاتر و ریسک نیز بیشتر است.",
-    STEP_2_TITLE: "ثبت شرط",
-    STEP_2_BODY: "با TON شرط ببندید یا از کوله‌پشتی‌تان هدیه انتخاب کنید. برای هر هدیهٔ انتخاب‌شده، یک توپ جداگانه رها می‌شود.",
-    STEP_3_TITLE: "تماشای فرود توپ",
-    STEP_3_BODY: "توپ از میان میخ‌ها پایین می‌آید و در یکی از خانه‌ها می‌افتد. ضریب آن خانه میزان برد شما را تعیین می‌کند.",
-    STEP_4_TITLE: "دریافت برد",
-    STEP_4_BODY: "شرط شما در ضریب خانه‌ای که توپ در آن می‌افتد ضرب می‌شود. بردهای کوچک فوراً به موجودی TON شما واریز می‌شوند. اگر مبلغ بردتان به‌اندازهٔ کافی زیاد باشد، به‌جای TON نزدیک‌ترین هدیهٔ موجود از نظر ارزش به شما پرداخت می‌شود. ممکن است ارزش هدیه با مبلغ دقیق برد متفاوت باشد.",
-    CLOSE: "بستن"
+    TITLE: "Ø±ÙˆØ´ Ú©Ø§Ø±",
+    STEP_1_TITLE: "Ø¯Ø±Ø¬Ù‡Ù” Ø³Ø®ØªÛŒ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    STEP_1_BODY: "Ù‡Ø±Ú†Ù‡ ØªØ¹Ø¯Ø§Ø¯ Ø±Ø¯ÛŒÙâ€ŒÙ‡Ø§ Ø¨ÛŒØ´ØªØ± Ø¨Ø§Ø´Ø¯ØŒ Ø¶Ø±ÛŒØ¨ Ø§Ø­ØªÙ…Ø§Ù„ÛŒ Ø¨Ø§Ù„Ø§ØªØ± Ùˆ Ø±ÛŒØ³Ú© Ù†ÛŒØ² Ø¨ÛŒØ´ØªØ± Ø§Ø³Øª.",
+    STEP_2_TITLE: "Ø«Ø¨Øª Ø´Ø±Ø·",
+    STEP_2_BODY: "Ø¨Ø§ TON Ø´Ø±Ø· Ø¨Ø¨Ù†Ø¯ÛŒØ¯ ÛŒØ§ Ø§Ø² Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯. Ø¨Ø±Ø§ÛŒ Ù‡Ø± Ù‡Ø¯ÛŒÙ‡Ù” Ø§Ù†ØªØ®Ø§Ø¨â€ŒØ´Ø¯Ù‡ØŒ ÛŒÚ© ØªÙˆÙ¾ Ø¬Ø¯Ø§Ú¯Ø§Ù†Ù‡ Ø±Ù‡Ø§ Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    STEP_3_TITLE: "ØªÙ…Ø§Ø´Ø§ÛŒ ÙØ±ÙˆØ¯ ØªÙˆÙ¾",
+    STEP_3_BODY: "ØªÙˆÙ¾ Ø§Ø² Ù…ÛŒØ§Ù† Ù…ÛŒØ®â€ŒÙ‡Ø§ Ù¾Ø§ÛŒÛŒÙ† Ù…ÛŒâ€ŒØ¢ÛŒØ¯ Ùˆ Ø¯Ø± ÛŒÚ©ÛŒ Ø§Ø² Ø®Ø§Ù†Ù‡â€ŒÙ‡Ø§ Ù…ÛŒâ€ŒØ§ÙØªØ¯. Ø¶Ø±ÛŒØ¨ Ø¢Ù† Ø®Ø§Ù†Ù‡ Ù…ÛŒØ²Ø§Ù† Ø¨Ø±Ø¯ Ø´Ù…Ø§ Ø±Ø§ ØªØ¹ÛŒÛŒÙ† Ù…ÛŒâ€ŒÚ©Ù†Ø¯.",
+    STEP_4_TITLE: "Ø¯Ø±ÛŒØ§ÙØª Ø¨Ø±Ø¯",
+    STEP_4_BODY: "Ø´Ø±Ø· Ø´Ù…Ø§ Ø¯Ø± Ø¶Ø±ÛŒØ¨ Ø®Ø§Ù†Ù‡â€ŒØ§ÛŒ Ú©Ù‡ ØªÙˆÙ¾ Ø¯Ø± Ø¢Ù† Ù…ÛŒâ€ŒØ§ÙØªØ¯ Ø¶Ø±Ø¨ Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø¨Ø±Ø¯Ù‡Ø§ÛŒ Ú©ÙˆÚ†Ú© ÙÙˆØ±Ø§Ù‹ Ø¨Ù‡ Ù…ÙˆØ¬ÙˆØ¯ÛŒ TON Ø´Ù…Ø§ ÙˆØ§Ø±ÛŒØ² Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯. Ø§Ú¯Ø± Ù…Ø¨Ù„Øº Ø¨Ø±Ø¯ØªØ§Ù† Ø¨Ù‡â€ŒØ§Ù†Ø¯Ø§Ø²Ù‡Ù” Ú©Ø§ÙÛŒ Ø²ÛŒØ§Ø¯ Ø¨Ø§Ø´Ø¯ØŒ Ø¨Ù‡â€ŒØ¬Ø§ÛŒ TON Ù†Ø²Ø¯ÛŒÚ©â€ŒØªØ±ÛŒÙ† Ù‡Ø¯ÛŒÙ‡Ù” Ù…ÙˆØ¬ÙˆØ¯ Ø§Ø² Ù†Ø¸Ø± Ø§Ø±Ø²Ø´ Ø¨Ù‡ Ø´Ù…Ø§ Ù¾Ø±Ø¯Ø§Ø®Øª Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ù…Ù…Ú©Ù† Ø§Ø³Øª Ø§Ø±Ø²Ø´ Ù‡Ø¯ÛŒÙ‡ Ø¨Ø§ Ù…Ø¨Ù„Øº Ø¯Ù‚ÛŒÙ‚ Ø¨Ø±Ø¯ Ù…ØªÙØ§ÙˆØª Ø¨Ø§Ø´Ø¯.",
+    CLOSE: "Ø¨Ø³ØªÙ†"
 }
   , GIFT_MODAL$4 = {
-    TITLE: "شرط‌بندی با هدایا",
-    SELECT: "هدایا را انتخاب کنید",
-    SELECTED_one: "{{count}} هدیه انتخاب شد",
-    SELECTED_other: "{{count}} هدیه انتخاب شدند",
-    CONFIRM_one: "بازی با {{count}} هدیه · {{amount}} TON",
-    CONFIRM_other: "بازی با {{count}} هدیه · {{amount}} TON"
+    TITLE: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø¨Ø§ Ù‡Ø¯Ø§ÛŒØ§",
+    SELECT: "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    SELECTED_one: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ø´Ø¯",
+    SELECTED_other: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ø´Ø¯Ù†Ø¯",
+    CONFIRM_one: "Ø¨Ø§Ø²ÛŒ Ø¨Ø§ {{count}} Ù‡Ø¯ÛŒÙ‡ Â· {{amount}} TON",
+    CONFIRM_other: "Ø¨Ø§Ø²ÛŒ Ø¨Ø§ {{count}} Ù‡Ø¯ÛŒÙ‡ Â· {{amount}} TON"
 }
   , TOASTS$4 = {
-    MAX_BET: "حداکثر شرط برای این حالت {{max}} TON است",
-    MIN_BET: "حداقل شرط {{min}} TON است",
-    AUTO_STOPPED_BALANCE: "شرط‌بندی خودکار متوقف شد: موجودی کافی نیست",
-    GIFTS_FAILED_one: "شرط‌بندی با {{count}} هدیه ناموفق بود",
-    GIFTS_FAILED_other: "شرط‌بندی با {{count}} هدیه ناموفق بود",
+    MAX_BET: "Ø­Ø¯Ø§Ú©Ø«Ø± Ø´Ø±Ø· Ø¨Ø±Ø§ÛŒ Ø§ÛŒÙ† Ø­Ø§Ù„Øª {{max}} TON Ø§Ø³Øª",
+    MIN_BET: "Ø­Ø¯Ø§Ù‚Ù„ Ø´Ø±Ø· {{min}} TON Ø§Ø³Øª",
+    AUTO_STOPPED_BALANCE: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø®ÙˆØ¯Ú©Ø§Ø± Ù…ØªÙˆÙ‚Ù Ø´Ø¯: Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ú©Ø§ÙÛŒ Ù†ÛŒØ³Øª",
+    GIFTS_FAILED_one: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø¨Ø§ {{count}} Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
+    GIFTS_FAILED_other: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø¨Ø§ {{count}} Ù‡Ø¯ÛŒÙ‡ Ù†Ø§Ù…ÙˆÙÙ‚ Ø¨ÙˆØ¯",
     ERROR: {
-        BAD_INPUT: "شرط نامعتبر است",
-        BET_TOO_SMALL: "مبلغ شرط از حداقل کمتر است",
-        BET_TOO_LARGE: "مبلغ شرط از حداکثر مجاز برای این درجهٔ سختی بیشتر است",
-        INSUFFICIENT_BALANCE: "موجودی کافی نیست",
-        GIFT_NOT_FOUND: "هدیه پیدا نشد",
-        GIFT_NOT_OWNED: "این هدیه متعلق به شما نیست",
-        GIFT_LOCKED: "این هدیه در حال بازی است. کوله‌پشتی‌تان را تازه‌سازی کنید.",
-        RATE_LIMITED: "خیلی سریع است! کمی بعد دوباره تلاش کنید",
-        MAINTENANCE: "بازی Plinko در حال تعمیر است",
-        DEDUP_TIMEOUT: "اختلال در اتصال رخ داد، لطفاً دوباره تلاش کنید",
-        UNAUTHORIZED: "مهلت نشست به پایان رسیده است، لطفاً برنامه را دوباره راه‌اندازی کنید",
-        INTERNAL: "مشکلی پیش آمد، لطفاً دوباره تلاش کنید"
+        BAD_INPUT: "Ø´Ø±Ø· Ù†Ø§Ù…Ø¹ØªØ¨Ø± Ø§Ø³Øª",
+        BET_TOO_SMALL: "Ù…Ø¨Ù„Øº Ø´Ø±Ø· Ø§Ø² Ø­Ø¯Ø§Ù‚Ù„ Ú©Ù…ØªØ± Ø§Ø³Øª",
+        BET_TOO_LARGE: "Ù…Ø¨Ù„Øº Ø´Ø±Ø· Ø§Ø² Ø­Ø¯Ø§Ú©Ø«Ø± Ù…Ø¬Ø§Ø² Ø¨Ø±Ø§ÛŒ Ø§ÛŒÙ† Ø¯Ø±Ø¬Ù‡Ù” Ø³Ø®ØªÛŒ Ø¨ÛŒØ´ØªØ± Ø§Ø³Øª",
+        INSUFFICIENT_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ú©Ø§ÙÛŒ Ù†ÛŒØ³Øª",
+        GIFT_NOT_FOUND: "Ù‡Ø¯ÛŒÙ‡ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯",
+        GIFT_NOT_OWNED: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ù…ØªØ¹Ù„Ù‚ Ø¨Ù‡ Ø´Ù…Ø§ Ù†ÛŒØ³Øª",
+        GIFT_LOCKED: "Ø§ÛŒÙ† Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø§Ø²ÛŒ Ø§Ø³Øª. Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ø±Ø§ ØªØ§Ø²Ù‡â€ŒØ³Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯.",
+        RATE_LIMITED: "Ø®ÛŒÙ„ÛŒ Ø³Ø±ÛŒØ¹ Ø§Ø³Øª! Ú©Ù…ÛŒ Ø¨Ø¹Ø¯ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯",
+        MAINTENANCE: "Ø¨Ø§Ø²ÛŒ Plinko Ø¯Ø± Ø­Ø§Ù„ ØªØ¹Ù…ÛŒØ± Ø§Ø³Øª",
+        DEDUP_TIMEOUT: "Ø§Ø®ØªÙ„Ø§Ù„ Ø¯Ø± Ø§ØªØµØ§Ù„ Ø±Ø® Ø¯Ø§Ø¯ØŒ Ù„Ø·ÙØ§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯",
+        UNAUTHORIZED: "Ù…Ù‡Ù„Øª Ù†Ø´Ø³Øª Ø¨Ù‡ Ù¾Ø§ÛŒØ§Ù† Ø±Ø³ÛŒØ¯Ù‡ Ø§Ø³ØªØŒ Ù„Ø·ÙØ§Ù‹ Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø±Ø§ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø±Ø§Ù‡â€ŒØ§Ù†Ø¯Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯",
+        INTERNAL: "Ù…Ø´Ú©Ù„ÛŒ Ù¾ÛŒØ´ Ø¢Ù…Ø¯ØŒ Ù„Ø·ÙØ§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯"
     }
 }
   , faPlinko = {
@@ -57128,157 +57128,157 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TOASTS: TOASTS$4
 }
   , HEADER$5 = {
-    BACK: "بازگشت",
-    HISTORY: "تاریخچه",
-    HELP: "روش کار",
-    TOPUP: "افزایش موجودی"
+    BACK: "Ø¨Ø§Ø²Ú¯Ø´Øª",
+    HISTORY: "ØªØ§Ø±ÛŒØ®Ú†Ù‡",
+    HELP: "Ø±ÙˆØ´ Ú©Ø§Ø±",
+    TOPUP: "Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ"
 }
   , faGameKit = {
     HEADER: HEADER$5
 }
   , HEADER$4 = {
     TITLE: "Mines",
-    SUBTITLE: "جواهرها را پیدا کنید و از مین‌ها دوری کنید",
-    BACK: "بازگشت",
-    HISTORY: "تاریخچه",
-    HELP: "روش کار",
-    TOPUP: "افزایش موجودی"
+    SUBTITLE: "Ø¬ÙˆØ§Ù‡Ø±Ù‡Ø§ Ø±Ø§ Ù¾ÛŒØ¯Ø§ Ú©Ù†ÛŒØ¯ Ùˆ Ø§Ø² Ù…ÛŒÙ†â€ŒÙ‡Ø§ Ø¯ÙˆØ±ÛŒ Ú©Ù†ÛŒØ¯",
+    BACK: "Ø¨Ø§Ø²Ú¯Ø´Øª",
+    HISTORY: "ØªØ§Ø±ÛŒØ®Ú†Ù‡",
+    HELP: "Ø±ÙˆØ´ Ú©Ø§Ø±",
+    TOPUP: "Ø§ÙØ²Ø§ÛŒØ´ Ù…ÙˆØ¬ÙˆØ¯ÛŒ"
 }
-  , MAINTENANCE$4 = "بازی Mines در حال تعمیر است. بعداً دوباره تلاش کنید"
+  , MAINTENANCE$4 = "Ø¨Ø§Ø²ÛŒ Mines Ø¯Ø± Ø­Ø§Ù„ ØªØ¹Ù…ÛŒØ± Ø§Ø³Øª. Ø¨Ø¹Ø¯Ø§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯"
   , UNAVAILABLE$3 = {
-    TITLE: "بازی Mines در دسترس نیست",
-    DESCRIPTION: "بازی موقتاً غیرفعال شده است. به‌زودی دوباره سر بزنید.",
-    BACK: "بازگشت به بازی‌ها"
+    TITLE: "Ø¨Ø§Ø²ÛŒ Mines Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    DESCRIPTION: "Ø¨Ø§Ø²ÛŒ Ù…ÙˆÙ‚ØªØ§Ù‹ ØºÛŒØ±ÙØ¹Ø§Ù„ Ø´Ø¯Ù‡ Ø§Ø³Øª. Ø¨Ù‡â€ŒØ²ÙˆØ¯ÛŒ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø³Ø± Ø¨Ø²Ù†ÛŒØ¯.",
+    BACK: "Ø¨Ø§Ø²Ú¯Ø´Øª Ø¨Ù‡ Ø¨Ø§Ø²ÛŒâ€ŒÙ‡Ø§"
 }
   , NAVIGATION$2 = {
-    MAX_WIN: "حداکثر برد",
+    MAX_WIN: "Ø­Ø¯Ø§Ú©Ø«Ø± Ø¨Ø±Ø¯",
     MINES: "Mines"
 }
   , ACTIONS$b = {
-    AUTOBET_DISABLE: "خاموش کردن",
-    AUTOBET_DONE: "انجام شد",
-    PLAY_AGAIN: "دوباره بازی کنید",
-    CASH_OUT: "برداشت",
-    CASH_OUT_AMOUNT: "برداشت {{amount}} TON",
-    CANCEL_BET: "لغو شرط",
-    START_AUTOBET: "شروع شرط‌بندی خودکار",
-    STOP_AUTOBET: "توقف شرط‌بندی خودکار",
-    DISMISS: "بستن",
-    RETRY: "تلاش دوباره",
-    CONTINUE: "ادامه"
+    AUTOBET_DISABLE: "Ø®Ø§Ù…ÙˆØ´ Ú©Ø±Ø¯Ù†",
+    AUTOBET_DONE: "Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯",
+    PLAY_AGAIN: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯",
+    CASH_OUT: "Ø¨Ø±Ø¯Ø§Ø´Øª",
+    CASH_OUT_AMOUNT: "Ø¨Ø±Ø¯Ø§Ø´Øª {{amount}} TON",
+    CANCEL_BET: "Ù„ØºÙˆ Ø´Ø±Ø·",
+    START_AUTOBET: "Ø´Ø±ÙˆØ¹ Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø®ÙˆØ¯Ú©Ø§Ø±",
+    STOP_AUTOBET: "ØªÙˆÙ‚Ù Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø®ÙˆØ¯Ú©Ø§Ø±",
+    DISMISS: "Ø¨Ø³ØªÙ†",
+    RETRY: "ØªÙ„Ø§Ø´ Ø¯ÙˆØ¨Ø§Ø±Ù‡",
+    CONTINUE: "Ø§Ø¯Ø§Ù…Ù‡"
 }
   , LABELS$f = {
-    AUTOBET_ON: "روشن",
-    AUTOBET_OFF: "خاموش",
-    AUTOBET_HINT: "در هر دور، تعداد جواهرهایی که انتخاب کرده‌اید باز می‌شوند و همان دور جداگانه تسویه می‌شود. با برخورد به مین، بازی پایان می‌یابد.",
-    AVAILABLE_BALANCE: "موجودی قابل استفاده",
-    BET_AMOUNT: "مبلغ شرط",
-    MINES: "مین‌ها",
-    AUTO_BET: "شرط‌بندی خودکار",
-    NUMBER_OF_BETS: "تعداد شرط‌ها",
-    AUTOBET_STOPPED: "شرط‌بندی خودکار پس از {{played}} دور از {{total}} دور متوقف شد",
-    GEMS_TO_OPEN: "تعداد جواهرها برای باز کردن",
-    GIFT: "هدیه"
+    AUTOBET_ON: "Ø±ÙˆØ´Ù†",
+    AUTOBET_OFF: "Ø®Ø§Ù…ÙˆØ´",
+    AUTOBET_HINT: "Ø¯Ø± Ù‡Ø± Ø¯ÙˆØ±ØŒ ØªØ¹Ø¯Ø§Ø¯ Ø¬ÙˆØ§Ù‡Ø±Ù‡Ø§ÛŒÛŒ Ú©Ù‡ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ø±Ø¯Ù‡â€ŒØ§ÛŒØ¯ Ø¨Ø§Ø² Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯ Ùˆ Ù‡Ù…Ø§Ù† Ø¯ÙˆØ± Ø¬Ø¯Ø§Ú¯Ø§Ù†Ù‡ ØªØ³ÙˆÛŒÙ‡ Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø¨Ø§ Ø¨Ø±Ø®ÙˆØ±Ø¯ Ø¨Ù‡ Ù…ÛŒÙ†ØŒ Ø¨Ø§Ø²ÛŒ Ù¾Ø§ÛŒØ§Ù† Ù…ÛŒâ€ŒÛŒØ§Ø¨Ø¯.",
+    AVAILABLE_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ù‚Ø§Ø¨Ù„ Ø§Ø³ØªÙØ§Ø¯Ù‡",
+    BET_AMOUNT: "Ù…Ø¨Ù„Øº Ø´Ø±Ø·",
+    MINES: "Ù…ÛŒÙ†â€ŒÙ‡Ø§",
+    AUTO_BET: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø®ÙˆØ¯Ú©Ø§Ø±",
+    NUMBER_OF_BETS: "ØªØ¹Ø¯Ø§Ø¯ Ø´Ø±Ø·â€ŒÙ‡Ø§",
+    AUTOBET_STOPPED: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø®ÙˆØ¯Ú©Ø§Ø± Ù¾Ø³ Ø§Ø² {{played}} Ø¯ÙˆØ± Ø§Ø² {{total}} Ø¯ÙˆØ± Ù…ØªÙˆÙ‚Ù Ø´Ø¯",
+    GEMS_TO_OPEN: "ØªØ¹Ø¯Ø§Ø¯ Ø¬ÙˆØ§Ù‡Ø±Ù‡Ø§ Ø¨Ø±Ø§ÛŒ Ø¨Ø§Ø² Ú©Ø±Ø¯Ù†",
+    GIFT: "Ù‡Ø¯ÛŒÙ‡"
 }
   , PLACEHOLDERS$5 = {
-    TON_AMOUNT: "مبلغ"
+    TON_AMOUNT: "Ù…Ø¨Ù„Øº"
 }
   , EMPTY$6 = {
-    GIFTS_COMING_SOON: "شرط‌بندی با هدیه به‌زودی فعال می‌شود. فعلاً با TON بازی کنید."
+    GIFTS_COMING_SOON: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø¨Ø§ Ù‡Ø¯ÛŒÙ‡ Ø¨Ù‡â€ŒØ²ÙˆØ¯ÛŒ ÙØ¹Ø§Ù„ Ù…ÛŒâ€ŒØ´ÙˆØ¯. ÙØ¹Ù„Ø§Ù‹ Ø¨Ø§ TON Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯."
 }
   , TOASTS$3 = {
-    MIN_BET: "حداقل شرط {{min}} TON است",
-    MAX_BET: "حداکثر شرط {{max}} TON است"
+    MIN_BET: "Ø­Ø¯Ø§Ù‚Ù„ Ø´Ø±Ø· {{min}} TON Ø§Ø³Øª",
+    MAX_BET: "Ø­Ø¯Ø§Ú©Ø«Ø± Ø´Ø±Ø· {{max}} TON Ø§Ø³Øª"
 }
   , HOW_IT_WORKS$4 = {
-    TITLE: "روش کار",
-    CLOSE: "بستن",
-    STEP_1_TITLE: "تعداد مین‌ها را انتخاب کنید",
-    STEP_1_BODY: "مین‌ها زیر خانه‌های صفحهٔ ۵×۵ پنهان شده‌اند و در بقیهٔ خانه‌ها جواهر قرار دارد. هرچه تعداد مین‌ها بیشتر باشد، ضریب و ریسک نیز بالاتر است.",
-    STEP_2_TITLE: "ثبت شرط",
-    STEP_2_BODY: "با TON بازی کنید یا از کوله‌پشتی‌تان هدیه‌ای انتخاب کنید. هر هدیه در این دور، کل مبلغ شرط محسوب می‌شود.",
-    STEP_3_TITLE: "باز کردن خانه‌ها",
-    STEP_3_BODY: "هر جواهری که پیدا کنید ضریب را افزایش می‌دهد. اگر به مین برخورد کنید، دور تمام می‌شود و شرط را از دست می‌دهید.",
-    STEP_4_TITLE: "دریافت برد",
-    STEP_4_BODY: "می‌توانید پس از پیدا کردن هر جواهر، بردتان را برداشت کنید. مبلغ شرط شما در ضریب فعلی ضرب می‌شود. بردهای کوچک فوراً به موجودی TON شما واریز می‌شوند. اگر مبلغ بردتان به‌اندازهٔ کافی زیاد باشد، به‌جای TON نزدیک‌ترین هدیهٔ موجود از نظر ارزش به شما پرداخت می‌شود. ممکن است ارزش هدیه با مبلغ دقیق برد متفاوت باشد."
+    TITLE: "Ø±ÙˆØ´ Ú©Ø§Ø±",
+    CLOSE: "Ø¨Ø³ØªÙ†",
+    STEP_1_TITLE: "ØªØ¹Ø¯Ø§Ø¯ Ù…ÛŒÙ†â€ŒÙ‡Ø§ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯",
+    STEP_1_BODY: "Ù…ÛŒÙ†â€ŒÙ‡Ø§ Ø²ÛŒØ± Ø®Ø§Ù†Ù‡â€ŒÙ‡Ø§ÛŒ ØµÙØ­Ù‡Ù” ÛµÃ—Ûµ Ù¾Ù†Ù‡Ø§Ù† Ø´Ø¯Ù‡â€ŒØ§Ù†Ø¯ Ùˆ Ø¯Ø± Ø¨Ù‚ÛŒÙ‡Ù” Ø®Ø§Ù†Ù‡â€ŒÙ‡Ø§ Ø¬ÙˆØ§Ù‡Ø± Ù‚Ø±Ø§Ø± Ø¯Ø§Ø±Ø¯. Ù‡Ø±Ú†Ù‡ ØªØ¹Ø¯Ø§Ø¯ Ù…ÛŒÙ†â€ŒÙ‡Ø§ Ø¨ÛŒØ´ØªØ± Ø¨Ø§Ø´Ø¯ØŒ Ø¶Ø±ÛŒØ¨ Ùˆ Ø±ÛŒØ³Ú© Ù†ÛŒØ² Ø¨Ø§Ù„Ø§ØªØ± Ø§Ø³Øª.",
+    STEP_2_TITLE: "Ø«Ø¨Øª Ø´Ø±Ø·",
+    STEP_2_BODY: "Ø¨Ø§ TON Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯ ÛŒØ§ Ø§Ø² Ú©ÙˆÙ„Ù‡â€ŒÙ¾Ø´ØªÛŒâ€ŒØªØ§Ù† Ù‡Ø¯ÛŒÙ‡â€ŒØ§ÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯. Ù‡Ø± Ù‡Ø¯ÛŒÙ‡ Ø¯Ø± Ø§ÛŒÙ† Ø¯ÙˆØ±ØŒ Ú©Ù„ Ù…Ø¨Ù„Øº Ø´Ø±Ø· Ù…Ø­Ø³ÙˆØ¨ Ù…ÛŒâ€ŒØ´ÙˆØ¯.",
+    STEP_3_TITLE: "Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø®Ø§Ù†Ù‡â€ŒÙ‡Ø§",
+    STEP_3_BODY: "Ù‡Ø± Ø¬ÙˆØ§Ù‡Ø±ÛŒ Ú©Ù‡ Ù¾ÛŒØ¯Ø§ Ú©Ù†ÛŒØ¯ Ø¶Ø±ÛŒØ¨ Ø±Ø§ Ø§ÙØ²Ø§ÛŒØ´ Ù…ÛŒâ€ŒØ¯Ù‡Ø¯. Ø§Ú¯Ø± Ø¨Ù‡ Ù…ÛŒÙ† Ø¨Ø±Ø®ÙˆØ±Ø¯ Ú©Ù†ÛŒØ¯ØŒ Ø¯ÙˆØ± ØªÙ…Ø§Ù… Ù…ÛŒâ€ŒØ´ÙˆØ¯ Ùˆ Ø´Ø±Ø· Ø±Ø§ Ø§Ø² Ø¯Ø³Øª Ù…ÛŒâ€ŒØ¯Ù‡ÛŒØ¯.",
+    STEP_4_TITLE: "Ø¯Ø±ÛŒØ§ÙØª Ø¨Ø±Ø¯",
+    STEP_4_BODY: "Ù…ÛŒâ€ŒØªÙˆØ§Ù†ÛŒØ¯ Ù¾Ø³ Ø§Ø² Ù¾ÛŒØ¯Ø§ Ú©Ø±Ø¯Ù† Ù‡Ø± Ø¬ÙˆØ§Ù‡Ø±ØŒ Ø¨Ø±Ø¯ØªØ§Ù† Ø±Ø§ Ø¨Ø±Ø¯Ø§Ø´Øª Ú©Ù†ÛŒØ¯. Ù…Ø¨Ù„Øº Ø´Ø±Ø· Ø´Ù…Ø§ Ø¯Ø± Ø¶Ø±ÛŒØ¨ ÙØ¹Ù„ÛŒ Ø¶Ø±Ø¨ Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø¨Ø±Ø¯Ù‡Ø§ÛŒ Ú©ÙˆÚ†Ú© ÙÙˆØ±Ø§Ù‹ Ø¨Ù‡ Ù…ÙˆØ¬ÙˆØ¯ÛŒ TON Ø´Ù…Ø§ ÙˆØ§Ø±ÛŒØ² Ù…ÛŒâ€ŒØ´ÙˆÙ†Ø¯. Ø§Ú¯Ø± Ù…Ø¨Ù„Øº Ø¨Ø±Ø¯ØªØ§Ù† Ø¨Ù‡â€ŒØ§Ù†Ø¯Ø§Ø²Ù‡Ù” Ú©Ø§ÙÛŒ Ø²ÛŒØ§Ø¯ Ø¨Ø§Ø´Ø¯ØŒ Ø¨Ù‡â€ŒØ¬Ø§ÛŒ TON Ù†Ø²Ø¯ÛŒÚ©â€ŒØªØ±ÛŒÙ† Ù‡Ø¯ÛŒÙ‡Ù” Ù…ÙˆØ¬ÙˆØ¯ Ø§Ø² Ù†Ø¸Ø± Ø§Ø±Ø²Ø´ Ø¨Ù‡ Ø´Ù…Ø§ Ù¾Ø±Ø¯Ø§Ø®Øª Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ù…Ù…Ú©Ù† Ø§Ø³Øª Ø§Ø±Ø²Ø´ Ù‡Ø¯ÛŒÙ‡ Ø¨Ø§ Ù…Ø¨Ù„Øº Ø¯Ù‚ÛŒÙ‚ Ø¨Ø±Ø¯ Ù…ØªÙØ§ÙˆØª Ø¨Ø§Ø´Ø¯."
 }
   , FAIRNESS$3 = {
-    SERVER_SEED_HASH: "هش بذر سرور: پیش از دور ثبت شده است",
-    SERVER_SEED: "بذر سرور (با پایان دور آشکار می‌شود)",
-    PENDING_REVEAL: "این دور با جفت بذری انجام شده که هنوز در حال استفاده است؛ پیش از این، بذرها برای هر دور جداگانه عوض نمی‌شدند. یک دور دیگر بازی کنید: پس از تسویهٔ آن، این جفت بسته می‌شود و بذر همهٔ دورهای آن، از جمله این دور، آشکار خواهد شد. دورهای جدید به‌محض پایان قابل بررسی هستند.",
-    CLIENT_SEED: "بذر کلاینت",
-    NONCE: "نانس",
-    MINE_POSITIONS: "موقعیت مین‌ها",
-    HASH_CHECK: "هش بذر",
-    BOARD_CHECK: "چیدمان مین‌ها",
-    RECOMPUTED: "نتیجهٔ دستگاه شما",
-    VERIFIED: "مطابقت دارد",
-    NOT_VERIFIED: "مغایرت دارد",
-    VERIFY: "نمایش اطلاعات راستی‌آزمایی",
-    VERIFY_AGAIN: "دوباره بررسی کنید",
-    ERROR: "بارگذاری اطلاعات راستی‌آزمایی انجام نشد",
-    INVALID: "این دور با بذرهایش مطابقت ندارد",
-    LOCAL_CHECK_ERROR: "اجرای بررسی روی این دستگاه ممکن نشد",
-    COPY: "کپی",
-    COPIED: "کپی شد",
-    NOTE: "این بررسی همین‌جا، روی تلفن شما، با همان فرمول عمومی سرور اجرا می‌شود. از طرف ما فقط بذرها و چیدمان را می‌خواند؛ نتیجه‌ای که بالا می‌بینید را دستگاه شما تعیین می‌کند، نه ما.",
-    PENDING_TITLE: "هنوز قابل بررسی نیست",
-    SERVER_SEED_SECRET: "تا پایان دور مهروموم شده است",
-    VERIFIED_TITLE: "روی دستگاه شما بررسی شد",
-    VERIFIED_TEXT: "بذر سرورِ آشکارشده با هشی که پیش از دور منتشر شده بود مطابقت دارد و چیدمان مین‌هایی که اینجا دوباره محاسبه شده، با صفحه‌ای که بازی کردید مطابقت دارد.",
-    NOT_VERIFIED_TITLE: "این دور با بذرهایش مطابقت ندارد",
-    NOT_VERIFIED_TEXT: "دستگاه شما با استفاده از همان بذرها نتیجهٔ متفاوتی محاسبه کرده است. شناسهٔ دور را نگه دارید و با پشتیبانی تماس بگیرید.",
-    CHECKING: "در حال بررسی روی دستگاه شما",
-    NEXT_HASH: "هش دور بعدی که پیش از شرط ثبت شده است",
-    STILL_SEALED: "بذر سرور هنوز مهروموم است: این دور پس از بسته‌شدن جفت بذر قابل بررسی می‌شود",
-    VERIFIED_TOAST: "این دور با بذرهایش مطابقت دارد",
-    CHECKED_AT: "زمان بررسی: {{time}}",
-    COPY_FAILED: "کپی نشد؛ آن را دستی انتخاب کنید"
+    SERVER_SEED_HASH: "Ù‡Ø´ Ø¨Ø°Ø± Ø³Ø±ÙˆØ±: Ù¾ÛŒØ´ Ø§Ø² Ø¯ÙˆØ± Ø«Ø¨Øª Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    SERVER_SEED: "Ø¨Ø°Ø± Ø³Ø±ÙˆØ± (Ø¨Ø§ Ù¾Ø§ÛŒØ§Ù† Ø¯ÙˆØ± Ø¢Ø´Ú©Ø§Ø± Ù…ÛŒâ€ŒØ´ÙˆØ¯)",
+    PENDING_REVEAL: "Ø§ÛŒÙ† Ø¯ÙˆØ± Ø¨Ø§ Ø¬ÙØª Ø¨Ø°Ø±ÛŒ Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯Ù‡ Ú©Ù‡ Ù‡Ù†ÙˆØ² Ø¯Ø± Ø­Ø§Ù„ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø³ØªØ› Ù¾ÛŒØ´ Ø§Ø² Ø§ÛŒÙ†ØŒ Ø¨Ø°Ø±Ù‡Ø§ Ø¨Ø±Ø§ÛŒ Ù‡Ø± Ø¯ÙˆØ± Ø¬Ø¯Ø§Ú¯Ø§Ù†Ù‡ Ø¹ÙˆØ¶ Ù†Ù…ÛŒâ€ŒØ´Ø¯Ù†Ø¯. ÛŒÚ© Ø¯ÙˆØ± Ø¯ÛŒÚ¯Ø± Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯: Ù¾Ø³ Ø§Ø² ØªØ³ÙˆÛŒÙ‡Ù” Ø¢Ù†ØŒ Ø§ÛŒÙ† Ø¬ÙØª Ø¨Ø³ØªÙ‡ Ù…ÛŒâ€ŒØ´ÙˆØ¯ Ùˆ Ø¨Ø°Ø± Ù‡Ù…Ù‡Ù” Ø¯ÙˆØ±Ù‡Ø§ÛŒ Ø¢Ù†ØŒ Ø§Ø² Ø¬Ù…Ù„Ù‡ Ø§ÛŒÙ† Ø¯ÙˆØ±ØŒ Ø¢Ø´Ú©Ø§Ø± Ø®ÙˆØ§Ù‡Ø¯ Ø´Ø¯. Ø¯ÙˆØ±Ù‡Ø§ÛŒ Ø¬Ø¯ÛŒØ¯ Ø¨Ù‡â€ŒÙ…Ø­Ø¶ Ù¾Ø§ÛŒØ§Ù† Ù‚Ø§Ø¨Ù„ Ø¨Ø±Ø±Ø³ÛŒ Ù‡Ø³ØªÙ†Ø¯.",
+    CLIENT_SEED: "Ø¨Ø°Ø± Ú©Ù„Ø§ÛŒÙ†Øª",
+    NONCE: "Ù†Ø§Ù†Ø³",
+    MINE_POSITIONS: "Ù…ÙˆÙ‚Ø¹ÛŒØª Ù…ÛŒÙ†â€ŒÙ‡Ø§",
+    HASH_CHECK: "Ù‡Ø´ Ø¨Ø°Ø±",
+    BOARD_CHECK: "Ú†ÛŒØ¯Ù…Ø§Ù† Ù…ÛŒÙ†â€ŒÙ‡Ø§",
+    RECOMPUTED: "Ù†ØªÛŒØ¬Ù‡Ù” Ø¯Ø³ØªÚ¯Ø§Ù‡ Ø´Ù…Ø§",
+    VERIFIED: "Ù…Ø·Ø§Ø¨Ù‚Øª Ø¯Ø§Ø±Ø¯",
+    NOT_VERIFIED: "Ù…ØºØ§ÛŒØ±Øª Ø¯Ø§Ø±Ø¯",
+    VERIFY: "Ù†Ù…Ø§ÛŒØ´ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ",
+    VERIFY_AGAIN: "Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø¨Ø±Ø±Ø³ÛŒ Ú©Ù†ÛŒØ¯",
+    ERROR: "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø±Ø§Ø³ØªÛŒâ€ŒØ¢Ø²Ù…Ø§ÛŒÛŒ Ø§Ù†Ø¬Ø§Ù… Ù†Ø´Ø¯",
+    INVALID: "Ø§ÛŒÙ† Ø¯ÙˆØ± Ø¨Ø§ Ø¨Ø°Ø±Ù‡Ø§ÛŒØ´ Ù…Ø·Ø§Ø¨Ù‚Øª Ù†Ø¯Ø§Ø±Ø¯",
+    LOCAL_CHECK_ERROR: "Ø§Ø¬Ø±Ø§ÛŒ Ø¨Ø±Ø±Ø³ÛŒ Ø±ÙˆÛŒ Ø§ÛŒÙ† Ø¯Ø³ØªÚ¯Ø§Ù‡ Ù…Ù…Ú©Ù† Ù†Ø´Ø¯",
+    COPY: "Ú©Ù¾ÛŒ",
+    COPIED: "Ú©Ù¾ÛŒ Ø´Ø¯",
+    NOTE: "Ø§ÛŒÙ† Ø¨Ø±Ø±Ø³ÛŒ Ù‡Ù…ÛŒÙ†â€ŒØ¬Ø§ØŒ Ø±ÙˆÛŒ ØªÙ„ÙÙ† Ø´Ù…Ø§ØŒ Ø¨Ø§ Ù‡Ù…Ø§Ù† ÙØ±Ù…ÙˆÙ„ Ø¹Ù…ÙˆÙ…ÛŒ Ø³Ø±ÙˆØ± Ø§Ø¬Ø±Ø§ Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø§Ø² Ø·Ø±Ù Ù…Ø§ ÙÙ‚Ø· Ø¨Ø°Ø±Ù‡Ø§ Ùˆ Ú†ÛŒØ¯Ù…Ø§Ù† Ø±Ø§ Ù…ÛŒâ€ŒØ®ÙˆØ§Ù†Ø¯Ø› Ù†ØªÛŒØ¬Ù‡â€ŒØ§ÛŒ Ú©Ù‡ Ø¨Ø§Ù„Ø§ Ù…ÛŒâ€ŒØ¨ÛŒÙ†ÛŒØ¯ Ø±Ø§ Ø¯Ø³ØªÚ¯Ø§Ù‡ Ø´Ù…Ø§ ØªØ¹ÛŒÛŒÙ† Ù…ÛŒâ€ŒÚ©Ù†Ø¯ØŒ Ù†Ù‡ Ù…Ø§.",
+    PENDING_TITLE: "Ù‡Ù†ÙˆØ² Ù‚Ø§Ø¨Ù„ Ø¨Ø±Ø±Ø³ÛŒ Ù†ÛŒØ³Øª",
+    SERVER_SEED_SECRET: "ØªØ§ Ù¾Ø§ÛŒØ§Ù† Ø¯ÙˆØ± Ù…Ù‡Ø±ÙˆÙ…ÙˆÙ… Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    VERIFIED_TITLE: "Ø±ÙˆÛŒ Ø¯Ø³ØªÚ¯Ø§Ù‡ Ø´Ù…Ø§ Ø¨Ø±Ø±Ø³ÛŒ Ø´Ø¯",
+    VERIFIED_TEXT: "Ø¨Ø°Ø± Ø³Ø±ÙˆØ±Ù Ø¢Ø´Ú©Ø§Ø±Ø´Ø¯Ù‡ Ø¨Ø§ Ù‡Ø´ÛŒ Ú©Ù‡ Ù¾ÛŒØ´ Ø§Ø² Ø¯ÙˆØ± Ù…Ù†ØªØ´Ø± Ø´Ø¯Ù‡ Ø¨ÙˆØ¯ Ù…Ø·Ø§Ø¨Ù‚Øª Ø¯Ø§Ø±Ø¯ Ùˆ Ú†ÛŒØ¯Ù…Ø§Ù† Ù…ÛŒÙ†â€ŒÙ‡Ø§ÛŒÛŒ Ú©Ù‡ Ø§ÛŒÙ†Ø¬Ø§ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ù…Ø­Ø§Ø³Ø¨Ù‡ Ø´Ø¯Ù‡ØŒ Ø¨Ø§ ØµÙØ­Ù‡â€ŒØ§ÛŒ Ú©Ù‡ Ø¨Ø§Ø²ÛŒ Ú©Ø±Ø¯ÛŒØ¯ Ù…Ø·Ø§Ø¨Ù‚Øª Ø¯Ø§Ø±Ø¯.",
+    NOT_VERIFIED_TITLE: "Ø§ÛŒÙ† Ø¯ÙˆØ± Ø¨Ø§ Ø¨Ø°Ø±Ù‡Ø§ÛŒØ´ Ù…Ø·Ø§Ø¨Ù‚Øª Ù†Ø¯Ø§Ø±Ø¯",
+    NOT_VERIFIED_TEXT: "Ø¯Ø³ØªÚ¯Ø§Ù‡ Ø´Ù…Ø§ Ø¨Ø§ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø² Ù‡Ù…Ø§Ù† Ø¨Ø°Ø±Ù‡Ø§ Ù†ØªÛŒØ¬Ù‡Ù” Ù…ØªÙØ§ÙˆØªÛŒ Ù…Ø­Ø§Ø³Ø¨Ù‡ Ú©Ø±Ø¯Ù‡ Ø§Ø³Øª. Ø´Ù†Ø§Ø³Ù‡Ù” Ø¯ÙˆØ± Ø±Ø§ Ù†Ú¯Ù‡ Ø¯Ø§Ø±ÛŒØ¯ Ùˆ Ø¨Ø§ Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ ØªÙ…Ø§Ø³ Ø¨Ú¯ÛŒØ±ÛŒØ¯.",
+    CHECKING: "Ø¯Ø± Ø­Ø§Ù„ Ø¨Ø±Ø±Ø³ÛŒ Ø±ÙˆÛŒ Ø¯Ø³ØªÚ¯Ø§Ù‡ Ø´Ù…Ø§",
+    NEXT_HASH: "Ù‡Ø´ Ø¯ÙˆØ± Ø¨Ø¹Ø¯ÛŒ Ú©Ù‡ Ù¾ÛŒØ´ Ø§Ø² Ø´Ø±Ø· Ø«Ø¨Øª Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    STILL_SEALED: "Ø¨Ø°Ø± Ø³Ø±ÙˆØ± Ù‡Ù†ÙˆØ² Ù…Ù‡Ø±ÙˆÙ…ÙˆÙ… Ø§Ø³Øª: Ø§ÛŒÙ† Ø¯ÙˆØ± Ù¾Ø³ Ø§Ø² Ø¨Ø³ØªÙ‡â€ŒØ´Ø¯Ù† Ø¬ÙØª Ø¨Ø°Ø± Ù‚Ø§Ø¨Ù„ Ø¨Ø±Ø±Ø³ÛŒ Ù…ÛŒâ€ŒØ´ÙˆØ¯",
+    VERIFIED_TOAST: "Ø§ÛŒÙ† Ø¯ÙˆØ± Ø¨Ø§ Ø¨Ø°Ø±Ù‡Ø§ÛŒØ´ Ù…Ø·Ø§Ø¨Ù‚Øª Ø¯Ø§Ø±Ø¯",
+    CHECKED_AT: "Ø²Ù…Ø§Ù† Ø¨Ø±Ø±Ø³ÛŒ: {{time}}",
+    COPY_FAILED: "Ú©Ù¾ÛŒ Ù†Ø´Ø¯Ø› Ø¢Ù† Ø±Ø§ Ø¯Ø³ØªÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯"
 }
   , HISTORY$3 = {
-    TITLE: "تاریخچه",
-    BACK: "بازگشت",
-    EMPTY: "هنوز دوری انجام نشده است",
-    PAYOUT: "مبلغ پرداختی",
-    LOAD_MORE: "بارگذاری موارد بیشتر",
-    GEMS_OF: "{{opened}} از {{total}}",
-    MINES_SHORT: "تعداد مین‌ها: {{count}}"
+    TITLE: "ØªØ§Ø±ÛŒØ®Ú†Ù‡",
+    BACK: "Ø¨Ø§Ø²Ú¯Ø´Øª",
+    EMPTY: "Ù‡Ù†ÙˆØ² Ø¯ÙˆØ±ÛŒ Ø§Ù†Ø¬Ø§Ù… Ù†Ø´Ø¯Ù‡ Ø§Ø³Øª",
+    PAYOUT: "Ù…Ø¨Ù„Øº Ù¾Ø±Ø¯Ø§Ø®ØªÛŒ",
+    LOAD_MORE: "Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù…ÙˆØ§Ø±Ø¯ Ø¨ÛŒØ´ØªØ±",
+    GEMS_OF: "{{opened}} Ø§Ø² {{total}}",
+    MINES_SHORT: "ØªØ¹Ø¯Ø§Ø¯ Ù…ÛŒÙ†â€ŒÙ‡Ø§: {{count}}"
 }
   , ERRORS$3 = {
-    GAME_DISABLED: "بازی Mines موقتاً در دسترس نیست",
-    INSUFFICIENT_BALANCE: "موجودی برای این شرط کافی نیست",
-    BET_LIMITS: "شرط خارج از محدودهٔ مجاز است",
-    MAX_WIN_EXCEEDED: "این شرط ممکن است از حداکثر برد بیشتر شود. مبلغ شرط را کاهش دهید یا تعداد مین‌ها را بیشتر کنید.",
-    GENERIC: "مشکلی پیش آمد. لطفاً دوباره تلاش کنید."
+    GAME_DISABLED: "Ø¨Ø§Ø²ÛŒ Mines Ù…ÙˆÙ‚ØªØ§Ù‹ Ø¯Ø± Ø¯Ø³ØªØ±Ø³ Ù†ÛŒØ³Øª",
+    INSUFFICIENT_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ø¨Ø±Ø§ÛŒ Ø§ÛŒÙ† Ø´Ø±Ø· Ú©Ø§ÙÛŒ Ù†ÛŒØ³Øª",
+    BET_LIMITS: "Ø´Ø±Ø· Ø®Ø§Ø±Ø¬ Ø§Ø² Ù…Ø­Ø¯ÙˆØ¯Ù‡Ù” Ù…Ø¬Ø§Ø² Ø§Ø³Øª",
+    MAX_WIN_EXCEEDED: "Ø§ÛŒÙ† Ø´Ø±Ø· Ù…Ù…Ú©Ù† Ø§Ø³Øª Ø§Ø² Ø­Ø¯Ø§Ú©Ø«Ø± Ø¨Ø±Ø¯ Ø¨ÛŒØ´ØªØ± Ø´ÙˆØ¯. Ù…Ø¨Ù„Øº Ø´Ø±Ø· Ø±Ø§ Ú©Ø§Ù‡Ø´ Ø¯Ù‡ÛŒØ¯ ÛŒØ§ ØªØ¹Ø¯Ø§Ø¯ Ù…ÛŒÙ†â€ŒÙ‡Ø§ Ø±Ø§ Ø¨ÛŒØ´ØªØ± Ú©Ù†ÛŒØ¯.",
+    GENERIC: "Ù…Ø´Ú©Ù„ÛŒ Ù¾ÛŒØ´ Ø¢Ù…Ø¯. Ù„Ø·ÙØ§Ù‹ Ø¯ÙˆØ¨Ø§Ø±Ù‡ ØªÙ„Ø§Ø´ Ú©Ù†ÛŒØ¯."
 }
   , BET$2 = {
-    PLACING: "در حال ثبت شرط…",
-    PLACE_GIFT: "ثبت شرط",
-    PLACE_TON: "ثبت شرط {{amount}}",
-    PLACE_BET_EMPTY: "مبلغ شرط را وارد کنید",
-    EMPTY_GIFTS: "هدایا را به @giftbackpack بفرستید و Mines بازی کنید",
-    TAP_TO_START: "برای شروع دور، روی یک خانه بزنید",
-    MIN_BET: "حداقل شرط: {{min}}",
-    MAX_BET: "حداکثر شرط: {{max}}",
-    NOT_ENOUGH_BALANCE: "موجودی کافی نیست",
-    GIFT_OVER_LIMIT: "ارزش هدیه برای این تعداد مین از حداکثر مجاز بیشتر است: {{max}}",
-    GIFT_UNDER_LIMIT: "ارزش هدیه از حداقل شرط کمتر است: {{min}}"
+    PLACING: "Ø¯Ø± Ø­Ø§Ù„ Ø«Ø¨Øª Ø´Ø±Ø·â€¦",
+    PLACE_GIFT: "Ø«Ø¨Øª Ø´Ø±Ø·",
+    PLACE_TON: "Ø«Ø¨Øª Ø´Ø±Ø· {{amount}}",
+    PLACE_BET_EMPTY: "Ù…Ø¨Ù„Øº Ø´Ø±Ø· Ø±Ø§ ÙˆØ§Ø±Ø¯ Ú©Ù†ÛŒØ¯",
+    EMPTY_GIFTS: "Ù‡Ø¯Ø§ÛŒØ§ Ø±Ø§ Ø¨Ù‡ @giftbackpack Ø¨ÙØ±Ø³ØªÛŒØ¯ Ùˆ Mines Ø¨Ø§Ø²ÛŒ Ú©Ù†ÛŒØ¯",
+    TAP_TO_START: "Ø¨Ø±Ø§ÛŒ Ø´Ø±ÙˆØ¹ Ø¯ÙˆØ±ØŒ Ø±ÙˆÛŒ ÛŒÚ© Ø®Ø§Ù†Ù‡ Ø¨Ø²Ù†ÛŒØ¯",
+    MIN_BET: "Ø­Ø¯Ø§Ù‚Ù„ Ø´Ø±Ø·: {{min}}",
+    MAX_BET: "Ø­Ø¯Ø§Ú©Ø«Ø± Ø´Ø±Ø·: {{max}}",
+    NOT_ENOUGH_BALANCE: "Ù…ÙˆØ¬ÙˆØ¯ÛŒ Ú©Ø§ÙÛŒ Ù†ÛŒØ³Øª",
+    GIFT_OVER_LIMIT: "Ø§Ø±Ø²Ø´ Ù‡Ø¯ÛŒÙ‡ Ø¨Ø±Ø§ÛŒ Ø§ÛŒÙ† ØªØ¹Ø¯Ø§Ø¯ Ù…ÛŒÙ† Ø§Ø² Ø­Ø¯Ø§Ú©Ø«Ø± Ù…Ø¬Ø§Ø² Ø¨ÛŒØ´ØªØ± Ø§Ø³Øª: {{max}}",
+    GIFT_UNDER_LIMIT: "Ø§Ø±Ø²Ø´ Ù‡Ø¯ÛŒÙ‡ Ø§Ø² Ø­Ø¯Ø§Ù‚Ù„ Ø´Ø±Ø· Ú©Ù…ØªØ± Ø§Ø³Øª: {{min}}"
 }
   , GIFT_MODAL$3 = {
-    TITLE: "شرط‌بندی با یک هدیه",
-    SELECT: "انتخاب هدیه",
-    SELECTED_one: "{{count}} هدیه انتخاب شد",
-    SELECTED_other: "{{count}} هدیه انتخاب شدند",
-    CONFIRM_one: "بازی با {{count}} هدیه · {{amount}} TON",
-    CONFIRM_other: "بازی با {{count}} هدیه · {{amount}} TON",
-    PRUNED_one: "{{count}} هدیه دیگر با محدودیت‌های شرط سازگار نیست",
-    PRUNED_other: "{{count}} هدیه دیگر با محدودیت‌های شرط سازگار نیست",
-    CONFIRM_ONE: "شرط {{amount}}",
-    PICK_ANOTHER: "هدیهٔ دیگری انتخاب کنید:"
+    TITLE: "Ø´Ø±Ø·â€ŒØ¨Ù†Ø¯ÛŒ Ø¨Ø§ ÛŒÚ© Ù‡Ø¯ÛŒÙ‡",
+    SELECT: "Ø§Ù†ØªØ®Ø§Ø¨ Ù‡Ø¯ÛŒÙ‡",
+    SELECTED_one: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ø´Ø¯",
+    SELECTED_other: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø§Ù†ØªØ®Ø§Ø¨ Ø´Ø¯Ù†Ø¯",
+    CONFIRM_one: "Ø¨Ø§Ø²ÛŒ Ø¨Ø§ {{count}} Ù‡Ø¯ÛŒÙ‡ Â· {{amount}} TON",
+    CONFIRM_other: "Ø¨Ø§Ø²ÛŒ Ø¨Ø§ {{count}} Ù‡Ø¯ÛŒÙ‡ Â· {{amount}} TON",
+    PRUNED_one: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø¯ÛŒÚ¯Ø± Ø¨Ø§ Ù…Ø­Ø¯ÙˆØ¯ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø´Ø±Ø· Ø³Ø§Ø²Ú¯Ø§Ø± Ù†ÛŒØ³Øª",
+    PRUNED_other: "{{count}} Ù‡Ø¯ÛŒÙ‡ Ø¯ÛŒÚ¯Ø± Ø¨Ø§ Ù…Ø­Ø¯ÙˆØ¯ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ø´Ø±Ø· Ø³Ø§Ø²Ú¯Ø§Ø± Ù†ÛŒØ³Øª",
+    CONFIRM_ONE: "Ø´Ø±Ø· {{amount}}",
+    PICK_ANOTHER: "Ù‡Ø¯ÛŒÙ‡Ù” Ø¯ÛŒÚ¯Ø±ÛŒ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯:"
 }
   , TOGGLE$3 = {
     TON: "GRAM",
-    GIFTS: "هدایا"
+    GIFTS: "Ù‡Ø¯Ø§ÛŒØ§"
 }
   , faMines = {
     HEADER: HEADER$4,
@@ -57299,46 +57299,46 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TOGGLE: TOGGLE$3
 }
   , APP$1 = {
-    ERROR_OCCURRED: "发生未处理的错误：",
-    CLOSE: "关闭",
-    ANIMATION_FAILED: "动画播放失败",
-    OR: "或",
-    VARIANT: "款式",
-    RANDOM: "随机",
-    FAILED_TO_LOAD: "加载失败",
-    LOADING_GIFTS: "正在加载礼物...",
-    THANK_YOU_PATIENCE: "感谢你的耐心等待！🙏"
+    ERROR_OCCURRED: "å‘ç”Ÿæœªå¤„ç†çš„é”™è¯¯ï¼š",
+    CLOSE: "å…³é—­",
+    ANIMATION_FAILED: "åŠ¨ç”»æ’­æ”¾å¤±è´¥",
+    OR: "æˆ–",
+    VARIANT: "æ¬¾å¼",
+    RANDOM: "éšæœº",
+    FAILED_TO_LOAD: "åŠ è½½å¤±è´¥",
+    LOADING_GIFTS: "æ­£åœ¨åŠ è½½ç¤¼ç‰©...",
+    THANK_YOU_PATIENCE: "æ„Ÿè°¢ä½ çš„è€å¿ƒç­‰å¾…ï¼ðŸ™"
 }
   , ACTIONS$a = {
-    HIDE: "隐藏",
-    SHOW: "显示",
-    CONTINUE: "继续"
+    HIDE: "éšè—",
+    SHOW: "æ˜¾ç¤º",
+    CONTINUE: "ç»§ç»­"
 }
   , LABELS$e = {
-    STEPS: "步骤",
-    NO_ATTRIBUTE_DATA: "暂无属性数据",
+    STEPS: "æ­¥éª¤",
+    NO_ATTRIBUTE_DATA: "æš‚æ— å±žæ€§æ•°æ®",
     TON: "TON",
-    GIFTS_AVAILABLE: "{{count}} 件礼物可用",
-    GIFTS_AVAILABLE_plural: "{{count}} 件礼物可用",
-    SORTED_BY: "排序：{{sort}}",
-    SORT_BY: "排序方式",
-    AVAILABLE_BALANCE: "可用余额",
-    PROFILE: "个人资料",
-    BET_AMOUNT: "下注金额",
-    SEARCH_GIFTS: "按名称搜索"
+    GIFTS_AVAILABLE: "{{count}} ä»¶ç¤¼ç‰©å¯ç”¨",
+    GIFTS_AVAILABLE_plural: "{{count}} ä»¶ç¤¼ç‰©å¯ç”¨",
+    SORTED_BY: "æŽ’åºï¼š{{sort}}",
+    SORT_BY: "æŽ’åºæ–¹å¼",
+    AVAILABLE_BALANCE: "å¯ç”¨ä½™é¢",
+    PROFILE: "ä¸ªäººèµ„æ–™",
+    BET_AMOUNT: "ä¸‹æ³¨é‡‘é¢",
+    SEARCH_GIFTS: "æŒ‰åç§°æœç´¢"
 }
   , SORT$1 = {
-    RECOMMENDED: "推荐",
-    RECENT: "最近添加",
-    PRICE_HIGH: "价格：从高到低",
-    PRICE_LOW: "价格：从低到高"
+    RECOMMENDED: "æŽ¨è",
+    RECENT: "æœ€è¿‘æ·»åŠ ",
+    PRICE_HIGH: "ä»·æ ¼ï¼šä»Žé«˜åˆ°ä½Ž",
+    PRICE_LOW: "ä»·æ ¼ï¼šä»Žä½Žåˆ°é«˜"
 }
   , STATUS$7 = {
-    PROCESSING: "处理中..."
+    PROCESSING: "å¤„ç†ä¸­..."
 }
   , PLACEHOLDERS$4 = {
-    ENTER_AMOUNT: "请输入金额...",
-    ENTER_PROMO_CODE: "请输入兑换码以开启宝箱",
+    ENTER_AMOUNT: "è¯·è¾“å…¥é‡‘é¢...",
+    ENTER_PROMO_CODE: "è¯·è¾“å…¥å…‘æ¢ç ä»¥å¼€å¯å®ç®±",
     TON_AMOUNT: "0 TON"
 }
   , NAVIGATION$1 = {
@@ -57346,17 +57346,17 @@ It's 100% free, and you can try your luck every 24 hours!`,
     UPGRADE: "UPGRADE"
 }
   , GIFT_EMPTY_STATE = {
-    NO_GIFTS_AVAILABLE: "暂无可用礼物",
-    SEND_GIFTS_TO: "将礼物发送至",
-    AND_PLAY: "即可开始游戏",
-    SEND_GIFTS: "发送礼物",
-    OPEN_BOXES_DESC: "开启宝箱，获取礼物",
-    OPEN_BOXES: "开启宝箱"
+    NO_GIFTS_AVAILABLE: "æš‚æ— å¯ç”¨ç¤¼ç‰©",
+    SEND_GIFTS_TO: "å°†ç¤¼ç‰©å‘é€è‡³",
+    AND_PLAY: "å³å¯å¼€å§‹æ¸¸æˆ",
+    SEND_GIFTS: "å‘é€ç¤¼ç‰©",
+    OPEN_BOXES_DESC: "å¼€å¯å®ç®±ï¼ŒèŽ·å–ç¤¼ç‰©",
+    OPEN_BOXES: "å¼€å¯å®ç®±"
 }
   , CAMPAIGN_REWARD = {
-    TITLE: "领取你的奖励！",
-    SUBTITLE: "可用于 Rocket 模式和 PVP 对战",
-    OK: "立即开始 🚀"
+    TITLE: "é¢†å–ä½ çš„å¥–åŠ±ï¼",
+    SUBTITLE: "å¯ç”¨äºŽ Rocket æ¨¡å¼å’Œ PVP å¯¹æˆ˜",
+    OK: "ç«‹å³å¼€å§‹ ðŸš€"
 }
   , zhCommon = {
     APP: APP$1,
@@ -57370,52 +57370,52 @@ It's 100% free, and you can try your luck every 24 hours!`,
     CAMPAIGN_REWARD
 }
   , NAVBAR = {
-    HOME: "首页",
-    BACKPACK: "背包",
-    INVITE: "邀请",
-    LEADERBOARD: "排行榜",
-    EARN: "任务"
+    HOME: "é¦–é¡µ",
+    BACKPACK: "èƒŒåŒ…",
+    INVITE: "é‚€è¯·",
+    LEADERBOARD: "æŽ’è¡Œæ¦œ",
+    EARN: "ä»»åŠ¡"
 }
   , zhNavigation = {
     NAVBAR
 }
   , STATUS$6 = {
-    OUT_OF_STOCK: "已售罄"
+    OUT_OF_STOCK: "å·²å”®ç½„"
 }
   , LABELS$d = {
-    NEW: "新",
-    FREE: "免费",
-    RESTOCK: "补货",
-    HASH_PREFIX: "哈希：",
-    HASH_EMPTY: "—",
+    NEW: "æ–°",
+    FREE: "å…è´¹",
+    RESTOCK: "è¡¥è´§",
+    HASH_PREFIX: "å“ˆå¸Œï¼š",
+    HASH_EMPTY: "â€”",
     ROCKET: "Rocket",
-    PROCESSING: "处理中...",
-    OUT_OF_STOCK: "已售罄",
-    NEW_BADGE: "新",
-    LIMITED: "限量"
+    PROCESSING: "å¤„ç†ä¸­...",
+    OUT_OF_STOCK: "å·²å”®ç½„",
+    NEW_BADGE: "æ–°",
+    LIMITED: "é™é‡"
 }
   , TAGS = {
-    RANDOM: "随机",
-    BALANCE: "余额",
-    VARIANT: "款式"
+    RANDOM: "éšæœº",
+    BALANCE: "ä½™é¢",
+    VARIANT: "æ¬¾å¼"
 }
   , BUTTONS$5 = {
-    COPY_HASH: "复制哈希值",
-    UPGRADE: "升级",
-    UPGRADE_GIFT: "升级礼物"
+    COPY_HASH: "å¤åˆ¶å“ˆå¸Œå€¼",
+    UPGRADE: "å‡çº§",
+    UPGRADE_GIFT: "å‡çº§ç¤¼ç‰©"
 }
   , MESSAGES$5 = {
-    HASH_COPIED: "已复制",
-    NOTHING_COLLECTION: "无"
+    HASH_COPIED: "å·²å¤åˆ¶",
+    NOTHING_COLLECTION: "æ— "
 }
   , SECTIONS$2 = {
-    POSSIBLE_OUTCOMES: "可能获得的物品",
-    DAILY_REWARDS: "每日奖励",
-    COLLECTIONS_IN_BOX: "此宝箱中的礼物系列"
+    POSSIBLE_OUTCOMES: "å¯èƒ½èŽ·å¾—çš„ç‰©å“",
+    DAILY_REWARDS: "æ¯æ—¥å¥–åŠ±",
+    COLLECTIONS_IN_BOX: "æ­¤å®ç®±ä¸­çš„ç¤¼ç‰©ç³»åˆ—"
 }
   , EMPTY$5 = {
-    NO_BOXES: "暂无可用宝箱",
-    CHECK_LATER: "稍后再来看看新的宝箱吧！"
+    NO_BOXES: "æš‚æ— å¯ç”¨å®ç®±",
+    CHECK_LATER: "ç¨åŽå†æ¥çœ‹çœ‹æ–°çš„å®ç®±å§ï¼"
 }
   , zhGifts = {
     STATUS: STATUS$6,
@@ -57427,53 +57427,53 @@ It's 100% free, and you can try your luck every 24 hours!`,
     EMPTY: EMPTY$5
 }
   , ACTIONS$9 = {
-    JOIN: "加入对战",
-    INCREASE: "加注",
-    PLACE_BET: "下注"
+    JOIN: "åŠ å…¥å¯¹æˆ˜",
+    INCREASE: "åŠ æ³¨",
+    PLACE_BET: "ä¸‹æ³¨"
 }
   , LABELS$c = {
-    WINNER: "获胜者",
-    PLAYERS: "玩家",
-    TOTAL_POOL: "总奖池",
+    WINNER: "èŽ·èƒœè€…",
+    PLAYERS: "çŽ©å®¶",
+    TOTAL_POOL: "æ€»å¥–æ± ",
     TON: "TON",
-    REWARDS: "奖励",
-    LAST_GAME: "上一局",
-    TOP_OF_THE_DAY: "今日最佳",
-    INCREASE_BET: "加注",
-    BET_PREVIEW: "下注预览",
-    CURRENT: "当前",
-    NEW_TOTAL: "新总额",
-    NEW_TOTAL_VALUE: "新总额：{{value}} TON",
-    NO_GIFTS_SELECTED: "未选择礼物",
-    GIFTS_SELECTED: "已选择 {{count}} 件礼物",
-    GIFTS_SELECTED_plural: "已选择 {{count}} 件礼物",
-    GAME_ID: "对局 #{{id}}",
+    REWARDS: "å¥–åŠ±",
+    LAST_GAME: "ä¸Šä¸€å±€",
+    TOP_OF_THE_DAY: "ä»Šæ—¥æœ€ä½³",
+    INCREASE_BET: "åŠ æ³¨",
+    BET_PREVIEW: "ä¸‹æ³¨é¢„è§ˆ",
+    CURRENT: "å½“å‰",
+    NEW_TOTAL: "æ–°æ€»é¢",
+    NEW_TOTAL_VALUE: "æ–°æ€»é¢ï¼š{{value}} TON",
+    NO_GIFTS_SELECTED: "æœªé€‰æ‹©ç¤¼ç‰©",
+    GIFTS_SELECTED: "å·²é€‰æ‹© {{count}} ä»¶ç¤¼ç‰©",
+    GIFTS_SELECTED_plural: "å·²é€‰æ‹© {{count}} ä»¶ç¤¼ç‰©",
+    GAME_ID: "å¯¹å±€ #{{id}}",
     EPIC: "EPIC",
     GIFT: "GIFT",
     PVP_LABEL: "PVP",
-    GAME_DETAILS: "对局详情",
-    TON_BET: "TON 下注",
-    BET_DETAILS: "下注详情",
-    RANDOM: "随机",
-    SELECT_GIFTS: "选择礼物：",
-    SELECT_MORE_GIFTS: "选择更多礼物：",
-    INCREASE_BY_TON: "加注 {{amount}} TON",
-    PLACE_TON_BET: "下注 {{amount}} TON",
-    WIN_CHANCE: "胜率 {{chance}}",
-    TON_PRIZE: "TON 奖励"
+    GAME_DETAILS: "å¯¹å±€è¯¦æƒ…",
+    TON_BET: "TON ä¸‹æ³¨",
+    BET_DETAILS: "ä¸‹æ³¨è¯¦æƒ…",
+    RANDOM: "éšæœº",
+    SELECT_GIFTS: "é€‰æ‹©ç¤¼ç‰©ï¼š",
+    SELECT_MORE_GIFTS: "é€‰æ‹©æ›´å¤šç¤¼ç‰©ï¼š",
+    INCREASE_BY_TON: "åŠ æ³¨ {{amount}} TON",
+    PLACE_TON_BET: "ä¸‹æ³¨ {{amount}} TON",
+    WIN_CHANCE: "èƒœçŽ‡ {{chance}}",
+    TON_PRIZE: "TON å¥–åŠ±"
 }
   , STATUS$5 = {
-    LOADING_USER_DATA: "正在加载用户数据...",
-    WAITING_FOR_PLAYERS: "等待玩家加入",
-    WAITING_FOR_MORE: "等待其他玩家加入",
-    INCREASING: "加注中...",
-    PLACING_BET: "下注中..."
+    LOADING_USER_DATA: "æ­£åœ¨åŠ è½½ç”¨æˆ·æ•°æ®...",
+    WAITING_FOR_PLAYERS: "ç­‰å¾…çŽ©å®¶åŠ å…¥",
+    WAITING_FOR_MORE: "ç­‰å¾…å…¶ä»–çŽ©å®¶åŠ å…¥",
+    INCREASING: "åŠ æ³¨ä¸­...",
+    PLACING_BET: "ä¸‹æ³¨ä¸­..."
 }
   , ERRORS$2 = {
-    BET_FAILED: "下注失败",
-    ROUND_IN_PROGRESS: "本轮进行中",
-    INSUFFICIENT_BALANCE: "余额不足",
-    ALREADY_IN_GAME: "你已在本轮下注"
+    BET_FAILED: "ä¸‹æ³¨å¤±è´¥",
+    ROUND_IN_PROGRESS: "æœ¬è½®è¿›è¡Œä¸­",
+    INSUFFICIENT_BALANCE: "ä½™é¢ä¸è¶³",
+    ALREADY_IN_GAME: "ä½ å·²åœ¨æœ¬è½®ä¸‹æ³¨"
 }
   , zhPvp = {
     ACTIONS: ACTIONS$9,
@@ -57483,54 +57483,54 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , APP_NAME = "Epic Gift"
   , ACTIONS$8 = {
-    PLACE_BET: "下注",
-    PLACE_BET_IN_ROCKET: "在 Rocket 游戏中下注",
-    PLACE_TON_BET: "使用 TON 下注",
-    PLACE_TON_BET_AMOUNT: "下注 {{amount}} TON",
-    CASHOUT: "兑现",
-    CANCEL: "取消下注",
-    SEND_GIFTS: "发送礼物",
-    SEND_GIFT: "发送礼物",
-    OPEN_BOXES: "开启宝箱"
+    PLACE_BET: "ä¸‹æ³¨",
+    PLACE_BET_IN_ROCKET: "åœ¨ Rocket æ¸¸æˆä¸­ä¸‹æ³¨",
+    PLACE_TON_BET: "ä½¿ç”¨ TON ä¸‹æ³¨",
+    PLACE_TON_BET_AMOUNT: "ä¸‹æ³¨ {{amount}} TON",
+    CASHOUT: "å…‘çŽ°",
+    CANCEL: "å–æ¶ˆä¸‹æ³¨",
+    SEND_GIFTS: "å‘é€ç¤¼ç‰©",
+    SEND_GIFT: "å‘é€ç¤¼ç‰©",
+    OPEN_BOXES: "å¼€å¯å®ç®±"
 }
   , LABELS$b = {
-    BET_AMOUNT: "下注金额",
-    BALANCE: "余额",
-    AVAILABLE_BALANCE: "可用余额",
-    YOUR_BET: "你的下注",
-    CASHED_OUT_AT: "兑现倍率",
-    AUTO_CASHOUT: "自动兑现",
-    AUTO_MULTIPLIER: "{{value}}x 自动兑现",
-    PLACING_BET: "下注中...",
-    SELLING: "出售中...",
-    SELL: "出售",
-    KEEP: "保留",
+    BET_AMOUNT: "ä¸‹æ³¨é‡‘é¢",
+    BALANCE: "ä½™é¢",
+    AVAILABLE_BALANCE: "å¯ç”¨ä½™é¢",
+    YOUR_BET: "ä½ çš„ä¸‹æ³¨",
+    CASHED_OUT_AT: "å…‘çŽ°å€çŽ‡",
+    AUTO_CASHOUT: "è‡ªåŠ¨å…‘çŽ°",
+    AUTO_MULTIPLIER: "{{value}}x è‡ªåŠ¨å…‘çŽ°",
+    PLACING_BET: "ä¸‹æ³¨ä¸­...",
+    SELLING: "å‡ºå”®ä¸­...",
+    SELL: "å‡ºå”®",
+    KEEP: "ä¿ç•™",
     ROCKET: "ROCKET",
-    ROCKET_REWARD: "Rocket 奖励！",
-    BALANCE_REWARD: "余额奖励",
-    HOT: "热门！",
-    CHOOSE_DIFFERENT_GIFT: "选择其他礼物：",
-    NO_GIFTS_AVAILABLE: "暂无可用礼物",
-    AND_PLAY_CRASH: "并玩 Rocket 游戏",
-    TO_USE_IN_CRASH: "用于 Rocket 游戏",
-    OPEN_BOXES_FOR_CRASH: "开启宝箱，获取可用于 Rocket 游戏的礼物",
-    OR: "或"
+    ROCKET_REWARD: "Rocket å¥–åŠ±ï¼",
+    BALANCE_REWARD: "ä½™é¢å¥–åŠ±",
+    HOT: "çƒ­é—¨ï¼",
+    CHOOSE_DIFFERENT_GIFT: "é€‰æ‹©å…¶ä»–ç¤¼ç‰©ï¼š",
+    NO_GIFTS_AVAILABLE: "æš‚æ— å¯ç”¨ç¤¼ç‰©",
+    AND_PLAY_CRASH: "å¹¶çŽ© Rocket æ¸¸æˆ",
+    TO_USE_IN_CRASH: "ç”¨äºŽ Rocket æ¸¸æˆ",
+    OPEN_BOXES_FOR_CRASH: "å¼€å¯å®ç®±ï¼ŒèŽ·å–å¯ç”¨äºŽ Rocket æ¸¸æˆçš„ç¤¼ç‰©",
+    OR: "æˆ–"
 }
   , TABS$2 = {
-    GIFTS: "礼物",
+    GIFTS: "ç¤¼ç‰©",
     TON: "TON"
 }
   , STATUS$4 = {
-    NO_PLAYERS_YET: "暂无玩家",
-    WAITING: "等待下一轮...",
-    WAITING_SHORT: "等待中...",
-    RECONNECTING: "正在重新连接游戏服务器…",
-    CONNECTING: "正在连接游戏服务器…",
-    POOR_CONNECTION: "连接不稳定，正在重新同步…"
+    NO_PLAYERS_YET: "æš‚æ— çŽ©å®¶",
+    WAITING: "ç­‰å¾…ä¸‹ä¸€è½®...",
+    WAITING_SHORT: "ç­‰å¾…ä¸­...",
+    RECONNECTING: "æ­£åœ¨é‡æ–°è¿žæŽ¥æ¸¸æˆæœåŠ¡å™¨â€¦",
+    CONNECTING: "æ­£åœ¨è¿žæŽ¥æ¸¸æˆæœåŠ¡å™¨â€¦",
+    POOR_CONNECTION: "è¿žæŽ¥ä¸ç¨³å®šï¼Œæ­£åœ¨é‡æ–°åŒæ­¥â€¦"
 }
   , PLACEHOLDERS$3 = {
-    TON_AMOUNT: "TON 金额",
-    AUTO_CASHOUT_MULTIPLIER: "自动兑现倍率"
+    TON_AMOUNT: "TON é‡‘é¢",
+    AUTO_CASHOUT_MULTIPLIER: "è‡ªåŠ¨å…‘çŽ°å€çŽ‡"
 }
   , zhCrash = {
     APP_NAME,
@@ -57544,51 +57544,51 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TON: "TON"
 }
   , ACTIONS$7 = {
-    TOP_UP: "充值",
-    WITHDRAW: "提取",
-    SELL_FOR: "出售可得",
-    UPGRADE: "升级"
+    TOP_UP: "å……å€¼",
+    WITHDRAW: "æå–",
+    SELL_FOR: "å‡ºå”®å¯å¾—",
+    UPGRADE: "å‡çº§"
 }
   , LABELS$a = {
-    BALANCE: "你的余额",
-    LOADING: "加载中..."
+    BALANCE: "ä½ çš„ä½™é¢",
+    LOADING: "åŠ è½½ä¸­..."
 }
   , TOP_UP = {
-    TITLE: "充值余额",
-    ACTION: "充值",
-    OTHER_CRYPTO: "其他加密货币",
+    TITLE: "å……å€¼ä½™é¢",
+    ACTION: "å……å€¼",
+    OTHER_CRYPTO: "å…¶ä»–åŠ å¯†è´§å¸",
     STARS: "Stars",
-    GIFTS: "礼物"
+    GIFTS: "ç¤¼ç‰©"
 }
   , WITHDRAW$1 = {
-    GIFT_WITHDRAWAL: "礼物提取",
-    CHOOSE_METHOD: "选择提取方式",
-    TO_TELEGRAM: "提取至 Telegram",
-    TO_TELEGRAM_DESC: "将礼物直接提取到你的 Telegram 账户",
-    COST: "提取费用：{{fee}} TON",
-    CONFIRM_COST: "支付 {{fee}} TON 提取礼物",
+    GIFT_WITHDRAWAL: "ç¤¼ç‰©æå–",
+    CHOOSE_METHOD: "é€‰æ‹©æå–æ–¹å¼",
+    TO_TELEGRAM: "æå–è‡³ Telegram",
+    TO_TELEGRAM_DESC: "å°†ç¤¼ç‰©ç›´æŽ¥æå–åˆ°ä½ çš„ Telegram è´¦æˆ·",
+    COST: "æå–è´¹ç”¨ï¼š{{fee}} TON",
+    CONFIRM_COST: "æ”¯ä»˜ {{fee}} TON æå–ç¤¼ç‰©",
     STATUSES: {
-        WITHDRAWAL_PROCESSING: "礼物将自动发送",
-        PROCESSING_WITHDRAWAL: "礼物将自动发送",
-        PROCESSING_DESC: "关闭窗口并等待礼物送达。",
-        PROCESSING_TO_DESC: "正在处理将礼物提取至 {{destination}} 的请求。",
-        WITHDRAWAL_SUCCESSFUL: "提取成功",
-        SUCCESSFUL_DESC: "你的礼物已成功发送至 {{destination}}。",
-        GIFT_DEPOSITED: "礼物已存入",
-        DEPOSITED_DESC: "礼物已存入，可进行提取。",
-        WITHDRAWAL_FAILED: "提取失败",
-        FAILED_DESC: "出现错误，请重试。如果问题持续存在，请联系客服。",
-        MESSAGE_REQUIRED: "需要发送消息",
-        MESSAGE_REQUIRED_DESC: "请向 @giftbackpack 机器人发送任意消息，以完成提取。",
-        MESSAGE_BOT_TOOLTIP: "请先向 @giftbackpack 机器人发送消息，以启用提取功能。",
-        FAILED_TOOLTIP: "上一次提取失败，请重试。",
-        CHECKING_STATUS: "正在检查状态",
-        CHECKING_STATUS_DESC: "正在检查提取状态...",
-        WITHDRAWAL_STATUS: "提取状态",
-        MESSAGE_BOT: "向 @giftbackpack 发消息",
-        TRY_AGAIN: "再试一次",
-        RETRY_WITHDRAWAL: "重新提取",
-        CONTINUE: "继续"
+        WITHDRAWAL_PROCESSING: "ç¤¼ç‰©å°†è‡ªåŠ¨å‘é€",
+        PROCESSING_WITHDRAWAL: "ç¤¼ç‰©å°†è‡ªåŠ¨å‘é€",
+        PROCESSING_DESC: "å…³é—­çª—å£å¹¶ç­‰å¾…ç¤¼ç‰©é€è¾¾ã€‚",
+        PROCESSING_TO_DESC: "æ­£åœ¨å¤„ç†å°†ç¤¼ç‰©æå–è‡³ {{destination}} çš„è¯·æ±‚ã€‚",
+        WITHDRAWAL_SUCCESSFUL: "æå–æˆåŠŸ",
+        SUCCESSFUL_DESC: "ä½ çš„ç¤¼ç‰©å·²æˆåŠŸå‘é€è‡³ {{destination}}ã€‚",
+        GIFT_DEPOSITED: "ç¤¼ç‰©å·²å­˜å…¥",
+        DEPOSITED_DESC: "ç¤¼ç‰©å·²å­˜å…¥ï¼Œå¯è¿›è¡Œæå–ã€‚",
+        WITHDRAWAL_FAILED: "æå–å¤±è´¥",
+        FAILED_DESC: "å‡ºçŽ°é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚å¦‚æžœé—®é¢˜æŒç»­å­˜åœ¨ï¼Œè¯·è”ç³»å®¢æœã€‚",
+        MESSAGE_REQUIRED: "éœ€è¦å‘é€æ¶ˆæ¯",
+        MESSAGE_REQUIRED_DESC: "è¯·å‘ @giftbackpack æœºå™¨äººå‘é€ä»»æ„æ¶ˆæ¯ï¼Œä»¥å®Œæˆæå–ã€‚",
+        MESSAGE_BOT_TOOLTIP: "è¯·å…ˆå‘ @giftbackpack æœºå™¨äººå‘é€æ¶ˆæ¯ï¼Œä»¥å¯ç”¨æå–åŠŸèƒ½ã€‚",
+        FAILED_TOOLTIP: "ä¸Šä¸€æ¬¡æå–å¤±è´¥ï¼Œè¯·é‡è¯•ã€‚",
+        CHECKING_STATUS: "æ­£åœ¨æ£€æŸ¥çŠ¶æ€",
+        CHECKING_STATUS_DESC: "æ­£åœ¨æ£€æŸ¥æå–çŠ¶æ€...",
+        WITHDRAWAL_STATUS: "æå–çŠ¶æ€",
+        MESSAGE_BOT: "å‘ @giftbackpack å‘æ¶ˆæ¯",
+        TRY_AGAIN: "å†è¯•ä¸€æ¬¡",
+        RETRY_WITHDRAWAL: "é‡æ–°æå–",
+        CONTINUE: "ç»§ç»­"
     }
 }
   , zhBalance = {
@@ -57599,119 +57599,119 @@ It's 100% free, and you can try your luck every 24 hours!`,
     WITHDRAW: WITHDRAW$1
 }
   , PVP = {
-    NOT_CONNECTED: "未连接游戏服务器",
-    UNABLE_TO_PLACE_BET: "无法下注，请尝试重新连接游戏服务器。"
+    NOT_CONNECTED: "æœªè¿žæŽ¥æ¸¸æˆæœåŠ¡å™¨",
+    UNABLE_TO_PLACE_BET: "æ— æ³•ä¸‹æ³¨ï¼Œè¯·å°è¯•é‡æ–°è¿žæŽ¥æ¸¸æˆæœåŠ¡å™¨ã€‚"
 }
   , UNBOX = {
-    INVALID_BOX_ID: "宝箱 ID 无效",
-    UNEXPECTED_ERROR: "发生意外错误",
-    PROMO_REQUIRED: "需要兑换码",
-    INVALID_PROMO: "兑换码无效",
-    PROMO_EXPIRED: "该兑换码已过期",
-    PROMO_USED: "该兑换码已使用",
-    OUT_OF_STOCK: "宝箱已售罄",
-    JOIN_CHANNEL_REQUIRED: "请先关注我们的 Telegram 频道，才能领取每日礼物。",
-    DEPOSIT_REQUIRED: "请至少充值 0.1 TON 后继续游戏。",
-    DEPOSIT1_REQUIRED: "请至少充值 1 TON 后继续游戏。",
-    INSUFFICIENT_STARS: "Stars 余额不足，无法开启此宝箱。",
-    TOO_FAST: "你刚刚开启过礼物，请稍后再试。",
-    DAILY_ALREADY_CLAIMED: "今日礼物已领取，请稍后再试。"
+    INVALID_BOX_ID: "å®ç®± ID æ— æ•ˆ",
+    UNEXPECTED_ERROR: "å‘ç”Ÿæ„å¤–é”™è¯¯",
+    PROMO_REQUIRED: "éœ€è¦å…‘æ¢ç ",
+    INVALID_PROMO: "å…‘æ¢ç æ— æ•ˆ",
+    PROMO_EXPIRED: "è¯¥å…‘æ¢ç å·²è¿‡æœŸ",
+    PROMO_USED: "è¯¥å…‘æ¢ç å·²ä½¿ç”¨",
+    OUT_OF_STOCK: "å®ç®±å·²å”®ç½„",
+    JOIN_CHANNEL_REQUIRED: "è¯·å…ˆå…³æ³¨æˆ‘ä»¬çš„ Telegram é¢‘é“ï¼Œæ‰èƒ½é¢†å–æ¯æ—¥ç¤¼ç‰©ã€‚",
+    DEPOSIT_REQUIRED: "è¯·è‡³å°‘å……å€¼ 0.1 TON åŽç»§ç»­æ¸¸æˆã€‚",
+    DEPOSIT1_REQUIRED: "è¯·è‡³å°‘å……å€¼ 1 TON åŽç»§ç»­æ¸¸æˆã€‚",
+    INSUFFICIENT_STARS: "Stars ä½™é¢ä¸è¶³ï¼Œæ— æ³•å¼€å¯æ­¤å®ç®±ã€‚",
+    TOO_FAST: "ä½ åˆšåˆšå¼€å¯è¿‡ç¤¼ç‰©ï¼Œè¯·ç¨åŽå†è¯•ã€‚",
+    DAILY_ALREADY_CLAIMED: "ä»Šæ—¥ç¤¼ç‰©å·²é¢†å–ï¼Œè¯·ç¨åŽå†è¯•ã€‚"
 }
   , UPGRADE = {
-    USER_NOT_FOUND: "未找到用户",
-    GIFT_NOT_UPGRADEABLE: "未找到该礼物或无法升级",
-    TARGET_NOT_FOUND: "未找到目标礼物系列",
-    RESOURCE_NOT_FOUND: "未找到资源",
-    GIFT_BUSY: "礼物正在用于其他操作",
-    TOO_FAST: "请稍后再试",
-    SERVER_ERROR: "发生服务器错误",
-    NETWORK_ERROR: "发生网络错误",
-    UNEXPECTED_ERROR: "发生意外错误",
-    PRICE_UNDER_REVIEW: "该礼物正在审核中，审核完成后即可升级。"
+    USER_NOT_FOUND: "æœªæ‰¾åˆ°ç”¨æˆ·",
+    GIFT_NOT_UPGRADEABLE: "æœªæ‰¾åˆ°è¯¥ç¤¼ç‰©æˆ–æ— æ³•å‡çº§",
+    TARGET_NOT_FOUND: "æœªæ‰¾åˆ°ç›®æ ‡ç¤¼ç‰©ç³»åˆ—",
+    RESOURCE_NOT_FOUND: "æœªæ‰¾åˆ°èµ„æº",
+    GIFT_BUSY: "ç¤¼ç‰©æ­£åœ¨ç”¨äºŽå…¶ä»–æ“ä½œ",
+    TOO_FAST: "è¯·ç¨åŽå†è¯•",
+    SERVER_ERROR: "å‘ç”ŸæœåŠ¡å™¨é”™è¯¯",
+    NETWORK_ERROR: "å‘ç”Ÿç½‘ç»œé”™è¯¯",
+    UNEXPECTED_ERROR: "å‘ç”Ÿæ„å¤–é”™è¯¯",
+    PRICE_UNDER_REVIEW: "è¯¥ç¤¼ç‰©æ­£åœ¨å®¡æ ¸ä¸­ï¼Œå®¡æ ¸å®ŒæˆåŽå³å¯å‡çº§ã€‚"
 }
   , TON = {
-    PROOF_PAYLOAD_FAILED: "获取 proof payload 失败",
-    PROOF_VERIFICATION_FAILED: "proof 验证失败",
-    PROOF_VERIFY_FAILED: "验证 proof 失败",
-    FETCH_BALANCE_FAILED: "获取余额失败",
-    WALLET_BALANCE_FAILED: "获取钱包余额失败"
+    PROOF_PAYLOAD_FAILED: "èŽ·å– proof payload å¤±è´¥",
+    PROOF_VERIFICATION_FAILED: "proof éªŒè¯å¤±è´¥",
+    PROOF_VERIFY_FAILED: "éªŒè¯ proof å¤±è´¥",
+    FETCH_BALANCE_FAILED: "èŽ·å–ä½™é¢å¤±è´¥",
+    WALLET_BALANCE_FAILED: "èŽ·å–é’±åŒ…ä½™é¢å¤±è´¥"
 }
   , TASKS = {
-    FETCH_FAILED: "加载任务失败",
-    COMPLETE_FAILED: "完成任务失败",
-    VERIFICATION_FAILED: "验证失败",
-    CHANNEL_VERIFY_FAILED: "验证频道关注状态失败",
-    CLAIM_FAILED: "领取任务奖励失败"
+    FETCH_FAILED: "åŠ è½½ä»»åŠ¡å¤±è´¥",
+    COMPLETE_FAILED: "å®Œæˆä»»åŠ¡å¤±è´¥",
+    VERIFICATION_FAILED: "éªŒè¯å¤±è´¥",
+    CHANNEL_VERIFY_FAILED: "éªŒè¯é¢‘é“å…³æ³¨çŠ¶æ€å¤±è´¥",
+    CLAIM_FAILED: "é¢†å–ä»»åŠ¡å¥–åŠ±å¤±è´¥"
 }
   , RATE = {
-    FETCH_FAILED: "获取 TON 汇率失败"
+    FETCH_FAILED: "èŽ·å– TON æ±‡çŽ‡å¤±è´¥"
 }
   , LEADERBOARD = {
     NO_ACTIVE: "no_active_leaderboard",
-    NOT_FOUND: "未找到排行榜",
-    UNAUTHORIZED: "未授权访问",
-    SERVER_ERROR: "发生服务器错误",
-    NETWORK_ERROR: "发生网络错误",
-    UNEXPECTED_ERROR: "发生意外错误",
-    USER_NOT_FOUND: "排行榜中未找到该用户"
+    NOT_FOUND: "æœªæ‰¾åˆ°æŽ’è¡Œæ¦œ",
+    UNAUTHORIZED: "æœªæŽˆæƒè®¿é—®",
+    SERVER_ERROR: "å‘ç”ŸæœåŠ¡å™¨é”™è¯¯",
+    NETWORK_ERROR: "å‘ç”Ÿç½‘ç»œé”™è¯¯",
+    UNEXPECTED_ERROR: "å‘ç”Ÿæ„å¤–é”™è¯¯",
+    USER_NOT_FOUND: "æŽ’è¡Œæ¦œä¸­æœªæ‰¾åˆ°è¯¥ç”¨æˆ·"
 }
   , GIVEAWAY = {
-    UNAUTHORIZED: "未授权访问",
-    SERVER_ERROR: "发生服务器错误",
-    NETWORK_ERROR: "发生网络错误",
-    UNEXPECTED_ERROR: "发生意外错误",
-    NOT_FOUND: "未找到该抽奖",
-    ALREADY_JOINED: "已参与本次抽奖",
-    REQUIREMENTS_NOT_MET: "未满足参与条件",
-    NOT_ENOUGH_TICKETS: "抽奖券不足",
-    BELOW_MIN_ENTRY: "投入的抽奖券少于最低要求",
-    VIP_LEVEL_TOO_LOW: "本次抽奖需要更高的 VIP 等级",
-    ENTER_GIVEAWAY_FAILED: "参与抽奖失败",
-    ADD_TICKETS_FAILED: "添加抽奖券失败"
+    UNAUTHORIZED: "æœªæŽˆæƒè®¿é—®",
+    SERVER_ERROR: "å‘ç”ŸæœåŠ¡å™¨é”™è¯¯",
+    NETWORK_ERROR: "å‘ç”Ÿç½‘ç»œé”™è¯¯",
+    UNEXPECTED_ERROR: "å‘ç”Ÿæ„å¤–é”™è¯¯",
+    NOT_FOUND: "æœªæ‰¾åˆ°è¯¥æŠ½å¥–",
+    ALREADY_JOINED: "å·²å‚ä¸Žæœ¬æ¬¡æŠ½å¥–",
+    REQUIREMENTS_NOT_MET: "æœªæ»¡è¶³å‚ä¸Žæ¡ä»¶",
+    NOT_ENOUGH_TICKETS: "æŠ½å¥–åˆ¸ä¸è¶³",
+    BELOW_MIN_ENTRY: "æŠ•å…¥çš„æŠ½å¥–åˆ¸å°‘äºŽæœ€ä½Žè¦æ±‚",
+    VIP_LEVEL_TOO_LOW: "æœ¬æ¬¡æŠ½å¥–éœ€è¦æ›´é«˜çš„ VIP ç­‰çº§",
+    ENTER_GIVEAWAY_FAILED: "å‚ä¸ŽæŠ½å¥–å¤±è´¥",
+    ADD_TICKETS_FAILED: "æ·»åŠ æŠ½å¥–åˆ¸å¤±è´¥"
 }
   , GIFT = {
-    NO_UPGRADE_TARGETS: "未找到该礼物，或暂无可用的升级目标",
-    UNAUTHORIZED: "未授权访问",
-    SERVER_ERROR: "发生服务器错误",
-    NETWORK_ERROR: "发生网络错误",
-    UNEXPECTED_ERROR: "发生意外错误",
-    DEPOSIT_PRICES_NOT_FOUND: "未找到充值价格",
-    TOP_GIFTS_NOT_FOUND: "未找到热门礼物",
-    NEEDS_PM: "请先给我们的礼物发送账号（@giftbackpack）发消息，以启用提取功能。",
-    RATE_UNAVAILABLE: "汇率暂不可用，请稍后再试。",
-    PRICE_UNDER_REVIEW: "该礼物正在审核中，审核完成后即可出售。"
+    NO_UPGRADE_TARGETS: "æœªæ‰¾åˆ°è¯¥ç¤¼ç‰©ï¼Œæˆ–æš‚æ— å¯ç”¨çš„å‡çº§ç›®æ ‡",
+    UNAUTHORIZED: "æœªæŽˆæƒè®¿é—®",
+    SERVER_ERROR: "å‘ç”ŸæœåŠ¡å™¨é”™è¯¯",
+    NETWORK_ERROR: "å‘ç”Ÿç½‘ç»œé”™è¯¯",
+    UNEXPECTED_ERROR: "å‘ç”Ÿæ„å¤–é”™è¯¯",
+    DEPOSIT_PRICES_NOT_FOUND: "æœªæ‰¾åˆ°å……å€¼ä»·æ ¼",
+    TOP_GIFTS_NOT_FOUND: "æœªæ‰¾åˆ°çƒ­é—¨ç¤¼ç‰©",
+    NEEDS_PM: "è¯·å…ˆç»™æˆ‘ä»¬çš„ç¤¼ç‰©å‘é€è´¦å·ï¼ˆ@giftbackpackï¼‰å‘æ¶ˆæ¯ï¼Œä»¥å¯ç”¨æå–åŠŸèƒ½ã€‚",
+    RATE_UNAVAILABLE: "æ±‡çŽ‡æš‚ä¸å¯ç”¨ï¼Œè¯·ç¨åŽå†è¯•ã€‚",
+    PRICE_UNDER_REVIEW: "è¯¥ç¤¼ç‰©æ­£åœ¨å®¡æ ¸ä¸­ï¼Œå®¡æ ¸å®ŒæˆåŽå³å¯å‡ºå”®ã€‚"
 }
   , USER = {
-    FETCH_FAILED: "加载用户数据失败",
-    BALANCE_UPDATE_FAILED: "更新余额失败",
-    LOCALE_UPDATE_FAILED: "更新语言设置失败"
+    FETCH_FAILED: "åŠ è½½ç”¨æˆ·æ•°æ®å¤±è´¥",
+    BALANCE_UPDATE_FAILED: "æ›´æ–°ä½™é¢å¤±è´¥",
+    LOCALE_UPDATE_FAILED: "æ›´æ–°è¯­è¨€è®¾ç½®å¤±è´¥"
 }
   , REFERRAL = {
-    FETCH_FAILED: "加载受邀好友失败",
-    EARNED_FETCH_FAILED: "获取累计收益失败",
-    TOO_MANY_REQUESTS: "请求过于频繁，请稍后再试"
+    FETCH_FAILED: "åŠ è½½å—é‚€å¥½å‹å¤±è´¥",
+    EARNED_FETCH_FAILED: "èŽ·å–ç´¯è®¡æ”¶ç›Šå¤±è´¥",
+    TOO_MANY_REQUESTS: "è¯·æ±‚è¿‡äºŽé¢‘ç¹ï¼Œè¯·ç¨åŽå†è¯•"
 }
   , TRANSACTION = {
-    CREATE_FAILED: "创建交易失败"
+    CREATE_FAILED: "åˆ›å»ºäº¤æ˜“å¤±è´¥"
 }
   , PAYMENT = {
-    CREATE_FAILED: "创建支付失败"
+    CREATE_FAILED: "åˆ›å»ºæ”¯ä»˜å¤±è´¥"
 }
   , APP = {
-    TELEGRAM_REQUIRED: "此应用必须在 Telegram 中打开",
-    SESSION_EXPIRED_TITLE: "会话已过期",
-    SESSION_EXPIRED_MESSAGE: "关闭应用，然后从 Telegram 机器人聊天中重新打开。",
-    SESSION_EXPIRED_HINT: "如果仍无法解决，请彻底关闭 Telegram（向上滑动并从多任务界面中移除），然后重新打开。",
-    SESSION_EXPIRED_BUTTON: "关闭应用",
-    CONNECTION_ERROR_TITLE: "连接问题",
-    CONNECTION_ERROR_MESSAGE: "无法连接服务器。请检查网络连接后重试。",
-    CONNECTION_ERROR_HINT: "如果仍无法解决，请尝试切换网络或重新打开应用。",
-    CONNECTION_ERROR_RETRY: "重试",
-    CONNECTION_ERROR_COPY: "复制错误详情",
-    CONNECTION_ERROR_COPIED: "已复制"
+    TELEGRAM_REQUIRED: "æ­¤åº”ç”¨å¿…é¡»åœ¨ Telegram ä¸­æ‰“å¼€",
+    SESSION_EXPIRED_TITLE: "ä¼šè¯å·²è¿‡æœŸ",
+    SESSION_EXPIRED_MESSAGE: "å…³é—­åº”ç”¨ï¼Œç„¶åŽä»Ž Telegram æœºå™¨äººèŠå¤©ä¸­é‡æ–°æ‰“å¼€ã€‚",
+    SESSION_EXPIRED_HINT: "å¦‚æžœä»æ— æ³•è§£å†³ï¼Œè¯·å½»åº•å…³é—­ Telegramï¼ˆå‘ä¸Šæ»‘åŠ¨å¹¶ä»Žå¤šä»»åŠ¡ç•Œé¢ä¸­ç§»é™¤ï¼‰ï¼Œç„¶åŽé‡æ–°æ‰“å¼€ã€‚",
+    SESSION_EXPIRED_BUTTON: "å…³é—­åº”ç”¨",
+    CONNECTION_ERROR_TITLE: "è¿žæŽ¥é—®é¢˜",
+    CONNECTION_ERROR_MESSAGE: "æ— æ³•è¿žæŽ¥æœåŠ¡å™¨ã€‚è¯·æ£€æŸ¥ç½‘ç»œè¿žæŽ¥åŽé‡è¯•ã€‚",
+    CONNECTION_ERROR_HINT: "å¦‚æžœä»æ— æ³•è§£å†³ï¼Œè¯·å°è¯•åˆ‡æ¢ç½‘ç»œæˆ–é‡æ–°æ‰“å¼€åº”ç”¨ã€‚",
+    CONNECTION_ERROR_RETRY: "é‡è¯•",
+    CONNECTION_ERROR_COPY: "å¤åˆ¶é”™è¯¯è¯¦æƒ…",
+    CONNECTION_ERROR_COPIED: "å·²å¤åˆ¶"
 }
   , LIVE_FEED = {
-    FETCH_FAILED: "加载实时掉落记录失败"
+    FETCH_FAILED: "åŠ è½½å®žæ—¶æŽ‰è½è®°å½•å¤±è´¥"
 }
   , zhErrors = {
     PVP,
@@ -57732,55 +57732,55 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , REWARD = {
     TITLES: {
-        CONGRATULATIONS: "恭喜！",
-        BALANCE_INCREASED: "余额已增加！",
-        UPGRADE_SUCCESSFUL: "升级成功！"
+        CONGRATULATIONS: "æ­å–œï¼",
+        BALANCE_INCREASED: "ä½™é¢å·²å¢žåŠ ï¼",
+        UPGRADE_SUCCESSFUL: "å‡çº§æˆåŠŸï¼"
     },
     DESCRIPTIONS: {
-        RECEIVED_GIFT: "你获得了一件特别礼物",
-        BALANCE_UPDATED: "你的余额已更新",
-        GIFT_UPGRADED: "你的礼物已升级！"
+        RECEIVED_GIFT: "ä½ èŽ·å¾—äº†ä¸€ä»¶ç‰¹åˆ«ç¤¼ç‰©",
+        BALANCE_UPDATED: "ä½ çš„ä½™é¢å·²æ›´æ–°",
+        GIFT_UPGRADED: "ä½ çš„ç¤¼ç‰©å·²å‡çº§ï¼"
     },
     ACTIONS: {
-        UPGRADE_AGAIN: "再次升级！"
+        UPGRADE_AGAIN: "å†æ¬¡å‡çº§ï¼"
     }
 }
   , NOTHING = {
-    TITLE: "这次没中奖",
-    SUBTITLE: "祝你下次好运！",
-    DESCRIPTION: "别放弃！再试一次，说不定就能中大奖！",
-    MAYBE_LATER: "稍后再说",
-    TRY_AGAIN_FOR: "花费 {{price}} 再试一次"
+    TITLE: "è¿™æ¬¡æ²¡ä¸­å¥–",
+    SUBTITLE: "ç¥ä½ ä¸‹æ¬¡å¥½è¿ï¼",
+    DESCRIPTION: "åˆ«æ”¾å¼ƒï¼å†è¯•ä¸€æ¬¡ï¼Œè¯´ä¸å®šå°±èƒ½ä¸­å¤§å¥–ï¼",
+    MAYBE_LATER: "ç¨åŽå†è¯´",
+    TRY_AGAIN_FOR: "èŠ±è´¹ {{price}} å†è¯•ä¸€æ¬¡"
 }
   , WITHDRAW = {
-    TRY_AGAIN: "再试一次"
+    TRY_AGAIN: "å†è¯•ä¸€æ¬¡"
 }
   , PM_REQUIRED = {
-    TITLE: "还差一步",
-    DESCRIPTION: "要接收礼物，你需要先给我们的礼物转移机器人发送任意消息。这是 Telegram 的一次性要求。",
-    MESSAGE_BOT: "向 @giftbackpack 发消息",
-    MESSAGE_BOT_TITLE: "请先给我们的机器人发消息",
-    DO_IT_LATER: "稍后再做"
+    TITLE: "è¿˜å·®ä¸€æ­¥",
+    DESCRIPTION: "è¦æŽ¥æ”¶ç¤¼ç‰©ï¼Œä½ éœ€è¦å…ˆç»™æˆ‘ä»¬çš„ç¤¼ç‰©è½¬ç§»æœºå™¨äººå‘é€ä»»æ„æ¶ˆæ¯ã€‚è¿™æ˜¯ Telegram çš„ä¸€æ¬¡æ€§è¦æ±‚ã€‚",
+    MESSAGE_BOT: "å‘ @giftbackpack å‘æ¶ˆæ¯",
+    MESSAGE_BOT_TITLE: "è¯·å…ˆç»™æˆ‘ä»¬çš„æœºå™¨äººå‘æ¶ˆæ¯",
+    DO_IT_LATER: "ç¨åŽå†åš"
 }
   , STARS_LOCK = {
-    TITLE: "礼物提取暂不可用",
-    DESCRIPTION: `每次使用 Telegram Stars 充值后都会进入 72 小时锁定期。在此期间，礼物提取暂不可用。锁定期结束后会自动恢复。
+    TITLE: "ç¤¼ç‰©æå–æš‚ä¸å¯ç”¨",
+    DESCRIPTION: `æ¯æ¬¡ä½¿ç”¨ Telegram Stars å……å€¼åŽéƒ½ä¼šè¿›å…¥ 72 å°æ—¶é”å®šæœŸã€‚åœ¨æ­¤æœŸé—´ï¼Œç¤¼ç‰©æå–æš‚ä¸å¯ç”¨ã€‚é”å®šæœŸç»“æŸåŽä¼šè‡ªåŠ¨æ¢å¤ã€‚
 
-需要帮助？请联系客服：@epic_gift_support`,
-    OK: "知道了",
-    SUPPORT: "联系客服"
+éœ€è¦å¸®åŠ©ï¼Ÿè¯·è”ç³»å®¢æœï¼š@epic_gift_support`,
+    OK: "çŸ¥é“äº†",
+    SUPPORT: "è”ç³»å®¢æœ"
 }
   , PVP_STARS_LOCK = {
-    TITLE: "PVP 暂不可用",
-    DESCRIPTION: `每次使用 Telegram Stars 充值后都会进入 72 小时锁定期。在此期间，PVP 对战暂不可用。锁定期结束后会自动恢复。
+    TITLE: "PVP æš‚ä¸å¯ç”¨",
+    DESCRIPTION: `æ¯æ¬¡ä½¿ç”¨ Telegram Stars å……å€¼åŽéƒ½ä¼šè¿›å…¥ 72 å°æ—¶é”å®šæœŸã€‚åœ¨æ­¤æœŸé—´ï¼ŒPVP å¯¹æˆ˜æš‚ä¸å¯ç”¨ã€‚é”å®šæœŸç»“æŸåŽä¼šè‡ªåŠ¨æ¢å¤ã€‚
 
-需要帮助？请联系客服：@epic_gift_support`
+éœ€è¦å¸®åŠ©ï¼Ÿè¯·è”ç³»å®¢æœï¼š@epic_gift_support`
 }
   , PVP_RESTRICTED = {
-    TITLE: "PVP 暂不可用",
-    DESCRIPTION: `你的账户暂时无法使用 PVP 对战。
+    TITLE: "PVP æš‚ä¸å¯ç”¨",
+    DESCRIPTION: `ä½ çš„è´¦æˆ·æš‚æ—¶æ— æ³•ä½¿ç”¨ PVP å¯¹æˆ˜ã€‚
 
-如需了解详情，请联系客服：@epic_gift_support`
+å¦‚éœ€äº†è§£è¯¦æƒ…ï¼Œè¯·è”ç³»å®¢æœï¼š@epic_gift_support`
 }
   , zhModals = {
     REWARD,
@@ -57791,67 +57791,67 @@ It's 100% free, and you can try your luck every 24 hours!`,
     PVP_STARS_LOCK,
     PVP_RESTRICTED
 }
-  , BOX_SUFFIX = "宝箱"
+  , BOX_SUFFIX = "å®ç®±"
   , BOOST = {
-    LABEL: "加成",
-    HINT: "加成越高，掉落越好"
+    LABEL: "åŠ æˆ",
+    HINT: "åŠ æˆè¶Šé«˜ï¼ŒæŽ‰è½è¶Šå¥½"
 }
-  , CHECK_COMMUNITY = "查看我们的社区，获取最新兑换码"
-  , LOADING = "加载中..."
+  , CHECK_COMMUNITY = "æŸ¥çœ‹æˆ‘ä»¬çš„ç¤¾åŒºï¼ŒèŽ·å–æœ€æ–°å…‘æ¢ç "
+  , LOADING = "åŠ è½½ä¸­..."
   , DAILY = {
-    TITLE: "每日宝箱",
-    COME_BACK_IN: "距下次开启还有",
-    SKIP_ANIMATION: "跳过动画",
-    CHECKING_AVAILABILITY: "正在检查可用性...",
-    NOT_AVAILABLE: "不可用",
-    OPEN_DAILY_BOX: "开启每日宝箱",
-    ANTI_ABUSE: "防滥用机制",
-    JOIN_COMMUNITY: "加入社区",
-    LATEST_TOP_DROPS: "最新热门掉落",
-    HOT: "热门"
+    TITLE: "æ¯æ—¥å®ç®±",
+    COME_BACK_IN: "è·ä¸‹æ¬¡å¼€å¯è¿˜æœ‰",
+    SKIP_ANIMATION: "è·³è¿‡åŠ¨ç”»",
+    CHECKING_AVAILABILITY: "æ­£åœ¨æ£€æŸ¥å¯ç”¨æ€§...",
+    NOT_AVAILABLE: "ä¸å¯ç”¨",
+    OPEN_DAILY_BOX: "å¼€å¯æ¯æ—¥å®ç®±",
+    ANTI_ABUSE: "é˜²æ»¥ç”¨æœºåˆ¶",
+    JOIN_COMMUNITY: "åŠ å…¥ç¤¾åŒº",
+    LATEST_TOP_DROPS: "æœ€æ–°çƒ­é—¨æŽ‰è½",
+    HOT: "çƒ­é—¨"
 }
   , ACTIONS$6 = {
-    OPEN: "花费 {{price}} TON 开启",
-    OPEN_FREE_BOX: "开启免费宝箱",
-    TOP_UP_BALANCE: "充值余额",
-    PROCESSING: "处理中...",
-    SKIP: "跳过",
-    DEPOSIT_AND_CONTINUE: "充值 1 TON 并继续",
-    DO_LATER: "稍后再做",
-    MAYBE_LATER: "稍后再说",
-    DEPOSIT_ACTIVATE: "充值并激活",
-    QUICK_STARS: "充值"
+    OPEN: "èŠ±è´¹ {{price}} TON å¼€å¯",
+    OPEN_FREE_BOX: "å¼€å¯å…è´¹å®ç®±",
+    TOP_UP_BALANCE: "å……å€¼ä½™é¢",
+    PROCESSING: "å¤„ç†ä¸­...",
+    SKIP: "è·³è¿‡",
+    DEPOSIT_AND_CONTINUE: "å……å€¼ 1 TON å¹¶ç»§ç»­",
+    DO_LATER: "ç¨åŽå†åš",
+    MAYBE_LATER: "ç¨åŽå†è¯´",
+    DEPOSIT_ACTIVATE: "å……å€¼å¹¶æ¿€æ´»",
+    QUICK_STARS: "å……å€¼"
 }
   , DEPOSIT_MODAL = {
-    TITLE: "验证",
-    ANTI_BOT_TITLE: "防机器人机制",
-    DESCRIPTION: "检测到可疑活动。为了继续游戏并保护社区免受机器人滥用，请完成激活。",
-    ACTIVATION_REQUIRED: "需要激活",
-    ACTIVATION_TEXT: "进行任意充值，以验证你是真实用户。最低充值金额为 <bold>0.1 TON</bold>。",
-    FOOTER: "这是一次性验证，旨在确保所有用户都能公平游戏。"
+    TITLE: "éªŒè¯",
+    ANTI_BOT_TITLE: "é˜²æœºå™¨äººæœºåˆ¶",
+    DESCRIPTION: "æ£€æµ‹åˆ°å¯ç–‘æ´»åŠ¨ã€‚ä¸ºäº†ç»§ç»­æ¸¸æˆå¹¶ä¿æŠ¤ç¤¾åŒºå…å—æœºå™¨äººæ»¥ç”¨ï¼Œè¯·å®Œæˆæ¿€æ´»ã€‚",
+    ACTIVATION_REQUIRED: "éœ€è¦æ¿€æ´»",
+    ACTIVATION_TEXT: "è¿›è¡Œä»»æ„å……å€¼ï¼Œä»¥éªŒè¯ä½ æ˜¯çœŸå®žç”¨æˆ·ã€‚æœ€ä½Žå……å€¼é‡‘é¢ä¸º <bold>0.1 TON</bold>ã€‚",
+    FOOTER: "è¿™æ˜¯ä¸€æ¬¡æ€§éªŒè¯ï¼Œæ—¨åœ¨ç¡®ä¿æ‰€æœ‰ç”¨æˆ·éƒ½èƒ½å…¬å¹³æ¸¸æˆã€‚"
 }
   , DEPOSIT_1_MODAL = {
-    SECURITY_CHECK: "增强安全检查",
-    DESCRIPTION: "检测到多次可疑活动。为了保护我们的平台并确保所有用户都能公平游戏，需要进行进一步验证。",
-    VERIFICATION_REQUIRED: "需要进一步验证",
-    VERIFICATION_TEXT: "请至少充值 <bold>1 TON</bold>，以继续游戏并帮助我们为所有用户维护安全的环境。",
-    FOOTER: "此项进一步验证有助于防止滥用并维护平台安全与正常运行。"
+    SECURITY_CHECK: "å¢žå¼ºå®‰å…¨æ£€æŸ¥",
+    DESCRIPTION: "æ£€æµ‹åˆ°å¤šæ¬¡å¯ç–‘æ´»åŠ¨ã€‚ä¸ºäº†ä¿æŠ¤æˆ‘ä»¬çš„å¹³å°å¹¶ç¡®ä¿æ‰€æœ‰ç”¨æˆ·éƒ½èƒ½å…¬å¹³æ¸¸æˆï¼Œéœ€è¦è¿›è¡Œè¿›ä¸€æ­¥éªŒè¯ã€‚",
+    VERIFICATION_REQUIRED: "éœ€è¦è¿›ä¸€æ­¥éªŒè¯",
+    VERIFICATION_TEXT: "è¯·è‡³å°‘å……å€¼ <bold>1 TON</bold>ï¼Œä»¥ç»§ç»­æ¸¸æˆå¹¶å¸®åŠ©æˆ‘ä»¬ä¸ºæ‰€æœ‰ç”¨æˆ·ç»´æŠ¤å®‰å…¨çš„çŽ¯å¢ƒã€‚",
+    FOOTER: "æ­¤é¡¹è¿›ä¸€æ­¥éªŒè¯æœ‰åŠ©äºŽé˜²æ­¢æ»¥ç”¨å¹¶ç»´æŠ¤å¹³å°å®‰å…¨ä¸Žæ­£å¸¸è¿è¡Œã€‚"
 }
   , CHANNEL_MODAL = {
-    TITLE: "需要关注频道后才能继续",
-    DESCRIPTION: "如需解锁每日宝箱并及时了解最新动态，请关注我们的官方 Telegram 频道。",
-    WHY_JOIN: "为什么要关注我们的频道？",
-    BENEFIT_UPDATES: "最新动态与公告",
-    BENEFIT_PROMOS: "专属兑换码与抽奖活动",
-    BENEFIT_ACCESS: "解锁每日宝箱",
-    BENEFIT_EARLY: "优先体验新功能",
-    JOIN_BUTTON: "关注 @epic_gift_official",
-    FOOTER: "关注后，请返回并重新尝试开启每日宝箱"
+    TITLE: "éœ€è¦å…³æ³¨é¢‘é“åŽæ‰èƒ½ç»§ç»­",
+    DESCRIPTION: "å¦‚éœ€è§£é”æ¯æ—¥å®ç®±å¹¶åŠæ—¶äº†è§£æœ€æ–°åŠ¨æ€ï¼Œè¯·å…³æ³¨æˆ‘ä»¬çš„å®˜æ–¹ Telegram é¢‘é“ã€‚",
+    WHY_JOIN: "ä¸ºä»€ä¹ˆè¦å…³æ³¨æˆ‘ä»¬çš„é¢‘é“ï¼Ÿ",
+    BENEFIT_UPDATES: "æœ€æ–°åŠ¨æ€ä¸Žå…¬å‘Š",
+    BENEFIT_PROMOS: "ä¸“å±žå…‘æ¢ç ä¸ŽæŠ½å¥–æ´»åŠ¨",
+    BENEFIT_ACCESS: "è§£é”æ¯æ—¥å®ç®±",
+    BENEFIT_EARLY: "ä¼˜å…ˆä½“éªŒæ–°åŠŸèƒ½",
+    JOIN_BUTTON: "å…³æ³¨ @epic_gift_official",
+    FOOTER: "å…³æ³¨åŽï¼Œè¯·è¿”å›žå¹¶é‡æ–°å°è¯•å¼€å¯æ¯æ—¥å®ç®±"
 }
   , PROMO_ERRORS = {
-    SUBSCRIBE_TO_CHANNEL: "请先关注 {{channelName}}，才能使用此兑换码",
-    SUBSCRIBE_TO_REQUIRED_CHANNEL: "请先关注指定频道，才能使用此兑换码。",
-    FAILED_TO_UNBOX: "开启礼物失败"
+    SUBSCRIBE_TO_CHANNEL: "è¯·å…ˆå…³æ³¨ {{channelName}}ï¼Œæ‰èƒ½ä½¿ç”¨æ­¤å…‘æ¢ç ",
+    SUBSCRIBE_TO_REQUIRED_CHANNEL: "è¯·å…ˆå…³æ³¨æŒ‡å®šé¢‘é“ï¼Œæ‰èƒ½ä½¿ç”¨æ­¤å…‘æ¢ç ã€‚",
+    FAILED_TO_UNBOX: "å¼€å¯ç¤¼ç‰©å¤±è´¥"
 }
   , zhOpenGift = {
     BOX_SUFFIX,
@@ -57865,41 +57865,41 @@ It's 100% free, and you can try your luck every 24 hours!`,
     CHANNEL_MODAL,
     PROMO_ERRORS
 }
-  , EARN_HEADER = "邀请好友"
+  , EARN_HEADER = "é‚€è¯·å¥½å‹"
   , ACTIONS$5 = {
-    INVITE_FRIENDS: "邀请好友",
-    COPY_REFERRAL_LINK: "复制链接"
+    INVITE_FRIENDS: "é‚€è¯·å¥½å‹",
+    COPY_REFERRAL_LINK: "å¤åˆ¶é“¾æŽ¥"
 }
   , SECTIONS$1 = {
-    MY_INVITES: "我的受邀好友"
+    MY_INVITES: "æˆ‘çš„å—é‚€å¥½å‹"
 }
   , LABELS$9 = {
-    TOTAL_EARNED: "累计已赚取",
-    EARNED_TODAY: "今日已赚取",
-    PER_INVITE_REWARD: "<b>每邀请一位好友，额外获得</b><badge><icon/>{{count}}</badge><b>张抽奖券</b>",
-    DAILY_LIMIT: "但每天最多 {{cap}}",
-    UP_TO: "最高可获得",
-    ACCRUAL_NOTE: "按好友充值金额计算"
+    TOTAL_EARNED: "ç´¯è®¡å·²èµšå–",
+    EARNED_TODAY: "ä»Šæ—¥å·²èµšå–",
+    PER_INVITE_REWARD: "<b>æ¯é‚€è¯·ä¸€ä½å¥½å‹ï¼Œé¢å¤–èŽ·å¾—</b><badge><icon/>{{count}}</badge><b>å¼ æŠ½å¥–åˆ¸</b>",
+    DAILY_LIMIT: "ä½†æ¯å¤©æœ€å¤š {{cap}}",
+    UP_TO: "æœ€é«˜å¯èŽ·å¾—",
+    ACCRUAL_NOTE: "æŒ‰å¥½å‹å……å€¼é‡‘é¢è®¡ç®—"
 }
   , MESSAGES$4 = {
-    NO_INVITES: "暂无受邀好友",
-    INVITE_TEXT: `🎁 在 Epic Gift 开启免费宝箱，领取你的 Telegram NFT 礼物！
+    NO_INVITES: "æš‚æ— å—é‚€å¥½å‹",
+    INVITE_TEXT: `ðŸŽ åœ¨ Epic Gift å¼€å¯å…è´¹å®ç®±ï¼Œé¢†å–ä½ çš„ Telegram NFT ç¤¼ç‰©ï¼
 
-100% 免费，每 24 小时都可以来试试手气！`,
-    TRY_AGAIN: "再试一次"
+100% å…è´¹ï¼Œæ¯ 24 å°æ—¶éƒ½å¯ä»¥æ¥è¯•è¯•æ‰‹æ°”ï¼`,
+    TRY_AGAIN: "å†è¯•ä¸€æ¬¡"
 }
   , TITLES$1 = {
-    COPY_REFERRAL_LINK: "复制你的邀请链接",
-    HOW_IT_WORKS: "邀请计划如何运作"
+    COPY_REFERRAL_LINK: "å¤åˆ¶ä½ çš„é‚€è¯·é“¾æŽ¥",
+    HOW_IT_WORKS: "é‚€è¯·è®¡åˆ’å¦‚ä½•è¿ä½œ"
 }
-  , BY_INVITING = "返利"
+  , BY_INVITING = "è¿”åˆ©"
   , HOW_IT_WORKS$3 = {
-    TITLE: "运作方式",
-    INFO_1: "分享你的专属邀请链接。通过该链接加入的每位新用户都会成为你的受邀好友。",
-    INFO_2: "受邀好友游戏时，你可以获得 TON 奖励。他们玩得越活跃，你赚得越多。",
-    INFO_3: "奖励会根据每位受邀好友带来的利润按比例自动计算，并直接计入你的余额。",
-    INFO_4: "每位受邀好友带来的累计奖励最高可达其充值总额的 {{pct}}。具体到账时间可能因其游戏情况而有所不同。",
-    FOOTER: "单纯充值不会立即产生奖励；具体金额和到账时间取决于每位受邀好友的游戏结果。"
+    TITLE: "è¿ä½œæ–¹å¼",
+    INFO_1: "åˆ†äº«ä½ çš„ä¸“å±žé‚€è¯·é“¾æŽ¥ã€‚é€šè¿‡è¯¥é“¾æŽ¥åŠ å…¥çš„æ¯ä½æ–°ç”¨æˆ·éƒ½ä¼šæˆä¸ºä½ çš„å—é‚€å¥½å‹ã€‚",
+    INFO_2: "å—é‚€å¥½å‹æ¸¸æˆæ—¶ï¼Œä½ å¯ä»¥èŽ·å¾— TON å¥–åŠ±ã€‚ä»–ä»¬çŽ©å¾—è¶Šæ´»è·ƒï¼Œä½ èµšå¾—è¶Šå¤šã€‚",
+    INFO_3: "å¥–åŠ±ä¼šæ ¹æ®æ¯ä½å—é‚€å¥½å‹å¸¦æ¥çš„åˆ©æ¶¦æŒ‰æ¯”ä¾‹è‡ªåŠ¨è®¡ç®—ï¼Œå¹¶ç›´æŽ¥è®¡å…¥ä½ çš„ä½™é¢ã€‚",
+    INFO_4: "æ¯ä½å—é‚€å¥½å‹å¸¦æ¥çš„ç´¯è®¡å¥–åŠ±æœ€é«˜å¯è¾¾å…¶å……å€¼æ€»é¢çš„ {{pct}}ã€‚å…·ä½“åˆ°è´¦æ—¶é—´å¯èƒ½å› å…¶æ¸¸æˆæƒ…å†µè€Œæœ‰æ‰€ä¸åŒã€‚",
+    FOOTER: "å•çº¯å……å€¼ä¸ä¼šç«‹å³äº§ç”Ÿå¥–åŠ±ï¼›å…·ä½“é‡‘é¢å’Œåˆ°è´¦æ—¶é—´å–å†³äºŽæ¯ä½å—é‚€å¥½å‹çš„æ¸¸æˆç»“æžœã€‚"
 }
   , zhInvite = {
     EARN_HEADER,
@@ -57911,76 +57911,76 @@ It's 100% free, and you can try your luck every 24 hours!`,
     BY_INVITING,
     HOW_IT_WORKS: HOW_IT_WORKS$3
 }
-  , TITLE$2 = "排行榜"
+  , TITLE$2 = "æŽ’è¡Œæ¦œ"
   , LABELS$8 = {
-    POINTS: "积分",
-    YOU: "你",
-    PRIZE: "奖品",
-    ENDS_IN: "距结束还有",
-    CHECK_NEW_CYCLE: "查看新周期",
-    TOP_PLAYERS: "顶尖玩家",
-    EXCLUSIVE_PRIZES: "专属奖品",
-    WEEKLY_CYCLES: "每周竞赛周期",
-    FAIR_COMPETITION: "公平竞技",
-    PRIZES_AND_WINNERS: "奖品与获奖者",
-    NEW: "新",
-    CLOSE: "关闭"
+    POINTS: "ç§¯åˆ†",
+    YOU: "ä½ ",
+    PRIZE: "å¥–å“",
+    ENDS_IN: "è·ç»“æŸè¿˜æœ‰",
+    CHECK_NEW_CYCLE: "æŸ¥çœ‹æ–°å‘¨æœŸ",
+    TOP_PLAYERS: "é¡¶å°–çŽ©å®¶",
+    EXCLUSIVE_PRIZES: "ä¸“å±žå¥–å“",
+    WEEKLY_CYCLES: "æ¯å‘¨ç«žèµ›å‘¨æœŸ",
+    FAIR_COMPETITION: "å…¬å¹³ç«žæŠ€",
+    PRIZES_AND_WINNERS: "å¥–å“ä¸ŽèŽ·å¥–è€…",
+    NEW: "æ–°",
+    CLOSE: "å…³é—­"
 }
   , ACTIONS$4 = {
-    EARN_POINTS: "赚取积分",
-    EXCHANGE_TICKETS: "用抽奖券兑换积分"
+    EARN_POINTS: "èµšå–ç§¯åˆ†",
+    EXCHANGE_TICKETS: "ç”¨æŠ½å¥–åˆ¸å…‘æ¢ç§¯åˆ†"
 }
   , EXCHANGE_MODAL = {
-    TITLE: "用抽奖券兑换积分",
-    DESCRIPTION: "使用抽奖券可立即增加当前周期的排行榜积分。",
-    RATE_HINT: "1 张抽奖券 = {{points}} 积分",
-    AMOUNT_LABEL: "用于兑换的抽奖券",
-    BALANCE_LABEL: "你的抽奖券",
-    POINTS_LABEL: "你将获得",
-    MAX: "最大",
-    CTA: "兑换",
-    CANCEL: "取消",
-    INSUFFICIENT: "抽奖券不足",
-    INVALID_AMOUNT: "请输入正整数",
-    SUCCESS_TOAST: "排行榜积分已增加 {{points}}",
-    NO_ACTIVE_CYCLE: "当前暂无进行中的排行榜周期",
-    DISABLED: "当前暂不可兑换",
-    ERROR_TOAST: "兑换失败，请重试。"
+    TITLE: "ç”¨æŠ½å¥–åˆ¸å…‘æ¢ç§¯åˆ†",
+    DESCRIPTION: "ä½¿ç”¨æŠ½å¥–åˆ¸å¯ç«‹å³å¢žåŠ å½“å‰å‘¨æœŸçš„æŽ’è¡Œæ¦œç§¯åˆ†ã€‚",
+    RATE_HINT: "1 å¼ æŠ½å¥–åˆ¸ = {{points}} ç§¯åˆ†",
+    AMOUNT_LABEL: "ç”¨äºŽå…‘æ¢çš„æŠ½å¥–åˆ¸",
+    BALANCE_LABEL: "ä½ çš„æŠ½å¥–åˆ¸",
+    POINTS_LABEL: "ä½ å°†èŽ·å¾—",
+    MAX: "æœ€å¤§",
+    CTA: "å…‘æ¢",
+    CANCEL: "å–æ¶ˆ",
+    INSUFFICIENT: "æŠ½å¥–åˆ¸ä¸è¶³",
+    INVALID_AMOUNT: "è¯·è¾“å…¥æ­£æ•´æ•°",
+    SUCCESS_TOAST: "æŽ’è¡Œæ¦œç§¯åˆ†å·²å¢žåŠ  {{points}}",
+    NO_ACTIVE_CYCLE: "å½“å‰æš‚æ— è¿›è¡Œä¸­çš„æŽ’è¡Œæ¦œå‘¨æœŸ",
+    DISABLED: "å½“å‰æš‚ä¸å¯å…‘æ¢",
+    ERROR_TOAST: "å…‘æ¢å¤±è´¥ï¼Œè¯·é‡è¯•ã€‚"
 }
   , MESSAGES$3 = {
-    NO_DATA: "暂无数据",
-    CHECK_BACK_SOON: "稍后再来，精彩奖品和激烈竞争等着你！",
-    COMPETE_AND_WIN: "与其他玩家竞争，赢取丰厚奖品！",
-    CYCLE_ENDED: "本轮竞赛已结束",
-    PLEASE_LOGIN: "请登录后查看排行榜",
-    NETWORK_ERROR: "网络错误，请检查网络连接。",
-    SERVER_ERROR: "服务器错误，请稍后重试。",
-    PREPARING_NEW_CYCLE: "正在准备新一轮竞赛",
-    SETTING_UP_COMPETITION: "正在准备下一轮排行榜活动！",
-    CHECKING: "检查中..."
+    NO_DATA: "æš‚æ— æ•°æ®",
+    CHECK_BACK_SOON: "ç¨åŽå†æ¥ï¼Œç²¾å½©å¥–å“å’Œæ¿€çƒˆç«žäº‰ç­‰ç€ä½ ï¼",
+    COMPETE_AND_WIN: "ä¸Žå…¶ä»–çŽ©å®¶ç«žäº‰ï¼Œèµ¢å–ä¸°åŽšå¥–å“ï¼",
+    CYCLE_ENDED: "æœ¬è½®ç«žèµ›å·²ç»“æŸ",
+    PLEASE_LOGIN: "è¯·ç™»å½•åŽæŸ¥çœ‹æŽ’è¡Œæ¦œ",
+    NETWORK_ERROR: "ç½‘ç»œé”™è¯¯ï¼Œè¯·æ£€æŸ¥ç½‘ç»œè¿žæŽ¥ã€‚",
+    SERVER_ERROR: "æœåŠ¡å™¨é”™è¯¯ï¼Œè¯·ç¨åŽé‡è¯•ã€‚",
+    PREPARING_NEW_CYCLE: "æ­£åœ¨å‡†å¤‡æ–°ä¸€è½®ç«žèµ›",
+    SETTING_UP_COMPETITION: "æ­£åœ¨å‡†å¤‡ä¸‹ä¸€è½®æŽ’è¡Œæ¦œæ´»åŠ¨ï¼",
+    CHECKING: "æ£€æŸ¥ä¸­..."
 }
   , EMPTY$4 = {
-    NO_DATA: "暂无排行榜数据"
+    NO_DATA: "æš‚æ— æŽ’è¡Œæ¦œæ•°æ®"
 }
   , HOW_TO_EARN = {
-    TITLE: "如何赚取积分",
-    DEPOSIT_TON: "充值 TON",
-    DEPOSIT_DESC: "为余额充值。充值金额越高，获得的积分越多！",
-    OPEN_BOXES: "开启宝箱",
-    OPEN_BOXES_DESC: "获得的积分取决于宝箱价格和所获礼物的价值。宝箱越贵，积分越多！",
-    PLAY_ROCKET_PVP: "玩 Rocket 游戏和 PVP",
-    PLAY_ROCKET_PVP_DESC: "与其他玩家实时对战！下注额和赢取金额越高，积分越多。Rocket 和 PVP 模式的积分是其他活动的 2 倍。",
-    UPGRADE_GIFTS: "升级礼物",
-    UPGRADE_DESC: "积分根据礼物价值和升级结果计算，升级成功还会获得额外加分！",
-    EXECUTE_CONTRACTS: "进行合成",
-    CONTRACTS_DESC: "参与礼物合成，并根据投入礼物的总价值赚取积分。",
-    SELL_GIFTS: "出售礼物",
-    SELL_DESC: "出售礼物换取 TON 也能获得积分，所得积分与礼物价值成正比。",
-    STAY_ACTIVE: "保持活跃",
-    STAY_ACTIVE_DESC: "应用内几乎所有活动都能获得积分！参与得越多，排行榜排名越高。",
-    COMPETITION_CYCLES: "竞赛周期",
-    CYCLES_DESC: "排行榜每周重置。活动涉及的金额越高，获得的积分越多。保持活跃，赢取专属奖品！",
-    START_EARNING: "开始赚取积分"
+    TITLE: "å¦‚ä½•èµšå–ç§¯åˆ†",
+    DEPOSIT_TON: "å……å€¼ TON",
+    DEPOSIT_DESC: "ä¸ºä½™é¢å……å€¼ã€‚å……å€¼é‡‘é¢è¶Šé«˜ï¼ŒèŽ·å¾—çš„ç§¯åˆ†è¶Šå¤šï¼",
+    OPEN_BOXES: "å¼€å¯å®ç®±",
+    OPEN_BOXES_DESC: "èŽ·å¾—çš„ç§¯åˆ†å–å†³äºŽå®ç®±ä»·æ ¼å’Œæ‰€èŽ·ç¤¼ç‰©çš„ä»·å€¼ã€‚å®ç®±è¶Šè´µï¼Œç§¯åˆ†è¶Šå¤šï¼",
+    PLAY_ROCKET_PVP: "çŽ© Rocket æ¸¸æˆå’Œ PVP",
+    PLAY_ROCKET_PVP_DESC: "ä¸Žå…¶ä»–çŽ©å®¶å®žæ—¶å¯¹æˆ˜ï¼ä¸‹æ³¨é¢å’Œèµ¢å–é‡‘é¢è¶Šé«˜ï¼Œç§¯åˆ†è¶Šå¤šã€‚Rocket å’Œ PVP æ¨¡å¼çš„ç§¯åˆ†æ˜¯å…¶ä»–æ´»åŠ¨çš„ 2 å€ã€‚",
+    UPGRADE_GIFTS: "å‡çº§ç¤¼ç‰©",
+    UPGRADE_DESC: "ç§¯åˆ†æ ¹æ®ç¤¼ç‰©ä»·å€¼å’Œå‡çº§ç»“æžœè®¡ç®—ï¼Œå‡çº§æˆåŠŸè¿˜ä¼šèŽ·å¾—é¢å¤–åŠ åˆ†ï¼",
+    EXECUTE_CONTRACTS: "è¿›è¡Œåˆæˆ",
+    CONTRACTS_DESC: "å‚ä¸Žç¤¼ç‰©åˆæˆï¼Œå¹¶æ ¹æ®æŠ•å…¥ç¤¼ç‰©çš„æ€»ä»·å€¼èµšå–ç§¯åˆ†ã€‚",
+    SELL_GIFTS: "å‡ºå”®ç¤¼ç‰©",
+    SELL_DESC: "å‡ºå”®ç¤¼ç‰©æ¢å– TON ä¹Ÿèƒ½èŽ·å¾—ç§¯åˆ†ï¼Œæ‰€å¾—ç§¯åˆ†ä¸Žç¤¼ç‰©ä»·å€¼æˆæ­£æ¯”ã€‚",
+    STAY_ACTIVE: "ä¿æŒæ´»è·ƒ",
+    STAY_ACTIVE_DESC: "åº”ç”¨å†…å‡ ä¹Žæ‰€æœ‰æ´»åŠ¨éƒ½èƒ½èŽ·å¾—ç§¯åˆ†ï¼å‚ä¸Žå¾—è¶Šå¤šï¼ŒæŽ’è¡Œæ¦œæŽ’åè¶Šé«˜ã€‚",
+    COMPETITION_CYCLES: "ç«žèµ›å‘¨æœŸ",
+    CYCLES_DESC: "æŽ’è¡Œæ¦œæ¯å‘¨é‡ç½®ã€‚æ´»åŠ¨æ¶‰åŠçš„é‡‘é¢è¶Šé«˜ï¼ŒèŽ·å¾—çš„ç§¯åˆ†è¶Šå¤šã€‚ä¿æŒæ´»è·ƒï¼Œèµ¢å–ä¸“å±žå¥–å“ï¼",
+    START_EARNING: "å¼€å§‹èµšå–ç§¯åˆ†"
 }
   , zhLeaderboard = {
     TITLE: TITLE$2,
@@ -57992,159 +57992,159 @@ It's 100% free, and you can try your luck every 24 hours!`,
     HOW_TO_EARN
 }
   , SUCCESS = {
-    LINK_COPIED: "链接已复制到剪贴板！",
-    LINK_COPIED_SHARE: "链接已复制，请粘贴到好友聊天中！",
-    GIFT_SOLD: "礼物出售成功！",
-    GIFT_ADDED_TO_BACKPACK: "礼物已添加到背包！",
-    GIFT_WITHDRAWN: "礼物已成功提取至 Telegram！",
-    TASK_CLAIMED: "任务奖励已领取！",
-    CHANNEL_JOINED_CLAIMED: "已关注频道并领取奖励！",
-    CHANNEL_JOINED: "已关注频道！请领取奖励。",
-    GIVEAWAY_JOINED: "已成功参与抽奖！",
-    CONTRACT_EXECUTED: "合成成功！",
-    TRANSACTION_PROCESSING: "交易处理中，请稍候...",
-    PAYMENT_CREATED: "支付账单已创建",
-    DATA_COPIED: "已将 {{label}} 复制到剪贴板",
-    DATA_DOWNLOADED: "游戏数据已下载",
-    VERIFICATION_PASSED: "验证通过！",
-    NEW_BOX_AVAILABLE: "新宝箱现已开放：{{title}}",
-    BOX_BACK_IN_STOCK: "{{title}} 已补货！",
-    BETTER_LUCK_NEXT_TIME: "祝你下次好运！",
-    SETTINGS_SAVED: "设置已保存"
+    LINK_COPIED: "é“¾æŽ¥å·²å¤åˆ¶åˆ°å‰ªè´´æ¿ï¼",
+    LINK_COPIED_SHARE: "é“¾æŽ¥å·²å¤åˆ¶ï¼Œè¯·ç²˜è´´åˆ°å¥½å‹èŠå¤©ä¸­ï¼",
+    GIFT_SOLD: "ç¤¼ç‰©å‡ºå”®æˆåŠŸï¼",
+    GIFT_ADDED_TO_BACKPACK: "ç¤¼ç‰©å·²æ·»åŠ åˆ°èƒŒåŒ…ï¼",
+    GIFT_WITHDRAWN: "ç¤¼ç‰©å·²æˆåŠŸæå–è‡³ Telegramï¼",
+    TASK_CLAIMED: "ä»»åŠ¡å¥–åŠ±å·²é¢†å–ï¼",
+    CHANNEL_JOINED_CLAIMED: "å·²å…³æ³¨é¢‘é“å¹¶é¢†å–å¥–åŠ±ï¼",
+    CHANNEL_JOINED: "å·²å…³æ³¨é¢‘é“ï¼è¯·é¢†å–å¥–åŠ±ã€‚",
+    GIVEAWAY_JOINED: "å·²æˆåŠŸå‚ä¸ŽæŠ½å¥–ï¼",
+    CONTRACT_EXECUTED: "åˆæˆæˆåŠŸï¼",
+    TRANSACTION_PROCESSING: "äº¤æ˜“å¤„ç†ä¸­ï¼Œè¯·ç¨å€™...",
+    PAYMENT_CREATED: "æ”¯ä»˜è´¦å•å·²åˆ›å»º",
+    DATA_COPIED: "å·²å°† {{label}} å¤åˆ¶åˆ°å‰ªè´´æ¿",
+    DATA_DOWNLOADED: "æ¸¸æˆæ•°æ®å·²ä¸‹è½½",
+    VERIFICATION_PASSED: "éªŒè¯é€šè¿‡ï¼",
+    NEW_BOX_AVAILABLE: "æ–°å®ç®±çŽ°å·²å¼€æ”¾ï¼š{{title}}",
+    BOX_BACK_IN_STOCK: "{{title}} å·²è¡¥è´§ï¼",
+    BETTER_LUCK_NEXT_TIME: "ç¥ä½ ä¸‹æ¬¡å¥½è¿ï¼",
+    SETTINGS_SAVED: "è®¾ç½®å·²ä¿å­˜"
 }
   , ERROR = {
-    FAILED_TO_LOAD_REFERRALS: "加载受邀好友失败",
-    FAILED_TO_COPY: "复制链接失败",
-    FAILED_TO_LOAD_GIFTS: "加载你的礼物失败",
-    FAILED_TO_LOAD_UPGRADE_TARGETS: "加载此礼物的升级目标失败",
-    INVALID_TARGET_GIFT: "所选目标礼物无效，请选择其他目标。",
-    USER_NOT_FOUND: "未找到用户，请重新登录。",
-    GIFT_NOT_UPGRADEABLE: "该礼物无法升级或未找到。",
-    TARGET_GIFT_NOT_FOUND: "未找到目标礼物，请选择其他目标。",
-    GIFT_LOCKED: "该礼物正在用于其他操作。",
-    PLEASE_WAIT: "请稍后再尝试升级",
-    NETWORK_ERROR: "网络错误，请检查网络连接。",
-    SERVER_ERROR: "服务器错误，请稍后再试。",
-    FAILED_TO_UPGRADE: "升级礼物失败",
-    UNEXPECTED_ERROR: "升级时发生意外错误",
-    NO_GIFT_TO_SELL: "暂无可出售的礼物",
-    FAILED_TO_SELL: "出售礼物失败",
-    NO_GIFT_FOR_UPGRADE: "暂无可用于升级的礼物",
-    DAILY_GIFT_NOT_FOUND: "未找到每日宝箱",
-    PLEASE_LOGIN: "请登录后检查每日礼物是否可领取",
-    FAILED_TO_CHECK: "检查每日宝箱可用状态失败",
-    DAILY_ALREADY_CLAIMED: "今日礼物已领取",
-    DAILY_ALREADY_CLAIMED_DESCRIPTION: "请等待每日奖励重置后再试",
-    FAILED_TO_UNBOX: "开启礼物失败",
-    MISSING_VERIFICATION_DATA: "缺少验证数据",
-    VERIFICATION_DATA_DESCRIPTION: "缺少必要数据，无法验证此游戏",
-    VERIFICATION_FAILED: "验证失败",
-    VERIFICATION_FAILED_DESCRIPTION: "游戏数据与预期结果不符",
-    FAILED_TO_LOAD_LEADERBOARD: "加载排行榜失败",
-    FAILED_TO_LOAD_TASKS: "加载任务失败",
-    PLEASE_JOIN_CHANNEL: "请先关注频道",
-    FAILED_TO_VERIFY_SUBSCRIPTION: "验证频道关注状态失败",
-    FAILED_TO_COMPLETE_TASK: "完成任务失败",
-    FAILED_TO_CLAIM_TASK: "领取奖励失败",
-    STORIES_MOBILE_ONLY: "仅可在 Telegram 手机应用中分享至故事",
-    FAILED_TO_JOIN_GIVEAWAY: "参与抽奖失败",
-    COMPLETE_REQUIREMENTS: "请先完成所有要求",
-    GIVEAWAY_NOT_FOUND: "未找到该抽奖",
-    CHANNEL_LINK_NOT_AVAILABLE: "频道链接不可用",
-    FAILED_TO_LOAD_AVAILABLE_GIFTS: "加载可用礼物失败",
-    GAME_SERVICE_NOT_AVAILABLE: "游戏服务暂不可用",
-    CANNOT_PLACE_BET: "当前无法下注",
-    PLEASE_SELECT_GIFT: "请选择一件礼物下注",
-    MINIMUM_BET: "最低下注金额为 0.1 TON",
-    CANNOT_CASH_OUT: "当前无法兑现",
-    ROUND_ALREADY_CRASHED: "本轮火箭已坠落",
-    GIFT_ALREADY_IN_CONTRACT: "该礼物已在合成中",
-    NO_GIFT_RECEIVED: "错误：合成后未收到礼物",
-    CONTRACT_CANNOT_EXECUTE: "无法进行合成",
-    FAILED_TO_EXECUTE_CONTRACT: "合成失败",
-    GIFT_NOT_FOUND: "未找到礼物",
-    PLEASE_MESSAGE_BOT: "请先给我们的机器人发消息",
-    GIFT_NOT_FOUND_TRY_AGAIN: "未找到礼物，请重试。",
-    PLEASE_LOGIN_TO_WITHDRAW: "请登录后提取礼物",
-    FAILED_TO_WITHDRAW: "提取礼物失败",
-    GIFT_NOT_FOUND_REFRESH: "未找到礼物，请刷新页面。",
-    PLEASE_LOGIN_TO_SELL: "请登录后出售礼物",
-    NOT_CONNECTED_TO_SERVER: "未连接服务器",
-    FAILED_TO_PLACE_BET: "下注失败",
-    FAILED_TO_INCREASE_BET: "加注失败",
-    CONNECTION_LOST: "连接已断开，请刷新页面。",
-    FAILED_TO_CONNECT: "无法连接游戏服务器",
-    NOT_CONNECTED_TO_GAME_SERVER: "未连接游戏服务器",
-    WALLET_VERIFICATION_FAILED: "钱包验证失败",
-    WALLET_VERIFICATION_DESCRIPTION: "请尝试断开钱包后重新连接",
-    CONNECTION_ERROR: "连接错误",
-    CONNECTION_ERROR_DESCRIPTION: "请检查网络连接后重试",
-    INVALID_WALLET: "钱包无效",
-    INVALID_WALLET_DESCRIPTION: "请使用有效的 TON 钱包",
-    FAILED_TO_CREATE_PAYMENT: "创建支付失败",
-    TRANSACTION_CANCELLED: "交易已取消",
-    FAILED_TO_TOP_UP: "充值处理失败",
-    BETS_CLOSED: "本轮下注已结束",
-    GIFT_NOT_AVAILABLE: "所选礼物不可用",
-    INSUFFICIENT_BALANCE: "余额不足",
-    MINIMUM_BET_AMOUNT: "最低下注金额为 0.1 TON",
-    FAILED_TO_CASH_OUT: "兑现失败",
-    FAILED_TO_SAVE_SETTINGS: "保存设置失败",
-    RATE_UNAVAILABLE: "请稍后再试"
+    FAILED_TO_LOAD_REFERRALS: "åŠ è½½å—é‚€å¥½å‹å¤±è´¥",
+    FAILED_TO_COPY: "å¤åˆ¶é“¾æŽ¥å¤±è´¥",
+    FAILED_TO_LOAD_GIFTS: "åŠ è½½ä½ çš„ç¤¼ç‰©å¤±è´¥",
+    FAILED_TO_LOAD_UPGRADE_TARGETS: "åŠ è½½æ­¤ç¤¼ç‰©çš„å‡çº§ç›®æ ‡å¤±è´¥",
+    INVALID_TARGET_GIFT: "æ‰€é€‰ç›®æ ‡ç¤¼ç‰©æ— æ•ˆï¼Œè¯·é€‰æ‹©å…¶ä»–ç›®æ ‡ã€‚",
+    USER_NOT_FOUND: "æœªæ‰¾åˆ°ç”¨æˆ·ï¼Œè¯·é‡æ–°ç™»å½•ã€‚",
+    GIFT_NOT_UPGRADEABLE: "è¯¥ç¤¼ç‰©æ— æ³•å‡çº§æˆ–æœªæ‰¾åˆ°ã€‚",
+    TARGET_GIFT_NOT_FOUND: "æœªæ‰¾åˆ°ç›®æ ‡ç¤¼ç‰©ï¼Œè¯·é€‰æ‹©å…¶ä»–ç›®æ ‡ã€‚",
+    GIFT_LOCKED: "è¯¥ç¤¼ç‰©æ­£åœ¨ç”¨äºŽå…¶ä»–æ“ä½œã€‚",
+    PLEASE_WAIT: "è¯·ç¨åŽå†å°è¯•å‡çº§",
+    NETWORK_ERROR: "ç½‘ç»œé”™è¯¯ï¼Œè¯·æ£€æŸ¥ç½‘ç»œè¿žæŽ¥ã€‚",
+    SERVER_ERROR: "æœåŠ¡å™¨é”™è¯¯ï¼Œè¯·ç¨åŽå†è¯•ã€‚",
+    FAILED_TO_UPGRADE: "å‡çº§ç¤¼ç‰©å¤±è´¥",
+    UNEXPECTED_ERROR: "å‡çº§æ—¶å‘ç”Ÿæ„å¤–é”™è¯¯",
+    NO_GIFT_TO_SELL: "æš‚æ— å¯å‡ºå”®çš„ç¤¼ç‰©",
+    FAILED_TO_SELL: "å‡ºå”®ç¤¼ç‰©å¤±è´¥",
+    NO_GIFT_FOR_UPGRADE: "æš‚æ— å¯ç”¨äºŽå‡çº§çš„ç¤¼ç‰©",
+    DAILY_GIFT_NOT_FOUND: "æœªæ‰¾åˆ°æ¯æ—¥å®ç®±",
+    PLEASE_LOGIN: "è¯·ç™»å½•åŽæ£€æŸ¥æ¯æ—¥ç¤¼ç‰©æ˜¯å¦å¯é¢†å–",
+    FAILED_TO_CHECK: "æ£€æŸ¥æ¯æ—¥å®ç®±å¯ç”¨çŠ¶æ€å¤±è´¥",
+    DAILY_ALREADY_CLAIMED: "ä»Šæ—¥ç¤¼ç‰©å·²é¢†å–",
+    DAILY_ALREADY_CLAIMED_DESCRIPTION: "è¯·ç­‰å¾…æ¯æ—¥å¥–åŠ±é‡ç½®åŽå†è¯•",
+    FAILED_TO_UNBOX: "å¼€å¯ç¤¼ç‰©å¤±è´¥",
+    MISSING_VERIFICATION_DATA: "ç¼ºå°‘éªŒè¯æ•°æ®",
+    VERIFICATION_DATA_DESCRIPTION: "ç¼ºå°‘å¿…è¦æ•°æ®ï¼Œæ— æ³•éªŒè¯æ­¤æ¸¸æˆ",
+    VERIFICATION_FAILED: "éªŒè¯å¤±è´¥",
+    VERIFICATION_FAILED_DESCRIPTION: "æ¸¸æˆæ•°æ®ä¸Žé¢„æœŸç»“æžœä¸ç¬¦",
+    FAILED_TO_LOAD_LEADERBOARD: "åŠ è½½æŽ’è¡Œæ¦œå¤±è´¥",
+    FAILED_TO_LOAD_TASKS: "åŠ è½½ä»»åŠ¡å¤±è´¥",
+    PLEASE_JOIN_CHANNEL: "è¯·å…ˆå…³æ³¨é¢‘é“",
+    FAILED_TO_VERIFY_SUBSCRIPTION: "éªŒè¯é¢‘é“å…³æ³¨çŠ¶æ€å¤±è´¥",
+    FAILED_TO_COMPLETE_TASK: "å®Œæˆä»»åŠ¡å¤±è´¥",
+    FAILED_TO_CLAIM_TASK: "é¢†å–å¥–åŠ±å¤±è´¥",
+    STORIES_MOBILE_ONLY: "ä»…å¯åœ¨ Telegram æ‰‹æœºåº”ç”¨ä¸­åˆ†äº«è‡³æ•…äº‹",
+    FAILED_TO_JOIN_GIVEAWAY: "å‚ä¸ŽæŠ½å¥–å¤±è´¥",
+    COMPLETE_REQUIREMENTS: "è¯·å…ˆå®Œæˆæ‰€æœ‰è¦æ±‚",
+    GIVEAWAY_NOT_FOUND: "æœªæ‰¾åˆ°è¯¥æŠ½å¥–",
+    CHANNEL_LINK_NOT_AVAILABLE: "é¢‘é“é“¾æŽ¥ä¸å¯ç”¨",
+    FAILED_TO_LOAD_AVAILABLE_GIFTS: "åŠ è½½å¯ç”¨ç¤¼ç‰©å¤±è´¥",
+    GAME_SERVICE_NOT_AVAILABLE: "æ¸¸æˆæœåŠ¡æš‚ä¸å¯ç”¨",
+    CANNOT_PLACE_BET: "å½“å‰æ— æ³•ä¸‹æ³¨",
+    PLEASE_SELECT_GIFT: "è¯·é€‰æ‹©ä¸€ä»¶ç¤¼ç‰©ä¸‹æ³¨",
+    MINIMUM_BET: "æœ€ä½Žä¸‹æ³¨é‡‘é¢ä¸º 0.1 TON",
+    CANNOT_CASH_OUT: "å½“å‰æ— æ³•å…‘çŽ°",
+    ROUND_ALREADY_CRASHED: "æœ¬è½®ç«ç®­å·²å è½",
+    GIFT_ALREADY_IN_CONTRACT: "è¯¥ç¤¼ç‰©å·²åœ¨åˆæˆä¸­",
+    NO_GIFT_RECEIVED: "é”™è¯¯ï¼šåˆæˆåŽæœªæ”¶åˆ°ç¤¼ç‰©",
+    CONTRACT_CANNOT_EXECUTE: "æ— æ³•è¿›è¡Œåˆæˆ",
+    FAILED_TO_EXECUTE_CONTRACT: "åˆæˆå¤±è´¥",
+    GIFT_NOT_FOUND: "æœªæ‰¾åˆ°ç¤¼ç‰©",
+    PLEASE_MESSAGE_BOT: "è¯·å…ˆç»™æˆ‘ä»¬çš„æœºå™¨äººå‘æ¶ˆæ¯",
+    GIFT_NOT_FOUND_TRY_AGAIN: "æœªæ‰¾åˆ°ç¤¼ç‰©ï¼Œè¯·é‡è¯•ã€‚",
+    PLEASE_LOGIN_TO_WITHDRAW: "è¯·ç™»å½•åŽæå–ç¤¼ç‰©",
+    FAILED_TO_WITHDRAW: "æå–ç¤¼ç‰©å¤±è´¥",
+    GIFT_NOT_FOUND_REFRESH: "æœªæ‰¾åˆ°ç¤¼ç‰©ï¼Œè¯·åˆ·æ–°é¡µé¢ã€‚",
+    PLEASE_LOGIN_TO_SELL: "è¯·ç™»å½•åŽå‡ºå”®ç¤¼ç‰©",
+    NOT_CONNECTED_TO_SERVER: "æœªè¿žæŽ¥æœåŠ¡å™¨",
+    FAILED_TO_PLACE_BET: "ä¸‹æ³¨å¤±è´¥",
+    FAILED_TO_INCREASE_BET: "åŠ æ³¨å¤±è´¥",
+    CONNECTION_LOST: "è¿žæŽ¥å·²æ–­å¼€ï¼Œè¯·åˆ·æ–°é¡µé¢ã€‚",
+    FAILED_TO_CONNECT: "æ— æ³•è¿žæŽ¥æ¸¸æˆæœåŠ¡å™¨",
+    NOT_CONNECTED_TO_GAME_SERVER: "æœªè¿žæŽ¥æ¸¸æˆæœåŠ¡å™¨",
+    WALLET_VERIFICATION_FAILED: "é’±åŒ…éªŒè¯å¤±è´¥",
+    WALLET_VERIFICATION_DESCRIPTION: "è¯·å°è¯•æ–­å¼€é’±åŒ…åŽé‡æ–°è¿žæŽ¥",
+    CONNECTION_ERROR: "è¿žæŽ¥é”™è¯¯",
+    CONNECTION_ERROR_DESCRIPTION: "è¯·æ£€æŸ¥ç½‘ç»œè¿žæŽ¥åŽé‡è¯•",
+    INVALID_WALLET: "é’±åŒ…æ— æ•ˆ",
+    INVALID_WALLET_DESCRIPTION: "è¯·ä½¿ç”¨æœ‰æ•ˆçš„ TON é’±åŒ…",
+    FAILED_TO_CREATE_PAYMENT: "åˆ›å»ºæ”¯ä»˜å¤±è´¥",
+    TRANSACTION_CANCELLED: "äº¤æ˜“å·²å–æ¶ˆ",
+    FAILED_TO_TOP_UP: "å……å€¼å¤„ç†å¤±è´¥",
+    BETS_CLOSED: "æœ¬è½®ä¸‹æ³¨å·²ç»“æŸ",
+    GIFT_NOT_AVAILABLE: "æ‰€é€‰ç¤¼ç‰©ä¸å¯ç”¨",
+    INSUFFICIENT_BALANCE: "ä½™é¢ä¸è¶³",
+    MINIMUM_BET_AMOUNT: "æœ€ä½Žä¸‹æ³¨é‡‘é¢ä¸º 0.1 TON",
+    FAILED_TO_CASH_OUT: "å…‘çŽ°å¤±è´¥",
+    FAILED_TO_SAVE_SETTINGS: "ä¿å­˜è®¾ç½®å¤±è´¥",
+    RATE_UNAVAILABLE: "è¯·ç¨åŽå†è¯•"
 }
   , zhToasts = {
     SUCCESS,
     ERROR
 }
-  , PAGE_TITLE = "你的礼物"
+  , PAGE_TITLE = "ä½ çš„ç¤¼ç‰©"
   , EMPTY$3 = {
-    TITLE: "背包暂无礼物",
-    DESCRIPTION_PART1: "将礼物发送至",
-    DESCRIPTION_PART2: "即可快速出售以获得余额，或用于 Upgrade、Crafts、PVP 和 Rocket 游戏。",
-    SEND_GIFT: "发送礼物",
-    GIFTS_APPEAR_HERE: "发送给机器人的礼物会自动显示在这里。",
-    OPEN_BOXES_MESSAGE: "开启宝箱获取礼物。你可以快速出售礼物以获得余额，或将其用于 Upgrade、Crafts、PVP 和 Rocket 游戏。"
+    TITLE: "èƒŒåŒ…æš‚æ— ç¤¼ç‰©",
+    DESCRIPTION_PART1: "å°†ç¤¼ç‰©å‘é€è‡³",
+    DESCRIPTION_PART2: "å³å¯å¿«é€Ÿå‡ºå”®ä»¥èŽ·å¾—ä½™é¢ï¼Œæˆ–ç”¨äºŽ Upgradeã€Craftsã€PVP å’Œ Rocket æ¸¸æˆã€‚",
+    SEND_GIFT: "å‘é€ç¤¼ç‰©",
+    GIFTS_APPEAR_HERE: "å‘é€ç»™æœºå™¨äººçš„ç¤¼ç‰©ä¼šè‡ªåŠ¨æ˜¾ç¤ºåœ¨è¿™é‡Œã€‚",
+    OPEN_BOXES_MESSAGE: "å¼€å¯å®ç®±èŽ·å–ç¤¼ç‰©ã€‚ä½ å¯ä»¥å¿«é€Ÿå‡ºå”®ç¤¼ç‰©ä»¥èŽ·å¾—ä½™é¢ï¼Œæˆ–å°†å…¶ç”¨äºŽ Upgradeã€Craftsã€PVP å’Œ Rocket æ¸¸æˆã€‚"
 }
   , ACTIONS$3 = {
     OPEN_BOT: "@giftbackpack",
-    BUY_GIFTS: "购买礼物"
+    BUY_GIFTS: "è´­ä¹°ç¤¼ç‰©"
 }
   , BANNER$1 = {
-    SEND_GIFTS_TO: "将你的礼物发送至",
-    USE_IN_UPGRADES: "可用于 Upgrade、Crafts 或快速出售",
-    SEND: "发送"
+    SEND_GIFTS_TO: "å°†ä½ çš„ç¤¼ç‰©å‘é€è‡³",
+    USE_IN_UPGRADES: "å¯ç”¨äºŽ Upgradeã€Crafts æˆ–å¿«é€Ÿå‡ºå”®",
+    SEND: "å‘é€"
 }
   , SUPPORT = {
-    NEED_HELP: "礼物提取遇到问题？我们的客服团队随时为你提供帮助！请联系我们："
+    NEED_HELP: "ç¤¼ç‰©æå–é‡åˆ°é—®é¢˜ï¼Ÿæˆ‘ä»¬çš„å®¢æœå›¢é˜Ÿéšæ—¶ä¸ºä½ æä¾›å¸®åŠ©ï¼è¯·è”ç³»æˆ‘ä»¬ï¼š"
 }
   , SELL = {
-    CONFIRM_SALE: "确认出售",
-    SELL_FOR: "出售可得",
-    CONFIRM_MESSAGE: "确定要出售此礼物吗？此操作无法撤销。",
-    PROCESSING: "处理中...",
-    CONFIRM: "确认出售",
-    CANCEL: "取消"
+    CONFIRM_SALE: "ç¡®è®¤å‡ºå”®",
+    SELL_FOR: "å‡ºå”®å¯å¾—",
+    CONFIRM_MESSAGE: "ç¡®å®šè¦å‡ºå”®æ­¤ç¤¼ç‰©å—ï¼Ÿæ­¤æ“ä½œæ— æ³•æ’¤é”€ã€‚",
+    PROCESSING: "å¤„ç†ä¸­...",
+    CONFIRM: "ç¡®è®¤å‡ºå”®",
+    CANCEL: "å–æ¶ˆ"
 }
   , LOCK = {
-    TITLE: "礼物已锁定",
-    LOCKED: "已锁定",
-    DESCRIPTION: "礼物转移后，Telegram 会对其设置临时锁定。请等待锁定到期，届时礼物会自动恢复可用。",
-    GOT_IT: "知道了",
-    TIME_DAYS: "{{days}}天 {{hours}}小时",
-    TIME_HOURS: "{{hours}}小时 {{minutes}}分钟",
-    TIME_MINUTES: "{{minutes}}分钟"
+    TITLE: "ç¤¼ç‰©å·²é”å®š",
+    LOCKED: "å·²é”å®š",
+    DESCRIPTION: "ç¤¼ç‰©è½¬ç§»åŽï¼ŒTelegram ä¼šå¯¹å…¶è®¾ç½®ä¸´æ—¶é”å®šã€‚è¯·ç­‰å¾…é”å®šåˆ°æœŸï¼Œå±Šæ—¶ç¤¼ç‰©ä¼šè‡ªåŠ¨æ¢å¤å¯ç”¨ã€‚",
+    GOT_IT: "çŸ¥é“äº†",
+    TIME_DAYS: "{{days}}å¤© {{hours}}å°æ—¶",
+    TIME_HOURS: "{{hours}}å°æ—¶ {{minutes}}åˆ†é’Ÿ",
+    TIME_MINUTES: "{{minutes}}åˆ†é’Ÿ"
 }
   , REVIEW = {
-    BADGE_PENDING: "审核中",
-    BADGE_REJECTED: "仅可提取",
-    GOT_IT: "知道了",
+    BADGE_PENDING: "å®¡æ ¸ä¸­",
+    BADGE_REJECTED: "ä»…å¯æå–",
+    GOT_IT: "çŸ¥é“äº†",
     PENDING: {
-        TITLE: "正在审核此礼物",
-        DESCRIPTION: "该礼物已进入进一步审核，通常需要数小时。在此期间，礼物会安全保存在你的背包中；审核完成后即可使用，我们也会第一时间通知你。"
+        TITLE: "æ­£åœ¨å®¡æ ¸æ­¤ç¤¼ç‰©",
+        DESCRIPTION: "è¯¥ç¤¼ç‰©å·²è¿›å…¥è¿›ä¸€æ­¥å®¡æ ¸ï¼Œé€šå¸¸éœ€è¦æ•°å°æ—¶ã€‚åœ¨æ­¤æœŸé—´ï¼Œç¤¼ç‰©ä¼šå®‰å…¨ä¿å­˜åœ¨ä½ çš„èƒŒåŒ…ä¸­ï¼›å®¡æ ¸å®ŒæˆåŽå³å¯ä½¿ç”¨ï¼Œæˆ‘ä»¬ä¹Ÿä¼šç¬¬ä¸€æ—¶é—´é€šçŸ¥ä½ ã€‚"
     },
     REJECTED: {
-        TITLE: "仅可提取",
-        DESCRIPTION: "此礼物目前不受本应用支持，因此无法出售、升级或用于游戏。礼物仍归你所有，你可以随时将其提取回 Telegram。"
+        TITLE: "ä»…å¯æå–",
+        DESCRIPTION: "æ­¤ç¤¼ç‰©ç›®å‰ä¸å—æœ¬åº”ç”¨æ”¯æŒï¼Œå› æ­¤æ— æ³•å‡ºå”®ã€å‡çº§æˆ–ç”¨äºŽæ¸¸æˆã€‚ç¤¼ç‰©ä»å½’ä½ æ‰€æœ‰ï¼Œä½ å¯ä»¥éšæ—¶å°†å…¶æå–å›ž Telegramã€‚"
     }
 }
   , zhBackpack = {
@@ -58158,55 +58158,55 @@ It's 100% free, and you can try your luck every 24 hours!`,
     REVIEW
 }
   , WALLET = {
-    BALANCE: "钱包余额"
+    BALANCE: "é’±åŒ…ä½™é¢"
 }
   , GIFT_METHOD = {
-    TITLE_TOP_UP: "使用礼物充值",
-    DESCRIPTION: "将礼物发送给我们的机器人，它们就会出现在你的背包中。",
-    OPEN_BOT: "打开 @giftbackpack",
-    OPEN_GIFT_BOT: "打开礼物机器人",
-    HOW_IT_WORKS: "操作说明",
-    STEP1_DESC: "点击下方按钮打开 @giftbackpack 机器人",
-    STEP2: "发送礼物",
-    STEP2_DESC: "将礼物直接发送给机器人。",
-    STEP3: "礼物已添加到背包",
-    STEP3_DESC: "你的礼物会在几秒内出现在背包中。之后，你可以快速出售礼物以获得余额，或将其用于 Upgrade、Crafts、PVP 和 Rocket 游戏。",
-    INSTANT_PROCESSING: "礼物发送后会立即出现在你的背包中",
-    INSTANT_PROCESSING_LABEL: "即时处理：",
-    QUICK_SELL: "快速出售背包中的礼物，TON 余额即时到账",
-    QUICK_SELL_LABEL: "快速出售：",
-    AFTER_SENDING: "发送礼物后：",
-    CHECK_BACKPACK: "查看你的",
-    BACKPACK: "背包",
-    TO_QUICK_SELL: "即可快速出售并获得 TON 余额。需要帮助？请联系"
+    TITLE_TOP_UP: "ä½¿ç”¨ç¤¼ç‰©å……å€¼",
+    DESCRIPTION: "å°†ç¤¼ç‰©å‘é€ç»™æˆ‘ä»¬çš„æœºå™¨äººï¼Œå®ƒä»¬å°±ä¼šå‡ºçŽ°åœ¨ä½ çš„èƒŒåŒ…ä¸­ã€‚",
+    OPEN_BOT: "æ‰“å¼€ @giftbackpack",
+    OPEN_GIFT_BOT: "æ‰“å¼€ç¤¼ç‰©æœºå™¨äºº",
+    HOW_IT_WORKS: "æ“ä½œè¯´æ˜Ž",
+    STEP1_DESC: "ç‚¹å‡»ä¸‹æ–¹æŒ‰é’®æ‰“å¼€ @giftbackpack æœºå™¨äºº",
+    STEP2: "å‘é€ç¤¼ç‰©",
+    STEP2_DESC: "å°†ç¤¼ç‰©ç›´æŽ¥å‘é€ç»™æœºå™¨äººã€‚",
+    STEP3: "ç¤¼ç‰©å·²æ·»åŠ åˆ°èƒŒåŒ…",
+    STEP3_DESC: "ä½ çš„ç¤¼ç‰©ä¼šåœ¨å‡ ç§’å†…å‡ºçŽ°åœ¨èƒŒåŒ…ä¸­ã€‚ä¹‹åŽï¼Œä½ å¯ä»¥å¿«é€Ÿå‡ºå”®ç¤¼ç‰©ä»¥èŽ·å¾—ä½™é¢ï¼Œæˆ–å°†å…¶ç”¨äºŽ Upgradeã€Craftsã€PVP å’Œ Rocket æ¸¸æˆã€‚",
+    INSTANT_PROCESSING: "ç¤¼ç‰©å‘é€åŽä¼šç«‹å³å‡ºçŽ°åœ¨ä½ çš„èƒŒåŒ…ä¸­",
+    INSTANT_PROCESSING_LABEL: "å³æ—¶å¤„ç†ï¼š",
+    QUICK_SELL: "å¿«é€Ÿå‡ºå”®èƒŒåŒ…ä¸­çš„ç¤¼ç‰©ï¼ŒTON ä½™é¢å³æ—¶åˆ°è´¦",
+    QUICK_SELL_LABEL: "å¿«é€Ÿå‡ºå”®ï¼š",
+    AFTER_SENDING: "å‘é€ç¤¼ç‰©åŽï¼š",
+    CHECK_BACKPACK: "æŸ¥çœ‹ä½ çš„",
+    BACKPACK: "èƒŒåŒ…",
+    TO_QUICK_SELL: "å³å¯å¿«é€Ÿå‡ºå”®å¹¶èŽ·å¾— TON ä½™é¢ã€‚éœ€è¦å¸®åŠ©ï¼Ÿè¯·è”ç³»"
 }
-  , SEND_GIFTS_TO = "将礼物发送至"
+  , SEND_GIFTS_TO = "å°†ç¤¼ç‰©å‘é€è‡³"
   , STARS = {
-    AMOUNT_LABEL: "Stars 数量（{{min}}–{{max}}）",
-    PAYMENT_SUCCESS: "Stars 支付成功！余额已更新。",
-    PAYMENT_FAILED: "Stars 支付失败，请重试。",
-    TEMPORARILY_UNAVAILABLE: "Stars 充值暂不可用",
-    TEMPORARILY_UNAVAILABLE_DESC: "请使用 TON 为余额充值。Stars 充值当前暂不可用。",
-    SWITCH_TO_TON: "切换至 TON",
-    LIMIT_REACHED: "已达到 Stars 充值限额。请稍后再试，或使用其他充值方式。",
-    DEPOSITS_DISABLED: "你的账户无法使用 Stars 充值"
+    AMOUNT_LABEL: "Stars æ•°é‡ï¼ˆ{{min}}â€“{{max}}ï¼‰",
+    PAYMENT_SUCCESS: "Stars æ”¯ä»˜æˆåŠŸï¼ä½™é¢å·²æ›´æ–°ã€‚",
+    PAYMENT_FAILED: "Stars æ”¯ä»˜å¤±è´¥ï¼Œè¯·é‡è¯•ã€‚",
+    TEMPORARILY_UNAVAILABLE: "Stars å……å€¼æš‚ä¸å¯ç”¨",
+    TEMPORARILY_UNAVAILABLE_DESC: "è¯·ä½¿ç”¨ TON ä¸ºä½™é¢å……å€¼ã€‚Stars å……å€¼å½“å‰æš‚ä¸å¯ç”¨ã€‚",
+    SWITCH_TO_TON: "åˆ‡æ¢è‡³ TON",
+    LIMIT_REACHED: "å·²è¾¾åˆ° Stars å……å€¼é™é¢ã€‚è¯·ç¨åŽå†è¯•ï¼Œæˆ–ä½¿ç”¨å…¶ä»–å……å€¼æ–¹å¼ã€‚",
+    DEPOSITS_DISABLED: "ä½ çš„è´¦æˆ·æ— æ³•ä½¿ç”¨ Stars å……å€¼"
 }
   , TERMS = {
-    AGREE_TO: "使用 TON 充值即表示你同意我们的",
-    TERMS_OF_SERVICE: "服务条款",
-    NO_REFUNDS: "所有购买均为最终交易，任何情况下均不提供退款。"
+    AGREE_TO: "ä½¿ç”¨ TON å……å€¼å³è¡¨ç¤ºä½ åŒæ„æˆ‘ä»¬çš„",
+    TERMS_OF_SERVICE: "æœåŠ¡æ¡æ¬¾",
+    NO_REFUNDS: "æ‰€æœ‰è´­ä¹°å‡ä¸ºæœ€ç»ˆäº¤æ˜“ï¼Œä»»ä½•æƒ…å†µä¸‹å‡ä¸æä¾›é€€æ¬¾ã€‚"
 }
   , BUTTONS$4 = {
-    TOP_UP: "充值",
-    SEND_GIFT: "发送礼物"
+    TOP_UP: "å……å€¼",
+    SEND_GIFT: "å‘é€ç¤¼ç‰©"
 }
   , MESSAGES$2 = {
-    COMPLETE_PAYMENT_CRYPTOBOT: "请在 CryptoBot 中完成付款",
-    TO_USE_THEM: "即可使用这些礼物"
+    COMPLETE_PAYMENT_CRYPTOBOT: "è¯·åœ¨ CryptoBot ä¸­å®Œæˆä»˜æ¬¾",
+    TO_USE_THEM: "å³å¯ä½¿ç”¨è¿™äº›ç¤¼ç‰©"
 }
   , AMOUNT = {
-    LABEL: "金额（最低 {{minAmount}} TON）",
-    YOU_WILL_RECEIVE: "你将收到：{{amount}} TON"
+    LABEL: "é‡‘é¢ï¼ˆæœ€ä½Ž {{minAmount}} TONï¼‰",
+    YOU_WILL_RECEIVE: "ä½ å°†æ”¶åˆ°ï¼š{{amount}} TON"
 }
   , zhTopup = {
     WALLET,
@@ -58219,87 +58219,87 @@ It's 100% free, and you can try your luck every 24 hours!`,
     AMOUNT
 }
   , TITLES = {
-    SELECT_YOUR_GIFT: "选择你的礼物",
-    SELECT_TARGET_GIFT: "选择目标礼物",
+    SELECT_YOUR_GIFT: "é€‰æ‹©ä½ çš„ç¤¼ç‰©",
+    SELECT_TARGET_GIFT: "é€‰æ‹©ç›®æ ‡ç¤¼ç‰©",
     GIFT_UPGRADE: "Gift Upgrade",
-    HOW_IT_WORKS: "升级机制",
-    UPGRADE_TARGET: "升级目标",
-    UPGRADED_GIFT: "升级后的礼物"
+    HOW_IT_WORKS: "å‡çº§æœºåˆ¶",
+    UPGRADE_TARGET: "å‡çº§ç›®æ ‡",
+    UPGRADED_GIFT: "å‡çº§åŽçš„ç¤¼ç‰©"
 }
   , ACTIONS$2 = {
-    UPGRADE_WITH_CHANCE: "升级礼物（成功率 {{chance}}%）",
-    SELECT_BOTH_GIFTS: "选择两件礼物进行升级",
-    UPGRADE_AGAIN: "再次升级",
-    TRY_AGAIN: "再试一次",
-    KEEP_GIFT: "保留礼物",
-    HIDE: "隐藏",
-    SHOW: "显示"
+    UPGRADE_WITH_CHANCE: "å‡çº§ç¤¼ç‰©ï¼ˆæˆåŠŸçŽ‡ {{chance}}%ï¼‰",
+    SELECT_BOTH_GIFTS: "é€‰æ‹©ä¸¤ä»¶ç¤¼ç‰©è¿›è¡Œå‡çº§",
+    UPGRADE_AGAIN: "å†æ¬¡å‡çº§",
+    TRY_AGAIN: "å†è¯•ä¸€æ¬¡",
+    KEEP_GIFT: "ä¿ç•™ç¤¼ç‰©",
+    HIDE: "éšè—",
+    SHOW: "æ˜¾ç¤º"
 }
   , STATUS$3 = {
-    UPGRADING: "升级中...",
-    PROCESSING: "处理中...",
-    SUCCESS: "升级成功！",
-    FAILED: "升级失败！"
+    UPGRADING: "å‡çº§ä¸­...",
+    PROCESSING: "å¤„ç†ä¸­...",
+    SUCCESS: "å‡çº§æˆåŠŸï¼",
+    FAILED: "å‡çº§å¤±è´¥ï¼"
 }
   , MESSAGES$1 = {
-    SUCCESS_DESCRIPTION: "恭喜！你的礼物已成功升级。",
-    FAILURE_DESCRIPTION: "很遗憾，升级失败，你的礼物已丢失。",
-    TRANSFORM_DESCRIPTION: "将你的礼物升级为更高价值的礼物",
-    SEND_GIFTS_TO: "将礼物发送至",
-    AND_UPGRADE_THEM: "并将其升级",
-    TO_USE_IN_UPGRADES: "用于 Upgrade",
-    UPGRADE_DESCRIPTION: "将你的礼物升级为更高价值的礼物",
-    NO_GIFTS_IN_RANGE: "该范围内暂无礼物",
-    NO_UPGRADEABLE_GIFTS: "暂无可升级的礼物",
-    NO_GIFTS_IN_RANGE_DESC: "{{range}} 范围内未找到礼物",
-    NO_GIFTS_FOR_UPGRADE: "暂无可升级的礼物",
-    SHOW_ALL_UPGRADEABLE: "查看所有可升级礼物",
-    OPEN_BOXES_FOR_UPGRADES: "开启宝箱，获取可用于 Upgrade 的礼物"
+    SUCCESS_DESCRIPTION: "æ­å–œï¼ä½ çš„ç¤¼ç‰©å·²æˆåŠŸå‡çº§ã€‚",
+    FAILURE_DESCRIPTION: "å¾ˆé—æ†¾ï¼Œå‡çº§å¤±è´¥ï¼Œä½ çš„ç¤¼ç‰©å·²ä¸¢å¤±ã€‚",
+    TRANSFORM_DESCRIPTION: "å°†ä½ çš„ç¤¼ç‰©å‡çº§ä¸ºæ›´é«˜ä»·å€¼çš„ç¤¼ç‰©",
+    SEND_GIFTS_TO: "å°†ç¤¼ç‰©å‘é€è‡³",
+    AND_UPGRADE_THEM: "å¹¶å°†å…¶å‡çº§",
+    TO_USE_IN_UPGRADES: "ç”¨äºŽ Upgrade",
+    UPGRADE_DESCRIPTION: "å°†ä½ çš„ç¤¼ç‰©å‡çº§ä¸ºæ›´é«˜ä»·å€¼çš„ç¤¼ç‰©",
+    NO_GIFTS_IN_RANGE: "è¯¥èŒƒå›´å†…æš‚æ— ç¤¼ç‰©",
+    NO_UPGRADEABLE_GIFTS: "æš‚æ— å¯å‡çº§çš„ç¤¼ç‰©",
+    NO_GIFTS_IN_RANGE_DESC: "{{range}} èŒƒå›´å†…æœªæ‰¾åˆ°ç¤¼ç‰©",
+    NO_GIFTS_FOR_UPGRADE: "æš‚æ— å¯å‡çº§çš„ç¤¼ç‰©",
+    SHOW_ALL_UPGRADEABLE: "æŸ¥çœ‹æ‰€æœ‰å¯å‡çº§ç¤¼ç‰©",
+    OPEN_BOXES_FOR_UPGRADES: "å¼€å¯å®ç®±ï¼ŒèŽ·å–å¯ç”¨äºŽ Upgrade çš„ç¤¼ç‰©"
 }
   , GRID = {
-    VERY_HIGH: "非常高",
-    VERY_LOW: "非常低"
+    VERY_HIGH: "éžå¸¸é«˜",
+    VERY_LOW: "éžå¸¸ä½Ž"
 }
   , STEPS$4 = {
     SELECT: {
-        DESCRIPTION: "从背包中选择要升级的礼物"
+        DESCRIPTION: "ä»ŽèƒŒåŒ…ä¸­é€‰æ‹©è¦å‡çº§çš„ç¤¼ç‰©"
     },
     TARGET: {
-        TITLE: "选择目标",
-        DESCRIPTION: "从可用的礼物池中选择你想升级成的目标礼物"
+        TITLE: "é€‰æ‹©ç›®æ ‡",
+        DESCRIPTION: "ä»Žå¯ç”¨çš„ç¤¼ç‰©æ± ä¸­é€‰æ‹©ä½ æƒ³å‡çº§æˆçš„ç›®æ ‡ç¤¼ç‰©"
     },
     SPIN: {
-        TITLE: "转动转盘",
-        DESCRIPTION: "点击升级按钮，你的礼物可能升级为更高价值的礼物，也可能升级失败并丢失。"
+        TITLE: "è½¬åŠ¨è½¬ç›˜",
+        DESCRIPTION: "ç‚¹å‡»å‡çº§æŒ‰é’®ï¼Œä½ çš„ç¤¼ç‰©å¯èƒ½å‡çº§ä¸ºæ›´é«˜ä»·å€¼çš„ç¤¼ç‰©ï¼Œä¹Ÿå¯èƒ½å‡çº§å¤±è´¥å¹¶ä¸¢å¤±ã€‚"
     },
     OUTCOME: {
         SUCCESS: {
-            TITLE: "成功",
-            DESCRIPTION: "如果升级成功，你将获得升级池中的目标礼物。"
+            TITLE: "æˆåŠŸ",
+            DESCRIPTION: "å¦‚æžœå‡çº§æˆåŠŸï¼Œä½ å°†èŽ·å¾—å‡çº§æ± ä¸­çš„ç›®æ ‡ç¤¼ç‰©ã€‚"
         },
         FAILURE: {
-            TITLE: "失败",
-            DESCRIPTION: "如果升级失败，你的礼物将会丢失并进入升级池。"
+            TITLE: "å¤±è´¥",
+            DESCRIPTION: "å¦‚æžœå‡çº§å¤±è´¥ï¼Œä½ çš„ç¤¼ç‰©å°†ä¼šä¸¢å¤±å¹¶è¿›å…¥å‡çº§æ± ã€‚"
         }
     }
 }
   , LABELS$7 = {
-    YOUR_GIFT: "你的礼物",
-    SELECT_GIFT: "选择礼物",
-    TARGET_GIFT: "目标礼物",
-    SELECT_TARGET: "选择目标",
-    SELECT_GIFT_FIRST: "请先选择礼物",
-    CHOOSE_UPGRADE: "选择升级目标",
-    SELECT_GIFT_TO_CONTINUE: "选择礼物以继续",
-    CHOOSE_TO_UPGRADE: "选择要升级的礼物",
-    POTENTIAL_PROFIT: "潜在收益："
+    YOUR_GIFT: "ä½ çš„ç¤¼ç‰©",
+    SELECT_GIFT: "é€‰æ‹©ç¤¼ç‰©",
+    TARGET_GIFT: "ç›®æ ‡ç¤¼ç‰©",
+    SELECT_TARGET: "é€‰æ‹©ç›®æ ‡",
+    SELECT_GIFT_FIRST: "è¯·å…ˆé€‰æ‹©ç¤¼ç‰©",
+    CHOOSE_UPGRADE: "é€‰æ‹©å‡çº§ç›®æ ‡",
+    SELECT_GIFT_TO_CONTINUE: "é€‰æ‹©ç¤¼ç‰©ä»¥ç»§ç»­",
+    CHOOSE_TO_UPGRADE: "é€‰æ‹©è¦å‡çº§çš„ç¤¼ç‰©",
+    POTENTIAL_PROFIT: "æ½œåœ¨æ”¶ç›Šï¼š"
 }
   , BUTTONS$3 = {
-    SELL: "以 {{price}} 出售",
-    SEND_GIFT: "发送礼物"
+    SELL: "ä»¥ {{price}} å‡ºå”®",
+    SEND_GIFT: "å‘é€ç¤¼ç‰©"
 }
   , SORT = {
-    SORT_BY: "排序：{{label}}"
+    SORT_BY: "æŽ’åºï¼š{{label}}"
 }
   , zhUpgrade = {
     TITLES,
@@ -58312,48 +58312,48 @@ It's 100% free, and you can try your luck every 24 hours!`,
     BUTTONS: BUTTONS$3,
     SORT
 }
-  , TITLE$1 = "PVP 对局记录"
+  , TITLE$1 = "PVP å¯¹å±€è®°å½•"
   , LABELS$6 = {
-    ALL_GAMES: "全部对局",
-    MY_GAMES: "我的对局",
-    ROUND: "对局",
-    PLAYERS: "玩家",
-    LOADING_HISTORY: "正在加载记录...",
-    NO_GAMES_YET: "暂无对局",
-    NO_GAMES_PLAYED: "暂未参与任何对局",
-    WINNER: "获胜者",
-    RANDOM_RESULT: "随机结果",
-    PLAYER_NUMBER: "玩家 #{{number}}",
-    WIN_CHANCE: "胜率 {{chance}}",
-    ITEMS_COUNT: "{{count}} 件礼物"
+    ALL_GAMES: "å…¨éƒ¨å¯¹å±€",
+    MY_GAMES: "æˆ‘çš„å¯¹å±€",
+    ROUND: "å¯¹å±€",
+    PLAYERS: "çŽ©å®¶",
+    LOADING_HISTORY: "æ­£åœ¨åŠ è½½è®°å½•...",
+    NO_GAMES_YET: "æš‚æ— å¯¹å±€",
+    NO_GAMES_PLAYED: "æš‚æœªå‚ä¸Žä»»ä½•å¯¹å±€",
+    WINNER: "èŽ·èƒœè€…",
+    RANDOM_RESULT: "éšæœºç»“æžœ",
+    PLAYER_NUMBER: "çŽ©å®¶ #{{number}}",
+    WIN_CHANCE: "èƒœçŽ‡ {{chance}}",
+    ITEMS_COUNT: "{{count}} ä»¶ç¤¼ç‰©"
 }
   , VERIFICATION = {
-    TITLE: "公平性验证",
-    DOWNLOAD_TITLE: "下载游戏数据进行离线验证",
-    VERIFIED: "已验证",
-    SERVER_HASH: "服务器哈希（预先提交）",
-    SERVER_SEED: "服务器种子（游戏结束后公开）",
-    CLIENT_SEEDS: "客户端种子（{{count}} 名玩家）",
-    HOW_IT_WORKS: "验证机制",
-    STEP_1: "服务器生成<strong>随机种子</strong>，并在游戏开始前公布其<strong>哈希</strong>",
-    STEP_2: "每位玩家下注时都会获得唯一的<strong>客户端种子</strong>",
-    STEP_3: "游戏结束后：组合服务器种子 + 所有客户端种子 + nonce",
-    STEP_4: "结果 = 加密哈希 → 决定获胜者",
-    NO_CHEAT: "<strong>任何人都无法作弊：</strong>服务器无法预测结果（客户端种子未知），玩家也无法操控结果（服务器种子已预先提交）",
-    PASSED: "验证通过",
-    FAILED: "验证失败",
-    HASH_VERIFICATION: "哈希验证",
-    RESULT_VERIFICATION: "结果验证",
-    VALID: "有效",
-    INVALID: "无效",
-    CALCULATED_RESULT: "计算结果",
-    EXPECTED_RESULT: "预期结果",
-    VERIFYING: "验证中...",
-    VERIFY_AGAIN: "重新验证",
-    VERIFY_NOW: "立即验证",
-    CHECK_DATA_TRY_AGAIN: "请检查数据后重试",
-    SERVER_SEED_HASH: "服务器种子哈希",
-    NA: "不适用"
+    TITLE: "å…¬å¹³æ€§éªŒè¯",
+    DOWNLOAD_TITLE: "ä¸‹è½½æ¸¸æˆæ•°æ®è¿›è¡Œç¦»çº¿éªŒè¯",
+    VERIFIED: "å·²éªŒè¯",
+    SERVER_HASH: "æœåŠ¡å™¨å“ˆå¸Œï¼ˆé¢„å…ˆæäº¤ï¼‰",
+    SERVER_SEED: "æœåŠ¡å™¨ç§å­ï¼ˆæ¸¸æˆç»“æŸåŽå…¬å¼€ï¼‰",
+    CLIENT_SEEDS: "å®¢æˆ·ç«¯ç§å­ï¼ˆ{{count}} åçŽ©å®¶ï¼‰",
+    HOW_IT_WORKS: "éªŒè¯æœºåˆ¶",
+    STEP_1: "æœåŠ¡å™¨ç”Ÿæˆ<strong>éšæœºç§å­</strong>ï¼Œå¹¶åœ¨æ¸¸æˆå¼€å§‹å‰å…¬å¸ƒå…¶<strong>å“ˆå¸Œ</strong>",
+    STEP_2: "æ¯ä½çŽ©å®¶ä¸‹æ³¨æ—¶éƒ½ä¼šèŽ·å¾—å”¯ä¸€çš„<strong>å®¢æˆ·ç«¯ç§å­</strong>",
+    STEP_3: "æ¸¸æˆç»“æŸåŽï¼šç»„åˆæœåŠ¡å™¨ç§å­ + æ‰€æœ‰å®¢æˆ·ç«¯ç§å­ + nonce",
+    STEP_4: "ç»“æžœ = åŠ å¯†å“ˆå¸Œ â†’ å†³å®šèŽ·èƒœè€…",
+    NO_CHEAT: "<strong>ä»»ä½•äººéƒ½æ— æ³•ä½œå¼Šï¼š</strong>æœåŠ¡å™¨æ— æ³•é¢„æµ‹ç»“æžœï¼ˆå®¢æˆ·ç«¯ç§å­æœªçŸ¥ï¼‰ï¼ŒçŽ©å®¶ä¹Ÿæ— æ³•æ“æŽ§ç»“æžœï¼ˆæœåŠ¡å™¨ç§å­å·²é¢„å…ˆæäº¤ï¼‰",
+    PASSED: "éªŒè¯é€šè¿‡",
+    FAILED: "éªŒè¯å¤±è´¥",
+    HASH_VERIFICATION: "å“ˆå¸ŒéªŒè¯",
+    RESULT_VERIFICATION: "ç»“æžœéªŒè¯",
+    VALID: "æœ‰æ•ˆ",
+    INVALID: "æ— æ•ˆ",
+    CALCULATED_RESULT: "è®¡ç®—ç»“æžœ",
+    EXPECTED_RESULT: "é¢„æœŸç»“æžœ",
+    VERIFYING: "éªŒè¯ä¸­...",
+    VERIFY_AGAIN: "é‡æ–°éªŒè¯",
+    VERIFY_NOW: "ç«‹å³éªŒè¯",
+    CHECK_DATA_TRY_AGAIN: "è¯·æ£€æŸ¥æ•°æ®åŽé‡è¯•",
+    SERVER_SEED_HASH: "æœåŠ¡å™¨ç§å­å“ˆå¸Œ",
+    NA: "ä¸é€‚ç”¨"
 }
   , zhPvpHistory = {
     TITLE: TITLE$1,
@@ -58361,30 +58361,30 @@ It's 100% free, and you can try your luck every 24 hours!`,
     VERIFICATION
 }
   , UNSUPPORTED = {
-    TITLE: "运行环境错误",
-    MESSAGE: "此应用必须在 Telegram 中打开",
-    INSTRUCTION: "请直接通过 Telegram 打开此应用"
+    TITLE: "è¿è¡ŒçŽ¯å¢ƒé”™è¯¯",
+    MESSAGE: "æ­¤åº”ç”¨å¿…é¡»åœ¨ Telegram ä¸­æ‰“å¼€",
+    INSTRUCTION: "è¯·ç›´æŽ¥é€šè¿‡ Telegram æ‰“å¼€æ­¤åº”ç”¨"
 }
   , NO_CONNECTION = {
-    TITLE: "无网络连接",
-    DESCRIPTION: "请检查网络连接",
-    HINT: "请确认网络正常后重试",
-    CHECKING: "正在检查连接..."
+    TITLE: "æ— ç½‘ç»œè¿žæŽ¥",
+    DESCRIPTION: "è¯·æ£€æŸ¥ç½‘ç»œè¿žæŽ¥",
+    HINT: "è¯·ç¡®è®¤ç½‘ç»œæ­£å¸¸åŽé‡è¯•",
+    CHECKING: "æ­£åœ¨æ£€æŸ¥è¿žæŽ¥..."
 }
   , MAINTENANCE$3 = {
-    TITLE: "系统维护中",
-    DESCRIPTION_PART1: "正在升级应用",
-    UPGRADING: "正在升级系统",
-    SECURITY: "正在提升安全性",
-    FEATURES: "正在添加新功能",
-    BACK_SHORTLY: "我们很快就会回来",
-    AUTO_REFRESH: "页面将自动刷新"
+    TITLE: "ç³»ç»Ÿç»´æŠ¤ä¸­",
+    DESCRIPTION_PART1: "æ­£åœ¨å‡çº§åº”ç”¨",
+    UPGRADING: "æ­£åœ¨å‡çº§ç³»ç»Ÿ",
+    SECURITY: "æ­£åœ¨æå‡å®‰å…¨æ€§",
+    FEATURES: "æ­£åœ¨æ·»åŠ æ–°åŠŸèƒ½",
+    BACK_SHORTLY: "æˆ‘ä»¬å¾ˆå¿«å°±ä¼šå›žæ¥",
+    AUTO_REFRESH: "é¡µé¢å°†è‡ªåŠ¨åˆ·æ–°"
 }
   , OVERLOAD = {
-    TITLE: "当前负载较高",
-    DESCRIPTION: "当前服务器负载较高，暂时无法响应。",
-    HINT: "问题出在我们这边，并非你的网络连接。你无需进行任何操作。",
-    CHECKING: "正在自动重新连接..."
+    TITLE: "å½“å‰è´Ÿè½½è¾ƒé«˜",
+    DESCRIPTION: "å½“å‰æœåŠ¡å™¨è´Ÿè½½è¾ƒé«˜ï¼Œæš‚æ—¶æ— æ³•å“åº”ã€‚",
+    HINT: "é—®é¢˜å‡ºåœ¨æˆ‘ä»¬è¿™è¾¹ï¼Œå¹¶éžä½ çš„ç½‘ç»œè¿žæŽ¥ã€‚ä½ æ— éœ€è¿›è¡Œä»»ä½•æ“ä½œã€‚",
+    CHECKING: "æ­£åœ¨è‡ªåŠ¨é‡æ–°è¿žæŽ¥..."
 }
   , zhEnvironment = {
     UNSUPPORTED,
@@ -58394,76 +58394,76 @@ It's 100% free, and you can try your luck every 24 hours!`,
 }
   , HEADER$3 = {
     TITLE: "Crafts",
-    SUBTITLE: "将多件礼物合成为一件新礼物"
+    SUBTITLE: "å°†å¤šä»¶ç¤¼ç‰©åˆæˆä¸ºä¸€ä»¶æ–°ç¤¼ç‰©"
 }
   , MODES = {
-    CONTRACT_MODE: "合成模式",
-    TOO_SMALL: "合成价值过低",
-    SAFE: "稳健",
-    SAFE_DESC: "风险较低，倍率较小，但获胜概率更高。",
-    NORMAL: "普通",
-    NORMAL_DESC: "风险与回报均衡，折中之选。",
-    RISKY: "高风险",
-    RISKY_DESC: "风险较高，倍率更高，但获胜概率较低。",
-    NEED_MORE_BUTTON: "再添加价值 {{amount}} TON 的礼物，即可进行 {{mode}} 合成",
-    MIN_LABEL: "最低合成价值"
+    CONTRACT_MODE: "åˆæˆæ¨¡å¼",
+    TOO_SMALL: "åˆæˆä»·å€¼è¿‡ä½Ž",
+    SAFE: "ç¨³å¥",
+    SAFE_DESC: "é£Žé™©è¾ƒä½Žï¼Œå€çŽ‡è¾ƒå°ï¼Œä½†èŽ·èƒœæ¦‚çŽ‡æ›´é«˜ã€‚",
+    NORMAL: "æ™®é€š",
+    NORMAL_DESC: "é£Žé™©ä¸Žå›žæŠ¥å‡è¡¡ï¼ŒæŠ˜ä¸­ä¹‹é€‰ã€‚",
+    RISKY: "é«˜é£Žé™©",
+    RISKY_DESC: "é£Žé™©è¾ƒé«˜ï¼Œå€çŽ‡æ›´é«˜ï¼Œä½†èŽ·èƒœæ¦‚çŽ‡è¾ƒä½Žã€‚",
+    NEED_MORE_BUTTON: "å†æ·»åŠ ä»·å€¼ {{amount}} TON çš„ç¤¼ç‰©ï¼Œå³å¯è¿›è¡Œ {{mode}} åˆæˆ",
+    MIN_LABEL: "æœ€ä½Žåˆæˆä»·å€¼"
 }
   , LABELS$5 = {
-    CONTRACT_VALUE: "合成价值",
-    CONTRACT_SLOTS: "合成槽位",
-    EXECUTING_CONTRACT: "合成中...",
-    EXECUTE_CONTRACT: "开始 {{mode}} 合成",
-    ADD_GIFTS: "至少添加 2 件礼物即可开始合成",
-    POTENTIAL_PROFIT: "潜在收益：",
-    SELECT_GIFT: "选择礼物",
-    SEND_GIFTS_TO: "将礼物发送至",
-    HOW_IT_WORKS: "玩法说明",
-    HIDE_DETAILS: "收起详情",
-    SHOW_DETAILS: "展开详情",
-    MODE_RESTRICTIONS: "模式限制",
-    RESTRICTION_TOO_SMALL: "合成价值过低时，部分模式可能无法使用",
-    RESTRICTION_ADD_MORE: "添加价值更高的礼物，解锁更高风险模式"
+    CONTRACT_VALUE: "åˆæˆä»·å€¼",
+    CONTRACT_SLOTS: "åˆæˆæ§½ä½",
+    EXECUTING_CONTRACT: "åˆæˆä¸­...",
+    EXECUTE_CONTRACT: "å¼€å§‹ {{mode}} åˆæˆ",
+    ADD_GIFTS: "è‡³å°‘æ·»åŠ  2 ä»¶ç¤¼ç‰©å³å¯å¼€å§‹åˆæˆ",
+    POTENTIAL_PROFIT: "æ½œåœ¨æ”¶ç›Šï¼š",
+    SELECT_GIFT: "é€‰æ‹©ç¤¼ç‰©",
+    SEND_GIFTS_TO: "å°†ç¤¼ç‰©å‘é€è‡³",
+    HOW_IT_WORKS: "çŽ©æ³•è¯´æ˜Ž",
+    HIDE_DETAILS: "æ”¶èµ·è¯¦æƒ…",
+    SHOW_DETAILS: "å±•å¼€è¯¦æƒ…",
+    MODE_RESTRICTIONS: "æ¨¡å¼é™åˆ¶",
+    RESTRICTION_TOO_SMALL: "åˆæˆä»·å€¼è¿‡ä½Žæ—¶ï¼Œéƒ¨åˆ†æ¨¡å¼å¯èƒ½æ— æ³•ä½¿ç”¨",
+    RESTRICTION_ADD_MORE: "æ·»åŠ ä»·å€¼æ›´é«˜çš„ç¤¼ç‰©ï¼Œè§£é”æ›´é«˜é£Žé™©æ¨¡å¼"
 }
   , STEPS$3 = {
     ADD_GIFTS: {
-        TITLE: "添加礼物",
-        DESCRIPTION: "从背包中选择 2–10 件礼物开始合成"
+        TITLE: "æ·»åŠ ç¤¼ç‰©",
+        DESCRIPTION: "ä»ŽèƒŒåŒ…ä¸­é€‰æ‹© 2â€“10 ä»¶ç¤¼ç‰©å¼€å§‹åˆæˆ"
     },
     CHOOSE_RISK: {
-        TITLE: "选择风险等级",
-        DESCRIPTION: "根据你的风险偏好，选择稳健、普通或高风险模式"
+        TITLE: "é€‰æ‹©é£Žé™©ç­‰çº§",
+        DESCRIPTION: "æ ¹æ®ä½ çš„é£Žé™©åå¥½ï¼Œé€‰æ‹©ç¨³å¥ã€æ™®é€šæˆ–é«˜é£Žé™©æ¨¡å¼"
     },
     EXECUTE: {
-        TITLE: "开始合成",
-        DESCRIPTION: "确认并开始合成，将所选礼物合并为一件新礼物"
+        TITLE: "å¼€å§‹åˆæˆ",
+        DESCRIPTION: "ç¡®è®¤å¹¶å¼€å§‹åˆæˆï¼Œå°†æ‰€é€‰ç¤¼ç‰©åˆå¹¶ä¸ºä¸€ä»¶æ–°ç¤¼ç‰©"
     },
     RECEIVE: {
-        TITLE: "领取奖励",
-        DESCRIPTION: "根据合成结果获得一件新礼物"
+        TITLE: "é¢†å–å¥–åŠ±",
+        DESCRIPTION: "æ ¹æ®åˆæˆç»“æžœèŽ·å¾—ä¸€ä»¶æ–°ç¤¼ç‰©"
     }
 }
   , HOW_IT_WORKS_MODES = {
-    TITLE: "各模式说明",
-    SAFE: "稳健玩法。损失风险较低，但潜在收益也较小。",
-    NORMAL: "均衡玩法，概率均衡。输赢机会相同，奖励适中。",
-    RISKY: "孤注一掷。可能损失全部投入，但运气好时，单次合成最高可获得 100 倍回报。",
-    MIN_NOTE: "每种模式都有最低合成价值。模式按钮上的“最低合成价值”表示参与合成的礼物总价值必须达到这一门槛。"
+    TITLE: "å„æ¨¡å¼è¯´æ˜Ž",
+    SAFE: "ç¨³å¥çŽ©æ³•ã€‚æŸå¤±é£Žé™©è¾ƒä½Žï¼Œä½†æ½œåœ¨æ”¶ç›Šä¹Ÿè¾ƒå°ã€‚",
+    NORMAL: "å‡è¡¡çŽ©æ³•ï¼Œæ¦‚çŽ‡å‡è¡¡ã€‚è¾“èµ¢æœºä¼šç›¸åŒï¼Œå¥–åŠ±é€‚ä¸­ã€‚",
+    RISKY: "å­¤æ³¨ä¸€æŽ·ã€‚å¯èƒ½æŸå¤±å…¨éƒ¨æŠ•å…¥ï¼Œä½†è¿æ°”å¥½æ—¶ï¼Œå•æ¬¡åˆæˆæœ€é«˜å¯èŽ·å¾— 100 å€å›žæŠ¥ã€‚",
+    MIN_NOTE: "æ¯ç§æ¨¡å¼éƒ½æœ‰æœ€ä½Žåˆæˆä»·å€¼ã€‚æ¨¡å¼æŒ‰é’®ä¸Šçš„â€œæœ€ä½Žåˆæˆä»·å€¼â€è¡¨ç¤ºå‚ä¸Žåˆæˆçš„ç¤¼ç‰©æ€»ä»·å€¼å¿…é¡»è¾¾åˆ°è¿™ä¸€é—¨æ§›ã€‚"
 }
   , STATUS$2 = {
-    PROCESSING: "处理中...",
-    SUCCESS: "合成成功！"
+    PROCESSING: "å¤„ç†ä¸­...",
+    SUCCESS: "åˆæˆæˆåŠŸï¼"
 }
   , MESSAGES = {
-    EMPTY_STATE_DESCRIPTION: "开启宝箱，获取可用于 Crafts 的礼物",
-    SEND_GIFTS_TO: "将你的礼物发送至",
-    TO_USE_IN_CONTRACTS: "用于 Crafts"
+    EMPTY_STATE_DESCRIPTION: "å¼€å¯å®ç®±ï¼ŒèŽ·å–å¯ç”¨äºŽ Crafts çš„ç¤¼ç‰©",
+    SEND_GIFTS_TO: "å°†ä½ çš„ç¤¼ç‰©å‘é€è‡³",
+    TO_USE_IN_CONTRACTS: "ç”¨äºŽ Crafts"
 }
   , BUTTONS$2 = {
-    SELL: "以 {{price}} 出售",
-    KEEP_GIFT: "保留礼物",
-    UPGRADE: "升级",
-    CONTRACT: "合成",
-    SEND_GIFT: "发送礼物"
+    SELL: "ä»¥ {{price}} å‡ºå”®",
+    KEEP_GIFT: "ä¿ç•™ç¤¼ç‰©",
+    UPGRADE: "å‡çº§",
+    CONTRACT: "åˆæˆ",
+    SEND_GIFT: "å‘é€ç¤¼ç‰©"
 }
   , zhContracts = {
     HEADER: HEADER$3,
@@ -58475,62 +58475,62 @@ It's 100% free, and you can try your luck every 24 hours!`,
     MESSAGES,
     BUTTONS: BUTTONS$2
 }
-  , VIP_STATUS_LABEL = "VIP 等级"
-  , NO_STATUS = "暂无 VIP 等级"
-  , LOAD_FAILED$1 = "无法加载 VIP 状态"
-  , RETRY = "再试一次"
-  , TURNOVER = "投注流水"
-  , TURNOVER_HINT = "TON 投注流水"
-  , TO_LEVEL_PREFIX = "升至"
-  , TO_LEVEL_SUFFIX = "等级"
-  , LEFT_TON = "还差 {{amount}} TON"
-  , MAX_LEVEL = "最高等级"
-  , MAX_REACHED = "已达最高等级"
-  , LEVELS_TITLE = "VIP 等级"
-  , CURRENT = "当前"
-  , CLAIM = "领取"
-  , CLAIMED = "已领取"
-  , REWARD_CLAIMED = "奖励已领取"
-  , CREDITED_TO_BALANCE = "已计入你的余额"
-  , NFT_IN_BACKPACK = "礼物已在你的背包中"
-  , AWESOME = "太棒了"
+  , VIP_STATUS_LABEL = "VIP ç­‰çº§"
+  , NO_STATUS = "æš‚æ—  VIP ç­‰çº§"
+  , LOAD_FAILED$1 = "æ— æ³•åŠ è½½ VIP çŠ¶æ€"
+  , RETRY = "å†è¯•ä¸€æ¬¡"
+  , TURNOVER = "æŠ•æ³¨æµæ°´"
+  , TURNOVER_HINT = "TON æŠ•æ³¨æµæ°´"
+  , TO_LEVEL_PREFIX = "å‡è‡³"
+  , TO_LEVEL_SUFFIX = "ç­‰çº§"
+  , LEFT_TON = "è¿˜å·® {{amount}} TON"
+  , MAX_LEVEL = "æœ€é«˜ç­‰çº§"
+  , MAX_REACHED = "å·²è¾¾æœ€é«˜ç­‰çº§"
+  , LEVELS_TITLE = "VIP ç­‰çº§"
+  , CURRENT = "å½“å‰"
+  , CLAIM = "é¢†å–"
+  , CLAIMED = "å·²é¢†å–"
+  , REWARD_CLAIMED = "å¥–åŠ±å·²é¢†å–"
+  , CREDITED_TO_BALANCE = "å·²è®¡å…¥ä½ çš„ä½™é¢"
+  , NFT_IN_BACKPACK = "ç¤¼ç‰©å·²åœ¨ä½ çš„èƒŒåŒ…ä¸­"
+  , AWESOME = "å¤ªæ£’äº†"
   , PERKS = {
-    TASK_TICKETS: "一次性任务：{{tickets}} 张抽奖券",
-    REWARD_NFT: "达到该等级可获得 NFT 礼物",
-    REWARD_TON: "达到该等级可获得 {{amount}} TON 奖励",
-    PROMO: "专属兑换码",
-    DROPS: "惊喜礼物掉落",
-    RAFFLES: "VIP 专属抽奖",
+    TASK_TICKETS: "ä¸€æ¬¡æ€§ä»»åŠ¡ï¼š{{tickets}} å¼ æŠ½å¥–åˆ¸",
+    REWARD_NFT: "è¾¾åˆ°è¯¥ç­‰çº§å¯èŽ·å¾— NFT ç¤¼ç‰©",
+    REWARD_TON: "è¾¾åˆ°è¯¥ç­‰çº§å¯èŽ·å¾— {{amount}} TON å¥–åŠ±",
+    PROMO: "ä¸“å±žå…‘æ¢ç ",
+    DROPS: "æƒŠå–œç¤¼ç‰©æŽ‰è½",
+    RAFFLES: "VIP ä¸“å±žæŠ½å¥–",
     PLAYBONUS: "PLAYBONUS",
-    MANAGER: "专属 VIP 经理",
-    MANAGER_BONUS: "VIP 经理奖励"
+    MANAGER: "ä¸“å±ž VIP ç»ç†",
+    MANAGER_BONUS: "VIP ç»ç†å¥–åŠ±"
 }
   , PLAYBONUS = {
     TITLE: "PLAYBONUS",
-    CLAIM: "领取",
-    LOCKED_CLAIM: "达到 {{level}} 等级即可领取",
-    NOTE: "PLAYBONUS 会自动累积，达到 {{level}} 等级后即可领取。",
-    INFO_TITLE: "PLAYBONUS 说明",
-    INFO_1: "PLAYBONUS 是根据你的游戏活动计算的返现奖励，会自动累积。",
-    INFO_2: "PLAYBONUS 只根据你自己的游戏活动增长。玩得越多，增长越快。",
-    INFO_3: "达到 {{level}} 等级后即可领取。在此之前，PLAYBONUS 会持续累积且不会过期。",
-    INFO_4: "VIP 等级越高，以 PLAYBONUS 形式返还的比例越高。"
+    CLAIM: "é¢†å–",
+    LOCKED_CLAIM: "è¾¾åˆ° {{level}} ç­‰çº§å³å¯é¢†å–",
+    NOTE: "PLAYBONUS ä¼šè‡ªåŠ¨ç´¯ç§¯ï¼Œè¾¾åˆ° {{level}} ç­‰çº§åŽå³å¯é¢†å–ã€‚",
+    INFO_TITLE: "PLAYBONUS è¯´æ˜Ž",
+    INFO_1: "PLAYBONUS æ˜¯æ ¹æ®ä½ çš„æ¸¸æˆæ´»åŠ¨è®¡ç®—çš„è¿”çŽ°å¥–åŠ±ï¼Œä¼šè‡ªåŠ¨ç´¯ç§¯ã€‚",
+    INFO_2: "PLAYBONUS åªæ ¹æ®ä½ è‡ªå·±çš„æ¸¸æˆæ´»åŠ¨å¢žé•¿ã€‚çŽ©å¾—è¶Šå¤šï¼Œå¢žé•¿è¶Šå¿«ã€‚",
+    INFO_3: "è¾¾åˆ° {{level}} ç­‰çº§åŽå³å¯é¢†å–ã€‚åœ¨æ­¤ä¹‹å‰ï¼ŒPLAYBONUS ä¼šæŒç»­ç´¯ç§¯ä¸”ä¸ä¼šè¿‡æœŸã€‚",
+    INFO_4: "VIP ç­‰çº§è¶Šé«˜ï¼Œä»¥ PLAYBONUS å½¢å¼è¿”è¿˜çš„æ¯”ä¾‹è¶Šé«˜ã€‚"
 }
   , INFO = {
-    TITLE: "VIP 等级机制",
-    LEVEL_T: "等级",
-    LEVEL_X: "VIP 等级会随着累计投注流水提升。玩得越多，等级越高，可解锁的奖励也越多。",
-    PRIVILEGES_T: "特权",
-    PRIVILEGES_X: "每提升一个等级，可解锁的福利都会更加丰厚：更高额奖励、专属抽奖、兑换码，高等级还可解锁专属 VIP 经理。",
-    PLAYBONUS_X: "部分投注金额会通过 PLAYBONUS 返还给你。详情请查看 PLAYBONUS 说明。",
-    FOOTER: "VIP 等级取决于你的累计投注流水，且不会重置。部分奖励可能会根据你的活跃情况单独发放。"
+    TITLE: "VIP ç­‰çº§æœºåˆ¶",
+    LEVEL_T: "ç­‰çº§",
+    LEVEL_X: "VIP ç­‰çº§ä¼šéšç€ç´¯è®¡æŠ•æ³¨æµæ°´æå‡ã€‚çŽ©å¾—è¶Šå¤šï¼Œç­‰çº§è¶Šé«˜ï¼Œå¯è§£é”çš„å¥–åŠ±ä¹Ÿè¶Šå¤šã€‚",
+    PRIVILEGES_T: "ç‰¹æƒ",
+    PRIVILEGES_X: "æ¯æå‡ä¸€ä¸ªç­‰çº§ï¼Œå¯è§£é”çš„ç¦åˆ©éƒ½ä¼šæ›´åŠ ä¸°åŽšï¼šæ›´é«˜é¢å¥–åŠ±ã€ä¸“å±žæŠ½å¥–ã€å…‘æ¢ç ï¼Œé«˜ç­‰çº§è¿˜å¯è§£é”ä¸“å±ž VIP ç»ç†ã€‚",
+    PLAYBONUS_X: "éƒ¨åˆ†æŠ•æ³¨é‡‘é¢ä¼šé€šè¿‡ PLAYBONUS è¿”è¿˜ç»™ä½ ã€‚è¯¦æƒ…è¯·æŸ¥çœ‹ PLAYBONUS è¯´æ˜Žã€‚",
+    FOOTER: "VIP ç­‰çº§å–å†³äºŽä½ çš„ç´¯è®¡æŠ•æ³¨æµæ°´ï¼Œä¸”ä¸ä¼šé‡ç½®ã€‚éƒ¨åˆ†å¥–åŠ±å¯èƒ½ä¼šæ ¹æ®ä½ çš„æ´»è·ƒæƒ…å†µå•ç‹¬å‘æ”¾ã€‚"
 }
   , ERRORS$1 = {
-    ALREADY_CLAIMED: "该奖励已领取",
-    NO_GIFT_AVAILABLE: "当前暂无可用礼物，请稍后再试",
-    PLAYBONUS_LOCKED: "PLAYBONUS 领取功能尚未解锁",
-    NOTHING_TO_CLAIM: "暂无可领取的奖励",
-    VIP_DISABLED: "VIP 系统暂不可用"
+    ALREADY_CLAIMED: "è¯¥å¥–åŠ±å·²é¢†å–",
+    NO_GIFT_AVAILABLE: "å½“å‰æš‚æ— å¯ç”¨ç¤¼ç‰©ï¼Œè¯·ç¨åŽå†è¯•",
+    PLAYBONUS_LOCKED: "PLAYBONUS é¢†å–åŠŸèƒ½å°šæœªè§£é”",
+    NOTHING_TO_CLAIM: "æš‚æ— å¯é¢†å–çš„å¥–åŠ±",
+    VIP_DISABLED: "VIP ç³»ç»Ÿæš‚ä¸å¯ç”¨"
 }
   , zhVip = {
     VIP_STATUS_LABEL,
@@ -58557,70 +58557,70 @@ It's 100% free, and you can try your luck every 24 hours!`,
     INFO,
     ERRORS: ERRORS$1
 }
-  , TITLE = "任务"
+  , TITLE = "ä»»åŠ¡"
   , TABS$1 = {
-    GIVEAWAYS: "抽奖"
+    GIVEAWAYS: "æŠ½å¥–"
 }
   , SECTIONS = {
-    COMPLETE_TASKS: "完成任务",
-    EARN_TON: "赚取 TON"
+    COMPLETE_TASKS: "å®Œæˆä»»åŠ¡",
+    EARN_TON: "èµšå– TON"
 }
   , BUTTONS$1 = {
-    CLAIMED: "已领取",
-    CLAIM: "领取",
-    JOIN: "加入",
-    GO: "前往",
-    INVITE: "邀请",
-    UPGRADE: "升级",
-    BET: "下注",
-    START: "开始",
+    CLAIMED: "å·²é¢†å–",
+    CLAIM: "é¢†å–",
+    JOIN: "åŠ å…¥",
+    GO: "å‰å¾€",
+    INVITE: "é‚€è¯·",
+    UPGRADE: "å‡çº§",
+    BET: "ä¸‹æ³¨",
+    START: "å¼€å§‹",
     VIP: "VIP",
-    VERIFY: "验证",
-    UNAVAILABLE: "暂不可用",
-    SHARE: "分享",
-    SHARE_STORY: "分享到故事",
-    CLAIM_DAILY: "领取"
+    VERIFY: "éªŒè¯",
+    UNAVAILABLE: "æš‚ä¸å¯ç”¨",
+    SHARE: "åˆ†äº«",
+    SHARE_STORY: "åˆ†äº«åˆ°æ•…äº‹",
+    CLAIM_DAILY: "é¢†å–"
 }
   , PROGRESS = {
-    LABEL: "进度：{{current}}/{{total}}",
-    REMAINING: "剩余 {{count}}"
+    LABEL: "è¿›åº¦ï¼š{{current}}/{{total}}",
+    REMAINING: "å‰©ä½™ {{count}}"
 }
   , TICKETS = {
-    YOUR_TICKETS: "你的抽奖券",
-    EARN_TICKETS: "可用"
+    YOUR_TICKETS: "ä½ çš„æŠ½å¥–åˆ¸",
+    EARN_TICKETS: "å¯ç”¨"
 }
   , EXTRA_TASKS = {
-    TITLE: "额外任务",
-    DEPOSIT_CASHBACK: "充值",
-    RATE: "每充值 1 TON 可获得 {{rate}} 张抽奖券",
-    ACCRUED: "已累计："
+    TITLE: "é¢å¤–ä»»åŠ¡",
+    DEPOSIT_CASHBACK: "å……å€¼",
+    RATE: "æ¯å……å€¼ 1 TON å¯èŽ·å¾— {{rate}} å¼ æŠ½å¥–åˆ¸",
+    ACCRUED: "å·²ç´¯è®¡ï¼š"
 }
   , TICKETS_INFO = {
-    TITLE: "抽奖券规则",
-    STEP_1: "完成任务即可获得抽奖券。",
-    STEP_2: "1 张抽奖券 = 1 次抽奖机会。",
-    STEP_3: "在同一场抽奖中投入更多抽奖券，可提高中奖概率。",
-    STEP_4: "系统会从所有已投入的抽奖券中随机抽取中奖券。如果你有多张券被抽中，将获得多件礼物。",
-    CTA_SEE_GIVEAWAYS: "查看进行中的抽奖"
+    TITLE: "æŠ½å¥–åˆ¸è§„åˆ™",
+    STEP_1: "å®Œæˆä»»åŠ¡å³å¯èŽ·å¾—æŠ½å¥–åˆ¸ã€‚",
+    STEP_2: "1 å¼ æŠ½å¥–åˆ¸ = 1 æ¬¡æŠ½å¥–æœºä¼šã€‚",
+    STEP_3: "åœ¨åŒä¸€åœºæŠ½å¥–ä¸­æŠ•å…¥æ›´å¤šæŠ½å¥–åˆ¸ï¼Œå¯æé«˜ä¸­å¥–æ¦‚çŽ‡ã€‚",
+    STEP_4: "ç³»ç»Ÿä¼šä»Žæ‰€æœ‰å·²æŠ•å…¥çš„æŠ½å¥–åˆ¸ä¸­éšæœºæŠ½å–ä¸­å¥–åˆ¸ã€‚å¦‚æžœä½ æœ‰å¤šå¼ åˆ¸è¢«æŠ½ä¸­ï¼Œå°†èŽ·å¾—å¤šä»¶ç¤¼ç‰©ã€‚",
+    CTA_SEE_GIVEAWAYS: "æŸ¥çœ‹è¿›è¡Œä¸­çš„æŠ½å¥–"
 }
   , LABELS$4 = {
-    "10_GIFTS_GIVEAWAY": "10 件礼物抽奖",
-    HOSTED_ON_PORTALS: "在 Portals 上举办",
-    DAYS: "天",
-    HOURS: "小时",
-    MINUTES: "分钟",
-    SECONDS: "秒",
-    ENDED: "已结束",
-    LIMITED_TASKS: "限时任务",
-    DAILY_TASKS: "每日任务",
-    ONE_TIME_TASKS: "一次性任务"
+    "10_GIFTS_GIVEAWAY": "10 ä»¶ç¤¼ç‰©æŠ½å¥–",
+    HOSTED_ON_PORTALS: "åœ¨ Portals ä¸Šä¸¾åŠž",
+    DAYS: "å¤©",
+    HOURS: "å°æ—¶",
+    MINUTES: "åˆ†é’Ÿ",
+    SECONDS: "ç§’",
+    ENDED: "å·²ç»“æŸ",
+    LIMITED_TASKS: "é™æ—¶ä»»åŠ¡",
+    DAILY_TASKS: "æ¯æ—¥ä»»åŠ¡",
+    ONE_TIME_TASKS: "ä¸€æ¬¡æ€§ä»»åŠ¡"
 }
   , STATUS$1 = {
-    EXPIRED: "已过期"
+    EXPIRED: "å·²è¿‡æœŸ"
 }
   , EMPTY$2 = {
-    NO_TASKS: "暂无可用任务",
-    CHECK_BACK_LATER: "稍后再来看看新任务吧！"
+    NO_TASKS: "æš‚æ— å¯ç”¨ä»»åŠ¡",
+    CHECK_BACK_LATER: "ç¨åŽå†æ¥çœ‹çœ‹æ–°ä»»åŠ¡å§ï¼"
 }
   , zhEarn = {
     TITLE,
@@ -58636,91 +58636,91 @@ It's 100% free, and you can try your luck every 24 hours!`,
     EMPTY: EMPTY$2
 }
   , HEADER$2 = {
-    TITLE: "抽奖",
-    SUBTITLE: "参与抽奖，赢取精美礼物"
+    TITLE: "æŠ½å¥–",
+    SUBTITLE: "å‚ä¸ŽæŠ½å¥–ï¼Œèµ¢å–ç²¾ç¾Žç¤¼ç‰©"
 }
   , TABS = {
-    ACTIVE: "进行中",
-    FINISHED: "已结束"
+    ACTIVE: "è¿›è¡Œä¸­",
+    FINISHED: "å·²ç»“æŸ"
 }
   , CONTROLS$1 = {
-    SORT_LABEL: "排序",
-    SORT_BY_END_DATE: "结束时间",
-    SORT_BY_POOL: "奖池",
-    FILTER_LABEL: "筛选",
-    FILTER_ALL: "全部",
-    FILTER_MINE: "我的",
-    EMPTY_MINE_ACTIVE: "你尚未参与任何进行中的抽奖。",
-    EMPTY_MINE_FINISHED: "你尚未参与任何已结束的抽奖。",
-    PREVIOUS_PAGE: "上一页",
-    NEXT_PAGE: "下一页"
+    SORT_LABEL: "æŽ’åº",
+    SORT_BY_END_DATE: "ç»“æŸæ—¶é—´",
+    SORT_BY_POOL: "å¥–æ± ",
+    FILTER_LABEL: "ç­›é€‰",
+    FILTER_ALL: "å…¨éƒ¨",
+    FILTER_MINE: "æˆ‘çš„",
+    EMPTY_MINE_ACTIVE: "ä½ å°šæœªå‚ä¸Žä»»ä½•è¿›è¡Œä¸­çš„æŠ½å¥–ã€‚",
+    EMPTY_MINE_FINISHED: "ä½ å°šæœªå‚ä¸Žä»»ä½•å·²ç»“æŸçš„æŠ½å¥–ã€‚",
+    PREVIOUS_PAGE: "ä¸Šä¸€é¡µ",
+    NEXT_PAGE: "ä¸‹ä¸€é¡µ"
 }
   , LABELS$3 = {
-    GIVEAWAY: "抽奖",
-    NOT_FOUND: "未找到该抽奖",
-    NOT_EXIST_OR_REMOVED: "该抽奖不存在或已被移除。",
-    PARTICIPANTS: "参与者",
-    TICKET_POOL: "抽奖券总数",
-    TOTAL_GIFTS: "礼物",
-    TOP_ENTRIES: "参与排行",
-    ENDED: "抽奖已结束",
-    COMING_SOON: "即将开始",
-    NO_WINNERS: "尚未公布获奖者",
-    NO_ACTIVE_GIVEAWAYS: "暂无进行中的抽奖",
-    NO_PAST_GIVEAWAYS: "暂无已结束的抽奖。",
-    CHECK_BACK_SOON: "稍后再来看看新的精彩抽奖吧！",
-    BIG_PRIZE_POOLS: "丰厚奖池",
-    EASY_TO_JOIN: "轻松参与",
-    MULTIPLE_WINNERS: "多名获奖者",
-    TOTAL_POOL: "总奖池",
-    YOUR_TICKETS: "你的抽奖券",
-    YOUR_BALANCE: "你的余额",
-    MIN_ENTRY: "最低",
-    ALL_PRIZES: "全部奖品",
-    ALL_GIFTS: "全部礼物",
-    SHOW_ALL: "查看全部 {{count}} 项",
-    WINNERS: "获奖者",
-    WINNERS_COUNT: "{{count}} 名获奖者",
-    TIME_REMAINING: "剩余时间",
-    CANCELLED: "已取消 — 抽奖券已退还",
-    NOT_ENOUGH_TICKETS: "抽奖券不足",
-    REQUIREMENTS: "参与条件",
-    ENTER_TICKETS_CTA: "1 张抽奖券 = 1 次抽奖机会",
-    YOUR_TICKETS_IN_GIVEAWAY: "你已在本次抽奖中投入 {{count}} 张抽奖券！",
-    JOIN_CTA: "立即参与，有机会赢取好礼！",
-    JOINED_CTA: "🎉 已成功参与！祝你好运！🍀",
-    REQUIREMENT_JOIN_CHANNEL: "关注频道 {{channel}}",
-    REQUIREMENT_MIN_DEPOSIT: "最低充值：{{amount}} TON",
-    REQUIREMENT_UNBOX_GIFTBOX: "开启一个宝箱",
-    REQUIREMENT_VIP_LEVEL: "VIP 等级 {{level}} 或以上",
-    VIP_LOCKED_CTA: "VIP {{level}} 及以上专属抽奖",
-    BACK: "返回",
-    ACTIVE: "进行中",
-    STATUS: "状态"
+    GIVEAWAY: "æŠ½å¥–",
+    NOT_FOUND: "æœªæ‰¾åˆ°è¯¥æŠ½å¥–",
+    NOT_EXIST_OR_REMOVED: "è¯¥æŠ½å¥–ä¸å­˜åœ¨æˆ–å·²è¢«ç§»é™¤ã€‚",
+    PARTICIPANTS: "å‚ä¸Žè€…",
+    TICKET_POOL: "æŠ½å¥–åˆ¸æ€»æ•°",
+    TOTAL_GIFTS: "ç¤¼ç‰©",
+    TOP_ENTRIES: "å‚ä¸ŽæŽ’è¡Œ",
+    ENDED: "æŠ½å¥–å·²ç»“æŸ",
+    COMING_SOON: "å³å°†å¼€å§‹",
+    NO_WINNERS: "å°šæœªå…¬å¸ƒèŽ·å¥–è€…",
+    NO_ACTIVE_GIVEAWAYS: "æš‚æ— è¿›è¡Œä¸­çš„æŠ½å¥–",
+    NO_PAST_GIVEAWAYS: "æš‚æ— å·²ç»“æŸçš„æŠ½å¥–ã€‚",
+    CHECK_BACK_SOON: "ç¨åŽå†æ¥çœ‹çœ‹æ–°çš„ç²¾å½©æŠ½å¥–å§ï¼",
+    BIG_PRIZE_POOLS: "ä¸°åŽšå¥–æ± ",
+    EASY_TO_JOIN: "è½»æ¾å‚ä¸Ž",
+    MULTIPLE_WINNERS: "å¤šåèŽ·å¥–è€…",
+    TOTAL_POOL: "æ€»å¥–æ± ",
+    YOUR_TICKETS: "ä½ çš„æŠ½å¥–åˆ¸",
+    YOUR_BALANCE: "ä½ çš„ä½™é¢",
+    MIN_ENTRY: "æœ€ä½Ž",
+    ALL_PRIZES: "å…¨éƒ¨å¥–å“",
+    ALL_GIFTS: "å…¨éƒ¨ç¤¼ç‰©",
+    SHOW_ALL: "æŸ¥çœ‹å…¨éƒ¨ {{count}} é¡¹",
+    WINNERS: "èŽ·å¥–è€…",
+    WINNERS_COUNT: "{{count}} åèŽ·å¥–è€…",
+    TIME_REMAINING: "å‰©ä½™æ—¶é—´",
+    CANCELLED: "å·²å–æ¶ˆ â€” æŠ½å¥–åˆ¸å·²é€€è¿˜",
+    NOT_ENOUGH_TICKETS: "æŠ½å¥–åˆ¸ä¸è¶³",
+    REQUIREMENTS: "å‚ä¸Žæ¡ä»¶",
+    ENTER_TICKETS_CTA: "1 å¼ æŠ½å¥–åˆ¸ = 1 æ¬¡æŠ½å¥–æœºä¼š",
+    YOUR_TICKETS_IN_GIVEAWAY: "ä½ å·²åœ¨æœ¬æ¬¡æŠ½å¥–ä¸­æŠ•å…¥ {{count}} å¼ æŠ½å¥–åˆ¸ï¼",
+    JOIN_CTA: "ç«‹å³å‚ä¸Žï¼Œæœ‰æœºä¼šèµ¢å–å¥½ç¤¼ï¼",
+    JOINED_CTA: "ðŸŽ‰ å·²æˆåŠŸå‚ä¸Žï¼ç¥ä½ å¥½è¿ï¼ðŸ€",
+    REQUIREMENT_JOIN_CHANNEL: "å…³æ³¨é¢‘é“ {{channel}}",
+    REQUIREMENT_MIN_DEPOSIT: "æœ€ä½Žå……å€¼ï¼š{{amount}} TON",
+    REQUIREMENT_UNBOX_GIFTBOX: "å¼€å¯ä¸€ä¸ªå®ç®±",
+    REQUIREMENT_VIP_LEVEL: "VIP ç­‰çº§ {{level}} æˆ–ä»¥ä¸Š",
+    VIP_LOCKED_CTA: "VIP {{level}} åŠä»¥ä¸Šä¸“å±žæŠ½å¥–",
+    BACK: "è¿”å›ž",
+    ACTIVE: "è¿›è¡Œä¸­",
+    STATUS: "çŠ¶æ€"
 }
   , BUTTONS = {
-    JOIN: "参与抽奖",
-    JOIN_VIP: "参与 VIP 抽奖",
-    JOINING: "参与中...",
-    ENTER_WITH_TICKETS: "使用 {{count}} 张抽奖券参与",
-    ADD_TICKETS: "添加 {{count}} 张抽奖券",
-    PROCESSING: "处理中...",
-    VIP_ONLY: "仅限 VIP {{level}} 及以上"
+    JOIN: "å‚ä¸ŽæŠ½å¥–",
+    JOIN_VIP: "å‚ä¸Ž VIP æŠ½å¥–",
+    JOINING: "å‚ä¸Žä¸­...",
+    ENTER_WITH_TICKETS: "ä½¿ç”¨ {{count}} å¼ æŠ½å¥–åˆ¸å‚ä¸Ž",
+    ADD_TICKETS: "æ·»åŠ  {{count}} å¼ æŠ½å¥–åˆ¸",
+    PROCESSING: "å¤„ç†ä¸­...",
+    VIP_ONLY: "ä»…é™ VIP {{level}} åŠä»¥ä¸Š"
 }
   , VIP_GATE = {
-    TITLE: "仅限 VIP {{level}} 及以上",
-    BODY: "本次抽奖仅限 VIP {{level}} 及以上玩家参与。继续游戏提升 VIP 等级，即可解锁此类抽奖。",
-    NO_STATUS: "暂无 VIP 等级",
-    CTA: "查看我的 VIP 进度",
-    LATER: "稍后再说"
+    TITLE: "ä»…é™ VIP {{level}} åŠä»¥ä¸Š",
+    BODY: "æœ¬æ¬¡æŠ½å¥–ä»…é™ VIP {{level}} åŠä»¥ä¸ŠçŽ©å®¶å‚ä¸Žã€‚ç»§ç»­æ¸¸æˆæå‡ VIP ç­‰çº§ï¼Œå³å¯è§£é”æ­¤ç±»æŠ½å¥–ã€‚",
+    NO_STATUS: "æš‚æ—  VIP ç­‰çº§",
+    CTA: "æŸ¥çœ‹æˆ‘çš„ VIP è¿›åº¦",
+    LATER: "ç¨åŽå†è¯´"
 }
   , STATUS = {
-    JOINED: "参与成功！",
-    ENTERED_GIVEAWAY: "已使用 {{count}} 张抽奖券参与！",
-    ADDED_TICKETS: "已添加 {{count}} 张抽奖券！",
-    ALREADY_JOINED: "已参与",
-    FAILED_TO_ENTER: "参与抽奖失败",
-    FAILED_TO_ADD_TICKETS: "添加抽奖券失败"
+    JOINED: "å‚ä¸ŽæˆåŠŸï¼",
+    ENTERED_GIVEAWAY: "å·²ä½¿ç”¨ {{count}} å¼ æŠ½å¥–åˆ¸å‚ä¸Žï¼",
+    ADDED_TICKETS: "å·²æ·»åŠ  {{count}} å¼ æŠ½å¥–åˆ¸ï¼",
+    ALREADY_JOINED: "å·²å‚ä¸Ž",
+    FAILED_TO_ENTER: "å‚ä¸ŽæŠ½å¥–å¤±è´¥",
+    FAILED_TO_ADD_TICKETS: "æ·»åŠ æŠ½å¥–åˆ¸å¤±è´¥"
 }
   , zhGiveaway = {
     HEADER: HEADER$2,
@@ -58731,37 +58731,37 @@ It's 100% free, and you can try your luck every 24 hours!`,
     VIP_GATE,
     STATUS
 }
-  , LANGUAGE = "语言"
+  , LANGUAGE = "è¯­è¨€"
   , zhSettings = {
     LANGUAGE
 }
   , PLAY_HUB$1 = {
     TITLE: "Play Hub",
     TITLE_UPPER: "PLAY HUB",
-    HOT: "热门",
-    NEW: "新",
-    BACK: "返回",
-    EMPTY: "游戏暂时不可用，请稍后再来",
+    HOT: "çƒ­é—¨",
+    NEW: "æ–°",
+    BACK: "è¿”å›ž",
+    EMPTY: "æ¸¸æˆæš‚æ—¶ä¸å¯ç”¨ï¼Œè¯·ç¨åŽå†æ¥",
     BANNERS: {
         UPGRADE: {
             TITLE: "Upgrade",
-            TAGLINE: "选择心仪礼物"
+            TAGLINE: "é€‰æ‹©å¿ƒä»ªç¤¼ç‰©"
         },
         PLINKO: {
             TITLE: "Plinko",
-            TAGLINE: "最高可赢 1000 倍"
+            TAGLINE: "æœ€é«˜å¯èµ¢ 1000 å€"
         },
         CRAFTS: {
             TITLE: "Crafts",
-            TAGLINE: "合并你的礼物"
+            TAGLINE: "åˆå¹¶ä½ çš„ç¤¼ç‰©"
         },
         DICE: {
             TITLE: "Dice",
-            TAGLINE: "比大小"
+            TAGLINE: "æ¯”å¤§å°"
         },
         MINES: {
             TITLE: "Mines",
-            TAGLINE: "躲避地雷"
+            TAGLINE: "èº²é¿åœ°é›·"
         }
     }
 }
@@ -58771,110 +58771,110 @@ It's 100% free, and you can try your luck every 24 hours!`,
   , TILE$2 = {
     TITLE: "DICE"
 }
-  , MAINTENANCE$2 = "Dice 正在维护中，请稍后再试。"
+  , MAINTENANCE$2 = "Dice æ­£åœ¨ç»´æŠ¤ä¸­ï¼Œè¯·ç¨åŽå†è¯•ã€‚"
   , UNAVAILABLE$2 = {
-    TITLE: "Dice 暂不可用",
-    DESCRIPTION: "游戏暂时关闭，请稍后再来。",
-    BACK: "返回游戏列表"
+    TITLE: "Dice æš‚ä¸å¯ç”¨",
+    DESCRIPTION: "æ¸¸æˆæš‚æ—¶å…³é—­ï¼Œè¯·ç¨åŽå†æ¥ã€‚",
+    BACK: "è¿”å›žæ¸¸æˆåˆ—è¡¨"
 }
-  , LOAD_FAILED = "游戏加载失败"
-  , LOAD_RETRY = "重试"
-  , LOAD_RETRYING = "加载中…"
+  , LOAD_FAILED = "æ¸¸æˆåŠ è½½å¤±è´¥"
+  , LOAD_RETRY = "é‡è¯•"
+  , LOAD_RETRYING = "åŠ è½½ä¸­â€¦"
   , CONTROLS = {
-    MULTIPLIER: "倍数",
-    HIGHER: "大于",
-    LOWER: "小于",
-    CHANCE: "胜率",
-    FLIP_DIRECTION: "切换大于/小于"
+    MULTIPLIER: "å€æ•°",
+    HIGHER: "å¤§äºŽ",
+    LOWER: "å°äºŽ",
+    CHANCE: "èƒœçŽ‡",
+    FLIP_DIRECTION: "åˆ‡æ¢å¤§äºŽ/å°äºŽ"
 }
   , LABELS$2 = {
-    GIFT: "礼物"
+    GIFT: "ç¤¼ç‰©"
 }
   , TOGGLE$2 = {
-    GIFTS: "礼物",
+    GIFTS: "ç¤¼ç‰©",
     TON: "GRAM"
 }
   , PLACEHOLDERS$2 = {
-    TON_AMOUNT: "TON 金额"
+    TON_AMOUNT: "TON é‡‘é¢"
 }
   , GIFT_MODAL$2 = {
-    TITLE: "使用礼物下注",
-    SELECT: "选择礼物",
-    SELECTED_other: "已选择 {{count}} 件礼物",
-    CONFIRM_other: "下注 {{count}} 件礼物 · {{amount}} TON",
-    PRUNED_other: "{{count}} 件礼物已不符合下注限额"
+    TITLE: "ä½¿ç”¨ç¤¼ç‰©ä¸‹æ³¨",
+    SELECT: "é€‰æ‹©ç¤¼ç‰©",
+    SELECTED_other: "å·²é€‰æ‹© {{count}} ä»¶ç¤¼ç‰©",
+    CONFIRM_other: "ä¸‹æ³¨ {{count}} ä»¶ç¤¼ç‰© Â· {{amount}} TON",
+    PRUNED_other: "{{count}} ä»¶ç¤¼ç‰©å·²ä¸ç¬¦åˆä¸‹æ³¨é™é¢"
 }
   , BET$1 = {
-    PLACE_TON: "下注 {{amount}} TON",
-    PLACE_BET_EMPTY: "下注",
-    PLACING: "下注中…",
-    EMPTY_GIFTS: "将礼物发送至 @giftbackpack，即可玩 Dice"
+    PLACE_TON: "ä¸‹æ³¨ {{amount}} TON",
+    PLACE_BET_EMPTY: "ä¸‹æ³¨",
+    PLACING: "ä¸‹æ³¨ä¸­â€¦",
+    EMPTY_GIFTS: "å°†ç¤¼ç‰©å‘é€è‡³ @giftbackpackï¼Œå³å¯çŽ© Dice"
 }
   , HISTORY$2 = {
-    TITLE: "历史记录",
-    BACK: "返回",
-    EMPTY: "暂无掷骰记录，快来下注吧！",
-    YOUR_BET: "你的下注",
-    MULTIPLIER: "倍数",
-    PAYOUT: "派彩",
-    LEGIT_CHECK: "公平性验证"
+    TITLE: "åŽ†å²è®°å½•",
+    BACK: "è¿”å›ž",
+    EMPTY: "æš‚æ— æŽ·éª°è®°å½•ï¼Œå¿«æ¥ä¸‹æ³¨å§ï¼",
+    YOUR_BET: "ä½ çš„ä¸‹æ³¨",
+    MULTIPLIER: "å€æ•°",
+    PAYOUT: "æ´¾å½©",
+    LEGIT_CHECK: "å…¬å¹³æ€§éªŒè¯"
 }
   , FAIRNESS$2 = {
-    NEXT_HASH: "下一次掷骰哈希（下注前已锁定）",
-    UNAVAILABLE: "本次掷骰暂无验证数据",
-    SERVER_SEED_HASH: "服务器种子哈希（下注前已锁定）",
-    SERVER_SEED: "服务器种子（掷骰后公开）",
-    CLIENT_SEED: "客户端种子",
+    NEXT_HASH: "ä¸‹ä¸€æ¬¡æŽ·éª°å“ˆå¸Œï¼ˆä¸‹æ³¨å‰å·²é”å®šï¼‰",
+    UNAVAILABLE: "æœ¬æ¬¡æŽ·éª°æš‚æ— éªŒè¯æ•°æ®",
+    SERVER_SEED_HASH: "æœåŠ¡å™¨ç§å­å“ˆå¸Œï¼ˆä¸‹æ³¨å‰å·²é”å®šï¼‰",
+    SERVER_SEED: "æœåŠ¡å™¨ç§å­ï¼ˆæŽ·éª°åŽå…¬å¼€ï¼‰",
+    CLIENT_SEED: "å®¢æˆ·ç«¯ç§å­",
     NONCE: "Nonce",
-    ROLL: "掷出数字",
-    HASH_CHECK: "种子哈希",
-    ROLL_CHECK: "数字",
-    VALID_SHORT: "匹配",
-    INVALID_SHORT: "不匹配",
-    ROLL_MATCH: "匹配",
-    ROLL_MISMATCH: "不匹配",
-    CALCULATED: "计算结果",
-    EXPECTED: "预期结果",
-    VERIFY: "验证随机性",
-    VERIFY_AGAIN: "重新验证",
-    INVALID: "验证失败",
-    COPY: "复制",
-    COPIED: "已复制",
-    NOTE: "验证通过。种子已在你下注前锁定，你的浏览器刚刚重新完成了两项检查：服务器种子的 SHA-256 哈希，以及通过 floor(HMAC-SHA256(serverSeed, clientSeed:nonce) · 100) 计算出的掷骰结果。",
-    COPY_FAILED: "无法复制，请手动选择并复制"
+    ROLL: "æŽ·å‡ºæ•°å­—",
+    HASH_CHECK: "ç§å­å“ˆå¸Œ",
+    ROLL_CHECK: "æ•°å­—",
+    VALID_SHORT: "åŒ¹é…",
+    INVALID_SHORT: "ä¸åŒ¹é…",
+    ROLL_MATCH: "åŒ¹é…",
+    ROLL_MISMATCH: "ä¸åŒ¹é…",
+    CALCULATED: "è®¡ç®—ç»“æžœ",
+    EXPECTED: "é¢„æœŸç»“æžœ",
+    VERIFY: "éªŒè¯éšæœºæ€§",
+    VERIFY_AGAIN: "é‡æ–°éªŒè¯",
+    INVALID: "éªŒè¯å¤±è´¥",
+    COPY: "å¤åˆ¶",
+    COPIED: "å·²å¤åˆ¶",
+    NOTE: "éªŒè¯é€šè¿‡ã€‚ç§å­å·²åœ¨ä½ ä¸‹æ³¨å‰é”å®šï¼Œä½ çš„æµè§ˆå™¨åˆšåˆšé‡æ–°å®Œæˆäº†ä¸¤é¡¹æ£€æŸ¥ï¼šæœåŠ¡å™¨ç§å­çš„ SHA-256 å“ˆå¸Œï¼Œä»¥åŠé€šè¿‡ floor(HMAC-SHA256(serverSeed, clientSeed:nonce) Â· 100) è®¡ç®—å‡ºçš„æŽ·éª°ç»“æžœã€‚",
+    COPY_FAILED: "æ— æ³•å¤åˆ¶ï¼Œè¯·æ‰‹åŠ¨é€‰æ‹©å¹¶å¤åˆ¶"
 }
   , HOW_IT_WORKS$2 = {
-    TITLE: "玩法说明",
-    CLOSE: "关闭",
-    STEP_1_TITLE: "设置目标值",
-    STEP_1_BODY: "选择 0 到 100 之间的数字，并选择结果应大于还是小于该数字。",
-    STEP_2_TITLE: "权衡风险与收益",
-    STEP_2_BODY: "目标值会同时决定你的胜率和倍数。胜率越低，潜在倍数越高。",
-    STEP_3_TITLE: "下注",
-    STEP_3_BODY: "使用 TON 下注，或从背包中选择礼物。每件所选礼物都会作为一笔独立下注。",
-    STEP_4_TITLE: "掷骰赢取奖励",
-    STEP_4_BODY: "系统会生成一个 0.00 至 99.99 之间的随机数。如果结果落在你选择的目标值一侧，你的下注将按显示的倍数计算赢取金额。小额赢取会立即计入 TON 余额；若赢取金额较高，则会以价值最接近的可用礼物发放，而非 TON。礼物价值可能与实际赢取金额略有差异。"
+    TITLE: "çŽ©æ³•è¯´æ˜Ž",
+    CLOSE: "å…³é—­",
+    STEP_1_TITLE: "è®¾ç½®ç›®æ ‡å€¼",
+    STEP_1_BODY: "é€‰æ‹© 0 åˆ° 100 ä¹‹é—´çš„æ•°å­—ï¼Œå¹¶é€‰æ‹©ç»“æžœåº”å¤§äºŽè¿˜æ˜¯å°äºŽè¯¥æ•°å­—ã€‚",
+    STEP_2_TITLE: "æƒè¡¡é£Žé™©ä¸Žæ”¶ç›Š",
+    STEP_2_BODY: "ç›®æ ‡å€¼ä¼šåŒæ—¶å†³å®šä½ çš„èƒœçŽ‡å’Œå€æ•°ã€‚èƒœçŽ‡è¶Šä½Žï¼Œæ½œåœ¨å€æ•°è¶Šé«˜ã€‚",
+    STEP_3_TITLE: "ä¸‹æ³¨",
+    STEP_3_BODY: "ä½¿ç”¨ TON ä¸‹æ³¨ï¼Œæˆ–ä»ŽèƒŒåŒ…ä¸­é€‰æ‹©ç¤¼ç‰©ã€‚æ¯ä»¶æ‰€é€‰ç¤¼ç‰©éƒ½ä¼šä½œä¸ºä¸€ç¬”ç‹¬ç«‹ä¸‹æ³¨ã€‚",
+    STEP_4_TITLE: "æŽ·éª°èµ¢å–å¥–åŠ±",
+    STEP_4_BODY: "ç³»ç»Ÿä¼šç”Ÿæˆä¸€ä¸ª 0.00 è‡³ 99.99 ä¹‹é—´çš„éšæœºæ•°ã€‚å¦‚æžœç»“æžœè½åœ¨ä½ é€‰æ‹©çš„ç›®æ ‡å€¼ä¸€ä¾§ï¼Œä½ çš„ä¸‹æ³¨å°†æŒ‰æ˜¾ç¤ºçš„å€æ•°è®¡ç®—èµ¢å–é‡‘é¢ã€‚å°é¢èµ¢å–ä¼šç«‹å³è®¡å…¥ TON ä½™é¢ï¼›è‹¥èµ¢å–é‡‘é¢è¾ƒé«˜ï¼Œåˆ™ä¼šä»¥ä»·å€¼æœ€æŽ¥è¿‘çš„å¯ç”¨ç¤¼ç‰©å‘æ”¾ï¼Œè€Œéž TONã€‚ç¤¼ç‰©ä»·å€¼å¯èƒ½ä¸Žå®žé™…èµ¢å–é‡‘é¢ç•¥æœ‰å·®å¼‚ã€‚"
 }
   , TOASTS$2 = {
-    MAX_BET: "最高下注金额为 {{max}} TON",
-    MIN_BET: "最低下注金额为 {{min}} TON",
-    GIFTS_FAILED_other: "{{count}} 笔礼物下注失败",
+    MAX_BET: "æœ€é«˜ä¸‹æ³¨é‡‘é¢ä¸º {{max}} TON",
+    MIN_BET: "æœ€ä½Žä¸‹æ³¨é‡‘é¢ä¸º {{min}} TON",
+    GIFTS_FAILED_other: "{{count}} ç¬”ç¤¼ç‰©ä¸‹æ³¨å¤±è´¥",
     ERROR: {
-        UNAUTHORIZED: "会话已过期，请重新启动应用。",
-        BAD_INPUT: "下注无效，请调整后重试。",
-        BET_TOO_SMALL: "下注金额低于下限",
-        BET_TOO_LARGE: "下注金额超过上限",
-        MAX_PAYOUT_EXCEEDED: "潜在赢取金额超过最高派彩限额，请降低下注金额或倍数。",
-        INSUFFICIENT_BALANCE: "余额不足",
-        GIFT_NOT_FOUND: "未找到该礼物，请刷新背包。",
-        GIFT_NOT_OWNED: "该礼物不属于你",
-        GIFT_LOCKED: "该礼物正在使用中，请刷新背包。",
-        RATE_LIMITED: "操作过于频繁，请稍后再试。",
-        MAINTENANCE: "Dice 正在维护中",
-        DEDUP_TIMEOUT: "网络异常，请重试。",
-        NOT_CONNECTED: "连接已断开，正在重新连接…",
-        ACK_TIMEOUT: "服务器未响应，请重试。",
-        INTERNAL: "出现错误，请重试。"
+        UNAUTHORIZED: "ä¼šè¯å·²è¿‡æœŸï¼Œè¯·é‡æ–°å¯åŠ¨åº”ç”¨ã€‚",
+        BAD_INPUT: "ä¸‹æ³¨æ— æ•ˆï¼Œè¯·è°ƒæ•´åŽé‡è¯•ã€‚",
+        BET_TOO_SMALL: "ä¸‹æ³¨é‡‘é¢ä½ŽäºŽä¸‹é™",
+        BET_TOO_LARGE: "ä¸‹æ³¨é‡‘é¢è¶…è¿‡ä¸Šé™",
+        MAX_PAYOUT_EXCEEDED: "æ½œåœ¨èµ¢å–é‡‘é¢è¶…è¿‡æœ€é«˜æ´¾å½©é™é¢ï¼Œè¯·é™ä½Žä¸‹æ³¨é‡‘é¢æˆ–å€æ•°ã€‚",
+        INSUFFICIENT_BALANCE: "ä½™é¢ä¸è¶³",
+        GIFT_NOT_FOUND: "æœªæ‰¾åˆ°è¯¥ç¤¼ç‰©ï¼Œè¯·åˆ·æ–°èƒŒåŒ…ã€‚",
+        GIFT_NOT_OWNED: "è¯¥ç¤¼ç‰©ä¸å±žäºŽä½ ",
+        GIFT_LOCKED: "è¯¥ç¤¼ç‰©æ­£åœ¨ä½¿ç”¨ä¸­ï¼Œè¯·åˆ·æ–°èƒŒåŒ…ã€‚",
+        RATE_LIMITED: "æ“ä½œè¿‡äºŽé¢‘ç¹ï¼Œè¯·ç¨åŽå†è¯•ã€‚",
+        MAINTENANCE: "Dice æ­£åœ¨ç»´æŠ¤ä¸­",
+        DEDUP_TIMEOUT: "ç½‘ç»œå¼‚å¸¸ï¼Œè¯·é‡è¯•ã€‚",
+        NOT_CONNECTED: "è¿žæŽ¥å·²æ–­å¼€ï¼Œæ­£åœ¨é‡æ–°è¿žæŽ¥â€¦",
+        ACK_TIMEOUT: "æœåŠ¡å™¨æœªå“åº”ï¼Œè¯·é‡è¯•ã€‚",
+        INTERNAL: "å‡ºçŽ°é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚"
     }
 }
   , zhDice = {
@@ -58895,115 +58895,115 @@ It's 100% free, and you can try your luck every 24 hours!`,
     HOW_IT_WORKS: HOW_IT_WORKS$2,
     TOASTS: TOASTS$2
 }
-  , MAINTENANCE$1 = "Plinko 正在维护中，请稍后再试。"
+  , MAINTENANCE$1 = "Plinko æ­£åœ¨ç»´æŠ¤ä¸­ï¼Œè¯·ç¨åŽå†è¯•ã€‚"
   , UNAVAILABLE$1 = {
-    TITLE: "Plinko 暂不可用",
-    DESCRIPTION: "游戏暂时关闭，请稍后再来。",
-    BACK: "返回游戏列表"
+    TITLE: "Plinko æš‚ä¸å¯ç”¨",
+    DESCRIPTION: "æ¸¸æˆæš‚æ—¶å…³é—­ï¼Œè¯·ç¨åŽå†æ¥ã€‚",
+    BACK: "è¿”å›žæ¸¸æˆåˆ—è¡¨"
 }
   , DIFFICULTY = {
-    EASY: "简单",
-    MEDIUM: "中等",
-    HARD: "困难"
+    EASY: "ç®€å•",
+    MEDIUM: "ä¸­ç­‰",
+    HARD: "å›°éš¾"
 }
   , LABELS$1 = {
-    GIFT: "礼物",
-    AUTO_BET: "自动下注",
-    AUTO_COUNT: "落球次数",
-    AUTO_INTERVAL: "间隔",
-    SECONDS: "秒"
+    GIFT: "ç¤¼ç‰©",
+    AUTO_BET: "è‡ªåŠ¨ä¸‹æ³¨",
+    AUTO_COUNT: "è½çƒæ¬¡æ•°",
+    AUTO_INTERVAL: "é—´éš”",
+    SECONDS: "ç§’"
 }
   , BANNER = {
     TITLE: "PLINKO",
-    NEW: "新",
-    TAGLINE: "投下小球 · 最高可赢 ×1000"
+    NEW: "æ–°",
+    TAGLINE: "æŠ•ä¸‹å°çƒ Â· æœ€é«˜å¯èµ¢ Ã—1000"
 }
   , PLAY_HUB = {
     TITLE: "Play Hub",
     TITLE_UPPER: "PLAY HUB"
 }
   , TOGGLE$1 = {
-    GIFTS: "礼物",
+    GIFTS: "ç¤¼ç‰©",
     TON: "TON"
 }
   , PLACEHOLDERS$1 = {
-    TON_AMOUNT: "TON 金额"
+    TON_AMOUNT: "TON é‡‘é¢"
 }
   , ACTIONS$1 = {
-    PLACE_BET: "下注 {{amount}} TON",
-    PLACE_BET_EMPTY: "下注",
-    MAINTENANCE: "维护中"
+    PLACE_BET: "ä¸‹æ³¨ {{amount}} TON",
+    PLACE_BET_EMPTY: "ä¸‹æ³¨",
+    MAINTENANCE: "ç»´æŠ¤ä¸­"
 }
   , HISTORY$1 = {
-    TITLE: "历史记录",
-    EMPTY: "暂无落球记录",
-    WIN: "赢取金额"
+    TITLE: "åŽ†å²è®°å½•",
+    EMPTY: "æš‚æ— è½çƒè®°å½•",
+    WIN: "èµ¢å–é‡‘é¢"
 }
   , FAIRNESS$1 = {
-    NEXT_HASH: "下一次落球哈希（下注前已锁定）",
-    SERVER_SEED_HASH: "服务器种子哈希（下注前已锁定）",
-    SERVER_SEED: "服务器种子（落球后公开）",
-    CLIENT_SEED: "客户端种子",
+    NEXT_HASH: "ä¸‹ä¸€æ¬¡è½çƒå“ˆå¸Œï¼ˆä¸‹æ³¨å‰å·²é”å®šï¼‰",
+    SERVER_SEED_HASH: "æœåŠ¡å™¨ç§å­å“ˆå¸Œï¼ˆä¸‹æ³¨å‰å·²é”å®šï¼‰",
+    SERVER_SEED: "æœåŠ¡å™¨ç§å­ï¼ˆè½çƒåŽå…¬å¼€ï¼‰",
+    CLIENT_SEED: "å®¢æˆ·ç«¯ç§å­",
     NONCE: "Nonce",
-    VERIFY: "验证随机性",
-    VERIFY_AGAIN: "重新验证",
-    INVALID: "验证失败！",
-    ROLL: "落球随机结果",
-    HASH_CHECK: "种子哈希",
-    ROLL_CHECK: "随机结果",
-    VALID_SHORT: "匹配",
-    INVALID_SHORT: "不匹配",
-    ROLL_MATCH: "匹配",
-    ROLL_MISMATCH: "不匹配",
-    CALCULATED: "计算结果",
-    EXPECTED: "预期结果",
-    COPY: "复制",
-    COPIED: "已复制",
-    UNAVAILABLE: "此次落球暂无验证数据",
-    NOTE: "此项检查会直接在你的浏览器中进行：系统会重新计算种子的 SHA-256 哈希和 HMAC-SHA256(serverSeed, clientSeed:nonce) 随机结果，以确认结果已在你下注前锁定。各槽位的具体概率属于商业信息，因此不予公开。",
-    COPY_FAILED: "无法复制，请手动选择并复制"
+    VERIFY: "éªŒè¯éšæœºæ€§",
+    VERIFY_AGAIN: "é‡æ–°éªŒè¯",
+    INVALID: "éªŒè¯å¤±è´¥ï¼",
+    ROLL: "è½çƒéšæœºç»“æžœ",
+    HASH_CHECK: "ç§å­å“ˆå¸Œ",
+    ROLL_CHECK: "éšæœºç»“æžœ",
+    VALID_SHORT: "åŒ¹é…",
+    INVALID_SHORT: "ä¸åŒ¹é…",
+    ROLL_MATCH: "åŒ¹é…",
+    ROLL_MISMATCH: "ä¸åŒ¹é…",
+    CALCULATED: "è®¡ç®—ç»“æžœ",
+    EXPECTED: "é¢„æœŸç»“æžœ",
+    COPY: "å¤åˆ¶",
+    COPIED: "å·²å¤åˆ¶",
+    UNAVAILABLE: "æ­¤æ¬¡è½çƒæš‚æ— éªŒè¯æ•°æ®",
+    NOTE: "æ­¤é¡¹æ£€æŸ¥ä¼šç›´æŽ¥åœ¨ä½ çš„æµè§ˆå™¨ä¸­è¿›è¡Œï¼šç³»ç»Ÿä¼šé‡æ–°è®¡ç®—ç§å­çš„ SHA-256 å“ˆå¸Œå’Œ HMAC-SHA256(serverSeed, clientSeed:nonce) éšæœºç»“æžœï¼Œä»¥ç¡®è®¤ç»“æžœå·²åœ¨ä½ ä¸‹æ³¨å‰é”å®šã€‚å„æ§½ä½çš„å…·ä½“æ¦‚çŽ‡å±žäºŽå•†ä¸šä¿¡æ¯ï¼Œå› æ­¤ä¸äºˆå…¬å¼€ã€‚",
+    COPY_FAILED: "æ— æ³•å¤åˆ¶ï¼Œè¯·æ‰‹åŠ¨é€‰æ‹©å¹¶å¤åˆ¶"
 }
   , REPLAY = {
-    TITLE: "回放",
-    REPEAT: "重播",
-    CLOSE: "关闭"
+    TITLE: "å›žæ”¾",
+    REPEAT: "é‡æ’­",
+    CLOSE: "å…³é—­"
 }
   , HOW_IT_WORKS$1 = {
-    TITLE: "玩法说明",
-    STEP_1_TITLE: "选择难度",
-    STEP_1_BODY: "行数越多，潜在倍数越高，风险也越大。",
-    STEP_2_TITLE: "下注",
-    STEP_2_BODY: "使用 TON 下注，或从背包中选择礼物。每件所选礼物都会作为一个独立小球落下。",
-    STEP_3_TITLE: "观看落球",
-    STEP_3_BODY: "小球会经过钉柱不断弹跳，最终落入一个槽位。该槽位的倍数决定你的赢取金额。",
-    STEP_4_TITLE: "领取奖励",
-    STEP_4_BODY: "你的下注将按小球落入槽位的倍数计算赢取金额。小额赢取会立即计入 TON 余额；若赢取金额较高，则会以价值最接近的可用礼物发放，而非 TON。礼物价值可能与实际赢取金额略有差异。",
-    CLOSE: "关闭"
+    TITLE: "çŽ©æ³•è¯´æ˜Ž",
+    STEP_1_TITLE: "é€‰æ‹©éš¾åº¦",
+    STEP_1_BODY: "è¡Œæ•°è¶Šå¤šï¼Œæ½œåœ¨å€æ•°è¶Šé«˜ï¼Œé£Žé™©ä¹Ÿè¶Šå¤§ã€‚",
+    STEP_2_TITLE: "ä¸‹æ³¨",
+    STEP_2_BODY: "ä½¿ç”¨ TON ä¸‹æ³¨ï¼Œæˆ–ä»ŽèƒŒåŒ…ä¸­é€‰æ‹©ç¤¼ç‰©ã€‚æ¯ä»¶æ‰€é€‰ç¤¼ç‰©éƒ½ä¼šä½œä¸ºä¸€ä¸ªç‹¬ç«‹å°çƒè½ä¸‹ã€‚",
+    STEP_3_TITLE: "è§‚çœ‹è½çƒ",
+    STEP_3_BODY: "å°çƒä¼šç»è¿‡é’‰æŸ±ä¸æ–­å¼¹è·³ï¼Œæœ€ç»ˆè½å…¥ä¸€ä¸ªæ§½ä½ã€‚è¯¥æ§½ä½çš„å€æ•°å†³å®šä½ çš„èµ¢å–é‡‘é¢ã€‚",
+    STEP_4_TITLE: "é¢†å–å¥–åŠ±",
+    STEP_4_BODY: "ä½ çš„ä¸‹æ³¨å°†æŒ‰å°çƒè½å…¥æ§½ä½çš„å€æ•°è®¡ç®—èµ¢å–é‡‘é¢ã€‚å°é¢èµ¢å–ä¼šç«‹å³è®¡å…¥ TON ä½™é¢ï¼›è‹¥èµ¢å–é‡‘é¢è¾ƒé«˜ï¼Œåˆ™ä¼šä»¥ä»·å€¼æœ€æŽ¥è¿‘çš„å¯ç”¨ç¤¼ç‰©å‘æ”¾ï¼Œè€Œéž TONã€‚ç¤¼ç‰©ä»·å€¼å¯èƒ½ä¸Žå®žé™…èµ¢å–é‡‘é¢ç•¥æœ‰å·®å¼‚ã€‚",
+    CLOSE: "å…³é—­"
 }
   , GIFT_MODAL$1 = {
-    TITLE: "使用礼物下注",
-    SELECT: "选择礼物",
-    SELECTED_other: "已选择 {{count}} 件礼物",
-    CONFIRM_other: "投下 {{count}} 件礼物 · {{amount}} TON"
+    TITLE: "ä½¿ç”¨ç¤¼ç‰©ä¸‹æ³¨",
+    SELECT: "é€‰æ‹©ç¤¼ç‰©",
+    SELECTED_other: "å·²é€‰æ‹© {{count}} ä»¶ç¤¼ç‰©",
+    CONFIRM_other: "æŠ•ä¸‹ {{count}} ä»¶ç¤¼ç‰© Â· {{amount}} TON"
 }
   , TOASTS$1 = {
-    MAX_BET: "当前模式最高下注金额为 {{max}} TON",
-    MIN_BET: "最低下注金额为 {{min}} TON",
-    AUTO_STOPPED_BALANCE: "余额不足，自动下注已停止",
-    GIFTS_FAILED_other: "{{count}} 笔礼物下注失败",
+    MAX_BET: "å½“å‰æ¨¡å¼æœ€é«˜ä¸‹æ³¨é‡‘é¢ä¸º {{max}} TON",
+    MIN_BET: "æœ€ä½Žä¸‹æ³¨é‡‘é¢ä¸º {{min}} TON",
+    AUTO_STOPPED_BALANCE: "ä½™é¢ä¸è¶³ï¼Œè‡ªåŠ¨ä¸‹æ³¨å·²åœæ­¢",
+    GIFTS_FAILED_other: "{{count}} ç¬”ç¤¼ç‰©ä¸‹æ³¨å¤±è´¥",
     ERROR: {
-        BAD_INPUT: "下注无效",
-        BET_TOO_SMALL: "下注金额低于下限",
-        BET_TOO_LARGE: "下注金额超过当前难度的上限",
-        INSUFFICIENT_BALANCE: "余额不足",
-        GIFT_NOT_FOUND: "未找到该礼物",
-        GIFT_NOT_OWNED: "该礼物不属于你",
-        GIFT_LOCKED: "该礼物正在使用中，请刷新背包",
-        RATE_LIMITED: "操作过于频繁，请稍后再试",
-        MAINTENANCE: "Plinko 正在维护中",
-        DEDUP_TIMEOUT: "网络连接异常，请重试",
-        UNAUTHORIZED: "会话已过期，请重新启动应用",
-        INTERNAL: "出现错误，请重试"
+        BAD_INPUT: "ä¸‹æ³¨æ— æ•ˆ",
+        BET_TOO_SMALL: "ä¸‹æ³¨é‡‘é¢ä½ŽäºŽä¸‹é™",
+        BET_TOO_LARGE: "ä¸‹æ³¨é‡‘é¢è¶…è¿‡å½“å‰éš¾åº¦çš„ä¸Šé™",
+        INSUFFICIENT_BALANCE: "ä½™é¢ä¸è¶³",
+        GIFT_NOT_FOUND: "æœªæ‰¾åˆ°è¯¥ç¤¼ç‰©",
+        GIFT_NOT_OWNED: "è¯¥ç¤¼ç‰©ä¸å±žäºŽä½ ",
+        GIFT_LOCKED: "è¯¥ç¤¼ç‰©æ­£åœ¨ä½¿ç”¨ä¸­ï¼Œè¯·åˆ·æ–°èƒŒåŒ…",
+        RATE_LIMITED: "æ“ä½œè¿‡äºŽé¢‘ç¹ï¼Œè¯·ç¨åŽå†è¯•",
+        MAINTENANCE: "Plinko æ­£åœ¨ç»´æŠ¤ä¸­",
+        DEDUP_TIMEOUT: "ç½‘ç»œè¿žæŽ¥å¼‚å¸¸ï¼Œè¯·é‡è¯•",
+        UNAUTHORIZED: "ä¼šè¯å·²è¿‡æœŸï¼Œè¯·é‡æ–°å¯åŠ¨åº”ç”¨",
+        INTERNAL: "å‡ºçŽ°é”™è¯¯ï¼Œè¯·é‡è¯•"
     }
 }
   , zhPlinko = {
@@ -59024,154 +59024,154 @@ It's 100% free, and you can try your luck every 24 hours!`,
     TOASTS: TOASTS$1
 }
   , HEADER$1 = {
-    BACK: "返回",
-    HISTORY: "历史记录",
-    HELP: "玩法说明",
-    TOPUP: "充值"
+    BACK: "è¿”å›ž",
+    HISTORY: "åŽ†å²è®°å½•",
+    HELP: "çŽ©æ³•è¯´æ˜Ž",
+    TOPUP: "å……å€¼"
 }
   , zhGameKit = {
     HEADER: HEADER$1
 }
   , HEADER = {
     TITLE: "Mines",
-    SUBTITLE: "寻找宝石，避开地雷",
-    BACK: "返回",
-    HISTORY: "历史记录",
-    HELP: "玩法说明",
-    TOPUP: "充值"
+    SUBTITLE: "å¯»æ‰¾å®çŸ³ï¼Œé¿å¼€åœ°é›·",
+    BACK: "è¿”å›ž",
+    HISTORY: "åŽ†å²è®°å½•",
+    HELP: "çŽ©æ³•è¯´æ˜Ž",
+    TOPUP: "å……å€¼"
 }
-  , MAINTENANCE = "Mines 正在维护中，请稍后再试。"
+  , MAINTENANCE = "Mines æ­£åœ¨ç»´æŠ¤ä¸­ï¼Œè¯·ç¨åŽå†è¯•ã€‚"
   , UNAVAILABLE = {
-    TITLE: "Mines 暂不可用",
-    DESCRIPTION: "游戏暂时关闭，请稍后再来。",
-    BACK: "返回游戏列表"
+    TITLE: "Mines æš‚ä¸å¯ç”¨",
+    DESCRIPTION: "æ¸¸æˆæš‚æ—¶å…³é—­ï¼Œè¯·ç¨åŽå†æ¥ã€‚",
+    BACK: "è¿”å›žæ¸¸æˆåˆ—è¡¨"
 }
   , NAVIGATION = {
-    MAX_WIN: "最高可赢",
+    MAX_WIN: "æœ€é«˜å¯èµ¢",
     MINES: "Mines"
 }
   , ACTIONS = {
-    AUTOBET_DISABLE: "关闭",
-    AUTOBET_DONE: "完成",
-    PLAY_AGAIN: "再玩一次",
-    CASH_OUT: "兑现",
-    CASH_OUT_AMOUNT: "兑现 {{amount}} TON",
-    CANCEL_BET: "取消下注",
-    START_AUTOBET: "开始自动下注",
-    STOP_AUTOBET: "停止自动下注",
-    DISMISS: "关闭",
-    RETRY: "重试",
-    CONTINUE: "继续"
+    AUTOBET_DISABLE: "å…³é—­",
+    AUTOBET_DONE: "å®Œæˆ",
+    PLAY_AGAIN: "å†çŽ©ä¸€æ¬¡",
+    CASH_OUT: "å…‘çŽ°",
+    CASH_OUT_AMOUNT: "å…‘çŽ° {{amount}} TON",
+    CANCEL_BET: "å–æ¶ˆä¸‹æ³¨",
+    START_AUTOBET: "å¼€å§‹è‡ªåŠ¨ä¸‹æ³¨",
+    STOP_AUTOBET: "åœæ­¢è‡ªåŠ¨ä¸‹æ³¨",
+    DISMISS: "å…³é—­",
+    RETRY: "é‡è¯•",
+    CONTINUE: "ç»§ç»­"
 }
   , LABELS = {
-    AUTOBET_ON: "开启",
-    AUTOBET_OFF: "关闭",
-    AUTOBET_HINT: "每轮会自动翻开你设定数量的宝石并自动兑现。踩中地雷后，自动下注将停止。",
-    AVAILABLE_BALANCE: "可用余额",
-    BET_AMOUNT: "下注金额",
-    MINES: "地雷",
-    AUTO_BET: "自动下注",
-    NUMBER_OF_BETS: "下注次数",
-    AUTOBET_STOPPED: "自动下注已停止：已完成 {{played}}/{{total}} 轮",
-    GEMS_TO_OPEN: "每轮翻开宝石数",
-    GIFT: "礼物"
+    AUTOBET_ON: "å¼€å¯",
+    AUTOBET_OFF: "å…³é—­",
+    AUTOBET_HINT: "æ¯è½®ä¼šè‡ªåŠ¨ç¿»å¼€ä½ è®¾å®šæ•°é‡çš„å®çŸ³å¹¶è‡ªåŠ¨å…‘çŽ°ã€‚è¸©ä¸­åœ°é›·åŽï¼Œè‡ªåŠ¨ä¸‹æ³¨å°†åœæ­¢ã€‚",
+    AVAILABLE_BALANCE: "å¯ç”¨ä½™é¢",
+    BET_AMOUNT: "ä¸‹æ³¨é‡‘é¢",
+    MINES: "åœ°é›·",
+    AUTO_BET: "è‡ªåŠ¨ä¸‹æ³¨",
+    NUMBER_OF_BETS: "ä¸‹æ³¨æ¬¡æ•°",
+    AUTOBET_STOPPED: "è‡ªåŠ¨ä¸‹æ³¨å·²åœæ­¢ï¼šå·²å®Œæˆ {{played}}/{{total}} è½®",
+    GEMS_TO_OPEN: "æ¯è½®ç¿»å¼€å®çŸ³æ•°",
+    GIFT: "ç¤¼ç‰©"
 }
   , PLACEHOLDERS = {
-    TON_AMOUNT: "金额"
+    TON_AMOUNT: "é‡‘é¢"
 }
   , EMPTY$1 = {
-    GIFTS_COMING_SOON: "礼物下注即将上线，暂时请使用 TON 游玩。"
+    GIFTS_COMING_SOON: "ç¤¼ç‰©ä¸‹æ³¨å³å°†ä¸Šçº¿ï¼Œæš‚æ—¶è¯·ä½¿ç”¨ TON æ¸¸çŽ©ã€‚"
 }
   , TOASTS = {
-    MIN_BET: "最低下注金额为 {{min}} TON",
-    MAX_BET: "最高下注金额为 {{max}} TON"
+    MIN_BET: "æœ€ä½Žä¸‹æ³¨é‡‘é¢ä¸º {{min}} TON",
+    MAX_BET: "æœ€é«˜ä¸‹æ³¨é‡‘é¢ä¸º {{max}} TON"
 }
   , HOW_IT_WORKS = {
-    TITLE: "玩法说明",
-    CLOSE: "关闭",
-    STEP_1_TITLE: "选择地雷数量",
-    STEP_1_BODY: "5×5 棋盘的格子下隐藏着地雷，其余格子中均为宝石。地雷越多，倍数越高，风险也越大。",
-    STEP_2_TITLE: "下注",
-    STEP_2_BODY: "使用 TON 下注，或从背包中选择一件礼物。该礼物的价值将作为本轮的全部下注金额。",
-    STEP_3_TITLE: "翻开格子",
-    STEP_3_BODY: "每找到一颗宝石，你的倍数都会提高。如果踩中地雷，本轮立即结束，并失去全部下注。",
-    STEP_4_TITLE: "兑现",
-    STEP_4_BODY: "找到任意一颗宝石后，你都可以选择兑现。你的下注将按当前倍数计算赢取金额。小额赢取会立即计入 TON 余额；若赢取金额较高，则会以价值最接近的可用礼物发放，而非 TON。礼物价值可能与实际赢取金额略有差异。"
+    TITLE: "çŽ©æ³•è¯´æ˜Ž",
+    CLOSE: "å…³é—­",
+    STEP_1_TITLE: "é€‰æ‹©åœ°é›·æ•°é‡",
+    STEP_1_BODY: "5Ã—5 æ£‹ç›˜çš„æ ¼å­ä¸‹éšè—ç€åœ°é›·ï¼Œå…¶ä½™æ ¼å­ä¸­å‡ä¸ºå®çŸ³ã€‚åœ°é›·è¶Šå¤šï¼Œå€æ•°è¶Šé«˜ï¼Œé£Žé™©ä¹Ÿè¶Šå¤§ã€‚",
+    STEP_2_TITLE: "ä¸‹æ³¨",
+    STEP_2_BODY: "ä½¿ç”¨ TON ä¸‹æ³¨ï¼Œæˆ–ä»ŽèƒŒåŒ…ä¸­é€‰æ‹©ä¸€ä»¶ç¤¼ç‰©ã€‚è¯¥ç¤¼ç‰©çš„ä»·å€¼å°†ä½œä¸ºæœ¬è½®çš„å…¨éƒ¨ä¸‹æ³¨é‡‘é¢ã€‚",
+    STEP_3_TITLE: "ç¿»å¼€æ ¼å­",
+    STEP_3_BODY: "æ¯æ‰¾åˆ°ä¸€é¢—å®çŸ³ï¼Œä½ çš„å€æ•°éƒ½ä¼šæé«˜ã€‚å¦‚æžœè¸©ä¸­åœ°é›·ï¼Œæœ¬è½®ç«‹å³ç»“æŸï¼Œå¹¶å¤±åŽ»å…¨éƒ¨ä¸‹æ³¨ã€‚",
+    STEP_4_TITLE: "å…‘çŽ°",
+    STEP_4_BODY: "æ‰¾åˆ°ä»»æ„ä¸€é¢—å®çŸ³åŽï¼Œä½ éƒ½å¯ä»¥é€‰æ‹©å…‘çŽ°ã€‚ä½ çš„ä¸‹æ³¨å°†æŒ‰å½“å‰å€æ•°è®¡ç®—èµ¢å–é‡‘é¢ã€‚å°é¢èµ¢å–ä¼šç«‹å³è®¡å…¥ TON ä½™é¢ï¼›è‹¥èµ¢å–é‡‘é¢è¾ƒé«˜ï¼Œåˆ™ä¼šä»¥ä»·å€¼æœ€æŽ¥è¿‘çš„å¯ç”¨ç¤¼ç‰©å‘æ”¾ï¼Œè€Œéž TONã€‚ç¤¼ç‰©ä»·å€¼å¯èƒ½ä¸Žå®žé™…èµ¢å–é‡‘é¢ç•¥æœ‰å·®å¼‚ã€‚"
 }
   , FAIRNESS = {
-    SERVER_SEED_HASH: "服务器种子哈希（本轮开始前已提交）",
-    SERVER_SEED: "服务器种子（本轮结束后公开）",
-    PENDING_REVEAL: "本轮仍使用旧机制中的种子对；在系统改为每轮轮换种子之前，同一组种子会连续用于多个轮次。再进行一轮游戏：结算后，该种子对将关闭，服务器种子也会公开，届时所有使用该种子对的轮次（包括本轮）都可验证。新机制下，每轮结束后即可立即验证。",
-    CLIENT_SEED: "客户端种子",
+    SERVER_SEED_HASH: "æœåŠ¡å™¨ç§å­å“ˆå¸Œï¼ˆæœ¬è½®å¼€å§‹å‰å·²æäº¤ï¼‰",
+    SERVER_SEED: "æœåŠ¡å™¨ç§å­ï¼ˆæœ¬è½®ç»“æŸåŽå…¬å¼€ï¼‰",
+    PENDING_REVEAL: "æœ¬è½®ä»ä½¿ç”¨æ—§æœºåˆ¶ä¸­çš„ç§å­å¯¹ï¼›åœ¨ç³»ç»Ÿæ”¹ä¸ºæ¯è½®è½®æ¢ç§å­ä¹‹å‰ï¼ŒåŒä¸€ç»„ç§å­ä¼šè¿žç»­ç”¨äºŽå¤šä¸ªè½®æ¬¡ã€‚å†è¿›è¡Œä¸€è½®æ¸¸æˆï¼šç»“ç®—åŽï¼Œè¯¥ç§å­å¯¹å°†å…³é—­ï¼ŒæœåŠ¡å™¨ç§å­ä¹Ÿä¼šå…¬å¼€ï¼Œå±Šæ—¶æ‰€æœ‰ä½¿ç”¨è¯¥ç§å­å¯¹çš„è½®æ¬¡ï¼ˆåŒ…æ‹¬æœ¬è½®ï¼‰éƒ½å¯éªŒè¯ã€‚æ–°æœºåˆ¶ä¸‹ï¼Œæ¯è½®ç»“æŸåŽå³å¯ç«‹å³éªŒè¯ã€‚",
+    CLIENT_SEED: "å®¢æˆ·ç«¯ç§å­",
     NONCE: "Nonce",
-    MINE_POSITIONS: "地雷位置",
-    HASH_CHECK: "种子哈希",
-    BOARD_CHECK: "地雷布局",
-    RECOMPUTED: "你的设备计算得出",
-    VERIFIED: "匹配",
-    NOT_VERIFIED: "不匹配",
-    VERIFY: "查看验证数据",
-    VERIFY_AGAIN: "重新验证",
-    ERROR: "无法加载验证数据",
-    INVALID: "本轮结果与种子不匹配",
-    LOCAL_CHECK_ERROR: "无法在此设备上完成验证",
-    COPY: "复制",
-    COPIED: "已复制",
-    NOTE: "检查会直接在你的设备上进行，并使用与服务器相同的公开公式。除种子和布局外，检查过程不会从服务器读取任何其他信息；上方结论由你的设备独立计算得出，而非由我们提供。",
-    PENDING_TITLE: "暂时无法验证",
-    SERVER_SEED_SECRET: "本轮结束前不公开",
-    VERIFIED_TITLE: "已在你的设备上验证",
-    VERIFIED_TEXT: "公开的服务器种子与本轮开始前公布的哈希一致，且在此设备上重新计算出的地雷布局与你实际游玩的棋盘一致。",
-    NOT_VERIFIED_TITLE: "本轮结果与种子不匹配",
-    NOT_VERIFIED_TEXT: "你的设备使用相同种子重新计算后得出了不同结果。请保存本轮 ID 并联系客服。",
-    CHECKING: "正在你的设备上验证",
-    NEXT_HASH: "下一轮哈希（下注前已提交）",
-    STILL_SEALED: "服务器种子尚未公开；该种子对关闭后即可验证本轮结果",
-    VERIFIED_TOAST: "本轮结果与种子一致",
-    CHECKED_AT: "验证时间：{{time}}",
-    COPY_FAILED: "无法复制，请手动选择并复制"
+    MINE_POSITIONS: "åœ°é›·ä½ç½®",
+    HASH_CHECK: "ç§å­å“ˆå¸Œ",
+    BOARD_CHECK: "åœ°é›·å¸ƒå±€",
+    RECOMPUTED: "ä½ çš„è®¾å¤‡è®¡ç®—å¾—å‡º",
+    VERIFIED: "åŒ¹é…",
+    NOT_VERIFIED: "ä¸åŒ¹é…",
+    VERIFY: "æŸ¥çœ‹éªŒè¯æ•°æ®",
+    VERIFY_AGAIN: "é‡æ–°éªŒè¯",
+    ERROR: "æ— æ³•åŠ è½½éªŒè¯æ•°æ®",
+    INVALID: "æœ¬è½®ç»“æžœä¸Žç§å­ä¸åŒ¹é…",
+    LOCAL_CHECK_ERROR: "æ— æ³•åœ¨æ­¤è®¾å¤‡ä¸Šå®ŒæˆéªŒè¯",
+    COPY: "å¤åˆ¶",
+    COPIED: "å·²å¤åˆ¶",
+    NOTE: "æ£€æŸ¥ä¼šç›´æŽ¥åœ¨ä½ çš„è®¾å¤‡ä¸Šè¿›è¡Œï¼Œå¹¶ä½¿ç”¨ä¸ŽæœåŠ¡å™¨ç›¸åŒçš„å…¬å¼€å…¬å¼ã€‚é™¤ç§å­å’Œå¸ƒå±€å¤–ï¼Œæ£€æŸ¥è¿‡ç¨‹ä¸ä¼šä»ŽæœåŠ¡å™¨è¯»å–ä»»ä½•å…¶ä»–ä¿¡æ¯ï¼›ä¸Šæ–¹ç»“è®ºç”±ä½ çš„è®¾å¤‡ç‹¬ç«‹è®¡ç®—å¾—å‡ºï¼Œè€Œéžç”±æˆ‘ä»¬æä¾›ã€‚",
+    PENDING_TITLE: "æš‚æ—¶æ— æ³•éªŒè¯",
+    SERVER_SEED_SECRET: "æœ¬è½®ç»“æŸå‰ä¸å…¬å¼€",
+    VERIFIED_TITLE: "å·²åœ¨ä½ çš„è®¾å¤‡ä¸ŠéªŒè¯",
+    VERIFIED_TEXT: "å…¬å¼€çš„æœåŠ¡å™¨ç§å­ä¸Žæœ¬è½®å¼€å§‹å‰å…¬å¸ƒçš„å“ˆå¸Œä¸€è‡´ï¼Œä¸”åœ¨æ­¤è®¾å¤‡ä¸Šé‡æ–°è®¡ç®—å‡ºçš„åœ°é›·å¸ƒå±€ä¸Žä½ å®žé™…æ¸¸çŽ©çš„æ£‹ç›˜ä¸€è‡´ã€‚",
+    NOT_VERIFIED_TITLE: "æœ¬è½®ç»“æžœä¸Žç§å­ä¸åŒ¹é…",
+    NOT_VERIFIED_TEXT: "ä½ çš„è®¾å¤‡ä½¿ç”¨ç›¸åŒç§å­é‡æ–°è®¡ç®—åŽå¾—å‡ºäº†ä¸åŒç»“æžœã€‚è¯·ä¿å­˜æœ¬è½® ID å¹¶è”ç³»å®¢æœã€‚",
+    CHECKING: "æ­£åœ¨ä½ çš„è®¾å¤‡ä¸ŠéªŒè¯",
+    NEXT_HASH: "ä¸‹ä¸€è½®å“ˆå¸Œï¼ˆä¸‹æ³¨å‰å·²æäº¤ï¼‰",
+    STILL_SEALED: "æœåŠ¡å™¨ç§å­å°šæœªå…¬å¼€ï¼›è¯¥ç§å­å¯¹å…³é—­åŽå³å¯éªŒè¯æœ¬è½®ç»“æžœ",
+    VERIFIED_TOAST: "æœ¬è½®ç»“æžœä¸Žç§å­ä¸€è‡´",
+    CHECKED_AT: "éªŒè¯æ—¶é—´ï¼š{{time}}",
+    COPY_FAILED: "æ— æ³•å¤åˆ¶ï¼Œè¯·æ‰‹åŠ¨é€‰æ‹©å¹¶å¤åˆ¶"
 }
   , HISTORY = {
-    TITLE: "历史记录",
-    BACK: "返回",
-    EMPTY: "暂无对局记录",
-    PAYOUT: "派彩",
-    LOAD_MORE: "加载更多",
+    TITLE: "åŽ†å²è®°å½•",
+    BACK: "è¿”å›ž",
+    EMPTY: "æš‚æ— å¯¹å±€è®°å½•",
+    PAYOUT: "æ´¾å½©",
+    LOAD_MORE: "åŠ è½½æ›´å¤š",
     GEMS_OF: "{{opened}}/{{total}}",
-    MINES_SHORT: "地雷：{{count}}"
+    MINES_SHORT: "åœ°é›·ï¼š{{count}}"
 }
   , ERRORS = {
-    GAME_DISABLED: "Mines 暂时不可用",
-    INSUFFICIENT_BALANCE: "余额不足，无法完成此下注",
-    BET_LIMITS: "下注金额超出允许范围",
-    MAX_WIN_EXCEEDED: "此下注的潜在赢取金额可能超过最高限额，请降低下注金额或增加地雷数量。",
-    GENERIC: "出现错误，请重试。"
+    GAME_DISABLED: "Mines æš‚æ—¶ä¸å¯ç”¨",
+    INSUFFICIENT_BALANCE: "ä½™é¢ä¸è¶³ï¼Œæ— æ³•å®Œæˆæ­¤ä¸‹æ³¨",
+    BET_LIMITS: "ä¸‹æ³¨é‡‘é¢è¶…å‡ºå…è®¸èŒƒå›´",
+    MAX_WIN_EXCEEDED: "æ­¤ä¸‹æ³¨çš„æ½œåœ¨èµ¢å–é‡‘é¢å¯èƒ½è¶…è¿‡æœ€é«˜é™é¢ï¼Œè¯·é™ä½Žä¸‹æ³¨é‡‘é¢æˆ–å¢žåŠ åœ°é›·æ•°é‡ã€‚",
+    GENERIC: "å‡ºçŽ°é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚"
 }
   , BET = {
-    PLACING: "下注中…",
-    PLACE_GIFT: "下注",
-    PLACE_TON: "下注 {{amount}}",
-    PLACE_BET_EMPTY: "输入下注金额",
-    EMPTY_GIFTS: "将礼物发送至 @giftbackpack，即可玩 Mines",
-    TAP_TO_START: "点击任意格子开始本轮",
-    MIN_BET: "最低下注金额：{{min}}",
-    MAX_BET: "最高下注金额：{{max}}",
-    NOT_ENOUGH_BALANCE: "余额不足",
-    GIFT_OVER_LIMIT: "该礼物价值超过当前地雷数量的下注上限：{{max}}",
-    GIFT_UNDER_LIMIT: "该礼物价值低于最低下注金额：{{min}}"
+    PLACING: "ä¸‹æ³¨ä¸­â€¦",
+    PLACE_GIFT: "ä¸‹æ³¨",
+    PLACE_TON: "ä¸‹æ³¨ {{amount}}",
+    PLACE_BET_EMPTY: "è¾“å…¥ä¸‹æ³¨é‡‘é¢",
+    EMPTY_GIFTS: "å°†ç¤¼ç‰©å‘é€è‡³ @giftbackpackï¼Œå³å¯çŽ© Mines",
+    TAP_TO_START: "ç‚¹å‡»ä»»æ„æ ¼å­å¼€å§‹æœ¬è½®",
+    MIN_BET: "æœ€ä½Žä¸‹æ³¨é‡‘é¢ï¼š{{min}}",
+    MAX_BET: "æœ€é«˜ä¸‹æ³¨é‡‘é¢ï¼š{{max}}",
+    NOT_ENOUGH_BALANCE: "ä½™é¢ä¸è¶³",
+    GIFT_OVER_LIMIT: "è¯¥ç¤¼ç‰©ä»·å€¼è¶…è¿‡å½“å‰åœ°é›·æ•°é‡çš„ä¸‹æ³¨ä¸Šé™ï¼š{{max}}",
+    GIFT_UNDER_LIMIT: "è¯¥ç¤¼ç‰©ä»·å€¼ä½ŽäºŽæœ€ä½Žä¸‹æ³¨é‡‘é¢ï¼š{{min}}"
 }
   , GIFT_MODAL = {
-    TITLE: "使用礼物下注",
-    SELECT: "选择礼物",
-    SELECTED_other: "已选择 {{count}} 件礼物",
-    CONFIRM_other: "使用 {{count}} 件礼物下注 · {{amount}} TON",
-    PRUNED_other: "{{count}} 件礼物已不符合下注限额",
-    CONFIRM_ONE: "下注 {{amount}}",
-    PICK_ANOTHER: "选择其他礼物："
+    TITLE: "ä½¿ç”¨ç¤¼ç‰©ä¸‹æ³¨",
+    SELECT: "é€‰æ‹©ç¤¼ç‰©",
+    SELECTED_other: "å·²é€‰æ‹© {{count}} ä»¶ç¤¼ç‰©",
+    CONFIRM_other: "ä½¿ç”¨ {{count}} ä»¶ç¤¼ç‰©ä¸‹æ³¨ Â· {{amount}} TON",
+    PRUNED_other: "{{count}} ä»¶ç¤¼ç‰©å·²ä¸ç¬¦åˆä¸‹æ³¨é™é¢",
+    CONFIRM_ONE: "ä¸‹æ³¨ {{amount}}",
+    PICK_ANOTHER: "é€‰æ‹©å…¶ä»–ç¤¼ç‰©ï¼š"
 }
   , TOGGLE = {
     TON: "GRAM",
-    GIFTS: "礼物"
+    GIFTS: "ç¤¼ç‰©"
 }
   , zhMines = {
     HEADER,
@@ -61761,8 +61761,8 @@ class SocketManager {
                 ..._t,
                 subscribedAt: Date.now()
             }),
-            console.log(`✅ Subscribed: ${Kt}`),
-            Yt?.()) : (console.error(`❌ Subscribe failed: ${Kt} - ${Xt?.error}`),
+            console.log(`âœ… Subscribed: ${Kt}`),
+            Yt?.()) : (console.error(`âŒ Subscribe failed: ${Kt} - ${Xt?.error}`),
             Yt?.(Xt?.error || "Subscribe failed"))
         }
         )
@@ -62010,7 +62010,7 @@ class GiftService {
               , {data: Xt} = await apiClient.get(Kt);
             return [...Xt.gifts || [], ...Xt.variants || []]
         } catch (Kt) {
-            if (console.error("❌ Failed to fetch upgrade targets:", Kt),
+            if (console.error("âŒ Failed to fetch upgrade targets:", Kt),
             Kt instanceof AxiosError) {
                 const Xt = Kt.response?.status
                   , Jt = Kt.response?.data;
@@ -62029,7 +62029,7 @@ class GiftService {
         }
     }
     static async getTargetGifts() {
-        return console.warn("⚠️ getTargetGifts() is deprecated. Use getUpgradeTargets(giftId) instead."),
+        return console.warn("âš ï¸ getTargetGifts() is deprecated. Use getUpgradeTargets(giftId) instead."),
         []
     }
     static async getDepositPrices() {
@@ -62390,7 +62390,7 @@ function getBackdropHex(tt) {
 }
 const CDN_BASE = "https://cdn.changes.tg/gifts";
 function normalizeName(tt) {
-    return tt.replace(/[‘’‚‛]/g, "'").replace(/[“”„‟]/g, '"')
+    return tt.replace(/[â€˜â€™â€šâ€›]/g, "'").replace(/[â€œâ€â€žâ€Ÿ]/g, '"')
 }
 const enc = tt => encodeURIComponent(normalizeName(tt)).replace(/[!'()*]/g, _t => `%${_t.charCodeAt(0).toString(16).toUpperCase()}`);
 function cdnAsset(tt, _t, Yt, Kt) {
@@ -74712,7 +74712,7 @@ var defaultOptions = {
         }, reactExports.createElement("span", {
             "aria-label": "error-symbol",
             role: "img"
-        }, "⚠️")) : reactExports.createElement("div", {
+        }, "âš ï¸")) : reactExports.createElement("div", {
             id: this.props.id ? this.props.id : "lottie",
             ref: function(gn) {
                 return Yt.container = gn
@@ -75183,7 +75183,7 @@ var css_248z = `.lf-progress {
   text-decoration: none;
 }
 .lf-popover-snapshot a:before {
-  content: '⥼';
+  content: 'â¥¼';
   margin-right: 5px;
 }
 .lf-popover-snapshot .lf-note {
@@ -83769,7 +83769,7 @@ const WithdrawOptionsModal = ({isOpen: tt, gift: _t, onClose: Yt, onWithdraw: Kt
             yn(),
             toast.success(Kt("SUCCESS.GIFT_WITHDRAWN"), {
                 duration: 3e3,
-                icon: "🎁"
+                icon: "ðŸŽ"
             })
         } catch (Xn) {
             if (Xn instanceof GiftServiceError)
@@ -83929,7 +83929,7 @@ const WithdrawOptionsModal = ({isOpen: tt, gift: _t, onClose: Yt, onWithdraw: Kt
                     Kt(null),
                     toast.success(tt("SUCCESS.GIFT_SOLD"), {
                         duration: 3e3,
-                        icon: "💰"
+                        icon: "ðŸ’°"
                     })
                 } catch (fn) {
                     if (fn instanceof GiftServiceError)
@@ -83984,7 +83984,7 @@ const WithdrawOptionsModal = ({isOpen: tt, gift: _t, onClose: Yt, onWithdraw: Kt
                 if (!Ui.has(ti)) {
                     toast.success(tt("toasts:SUCCESS.GIFT_WITHDRAWN"), {
                         duration: 3e3,
-                        icon: "🎁"
+                        icon: "ðŸŽ"
                     });
                     break
                 }
@@ -84587,12 +84587,12 @@ function UserProvider({children: tt}) {
         an.current = null);
         const Cn = Date.now();
         return _t === null && !Kt && Wu.raw() && Cn - un.current > 3e4 && (an.current = setTimeout(async () => {
-            console.warn("⚠️ User data missing, attempting recovery..."),
+            console.warn("âš ï¸ User data missing, attempting recovery..."),
             un.current = Date.now();
             try {
                 await Sn()
             } catch (wn) {
-                console.error("❌ User recovery failed:", wn)
+                console.error("âŒ User recovery failed:", wn)
             }
         }
         , 5e3)),
@@ -86293,7 +86293,7 @@ const GiveawayListEmpty = () => {
                             className: "absolute inset-4 bg-gradient-to-br from-[#363636] to-[#2C2C2C] rounded-full flex items-center justify-center",
                             children: jsxRuntimeExports.jsx("div", {
                                 className: "text-6xl animate-bounce",
-                                children: "🎁"
+                                children: "ðŸŽ"
                             })
                         }), jsxRuntimeExports.jsx("div", {
                             className: "absolute top-0 right-0",
@@ -87486,7 +87486,7 @@ const getImageSource = tt => tt.type === "balance" ? {
                     className: "aspect-square rounded-2xl overflow-hidden mb-3 bg-gradient-to-br from-[#363636] to-[#2C2C2C] relative flex items-center justify-center",
                     children: jsxRuntimeExports.jsx("div", {
                         className: "text-4xl opacity-50",
-                        children: "🤷‍♂️"
+                        children: "ðŸ¤·â€â™‚ï¸"
                     })
                 }), jsxRuntimeExports.jsx("div", {
                     className: "text-center",
@@ -88027,7 +88027,7 @@ const getImageSource = tt => tt.type === "balance" ? {
                     className: "flex justify-center mb-6",
                     children: jsxRuntimeExports.jsx("div", {
                         className: "text-6xl animate-bounce",
-                        children: "🤷‍♂️"
+                        children: "ðŸ¤·â€â™‚ï¸"
                     })
                 }), jsxRuntimeExports.jsxs("div", {
                     className: "text-center mb-6",
@@ -88210,7 +88210,7 @@ const getImageSource = tt => tt.type === "balance" ? {
                 className: "w-8 h-8 rounded-lg bg-[#363636] hover:bg-[#404040] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center transition-all border border-[#444444]/30 flex-shrink-0 active:scale-95",
                 children: jsxRuntimeExports.jsx("span", {
                     className: "text-white text-lg font-bold leading-none",
-                    children: "−"
+                    children: "âˆ’"
                 })
             }), jsxRuntimeExports.jsxs("div", {
                 ref: nn,
@@ -88786,7 +88786,7 @@ const MULTIPLIER_STORAGE_KEY = "farm-box-multiplier"
         nn(!1),
         toast.success(tt("toasts:SUCCESS.GIFT_SOLD"), {
             duration: 3e3,
-            icon: "💰"
+            icon: "ðŸ’°"
         })
     }
       , Ea = () => {
@@ -88797,7 +88797,7 @@ const MULTIPLIER_STORAGE_KEY = "farm-box-multiplier"
         nn(!1),
         toast.success(tt("toasts:SUCCESS.GIFT_ADDED_TO_BACKPACK"), {
             duration: 3e3,
-            icon: "🎁"
+            icon: "ðŸŽ"
         })
     }
       , xa = () => {
@@ -88981,7 +88981,7 @@ function requireCopyToClipboard() {
     }
       , Yt = "Copy to clipboard: #{key}, Enter";
     function Kt(Jt) {
-        var Zt = (/mac os x/i.test(navigator.userAgent) ? "⌘" : "Ctrl") + "+C";
+        var Zt = (/mac os x/i.test(navigator.userAgent) ? "âŒ˜" : "Ctrl") + "+C";
         return Jt.replace(/#{\s*key\s*}/g, Zt)
     }
     function Xt(Jt, Zt) {
@@ -90033,7 +90033,7 @@ const MIN_STARS = 10
             }, hn))
         }), dn > 0 && Zt && jsxRuntimeExports.jsxs("div", {
             className: "text-white/40 text-sm text-center",
-            children: ["≈ ", (dn * STARS_USD_RATE / Zt * (1 - STARS_MARGIN)).toFixed(4), " TON"]
+            children: ["â‰ˆ ", (dn * STARS_USD_RATE / Zt * (1 - STARS_MARGIN)).toFixed(4), " TON"]
         }), jsxRuntimeExports.jsx("button", {
             onClick: un,
             disabled: !fn || Xt,
@@ -91505,7 +91505,7 @@ const contractModes = {
             toast.success(Jt("toasts:SUCCESS.GIFT_SOLD"), {
                 description: `Received ${Yt.price < .01 ? Yt.price.toFixed(3) : Yt.price.toFixed(2)} TON`,
                 duration: 3e3,
-                icon: "💰"
+                icon: "ðŸ’°"
             }),
             Kt()
         } catch (vr) {
@@ -91518,7 +91518,7 @@ const contractModes = {
       , us = () => {
         toast.success(Jt("toasts:SUCCESS.GIFT_ADDED_TO_BACKPACK"), {
             duration: 3e3,
-            icon: "🎁"
+            icon: "ðŸŽ"
         }),
         Kt()
     }
@@ -91898,11 +91898,11 @@ class UpgradeService {
               , {data: Jt} = await apiClient.post(Xt, Yt);
             return Jt
         } catch (Xt) {
-            if (console.error("❌ UpgradeService API error:", Xt),
+            if (console.error("âŒ UpgradeService API error:", Xt),
             Xt instanceof AxiosError) {
                 const Jt = Xt.response?.status
                   , Zt = Xt.response?.data;
-                if (console.error("❌ Error details:", {
+                if (console.error("âŒ Error details:", {
                     status: Jt,
                     message: Zt?.message,
                     fullError: Zt
@@ -91975,7 +91975,7 @@ const convertTargetGiftToGift = (tt, _t) => ({
             const vr = (await GiftService.getUserGifts()).filter(Sr => Sr.status === "unboxed" || Sr.status === "need_pm" || Sr.status === "pvp_won" || Sr.status === "deposited");
             Xt(vr)
         } catch (yr) {
-            console.error("❌ Failed to fetch user gifts:", yr),
+            console.error("âŒ Failed to fetch user gifts:", yr),
             toast.error(tt("ERROR.FAILED_TO_LOAD_GIFTS"))
         } finally {
             mn(!1)
@@ -92620,21 +92620,21 @@ const convertTargetGiftToGift = (tt, _t) => ({
     range: null
 }, {
     value: "2x",
-    label: "×2",
+    label: "Ã—2",
     range: {
         min: 1.1,
         max: 3.5
     }
 }, {
     value: "5x",
-    label: "×5",
+    label: "Ã—5",
     range: {
         min: 3.5,
         max: 8
     }
 }, {
     value: "10x",
-    label: "×10",
+    label: "Ã—10",
     range: {
         min: 8,
         max: 1e3
@@ -92728,7 +92728,7 @@ function memo(tt, _t, Yt) {
                 return yn
             }
             ;
-            console.info(`%c⏱ ${Sn(En, 5)} /${Sn(mn, 5)} ms`, `
+            console.info(`%câ± ${Sn(En, 5)} /${Sn(mn, 5)} ms`, `
             font-size: .6rem;
             font-weight: bold;
             color: hsl(${Math.max(0, Math.min(120 - 120 * gn, 120))}deg 100% 31%);`, Yt?.key)
@@ -93474,7 +93474,7 @@ const COLUMNS = 3
                     className: "flex items-center px-2 py-0.5 rounded-lg bg-emerald-500 border border-white/10 shadow-lg",
                     children: jsxRuntimeExports.jsxs("span", {
                         className: "font-bold text-xs text-white leading-tight",
-                        children: ["×", Zt.toFixed(1)]
+                        children: ["Ã—", Zt.toFixed(1)]
                     })
                 })
             })]
@@ -94337,7 +94337,7 @@ const COLUMNS = 3
             toast.success(Jt("toasts:SUCCESS.GIFT_SOLD"), {
                 description: `Received ${wn.price < .01 ? wn.price.toFixed(3) : wn.price.toFixed(2)} TON`,
                 duration: 3e3,
-                icon: "💰"
+                icon: "ðŸ’°"
             }),
             Xt()
         } catch (An) {
@@ -94350,14 +94350,14 @@ const COLUMNS = 3
       , En = () => {
         toast.success(Jt("toasts:SUCCESS.GIFT_ADDED_TO_BACKPACK"), {
             duration: 3e3,
-            icon: "🎁"
+            icon: "ðŸŽ"
         }),
         Xt()
     }
       , gn = () => {
         const wn = Kt || Yt;
         if (!wn) {
-            console.error("❌ No gift available for upgrade"),
+            console.error("âŒ No gift available for upgrade"),
             toast.error(Jt("toasts:ERROR.NO_GIFT_FOR_UPGRADE"));
             return
         }
@@ -94546,7 +94546,7 @@ const COLUMNS = 3
                                     className: "text-center py-4",
                                     children: jsxRuntimeExports.jsx("div", {
                                         className: "text-6xl mb-4",
-                                        children: "💔"
+                                        children: "ðŸ’”"
                                     })
                                 }), jsxRuntimeExports.jsx("button", {
                                     onClick: Xt,
@@ -94842,7 +94842,7 @@ function formatCompact(tt) {
     return tt >= 1e6 ? `${(tt / 1e6).toFixed(1).replace(/\.0$/, "")}M` : tt >= 1e3 ? `${(tt / 1e3).toFixed(1).replace(/\.0$/, "")}K` : tt.toString()
 }
 function displayName(tt) {
-    return tt.username || tt.firstName || "—"
+    return tt.username || tt.firstName || "â€”"
 }
 function rankBadge(tt) {
     return tt === 1 ? jsxRuntimeExports.jsx(Trophy, {
@@ -95092,7 +95092,7 @@ const PRIZE_GRID_INITIAL = 9
                 an(ul => ul + 1),
                 toast.success(Yt("giveaway:STATUS.ENTERED_GIVEAWAY", {
                     count: $n
-                }) + " 🎉")
+                }) + " ðŸŽ‰")
             } catch ($o) {
                 $o instanceof GiveawayServiceError ? $o.code === "ALREADY_JOINED" ? (Sn(!0),
                 toast.info(Yt("giveaway:STATUS.ALREADY_JOINED"))) : ($o.code,
@@ -95476,7 +95476,7 @@ const PRIZE_GRID_INITIAL = 9
                     })
                 }) : null, Oa && !Pi && jsxRuntimeExports.jsx("p", {
                     className: `text-xs text-center mb-3 ${gn ? "text-emerald-400" : "text-white/50"}`,
-                    children: gn ? Sr ? `🎫 ${Yt("giveaway:LABELS.YOUR_TICKETS_IN_GIVEAWAY", {
+                    children: gn ? Sr ? `ðŸŽ« ${Yt("giveaway:LABELS.YOUR_TICKETS_IN_GIVEAWAY", {
                         count: yn
                     })}` : Yt("giveaway:LABELS.JOINED_CTA") : Bi ? Yt("giveaway:LABELS.VIP_LOCKED_CTA", {
                         level: xi
@@ -95799,7 +95799,7 @@ const LazyPlayer = ({src: tt, className: _t, autoplay: Yt=!1, loop: Kt=!1, keepL
                 className: "text-white/40 text-sm text-center",
                 children: [jsxRuntimeExports.jsx("div", {
                     className: "text-red-400 mb-1",
-                    children: "⚠️"
+                    children: "âš ï¸"
                 }), jsxRuntimeExports.jsx("div", {
                     children: Zt("APP.ANIMATION_FAILED")
                 })]
@@ -97583,7 +97583,7 @@ const getTimeAgo = tt => {
         Zt(!1),
         toast.success(tt("SUCCESS.GIFT_SOLD"), {
             duration: 3e3,
-            icon: "💰"
+            icon: "ðŸ’°"
         })
     }
       , Ya = () => {
@@ -97597,7 +97597,7 @@ const getTimeAgo = tt => {
         Zt(!1),
         toast.success(tt("SUCCESS.GIFT_ADDED_TO_BACKPACK"), {
             duration: 3e3,
-            icon: "🎁"
+            icon: "ðŸŽ"
         })
     }
       , rl = () => {
@@ -98047,13 +98047,13 @@ const getTimeAgo = tt => {
                                         }), jsxRuntimeExports.jsxs("div", {
                                             className: "space-y-1 text-white/80 text-sm text-left",
                                             children: [jsxRuntimeExports.jsxs("p", {
-                                                children: ["• 📢 ", tt("openGift:CHANNEL_MODAL.BENEFIT_UPDATES")]
+                                                children: ["â€¢ ðŸ“¢ ", tt("openGift:CHANNEL_MODAL.BENEFIT_UPDATES")]
                                             }), jsxRuntimeExports.jsxs("p", {
-                                                children: ["• 🎁 ", tt("openGift:CHANNEL_MODAL.BENEFIT_PROMOS")]
+                                                children: ["â€¢ ðŸŽ ", tt("openGift:CHANNEL_MODAL.BENEFIT_PROMOS")]
                                             }), jsxRuntimeExports.jsxs("p", {
-                                                children: ["• 🔓 ", tt("openGift:CHANNEL_MODAL.BENEFIT_ACCESS")]
+                                                children: ["â€¢ ðŸ”“ ", tt("openGift:CHANNEL_MODAL.BENEFIT_ACCESS")]
                                             }), jsxRuntimeExports.jsxs("p", {
-                                                children: ["• 💎 ", tt("openGift:CHANNEL_MODAL.BENEFIT_EARLY")]
+                                                children: ["â€¢ ðŸ’Ž ", tt("openGift:CHANNEL_MODAL.BENEFIT_EARLY")]
                                             })]
                                         })]
                                     })]
@@ -98991,7 +98991,7 @@ const FIXED_SEGMENT_WIDTH$1 = 80
                                         return typeof An == "number" ? `${An}%` : String(An)
                                     }
                                     )(yn.rarity)
-                                      , $n = yn.value ?? "—"
+                                      , $n = yn.value ?? "â€”"
                                       , wn = bn === fn.length - 1;
                                     return jsxRuntimeExports.jsxs("div", {
                                         className: `grid grid-cols-[1fr_2fr] items-stretch text-sm border-b border-white/10 ${wn ? "last:border-b-0" : ""}`,
@@ -99038,7 +99038,7 @@ function usePvPWinnerAnimation() {
             const fn = _t.current
               , hn = Yt.current;
             if (!Kt.some(Ui => Ui.playerId === Xt))
-                return console.error("❌ Winner not found in players:", Xt),
+                return console.error("âŒ Winner not found in players:", Xt),
                 un(),
                 () => {}
                 ;
@@ -99772,7 +99772,7 @@ const MAX_PHYSICAL_CELLS = 14
     reactExports.useEffect( () => {
         if (Xt || Zt || nn) {
             const yr = setTimeout( () => {
-                console.warn("⚠️ PvP: Failsafe cleanup after 25s"),
+                console.warn("âš ï¸ PvP: Failsafe cleanup after 25s"),
                 un.current && gsapWithCSS.set(un.current, {
                     clearProps: "transform,will-change"
                 }),
@@ -99825,7 +99825,7 @@ const MAX_PHYSICAL_CELLS = 14
                 remainingScrollMs: nn.remainingScrollMs,
                 gameId: nn.gameId
             }, () => {
-                gn.current?.winner ? tn(!0) : console.error("❌ Cannot open modal - no winner in snapshot")
+                gn.current?.winner ? tn(!0) : console.error("âŒ Cannot open modal - no winner in snapshot")
             }
             , () => {
                 Jt(!1),
@@ -100016,9 +100016,9 @@ const PvPHighlights = ({gameId: tt, freeze: _t=!1}) => {
       , [tn,nn] = reactExports.useState(null)
       , an = (tn || Yt)?.last
       , un = (tn || Yt)?.biggest
-      , dn = gn => gn == null ? "—" : `+${gn.toFixed(1)}`
-      , fn = reactExports.useMemo( () => !un || un.chance === void 0 || un.chance === null ? "—" : formatWinChance(un.chance * 100, un.participants), [un])
-      , hn = reactExports.useMemo( () => !an || an.chance === void 0 || an.chance === null ? "—" : formatWinChance(an.chance * 100, an.participants), [an])
+      , dn = gn => gn == null ? "â€”" : `+${gn.toFixed(1)}`
+      , fn = reactExports.useMemo( () => !un || un.chance === void 0 || un.chance === null ? "â€”" : formatWinChance(un.chance * 100, un.participants), [un])
+      , hn = reactExports.useMemo( () => !an || an.chance === void 0 || an.chance === null ? "â€”" : formatWinChance(an.chance * 100, an.participants), [an])
       , mn = reactExports.useRef(void 0);
     reactExports.useEffect( () => {
         const gn = mn.current;
@@ -100048,7 +100048,7 @@ const PvPHighlights = ({gameId: tt, freeze: _t=!1}) => {
                         className: "flex items-center justify-between text-sm font-semibold truncate",
                         children: [jsxRuntimeExports.jsx("div", {
                             className: "truncate",
-                            children: an?.winner || (Kt ? "Loading..." : "—")
+                            children: an?.winner || (Kt ? "Loading..." : "â€”")
                         }), jsxRuntimeExports.jsxs("div", {
                             className: "ml-2 text-[#0098EA] text-right",
                             children: [dn(an?.amountTon), " ", Zt("common:LABELS.TON")]
@@ -100070,7 +100070,7 @@ const PvPHighlights = ({gameId: tt, freeze: _t=!1}) => {
                         className: "flex items-center justify-between text-sm font-semibold truncate",
                         children: [jsxRuntimeExports.jsx("div", {
                             className: "truncate",
-                            children: un?.winner || (Kt ? "Loading..." : "—")
+                            children: un?.winner || (Kt ? "Loading..." : "â€”")
                         }), jsxRuntimeExports.jsxs("div", {
                             className: "ml-2 text-[#0098EA] text-right",
                             children: [dn(un?.amountTon), " ", Zt("common:LABELS.TON")]
@@ -100643,7 +100643,7 @@ const GiftDetailModal = ({gift: tt, onClose: _t}) => {
                                 return typeof mn == "number" ? `${mn}%` : String(mn)
                             }
                             )(nn.rarity)
-                              , fn = nn.value ?? "—"
+                              , fn = nn.value ?? "â€”"
                               , hn = an === Zt.length - 1;
                             return jsxRuntimeExports.jsxs("div", {
                                 className: `grid grid-cols-[1fr_2fr] items-stretch text-sm border-b border-white/10 ${hn ? "last:border-b-0" : ""}`,
@@ -101349,7 +101349,7 @@ const getBackdropGradient = tt => {
             className: "w-12 h-12 rounded-xl bg-[#363636] hover:bg-[#404040] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center transition-colors border border-[#444444]/30",
             children: jsxRuntimeExports.jsx("span", {
                 className: "text-white text-xl font-bold leading-none",
-                children: "−"
+                children: "âˆ’"
             })
         }), Bn, jsxRuntimeExports.jsx("button", {
             onClick: Pn,
@@ -101917,7 +101917,7 @@ class PvPService {
         ),
         this.socket.on(PvPServerEvents.ERROR, _t => {
             this.lastEventAt = Date.now(),
-            console.error("❌ PvP Error:", _t),
+            console.error("âŒ PvP Error:", _t),
             this.errorCallback && this.errorCallback(_t)
         }
         ),
@@ -102057,7 +102057,7 @@ class PvPService {
               , Jt = Math.max(0, Kt - Xt);
             useStore.getState().setBalance(Jt);
             const Zt = setTimeout( () => {
-                console.warn("⚠️ PvP bet response timeout, reverting optimistic balance update"),
+                console.warn("âš ï¸ PvP bet response timeout, reverting optimistic balance update"),
                 useStore.getState().setBalance(Kt, {
                     silent: !0
                 }),
@@ -102111,7 +102111,7 @@ class PvPService {
               , Zt = Math.max(0, Xt - Jt);
             useStore.getState().setBalance(Zt);
             const tn = setTimeout( () => {
-                console.warn("⚠️ PvP bet response timeout, reverting optimistic balance update"),
+                console.warn("âš ï¸ PvP bet response timeout, reverting optimistic balance update"),
                 useStore.getState().setBalance(Xt, {
                     silent: !0
                 }),
@@ -102436,7 +102436,7 @@ function DisplayHash({hash: tt}) {
             return `${_t("LABELS.HASH_PREFIX")}: ${Xt}`;
         const tn = Xt.slice(0, 5)
           , nn = Xt.slice(-5);
-        return `${_t("LABELS.HASH_PREFIX")}: ${tn}…${nn}`
+        return `${_t("LABELS.HASH_PREFIX")}: ${tn}â€¦${nn}`
     }
       , Kt = async () => {
         if (tt)
@@ -104346,7 +104346,7 @@ function MinesHistoryRow({round: tt}) {
             "aria-expanded": Yt,
             children: [jsxRuntimeExports.jsxs("span", {
                 className: `min-w-[52px] rounded-full px-2 py-1 text-center text-sm font-bold ${Jt >= 2 ? "bg-emerald-500/20 text-emerald-300" : Jt >= 1 ? "bg-violet-500/20 text-violet-300" : "bg-red-500/15 text-red-300"}`,
-                children: ["×", Jt.toFixed(2)]
+                children: ["Ã—", Jt.toFixed(2)]
             }), jsxRuntimeExports.jsxs("div", {
                 className: "min-w-0 flex-1",
                 children: [jsxRuntimeExports.jsxs("p", {
@@ -104359,7 +104359,7 @@ function MinesHistoryRow({round: tt}) {
                         })
                     }), jsxRuntimeExports.jsxs("span", {
                         className: "text-white/40",
-                        children: [" · ", _t("HISTORY.MINES_SHORT", {
+                        children: [" Â· ", _t("HISTORY.MINES_SHORT", {
                             count: tt.minesCount
                         })]
                     })]
@@ -104368,7 +104368,7 @@ function MinesHistoryRow({round: tt}) {
                     children: Zt(tt.stakedGift) ?? `${tt.betAmountTon.toFixed(2)} GRAM`
                 }), jsxRuntimeExports.jsxs("p", {
                     className: "truncate text-xs text-white/40",
-                    children: [new Date(tt.finishedAt ?? tt.createdAt).toLocaleTimeString(), " · ", _t("HISTORY.PAYOUT"), ":", " ", [tt.rewardGift, tt.bonusGift].some(Boolean) ? [tt.rewardGift, tt.bonusGift].map(Zt).filter(Boolean).join(" + ") : `${tt.payoutTon.toFixed(2)} GRAM`]
+                    children: [new Date(tt.finishedAt ?? tt.createdAt).toLocaleTimeString(), " Â· ", _t("HISTORY.PAYOUT"), ":", " ", [tt.rewardGift, tt.bonusGift].some(Boolean) ? [tt.rewardGift, tt.bonusGift].map(Zt).filter(Boolean).join(" + ") : `${tt.payoutTon.toFixed(2)} GRAM`]
                 })]
             }), jsxRuntimeExports.jsx(ChevronDown, {
                 className: `size-4 shrink-0 text-white/30 transition-transform ${Yt ? "rotate-180" : ""}`
@@ -105990,7 +105990,7 @@ const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isE
                 className: "flex items-center gap-2",
                 children: [jsxRuntimeExports.jsxs("span", {
                     className: "text-green-400 text-xs font-medium",
-                    children: [Jt("VERIFICATION.VERIFIED"), " ✓"]
+                    children: [Jt("VERIFICATION.VERIFIED"), " âœ“"]
                 }), jsxRuntimeExports.jsx("svg", {
                     className: `w-5 h-5 text-white/60 transition-transform ${Kt ? "rotate-180" : ""}`,
                     fill: "none",
@@ -106036,7 +106036,7 @@ const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isE
                     children: [tt.serverSeedHash && jsxRuntimeExports.jsxs("div", {
                         children: [jsxRuntimeExports.jsxs("label", {
                             className: "text-white/60 text-xs font-medium mb-1 block",
-                            children: ["🔒 ", Jt("VERIFICATION.SERVER_HASH")]
+                            children: ["ðŸ”’ ", Jt("VERIFICATION.SERVER_HASH")]
                         }), jsxRuntimeExports.jsxs("div", {
                             className: "flex items-center gap-2 bg-[#0a0a0a] rounded-lg p-2.5",
                             children: [jsxRuntimeExports.jsx("code", {
@@ -106053,7 +106053,7 @@ const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isE
                     }), tt.serverSeed && jsxRuntimeExports.jsxs("div", {
                         children: [jsxRuntimeExports.jsxs("label", {
                             className: "text-white/60 text-xs font-medium mb-1 block",
-                            children: ["✅ ", Jt("VERIFICATION.SERVER_SEED")]
+                            children: ["âœ… ", Jt("VERIFICATION.SERVER_SEED")]
                         }), jsxRuntimeExports.jsxs("div", {
                             className: "flex items-center gap-2 bg-[#0a0a0a] rounded-lg p-2.5",
                             children: [jsxRuntimeExports.jsx("code", {
@@ -106070,7 +106070,7 @@ const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isE
                     }), tt.clientSeeds && tt.clientSeeds.length > 0 && jsxRuntimeExports.jsxs("div", {
                         children: [jsxRuntimeExports.jsxs("label", {
                             className: "text-white/60 text-xs font-medium mb-1 block",
-                            children: ["👥 ", Jt("VERIFICATION.CLIENT_SEEDS", {
+                            children: ["ðŸ‘¥ ", Jt("VERIFICATION.CLIENT_SEEDS", {
                                 count: tt.clientSeeds.length
                             })]
                         }), jsxRuntimeExports.jsx("div", {
@@ -106088,7 +106088,7 @@ const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isE
                     className: "text-white font-semibold text-sm mb-3 flex items-center gap-2",
                     children: [jsxRuntimeExports.jsx("span", {
                         className: "text-purple-400",
-                        children: "🔐"
+                        children: "ðŸ”"
                     }), Jt("VERIFICATION.HOW_IT_WORKS")]
                 }), jsxRuntimeExports.jsxs("div", {
                     className: "space-y-2 text-xs text-white/70",
@@ -106140,7 +106140,7 @@ const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isE
                         className: "flex gap-2",
                         children: [jsxRuntimeExports.jsx("span", {
                             className: "text-amber-400 shrink-0",
-                            children: "✓"
+                            children: "âœ“"
                         }), jsxRuntimeExports.jsx("span", {
                             children: jsxRuntimeExports.jsx(Trans, {
                                 i18nKey: "VERIFICATION.NO_CHEAT",
@@ -106189,7 +106189,7 @@ const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isE
                             children: Jt("VERIFICATION.HASH_VERIFICATION")
                         }), jsxRuntimeExports.jsx("span", {
                             className: nn.hashValid ? "text-green-400" : "text-red-400",
-                            children: nn.hashValid ? `✓ ${Jt("VERIFICATION.VALID")}` : `✗ ${Jt("VERIFICATION.INVALID")}`
+                            children: nn.hashValid ? `âœ“ ${Jt("VERIFICATION.VALID")}` : `âœ— ${Jt("VERIFICATION.INVALID")}`
                         })]
                     }), jsxRuntimeExports.jsxs("div", {
                         className: "flex items-center justify-between",
@@ -106198,7 +106198,7 @@ const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isE
                             children: Jt("VERIFICATION.RESULT_VERIFICATION")
                         }), jsxRuntimeExports.jsx("span", {
                             className: nn.resultValid ? "text-green-400" : "text-red-400",
-                            children: nn.resultValid ? `✓ ${Jt("VERIFICATION.VALID")}` : `✗ ${Jt("VERIFICATION.INVALID")}`
+                            children: nn.resultValid ? `âœ“ ${Jt("VERIFICATION.VALID")}` : `âœ— ${Jt("VERIFICATION.INVALID")}`
                         })]
                     }), jsxRuntimeExports.jsxs("div", {
                         className: "flex items-center justify-between",
@@ -106619,7 +106619,7 @@ const ProvablyFairVerification = ({provablyFair: tt, gameId: _t, winner: Yt, isE
             minute: "2-digit",
             hour12: !1
         }).format(Pn);
-        return `${$n} · ${wn}`
+        return `${$n} Â· ${wn}`
     }
     , [])
       , bn = reactExports.useCallback(Cn => Cn ? `#${(Cn.length > 6 ? Cn.slice(-6) : Cn).toUpperCase()}` : "", []);
@@ -107609,12 +107609,12 @@ const GRAM_ICON = '<svg viewBox="0 0 100 100" width="11" height="11" aria-hidden
                         bn.alt = "",
                         yn && (bn.style.background = giftBackdropGradient(yn.center, yn.edge)),
                         bn.onerror = () => {
-                            bn.outerHTML = '<span class="plinko-win-chip__gift">🎁</span>'
+                            bn.outerHTML = '<span class="plinko-win-chip__gift">ðŸŽ</span>'
                         }
                         ,
                         dn.appendChild(bn)
                     } else
-                        dn.insertAdjacentHTML("beforeend", '<span class="plinko-win-chip__gift">🎁</span>')
+                        dn.insertAdjacentHTML("beforeend", '<span class="plinko-win-chip__gift">ðŸŽ</span>')
                 }
                   , gn = !!nn.bonusGiftImageUrl;
                 gn && dn.classList.add("plinko-win-chip--double"),
@@ -107670,7 +107670,7 @@ const GRAM_ICON = '<svg viewBox="0 0 100 100" width="11" height="11" aria-hidden
         children: [jsxRuntimeExports.jsx("style", {
             children: `
           /* 0%/100% deliberately do NOT set background-color: each pill now has
-             its own tint (centre→edge ramp), so the flash must return to it */
+             its own tint (centreâ†’edge ramp), so the flash must return to it */
           @keyframes plinko-pill-hit {
             0% { transform: translateY(0) scale(1); }
             30% { transform: translateY(3px) scale(0.94); background-color: rgba(196, 181, 253, 0.95); }
@@ -107688,7 +107688,7 @@ const GRAM_ICON = '<svg viewBox="0 0 100 100" width="11" height="11" aria-hidden
           .plinko-win-chip {
             position: absolute;
             bottom: 100%;
-            /* Own width, not shrink-to-fit: an abspos box only gets (row width −
+            /* Own width, not shrink-to-fit: an abspos box only gets (row width âˆ’
                left) of room, so over the right-edge bins the chip collapsed and
                squeezed the gift art (img max-width: 100%) down to nothing */
             width: max-content;
@@ -107707,9 +107707,9 @@ const GRAM_ICON = '<svg viewBox="0 0 100 100" width="11" height="11" aria-hidden
             pointer-events: none;
             animation: plinko-win-chip 1400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
           }
-          /* Jackpot reveal chip: bigger, gold-ringed, and it lingers — its own
+          /* Jackpot reveal chip: bigger, gold-ringed, and it lingers â€” its own
              keyframes hold a long readable plateau before floating away
-             (duration ≈ cinematic hold + fade-out) */
+             (duration â‰ˆ cinematic hold + fade-out) */
           @keyframes plinko-win-chip-jackpot {
             0%   { transform: translate(-50%, 8px) scale(0.7); opacity: 0; }
             8%   { transform: translate(-50%, -8px) scale(1.18); opacity: 1; }
@@ -107750,14 +107750,14 @@ const GRAM_ICON = '<svg viewBox="0 0 100 100" width="11" height="11" aria-hidden
             object-fit: contain; display: block;
           }
 
-          /* Jackpot cinematic (owner: only the dead field goes dark — active
+          /* Jackpot cinematic (owner: only the dead field goes dark â€” active
              pieces come FORWARD): every pill brightens above its normal tint
              while the board dims behind, the winner brightest of all with the
              gold ring. Static brightness() on tiny elements is a cheap
              color-matrix op (unlike blur) and the 300ms tween is a one-off,
              not a loop. The transition lives on the base row so the restore
              eases back too. Win chips are exempt: the hero's reveal chip has
-             its own look. Gold ring via outline — the pills carry inline
+             its own look. Gold ring via outline â€” the pills carry inline
              box-shadows that would win over a class. */
           .plinko-mult-row > div { transition: opacity 300ms ease, filter 300ms ease; }
           .plinko-row-cinematic > div:not(.plinko-pill-spot):not(.plinko-win-chip) {
@@ -108968,18 +108968,18 @@ const PlinkoGiftModal = ({isOpen: tt, onClose: _t, maxSelection: Yt, onConfirm: 
                             "aria-expanded": Xn,
                             children: [jsxRuntimeExports.jsxs("span", {
                                 className: `min-w-[52px] text-center px-2 py-1 rounded-full text-sm font-bold ${Bn.multiplier >= 2 ? "bg-emerald-500/20 text-emerald-300" : Bn.multiplier >= 1 ? "bg-violet-500/20 text-violet-300" : "bg-red-500/15 text-red-300"}`,
-                                children: ["×", Bn.multiplier]
+                                children: ["Ã—", Bn.multiplier]
                             }), jsxRuntimeExports.jsxs("div", {
                                 className: "flex-1 min-w-0",
                                 children: [jsxRuntimeExports.jsxs("p", {
                                     className: "text-white text-sm font-medium truncate",
                                     children: [Bn.stakedGift ? Bn.stakedGift.collectionName || Bn.stakedGift.slug : `${Bn.betAmountTon.toFixed(2)} TON`, jsxRuntimeExports.jsxs("span", {
                                         className: "text-white/40",
-                                        children: [" · ", Xt(`DIFFICULTY.${Bn.difficulty.toUpperCase()}`)]
+                                        children: [" Â· ", Xt(`DIFFICULTY.${Bn.difficulty.toUpperCase()}`)]
                                     })]
                                 }), jsxRuntimeExports.jsxs("p", {
                                     className: "text-white/40 text-xs",
-                                    children: [new Date(Bn.createdAt).toLocaleTimeString(), " · ", Xt("HISTORY.WIN"), ":", " ", Bn.rewardGift ? [Bn.rewardGift, Bn.bonusRewardGift].filter(Mn => Mn != null).map(Mn => Mn.collectionName || Mn.slug).join(" + ") : `${Bn.payoutTon.toFixed(2)} TON`]
+                                    children: [new Date(Bn.createdAt).toLocaleTimeString(), " Â· ", Xt("HISTORY.WIN"), ":", " ", Bn.rewardGift ? [Bn.rewardGift, Bn.bonusRewardGift].filter(Mn => Mn != null).map(Mn => Mn.collectionName || Mn.slug).join(" + ") : `${Bn.payoutTon.toFixed(2)} TON`]
                                 })]
                             }), jsxRuntimeExports.jsx(ChevronDown, {
                                 className: `w-4 h-4 text-white/30 shrink-0 transition-transform ${Xn ? "rotate-180" : ""}`
@@ -109121,7 +109121,7 @@ const GHOST_WINDOW_MS = 3500
                     children: _t.stakedGift ? _t.stakedGift.collectionName || _t.stakedGift.slug : `${_t.betAmountTon.toFixed(2)} TON`
                 }), jsxRuntimeExports.jsxs("span", {
                     className: "font-bold text-violet-300",
-                    children: ["×", _t.multiplier]
+                    children: ["Ã—", _t.multiplier]
                 }), jsxRuntimeExports.jsx("span", {
                     className: "font-bold text-white",
                     children: _t.rewardGift ? [_t.rewardGift, _t.bonusRewardGift].filter(tn => tn != null).map(tn => tn.collectionName || tn.slug).join(" + ") : `${_t.payoutTon.toFixed(2)} TON`
@@ -111076,13 +111076,13 @@ const MIN_CLAIM_TON = .01
     nativeName: "English"
 }, {
     code: "ru",
-    nativeName: "Русский"
+    nativeName: "Ð ÑƒÑÑÐºÐ¸Ð¹"
 }, {
     code: "fa",
-    nativeName: "فارسی"
+    nativeName: "ÙØ§Ø±Ø³ÛŒ"
 }, {
     code: "zh",
-    nativeName: "中文"
+    nativeName: "ä¸­æ–‡"
 }]
   , LanguageMenu = ({open: tt, onClose: _t}) => {
     const {t: Yt, i18n: Kt} = useTranslation(["settings", "toasts"])
@@ -112557,7 +112557,7 @@ class DiceRevealRenderer {
         _t ? _t.ready ? Jt.drawImage(_t.img, Xt, -18 / 2, STAKE_ART_PX, STAKE_ART_PX) : (Jt.font = this.artFont,
         Jt.textAlign = "center",
         Jt.textBaseline = "middle",
-        Jt.fillText("🎁", Xt + STAKE_ART_PX / 2, 1)) : Yt && Jt.drawImage(Yt, Xt + 3, -6, 12, 12)
+        Jt.fillText("ðŸŽ", Xt + STAKE_ART_PX / 2, 1)) : Yt && Jt.drawImage(Yt, Xt + 3, -6, 12, 12)
     }
     drawParticles(_t) {
         if (this.particles.length === 0)
@@ -112622,7 +112622,7 @@ const PillsStrip = reactExports.memo(function tt({dense: _t}) {
       `
         }), Xt.length === 0 ? jsxRuntimeExports.jsx("span", {
             className: "text-white/25 text-xs font-medium",
-            children: "0 – 100"
+            children: "0 â€“ 100"
         }) : Xt.map(Jt => jsxRuntimeExports.jsx("span", {
             className: `dice-pill shrink-0 px-1.5 rounded-full flex items-center justify-center font-bold tabular-nums ${_t ? "min-w-[40px] h-[18px] text-[10px]" : "min-w-[46px] h-6 text-xs"} ${Jt.win ? "bg-[#22C55E]/15 text-[#4ADE80]" : "bg-white/[0.06] text-white/40"}`,
             children: rollDisplay(Jt)
@@ -113375,7 +113375,7 @@ const DiceFairnessPanel = reactExports.memo(function tt({roll: _t}) {
                             "aria-expanded": Bn,
                             children: [jsxRuntimeExports.jsxs("span", {
                                 className: `min-w-[52px] text-center px-2 py-1 rounded-full text-sm font-bold ${Xn >= 2 ? "bg-emerald-500/20 text-emerald-300" : Xn >= 1 ? "bg-violet-500/20 text-violet-300" : "bg-red-500/15 text-red-300"}`,
-                                children: ["×", Xn.toFixed(2)]
+                                children: ["Ã—", Xn.toFixed(2)]
                             }), jsxRuntimeExports.jsxs("div", {
                                 className: "flex-1 min-w-0",
                                 children: [jsxRuntimeExports.jsxs("p", {
@@ -113385,14 +113385,14 @@ const DiceFairnessPanel = reactExports.memo(function tt({roll: _t}) {
                                         children: rollDisplay(An)
                                     }), jsxRuntimeExports.jsxs("span", {
                                         className: "text-white/40",
-                                        children: [" · ", An.direction === "over" ? Kt("CONTROLS.HIGHER") : Kt("CONTROLS.LOWER"), " ", targetDisplay(An)]
+                                        children: [" Â· ", An.direction === "over" ? Kt("CONTROLS.HIGHER") : Kt("CONTROLS.LOWER"), " ", targetDisplay(An)]
                                     })]
                                 }), jsxRuntimeExports.jsx("p", {
                                     className: "text-white/60 text-xs truncate",
                                     children: An.stakedGift ? An.stakedGift.collectionName || An.stakedGift.slug || Kt("LABELS.GIFT") : `${An.betAmountTon.toFixed(2)} GRAM`
                                 }), jsxRuntimeExports.jsxs("p", {
                                     className: "text-white/40 text-xs",
-                                    children: [new Date(An.createdAt).toLocaleTimeString(), " · ", Kt("HISTORY.PAYOUT"), ":", " ", An.rewardGift ? [An.rewardGift, An.bonusRewardGift].filter(Mn => Mn != null).map(Mn => Mn.collectionName || Mn.slug || Kt("LABELS.GIFT")).join(" + ") : `${An.payoutTon.toFixed(2)} GRAM`]
+                                    children: [new Date(An.createdAt).toLocaleTimeString(), " Â· ", Kt("HISTORY.PAYOUT"), ":", " ", An.rewardGift ? [An.rewardGift, An.bonusRewardGift].filter(Mn => Mn != null).map(Mn => Mn.collectionName || Mn.slug || Kt("LABELS.GIFT")).join(" + ") : `${An.payoutTon.toFixed(2)} GRAM`]
                                 })]
                             }), jsxRuntimeExports.jsx(ChevronDown, {
                                 className: `w-4 h-4 text-white/30 shrink-0 transition-transform ${Bn ? "rotate-180" : ""}`
@@ -113959,7 +113959,7 @@ function StartParameterHandler() {
                             , 100);
                             return
                         } else
-                            console.warn("⚠️ Invalid giveaway ID:", Jt)
+                            console.warn("âš ï¸ Invalid giveaway ID:", Jt)
                     }
                     _t.current = !0,
                     sessionStorage.setItem("hasProcessedStartParam", "true")
@@ -113967,7 +113967,7 @@ function StartParameterHandler() {
                     _t.current = !0,
                     sessionStorage.setItem("hasProcessedStartParam", "true")
             } catch (Kt) {
-                console.error("❌ Error handling start parameter:", Kt),
+                console.error("âŒ Error handling start parameter:", Kt),
                 _t.current = !0,
                 sessionStorage.setItem("hasProcessedStartParam", "true")
             }
@@ -114355,7 +114355,7 @@ function SessionExpiredOverlay() {
             className: "max-w-[340px] w-full text-center",
             children: [jsxRuntimeExports.jsx("div", {
                 className: "text-5xl leading-none mb-4",
-                children: "⏳"
+                children: "â³"
             }), jsxRuntimeExports.jsx("h2", {
                 className: "text-lg font-semibold mb-3 text-white",
                 children: tt("APP.SESSION_EXPIRED_TITLE")
@@ -114728,7 +114728,7 @@ const HEALTH_POLL_MS = 1e4
                 return;
             nn.current += 1,
             nn.current >= HEALTHY_POLLS_TO_RECOVER && !un.current && (un.current = !0,
-            console.log("🎉 Service recovered, reloading page..."),
+            console.log("ðŸŽ‰ Service recovered, reloading page..."),
             an.current = setTimeout( () => window.location.reload(), 1e3))
         } finally {
             fn && Zt(!1)
@@ -114947,11 +114947,11 @@ async function init(tt) {
         let Kt = !0;
         $e$1({
             onEvent([Xt,Jt], Zt) {
-                if (console.log("%c[macOS] ←", "color:#8b5cf6", Xt, Jt),
+                if (console.log("%c[macOS] â†", "color:#8b5cf6", Xt, Jt),
                 Xt === "web_app_request_theme") {
                     const tn = Kt ? (Kt = !1,
                     he$1().tgWebAppThemeParams) : K();
-                    console.log("%c[macOS] → theme_changed", "color:#8b5cf6", tn),
+                    console.log("%c[macOS] â†’ theme_changed", "color:#8b5cf6", tn),
                     T("theme_changed", {
                         theme_params: tn
                     });
@@ -115034,7 +115034,7 @@ init$1({
     replaysOnErrorSampleRate: 1,
     sendDefaultPii: !0
 }),
-console.log(`🔍 Sentry initialized for ${ENVIRONMENT} environment`);
+console.log(`ðŸ” Sentry initialized for ${ENVIRONMENT} environment`);
 installDebugLogListeners();
 window.addEventListener("vite:preloadError", tt => {
     let _t = !1;
