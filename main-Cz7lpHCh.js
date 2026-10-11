@@ -52607,7 +52607,7 @@ It's 100% free, and you can try your luck every 24 hours!`,
     UNSUPPORTED: UNSUPPORTED$3,
     NO_CONNECTION: NO_CONNECTION$3,
     MAINTENANCE: MAINTENANCE$f,
-    OVERLOAD: OVERLOAD$3
+    OVERLOAD: null
 }
   , HEADER$f = {
     TITLE: "Crafts",
