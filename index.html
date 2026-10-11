@@ -6,78 +6,52 @@
     <meta name="theme-color" content="#121212"/>
     <title>Epic Gift</title>
 
+    <!-- Asl serverdagi rasmlar, audio va stillarni yuklash uchun baza manzili -->
     <base href="https://epicgift.app/">
 
+    <!-- Shriftlar va piktogrammalar -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
       html, body {
         background-color: #121212;
+        color: #ffffff;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         margin: 0;
         padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
         touch-action: pan-x pan-y;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      #root {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: #121212;
       }
     </style>
 
-    <script>
-      (function() {
-        var rawUser = JSON.stringify({
-          id: 7691140042,
-          first_name: "Demo",
-          last_name: "User",
-          username: "demo_user",
-          language_code: "uz"
-        });
-
-        var fakeInitData = "query_id=AAHdF60uAAAAAN0XrS4Demo&user=" + encodeURIComponent(rawUser) + "&auth_date=1728588000&hash=mockhash";
-
-        // URL parametrlarini to'ldirish
-        if (!window.location.hash || !window.location.hash.includes("tgWebAppData")) {
-          window.location.hash = "tgWebAppData=" + encodeURIComponent(fakeInitData) + "&tgWebAppVersion=7.10&tgWebAppPlatform=tdesktop&tgWebAppThemeParams=%7B%22bg_color%22%3A%22%23121212%22%7D";
-        }
-
-        // Telegram WebView ichki ko'prigi (SDK tekshiruvidan o'tish uchun)
-        window.TelegramWebviewProxy = {
-          postEvent: function() {}
-        };
-
-        // Telegram WebApp obyekti
-        window.Telegram = {
-          WebApp: {
-            initData: fakeInitData,
-            initDataUnsafe: {
-              query_id: "AAHdF60uAAAAAN0XrS4Demo",
-              user: JSON.parse(rawUser),
-              auth_date: "1728588000",
-              hash: "mockhash"
-            },
-            version: "7.10",
-            platform: "tdesktop",
-            colorScheme: "dark",
-            themeParams: { bg_color: "#121212", text_color: "#ffffff" },
-            isExpanded: true,
-            viewportHeight: window.innerHeight,
-            viewportStableHeight: window.innerHeight,
-            headerColor: "#121212",
-            backgroundColor: "#121212",
-            ready: function() {},
-            expand: function() {},
-            close: function() {},
-            setHeaderColor: function() {},
-            setBackgroundColor: function() {},
-            disableVerticalSwipes: function() {},
-            onEvent: function() {},
-            offEvent: function() {},
-            sendData: function() {},
-            openTelegramLink: function() {},
-            openLink: function() {},
-            MainButton: { show: function(){}, hide: function(){}, setText: function(){}, isVisible: false },
-            BackButton: { show: function(){}, hide: function(){}, isVisible: false }
-          }
-        };
-      })();
-    </script>
+    <!-- Rasmiy Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <script type="module" crossorigin src="http://localhost:8000/main-Cz7lpHCh.js"></script>
+    <!-- O'yinning asosiy grafik va vizual elementlarini oldindan xotiraga yuklash -->
+    <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-hub-bg.webp" fetchpriority="high"/>
+    <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-upgrade.webp?v=5" fetchpriority="high"/>
+    <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-plinko.webp?v=5" fetchpriority="high"/>
+    <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-mines.webp?v=3" fetchpriority="high"/>
+
+    <!-- Sizning GitHub repozitoriyingizdagi asosiy skript (to'g'ri nisbiy manzil bilan) -->
+    <script type="module" crossorigin src="./main-Cz7lpHCh.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
