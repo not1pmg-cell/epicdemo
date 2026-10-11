@@ -114183,7 +114183,7 @@ const StatusScreen = ({icon: tt, decorations: _t, title: Yt, description: Kt, ch
                 children: _t("NO_CONNECTION.HINT")
             })
         });
-    if (false)
+  if (false && tt === "overload")
         return jsxRuntimeExports.jsx(StatusScreen, {
             icon: jsxRuntimeExports.jsx(Activity, {
                 className: "w-12 h-12 text-white"
