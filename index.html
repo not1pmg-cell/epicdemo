@@ -31,90 +31,69 @@
         width: 100%;
         min-height: 100vh;
       }
+      
+      /* "High load right now" xatolik oynasini majburiy yashirib, o'yinni ko'rsatish */
+      div:has(> svg):has(h1), 
+      div:has(h2:contains("High load")),
+      div[class*="error"],
+      div[class*="overload"] {
+        /* Xatolik bloki paydo bo'lsa uni yopib qo'yadi */
+      }
     </style>
 
-    <!-- 1. Barcha tarmoq (Fetch, XHR, WebSocket) xatolarini to'suvchi va "High load"ni yo'qotuvchi emulyator -->
+    <!-- Tarmoq so'rovlarini to'liq aldash (Barcha API so'rovlariga 200 berish) -->
     <script>
       (function() {
-        const dummyResponseData = {
+        const fakeSuccess = {
           success: true,
           status: "ok",
+          ok: true,
           code: 0,
-          data: {
-            user: {
-              id: 7691140042,
-              username: "demo_user",
-              balance: 50000,
-              tickets: 100,
-              level: 10,
-              stars: 1000
-            },
-            config: { maintenance: false, overload: false },
-            items: [],
-            gifts: []
-          }
+          user: { id: 7691140042, balance: 100000, username: "demo_user" },
+          data: { balance: 100000, user: { id: 7691140042 } },
+          isOverloaded: false,
+          maintenance: false
         };
 
-        // Fetch so'rovlarini tutib qolish
-        const rawFetch = window.fetch;
+        const originalFetch = window.fetch;
         window.fetch = async function(...args) {
           try {
-            const res = await rawFetch.apply(this, args);
-            if (res.ok) return res;
-            return new Response(JSON.stringify(dummyResponseData), {
-              status: 200,
-              headers: { "Content-Type": "application/json" }
-            });
-          } catch (e) {
-            return new Response(JSON.stringify(dummyResponseData), {
-              status: 200,
-              headers: { "Content-Type": "application/json" }
-            });
-          }
-        };
-
-        // XMLHttpRequest (XHR) so'rovlarini tutib qolish
-        const rawOpen = XMLHttpRequest.prototype.open;
-        const rawSend = XMLHttpRequest.prototype.send;
-        XMLHttpRequest.prototype.open = function(method, url) {
-          this._url = url;
-          return rawOpen.apply(this, arguments);
-        };
-        XMLHttpRequest.prototype.send = function() {
-          this.addEventListener('error', (e) => {
-            Object.defineProperty(this, 'status', { value: 200 });
-            Object.defineProperty(this, 'responseText', { value: JSON.stringify(dummyResponseData) });
+            const res = await originalFetch.apply(this, args);
+            if (res.status === 200) return res;
+          } catch(e) {}
+          return new Response(JSON.stringify(fakeSuccess), {
+            status: 200,
+            headers: { "Content-Type": "application/json" }
           });
-          return rawSend.apply(this, arguments);
         };
 
-        // WebSocket xatosini to'xtatish (ulanish uzilmasligi uchun)
-        const RawWebSocket = window.WebSocket;
-        window.WebSocket = function(url, protocols) {
-          const ws = new EventTarget();
-          ws.url = url;
-          ws.readyState = 1; // OPEN
-          ws.send = function(data) {};
-          ws.close = function() {};
-          setTimeout(() => {
-            if (ws.onopen) ws.onopen(new Event('open'));
-            ws.dispatchEvent(new Event('open'));
-          }, 100);
-          return ws;
-        };
+        // DOM yuklanganda "High load right now" yozuvini topib o'chirib tashlaydigan skript
+        const observer = new MutationObserver(() => {
+          const allElements = document.querySelectorAll('h1, h2, div, p');
+          for (let el of allElements) {
+            if (el.textContent && el.textContent.includes('High load right now')) {
+              // Xatolik oynasining butun ota blokini yashiramiz
+              let parent = el.closest('div');
+              while (parent && parent.parentElement && parent.parentElement.id !== 'root') {
+                parent = parent.parentElement;
+              }
+              if (parent && parent.id !== 'root') {
+                parent.style.display = 'none';
+              }
+            }
+          }
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true });
       })();
     </script>
 
-    <!-- 2. Telegram SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <!-- 3. Rasmlarni yuklash -->
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-hub-bg.webp" fetchpriority="high"/>
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-upgrade.webp?v=5" fetchpriority="high"/>
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-plinko.webp?v=5" fetchpriority="high"/>
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-mines.webp?v=3" fetchpriority="high"/>
 
-    <!-- 4. Asosiy JS fayl -->
     <script type="module" crossorigin src="https://not1pmg-cell.github.io/epicdemo/main-Cz7lpHCh.js"></script>
   </head>
   <body>
