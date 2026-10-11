@@ -33,40 +33,88 @@
       }
     </style>
 
-    <!-- Asl server xatolarini ushlab qolib, "High load" chiqishini to'xtatuvchi mock fetch -->
+    <!-- 1. Barcha tarmoq (Fetch, XHR, WebSocket) xatolarini to'suvchi va "High load"ni yo'qotuvchi emulyator -->
     <script>
-      const originalFetch = window.fetch;
-      window.fetch = async function(...args) {
-        const url = args[0] ? args[0].toString() : "";
-        if (url.includes("/api/") || url.includes("/user") || url.includes("/auth") || url.includes("/init")) {
-          return new Response(JSON.stringify({
-            status: "ok",
-            success: true,
+      (function() {
+        const dummyResponseData = {
+          success: true,
+          status: "ok",
+          code: 0,
+          data: {
             user: {
               id: 7691140042,
-              balance: 10000,
-              tickets: 50,
-              stars: 500,
-              level: 5,
-              gifts: []
+              username: "demo_user",
+              balance: 50000,
+              tickets: 100,
+              level: 10,
+              stars: 1000
             },
-            data: {}
-          }), {
-            status: 200,
-            headers: { "Content-Type": "application/json" }
+            config: { maintenance: false, overload: false },
+            items: [],
+            gifts: []
+          }
+        };
+
+        // Fetch so'rovlarini tutib qolish
+        const rawFetch = window.fetch;
+        window.fetch = async function(...args) {
+          try {
+            const res = await rawFetch.apply(this, args);
+            if (res.ok) return res;
+            return new Response(JSON.stringify(dummyResponseData), {
+              status: 200,
+              headers: { "Content-Type": "application/json" }
+            });
+          } catch (e) {
+            return new Response(JSON.stringify(dummyResponseData), {
+              status: 200,
+              headers: { "Content-Type": "application/json" }
+            });
+          }
+        };
+
+        // XMLHttpRequest (XHR) so'rovlarini tutib qolish
+        const rawOpen = XMLHttpRequest.prototype.open;
+        const rawSend = XMLHttpRequest.prototype.send;
+        XMLHttpRequest.prototype.open = function(method, url) {
+          this._url = url;
+          return rawOpen.apply(this, arguments);
+        };
+        XMLHttpRequest.prototype.send = function() {
+          this.addEventListener('error', (e) => {
+            Object.defineProperty(this, 'status', { value: 200 });
+            Object.defineProperty(this, 'responseText', { value: JSON.stringify(dummyResponseData) });
           });
-        }
-        return originalFetch.apply(this, args);
-      };
+          return rawSend.apply(this, arguments);
+        };
+
+        // WebSocket xatosini to'xtatish (ulanish uzilmasligi uchun)
+        const RawWebSocket = window.WebSocket;
+        window.WebSocket = function(url, protocols) {
+          const ws = new EventTarget();
+          ws.url = url;
+          ws.readyState = 1; // OPEN
+          ws.send = function(data) {};
+          ws.close = function() {};
+          setTimeout(() => {
+            if (ws.onopen) ws.onopen(new Event('open'));
+            ws.dispatchEvent(new Event('open'));
+          }, 100);
+          return ws;
+        };
+      })();
     </script>
 
+    <!-- 2. Telegram SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+    <!-- 3. Rasmlarni yuklash -->
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-hub-bg.webp" fetchpriority="high"/>
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-upgrade.webp?v=5" fetchpriority="high"/>
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-plinko.webp?v=5" fetchpriority="high"/>
     <link rel="preload" as="image" href="https://epicgift.app/assets/play-hub/home-card-mines.webp?v=3" fetchpriority="high"/>
 
+    <!-- 4. Asosiy JS fayl -->
     <script type="module" crossorigin src="https://not1pmg-cell.github.io/epicdemo/main-Cz7lpHCh.js"></script>
   </head>
   <body>
