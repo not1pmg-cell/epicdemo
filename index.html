@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Tarjimon Cyber Dashboard 4.0</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card: rgba(18, 22, 34, 0.85);
+      --border: rgba(0, 240, 255, 0.2);
+      --cyan: #00f0ff;
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --green: #10b981;
+      --red: #ef4444;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    body {
+      margin: 0;
+      padding: 14px;
+      padding-bottom: 90px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background-image: radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.12), transparent 40%),
+                        radial-gradient(circle at 90% 90%, rgba(0, 240, 255, 0.12), transparent 40%);
+      background-attachment: fixed;
+    }
+    .header-box {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(18,22,34,0.95), rgba(10,12,18,0.95));
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
+      position: relative;
+      margin-bottom: 14px;
+    }
+    .header-box h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #fff, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .badge-live {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+      border: 1px solid var(--green);
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+    .tabs-nav {
+      position: fixed;
+      bottom: 12px;
+      left: 14px;
+      right: 14px;
+      background: rgba(18, 22, 34, 0.95);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      z-index: 100;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .tab-btn i { font-size: 15px; }
+    .tab-btn.active { color: var(--cyan); text-shadow: 0 0 10px var(--cyan); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .glass-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 14px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .card-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .input-grp { display: flex; gap: 8px; margin-bottom: 12px; }
+    input, textarea {
+      flex: 1;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+    }
+    input:focus, textarea:focus { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,240,255,0.25); }
+    .btn-action {
+      background: linear-gradient(135deg, var(--cyan), #0284c7);
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      padding: 0 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .item-chip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      border-left: 3px solid var(--purple);
+    }
+    .switch-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .switch-row:last-child { border-bottom: none; }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      background: #334155;
+      border-radius: 24px;
+      transition: .3s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: .3s;
+    }
+    input:checked + .slider { background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+    input:checked + .slider:before { transform: translateX(20px); background: #000; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .stat-tile {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .stat-val { font-size: 18px; font-weight: 800; color: #fff; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="header-box">
+    <h2>⚡️ AI TARJIMON CYBER 4.0</h2>
+    <div class="status-row">
+      <span class="badge-live"><i class="fa-solid fa-satellite-dish"></i> RADAR AKTIV</span>
+      <span>Gemini 2.5 Flash + TTS</span>
+      <span>Tezlik: 0.3s</span>
+    </div>
+  </div>
+
+  <!-- 1-TAB: KANALLAR -->
+  <div id="tab-channels" class="tab-content active">
+    <div class="glass-card">
+      <div class="card-title"><i class="fa-solid fa-tower-broadcast"></i> Manba Kanallar (Spying)</div>
+      <div class="input-grp">
+        <input type="text" id="sourceInput" placeholder="Masalan: buyernewss">
+        <button class="btn-action" onclick="addSource()"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div id="sourcesList"></div>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-title"><i class="fa-solid fa-paper-plane"></i> Qabul Kanallari</div>
+      <div class="input-grp">
+        <input type="text" id="targetInput" placeholder="Masalan: @sendingbuyer">
+        <button class="btn-action" onclick="addTarget()"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div id="targetsList"></div>
+    </div>
+  </div>
+
+  <!-- 2-TAB: AI & FILTRLAR -->
+  <div id="tab-filters" class="tab-content">
+    <div class="glass-card">
+      <div class="card-title"><i class="fa-solid fa-sliders"></i> Aqlli Filtrlar & Sozlamalar</div>
+
+      <div class="switch-row">
+        <div>
+          <div style="font-size:13px;font-weight:600;">Reklama & Begona link tozalash</div>
+          <div style="font-size:11px;color:var(--muted);">Postdagi begona havolalarni qirqish</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="cleanAds" checked><span class="slider"></span></label>
+      </div>
+
+      <div class="switch-row">
+        <div>
+          <div style="font-size:13px;font-weight:600;">Avto-Xeshteglar (#)</div>
+          <div style="font-size:11px;color:var(--muted);">Trend teglarni avtomat qo'shish</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="autoHashtag" checked><span class="slider"></span></label>
+      </div>
+
+      <div class="switch-row">
+        <div>
+          <div style="font-size:13px;font-weight:600;">🎙 AI Audio Tarjimon (TTS)</div>
+          <div style="font-size:11px;color:var(--muted);">Post tagidan ovozli xabar qo'shish</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="voiceTTS" checked><span class="slider"></span></label>
+      </div>
+
+      <div class="switch-row">
+        <div>
+          <div style="font-size:13px;font-weight:600;">Tungi sokin rejim</div>
+          <div style="font-size:11px;color:var(--muted);">23:00 - 08:00 gacha tovushsiz joylash</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="silentNight"><span class="slider"></span></label>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-title"><i class="fa-solid fa-filter"></i> Kalit So'zlar Filtri</div>
+      <input type="text" id="whitelistInput" placeholder="Faqat shu so'zlar bo'lsa tashlansin (vergul bilan)">
+      <div style="height:8px;"></div>
+      <input type="text" id="blacklistInput" placeholder="Tashlanmasin / Blok so'zlar (vergul bilan)">
+    </div>
+  </div>
+
+  <!-- 3-TAB: VIRAL BOOSTER -->
+  <div id="tab-booster" class="tab-content">
+    <div class="glass-card">
+      <div class="card-title"><i class="fa-solid fa-rocket"></i> Obunachilarni Jalb Qilish (Viral)</div>
+      
+      <div class="switch-row">
+        <div>
+          <div style="font-size:13px;font-weight:600;">🚀 Ulashish & Buyurtma tugmalari</div>
+          <div style="font-size:11px;color:var(--muted);">Post tagiga virusli inline tugmalar</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="actionBtn" checked><span class="slider"></span></label>
+      </div>
+
+      <div class="switch-row">
+        <div>
+          <div style="font-size:13px;font-weight:600;">🔒 Majburiy Obuna (Force Sub)</div>
+          <div style="font-size:11px;color:var(--muted);">Botga kirganlarni kanalga obuna qilish</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="forceSub" checked><span class="slider"></span></label>
+      </div>
+
+      <div style="margin-top:12px;">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">Smart Watermark (Kanal havolasi matni):</div>
+        <input type="text" id="watermarkText" value="⚡️ Eng tezkor tarjimalar: @sendingbuyer">
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-TAB: STATISTIKA -->
+  <div id="tab-stats" class="tab-content">
+    <div class="stats-grid">
+      <div class="stat-tile">
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;">Postlar soni</div>
+        <div class="stat-val" id="statPosts">1,492 ta</div>
+      </div>
+      <div class="stat-tile">
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;">API sarfi</div>
+        <div class="stat-val" style="color:var(--green);">$0.14</div>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-title"><i class="fa-solid fa-terminal"></i> Faoliyat Strimi</div>
+      <div style="font-family:monospace;font-size:11px;color:#38bdf8;line-height:1.6;">
+        <div>[11:18] 🚀 Radar yangi postlarni kutmoqda...</div>
+        <div>[11:15] 📸 OCR rasm tahlili: muvaffaqiyatli ✅</div>
+        <div>[11:12] 🎙 Ovozli sintez (TTS) tayyorlandi ✅</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('channels', this)"><i class="fa-solid fa-satellite"></i>Kanallar</button>
+    <button class="tab-btn" onclick="switchTab('filters', this)"><i class="fa-solid fa-sliders"></i>Filtrlar</button>
+    <button class="tab-btn" onclick="switchTab('booster', this)"><i class="fa-solid fa-bolt"></i>Viral</button>
+    <button class="tab-btn" onclick="switchTab('stats', this)"><i class="fa-solid fa-chart-pie"></i>Tizim</button>
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    let config = {
+      sources: ['buyernewss'],
+      targets: ['@sendingbuyer'],
+      cleanAds: true,
+      autoHashtag: true,
+      voiceTTS: true,
+      silentNight: false,
+      actionBtn: true,
+      forceSub: true,
+      watermark: '⚡️ Eng tezkor tarjimalar: @sendingbuyer',
+      whitelist: '',
+      blacklist: ''
+    };
+
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function renderLists() {
+      document.getElementById('sourcesList').innerHTML = config.sources.map(s => `
+        <div class="item-chip">
+          <span>@${s}</span>
+          <span style="color:var(--red);cursor:pointer;" onclick="removeSource('${s}')"><i class="fa-solid fa-trash"></i></span>
+        </div>
+      `).join('');
+
+      document.getElementById('targetsList').innerHTML = config.targets.map(t => `
+        <div class="item-chip">
+          <span>${t}</span>
+          <span style="color:var(--red);cursor:pointer;" onclick="removeTarget('${t}')"><i class="fa-solid fa-trash"></i></span>
+        </div>
+      `).join('');
+    }
+
+    function addSource() {
+      const v = document.getElementById('sourceInput').value.trim().replace('@', '');
+      if (v && !config.sources.includes(v)) {
+        config.sources.push(v);
+        document.getElementById('sourceInput').value = '';
+        renderLists();
+      }
+    }
+    function removeSource(s) {
+      config.sources = config.sources.filter(x => x !== s);
+      renderLists();
+    }
+
+    function addTarget() {
+      let v = document.getElementById('targetInput').value.trim();
+      if (v && !v.startsWith('@')) v = '@' + v;
+      if (v && !config.targets.includes(v)) {
+        config.targets.push(v);
+        document.getElementById('targetInput').value = '';
+        renderLists();
+      }
+    }
+    function removeTarget(t) {
+      config.targets = config.targets.filter(x => x !== t);
+      renderLists();
+    }
+
+    tg.MainButton.setText("SOZLAMALARNI SAQLASH (ACTIVATE)").show();
+    tg.MainButton.onClick(() => {
+      config.cleanAds = document.getElementById('cleanAds').checked;
+      config.autoHashtag = document.getElementById('autoHashtag').checked;
+      config.voiceTTS = document.getElementById('voiceTTS').checked;
+      config.silentNight = document.getElementById('silentNight').checked;
+      config.actionBtn = document.getElementById('actionBtn').checked;
+      config.forceSub = document.getElementById('forceSub').checked;
+      config.watermark = document.getElementById('watermarkText').value;
+      config.whitelist = document.getElementById('whitelistInput').value;
+      config.blacklist = document.getElementById('blacklistInput').value;
+
+      tg.sendData(JSON.stringify(config));
+      tg.close();
+    });
+
+    renderLists();
+  </script>
+</body>
+</html>
