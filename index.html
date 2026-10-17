@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanal Tarjimon Sozlamalari</title>
+  <title>Kanal Boshqaruv Markazi</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg: #090d16;
-      --card: rgba(21, 27, 43, 0.85);
-      --border: rgba(0, 240, 255, 0.2);
+      --bg: #040911;
+      --card: rgba(10, 22, 36, 0.88);
+      --border: rgba(0, 240, 255, 0.28);
       --cyan: #00f0ff;
-      --purple: #a855f7;
+      --cyan-glow: 0 0 15px rgba(0, 240, 255, 0.35);
       --green: #10b981;
       --red: #ef4444;
       --text: #ffffff;
@@ -23,20 +23,27 @@
       margin: 0;
       padding: 12px;
       padding-bottom: 85px;
-      background: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(0, 240, 255, 0.14) 0%, transparent 40%),
+        radial-gradient(circle at 10% 85%, rgba(16, 185, 129, 0.1) 0%, transparent 45%),
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+      background-attachment: fixed;
       overflow-x: hidden;
     }
     .header {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+      background: linear-gradient(135deg, rgba(14, 30, 48, 0.95), rgba(6, 14, 24, 0.95));
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 14px;
       margin-bottom: 12px;
-      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
+      box-shadow: var(--cyan-glow);
     }
-    .header h2 { margin: 0; font-size: 18px; font-weight: 800; }
+    .header h2 { margin: 0; font-size: 18px; font-weight: 800; color: #fff; }
     .header p { margin: 4px 0 0 0; font-size: 12px; color: var(--subtext); }
 
     .card {
@@ -45,124 +52,76 @@
       border-radius: 16px;
       padding: 14px;
       margin-bottom: 12px;
+      backdrop-filter: blur(12px);
     }
     .card-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--cyan);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: 13px; font-weight: 700; color: var(--cyan);
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+      text-transform: uppercase; letter-spacing: 0.5px;
     }
 
     .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
     input {
-      width: 100%;
-      padding: 11px 13px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      font-size: 13px;
-      outline: none;
+      width: 100%; padding: 11px 13px; border-radius: 10px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      background: rgba(0, 0, 0, 0.5); color: #fff; font-size: 13px; outline: none;
     }
-    input:focus { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.25); }
-    
+    input:focus { border-color: var(--cyan); box-shadow: var(--cyan-glow); }
+
     .btn-add {
-      background: var(--cyan);
-      color: #000;
-      border: none;
-      border-radius: 10px;
-      padding: 0 16px;
-      font-weight: 700;
-      cursor: pointer;
+      background: var(--cyan); color: #000; border: none;
+      border-radius: 10px; padding: 0 16px; font-weight: 800; cursor: pointer;
     }
 
-    .item-badge {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 9px 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 8px;
-      margin-bottom: 6px;
-      font-size: 13px;
-      border-left: 3px solid var(--purple);
+    .item-chip {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 12px; background: rgba(0, 240, 255, 0.04);
+      border-radius: 8px; margin-bottom: 6px; font-size: 13px;
+      border-left: 3px solid var(--cyan); border: 1px solid rgba(255,255,255,0.04);
     }
-    .del-btn { color: var(--red); cursor: pointer; padding: 2px 6px; }
+    .del-btn { color: var(--red); cursor: pointer; padding: 2px 6px; font-size: 14px; }
 
     .setting-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 11px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     .setting-row:last-child { border-bottom: none; }
     .label-title { font-size: 13px; font-weight: 600; }
     .label-desc { font-size: 11px; color: var(--subtext); margin-top: 2px; }
 
-    /* Zamonaviy switch */
     .switch {
-      position: relative;
-      display: inline-block;
-      width: 44px;
-      height: 24px;
-      flex-shrink: 0;
+      position: relative; display: inline-block; width: 44px; height: 24px; flex-shrink: 0;
     }
     .switch input { opacity: 0; width: 0; height: 0; }
     .slider {
-      position: absolute;
-      inset: 0;
-      cursor: pointer;
-      background: #334155;
-      border-radius: 24px;
-      transition: .25s;
+      position: absolute; inset: 0; cursor: pointer; background: #1e293b;
+      border-radius: 24px; transition: .25s; border: 1px solid rgba(255,255,255,0.1);
     }
     .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background: #fff;
-      border-radius: 50%;
-      transition: .25s;
+      position: absolute; content: ""; height: 18px; width: 18px; left: 2px; bottom: 2px;
+      background: #fff; border-radius: 50%; transition: .25s;
     }
-    input:checked + .slider { background: var(--cyan); }
+    input:checked + .slider { background: var(--cyan); box-shadow: var(--cyan-glow); }
     input:checked + .slider:before { transform: translateX(20px); background: #000; }
 
-    /* Pastki Tablar */
+    .btn-test {
+      width: 100%; padding: 12px; border-radius: 12px; border: none;
+      background: linear-gradient(135deg, var(--cyan), #0088cc);
+      color: #000; font-weight: 800; font-size: 13px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: var(--cyan-glow); margin-top: 6px;
+    }
+
     .bottom-nav {
-      position: fixed;
-      bottom: 10px;
-      left: 12px;
-      right: 12px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(14px);
-      border-radius: 16px;
-      display: flex;
-      justify-content: space-around;
-      padding: 8px 4px;
-      z-index: 100;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.8);
+      position: fixed; bottom: 10px; left: 12px; right: 12px;
+      background: rgba(8, 18, 30, 0.95); border: 1px solid var(--border);
+      backdrop-filter: blur(14px); border-radius: 16px;
+      display: flex; justify-content: space-around; padding: 8px 4px; z-index: 100;
     }
     .tab-btn {
-      background: none;
-      border: none;
-      color: var(--subtext);
-      font-size: 11px;
-      font-weight: 600;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      cursor: pointer;
+      background: none; border: none; color: var(--subtext);
+      font-size: 11px; font-weight: 600; display: flex; flex-direction: column;
+      align-items: center; gap: 4px; cursor: pointer;
     }
     .tab-btn i { font-size: 16px; }
     .tab-btn.active { color: var(--cyan); }
@@ -174,119 +133,124 @@
 <body>
 
   <div class="header">
-    <h2>⚡️ KANAL AVTO-TARJIMON</h2>
-    <p>Postlar tushishi bilan bir zumda o'zbekchaga o'girib beradi</p>
+    <h2>⚡️ KANAL TARJIMON SOZLAMALARI</h2>
+    <p>Ochiq kanaldan xabarni olib, avtomat tarjima qilib beradi</p>
   </div>
 
-  <!-- 1. KANALLAR -->
+  <!-- 1-TAB: KANALLAR -->
   <div id="tab-channels" class="tab-body active">
     <div class="card">
       <div class="card-title"><i class="fa-solid fa-cloud-arrow-down"></i> Qaysi kanaldan olamiz? (Manba)</div>
       <div class="input-row">
-        <input type="text" id="sourceInput" placeholder="Kanal nomi (masalan: buyernewss)">
+        <input type="text" id="sourceInput" placeholder="Masalan: buyernewss">
         <button class="btn-add" onclick="addSource()"><i class="fa-solid fa-plus"></i></button>
       </div>
       <div id="sourcesList"></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><i class="fa-solid fa-paper-plane"></i> Qaysi kanalga tashlaymiz?</div>
+      <div class="card-title"><i class="fa-solid fa-paper-plane"></i> Qaysi kanalga tashlaymiz? (O'z kanalingiz)</div>
       <div class="input-row">
-        <input type="text" id="targetInput" placeholder="O'z kanalingiz (masalan: @sendingbuyer)">
+        <input type="text" id="targetInput" placeholder="Masalan: @sendingbuyer">
         <button class="btn-add" onclick="addTarget()"><i class="fa-solid fa-plus"></i></button>
       </div>
       <div id="targetsList"></div>
     </div>
+
+    <div class="card">
+      <div class="card-title"><i class="fa-solid fa-bolt"></i> Hoziroq Sinab Ko'rish</div>
+      <div style="font-size:12px;color:var(--subtext);margin-bottom:8px;">Kutib o'tirmasdan, oxirgi postni o'girib kanalingizga tashlash:</div>
+      <button class="btn-test" onclick="triggerTest()"><i class="fa-solid fa-play"></i> Oxirgi Postni Tarjima Qilib Tashlash</button>
+    </div>
   </div>
 
-  <!-- 2. SOZLAMALAR -->
-  <div id="tab-settings" class="tab-body">
+  <!-- 2-TAB: AQLLI QULAYLIKLAR -->
+  <div id="tab-features" class="tab-body">
     <div class="card">
       <div class="card-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Postni Chiroyli Qilish</div>
 
       <div class="setting-row">
         <div>
-          <div class="label-title">Begona reklamalarni o'chirish</div>
-          <div class="label-desc">Kanal linklari va begona teglarni tozalaydi</div>
+          <div class="label-title">Qisqacha mazmuni (TL;DR)</div>
+          <div class="label-desc">Uzun postlarning eng muhim 2 ta gapini chiqarish</div>
         </div>
-        <label class="switch"><input type="checkbox" id="cleanAds" checked><span class="slider"></span></label>
+        <label class="switch"><input type="checkbox" id="addSummary" checked><span class="slider"></span></label>
       </div>
 
       <div class="setting-row">
         <div>
-          <div class="label-title">Avtomatik xeshteglar (#)</div>
-          <div class="label-desc">Post mavzusiga qarab o'zi #teg qo'yadi</div>
+          <div class="label-title">Mavzu belgilari (#Ruknlar)</div>
+          <div class="label-desc">Mavzusiga qarab #Yangilik, #Tahlil tegi qo'yish</div>
         </div>
         <label class="switch"><input type="checkbox" id="autoHashtag" checked><span class="slider"></span></label>
       </div>
 
       <div class="setting-row">
         <div>
-          <div class="label-title">Ovozli xabar qilish (Audio TTS)</div>
-          <div class="label-desc">Post tagiga o'zbekcha audio qilib ulaydi</div>
+          <div class="label-title">Begona reklamalarni o'chirish</div>
+          <div class="label-desc">Postdagi begona manba linklarini tozalaydi</div>
         </div>
-        <label class="switch"><input type="checkbox" id="voiceTTS" checked><span class="slider"></span></label>
+        <label class="switch"><input type="checkbox" id="cleanAds" checked><span class="slider"></span></label>
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <div class="label-title">Bir xil xabarlar himoyasi (Anti-Dublikat)</div>
+          <div class="label-desc">Bir xil yangilik qayta-qayta kanalga tashlanmaydi</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="antiDuplicate" checked><span class="slider"></span></label>
       </div>
 
       <div class="setting-row">
         <div>
           <div class="label-title">Tungi tinch rejim</div>
-          <div class="label-desc">Kechasi (23:00 - 08:00) ovozsiz post tashlaydi</div>
+          <div class="label-desc">23:00 - 08:00 oralig'ida ovozsiz xabar yuborish</div>
         </div>
         <label class="switch"><input type="checkbox" id="silentNight"><span class="slider"></span></label>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-filter"></i> So'zlar bo'yicha filtr</div>
-      <div style="font-size:12px;color:var(--subtext);margin-bottom:6px;">Faqat shu so'zlar bor postlar tashlansin:</div>
-      <input type="text" id="whitelistInput" placeholder="Masalan: skidka, yangilik, stars" style="margin-bottom:10px;">
-      
-      <div style="font-size:12px;color:var(--subtext);margin-bottom:6px;">Shu so'zlar bo'lsa umuman tashlanmasin (blok):</div>
-      <input type="text" id="blacklistInput" placeholder="Masalan: kazino, aksiya, 18+">
-    </div>
   </div>
 
-  <!-- 3. TUGMALAR (BUTTONS) -->
+  <!-- 3-TAB: TUGMALAR VA IMZO -->
   <div id="tab-buttons" class="tab-body">
     <div class="card">
-      <div class="card-title"><i class="fa-solid fa-shapes"></i> Post Tagidagi Tugmalar</div>
-      
+      <div class="card-title"><i class="fa-solid fa-shapes"></i> Post Ostidagi Tugmalar</div>
+
       <div class="setting-row">
         <div>
-          <div class="label-title">Tugmalarni ko'rsatish</div>
-          <div class="label-desc">Har bir post tagida chiroyli tugma bo'ladi</div>
+          <div class="label-title">Tugmalarni yoqish</div>
+          <div class="label-desc">Post tagiga bosiladigan tugmalar qo'yish</div>
         </div>
         <label class="switch"><input type="checkbox" id="actionBtn" checked><span class="slider"></span></label>
       </div>
 
       <div style="margin-top:10px;">
-        <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;">1-tugma nomi va linki:</div>
+        <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;">1-tugma matni va havolasi:</div>
         <div class="input-row">
-          <input type="text" id="btn1Text" value="🛒 Buyurtma berish" style="flex:1;">
-          <input type="text" id="btn1Url" value="https://t.me/starsbuyeruzbot" style="flex:1;">
+          <input type="text" id="btn1Text" value="💬 Bog'lanish" style="flex:1;">
+          <input type="text" id="btn1Url" value="https://t.me/Ibrokhimc" style="flex:1;">
         </div>
       </div>
 
       <div style="margin-top:6px;">
-        <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;">2-tugma nomi va linki:</div>
+        <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;">2-tugma matni va havolasi:</div>
         <div class="input-row">
-          <input type="text" id="btn2Text" value="💬 Admin bilan aloqa" style="flex:1;">
-          <input type="text" id="btn2Url" value="https://t.me/Ibrokhimc" style="flex:1;">
+          <input type="text" id="btn2Text" value="🤖 Botimiz" style="flex:1;">
+          <input type="text" id="btn2Url" value="https://t.me/starsbuyeruzbot" style="flex:1;">
         </div>
       </div>
 
       <div style="margin-top:10px;">
-        <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;">Post oxiridagi kanal havolasi (imzo):</div>
-        <input type="text" id="watermarkText" value="⚡️ Rasmiy kanalimiz: @sendingbuyer">
+        <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;">Post oxiridagi kanal imzosi (havola):</div>
+        <input type="text" id="watermarkText" value="⚡️ Kanalimizga obuna bo'ling: @sendingbuyer">
       </div>
     </div>
   </div>
 
-  <!-- Pastki menyu -->
+  <!-- Pastki Tablar -->
   <div class="bottom-nav">
     <button class="tab-btn active" onclick="setTab('channels', this)"><i class="fa-solid fa-tower-broadcast"></i>Kanallar</button>
-    <button class="tab-btn" onclick="setTab('settings', this)"><i class="fa-solid fa-sliders"></i>Filtrlar</button>
+    <button class="tab-btn" onclick="setTab('features', this)"><i class="fa-solid fa-sliders"></i>Qulayliklar</button>
     <button class="tab-btn" onclick="setTab('buttons', this)"><i class="fa-solid fa-shapes"></i>Tugmalar</button>
   </div>
 
@@ -297,18 +261,18 @@
     let config = {
       sources: ['buyernewss'],
       targets: ['@sendingbuyer'],
-      cleanAds: true,
+      addSummary: true,
       autoHashtag: true,
-      voiceTTS: true,
+      cleanAds: true,
+      antiDuplicate: true,
       silentNight: false,
       actionBtn: true,
-      btn1Text: '🛒 Buyurtma berish',
-      btn1Url: 'https://t.me/starsbuyeruzbot',
-      btn2Text: '💬 Admin bilan aloqa',
-      btn2Url: 'https://t.me/Ibrokhimc',
-      watermark: '⚡️ Rasmiy kanalimiz: @sendingbuyer',
-      whitelist: '',
-      blacklist: ''
+      btn1Text: "💬 Bog'lanish",
+      btn1Url: 'https://t.me/Ibrokhimc',
+      btn2Text: '🤖 Botimiz',
+      btn2Url: 'https://t.me/starsbuyeruzbot',
+      watermark: "⚡️ Kanalimizga obuna bo'ling: @sendingbuyer",
+      actionType: 'save'
     };
 
     function setTab(name, btn) {
@@ -320,14 +284,14 @@
 
     function renderLists() {
       document.getElementById('sourcesList').innerHTML = config.sources.map(s => `
-        <div class="item-badge">
+        <div class="item-chip">
           <span>@${s}</span>
           <span class="del-btn" onclick="removeSource('${s}')"><i class="fa-solid fa-trash"></i></span>
         </div>
       `).join('');
 
       document.getElementById('targetsList').innerHTML = config.targets.map(t => `
-        <div class="item-badge">
+        <div class="item-chip">
           <span>${t}</span>
           <span class="del-btn" onclick="removeTarget('${t}')"><i class="fa-solid fa-trash"></i></span>
         </div>
@@ -361,26 +325,33 @@
       renderLists();
     }
 
-    // Saqlash tugmasi
-    tg.MainButton.setText("SOZLAMALARNI SAQLASH ✅").show();
-    tg.MainButton.onClick(() => {
-      config.cleanAds = document.getElementById('cleanAds').checked;
+    function triggerTest() {
+      config.actionType = 'test_post';
+      sendDataToBot();
+    }
+
+    function sendDataToBot() {
+      config.addSummary = document.getElementById('addSummary').checked;
       config.autoHashtag = document.getElementById('autoHashtag').checked;
-      config.voiceTTS = document.getElementById('voiceTTS').checked;
+      config.cleanAds = document.getElementById('cleanAds').checked;
+      config.antiDuplicate = document.getElementById('antiDuplicate').checked;
       config.silentNight = document.getElementById('silentNight').checked;
       config.actionBtn = document.getElementById('actionBtn').checked;
-      
+
       config.btn1Text = document.getElementById('btn1Text').value;
       config.btn1Url = document.getElementById('btn1Url').value;
       config.btn2Text = document.getElementById('btn2Text').value;
       config.btn2Url = document.getElementById('btn2Url').value;
-
       config.watermark = document.getElementById('watermarkText').value;
-      config.whitelist = document.getElementById('whitelistInput').value;
-      config.blacklist = document.getElementById('blacklistInput').value;
 
       tg.sendData(JSON.stringify(config));
       tg.close();
+    }
+
+    tg.MainButton.setText("SOZLAMALARNI SAQLASH ✅").show();
+    tg.MainButton.onClick(() => {
+      config.actionType = 'save';
+      sendDataToBot();
     });
 
     renderLists();
