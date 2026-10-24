@@ -1,103 +1,241 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="uz" data-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Uzs TV</title>
+    <title>Uzs TV — Premium Streaming</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131b2e;
-            --accent: #f43f5e;
-            --text-primary: #ffffff;
-            --text-secondary: #9ca3af;
-            --border-color: #1f293d;
+        /* TEMA RANGRLARI (Qora va Oq rejimlar uchun) */
+        :root[data-theme="dark"] {
+            --bg-base: #07090e;
+            --bg-surface: #121824;
+            --bg-card: #182030;
+            --accent: #e50914;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border: #222f43;
         }
-        * { box-sizing: border-box; user-select: none; }
+
+        :root[data-theme="light"] {
+            --bg-base: #f3f4f6;
+            --bg-surface: #ffffff;
+            --bg-card: #e5e7eb;
+            --accent: #e50914;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --border: #d1d5db;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
-            margin: 0; padding: 0; background-color: var(--bg-color);
-            color: var(--text-primary); font-family: sans-serif;
-            display: flex; flex-direction: column; min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
         }
+
+        /* Header */
         header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 16px 20px; background-color: #0e1422; border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background-color: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .logo { font-size: 20px; font-weight: 800; color: var(--accent); }
-        .search-container { padding: 14px 20px; }
-        .search-box input {
-            width: 100%; padding: 14px 16px; border-radius: 12px;
-            border: 1px solid var(--border-color); background-color: var(--card-bg);
-            color: var(--text-primary); font-size: 15px; outline: none;
+
+        .logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
-        .categories-scroll {
-            display: flex; gap: 10px; padding: 0 20px 14px 20px; overflow-x: auto; scrollbar-width: none;
+
+        .header-btns {
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
-        .cat-btn {
-            background-color: var(--card-bg); border: 1px solid var(--border-color);
-            color: var(--text-secondary); padding: 8px 18px; border-radius: 20px;
-            cursor: pointer; font-size: 14px; font-weight: 600; white-space: nowrap;
+
+        .icon-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
-        .cat-btn.active { background-color: var(--accent); color: #ffffff; border-color: var(--accent); }
-        .content-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 16px; padding: 0 20px 24px 20px; flex: 1;
+
+        /* Search & Categories */
+        .search-area { padding: 16px 20px 8px 20px; }
+        .search-wrapper { position: relative; }
+        .search-wrapper input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background-color: var(--bg-surface);
+            color: var(--text-main);
+            font-size: 14px;
+            outline: none;
         }
-        .card {
-            background-color: var(--card-bg); border-radius: 14px; overflow: hidden;
-            border: 1px solid var(--border-color); cursor: pointer; display: flex; flex-direction: column;
+        .search-icon {
+            position: absolute; left: 14px; top: 50%;
+            transform: translateY(-50%); color: var(--text-muted);
         }
-        .card-poster { height: 130px; background-color: #1e293b; position: relative; background-size: cover; background-position: center; }
-        .badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.75); color: #fff; font-size: 10px; padding: 4px 8px; border-radius: 6px; font-weight: 700; }
-        .card-body { padding: 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; justify-content: space-between; }
-        .card-title { font-size: 14px; font-weight: 700; margin: 0; }
-        .card-footer { font-size: 11px; color: var(--text-secondary); }
-        .modal {
+
+        .categories-bar {
+            display: flex; gap: 8px; padding: 12px 20px;
+            overflow-x: auto; scrollbar-width: none;
+        }
+        .categories-bar::-webkit-scrollbar { display: none; }
+        .chip {
+            background-color: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text-muted); padding: 7px 16px; border-radius: 20px;
+            cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap;
+        }
+        .chip.active {
+            background-color: var(--text-main); color: var(--bg-base); border-color: var(--text-main);
+        }
+
+        /* Grid */
+        .grid-container {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 14px; padding: 10px 20px 24px 20px; flex: 1;
+        }
+        @media (min-width: 550px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
+
+        .movie-card {
+            background-color: var(--bg-card); border-radius: 12px;
+            overflow: hidden; border: 1px solid var(--border); cursor: pointer;
+            display: flex; flex-direction: column; transition: transform 0.2s;
+        }
+        .movie-card:active { transform: scale(0.97); }
+        .poster-box { height: 140px; background-color: #111; position: relative; background-size: cover; background-position: center; }
+        .tag {
+            position: absolute; top: 8px; left: 8px; background: rgba(0, 0, 0, 0.7);
+            color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 4px; font-weight: 700;
+        }
+        .card-details { padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+        .movie-title { font-size: 13px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .movie-category { font-size: 11px; color: var(--text-muted); }
+
+        /* SOZLAMALAR MODALI (SETTINGS PANEL) */
+        .settings-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.95); display: none; flex-direction: column; z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.85); display: none;
+            justify-content: center; align-items: center; z-index: 200; padding: 20px;
         }
-        .modal-header {
-            padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
-            background-color: #0e1422; border-bottom: 1px solid var(--border-color);
+        .settings-box {
+            background-color: var(--bg-surface); width: 100%; max-width: 400px;
+            border-radius: 16px; border: 1px solid var(--border); padding: 20px;
+            display: flex; flex-direction: column; gap: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .modal-title { font-size: 16px; font-weight: 700; margin: 0; max-width: 75%; overflow: hidden; text-overflow: ellipsis; }
-        .close-btn { background-color: var(--accent); border: none; color: #fff; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 700; }
-        .player-container { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; background: #000; }
+        .settings-header { display: flex; justify-content: space-between; align-items: center; }
+        .settings-header h3 { margin: 0; font-size: 18px; }
+        .setting-item { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; }
+        .setting-item select, .setting-item button {
+            background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border);
+            padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; outline: none;
+        }
+
+        /* Pleyer Modali */
+        .player-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.96); display: none; flex-direction: column; z-index: 1000;
+        }
+        .modal-top {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border);
+        }
+        .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .exit-btn { background-color: var(--accent); border: none; color: #fff; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 12px; }
+        .video-wrapper { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; background: #000; }
         video, iframe { width: 100%; max-height: 100vh; aspect-ratio: 16/9; border: none; outline: none; }
-        .empty-state { grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-secondary); }
+        .not-found { grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted); font-size: 14px; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">📺 Uzs TV</div>
-    <div id="userName" style="font-size: 13px; color: var(--text-secondary);">Foydalanuvchi</div>
+    <div class="logo">Uzs TV</div>
+    <div class="header-btns">
+        <button class="icon-btn" onclick="openSettings()">⚙️ Sozlamalar</button>
+    </div>
 </header>
 
-<div class="search-container">
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Qidirish...">
+<div class="search-area">
+    <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Kanal yoki multfilm qidirish...">
     </div>
 </div>
 
-<div class="categories-scroll">
-    <button class="cat-btn active" onclick="filterCat('all', this)">Barchasi</button>
-    <button class="cat-btn" onclick="filterCat('Sport', this)">⚽ Sport</button>
-    <button class="cat-btn" onclick="filterCat('TV', this)">📺 TV</button>
-    <button class="cat-btn" onclick="filterCat('Multfilm', this)">🧒 Multfilm</button>
-    <button class="cat-btn" onclick="filterCat('Kino', this)">🎥 Kino</button>
+<div class="categories-bar">
+    <button class="chip active" onclick="filterCat('all', this)">Barchasi</button>
+    <button class="chip" onclick="filterCat('Sport', this)">Sport</button>
+    <button class="chip" onclick="filterCat('TV', this)">TV Kanallar</button>
+    <button class="chip" onclick="filterCat('Multfilm', this)">Multfilmlar</button>
+    <button class="chip" onclick="filterCat('Kino', this)">Kinolar</button>
 </div>
 
-<div class="content-grid" id="grid"></div>
+<div class="grid-container" id="grid"></div>
 
-<div class="modal" id="playerModal">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modalTitle">Pleyer</h3>
-        <button class="close-btn" onclick="closePlayer()">Yopish</button>
+<!-- SOZLAMALAR MODAL OYNASI -->
+<div class="settings-modal" id="settingsModal">
+    <div class="settings-box">
+        <div class="settings-header">
+            <h3>⚙️ Sozlamalar</h3>
+            <button class="icon-btn" onclick="closeSettings()">✕</button>
+        </div>
+        <div class="setting-item">
+            <span>Mavzu (Tema):</span>
+            <button onclick="toggleTheme()" id="themeBtn">🌙 Qora fon</button>
+        </div>
+        <div class="setting-item">
+            <span>Ilova tili:</span>
+            <select id="langSelect" onchange="changeLang(this.value)">
+                <option value="uz">🇺🇿 O'zbekcha</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="en">🇬🇧 English</option>
+            </select>
+        </div>
+        <div class="setting-item">
+            <span>Foydalanuvchi:</span>
+            <span id="settingsUser" style="color: var(--text-muted);">Mehmon</span>
+        </div>
+        <button class="exit-btn" style="width:100%; padding:10px; margin-top:10px;" onclick="closeSettings()">Saqlash va Yopish</button>
     </div>
-    <div class="player-container">
+</div>
+
+<!-- Pleyer Modal -->
+<div class="player-modal" id="playerModal">
+    <div class="modal-top">
+        <h3 class="modal-heading" id="modalTitle">Pleyer</h3>
+        <button class="exit-btn" onclick="closePlayer()">Yopish</button>
+    </div>
+    <div class="video-wrapper">
         <video id="player" controls playsinline style="display:none;"></video>
         <iframe id="ytPlayer" allowfullscreen style="display:none;" allow="autoplay; encrypted-media"></iframe>
     </div>
@@ -107,17 +245,35 @@
     Telegram.WebApp.ready();
     Telegram.WebApp.expand();
 
+    let userName = "Mehmon";
     if (Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) {
-        document.getElementById('userName').textContent = Telegram.WebApp.initDataUnsafe.user.first_name || "Foydalanuvchi";
+        userName = Telegram.WebApp.initDataUnsafe.user.first_name || "Foydalanuvchi";
+    }
+    document.getElementById('settingsUser').textContent = userName;
+
+    // Tema (Qora / Oq fon) almashtirish funksiyasi
+    function toggleTheme() {
+        const html = document.documentElement;
+        const btn = document.getElementById('themeBtn');
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.setAttribute('data-theme', 'light');
+            btn.textContent = '☀️ Oq fon';
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            btn.textContent = '🌙 Qora fon';
+        }
     }
 
-    // Admin panel qo'shgan barcha kontentlar shu yerga avtomatik keladi yoki namuna ro'yxat
+    function openSettings() { document.getElementById('settingsModal').style.display = 'flex'; }
+    function closeSettings() { document.getElementById('settingsModal').style.display = 'none'; }
+    function changeLang(lang) { alert("Til o'zgartirildi: " + lang); }
+
     const items = [
         {
             title: "Togrivoy va Egrivoy",
             category: "Multfilm",
-            badge: "Multfilm",
-            url: "https://www.youtube.com/watch?v=jNQXAC9IVRw", // Ishlaydigan test YouTube havolasi
+            badge: "MULTFILM",
+            url: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
             poster: "https://images.unsplash.com/photo-1560942446-b8a542969f56?w=500"
         }
     ];
@@ -126,23 +282,22 @@
         const grid = document.getElementById("grid");
         grid.innerHTML = "";
         if (data.length === 0) {
-            grid.innerHTML = `<div class="empty-state"><h3>Hech narsa topilmadi</h3></div>`;
+            grid.innerHTML = `<div class="not-found">Hech narsa topilmadi</div>`;
             return;
         }
         data.forEach(item => {
-            // Admin panelda rasm havolasi (-) yuborilsa, chiroyli avtomatik rasm qo'yiladi
-            const posterImg = (item.poster && item.poster.startsWith("http")) 
+            const bgImage = (item.poster && item.poster.startsWith("http")) 
                 ? item.poster 
                 : "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500";
 
             grid.innerHTML += `
-                <div class="card" onclick="openPlayer('${item.title.replace(/'/g, "\\'")}', '${item.url}')">
-                    <div class="card-poster" style="background-image: url('${posterImg}')">
-                        <div class="badge">${item.badge || item.category}</div>
+                <div class="movie-card" onclick="openPlayer('${item.title.replace(/'/g, "\\'")}', '${item.url}')">
+                    <div class="poster-box" style="background-image: url('${bgImage}')">
+                        <div class="tag">${item.badge || item.category}</div>
                     </div>
-                    <div class="card-body">
-                        <p class="card-title">${item.title}</p>
-                        <div class="card-footer">${item.category}</div>
+                    <div class="card-details">
+                        <p class="movie-title">${item.title}</p>
+                        <span class="movie-category">${item.category}</span>
                     </div>
                 </div>
             `;
@@ -150,7 +305,7 @@
     }
 
     function filterCat(cat, btn) {
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         if (cat === 'all') {
             renderItems(items);
