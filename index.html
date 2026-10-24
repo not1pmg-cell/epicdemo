@@ -1,437 +1,68 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanal Boshqaruv Markazi</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --bg: #030a08;
-      --card: rgba(6, 26, 20, 0.75); /* Orqa fon tiniq ko'rinishi uchun shaffof shisha */
-      --border: rgba(16, 185, 129, 0.35);
-      --emerald: #10b981;
-      --emerald-glow: 0 0 16px rgba(16, 185, 129, 0.4);
-      --red: #ef4444;
-      --text: #ffffff;
-      --subtext: #86efac;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 12px;
-      padding-bottom: 90px;
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: var(--bg);
-      /* 3-variant: Dark Emerald Matrix fon to'ri va neon yorug'lik */
-      background-image: 
-        radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.22) 0%, transparent 45%),
-        radial-gradient(circle at 10% 80%, rgba(5, 150, 105, 0.18) 0%, transparent 50%),
-        linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 26px 26px, 26px 26px;
-      background-attachment: fixed;
-      overflow-x: hidden;
-    }
-    .header {
-      background: linear-gradient(135deg, rgba(6, 36, 26, 0.88), rgba(3, 15, 10, 0.95));
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 12px;
-      box-shadow: var(--emerald-glow);
-      backdrop-filter: blur(10px);
-    }
-    .header h2 { margin: 0; font-size: 18px; font-weight: 800; color: #fff; text-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
-    .header p { margin: 4px 0 0 0; font-size: 12px; color: var(--subtext); opacity: 0.85; }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 12px;
-      backdrop-filter: blur(14px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-    }
-    .card-title {
-      font-size: 13px; font-weight: 700; color: var(--emerald);
-      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
-    }
-
-    .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
-    input, select {
-      width: 100%; padding: 11px 13px; border-radius: 10px;
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      background: rgba(0, 0, 0, 0.6); color: #fff; font-size: 13px; outline: none;
-    }
-    input:focus, select:focus { border-color: var(--emerald); box-shadow: var(--emerald-glow); }
-
-    .btn-add {
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: #fff; border: none;
-      border-radius: 10px; padding: 0 16px; font-weight: 800; cursor: pointer;
-      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
-    }
-
-    .item-chip {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 9px 12px; background: rgba(16, 185, 129, 0.08);
-      border-radius: 8px; margin-bottom: 6px; font-size: 13px;
-      border-left: 3px solid var(--emerald); border: 1px solid rgba(16, 185, 129, 0.15);
-    }
-    .del-btn { color: var(--red); cursor: pointer; padding: 2px 6px; font-size: 14px; }
-    .empty-text { font-size: 12px; color: var(--subtext); font-style: italic; margin-bottom: 6px; opacity: 0.7; }
-
-    .setting-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 11px 0; border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-    }
-    .setting-row:last-child { border-bottom: none; }
-    .label-title { font-size: 13px; font-weight: 600; }
-    .label-desc { font-size: 11px; color: var(--subtext); margin-top: 2px; opacity: 0.8; }
-
-    .switch {
-      position: relative; display: inline-block; width: 44px; height: 24px; flex-shrink: 0;
-    }
-    .switch input { opacity: 0; width: 0; height: 0; }
-    .slider {
-      position: absolute; inset: 0; cursor: pointer; background: #0f291e;
-      border-radius: 24px; transition: .25s; border: 1px solid rgba(16, 185, 129, 0.2);
-    }
-    .slider:before {
-      position: absolute; content: ""; height: 18px; width: 18px; left: 2px; bottom: 2px;
-      background: #fff; border-radius: 50%; transition: .25s;
-    }
-    input:checked + .slider { background: var(--emerald); box-shadow: var(--emerald-glow); }
-    input:checked + .slider:before { transform: translateX(20px); background: #000; }
-
-    .btn-test {
-      width: 100%; padding: 12px; border-radius: 12px; border: none;
-      background: linear-gradient(135deg, #10b981, #047857);
-      color: #fff; font-weight: 800; font-size: 13px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      box-shadow: var(--emerald-glow); margin-top: 6px;
-    }
-
-    .bottom-nav {
-      position: fixed; bottom: 10px; left: 12px; right: 12px;
-      background: rgba(3, 18, 12, 0.92); border: 1px solid var(--border);
-      backdrop-filter: blur(16px); border-radius: 16px;
-      display: flex; justify-content: space-around; padding: 8px 4px; z-index: 100;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
-    }
-    .tab-btn {
-      background: none; border: none; color: var(--subtext);
-      font-size: 11px; font-weight: 600; display: flex; flex-direction: column;
-      align-items: center; gap: 4px; cursor: pointer; opacity: 0.7;
-    }
-    .tab-btn i { font-size: 16px; }
-    .tab-btn.active { color: var(--emerald); opacity: 1; text-shadow: 0 0 8px var(--emerald); }
-
-    .tab-body { display: none; }
-    .tab-body.active { display: block; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TV BOT Player</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<style>
+body{margin:0;background:#0b0f19;color:#fff;font-family:sans-serif;display:flex;flex-direction:column;min-height:100vh}
+.wrap{max-width:960px;width:100%;margin:auto;padding:16px;box-sizing:border-box}
+video{width:100%;border-radius:12px;background:#000;aspect-ratio:16/9;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+h2{margin:16px 0 6px;font-size:20px}
+p{color:#9ca3af;margin:0;font-size:14px;line-height:1.4}
+</style>
 </head>
 <body>
+<div class="wrap">
+<video id="player" controls playsinline autoplay></video>
+<h2 id="title">TV BOT</h2>
+<p id="desc">Video yuklanmoqda...</p>
+</div>
+<script>
+Telegram.WebApp.ready();
+Telegram.WebApp.expand();
 
-  <div class="header">
-    <h2>⚡️ KANAL BOSHQARUV MARKAZI</h2>
-    <p>Dark Emerald Matrix — Real vaqtda ochiq kanallarni boshqarish</p>
-  </div>
+const p = new URLSearchParams(location.search);
+const url = p.get("url");
+const title = p.get("title") || "TV BOT";
 
-  <!-- 1-TAB: KANALLAR -->
-  <div id="tab-channels" class="tab-body active">
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-cloud-arrow-down"></i> Qaysi kanaldan olamiz? (Manba)</div>
-      <div class="input-row">
-        <input type="text" id="sourceInput" placeholder="Kanal username (masalan: bbc_uzbek)">
-        <button class="btn-add" onclick="addSource()"><i class="fa-solid fa-plus"></i></button>
-      </div>
-      <div id="sourcesList"></div>
-    </div>
+document.getElementById("title").textContent = title;
+const video = document.getElementById("player");
+const desc = document.getElementById("desc");
 
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-paper-plane"></i> Qaysi kanalga tashlaymiz? (O'z kanalingiz)</div>
-      <div class="input-row">
-        <input type="text" id="targetInput" placeholder="Kanal username (masalan: @mening_kanalim)">
-        <button class="btn-add" onclick="addTarget()"><i class="fa-solid fa-plus"></i></button>
-      </div>
-      <div id="targetsList"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-user-plus"></i> Majburiy a'zolik kanallari (OP-Kanal)</div>
-      <div style="font-size:12px;color:var(--subtext);margin-bottom:8px;opacity:0.8;">Foydalanuvchilar a'zo bo'lishi shart bo'lgan kanallar:</div>
-      <div class="input-row">
-        <input type="text" id="subInput" placeholder="Masalan: @majburiy_kanal">
-        <button class="btn-add" onclick="addSubChannel()"><i class="fa-solid fa-plus"></i></button>
-      </div>
-      <div id="subsList"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-bolt"></i> Hoziroq Sinab Ko'rish</div>
-      <button class="btn-test" onclick="triggerTest()"><i class="fa-solid fa-play"></i> Oxirgi Postni Tarjima Qilib Tashlash</button>
-    </div>
-  </div>
-
-  <!-- 2-TAB: SOZLAMALAR -->
-  <div id="tab-settings" class="tab-body">
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-sliders"></i> Bot Holati & Sozlamalar</div>
-
-      <div class="setting-row">
-        <div>
-          <div class="label-title">Avto-Tarjimani yoqish</div>
-          <div class="label-desc">O'chirilsa, bot postlarni tashlamay turadi</div>
-        </div>
-        <label class="switch"><input type="checkbox" id="isRunning" checked><span class="slider"></span></label>
-      </div>
-
-      <div class="setting-row">
-        <div>
-          <div class="label-title">Qisqacha mazmuni (TL;DR)</div>
-          <div class="label-desc">Uzun matnlarning asosiy 2 ta gapini chiqarish</div>
-        </div>
-        <label class="switch"><input type="checkbox" id="addSummary" checked><span class="slider"></span></label>
-      </div>
-
-      <div class="setting-row">
-        <div>
-          <div class="label-title">Mavzu belgilari (#Ruknlar)</div>
-          <div class="label-desc">Mavzuga qarab avtomat hashtag qo'yish</div>
-        </div>
-        <label class="switch"><input type="checkbox" id="autoHashtag" checked><span class="slider"></span></label>
-      </div>
-
-      <div class="setting-row">
-        <div>
-          <div class="label-title">Begona reklamalarni tozalash</div>
-          <div class="label-desc">Postdagi begona manba linklarini qirqish</div>
-        </div>
-        <label class="switch"><input type="checkbox" id="cleanAds" checked><span class="slider"></span></label>
-      </div>
-
-      <div class="setting-row">
-        <div>
-          <div class="label-title">Bir xil xabarlar himoyasi (Dublikat)</div>
-          <div class="label-desc">Bir xil yangilik qayta kanalga tashlanmaydi</div>
-        </div>
-        <label class="switch"><input type="checkbox" id="antiDuplicate" checked><span class="slider"></span></label>
-      </div>
-
-      <div class="setting-row">
-        <div>
-          <div class="label-title">Tungi tinch rejim</div>
-          <div class="label-desc">23:00 - 08:00 oralig'ida ovozsiz xabar yuborish</div>
-        </div>
-        <label class="switch"><input type="checkbox" id="silentNight"><span class="slider"></span></label>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-filter"></i> So'zlar Filtri</div>
-      <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;opacity:0.8;">Faqat shu so'zlar bo'lsa tashlansin (vergul bilan):</div>
-      <input type="text" id="whitelistInput" placeholder="Masalan: yangilik, aksiya" style="margin-bottom:8px;">
-      
-      <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;opacity:0.8;">Shu so'zlar bo'lsa umuman tashlanmasin (blok):</div>
-      <input type="text" id="blacklistInput" placeholder="Masalan: kazino, 18+, feyk">
-    </div>
-  </div>
-
-  <!-- 3-TAB: TUGMALAR -->
-  <div id="tab-buttons" class="tab-body">
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-shapes"></i> Post Tagidagi Tugmalar</div>
-
-      <div class="setting-row">
-        <div>
-          <div class="label-title">Tugmalarni yoqish</div>
-          <div class="label-desc">Post ostiga bosiladigan tugmalar qo'yish</div>
-        </div>
-        <label class="switch"><input type="checkbox" id="actionBtn" checked><span class="slider"></span></label>
-      </div>
-
-      <div style="margin-top:10px;">
-        <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;opacity:0.8;">1-tugma nomi va havolasi:</div>
-        <div class="input-row">
-          <input type="text" id="btn1Text" placeholder="Tugma nomi" value="💬 Bog'lanish" style="flex:1;">
-          <input type="text" id="btn1Url" placeholder="https://..." value="https://t.me/Ibrokhimc" style="flex:1;">
-        </div>
-      </div>
-
-      <div style="margin-top:6px;">
-        <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;opacity:0.8;">2-tugma nomi va havolasi:</div>
-        <div class="input-row">
-          <input type="text" id="btn2Text" placeholder="Tugma nomi" value="🤖 Botimiz" style="flex:1;">
-          <input type="text" id="btn2Url" placeholder="https://..." value="https://t.me/starsbuyeruzbot" style="flex:1;">
-        </div>
-      </div>
-
-      <div style="margin-top:10px;">
-        <div style="font-size:12px;color:var(--subtext);margin-bottom:4px;opacity:0.8;">Post oxiridagi kanal imzosi (havola):</div>
-        <input type="text" id="watermarkText" placeholder="Masalan: ⚡️ Kanalimiz: @kanal" value="">
-      </div>
-    </div>
-  </div>
-
-  <!-- Pastki Tablar -->
-  <div class="bottom-nav">
-    <button class="tab-btn active" onclick="setTab('channels', this)"><i class="fa-solid fa-tower-broadcast"></i>Kanallar</button>
-    <button class="tab-btn" onclick="setTab('settings', this)"><i class="fa-solid fa-sliders"></i>Sozlamalar</button>
-    <button class="tab-btn" onclick="setTab('buttons', this)"><i class="fa-solid fa-shapes"></i>Tugmalar</button>
-  </div>
-
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
-
-    let config = {
-      sources: [],
-      targets: [],
-      subChannels: [],
-      isRunning: true,
-      addSummary: true,
-      autoHashtag: true,
-      cleanAds: true,
-      antiDuplicate: true,
-      silentNight: false,
-      actionBtn: true,
-      btn1Text: "💬 Bog'lanish",
-      btn1Url: 'https://t.me/Ibrokhimc',
-      btn2Text: '🤖 Botimiz',
-      btn2Url: 'https://t.me/starsbuyeruzbot',
-      watermark: '',
-      whitelist: '',
-      blacklist: '',
-      actionType: 'save'
-    };
-
-    function setTab(name, btn) {
-      document.querySelectorAll('.tab-body').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-      document.getElementById('tab-' + name).classList.add('active');
-      btn.classList.add('active');
-    }
-
-    function renderLists() {
-      const sBox = document.getElementById('sourcesList');
-      if (config.sources.length === 0) {
-        sBox.innerHTML = '<div class="empty-text">Hozircha kanal kiritilmagan</div>';
-      } else {
-        sBox.innerHTML = config.sources.map(s => `
-          <div class="item-chip">
-            <span>@${s}</span>
-            <span class="del-btn" onclick="removeSource('${s}')"><i class="fa-solid fa-trash"></i></span>
-          </div>
-        `).join('');
-      }
-
-      const tBox = document.getElementById('targetsList');
-      if (config.targets.length === 0) {
-        tBox.innerHTML = '<div class="empty-text">Hozircha kanal kiritilmagan</div>';
-      } else {
-        tBox.innerHTML = config.targets.map(t => `
-          <div class="item-chip">
-            <span>${t}</span>
-            <span class="del-btn" onclick="removeTarget('${t}')"><i class="fa-solid fa-trash"></i></span>
-          </div>
-        `).join('');
-      }
-
-      const subBox = document.getElementById('subsList');
-      if (config.subChannels.length === 0) {
-        subBox.innerHTML = '<div class="empty-text">Majburiy obuna kanallari yo\'q</div>';
-      } else {
-        subBox.innerHTML = config.subChannels.map(sc => `
-          <div class="item-chip">
-            <span>${sc}</span>
-            <span class="del-btn" onclick="removeSubChannel('${sc}')"><i class="fa-solid fa-trash"></i></span>
-          </div>
-        `).join('');
-      }
-    }
-
-    function addSource() {
-      const v = document.getElementById('sourceInput').value.trim().replace('@', '');
-      if (v && !config.sources.includes(v)) {
-        config.sources.push(v);
-        document.getElementById('sourceInput').value = '';
-        renderLists();
-      }
-    }
-    function removeSource(s) {
-      config.sources = config.sources.filter(x => x !== s);
-      renderLists();
-    }
-
-    function addTarget() {
-      let v = document.getElementById('targetInput').value.trim();
-      if (v && !v.startsWith('@') && !v.startsWith('-100')) v = '@' + v;
-      if (v && !config.targets.includes(v)) {
-        config.targets.push(v);
-        document.getElementById('targetInput').value = '';
-        renderLists();
-      }
-    }
-    function removeTarget(t) {
-      config.targets = config.targets.filter(x => x !== t);
-      renderLists();
-    }
-
-    function addSubChannel() {
-      let v = document.getElementById('subInput').value.trim();
-      if (v && !v.startsWith('@') && !v.startsWith('-100')) v = '@' + v;
-      if (v && !config.subChannels.includes(v)) {
-        config.subChannels.push(v);
-        document.getElementById('subInput').value = '';
-        renderLists();
-      }
-    }
-    function removeSubChannel(sc) {
-      config.subChannels = config.subChannels.filter(x => x !== sc);
-      renderLists();
-    }
-
-    function triggerTest() {
-      config.actionType = 'test_post';
-      sendDataToBot();
-    }
-
-    function sendDataToBot() {
-      config.isRunning = document.getElementById('isRunning').checked;
-      config.addSummary = document.getElementById('addSummary').checked;
-      config.autoHashtag = document.getElementById('autoHashtag').checked;
-      config.cleanAds = document.getElementById('cleanAds').checked;
-      config.antiDuplicate = document.getElementById('antiDuplicate').checked;
-      config.silentNight = document.getElementById('silentNight').checked;
-      config.actionBtn = document.getElementById('actionBtn').checked;
-
-      config.btn1Text = document.getElementById('btn1Text').value;
-      config.btn1Url = document.getElementById('btn1Url').value;
-      config.btn2Text = document.getElementById('btn2Text').value;
-      config.btn2Url = document.getElementById('btn2Url').value;
-      config.watermark = document.getElementById('watermarkText').value;
-
-      config.whitelist = document.getElementById('whitelistInput').value;
-      config.blacklist = document.getElementById('blacklistInput').value;
-
-      tg.sendData(JSON.stringify(config));
-      tg.close();
-    }
-
-    tg.MainButton.setText("SOZLAMALARNI SAQLASH ✅").show();
-    tg.MainButton.onClick(() => {
-      config.actionType = 'save';
-      sendDataToBot();
+function playHls(u){
+  if(window.Hls && Hls.isSupported()){
+    const hls = new Hls();
+    hls.loadSource(u);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      video.play().catch(()=>{ desc.textContent = "Videoni avtomatik ijro etish bloklandi, play tugmasini bosing."; });
     });
+    hls.on(Hls.Events.ERROR, (event, data) => {
+      if(data.fatal) desc.textContent = "Oqimni yuklashda xatolik yuz berdi.";
+    });
+  } else if(video.canPlayType("application/vnd.apple.mpegurl")){
+    video.src = u;
+    video.play().catch(()=>{});
+  } else {
+    desc.textContent = "Bu qurilma HLS (.m3u8) formatni qo'llab-quvvatlamaydi.";
+  }
+}
 
-    renderLists();
-  </script>
+if(!url){
+  desc.textContent = "Video havolasi topilmadi.";
+} else if(url.includes("youtube.com") || url.includes("youtu.be")){
+  desc.textContent = "YouTube videolari tashqi havolada ochiladi.";
+  window.location.href = url;
+} else if(url.includes(".m3u8")){
+  playHls(url);
+} else {
+  video.src = url;
+  video.play().catch(()=>{});
+  desc.textContent = "Ijro etilmoqda...";
+}
+</script>
 </body>
 </html>
