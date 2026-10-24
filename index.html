@@ -1,79 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TV Mini App</title>
+<title>Uzs TV</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <style>
-body{margin:0;background:#0b0f19;color:#fff;font-family:sans-serif;display:flex;flex-direction:column;min-height:100vh}
-.wrap{max-width:960px;width:100%;margin:auto;padding:16px;box-sizing:border-box}
-video, iframe{width:100%;border-radius:12px;background:#000;aspect-ratio:16/9;border:none;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
-h2{margin:16px 0 6px;font-size:20px}
-p{color:#9ca3af;margin:0;font-size:14px;line-height:1.4}
+:root{--bg:#0b0f19;--card-bg:#131b2e;--accent:#6366f1;--text:#fff;--text-gray:#9ca3af}
+body{margin:0;background:var(--bg);color:var(--text);font-family:sans-serif;display:flex;flex-direction:column;min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#0e1422;border-bottom:1px solid #1f293d}
+.logo{font-size:20px;font-weight:bold;color:#f43f5e;display:flex;align-items:center;gap:8px}
+.search-box{padding:12px 20px;background:var(--bg)}
+.search-box input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid #1f293d;background:var(--card-bg);color:var(--text);font-size:14px;box-sizing:border-box;outline:none}
+.categories{display:flex;gap:10px;padding:12px 20px;overflow-x:auto}
+.categories::-webkit-scrollbar{display:none}
+.cat-btn{background:var(--card-bg);border:none;color:var(--text);padding:8px 16px;border-radius:20px;cursor:pointer;font-size:14px;white-space:nowrap;transition:0.2s}
+.cat-btn.active{background:var(--accent)}
+.content-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:16px;padding:16px 20px;flex:1}
+.card{background:var(--card-bg);border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.3);cursor:pointer;transition:0.2s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-3px)}
+.card-poster{height:150px;background:#1e293b;position:relative;background-size:cover;background-position:center}
+.badge{position:absolute;top:10px;left:10px;background:#ef4444;color:#fff;font-size:11px;padding:4px 8px;border-radius:6px;font-weight:bold}
+.card-body{padding:12px;display:flex;flex-direction:column;gap:6px}
+.card-title{font-size:16px;font-weight:bold;margin:0}
+.card-status{font-size:12px;color:#10b981;display:flex;align-items:center;gap:4px}
+/* Pleyer modali */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;flex-direction:column;justify-content:center;align-items:center;padding:16px;box-sizing:border-box;z-index:100}
+.modal-content{width:100%;max-width:800px;background:var(--card-bg);border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.8)}
+video, iframe{width:100%;aspect-ratio:16/9;background:#000;border:none}
+.modal-header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1f293d}
+.close-btn{background:#ef4444;border:none;color:#fff;padding:6px 14px;border-radius:8px;cursor:pointer;font-weight:bold}
 </style>
 </head>
 <body>
-<div class="wrap">
-<div id="player-container">
-<video id="player" controls playsinline autoplay style="display:none;"></video>
-<iframe id="yt-player" allowfullscreen style="display:none;"></iframe>
+
+<header>
+  <div class="logo">📺 Uzs TV</div>
+</header>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Kanal yoki kino qidirish...">
 </div>
-<h2 id="title">TV BOT</h2>
-<p id="desc">Video yuklanmoqda...</p>
+
+<div class="categories" id="catContainer">
+  <button class="cat-btn active" onclick="filterCat('all', this)">Barchasi</button>
+  <button class="cat-btn" onclick="filterCat('Sport', this)">⚽ Sport</button>
+  <button class="cat-btn" onclick="filterCat('TV', this)">📺 TV Kanallar</button>
+  <button class="cat-btn" onclick="filterCat('Kino', this)">🎥 Filmlar</button>
+  <button class="cat-btn" onclick="filterCat('Multfilm', this)">🧒 Multfilmlar</button>
 </div>
+
+<div class="content-grid" id="grid">
+  <!-- Dinamik kontentlar shu yerga chiqadi -->
+</div>
+
+<!-- Pleyer oynasi -->
+<div class="modal" id="playerModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modalTitle" style="margin:0;font-size:18px;">Pleyer</h3>
+      <button class="close-btn" onclick="closePlayer()">Yopish</button>
+    </div>
+    <div id="mediaBox">
+      <video id="player" controls playsinline style="display:none;"></video>
+      <iframe id="ytPlayer" allowfullscreen style="display:none;"></iframe>
+    </div>
+  </div>
+</div>
+
 <script>
 Telegram.WebApp.ready();
 Telegram.WebApp.expand();
 
-const p = new URLSearchParams(location.search);
-const url = p.get("url") || "";
-const title = p.get("title") || "TV BOT";
+// Botdan yoki URL dan kelgan ma'lumotlarni o'qish
+const params = new URLSearchParams(location.search);
+const directUrl = params.get("url");
+const directTitle = params.get("title");
 
-document.getElementById("title").textContent = title;
-const video = document.getElementById("player");
-const ytPlayer = document.getElementById("yt-player");
-const desc = document.getElementById("desc");
+// Namuna ma'lumotlar (Bularni bot orqali ham dinamik yuklash mumkin)
+const items = [
+  {title: "Sport TV O'zbekiston", category: "Sport", badge: "Jonli Sport", url: "https://index.m3u8", poster: ""},
+  {title: "O'zbekiston 24", category: "TV", badge: "Yangiliklar", url: "https://index.m3u8", poster: ""},
+  {title: "Togrivoy va Egrivoy", category: "Multfilm", badge: "Multfilm", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", poster: ""}
+];
+
+if(directUrl) {
+  openPlayer(directTitle || "Uzs TV", directUrl);
+}
+
+function renderItems(data) {
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+  data.forEach(item => {
+    grid.innerHTML += `
+      <div class="card" onclick="openPlayer('${item.title}', '${item.url}')">
+        <div class="card-poster" style="background-image:url('${item.poster || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500"}')">
+          <div class="badge">${item.badge || item.category}</div>
+        </div>
+        <div class="card-body">
+          <p class="card-title">${item.title}</p>
+          <div class="card-status">🟢 Jonli efir</div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function filterCat(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if(cat === 'all') {
+    renderItems(items);
+  } else {
+    renderItems(items.filter(x => x.category === cat));
+  }
+}
+
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  const q = e.target.value.toLowerCase();
+  renderItems(items.filter(x => x.title.toLowerCase().includes(q)));
+});
 
 function getYouTubeId(u) {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  const match = u.match(regExp);
+  const match = u.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
   return (match && match[2].length === 11) ? match[2] : null;
 }
 
-if(!url){
-  desc.textContent = "Video havolasi topilmadi.";
-} else {
+function openPlayer(title, url) {
+  document.getElementById("modalTitle").textContent = title;
+  const modal = document.getElementById("playerModal");
+  const video = document.getElementById("player");
+  const yt = document.getElementById("ytPlayer");
+  modal.style.display = "flex";
+
   const ytId = getYouTubeId(url);
-  if(ytId){
-    // YouTube videosini to'g'ridan-to'g'ri Mini App ichida ochish (Ro'yxatdan o'tish talab qilinmaydi)
+  if(ytId) {
     video.style.display = "none";
-    ytPlayer.style.display = "block";
-    ytPlayer.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
-    desc.textContent = "YouTube videosi ijro etilmoqda...";
-  } else if(url.includes(".m3u8")){
-    ytPlayer.style.display = "none";
+    yt.style.display = "block";
+    yt.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
+  } else if(url.includes(".m3u8")) {
+    yt.style.display = "none";
     video.style.display = "block";
-    if(window.Hls && Hls.isSupported()){
+    if(window.Hls && Hls.isSupported()) {
       const hls = new Hls();
       hls.loadSource(url);
       hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(()=>{ desc.textContent = "Play tugmasini bosing."; });
-      });
-    } else if(video.canPlayType("application/vnd.apple.mpegurl")){
+      hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+    } else {
       video.src = url;
-      video.play().catch(()=>{});
+      video.play();
     }
   } else {
-    ytPlayer.style.display = "none";
+    yt.style.display = "none";
     video.style.display = "block";
     video.src = url;
-    video.play().catch(()=>{});
-    desc.textContent = "Ijro etilmoqda...";
+    video.play();
   }
 }
+
+function closePlayer() {
+  document.getElementById("playerModal").style.display = "none";
+  document.getElementById("player").pause();
+  document.getElementById("ytPlayer").src = "";
+}
+
+renderItems(items);
 </script>
 </body>
 </html>
