@@ -7,7 +7,6 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
-        /* TEMA RANGRLARI (Qora va Oq rejimlar uchun) */
         :root[data-theme="dark"] {
             --bg-base: #07090e;
             --bg-surface: #121824;
@@ -17,7 +16,6 @@
             --text-muted: #9ca3af;
             --border: #222f43;
         }
-
         :root[data-theme="light"] {
             --bg-base: #f3f4f6;
             --bg-surface: #ffffff;
@@ -28,129 +26,63 @@
             --border: #d1d5db;
         }
 
-        * {
-            box-sizing: border-box;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        * { box-sizing: border-box; user-select: none; -webkit-tap-highlight-color: transparent; }
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-base);
-            color: var(--text-main);
+            margin: 0; padding: 0; background-color: var(--bg-base); color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            transition: background 0.3s, color 0.3s;
+            display: flex; flex-direction: column; min-height: 100vh; transition: background 0.3s, color 0.3s;
         }
 
-        /* Header */
         header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 20px;
-            background-color: var(--bg-surface);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
         }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--accent);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .header-btns {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
+        .logo { font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+        .header-btns { display: flex; gap: 8px; align-items: center; }
         .icon-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main);
+            padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600;
         }
 
-        /* Search & Categories */
         .search-area { padding: 16px 20px 8px 20px; }
         .search-wrapper { position: relative; }
         .search-wrapper input {
-            width: 100%;
-            padding: 12px 16px 12px 42px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background-color: var(--bg-surface);
-            color: var(--text-main);
-            font-size: 14px;
-            outline: none;
+            width: 100%; padding: 12px 16px 12px 42px; border-radius: 12px;
+            border: 1px solid var(--border); background-color: var(--bg-surface); color: var(--text-main); font-size: 14px; outline: none;
         }
-        .search-icon {
-            position: absolute; left: 14px; top: 50%;
-            transform: translateY(-50%); color: var(--text-muted);
-        }
+        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
 
-        .categories-bar {
-            display: flex; gap: 8px; padding: 12px 20px;
-            overflow-x: auto; scrollbar-width: none;
-        }
+        .categories-bar { display: flex; gap: 8px; padding: 12px 20px; overflow-x: auto; scrollbar-width: none; }
         .categories-bar::-webkit-scrollbar { display: none; }
         .chip {
-            background-color: var(--bg-surface); border: 1px solid var(--border);
-            color: var(--text-muted); padding: 7px 16px; border-radius: 20px;
-            cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap;
+            background-color: var(--bg-surface); border: 1px solid var(--border); color: var(--text-muted);
+            padding: 7px 16px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap;
         }
-        .chip.active {
-            background-color: var(--text-main); color: var(--bg-base); border-color: var(--text-main);
-        }
+        .chip.active { background-color: var(--text-main); color: var(--bg-base); border-color: var(--text-main); }
 
-        /* Grid */
-        .grid-container {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 14px; padding: 10px 20px 24px 20px; flex: 1;
-        }
+        .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 10px 20px 24px 20px; flex: 1; }
         @media (min-width: 550px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
 
         .movie-card {
-            background-color: var(--bg-card); border-radius: 12px;
-            overflow: hidden; border: 1px solid var(--border); cursor: pointer;
-            display: flex; flex-direction: column; transition: transform 0.2s;
+            background-color: var(--bg-card); border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border); cursor: pointer; display: flex; flex-direction: column; transition: transform 0.2s;
         }
         .movie-card:active { transform: scale(0.97); }
         .poster-box { height: 140px; background-color: #111; position: relative; background-size: cover; background-position: center; }
-        .tag {
-            position: absolute; top: 8px; left: 8px; background: rgba(0, 0, 0, 0.7);
-            color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 4px; font-weight: 700;
-        }
+        .tag { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 4px; font-weight: 700; }
         .card-details { padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
         .movie-title { font-size: 13px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .movie-category { font-size: 11px; color: var(--text-muted); }
 
-        /* SOZLAMALAR MODALI (SETTINGS PANEL) */
+        /* Sozlamalar modali */
         .settings-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); display: none;
-            justify-content: center; align-items: center; z-index: 200; padding: 20px;
+            background-color: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 200; padding: 20px;
         }
         .settings-box {
             background-color: var(--bg-surface); width: 100%; max-width: 400px;
-            border-radius: 16px; border: 1px solid var(--border); padding: 20px;
-            display: flex; flex-direction: column; gap: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 16px; border: 1px solid var(--border); padding: 20px; display: flex; flex-direction: column; gap: 16px;
         }
         .settings-header { display: flex; justify-content: space-between; align-items: center; }
         .settings-header h3 { margin: 0; font-size: 18px; }
@@ -160,15 +92,12 @@
             padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; outline: none;
         }
 
-        /* Pleyer Modali */
+        /* Pleyer modali */
         .player-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.96); display: none; flex-direction: column; z-index: 1000;
+            background-color: rgba(0,0,0,0.96); display: none; flex-direction: column; z-index: 1000;
         }
-        .modal-top {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border);
-        }
+        .modal-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border); }
         .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .exit-btn { background-color: var(--accent); border: none; color: #fff; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 12px; }
         .video-wrapper { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; background: #000; }
@@ -194,13 +123,14 @@
 
 <div class="categories-bar">
     <button class="chip active" onclick="filterCat('all', this)">Barchasi</button>
-    <button class="chip" onclick="filterCat('Sport', this)">Sport</button>
-    <button class="chip" onclick="filterCat('TV', this)">TV Kanallar</button>
-    <button class="chip" onclick="filterCat('Multfilm', this)">Multfilmlar</button>
-    <button class="chip" onclick="filterCat('Kino', this)">Kinolar</button>
+    <button class="chip" onclick="filterCat('tv', this)">TV Kanallar</button>
+    <button class="chip" onclick="filterCat('cartoons', this)">Multfilmlar</button>
+    <button class="chip" onclick="filterCat('movies', this)">Kinolar</button>
+    <button class="chip" onclick="filterCat('series', this)">Seriallar</button>
+    <button class="chip" onclick="filterCat('football', this)">Futbol</button>
 </div>
 
-<div class="grid-container" id="grid"></div>
+<div class="grid-container" id="grid">Yuklanmoqda...</div>
 
 <!-- SOZLAMALAR MODAL OYNASI -->
 <div class="settings-modal" id="settingsModal">
@@ -215,7 +145,7 @@
         </div>
         <div class="setting-item">
             <span>Ilova tili:</span>
-            <select id="langSelect" onchange="changeLang(this.value)">
+            <select id="langSelect">
                 <option value="uz">🇺🇿 O'zbekcha</option>
                 <option value="ru">🇷🇺 Русский</option>
                 <option value="en">🇬🇧 English</option>
@@ -251,7 +181,6 @@
     }
     document.getElementById('settingsUser').textContent = userName;
 
-    // Tema (Qora / Oq fon) almashtirish funksiyasi
     function toggleTheme() {
         const html = document.documentElement;
         const btn = document.getElementById('themeBtn');
@@ -266,23 +195,24 @@
 
     function openSettings() { document.getElementById('settingsModal').style.display = 'flex'; }
     function closeSettings() { document.getElementById('settingsModal').style.display = 'none'; }
-    function changeLang(lang) { alert("Til o'zgartirildi: " + lang); }
 
-    const items = [
-        {
-            title: "Togrivoy va Egrivoy",
-            category: "Multfilm",
-            badge: "MULTFILM",
-            url: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
-            poster: "https://images.unsplash.com/photo-1560942446-b8a542969f56?w=500"
+    let items = [];
+
+    async function loadItems() {
+        try {
+            const response = await fetch('/api/items');
+            items = await response.json();
+            renderItems(items);
+        } catch (e) {
+            document.getElementById('grid').innerHTML = `<div class="not-found">Server bilan bog'lanish muammosi</div>`;
         }
-    ];
+    }
 
     function renderItems(data) {
         const grid = document.getElementById("grid");
         grid.innerHTML = "";
         if (data.length === 0) {
-            grid.innerHTML = `<div class="not-found">Hech narsa topilmadi</div>`;
+            grid.innerHTML = `<div class="not-found">Hozircha kontent qo'shilmagan</div>`;
             return;
         }
         data.forEach(item => {
@@ -293,11 +223,11 @@
             grid.innerHTML += `
                 <div class="movie-card" onclick="openPlayer('${item.title.replace(/'/g, "\\'")}', '${item.url}')">
                     <div class="poster-box" style="background-image: url('${bgImage}')">
-                        <div class="tag">${item.badge || item.category}</div>
+                        <div class="tag">${item.badge || 'TV'}</div>
                     </div>
                     <div class="card-details">
                         <p class="movie-title">${item.title}</p>
-                        <span class="movie-category">${item.category}</span>
+                        <span class="movie-category">${item.category || ''}</span>
                     </div>
                 </div>
             `;
@@ -310,7 +240,7 @@
         if (cat === 'all') {
             renderItems(items);
         } else {
-            renderItems(items.filter(x => x.category.toLowerCase() === cat.toLowerCase()));
+            renderItems(items.filter(x => x.content_type === cat));
         }
     }
 
@@ -363,7 +293,7 @@
         yt.src = "";
     }
 
-    renderItems(items);
+    loadItems();
 </script>
 </body>
 </html>
