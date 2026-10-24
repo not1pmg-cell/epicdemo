@@ -130,7 +130,7 @@
     <button class="chip" onclick="filterCat('football', this)">Futbol</button>
 </div>
 
-<div class="grid-container" id="grid">Yuklanmoqda...</div>
+<div class="grid-container" id="grid"></div>
 
 <!-- SOZLAMALAR MODAL OYNASI -->
 <div class="settings-modal" id="settingsModal">
@@ -196,23 +196,31 @@
     function openSettings() { document.getElementById('settingsModal').style.display = 'flex'; }
     function closeSettings() { document.getElementById('settingsModal').style.display = 'none'; }
 
-    let items = [];
-
-    async function loadItems() {
-        try {
-            const response = await fetch('/api/items');
-            items = await response.json();
-            renderItems(items);
-        } catch (e) {
-            document.getElementById('grid').innerHTML = `<div class="not-found">Server bilan bog'lanish muammosi</div>`;
+    // Baza to'g'ridan-to'g'ri ishlaydigan qilib shu yerga yoziladi
+    const items = [
+        {
+            title: "Togrivoy va Egrivoy",
+            content_type: "cartoons",
+            category: "Multfilmlar",
+            badge: "MULTFILM",
+            url: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+            poster: "https://images.unsplash.com/photo-1560942446-b8a542969f56?w=500"
+        },
+        {
+            title: "Sport TV O'zbekiston",
+            content_type: "tv",
+            category: "TV Kanallar",
+            badge: "SPORT",
+            url: "https://index.m3u8",
+            poster: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500"
         }
-    }
+    ];
 
     function renderItems(data) {
         const grid = document.getElementById("grid");
         grid.innerHTML = "";
         if (data.length === 0) {
-            grid.innerHTML = `<div class="not-found">Hozircha kontent qo'shilmagan</div>`;
+            grid.innerHTML = `<div class="not-found">Hozircha kontent yo'q</div>`;
             return;
         }
         data.forEach(item => {
@@ -293,7 +301,7 @@
         yt.src = "";
     }
 
-    loadItems();
+    renderItems(items);
 </script>
 </body>
 </html>
