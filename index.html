@@ -3,20 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TV BOT Player</title>
+<title>TV Mini App</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <style>
 body{margin:0;background:#0b0f19;color:#fff;font-family:sans-serif;display:flex;flex-direction:column;min-height:100vh}
 .wrap{max-width:960px;width:100%;margin:auto;padding:16px;box-sizing:border-box}
-video{width:100%;border-radius:12px;background:#000;aspect-ratio:16/9;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+video, iframe{width:100%;border-radius:12px;background:#000;aspect-ratio:16/9;border:none;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
 h2{margin:16px 0 6px;font-size:20px}
 p{color:#9ca3af;margin:0;font-size:14px;line-height:1.4}
 </style>
 </head>
 <body>
 <div class="wrap">
-<video id="player" controls playsinline autoplay></video>
+<div id="player-container">
+<video id="player" controls playsinline autoplay style="display:none;"></video>
+<iframe id="yt-player" allowfullscreen style="display:none;"></iframe>
+</div>
 <h2 id="title">TV BOT</h2>
 <p id="desc">Video yuklanmoqda...</p>
 </div>
@@ -25,43 +28,51 @@ Telegram.WebApp.ready();
 Telegram.WebApp.expand();
 
 const p = new URLSearchParams(location.search);
-const url = p.get("url");
+const url = p.get("url") || "";
 const title = p.get("title") || "TV BOT";
 
 document.getElementById("title").textContent = title;
 const video = document.getElementById("player");
+const ytPlayer = document.getElementById("yt-player");
 const desc = document.getElementById("desc");
 
-function playHls(u){
-  if(window.Hls && Hls.isSupported()){
-    const hls = new Hls();
-    hls.loadSource(u);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, () => {
-      video.play().catch(()=>{ desc.textContent = "Videoni avtomatik ijro etish bloklandi, play tugmasini bosing."; });
-    });
-    hls.on(Hls.Events.ERROR, (event, data) => {
-      if(data.fatal) desc.textContent = "Oqimni yuklashda xatolik yuz berdi.";
-    });
-  } else if(video.canPlayType("application/vnd.apple.mpegurl")){
-    video.src = u;
-    video.play().catch(()=>{});
-  } else {
-    desc.textContent = "Bu qurilma HLS (.m3u8) formatni qo'llab-quvvatlamaydi.";
-  }
+function getYouTubeId(u) {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = u.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
 }
 
 if(!url){
   desc.textContent = "Video havolasi topilmadi.";
-} else if(url.includes("youtube.com") || url.includes("youtu.be")){
-  desc.textContent = "YouTube videolari tashqi havolada ochiladi.";
-  window.location.href = url;
-} else if(url.includes(".m3u8")){
-  playHls(url);
 } else {
-  video.src = url;
-  video.play().catch(()=>{});
-  desc.textContent = "Ijro etilmoqda...";
+  const ytId = getYouTubeId(url);
+  if(ytId){
+    // YouTube videosini to'g'ridan-to'g'ri Mini App ichida ochish (Ro'yxatdan o'tish talab qilinmaydi)
+    video.style.display = "none";
+    ytPlayer.style.display = "block";
+    ytPlayer.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
+    desc.textContent = "YouTube videosi ijro etilmoqda...";
+  } else if(url.includes(".m3u8")){
+    ytPlayer.style.display = "none";
+    video.style.display = "block";
+    if(window.Hls && Hls.isSupported()){
+      const hls = new Hls();
+      hls.loadSource(url);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play().catch(()=>{ desc.textContent = "Play tugmasini bosing."; });
+      });
+    } else if(video.canPlayType("application/vnd.apple.mpegurl")){
+      video.src = url;
+      video.play().catch(()=>{});
+    }
+  } else {
+    ytPlayer.style.display = "none";
+    video.style.display = "block";
+    video.src = url;
+    video.play().catch(()=>{});
+    desc.textContent = "Ijro etilmoqda...";
+  }
 }
 </script>
 </body>
