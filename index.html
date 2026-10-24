@@ -63,10 +63,14 @@
 
 <div class="categories-bar">
     <button class="chip active" onclick="filterCat('all', this)">Barchasi</button>
-    <button class="chip" onclick="filterCat('cartoons', this)">Multfilmlar</button>
+    <button class="chip" onclick="filterCat('tv', this)">TV</button>
+    <button class="chip" onclick="filterCat('cartoons', this)">Multfilm</button>
+    <button class="chip" onclick="filterCat('movies', this)">Kino</button>
+    <button class="chip" onclick="filterCat('series', this)">Serial</button>
+    <button class="chip" onclick="filterCat('football', this)">Futbol</button>
 </div>
 
-<div class="grid-container" id="grid"></div>
+<div class="grid-container" id="grid">Yuklanmoqda...</div>
 
 <div class="settings-modal" id="settingsModal">
     <div class="settings-box">
@@ -93,30 +97,39 @@
     function openSettings() { document.getElementById('settingsModal').style.display = 'flex'; }
     function closeSettings() { document.getElementById('settingsModal').style.display = 'none'; }
 
-    // SHU YERGA O'ZINGizNING HAQIQIY YOUTUBE VIDESINGIZ HAVOLASINI YOZING:
-    const items = [
-        {
-            title: "Togrivoy va Egrivoy",
-            content_type: "cartoons",
-            category: "Multfilmlar",
-            badge: "MULTFILM",
-            url: "https://www.youtube.com/watch?v=SIZNING_YOUTUBE_KODINGIZ", // <-- O'z havolangizni shu yerga qo'ying
-            poster: "https://images.unsplash.com/photo-1560942446-b8a542969f56?w=500"
+    let items = [];
+
+    async function loadData() {
+        try {
+            const res = await fetch('data.json');
+            const data = await res.json();
+            items = data.items || [];
+            renderItems(items);
+        } catch (e) {
+            document.getElementById('grid').innerHTML = `<div class="not-found">Ma'lumotlarni yuklab bo'lmadi</div>`;
         }
-    ];
+    }
 
     function renderItems(data) {
         const grid = document.getElementById("grid");
         grid.innerHTML = "";
+        if (data.length === 0) {
+            grid.innerHTML = `<div class="not-found">Hozircha kontent yo'q</div>`;
+            return;
+        }
         data.forEach(item => {
+            const bgImage = (item.poster && item.poster.startsWith("http")) 
+                ? item.poster 
+                : "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500";
+
             grid.innerHTML += `
-                <div class="movie-card" onclick="openPlayer('${item.title}', '${item.url}')">
-                    <div class="poster-box" style="background-image: url('${item.poster}')">
-                        <div class="tag">${item.badge}</div>
+                <div class="movie-card" onclick="openPlayer('${item.title.replace(/'/g, "\\'")}', '${item.url}')">
+                    <div class="poster-box" style="background-image: url('${bgImage}')">
+                        <div class="tag">${item.badge || 'TV'}</div>
                     </div>
                     <div class="card-details">
                         <p class="movie-title">${item.title}</p>
-                        <span class="movie-category">${item.category}</span>
+                        <span class="movie-category">${item.category || ''}</span>
                     </div>
                 </div>
             `;
@@ -142,22 +155,44 @@
 
     function openPlayer(title, url) {
         document.getElementById("modalTitle").textContent = title;
-        document.getElementById("playerModal").style.display = "flex";
+        const modal = document.getElementById("playerModal");
+        const video = document.getElementById("player");
+        const yt = document.getElementById("ytPlayer");
+        modal.style.display = "flex";
+
         const ytId = getYouTubeId(url);
         if (ytId) {
-            document.getElementById("player").style.display = "none";
-            const yt = document.getElementById("ytPlayer");
+            video.style.display = "none";
             yt.style.display = "block";
             yt.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
+        } else if (url.includes(".m3u8")) {
+            yt.style.display = "none";
+            video.style.display = "block";
+            if (window.Hls && Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(url);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+            }
+        } else {
+            yt.style.display = "none";
+            video.style.display = "block";
+            video.src = url;
+            video.play();
         }
     }
 
     function closePlayer() {
-        document.getElementById("playerModal").style.display = "none";
-        document.getElementById("ytPlayer").src = "";
+        const modal = document.getElementById("playerModal");
+        const video = document.getElementById("player");
+        const yt = document.getElementById("ytPlayer");
+        modal.style.display = "none";
+        video.pause();
+        video.src = "";
+        yt.src = "";
     }
 
-    renderItems(items);
+    loadData();
 </script>
 </body>
 </html>
