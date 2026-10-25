@@ -2,13 +2,13 @@
   "items": [
     {
       "id": 1,
-      "title": "Big Buck Bunny (Sinov videosi)",
+      "title": "HLS Test Stream (Big Buck Bunny)",
       "content_type": "cartoons",
       "language": "uz",
       "category": "Multfilm",
       "badge": "CARTOONS",
-      "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-      "poster": "https://images.unsplash.com/photo-1560942446-b8a542969f56?w=500"
+      "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+      "poster": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500"
     }
   ]
 }
