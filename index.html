@@ -46,13 +46,15 @@
         .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 0 20px 20px 20px; }
         
         .movie-card { background-color: var(--bg-card); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; box-shadow: 0 4px 14px var(--shadow); position: relative; }
-        .poster-box { height: 150px; background-color: #1a2233; position: relative; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: var(--text-muted); cursor: pointer; }
-        .tag { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.75); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 6px; font-weight: 700; z-index: 2; }
-        .views-badge { position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #cbd5e1; font-size: 10px; padding: 2px 6px; border-radius: 4px; z-index: 2; }
+        .poster-box { height: 130px; background-color: #ffffff; position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; padding: 10px; }
+        .poster-box img { width: 100%; height: 100%; object-fit: contain; }
         
-        .card-details { padding: 12px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; }
-        .movie-title { font-size: 13px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .movie-category { font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
+        .tag { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,0.75); color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 700; z-index: 2; }
+        .views-badge { position: absolute; bottom: 6px; left: 6px; background: rgba(0,0,0,0.7); color: #cbd5e1; font-size: 9px; padding: 2px 4px; border-radius: 4px; z-index: 2; }
+        
+        .card-details { padding: 10px; display: flex; flex-direction: column; gap: 2px; cursor: pointer; background: var(--bg-card); }
+        .movie-title { font-size: 12px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .movie-category { font-size: 10px; color: var(--text-muted); display: flex; justify-content: space-between; }
 
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--bg-surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; box-shadow: 0 -4px 20px var(--shadow); }
         .nav-item { background: none; border: none; color: var(--text-muted); font-size: 10px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; flex: 1; }
@@ -235,16 +237,16 @@
         }
 
         filtered.forEach(item => {
-            let posterStyle = item.poster ? `background-image: url('${item.poster}');` : "";
             let viewsCount = item.views || 0;
             let yearAndDur = `${item.year || '2024'} • ${item.duration || 'Jonli efir'}`;
+            let posterImg = item.poster ? `<img src="${item.poster}" alt="${item.title}">` : `<span>📺 ${item.title}</span>`;
 
             grid.innerHTML += `
                 <div class="movie-card">
-                    <div class="poster-box" style="${posterStyle}" onclick="openPlayer(${item.id})">
+                    <div class="poster-box" onclick="openPlayer(${item.id})">
                         <div class="tag">${item.badge || 'TV'}</div>
                         <div class="views-badge">👁 ${viewsCount}</div>
-                        ${!item.poster ? `<span>📺 ${item.title}</span>` : ''}
+                        ${posterImg}
                     </div>
                     <div class="card-details" onclick="openPlayer(${item.id})">
                         <p class="movie-title">${item.title}</p>
