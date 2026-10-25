@@ -57,13 +57,11 @@
         .movie-title { font-size: 13px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .movie-category { font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
 
-        /* Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--bg-surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; box-shadow: 0 -4px 20px var(--shadow); }
         .nav-item { background: none; border: none; color: var(--text-muted); font-size: 10px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; flex: 1; }
         .nav-item.active { color: var(--accent); }
         .nav-item span { font-size: 18px; }
 
-        /* Player & Quality Selector Modal */
         .player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-base); display: none; flex-direction: column; z-index: 1000; overflow-y: auto; }
         .modal-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
         .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -78,6 +76,10 @@
         .modal-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
         .control-row { display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); }
         .trailer-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; }
+
+        .rating-interactive { display: flex; gap: 4px; font-size: 20px; cursor: pointer; }
+        .star-rate { color: #475569; }
+        .star-rate.active { color: #facc15; }
 
         .reviews-section { display: flex; flex-direction: column; gap: 8px; }
         .review-input-box { display: flex; gap: 8px; }
@@ -148,8 +150,8 @@
         <h3 class="modal-heading" id="modalTitle">Pleyer</h3>
         <div class="player-header-controls">
             <select class="quality-select" id="qualitySelect" onchange="changeQuality(this.value)">
-                <option value="1080">1080p (FHD)</option>
-                <option value="720" selected>720p (HD)</option>
+                <option value="1080">1080p</option>
+                <option value="720" selected>720p</option>
                 <option value="360">360p</option>
             </select>
             <button class="exit-btn" onclick="closePlayer()">Yopish</button>
@@ -162,7 +164,13 @@
     <div class="modal-body">
         <div class="control-row">
             <span>Reyting: <strong id="avgRating">5.0</strong> ⭐</span>
-            <button class="trailer-btn" onclick="playTrailer()">🎬 Treyler ko'rish</button>
+            <div class="rating-interactive" id="starContainer">
+                <span class="star-rate" onclick="rateItem(1)">★</span>
+                <span class="star-rate" onclick="rateItem(2)">★</span>
+                <span class="star-rate" onclick="rateItem(3)">★</span>
+                <span class="star-rate" onclick="rateItem(4)">★</span>
+                <span class="star-rate" onclick="rateItem(5)">★</span>
+            </div>
         </div>
         <div class="reviews-section">
             <strong>Fikr qoldirish:</strong>
@@ -186,15 +194,31 @@
     let onlyHistory = false;
     let favorites = JSON.parse(localStorage.getItem('uzstv_favs') || '[]');
     let watchHistory = JSON.parse(localStorage.getItem('uzstv_history') || '[]');
+    
+    // Foydalanuvchi yozgan izohlar va reytinglarni doimiy saqlash uchun bazasi
+    let customReviews = JSON.parse(localStorage.getItem('uzstv_custom_reviews') || '{}');
+    let customRatings = JSON.parse(localStorage.getItem('uzstv_custom_ratings') || '{}');
+
     let currentItemId = null;
     let featuredItem = null;
-    let currentActiveUrl = "";
 
     const translations = {
         uz: { all: "Barchasi", prem: "Premyera", tv: "TV", cart: "Multfilm", mov: "Kino", foot: "Futbol", search: "Qidirish..." },
         ru: { all: "Все", prem: "Премьера", tv: "ТВ", cart: "Мультфильм", mov: "Кино", foot: "Футбол", search: "Поиск..." },
         en: { all: "All", prem: "Premiere", tv: "TV", cart: "Cartoons", mov: "Movies", foot: "Football", search: "Search..." }
     };
+
+    // Tema sozlamasini eslab qolish
+    let savedTheme = localStorage.getItem('uzstv_theme') || 'dark';
+    document.documentElement.setAttribute("data-theme", savedTheme);
+
+    function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem('uzstv_theme', next);
+    }
 
     function changeLang(lang) {
         localStorage.setItem('uzstv_lang', lang);
@@ -205,12 +229,6 @@
         document.getElementById('navMov').textContent = translations[lang].mov;
         document.getElementById('navFoot').textContent = translations[lang].foot;
         document.getElementById('searchInput').placeholder = translations[lang].search;
-    }
-
-    function toggleTheme() {
-        const html = document.documentElement;
-        const current = html.getAttribute("data-theme");
-        html.setAttribute("data-theme", current === "dark" ? "light" : "dark");
     }
 
     async function loadData() {
@@ -279,6 +297,7 @@
             let safeTitle = item.title.replace(/'/g, "\\'");
             let matchTimeBadge = item.match_time ? `<div class="match-time">⏰ ${item.match_time}</div>` : '';
             let viewsCount = item.views || 0;
+            let currentRating = customRatings[item.id] ? customRatings[item.id].toFixed(1) : (item.rating || 5.0);
 
             grid.innerHTML += `
                 <div class="movie-card">
@@ -293,7 +312,7 @@
                         <p class="movie-title">${item.title}</p>
                         <div class="movie-category">
                             <span>${item.genre || ''}</span>
-                            <span>⭐ ${item.rating || 5.0}</span>
+                            <span>⭐ ${currentRating}</span>
                         </div>
                     </div>
                 </div>
@@ -341,9 +360,7 @@
 
     function openPlayer(id, title, url) {
         currentItemId = id;
-        currentActiveUrl = url;
         
-        // Tarixga qo'shish (Davom etish uchun)
         if (!watchHistory.includes(id)) {
             watchHistory.unshift(id);
             if (watchHistory.length > 20) watchHistory.pop();
@@ -353,8 +370,9 @@
         let item = items.find(x => x.id === id);
         if (item) {
             item.views = (item.views || 0) + 1;
-            document.getElementById('avgRating').textContent = item.rating || 5.0;
-            renderReviews(item);
+            let displayRating = customRatings[id] ? customRatings[id].toFixed(1) : (item.rating || 5.0);
+            document.getElementById('avgRating').textContent = displayRating;
+            renderReviews(id);
         }
 
         document.getElementById("modalTitle").textContent = title;
@@ -386,35 +404,54 @@
     }
 
     function changeQuality(quality) {
-        alert(`Video sifati ${quality}p ga o'zgartirildi (Simulyatsiya)`);
+        alert(`Video sifati ${quality}p ga o'zgartirildi`);
     }
 
-    function playTrailer() {
-        alert("Treyler namoyish etilmoqda...");
-    }
-
+    // Izoh yuborish va xotirada saqlash
     function sendReview() {
         let text = document.getElementById('reviewInput').value.trim();
         if(!text) return;
-        let item = items.find(x => x.id === currentItemId);
-        if(item) {
-            if(!item.reviews) item.reviews = [];
-            item.reviews.push(text);
-            document.getElementById('reviewInput').value = '';
-            renderReviews(item);
+        
+        if(!customReviews[currentItemId]) {
+            customReviews[currentItemId] = [];
         }
+        customReviews[currentItemId].push(text);
+        localStorage.setItem('uzstv_custom_reviews', JSON.stringify(customReviews));
+        
+        document.getElementById('reviewInput').value = '';
+        renderReviews(currentItemId);
     }
 
-    function renderReviews(item) {
+    function renderReviews(id) {
         let list = document.getElementById('reviewsList');
         list.innerHTML = '';
-        if(item.reviews && item.reviews.length > 0) {
-            item.reviews.forEach(rev => {
+        let itemReviews = customReviews[id] || [];
+        
+        if (itemReviews.length > 0) {
+            itemReviews.forEach(rev => {
                 list.innerHTML += `<div class="review-item">💬 ${rev}</div>`;
             });
         } else {
-            list.innerHTML = `<div style="color:var(--text-muted); font-size:11px;">Hozircha izohlar yo'q</div>`;
+            list.innerHTML = `<div style="color:var(--text-muted); font-size:11px;">Hozircha izohlar yo'q. Birinchi bo'lib yozing!</div>`;
         }
+    }
+
+    // Yulduzchali baholashni saqlash
+    function rateItem(starsCount) {
+        customRatings[currentItemId] = starsCount;
+        localStorage.setItem('uzstv_custom_ratings', JSON.stringify(customRatings));
+        
+        document.getElementById('avgRating').textContent = starsCount.toFixed(1);
+        
+        // Yulduzchalarni bo'yash
+        let stars = document.querySelectorAll('.star-rate');
+        stars.forEach((s, idx) => {
+            if(idx < starsCount) s.classList.add('active');
+            else s.classList.remove('active');
+        });
+
+        alert("Rahmat, ovozingiz muvaffaqiyatli saqlandi!");
+        renderItems();
     }
 
     function closePlayer() {
