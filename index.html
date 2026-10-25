@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Uzs TV</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         :root[data-theme="dark"] {
             --bg-base: #07090e; --bg-surface: #121824; --bg-card: #182030;
@@ -31,7 +30,7 @@
         .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .exit-btn { background-color: var(--accent); border: none; color: #fff; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 12px; }
         .video-wrapper { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; background: #000; }
-        video, iframe { width: 100%; height: 100%; max-height: 100vh; border: none; outline: none; }
+        video { width: 100%; height: 100%; max-height: 100vh; border: none; outline: none; }
         .not-found { grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted); font-size: 14px; }
     </style>
 </head>
@@ -53,11 +52,10 @@
 <div class="player-modal" id="playerModal">
     <div class="modal-top">
         <h3 class="modal-heading" id="modalTitle">Pleyer</h3>
-        <button class="exit-btn" onclick="closePlayer()">Yopish</button>
+        <button class="exit-btn" onclick="closePlayer()">Yopish</h2>
     </div>
     <div class="video-wrapper">
-        <video id="videoElement" controls playsinline style="width:100%; height:100%;"></video>
-        <iframe id="ytPlayer" allowfullscreen allow="autoplay; encrypted-media" style="display:none;"></iframe>
+        <video id="videoElement" controls playsinline></video>
     </div>
 </div>
 
@@ -66,7 +64,6 @@
     Telegram.WebApp.expand();
 
     let items = [];
-    let hls = null;
 
     async function loadData() {
         try {
@@ -113,44 +110,15 @@
         document.getElementById("playerModal").style.display = "flex";
         
         const video = document.getElementById("videoElement");
-        const ytPlayer = document.getElementById("ytPlayer");
-
-        if (url.includes("youtube.com") || url.includes("youtu.be")) {
-            video.style.display = "none";
-            if (hls) { hls.destroy(); }
-            ytPlayer.style.display = "block";
-            let ytId = url.includes("youtu.be/") ? url.split("youtu.be/")[1]?.split("?")[0] : url.split("watch?v=")[1]?.split("&")[0];
-            ytPlayer.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
-        } else {
-            ytPlayer.style.display = "none";
-            video.style.display = "block";
-
-            if (url.endsWith('.m3u8')) {
-                if (Hls.isSupported()) {
-                    if (hls) { hls.destroy(); }
-                    hls = new Hls();
-                    hls.loadSource(url);
-                    hls.attachMedia(video);
-                    hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play(); });
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                    video.src = url;
-                    video.addEventListener('loadedmetadata', () => { video.play(); });
-                }
-            } else {
-                video.src = url;
-                video.play();
-            }
-        }
+        video.src = url;
+        video.play();
     }
 
     function closePlayer() {
         document.getElementById("playerModal").style.display = "none";
         const video = document.getElementById("videoElement");
-        const ytPlayer = document.getElementById("ytPlayer");
         video.pause();
         video.src = "";
-        if (hls) { hls.destroy(); hls = null; }
-        ytPlayer.src = "";
     }
 
     loadData();
