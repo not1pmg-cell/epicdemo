@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Uzs TV</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         :root[data-theme="dark"] {
             --bg-base: #07090e; --bg-surface: #121824; --bg-card: #182030;
@@ -55,7 +56,7 @@
         <button class="exit-btn" onclick="closePlayer()">Yopish</button>
     </div>
     <div class="video-wrapper">
-        <video id="nativePlayer" controls playsinline style="display:none; width:100%; height:100%;"></video>
+        <video id="videoElement" controls playsinline style="width:100%; height:100%;"></video>
         <iframe id="ytPlayer" allowfullscreen allow="autoplay; encrypted-media" style="display:none;"></iframe>
     </div>
 </div>
@@ -65,6 +66,7 @@
     Telegram.WebApp.expand();
 
     let items = [];
+    let hls = null;
 
     async function loadData() {
         try {
@@ -110,37 +112,44 @@
         document.getElementById("modalTitle").textContent = title;
         document.getElementById("playerModal").style.display = "flex";
         
-        const nativePlayer = document.getElementById("nativePlayer");
+        const video = document.getElementById("videoElement");
         const ytPlayer = document.getElementById("ytPlayer");
 
         if (url.includes("youtube.com") || url.includes("youtu.be")) {
-            nativePlayer.style.display = "none";
-            nativePlayer.pause();
-            nativePlayer.src = "";
+            video.style.display = "none";
+            if (hls) { hls.destroy(); }
             ytPlayer.style.display = "block";
-            
-            let ytId = "";
-            if (url.includes("youtu.be/")) {
-                ytId = url.split("youtu.be/")[1]?.split("?")[0];
-            } else if (url.includes("watch?v=")) {
-                ytId = url.split("watch?v=")[1]?.split("&")[0];
-            }
+            let ytId = url.includes("youtu.be/") ? url.split("youtu.be/")[1]?.split("?")[0] : url.split("watch?v=")[1]?.split("&")[0];
             ytPlayer.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
         } else {
             ytPlayer.style.display = "none";
-            ytPlayer.src = "";
-            nativePlayer.style.display = "block";
-            nativePlayer.src = url;
-            nativePlayer.play();
+            video.style.display = "block";
+
+            if (url.endsWith('.m3u8')) {
+                if (Hls.isSupported()) {
+                    if (hls) { hls.destroy(); }
+                    hls = new Hls();
+                    hls.loadSource(url);
+                    hls.attachMedia(video);
+                    hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play(); });
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    video.src = url;
+                    video.addEventListener('loadedmetadata', () => { video.play(); });
+                }
+            } else {
+                video.src = url;
+                video.play();
+            }
         }
     }
 
     function closePlayer() {
         document.getElementById("playerModal").style.display = "none";
-        const nativePlayer = document.getElementById("nativePlayer");
+        const video = document.getElementById("videoElement");
         const ytPlayer = document.getElementById("ytPlayer");
-        nativePlayer.pause();
-        nativePlayer.src = "";
+        video.pause();
+        video.src = "";
+        if (hls) { hls.destroy(); hls = null; }
         ytPlayer.src = "";
     }
 
