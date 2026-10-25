@@ -142,34 +142,6 @@
     },
     {
       "id": 11,
-      "title": "O'zbekiston",
-      "content_type": "tv",
-      "language": "uz",
-      "genre": "Yangiliklar",
-      "year": "2024",
-      "duration": "Jonli efir",
-      "director": "MTRK",
-      "badge": "TV",
-      "url": "https://stream8.cinerama.uz/1001/tracks-v1a1/playlist.m3u8",
-      "poster": "https://upload.wikimedia.org/wikipedia/commons/7/77/O%27zbekiston_TV_logo.png",
-      "views": 115
-    },
-    {
-      "id": 12,
-      "title": "O'zbekiston 24",
-      "content_type": "tv",
-      "language": "uz",
-      "genre": "Yangiliklar",
-      "year": "2024",
-      "duration": "Jonli efir",
-      "director": "MTRK",
-      "badge": "TV",
-      "url": "https://stream8.cinerama.uz/1011/tracks-v1a1/playlist.m3u8",
-      "poster": "https://upload.wikimedia.org/wikipedia/commons/8/8c/O%27zbekiston_24_logo.png",
-      "views": 130
-    },
-    {
-      "id": 13,
       "title": "MY5",
       "content_type": "tv",
       "language": "uz",
@@ -181,62 +153,6 @@
       "url": "https://stream8.cinerama.uz/1217/tracks-v1a1/playlist.m3u8",
       "poster": "https://upload.wikimedia.org/wikipedia/commons/4/41/MY5_logo.png",
       "views": 220
-    },
-    {
-      "id": 14,
-      "title": "Navo",
-      "content_type": "tv",
-      "language": "uz",
-      "genre": "Musiqa",
-      "year": "2024",
-      "duration": "Jonli efir",
-      "director": "MTRK",
-      "badge": "TV",
-      "url": "https://stream8.cinerama.uz/1008/tracks-v1a1/playlist.m3u8",
-      "poster": "https://upload.wikimedia.org/wikipedia/commons/5/52/Navo_TV_logo.png",
-      "views": 90
-    },
-    {
-      "id": 15,
-      "title": "Yoshlar",
-      "content_type": "tv",
-      "language": "uz",
-      "genre": "Yoshlar",
-      "year": "2024",
-      "duration": "Jonli efir",
-      "director": "MTRK",
-      "badge": "TV",
-      "url": "https://stream8.cinerama.uz/1002/tracks-v1a1/playlist.m3u8",
-      "poster": "https://upload.wikimedia.org/wikipedia/commons/3/33/Yoshlar_TV_logo.png",
-      "views": 160
-    },
-    {
-      "id": 16,
-      "title": "BIZ Cinema",
-      "content_type": "movies",
-      "language": "uz",
-      "genre": "Drama",
-      "year": "2024",
-      "duration": "Jonli efir",
-      "director": "BIZ TV",
-      "badge": "KINO",
-      "url": "https://fl.biztv.media/cinema_720_EMfSyXgoRdiIHgldXTZICucKTIeCKO/index.m3u8",
-      "poster": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500",
-      "views": 175
-    },
-    {
-      "id": 17,
-      "title": "FTV",
-      "content_type": "tv",
-      "language": "uz",
-      "genre": "Musiqa",
-      "year": "2024",
-      "duration": "Jonli efir",
-      "director": "Farg'ona TV",
-      "badge": "TV",
-      "url": "https://stream8.cinerama.uz/1018/playlist.m3u8",
-      "poster": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500",
-      "views": 110
     }
   ]
 }
