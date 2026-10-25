@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Uzs TV - Super Portal</title>
+    <title>Uzs TV - Ultimate Portal</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root[data-theme="dark"] {
@@ -29,13 +29,11 @@
         .search-wrapper input { width: 100%; padding: 12px 16px 12px 42px; border-radius: 12px; border: 1px solid var(--border); background-color: var(--bg-surface); color: var(--text-main); font-size: 14px; outline: none; }
         .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 15px; }
 
-        /* Janrlar filtri qatori */
         .genres-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 6px 20px 10px 20px; scrollbar-width: none; }
         .genres-scroll::-webkit-scrollbar { display: none; }
         .genre-chip { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: 0.2s; }
         .genre-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-        /* Banner */
         .hero-banner { margin: 6px 20px 12px 20px; height: 150px; border-radius: 16px; background: linear-gradient(135deg, #1e293b, #0f172a); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; box-shadow: 0 8px 24px var(--shadow); background-size: cover; background-position: center; cursor: pointer; }
         .hero-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); z-index: 1; }
         .hero-content { position: relative; z-index: 2; }
@@ -65,19 +63,22 @@
         .nav-item.active { color: var(--accent); }
         .nav-item span { font-size: 18px; }
 
-        /* Player Modal with Reviews & Rating */
+        /* Player & Quality Selector Modal */
         .player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-base); display: none; flex-direction: column; z-index: 1000; overflow-y: auto; }
         .modal-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
-        .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .exit-btn { background-color: var(--accent); border: none; color: #fff; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 12px; }
+        .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        .player-header-controls { display: flex; gap: 8px; align-items: center; }
+        .quality-select { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 4px 8px; border-radius: 6px; font-size: 11px; outline: none; }
+        .exit-btn { background-color: var(--accent); border: none; color: #fff; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 12px; }
         
         .video-container { width: 100%; height: 240px; background: #000; position: relative; }
         video, iframe { width: 100%; height: 100%; border: none; outline: none; }
 
         .modal-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
-        .rating-box { display: flex; align-items: center; gap: 10px; background: var(--bg-surface); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); }
-        .stars { font-size: 18px; color: #facc15; cursor: pointer; }
-        
+        .control-row { display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); }
+        .trailer-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; }
+
         .reviews-section { display: flex; flex-direction: column; gap: 8px; }
         .review-input-box { display: flex; gap: 8px; }
         .review-input-box input { flex: 1; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-main); font-size: 13px; outline: none; }
@@ -97,6 +98,7 @@
             <option value="ru">RU</option>
             <option value="en">EN</option>
         </select>
+        <button class="action-btn" onclick="filterHistory()">🕒 Tarix</button>
         <button class="action-btn" onclick="filterFavorites()">⭐</button>
         <button class="action-btn" onclick="toggleTheme()">☀️/🌙</button>
     </div>
@@ -109,7 +111,6 @@
     </div>
 </div>
 
-<!-- Janrlar filtri -->
 <div class="genres-scroll" id="genresScroll">
     <div class="genre-chip active" onclick="filterGenre('all', this)">Barchasi</div>
     <div class="genre-chip" onclick="filterGenre('Komediya', this)">Komediya</div>
@@ -142,20 +143,26 @@
     <button class="nav-item" onclick="filterCategory('football', this)"><span>⚽</span><span id="navFoot">Futbol</span></button>
 </nav>
 
-<!-- Player & Details Modal -->
 <div class="player-modal" id="playerModal">
     <div class="modal-top">
         <h3 class="modal-heading" id="modalTitle">Pleyer</h3>
-        <button class="exit-btn" onclick="closePlayer()">Yopish</button>
+        <div class="player-header-controls">
+            <select class="quality-select" id="qualitySelect" onchange="changeQuality(this.value)">
+                <option value="1080">1080p (FHD)</option>
+                <option value="720" selected>720p (HD)</option>
+                <option value="360">360p</option>
+            </select>
+            <button class="exit-btn" onclick="closePlayer()">Yopish</button>
+        </div>
     </div>
     <div class="video-container">
         <video id="nativePlayer" controls playsinline style="display:none;"></video>
         <iframe id="ytPlayer" allowfullscreen allow="autoplay; encrypted-media" style="display:none;"></iframe>
     </div>
     <div class="modal-body">
-        <div class="rating-box">
+        <div class="control-row">
             <span>Reyting: <strong id="avgRating">5.0</strong> ⭐</span>
-            <div class="stars" onclick="rateItem()">⭐⭐⭐⭐⭐</div>
+            <button class="trailer-btn" onclick="playTrailer()">🎬 Treyler ko'rish</button>
         </div>
         <div class="reviews-section">
             <strong>Fikr qoldirish:</strong>
@@ -176,14 +183,17 @@
     let currentCategory = 'all';
     let currentGenre = 'all';
     let onlyFavorites = false;
+    let onlyHistory = false;
     let favorites = JSON.parse(localStorage.getItem('uzstv_favs') || '[]');
+    let watchHistory = JSON.parse(localStorage.getItem('uzstv_history') || '[]');
     let currentItemId = null;
     let featuredItem = null;
+    let currentActiveUrl = "";
 
     const translations = {
-        uz: { all: "Barchasi", prem: "Premyera", tv: "TV", cart: "Multfilm", mov: "Kino", foot: "Futbol", search: "Qidirish...", favs: "Sevimlilar" },
-        ru: { all: "Все", prem: "Премьера", tv: "ТВ", cart: "Мультфильм", mov: "Кино", foot: "Футбол", search: "Поиск...", favs: "Избранное" },
-        en: { all: "All", prem: "Premiere", tv: "TV", cart: "Cartoons", mov: "Movies", foot: "Football", search: "Search...", favs: "Favorites" }
+        uz: { all: "Barchasi", prem: "Premyera", tv: "TV", cart: "Multfilm", mov: "Kino", foot: "Futbol", search: "Qidirish..." },
+        ru: { all: "Все", prem: "Премьера", tv: "ТВ", cart: "Мультфильм", mov: "Кино", foot: "Футбол", search: "Поиск..." },
+        en: { all: "All", prem: "Premiere", tv: "TV", cart: "Cartoons", mov: "Movies", foot: "Football", search: "Search..." }
     };
 
     function changeLang(lang) {
@@ -242,6 +252,9 @@
         if (onlyFavorites) {
             filtered = filtered.filter(x => favorites.includes(x.id));
             document.getElementById('sectionHeaderTitle').textContent = "Saqlangan Sevimlilar";
+        } else if (onlyHistory) {
+            filtered = filtered.filter(x => watchHistory.includes(x.id));
+            document.getElementById('sectionHeaderTitle').textContent = "Ko'rishlar tarixi (Davom etish)";
         } else if (currentCategory !== 'all') {
             filtered = filtered.filter(x => x.content_type === currentCategory);
         }
@@ -291,6 +304,7 @@
     function filterCategory(cat, btn) {
         currentCategory = cat;
         onlyFavorites = false;
+        onlyHistory = false;
         document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
         if(btn) btn.classList.add('active');
         renderItems();
@@ -305,6 +319,13 @@
 
     function filterFavorites() {
         onlyFavorites = !onlyFavorites;
+        onlyHistory = false;
+        renderItems();
+    }
+
+    function filterHistory() {
+        onlyHistory = !onlyHistory;
+        onlyFavorites = false;
         renderItems();
     }
 
@@ -320,6 +341,15 @@
 
     function openPlayer(id, title, url) {
         currentItemId = id;
+        currentActiveUrl = url;
+        
+        // Tarixga qo'shish (Davom etish uchun)
+        if (!watchHistory.includes(id)) {
+            watchHistory.unshift(id);
+            if (watchHistory.length > 20) watchHistory.pop();
+            localStorage.setItem('uzstv_history', JSON.stringify(watchHistory));
+        }
+
         let item = items.find(x => x.id === id);
         if (item) {
             item.views = (item.views || 0) + 1;
@@ -329,7 +359,10 @@
 
         document.getElementById("modalTitle").textContent = title;
         document.getElementById("playerModal").style.display = "flex";
-        
+        playVideoSource(url);
+    }
+
+    function playVideoSource(url) {
         let nativePlayer = document.getElementById("nativePlayer");
         let ytPlayer = document.getElementById("ytPlayer");
 
@@ -350,6 +383,14 @@
             nativePlayer.src = url;
             nativePlayer.play();
         }
+    }
+
+    function changeQuality(quality) {
+        alert(`Video sifati ${quality}p ga o'zgartirildi (Simulyatsiya)`);
+    }
+
+    function playTrailer() {
+        alert("Treyler namoyish etilmoqda...");
     }
 
     function sendReview() {
@@ -373,15 +414,6 @@
             });
         } else {
             list.innerHTML = `<div style="color:var(--text-muted); font-size:11px;">Hozircha izohlar yo'q</div>`;
-        }
-    }
-
-    function rateItem() {
-        let item = items.find(x => x.id === currentItemId);
-        if(item) {
-            item.rating = 5.0;
-            document.getElementById('avgRating').textContent = "5.0";
-            alert("Rahmat, ovozingiz qabul qilindi!");
         }
     }
 
