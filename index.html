@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Uzs TV - Ultimate Pro</title>
+    <title>Uzs TV - Pro</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root[data-theme="dark"] {
@@ -30,7 +30,7 @@
         .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 15px; }
 
         .top-action-row { display: flex; gap: 10px; padding: 0 20px 10px 20px; }
-        .lucky-btn { flex: 1; background: linear-gradient(135deg, #e50914, #b20710); color: #fff; border: none; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3); }
+        .lucky-btn { flex: 1; background: linear-gradient(135deg, #e50914, #b20710); color: #fff; border: none; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
 
         .filter-sort-row { display: flex; justify-content: space-between; align-items: center; padding: 0 20px 10px 20px; }
         .sort-select { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-main); padding: 6px 10px; border-radius: 10px; font-size: 12px; outline: none; }
@@ -43,18 +43,13 @@
         .chip { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-muted); padding: 5px 12px; border-radius: 16px; font-size: 11px; font-weight: 600; white-space: nowrap; cursor: pointer; }
         .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-        .section-title { font-size: 15px; font-weight: 800; margin: 10px 20px 8px 20px; display: flex; justify-content: space-between; align-items: center; }
         .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 0 20px 20px 20px; }
         
         .movie-card { background-color: var(--bg-card); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; box-shadow: 0 4px 14px var(--shadow); position: relative; }
         .poster-box { height: 150px; background-color: #1a2233; position: relative; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: var(--text-muted); cursor: pointer; }
         .tag { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.75); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 6px; font-weight: 700; z-index: 2; }
         .views-badge { position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #cbd5e1; font-size: 10px; padding: 2px 6px; border-radius: 4px; z-index: 2; }
-        .match-time { position: absolute; bottom: 8px; left: 8px; right: 8px; background: rgba(229, 9, 20, 0.9); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 6px; font-weight: 700; text-align: center; z-index: 2; }
         
-        .fav-btn { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; font-size: 16px; z-index: 5; }
-        .fav-btn.active { color: #facc15; background: rgba(250, 204, 21, 0.2); }
-
         .card-details { padding: 12px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; }
         .movie-title { font-size: 13px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .movie-category { font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
@@ -69,7 +64,6 @@
         .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 40%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         
         .player-header-controls { display: flex; gap: 6px; align-items: center; }
-        .quality-select, .action-modal-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 5px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; outline: none; }
         .exit-btn { background-color: var(--accent); border: none; color: #fff; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 12px; }
         
         .video-container { width: 100%; height: 240px; background: #000; position: relative; }
@@ -78,8 +72,6 @@
         .info-panel { padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; }
         .info-title { font-size: 18px; font-weight: 800; margin: 0; }
         .info-meta { font-size: 12px; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 10px; }
-        .report-link { font-size: 12px; color: var(--accent); cursor: pointer; text-decoration: underline; margin-top: 4px; }
-
         .not-found { grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 14px; }
     </style>
 </head>
@@ -93,8 +85,6 @@
             <option value="ru">RU</option>
             <option value="en">EN</option>
         </select>
-        <button class="action-btn" onclick="filterHistory()">🕒 Tarix</button>
-        <button class="action-btn" onclick="filterFavorites()">⭐</button>
         <button class="action-btn" onclick="toggleTheme()">☀️/🌙</button>
     </div>
 </header>
@@ -107,7 +97,7 @@
 </div>
 
 <div class="top-action-row">
-    <button class="lucky-btn" onclick="openRandomMovie()">🎲 Tasodifiy kino tanlash</button>
+    <button class="lucky-btn" onclick="openRandomMovie()">🎲 Tasodifiy kanal tanlash</button>
 </div>
 
 <div class="filter-sort-row">
@@ -115,7 +105,6 @@
     <select class="sort-select" id="sortSelect" onchange="renderItems()">
         <option value="default">Tartiblash</option>
         <option value="views">🔥 Trend (Ko'p ko'rilgan)</option>
-        <option value="new">✨ Yangi qo'shilgan</option>
         <option value="alpha">AZ Alifbo</option>
     </select>
 </div>
@@ -125,40 +114,30 @@
         <div class="chip active" onclick="filterLanguage('all', this)">Barcha tillar</div>
         <div class="chip" onclick="filterLanguage('uz', this)">🇺🇿 O'zbekcha</div>
         <div class="chip" onclick="filterLanguage('ru', this)">🇷🇺 Русский</div>
-        <div class="chip" onclick="filterLanguage('en', this)">🇬🇧 English</div>
     </div>
     <div class="genres-scroll" id="genresScroll">
         <div class="chip active" onclick="filterGenre('all', this)">Barcha janrlar</div>
-        <div class="chip" onclick="filterGenre('Komediya', this)">Komediya</div>
-        <div class="chip" onclick="filterGenre('Jangari', this)">Jangari</div>
-        <div class="chip" onclick="filterGenre('Drama', this)">Drama</div>
-        <div class="chip" onclick="filterGenre('Multfilm', this)">Multfilm</div>
+        <div class="chip" onclick="filterGenre('Ko\'ngilochar', this)">Ko'ngilochar</div>
         <div class="chip" onclick="filterGenre('Sport', this)">Sport</div>
+        <div class="chip" onclick="filterGenre('Yangiliklar', this)">Yangiliklar</div>
+        <div class="chip" onclick="filterGenre('Multfilm', this)">Multfilm</div>
     </div>
 </div>
 
 <div class="grid-container" id="grid">Yuklanmoqda...</div>
 
 <nav class="bottom-nav">
-    <button class="nav-item active" onclick="filterCategory('all', this)"><span>🏠</span><span id="navAll">Barchasi</span></button>
-    <button class="nav-item" onclick="filterCategory('tv', this)"><span>📺</span><span id="navTv">TV</span></button>
-    <button class="nav-item" onclick="filterCategory('cartoons', this)"><span>🧸</span><span id="navCart">Multfilm</span></button>
-    <button class="nav-item" onclick="filterCategory('movies', this)"><span>🎬</span><span id="navMov">Kino</span></button>
-    <button class="nav-item" onclick="filterCategory('football', this)"><span>⚽</span><span id="navFoot">Futbol</span></button>
+    <button class="nav-item active" onclick="filterCategory('all', this)"><span>🏠</span><span>Barchasi</span></button>
+    <button class="nav-item" onclick="filterCategory('tv', this)"><span>📺</span><span>TV</span></button>
+    <button class="nav-item" onclick="filterCategory('cartoons', this)"><span>🧸</span><span>Multfilm</span></button>
+    <button class="nav-item" onclick="filterCategory('movies', this)"><span>🎬</span><span>Kino</span></button>
+    <button class="nav-item" onclick="filterCategory('football', this)"><span>⚽</span><span>Futbol</span></button>
 </nav>
 
 <div class="player-modal" id="playerModal">
     <div class="modal-top">
         <h3 class="modal-heading" id="modalTitle">Pleyer</h3>
-        <div class="player-header-controls">
-            <button class="action-modal-btn" onclick="shareCurrentMovie()">📤 Ulashish</button>
-            <select class="quality-select" id="qualitySelect" onchange="changeQuality(this.value)">
-                <option value="1080">1080p</option>
-                <option value="720" selected>720p</option>
-                <option value="360">360p</option>
-            </select>
-            <button class="exit-btn" onclick="closePlayer()">Yopish</button>
-        </div>
+        <button class="exit-btn" onclick="closePlayer()">Yopish</button>
     </div>
     <div class="video-container">
         <video id="nativePlayer" controls playsinline style="display:none; width:100%; height:100%;"></video>
@@ -168,12 +147,8 @@
         <h2 class="info-title" id="infoTitle">Nomi</h2>
         <div class="info-meta">
             <span id="infoGenre">Janr: -</span>
-            <span id="infoYear">📅 Yil: 2024</span>
-            <span id="infoDuration">⏱ Davomiyligi: 1s 30m</span>
             <span id="infoViews">👁 Ko'rishlar: 0</span>
         </div>
-        <div id="infoDirector" style="font-size:12px; color:var(--text-muted);">Aktyorlar / Rejissor: -</div>
-        <span class="report-link" onclick="reportBug()">⚠️ Xatolik haqida xabar berish</span>
     </div>
 </div>
 
@@ -185,11 +160,6 @@
     let currentCategory = 'all';
     let currentGenre = 'all';
     let currentLanguage = 'all';
-    let onlyFavorites = false;
-    let onlyHistory = false;
-    let favorites = JSON.parse(localStorage.getItem('uzstv_favs') || '[]');
-    let watchHistory = JSON.parse(localStorage.getItem('uzstv_history') || '[]');
-    let activeMovie = null;
 
     let savedTheme = localStorage.getItem('uzstv_theme') || 'dark';
     document.documentElement.setAttribute("data-theme", savedTheme);
@@ -236,23 +206,15 @@
         
         let filtered = [...items];
         
-        if (onlyFavorites) {
-            filtered = filtered.filter(x => favorites.includes(x.id));
-            document.getElementById('sectionHeaderTitle').textContent = "Saqlangan Sevimlilar";
-        } else if (onlyHistory) {
-            filtered = filtered.filter(x => watchHistory.includes(x.id));
-            document.getElementById('sectionHeaderTitle').textContent = "Ko'rishlar tarixi (Davom etish)";
-        } else if (currentCategory !== 'all') {
+        if (currentCategory !== 'all') {
             filtered = filtered.filter(x => x.content_type === currentCategory);
         }
 
-        if (currentCategory === 'movies' || currentCategory === 'all') {
-            if (currentGenre !== 'all') {
-                filtered = filtered.filter(x => x.genre && x.genre.toLowerCase() === currentGenre.toLowerCase());
-            }
-            if (currentLanguage !== 'all') {
-                filtered = filtered.filter(x => x.language && x.language.toLowerCase() === currentLanguage.toLowerCase());
-            }
+        if (currentGenre !== 'all') {
+            filtered = filtered.filter(x => x.genre && x.genre.toLowerCase() === currentGenre.toLowerCase());
+        }
+        if (currentLanguage !== 'all') {
+            filtered = filtered.filter(x => x.language && x.language.toLowerCase() === currentLanguage.toLowerCase());
         }
 
         const searchQuery = document.getElementById("searchInput").value.toLowerCase().trim();
@@ -263,8 +225,6 @@
         let sortVal = document.getElementById('sortSelect').value;
         if (sortVal === 'views') {
             filtered.sort((a, b) => (b.views || 0) - (a.views || 0));
-        } else if (sortVal === 'new') {
-            filtered.sort((a, b) => b.id - a.id);
         } else if (sortVal === 'alpha') {
             filtered.sort((a, b) => a.title.localeCompare(b.title));
         }
@@ -276,19 +236,15 @@
 
         filtered.forEach(item => {
             let posterStyle = item.poster ? `background-image: url('${item.poster}');` : "";
-            let isFav = favorites.includes(item.id);
-            let matchTimeBadge = item.match_time ? `<div class="match-time">⏰ ${item.match_time}</div>` : '';
             let viewsCount = item.views || 0;
-            let yearAndDur = `${item.year || '2024'} • ${item.duration || '1s 30m'}`;
+            let yearAndDur = `${item.year || '2024'} • ${item.duration || 'Jonli efir'}`;
 
             grid.innerHTML += `
                 <div class="movie-card">
-                    <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${item.id})">★</button>
                     <div class="poster-box" style="${posterStyle}" onclick="openPlayer(${item.id})">
                         <div class="tag">${item.badge || 'TV'}</div>
-                        ${matchTimeBadge}
                         <div class="views-badge">👁 ${viewsCount}</div>
-                        ${!item.poster ? `<span>🎬 ${item.title}</span>` : ''}
+                        ${!item.poster ? `<span>📺 ${item.title}</span>` : ''}
                     </div>
                     <div class="card-details" onclick="openPlayer(${item.id})">
                         <p class="movie-title">${item.title}</p>
@@ -304,11 +260,8 @@
 
     function filterCategory(cat, btn) {
         currentCategory = cat;
-        onlyFavorites = false;
-        onlyHistory = false;
-        
         const filtersContainer = document.getElementById('filtersContainer');
-        if (cat === 'movies') {
+        if (cat === 'tv' || cat === 'movies' || cat === 'all') {
             filtersContainer.classList.add('active');
         } else {
             filtersContainer.classList.remove('active');
@@ -335,49 +288,16 @@
         renderItems();
     }
 
-    function filterFavorites() {
-        onlyFavorites = !onlyFavorites;
-        onlyHistory = false;
-        document.getElementById('filtersContainer').classList.remove('active');
-        renderItems();
-    }
-
-    function filterHistory() {
-        onlyHistory = !onlyHistory;
-        onlyFavorites = false;
-        document.getElementById('filtersContainer').classList.remove('active');
-        renderItems();
-    }
-
-    function toggleFav(id) {
-        if (favorites.includes(id)) {
-            favorites = favorites.filter(favId => favId !== id);
-        } else {
-            favorites.push(id);
-        }
-        localStorage.setItem('uzstv_favs', JSON.stringify(favorites));
-        renderItems();
-    }
-
     function openPlayer(id) {
-        activeMovie = items.find(x => x.id === id);
+        let activeMovie = items.find(x => x.id === id);
         if(!activeMovie) return;
-
-        if (!watchHistory.includes(id)) {
-            watchHistory.unshift(id);
-            if (watchHistory.length > 20) watchHistory.pop();
-            localStorage.setItem('uzstv_history', JSON.stringify(watchHistory));
-        }
 
         activeMovie.views = (activeMovie.views || 0) + 1;
 
         document.getElementById("modalTitle").textContent = activeMovie.title;
         document.getElementById("infoTitle").textContent = activeMovie.title;
         document.getElementById("infoGenre").textContent = `Janr: ${activeMovie.genre || 'Maxsus'}`;
-        document.getElementById("infoYear").textContent = `📅 Yil: ${activeMovie.year || '2024'}`;
-        document.getElementById("infoDuration").textContent = `⏱ Davomiyligi: ${activeMovie.duration || '1s 30m'}`;
         document.getElementById("infoViews").textContent = `👁 Ko'rishlar: ${activeMovie.views}`;
-        document.getElementById("infoDirector").textContent = `Aktyorlar / Rejissor: ${activeMovie.director || 'Noma\'lum'}`;
         
         document.getElementById("playerModal").style.display = "flex";
         playVideoSource(activeMovie.url);
@@ -392,7 +312,6 @@
             nativePlayer.pause();
             nativePlayer.src = "";
             ytPlayer.style.display = "block";
-            
             let ytId = "";
             if (url.includes("youtu.be/")) ytId = url.split("youtu.be/")[1]?.split("?")[0];
             else if (url.includes("watch?v=")) ytId = url.split("watch?v=")[1]?.split("&")[0];
@@ -404,26 +323,6 @@
             nativePlayer.src = url;
             nativePlayer.play();
         }
-    }
-
-    function shareCurrentMovie() {
-        if(activeMovie) {
-            let shareText = `Kino: ${activeMovie.title}\nTomosha qilish: ${activeMovie.url}`;
-            if (navigator.share) {
-                navigator.share({ title: activeMovie.title, text: shareText, url: activeMovie.url });
-            } else {
-                navigator.clipboard.writeText(activeMovie.url);
-                alert("Havola nusxalandi!");
-            }
-        }
-    }
-
-    function reportBug() {
-        alert("Xatolik haqida xabar adminga yuborildi. Rahmat!");
-    }
-
-    function changeQuality(quality) {
-        alert(`Video sifati ${quality}p ga o'zgartirildi`);
     }
 
     function closePlayer() {
