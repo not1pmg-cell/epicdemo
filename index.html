@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Uzs TV - Premium Streaming</title>
+    <title>Uzs TV - Super Portal</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root[data-theme="dark"] {
@@ -19,58 +19,71 @@
         * { box-sizing: border-box; user-select: none; -webkit-tap-highlight-color: transparent; }
         body { margin: 0; padding: 0 0 80px 0; background-color: var(--bg-base); color: var(--text-main); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; flex-direction: column; min-height: 100vh; transition: background 0.3s, color 0.3s; }
         
-        /* Header */
         header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px var(--shadow); }
-        .logo { font-size: 22px; font-weight: 900; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; }
-        .header-btns { display: flex; gap: 8px; }
-        .action-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.2s; }
-        .action-btn:active { transform: scale(0.95); }
+        .logo { font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; }
+        .header-btns { display: flex; gap: 6px; align-items: center; }
+        .action-btn, .lang-select { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 6px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; outline: none; }
 
-        /* Search Section */
-        .search-area { padding: 16px 20px 8px 20px; }
+        .search-area { padding: 14px 20px 6px 20px; }
         .search-wrapper { position: relative; }
-        .search-wrapper input { width: 100%; padding: 14px 16px 14px 44px; border-radius: 14px; border: 1px solid var(--border); background-color: var(--bg-surface); color: var(--text-main); font-size: 14px; outline: none; box-shadow: inset 0 2px 4px var(--shadow); transition: border-color 0.2s; }
-        .search-wrapper input:focus { border-color: var(--accent); }
-        .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 16px; }
+        .search-wrapper input { width: 100%; padding: 12px 16px 12px 42px; border-radius: 12px; border: 1px solid var(--border); background-color: var(--bg-surface); color: var(--text-main); font-size: 14px; outline: none; }
+        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 15px; }
 
-        /* Hero Banner */
-        .hero-banner { margin: 10px 20px; height: 160px; border-radius: 16px; background: linear-gradient(135deg, #1e293b, #0f172a); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; box-shadow: 0 8px 24px var(--shadow); }
-        .hero-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.35; z-index: 1; }
+        /* Janrlar filtri qatori */
+        .genres-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 6px 20px 10px 20px; scrollbar-width: none; }
+        .genres-scroll::-webkit-scrollbar { display: none; }
+        .genre-chip { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: 0.2s; }
+        .genre-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+        /* Banner */
+        .hero-banner { margin: 6px 20px 12px 20px; height: 150px; border-radius: 16px; background: linear-gradient(135deg, #1e293b, #0f172a); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; box-shadow: 0 8px 24px var(--shadow); background-size: cover; background-position: center; cursor: pointer; }
+        .hero-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); z-index: 1; }
         .hero-content { position: relative; z-index: 2; }
-        .hero-tag { background: var(--accent); color: #fff; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-bottom: 6px; }
-        .hero-title { font-size: 18px; font-weight: 800; margin: 0 0 4px 0; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
-        .hero-desc { font-size: 12px; color: #cbd5e1; margin: 0; text-shadow: 0 1px 2px rgba(0,0,0,0.6); }
+        .hero-tag { background: var(--accent); color: #fff; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-bottom: 4px; }
+        .hero-title { font-size: 17px; font-weight: 800; margin: 0 0 2px 0; color: #fff; }
+        .hero-desc { font-size: 11px; color: #cbd5e1; margin: 0; }
 
-        /* Grid Section */
-        .section-title { font-size: 16px; font-weight: 800; margin: 16px 20px 8px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .section-title { font-size: 15px; font-weight: 800; margin: 10px 20px 8px 20px; display: flex; justify-content: space-between; align-items: center; }
         .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 0 20px 20px 20px; }
-        .movie-card { background-color: var(--bg-card); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; box-shadow: 0 4px 14px var(--shadow); position: relative; transition: transform 0.2s; }
-        .movie-card:active { transform: scale(0.98); }
+        .movie-card { background-color: var(--bg-card); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; box-shadow: 0 4px 14px var(--shadow); position: relative; }
         
-        .poster-box { height: 160px; background-color: #1a2233; position: relative; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: var(--text-muted); cursor: pointer; }
-        .tag { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 6px; font-weight: 700; z-index: 2; }
+        .poster-box { height: 150px; background-color: #1a2233; position: relative; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: var(--text-muted); cursor: pointer; }
+        .tag { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.75); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 6px; font-weight: 700; z-index: 2; }
+        .views-badge { position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #cbd5e1; font-size: 10px; padding: 2px 6px; border-radius: 4px; z-index: 2; }
+        .match-time { position: absolute; bottom: 8px; left: 8px; right: 8px; background: rgba(229, 9, 20, 0.9); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 6px; font-weight: 700; text-align: center; z-index: 2; }
         
-        .fav-btn { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; font-size: 16px; z-index: 5; transition: 0.2s; }
+        .fav-btn { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; font-size: 16px; z-index: 5; }
         .fav-btn.active { color: #facc15; background: rgba(250, 204, 21, 0.2); }
 
         .card-details { padding: 12px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; }
         .movie-title { font-size: 13px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .movie-category { font-size: 11px; color: var(--text-muted); }
+        .movie-category { font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
 
-        /* Bottom Navigation */
+        /* Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--bg-surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; box-shadow: 0 -4px 20px var(--shadow); }
-        .nav-item { background: none; border: none; color: var(--text-muted); font-size: 11px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; flex: 1; transition: 0.2s; }
+        .nav-item { background: none; border: none; color: var(--text-muted); font-size: 10px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; flex: 1; }
         .nav-item.active { color: var(--accent); }
-        .nav-item span { font-size: 20px; }
+        .nav-item span { font-size: 18px; }
 
-        /* Player Modal */
-        .player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.96); display: none; flex-direction: column; z-index: 1000; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .modal-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border); }
-        .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff; }
+        /* Player Modal with Reviews & Rating */
+        .player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-base); display: none; flex-direction: column; z-index: 1000; overflow-y: auto; }
+        .modal-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+        .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .exit-btn { background-color: var(--accent); border: none; color: #fff; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 12px; }
-        .video-wrapper { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; background: #000; }
-        video, iframe { width: 100%; height: 100%; max-height: 100vh; border: none; outline: none; }
+        
+        .video-container { width: 100%; height: 240px; background: #000; position: relative; }
+        video, iframe { width: 100%; height: 100%; border: none; outline: none; }
+
+        .modal-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+        .rating-box { display: flex; align-items: center; gap: 10px; background: var(--bg-surface); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); }
+        .stars { font-size: 18px; color: #facc15; cursor: pointer; }
+        
+        .reviews-section { display: flex; flex-direction: column; gap: 8px; }
+        .review-input-box { display: flex; gap: 8px; }
+        .review-input-box input { flex: 1; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-main); font-size: 13px; outline: none; }
+        .review-send-btn { background: var(--accent); color: #fff; border: none; padding: 0 16px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+        .review-item { background: var(--bg-surface); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); font-size: 12px; }
+
         .not-found { grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 14px; }
     </style>
 </head>
@@ -79,7 +92,12 @@
 <header>
     <div class="logo">Uzs TV</div>
     <div class="header-btns">
-        <button class="action-btn" onclick="filterFavorites()">⭐ Sevimlilar</button>
+        <select class="lang-select" id="langSelect" onchange="changeLang(this.value)">
+            <option value="uz">UZ</option>
+            <option value="ru">RU</option>
+            <option value="en">EN</option>
+        </select>
+        <button class="action-btn" onclick="filterFavorites()">⭐</button>
         <button class="action-btn" onclick="toggleTheme()">☀️/🌙</button>
     </div>
 </header>
@@ -87,15 +105,25 @@
 <div class="search-area">
     <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Kinolar, multfilmlar va seriallarni qidirish...">
+        <input type="text" id="searchInput" placeholder="Qidirish..." oninput="renderItems()">
     </div>
 </div>
 
-<div class="hero-banner" id="heroBanner">
+<!-- Janrlar filtri -->
+<div class="genres-scroll" id="genresScroll">
+    <div class="genre-chip active" onclick="filterGenre('all', this)">Barchasi</div>
+    <div class="genre-chip" onclick="filterGenre('Komediya', this)">Komediya</div>
+    <div class="genre-chip" onclick="filterGenre('Jangari', this)">Jangari</div>
+    <div class="genre-chip" onclick="filterGenre('Drama', this)">Drama</div>
+    <div class="genre-chip" onclick="filterGenre('Multfilm', this)">Multfilm</div>
+    <div class="genre-chip" onclick="filterGenre('Sport', this)">Sport</div>
+</div>
+
+<div class="hero-banner" id="heroBanner" onclick="openFeatured()">
     <div class="hero-content">
-        <div class="hero-tag">Premyera</div>
-        <h2 class="hero-title" id="heroTitle">Uzs TV Platformasiga Xush Kelibsiz</h2>
-        <p class="hero-desc">Eng sara filmlar va multfilmlar bir joyda</p>
+        <div class="hero-tag" id="heroTagText">Premyera</div>
+        <h2 class="hero-title" id="heroTitle">Yuklanmoqda...</h2>
+        <p class="hero-desc" id="heroDesc">Eng sara premyeralar</p>
     </div>
 </div>
 
@@ -105,25 +133,38 @@
 
 <div class="grid-container" id="grid">Yuklanmoqda...</div>
 
-<!-- Bottom Navigation Menu -->
 <nav class="bottom-nav">
-    <button class="nav-item active" onclick="filterCategory('all', this)"><span>🏠</span>Barchasi</button>
-    <button class="nav-item" onclick="filterCategory('tv', this)"><span>📺</span>TV</button>
-    <button class="nav-item" onclick="filterCategory('cartoons', this)"><span>🧸</span>Multfilm</button>
-    <button class="nav-item" onclick="filterCategory('movies', this)"><span>🎬</span>Kino</button>
-    <button class="nav-item" onclick="filterCategory('series', this)"><span>📼</span>Serial</button>
-    <button class="nav-item" onclick="filterCategory('football', this)"><span>⚽</span>Futbol</button>
+    <button class="nav-item active" onclick="filterCategory('all', this)"><span>🏠</span><span id="navAll">Barchasi</span></button>
+    <button class="nav-item" onclick="filterCategory('premiere', this)"><span>🔥</span><span id="navPrem">Premyera</span></button>
+    <button class="nav-item" onclick="filterCategory('tv', this)"><span>📺</span><span id="navTv">TV</span></button>
+    <button class="nav-item" onclick="filterCategory('cartoons', this)"><span>🧸</span><span id="navCart">Multfilm</span></button>
+    <button class="nav-item" onclick="filterCategory('movies', this)"><span>🎬</span><span id="navMov">Kino</span></button>
+    <button class="nav-item" onclick="filterCategory('football', this)"><span>⚽</span><span id="navFoot">Futbol</span></button>
 </nav>
 
-<!-- Video Player Modal -->
+<!-- Player & Details Modal -->
 <div class="player-modal" id="playerModal">
     <div class="modal-top">
         <h3 class="modal-heading" id="modalTitle">Pleyer</h3>
         <button class="exit-btn" onclick="closePlayer()">Yopish</button>
     </div>
-    <div class="video-wrapper">
+    <div class="video-container">
         <video id="nativePlayer" controls playsinline style="display:none;"></video>
         <iframe id="ytPlayer" allowfullscreen allow="autoplay; encrypted-media" style="display:none;"></iframe>
+    </div>
+    <div class="modal-body">
+        <div class="rating-box">
+            <span>Reyting: <strong id="avgRating">5.0</strong> ⭐</span>
+            <div class="stars" onclick="rateItem()">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="reviews-section">
+            <strong>Fikr qoldirish:</strong>
+            <div class="review-input-box">
+                <input type="text" id="reviewInput" placeholder="Izoh yozing...">
+                <button class="review-send-btn" onclick="sendReview()">Yuborish</button>
+            </div>
+            <div id="reviewsList" style="display:flex; flex-direction:column; gap:6px; margin-top:6px;"></div>
+        </div>
     </div>
 </div>
 
@@ -133,8 +174,28 @@
 
     let items = [];
     let currentCategory = 'all';
+    let currentGenre = 'all';
     let onlyFavorites = false;
     let favorites = JSON.parse(localStorage.getItem('uzstv_favs') || '[]');
+    let currentItemId = null;
+    let featuredItem = null;
+
+    const translations = {
+        uz: { all: "Barchasi", prem: "Premyera", tv: "TV", cart: "Multfilm", mov: "Kino", foot: "Futbol", search: "Qidirish...", favs: "Sevimlilar" },
+        ru: { all: "Все", prem: "Премьера", tv: "ТВ", cart: "Мультфильм", mov: "Кино", foot: "Футбол", search: "Поиск...", favs: "Избранное" },
+        en: { all: "All", prem: "Premiere", tv: "TV", cart: "Cartoons", mov: "Movies", foot: "Football", search: "Search...", favs: "Favorites" }
+    };
+
+    function changeLang(lang) {
+        localStorage.setItem('uzstv_lang', lang);
+        document.getElementById('navAll').textContent = translations[lang].all;
+        document.getElementById('navPrem').textContent = translations[lang].prem;
+        document.getElementById('navTv').textContent = translations[lang].tv;
+        document.getElementById('navCart').textContent = translations[lang].cart;
+        document.getElementById('navMov').textContent = translations[lang].mov;
+        document.getElementById('navFoot').textContent = translations[lang].foot;
+        document.getElementById('searchInput').placeholder = translations[lang].search;
+    }
 
     function toggleTheme() {
         const html = document.documentElement;
@@ -148,46 +209,54 @@
             const data = await res.json();
             items = data.items || [];
             
-            if (items.length > 0) {
-                const featured = items[Math.floor(Math.random() * items.length)];
-                const banner = document.getElementById('heroBanner');
-                document.getElementById('heroTitle').textContent = featured.title;
-                document.getElementById('heroDesc').textContent = `Kategoriya: ${featured.category || 'Maxsus'} | Til: ${featured.language.toUpperCase()}`;
-                if (featured.poster) {
-                    banner.style.setProperty('--banner-bg', `url('${featured.poster}')`);
-                    banner.querySelector('::before, .hero-banner').style.backgroundImage = `url('${featured.poster}')`;
+            let premieres = items.filter(x => x.content_type === 'premiere');
+            featuredItem = premieres.length > 0 ? premieres[0] : items[0];
+
+            if (featuredItem) {
+                document.getElementById('heroTitle').textContent = featuredItem.title;
+                document.getElementById('heroDesc').textContent = `Janr: ${featuredItem.genre || 'Maxsus'}`;
+                if (featuredItem.poster) {
+                    document.getElementById('heroBanner').style.backgroundImage = `url('${featuredItem.poster}')`;
                 }
             }
 
-            renderItems(items);
+            renderItems();
+            let savedLang = localStorage.getItem('uzstv_lang') || 'uz';
+            document.getElementById('langSelect').value = savedLang;
+            changeLang(savedLang);
         } catch (e) {
-            document.getElementById('grid').innerHTML = `<div class="not-found">Ma'lumotlarni yuklab bo'lmadi. ` + e.message + `</div>`;
+            document.getElementById('grid').innerHTML = `<div class="not-found">Ma'lumotlarni yuklab bo'lmadi</div>`;
         }
     }
 
-    function renderItems(data) {
+    function openFeatured() {
+        if (featuredItem) openPlayer(featuredItem.id, featuredItem.title, featuredItem.url);
+    }
+
+    function renderItems() {
         const grid = document.getElementById("grid");
         grid.innerHTML = "";
         
-        let filtered = data;
+        let filtered = items;
         
         if (onlyFavorites) {
             filtered = filtered.filter(x => favorites.includes(x.id));
             document.getElementById('sectionHeaderTitle').textContent = "Saqlangan Sevimlilar";
         } else if (currentCategory !== 'all') {
             filtered = filtered.filter(x => x.content_type === currentCategory);
-            document.getElementById('sectionHeaderTitle').textContent = currentCategory.toUpperCase() + " Bo'limi";
-        } else {
-            document.getElementById('sectionHeaderTitle').textContent = "Barcha Kontentlar";
+        }
+
+        if (currentGenre !== 'all') {
+            filtered = filtered.filter(x => x.genre && x.genre.toLowerCase() === currentGenre.toLowerCase());
         }
 
         const searchQuery = document.getElementById("searchInput").value.toLowerCase().trim();
         if (searchQuery) {
-            filtered = filtered.filter(x => x.title.toLowerCase().includes(searchQuery) || (x.category && x.category.toLowerCase().includes(searchQuery)));
+            filtered = filtered.filter(x => x.title.toLowerCase().includes(searchQuery));
         }
 
         if (filtered.length === 0) {
-            grid.innerHTML = `<div class="not-found">Hozircha bu bo'limda hech narsa topilmadi</div>`;
+            grid.innerHTML = `<div class="not-found">Hozircha hech narsa topilmadi</div>`;
             return;
         }
 
@@ -195,17 +264,24 @@
             let posterStyle = item.poster ? `background-image: url('${item.poster}');` : "";
             let isFav = favorites.includes(item.id);
             let safeTitle = item.title.replace(/'/g, "\\'");
+            let matchTimeBadge = item.match_time ? `<div class="match-time">⏰ ${item.match_time}</div>` : '';
+            let viewsCount = item.views || 0;
 
             grid.innerHTML += `
                 <div class="movie-card">
                     <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${item.id})">★</button>
-                    <div class="poster-box" style="${posterStyle}" onclick="openPlayer('${safeTitle}', '${item.url}')">
+                    <div class="poster-box" style="${posterStyle}" onclick="openPlayer(${item.id}, '${safeTitle}', '${item.url}')">
                         <div class="tag">${item.badge || 'TV'}</div>
+                        ${matchTimeBadge}
+                        <div class="views-badge">👁 ${viewsCount}</div>
                         ${!item.poster ? `<span>🎬 ${item.title}</span>` : ''}
                     </div>
-                    <div class="card-details" onclick="openPlayer('${safeTitle}', '${item.url}')">
+                    <div class="card-details" onclick="openPlayer(${item.id}, '${safeTitle}', '${item.url}')">
                         <p class="movie-title">${item.title}</p>
-                        <span class="movie-category">${item.category || ''}</span>
+                        <div class="movie-category">
+                            <span>${item.genre || ''}</span>
+                            <span>⭐ ${item.rating || 5.0}</span>
+                        </div>
                     </div>
                 </div>
             `;
@@ -215,15 +291,21 @@
     function filterCategory(cat, btn) {
         currentCategory = cat;
         onlyFavorites = false;
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
         if(btn) btn.classList.add('active');
-        renderItems(items);
+        renderItems();
+    }
+
+    function filterGenre(genre, chip) {
+        currentGenre = genre;
+        document.querySelectorAll('.genre-chip').forEach(el => el.classList.remove('active'));
+        if(chip) chip.classList.add('active');
+        renderItems();
     }
 
     function filterFavorites() {
         onlyFavorites = !onlyFavorites;
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        renderItems(items);
+        renderItems();
     }
 
     function toggleFav(id) {
@@ -233,19 +315,23 @@
             favorites.push(id);
         }
         localStorage.setItem('uzstv_favs', JSON.stringify(favorites));
-        renderItems(items);
+        renderItems();
     }
 
-    document.getElementById("searchInput").addEventListener("input", () => {
-        renderItems(items);
-    });
+    function openPlayer(id, title, url) {
+        currentItemId = id;
+        let item = items.find(x => x.id === id);
+        if (item) {
+            item.views = (item.views || 0) + 1;
+            document.getElementById('avgRating').textContent = item.rating || 5.0;
+            renderReviews(item);
+        }
 
-    function openPlayer(title, url) {
         document.getElementById("modalTitle").textContent = title;
         document.getElementById("playerModal").style.display = "flex";
         
-        const nativePlayer = document.getElementById("nativePlayer");
-        const ytPlayer = document.getElementById("ytPlayer");
+        let nativePlayer = document.getElementById("nativePlayer");
+        let ytPlayer = document.getElementById("ytPlayer");
 
         if (url.includes("youtube.com") || url.includes("youtu.be")) {
             nativePlayer.style.display = "none";
@@ -254,11 +340,8 @@
             ytPlayer.style.display = "block";
             
             let ytId = "";
-            if (url.includes("youtu.be/")) {
-                ytId = url.split("youtu.be/")[1]?.split("?")[0];
-            } else if (url.includes("watch?v=")) {
-                ytId = url.split("watch?v=")[1]?.split("&")[0];
-            }
+            if (url.includes("youtu.be/")) ytId = url.split("youtu.be/")[1]?.split("?")[0];
+            else if (url.includes("watch?v=")) ytId = url.split("watch?v=")[1]?.split("&")[0];
             ytPlayer.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
         } else {
             ytPlayer.style.display = "none";
@@ -269,13 +352,45 @@
         }
     }
 
+    function sendReview() {
+        let text = document.getElementById('reviewInput').value.trim();
+        if(!text) return;
+        let item = items.find(x => x.id === currentItemId);
+        if(item) {
+            if(!item.reviews) item.reviews = [];
+            item.reviews.push(text);
+            document.getElementById('reviewInput').value = '';
+            renderReviews(item);
+        }
+    }
+
+    function renderReviews(item) {
+        let list = document.getElementById('reviewsList');
+        list.innerHTML = '';
+        if(item.reviews && item.reviews.length > 0) {
+            item.reviews.forEach(rev => {
+                list.innerHTML += `<div class="review-item">💬 ${rev}</div>`;
+            });
+        } else {
+            list.innerHTML = `<div style="color:var(--text-muted); font-size:11px;">Hozircha izohlar yo'q</div>`;
+        }
+    }
+
+    function rateItem() {
+        let item = items.find(x => x.id === currentItemId);
+        if(item) {
+            item.rating = 5.0;
+            document.getElementById('avgRating').textContent = "5.0";
+            alert("Rahmat, ovozingiz qabul qilindi!");
+        }
+    }
+
     function closePlayer() {
         document.getElementById("playerModal").style.display = "none";
-        const nativePlayer = document.getElementById("nativePlayer");
-        const ytPlayer = document.getElementById("ytPlayer");
-        nativePlayer.pause();
-        nativePlayer.src = "";
-        ytPlayer.src = "";
+        document.getElementById("nativePlayer").pause();
+        document.getElementById("nativePlayer").src = "";
+        document.getElementById("ytPlayer").src = "";
+        renderItems();
     }
 
     loadData();
