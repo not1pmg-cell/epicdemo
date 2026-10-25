@@ -2,13 +2,13 @@
   "items": [
     {
       "id": 1,
-      "title": "Togrivoy Egrivoy",
+      "title": "Big Buck Bunny (Sinov videosi)",
       "content_type": "cartoons",
       "language": "uz",
       "category": "Multfilm",
       "badge": "CARTOONS",
-    "url": "https://www.youtube.com/watch?v=jNQXAC9IVRw"
-      "poster": ""
+      "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "poster": "https://images.unsplash.com/photo-1560942446-b8a542969f56?w=500"
     }
   ]
 }
