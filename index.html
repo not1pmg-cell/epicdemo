@@ -120,7 +120,6 @@
     </select>
 </div>
 
-<!-- Filterlar bloki (Faqat Kino bo'limida chiqadi) -->
 <div class="filters-container" id="filtersContainer">
     <div class="lang-chips">
         <div class="chip active" onclick="filterLanguage('all', this)">Barcha tillar</div>
@@ -209,7 +208,6 @@
 
     async function loadData() {
         try {
-            // Offline kesh imkoniyati bilan ma'lumotlarni yuklash
             let res = await fetch('data.json');
             let data = await res.json();
             items = data.items || [];
