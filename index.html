@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Uzs TV - Ultimate Portal</title>
+    <title>Uzs TV - Ultimate</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root[data-theme="dark"] {
@@ -29,10 +29,14 @@
         .search-wrapper input { width: 100%; padding: 12px 16px 12px 42px; border-radius: 12px; border: 1px solid var(--border); background-color: var(--bg-surface); color: var(--text-main); font-size: 14px; outline: none; }
         .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 15px; }
 
-        .genres-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 6px 20px 10px 20px; scrollbar-width: none; }
+        /* Filtrlash va Tartiblash paneli */
+        .filter-sort-row { display: flex; justify-content: space-between; align-items: center; padding: 0 20px 10px 20px; }
+        .genres-scroll { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; flex: 1; }
         .genres-scroll::-webkit-scrollbar { display: none; }
-        .genre-chip { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: 0.2s; }
+        .genre-chip { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-muted); padding: 5px 10px; border-radius: 16px; font-size: 11px; font-weight: 600; white-space: nowrap; cursor: pointer; }
         .genre-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        
+        .sort-select { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-main); padding: 5px 8px; border-radius: 12px; font-size: 11px; outline: none; margin-left: 8px; }
 
         .hero-banner { margin: 6px 20px 12px 20px; height: 150px; border-radius: 16px; background: linear-gradient(135deg, #1e293b, #0f172a); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; box-shadow: 0 8px 24px var(--shadow); background-size: cover; background-position: center; cursor: pointer; }
         .hero-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); z-index: 1; }
@@ -57,37 +61,29 @@
         .movie-title { font-size: 13px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .movie-category { font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
 
+        /* Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--bg-surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; box-shadow: 0 -4px 20px var(--shadow); }
         .nav-item { background: none; border: none; color: var(--text-muted); font-size: 10px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; flex: 1; }
         .nav-item.active { color: var(--accent); }
         .nav-item span { font-size: 18px; }
 
+        /* Modal qism */
         .player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-base); display: none; flex-direction: column; z-index: 1000; overflow-y: auto; }
         .modal-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
-        .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 50%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         
-        .player-header-controls { display: flex; gap: 8px; align-items: center; }
-        .quality-select { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 4px 8px; border-radius: 6px; font-size: 11px; outline: none; }
+        .player-header-controls { display: flex; gap: 6px; align-items: center; }
+        .quality-select, .action-modal-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 5px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; outline: none; }
         .exit-btn { background-color: var(--accent); border: none; color: #fff; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 12px; }
         
-        .video-container { width: 100%; height: 240px; background: #000; position: relative; }
+        .video-container { width: 100%; height: 260px; background: #000; position: relative; }
         video, iframe { width: 100%; height: 100%; border: none; outline: none; }
 
-        .modal-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
-        .control-row { display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); }
-        .trailer-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; }
+        .info-panel { padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; }
+        .info-title { font-size: 18px; font-weight: 800; margin: 0; }
+        .info-meta { font-size: 13px; color: var(--text-muted); display: flex; gap: 12px; }
 
-        .rating-interactive { display: flex; gap: 4px; font-size: 20px; cursor: pointer; }
-        .star-rate { color: #475569; }
-        .star-rate.active { color: #facc15; }
-
-        .reviews-section { display: flex; flex-direction: column; gap: 8px; }
-        .review-input-box { display: flex; gap: 8px; }
-        .review-input-box input { flex: 1; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-main); font-size: 13px; outline: none; }
-        .review-send-btn { background: var(--accent); color: #fff; border: none; padding: 0 16px; border-radius: 10px; font-weight: 700; cursor: pointer; }
-        .review-item { background: var(--bg-surface); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); font-size: 12px; }
-
-        .not-found { grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 14px; }
+        .not-found { grid-container: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 14px; }
     </style>
 </head>
 <body>
@@ -113,13 +109,22 @@
     </div>
 </div>
 
-<div class="genres-scroll" id="genresScroll">
-    <div class="genre-chip active" onclick="filterGenre('all', this)">Barchasi</div>
-    <div class="genre-chip" onclick="filterGenre('Komediya', this)">Komediya</div>
-    <div class="genre-chip" onclick="filterGenre('Jangari', this)">Jangari</div>
-    <div class="genre-chip" onclick="filterGenre('Drama', this)">Drama</div>
-    <div class="genre-chip" onclick="filterGenre('Multfilm', this)">Multfilm</div>
-    <div class="genre-chip" onclick="filterGenre('Sport', this)">Sport</div>
+<!-- Janrlar va Tartiblash (Sort) paneli -->
+<div class="filter-sort-row">
+    <div class="genres-scroll" id="genresScroll">
+        <div class="genre-chip active" onclick="filterGenre('all', this)">Barchasi</div>
+        <div class="genre-chip" onclick="filterGenre('Komediya', this)">Komediya</div>
+        <div class="genre-chip" onclick="filterGenre('Jangari', this)">Jangari</div>
+        <div class="genre-chip" onclick="filterGenre('Drama', this)">Drama</div>
+        <div class="genre-chip" onclick="filterGenre('Multfilm', this)">Multfilm</div>
+        <div class="genre-chip" onclick="filterGenre('Sport', this)">Sport</div>
+    </div>
+    <select class="sort-select" id="sortSelect" onchange="renderItems()">
+        <option value="default">Saralash</option>
+        <option value="views">🔥 Trend (Ko'p ko'rilgan)</option>
+        <option value="new">✨ Yangi qo'shilgan</option>
+        <option value="alpha">AZ Alifbo</option>
+    </select>
 </div>
 
 <div class="hero-banner" id="heroBanner" onclick="openFeatured()">
@@ -138,7 +143,6 @@
 
 <nav class="bottom-nav">
     <button class="nav-item active" onclick="filterCategory('all', this)"><span>🏠</span><span id="navAll">Barchasi</span></button>
-    <button class="nav-item" onclick="filterCategory('premiere', this)"><span>🔥</span><span id="navPrem">Premyera</span></button>
     <button class="nav-item" onclick="filterCategory('tv', this)"><span>📺</span><span id="navTv">TV</span></button>
     <button class="nav-item" onclick="filterCategory('cartoons', this)"><span>🧸</span><span id="navCart">Multfilm</span></button>
     <button class="nav-item" onclick="filterCategory('movies', this)"><span>🎬</span><span id="navMov">Kino</span></button>
@@ -149,6 +153,7 @@
     <div class="modal-top">
         <h3 class="modal-heading" id="modalTitle">Pleyer</h3>
         <div class="player-header-controls">
+            <button class="action-modal-btn" onclick="shareCurrentMovie()">📤 Ulashish</button>
             <select class="quality-select" id="qualitySelect" onchange="changeQuality(this.value)">
                 <option value="1080">1080p</option>
                 <option value="720" selected>720p</option>
@@ -158,27 +163,14 @@
         </div>
     </div>
     <div class="video-container">
-        <video id="nativePlayer" controls playsinline style="display:none;"></video>
-        <iframe id="ytPlayer" allowfullscreen allow="autoplay; encrypted-media" style="display:none;"></iframe>
+        <video id="nativePlayer" controls playsinline style="display:none; width:100%; height:100%;"></video>
+        <iframe id="ytPlayer" allowfullscreen allow="autoplay; encrypted-media" style="display:none; width:100%; height:100%;"></iframe>
     </div>
-    <div class="modal-body">
-        <div class="control-row">
-            <span>Reyting: <strong id="avgRating">5.0</strong> ⭐</span>
-            <div class="rating-interactive" id="starContainer">
-                <span class="star-rate" onclick="rateItem(1)">★</span>
-                <span class="star-rate" onclick="rateItem(2)">★</span>
-                <span class="star-rate" onclick="rateItem(3)">★</span>
-                <span class="star-rate" onclick="rateItem(4)">★</span>
-                <span class="star-rate" onclick="rateItem(5)">★</span>
-            </div>
-        </div>
-        <div class="reviews-section">
-            <strong>Fikr qoldirish:</strong>
-            <div class="review-input-box">
-                <input type="text" id="reviewInput" placeholder="Izoh yozing...">
-                <button class="review-send-btn" onclick="sendReview()">Yuborish</button>
-            </div>
-            <div id="reviewsList" style="display:flex; flex-direction:column; gap:6px; margin-top:6px;"></div>
+    <div class="info-panel">
+        <h2 class="info-title" id="infoTitle">Nomi</h2>
+        <div class="info-meta">
+            <span id="infoGenre">Janr: -</span>
+            <span id="infoViews">👁 Ko'rishlar: 0</span>
         </div>
     </div>
 </div>
@@ -194,21 +186,15 @@
     let onlyHistory = false;
     let favorites = JSON.parse(localStorage.getItem('uzstv_favs') || '[]');
     let watchHistory = JSON.parse(localStorage.getItem('uzstv_history') || '[]');
-    
-    // Foydalanuvchi yozgan izohlar va reytinglarni doimiy saqlash uchun bazasi
-    let customReviews = JSON.parse(localStorage.getItem('uzstv_custom_reviews') || '{}');
-    let customRatings = JSON.parse(localStorage.getItem('uzstv_custom_ratings') || '{}');
-
-    let currentItemId = null;
     let featuredItem = null;
+    let activeMovie = null;
 
     const translations = {
-        uz: { all: "Barchasi", prem: "Premyera", tv: "TV", cart: "Multfilm", mov: "Kino", foot: "Futbol", search: "Qidirish..." },
-        ru: { all: "Все", prem: "Премьера", tv: "ТВ", cart: "Мультфильм", mov: "Кино", foot: "Футбол", search: "Поиск..." },
-        en: { all: "All", prem: "Premiere", tv: "TV", cart: "Cartoons", mov: "Movies", foot: "Football", search: "Search..." }
+        uz: { all: "Barchasi", tv: "TV", cart: "Multfilm", mov: "Kino", foot: "Futbol", search: "Qidirish..." },
+        ru: { all: "Все", tv: "ТВ", cart: "Мультфильм", mov: "Кино", foot: "Футбол", search: "Поиск..." },
+        en: { all: "All", tv: "TV", cart: "Cartoons", mov: "Movies", foot: "Football", search: "Search..." }
     };
 
-    // Tema sozlamasini eslab qolish
     let savedTheme = localStorage.getItem('uzstv_theme') || 'dark';
     document.documentElement.setAttribute("data-theme", savedTheme);
 
@@ -223,7 +209,6 @@
     function changeLang(lang) {
         localStorage.setItem('uzstv_lang', lang);
         document.getElementById('navAll').textContent = translations[lang].all;
-        document.getElementById('navPrem').textContent = translations[lang].prem;
         document.getElementById('navTv').textContent = translations[lang].tv;
         document.getElementById('navCart').textContent = translations[lang].cart;
         document.getElementById('navMov').textContent = translations[lang].mov;
@@ -258,14 +243,14 @@
     }
 
     function openFeatured() {
-        if (featuredItem) openPlayer(featuredItem.id, featuredItem.title, featuredItem.url);
+        if (featuredItem) openPlayer(featuredItem.id);
     }
 
     function renderItems() {
         const grid = document.getElementById("grid");
         grid.innerHTML = "";
         
-        let filtered = items;
+        let filtered = [...items];
         
         if (onlyFavorites) {
             filtered = filtered.filter(x => favorites.includes(x.id));
@@ -286,6 +271,16 @@
             filtered = filtered.filter(x => x.title.toLowerCase().includes(searchQuery));
         }
 
+        // Saralash (Sorting) logikasi
+        let sortVal = document.getElementById('sortSelect').value;
+        if (sortVal === 'views') {
+            filtered.sort((a, b) => (b.views || 0) - (a.views || 0));
+        } else if (sortVal === 'new') {
+            filtered.sort((a, b) => b.id - a.id);
+        } else if (sortVal === 'alpha') {
+            filtered.sort((a, b) => a.title.localeCompare(b.title));
+        }
+
         if (filtered.length === 0) {
             grid.innerHTML = `<div class="not-found">Hozircha hech narsa topilmadi</div>`;
             return;
@@ -294,25 +289,23 @@
         filtered.forEach(item => {
             let posterStyle = item.poster ? `background-image: url('${item.poster}');` : "";
             let isFav = favorites.includes(item.id);
-            let safeTitle = item.title.replace(/'/g, "\\'");
             let matchTimeBadge = item.match_time ? `<div class="match-time">⏰ ${item.match_time}</div>` : '';
             let viewsCount = item.views || 0;
-            let currentRating = customRatings[item.id] ? customRatings[item.id].toFixed(1) : (item.rating || 5.0);
 
             grid.innerHTML += `
                 <div class="movie-card">
                     <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${item.id})">★</button>
-                    <div class="poster-box" style="${posterStyle}" onclick="openPlayer(${item.id}, '${safeTitle}', '${item.url}')">
+                    <div class="poster-box" style="${posterStyle}" onclick="openPlayer(${item.id})">
                         <div class="tag">${item.badge || 'TV'}</div>
                         ${matchTimeBadge}
                         <div class="views-badge">👁 ${viewsCount}</div>
                         ${!item.poster ? `<span>🎬 ${item.title}</span>` : ''}
                     </div>
-                    <div class="card-details" onclick="openPlayer(${item.id}, '${safeTitle}', '${item.url}')">
+                    <div class="card-details" onclick="openPlayer(${item.id})">
                         <p class="movie-title">${item.title}</p>
                         <div class="movie-category">
                             <span>${item.genre || ''}</span>
-                            <span>⭐ ${currentRating}</span>
+                            <span>👁 ${viewsCount}</span>
                         </div>
                     </div>
                 </div>
@@ -358,26 +351,25 @@
         renderItems();
     }
 
-    function openPlayer(id, title, url) {
-        currentItemId = id;
-        
+    function openPlayer(id) {
+        activeMovie = items.find(x => x.id === id);
+        if(!activeMovie) return;
+
         if (!watchHistory.includes(id)) {
             watchHistory.unshift(id);
             if (watchHistory.length > 20) watchHistory.pop();
             localStorage.setItem('uzstv_history', JSON.stringify(watchHistory));
         }
 
-        let item = items.find(x => x.id === id);
-        if (item) {
-            item.views = (item.views || 0) + 1;
-            let displayRating = customRatings[id] ? customRatings[id].toFixed(1) : (item.rating || 5.0);
-            document.getElementById('avgRating').textContent = displayRating;
-            renderReviews(id);
-        }
+        activeMovie.views = (activeMovie.views || 0) + 1;
 
-        document.getElementById("modalTitle").textContent = title;
+        document.getElementById("modalTitle").textContent = activeMovie.title;
+        document.getElementById("infoTitle").textContent = activeMovie.title;
+        document.getElementById("infoGenre").textContent = `Janr: ${activeMovie.genre || 'Maxsus'}`;
+        document.getElementById("infoViews").textContent = `👁 Ko'rishlar: ${activeMovie.views}`;
+        
         document.getElementById("playerModal").style.display = "flex";
-        playVideoSource(url);
+        playVideoSource(activeMovie.url);
     }
 
     function playVideoSource(url) {
@@ -403,55 +395,20 @@
         }
     }
 
+    function shareCurrentMovie() {
+        if(activeMovie) {
+            let shareText = `Kino: ${activeTom = activeMovie.title}\nTomosha qilish: ${activeMovie.url}`;
+            if (navigator.share) {
+                navigator.share({ title: activeMovie.title, text: shareText, url: activeMovie.url });
+            } else {
+                navigator.clipboard.writeText(activeMovie.url);
+                alert("Havola nusxalandi!");
+            }
+        }
+    }
+
     function changeQuality(quality) {
         alert(`Video sifati ${quality}p ga o'zgartirildi`);
-    }
-
-    // Izoh yuborish va xotirada saqlash
-    function sendReview() {
-        let text = document.getElementById('reviewInput').value.trim();
-        if(!text) return;
-        
-        if(!customReviews[currentItemId]) {
-            customReviews[currentItemId] = [];
-        }
-        customReviews[currentItemId].push(text);
-        localStorage.setItem('uzstv_custom_reviews', JSON.stringify(customReviews));
-        
-        document.getElementById('reviewInput').value = '';
-        renderReviews(currentItemId);
-    }
-
-    function renderReviews(id) {
-        let list = document.getElementById('reviewsList');
-        list.innerHTML = '';
-        let itemReviews = customReviews[id] || [];
-        
-        if (itemReviews.length > 0) {
-            itemReviews.forEach(rev => {
-                list.innerHTML += `<div class="review-item">💬 ${rev}</div>`;
-            });
-        } else {
-            list.innerHTML = `<div style="color:var(--text-muted); font-size:11px;">Hozircha izohlar yo'q. Birinchi bo'lib yozing!</div>`;
-        }
-    }
-
-    // Yulduzchali baholashni saqlash
-    function rateItem(starsCount) {
-        customRatings[currentItemId] = starsCount;
-        localStorage.setItem('uzstv_custom_ratings', JSON.stringify(customRatings));
-        
-        document.getElementById('avgRating').textContent = starsCount.toFixed(1);
-        
-        // Yulduzchalarni bo'yash
-        let stars = document.querySelectorAll('.star-rate');
-        stars.forEach((s, idx) => {
-            if(idx < starsCount) s.classList.add('active');
-            else s.classList.remove('active');
-        });
-
-        alert("Rahmat, ovozingiz muvaffaqiyatli saqlandi!");
-        renderItems();
     }
 
     function closePlayer() {
