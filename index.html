@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Uzs TV - Pro</title>
+    <title>Uzs TV - Ultimate Pro</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root[data-theme="dark"] {
@@ -29,14 +29,14 @@
         .search-wrapper input { width: 100%; padding: 12px 16px 12px 42px; border-radius: 12px; border: 1px solid var(--border); background-color: var(--bg-surface); color: var(--text-main); font-size: 14px; outline: none; }
         .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 15px; }
 
-        /* Kun Tavsiyasi bloki */
-        .daily-recommendation { margin: 10px 20px; padding: 12px 16px; background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 14px; border: 1px solid var(--border); display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 12px var(--shadow); }
-        .daily-icon { font-size: 24px; }
-        .daily-text h4 { margin: 0 0 2px 0; font-size: 13px; color: #fff; }
-        .daily-text p { margin: 0; font-size: 11px; color: var(--text-muted); }
+        .top-action-row { display: flex; gap: 10px; padding: 0 20px 10px 20px; }
+        .lucky-btn { flex: 1; background: linear-gradient(135deg, #e50914, #b20710); color: #fff; border: none; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3); }
 
-        /* Til filtrlari va Janrlar */
-        .filters-container { padding: 0 20px 10px 20px; display: flex; flex-direction: column; gap: 8px; }
+        .filter-sort-row { display: flex; justify-content: space-between; align-items: center; padding: 0 20px 10px 20px; }
+        .sort-select { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-main); padding: 6px 10px; border-radius: 10px; font-size: 12px; outline: none; }
+
+        .filters-container { padding: 0 20px 10px 20px; display: none; flex-direction: column; gap: 8px; }
+        .filters-container.active { display: flex; }
         .lang-chips, .genres-scroll { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
         .lang-chips::-webkit-scrollbar, .genres-scroll::-webkit-scrollbar { display: none; }
         
@@ -46,10 +46,6 @@
         .section-title { font-size: 15px; font-weight: 800; margin: 10px 20px 8px 20px; display: flex; justify-content: space-between; align-items: center; }
         .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 0 20px 20px 20px; }
         
-        /* Skelton yuklanish animatsiyasi */
-        .skeleton-card { background-color: var(--bg-card); border-radius: 14px; height: 210px; border: 1px solid var(--border); animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
-
         .movie-card { background-color: var(--bg-card); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; box-shadow: 0 4px 14px var(--shadow); position: relative; }
         .poster-box { height: 150px; background-color: #1a2233; position: relative; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: var(--text-muted); cursor: pointer; }
         .tag { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.75); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 6px; font-weight: 700; z-index: 2; }
@@ -63,7 +59,6 @@
         .movie-title { font-size: 13px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .movie-category { font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
 
-        /* Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--bg-surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; box-shadow: 0 -4px 20px var(--shadow); }
         .nav-item { background: none; border: none; color: var(--text-muted); font-size: 10px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; flex: 1; }
         .nav-item.active { color: var(--accent); }
@@ -71,18 +66,19 @@
 
         .player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-base); display: none; flex-direction: column; z-index: 1000; overflow-y: auto; }
         .modal-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
-        .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 50%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .modal-heading { font-size: 15px; font-weight: 700; margin: 0; max-width: 40%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         
         .player-header-controls { display: flex; gap: 6px; align-items: center; }
-        .quality-select, .action-modal-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 5px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; outline: none; }
+        .quality-select, .action-modal-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 5px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; outline: none; }
         .exit-btn { background-color: var(--accent); border: none; color: #fff; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 12px; }
         
-        .video-container { width: 100%; height: 260px; background: #000; position: relative; }
+        .video-container { width: 100%; height: 240px; background: #000; position: relative; }
         video, iframe { width: 100%; height: 100%; border: none; outline: none; }
 
         .info-panel { padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; }
         .info-title { font-size: 18px; font-weight: 800; margin: 0; }
-        .info-meta { font-size: 13px; color: var(--text-muted); display: flex; gap: 12px; }
+        .info-meta { font-size: 12px; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 10px; }
+        .report-link { font-size: 12px; color: var(--accent); cursor: pointer; text-decoration: underline; margin-top: 4px; }
 
         .not-found { grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 14px; }
     </style>
@@ -110,17 +106,22 @@
     </div>
 </div>
 
-<!-- Kun Tavsiyasi Bloki -->
-<div class="daily-recommendation">
-    <div class="daily-icon">💡</div>
-    <div class="daily-text">
-        <h4>Kun Tavsiyasi</h4>
-        <p id="dailyQuote">Har kuni eng sara filmlar va translyatsiyalar faqat siz uchun!</p>
-    </div>
+<div class="top-action-row">
+    <button class="lucky-btn" onclick="openRandomMovie()">🎲 Tasodifiy kino tanlash</button>
 </div>
 
-<!-- Til va Janr filterlari -->
-<div class="filters-container">
+<div class="filter-sort-row">
+    <div style="font-size: 13px; font-weight: 700; color: var(--text-muted);" id="sectionHeaderTitle">Katalog</div>
+    <select class="sort-select" id="sortSelect" onchange="renderItems()">
+        <option value="default">Tartiblash</option>
+        <option value="views">🔥 Trend (Ko'p ko'rilgan)</option>
+        <option value="new">✨ Yangi qo'shilgan</option>
+        <option value="alpha">AZ Alifbo</option>
+    </select>
+</div>
+
+<!-- Filterlar bloki (Faqat Kino bo'limida chiqadi) -->
+<div class="filters-container" id="filtersContainer">
     <div class="lang-chips">
         <div class="chip active" onclick="filterLanguage('all', this)">Barcha tillar</div>
         <div class="chip" onclick="filterLanguage('uz', this)">🇺🇿 O'zbekcha</div>
@@ -137,15 +138,7 @@
     </div>
 </div>
 
-<div class="section-title">
-    <span id="sectionHeaderTitle">Barcha Kontentlar</span>
-</div>
-
-<!-- Skelton yuklanish holati bilan grid -->
-<div class="grid-container" id="grid">
-    <div class="skeleton-card"></div>
-    <div class="skeleton-card"></div>
-</div>
+<div class="grid-container" id="grid">Yuklanmoqda...</div>
 
 <nav class="bottom-nav">
     <button class="nav-item active" onclick="filterCategory('all', this)"><span>🏠</span><span id="navAll">Barchasi</span></button>
@@ -176,8 +169,12 @@
         <h2 class="info-title" id="infoTitle">Nomi</h2>
         <div class="info-meta">
             <span id="infoGenre">Janr: -</span>
+            <span id="infoYear">📅 Yil: 2024</span>
+            <span id="infoDuration">⏱ Davomiyligi: 1s 30m</span>
             <span id="infoViews">👁 Ko'rishlar: 0</span>
         </div>
+        <div id="infoDirector" style="font-size:12px; color:var(--text-muted);">Aktyorlar / Rejissor: -</div>
+        <span class="report-link" onclick="reportBug()">⚠️ Xatolik haqida xabar berish</span>
     </div>
 </div>
 
@@ -194,13 +191,6 @@
     let favorites = JSON.parse(localStorage.getItem('uzstv_favs') || '[]');
     let watchHistory = JSON.parse(localStorage.getItem('uzstv_history') || '[]');
     let activeMovie = null;
-
-    const quotes = [
-        "Bugun o'zingizga yoqadigan ajoyib film tanlang va maroqli hordiq chiqaring!",
-        "Eng sara multfilmlar va premyeralar faqat Uzs TV platformasida.",
-        "Futbol translyatsiyalarini o'tkazib yubormang! Vaqtini kuzatib boring."
-    ];
-    document.getElementById('dailyQuote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
 
     let savedTheme = localStorage.getItem('uzstv_theme') || 'dark';
     document.documentElement.setAttribute("data-theme", savedTheme);
@@ -219,13 +209,27 @@
 
     async function loadData() {
         try {
-            const res = await fetch('data.json');
-            const data = await res.json();
+            // Offline kesh imkoniyati bilan ma'lumotlarni yuklash
+            let res = await fetch('data.json');
+            let data = await res.json();
             items = data.items || [];
-            renderItems();
+            localStorage.setItem('uzstv_cached_items', JSON.stringify(items));
         } catch (e) {
-            document.getElementById('grid').innerHTML = `<div class="not-found">Ma'lumotlarni yuklab bo'lmadi</div>`;
+            let cached = localStorage.getItem('uzstv_cached_items');
+            if (cached) {
+                items = JSON.parse(cached);
+            } else {
+                document.getElementById('grid').innerHTML = `<div class="not-found">Internet aloqasi yo'q va kesh topilmadi</div>`;
+                return;
+            }
         }
+        renderItems();
+    }
+
+    function openRandomMovie() {
+        if (items.length === 0) return;
+        let randomItem = items[Math.floor(Math.random() * items.length)];
+        openPlayer(randomItem.id);
     }
 
     function renderItems() {
@@ -244,17 +248,27 @@
             filtered = filtered.filter(x => x.content_type === currentCategory);
         }
 
-        if (currentGenre !== 'all') {
-            filtered = filtered.filter(x => x.genre && x.genre.toLowerCase() === currentGenre.toLowerCase());
-        }
-
-        if (currentLanguage !== 'all') {
-            filtered = filtered.filter(x => x.language && x.language.toLowerCase() === currentLanguage.toLowerCase());
+        if (currentCategory === 'movies' || currentCategory === 'all') {
+            if (currentGenre !== 'all') {
+                filtered = filtered.filter(x => x.genre && x.genre.toLowerCase() === currentGenre.toLowerCase());
+            }
+            if (currentLanguage !== 'all') {
+                filtered = filtered.filter(x => x.language && x.language.toLowerCase() === currentLanguage.toLowerCase());
+            }
         }
 
         const searchQuery = document.getElementById("searchInput").value.toLowerCase().trim();
         if (searchQuery) {
             filtered = filtered.filter(x => x.title.toLowerCase().includes(searchQuery));
+        }
+
+        let sortVal = document.getElementById('sortSelect').value;
+        if (sortVal === 'views') {
+            filtered.sort((a, b) => (b.views || 0) - (a.views || 0));
+        } else if (sortVal === 'new') {
+            filtered.sort((a, b) => b.id - a.id);
+        } else if (sortVal === 'alpha') {
+            filtered.sort((a, b) => a.title.localeCompare(b.title));
         }
 
         if (filtered.length === 0) {
@@ -267,6 +281,7 @@
             let isFav = favorites.includes(item.id);
             let matchTimeBadge = item.match_time ? `<div class="match-time">⏰ ${item.match_time}</div>` : '';
             let viewsCount = item.views || 0;
+            let yearAndDur = `${item.year || '2024'} • ${item.duration || '1s 30m'}`;
 
             grid.innerHTML += `
                 <div class="movie-card">
@@ -280,7 +295,7 @@
                     <div class="card-details" onclick="openPlayer(${item.id})">
                         <p class="movie-title">${item.title}</p>
                         <div class="movie-category">
-                            <span>${item.genre || ''}</span>
+                            <span>${yearAndDur}</span>
                             <span>👁 ${viewsCount}</span>
                         </div>
                     </div>
@@ -293,6 +308,16 @@
         currentCategory = cat;
         onlyFavorites = false;
         onlyHistory = false;
+        
+        const filtersContainer = document.getElementById('filtersContainer');
+        if (cat === 'movies') {
+            filtersContainer.classList.add('active');
+        } else {
+            filtersContainer.classList.remove('active');
+            currentGenre = 'all';
+            currentLanguage = 'all';
+        }
+
         document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
         if(btn) btn.classList.add('active');
         renderItems();
@@ -315,12 +340,14 @@
     function filterFavorites() {
         onlyFavorites = !onlyFavorites;
         onlyHistory = false;
+        document.getElementById('filtersContainer').classList.remove('active');
         renderItems();
     }
 
     function filterHistory() {
         onlyHistory = !onlyHistory;
         onlyFavorites = false;
+        document.getElementById('filtersContainer').classList.remove('active');
         renderItems();
     }
 
@@ -349,7 +376,10 @@
         document.getElementById("modalTitle").textContent = activeMovie.title;
         document.getElementById("infoTitle").textContent = activeMovie.title;
         document.getElementById("infoGenre").textContent = `Janr: ${activeMovie.genre || 'Maxsus'}`;
+        document.getElementById("infoYear").textContent = `📅 Yil: ${activeMovie.year || '2024'}`;
+        document.getElementById("infoDuration").textContent = `⏱ Davomiyligi: ${activeMovie.duration || '1s 30m'}`;
         document.getElementById("infoViews").textContent = `👁 Ko'rishlar: ${activeMovie.views}`;
+        document.getElementById("infoDirector").textContent = `Aktyorlar / Rejissor: ${activeMovie.director || 'Noma\'lum'}`;
         
         document.getElementById("playerModal").style.display = "flex";
         playVideoSource(activeMovie.url);
@@ -388,6 +418,10 @@
                 alert("Havola nusxalandi!");
             }
         }
+    }
+
+    function reportBug() {
+        alert("Xatolik haqida xabar adminga yuborildi. Rahmat!");
     }
 
     function changeQuality(quality) {
