@@ -385,8 +385,11 @@ nav button.on { color: var(--a); }
 <script>
 "use strict";
 /* ================= SOZLAMALAR ================= */
-const API_URL = "";   // masalan: "https://uzstv-bot.onrender.com" (bo'sh = faqat data.json)
+const API_URL = "https://not1pmg-cell.github.io/epicdemo/"
 const DATA_URL = "data.json";
+function syncTeam(name, on) {   // jamoa kuzatuvi botga yuboriladi (yopiq paytda eslatma uchun)
+  if (API_URL && tg && tg.initData) fetch(API_URL.replace(/\/$/, "") + "/api/follow", { method: "POST", headers: { "X-Init-Data": tg.initData, "Content-Type": "application/json" }, body: JSON.stringify({ team: name, on }) }).catch(() => {});
+}
 const tg = window.Telegram && Telegram.WebApp;
 if (tg) {
   tg.ready();
@@ -1284,12 +1287,12 @@ document.addEventListener("click", e => {
   const tmb = t.closest("[data-team]");
   if (tmb) {
     const n = tmb.dataset.team;
-    if (teams.has(n)) { teams.delete(n); toast(T("unfollow")); } else { teams.add(n); toast(T("follow")); }
+    if (teams.has(n)) { teams.delete(n); toast(T("unfollow")); syncTeam(n, false); } else { teams.add(n); toast(T("follow")); syncTeam(n, true); }
     ls.set("uzstv_teams", [...teams]);
     return paint();
   }
   const ut = t.closest("[data-unteam]");
-  if (ut) { teams.delete(ut.dataset.unteam); ls.set("uzstv_teams", [...teams]); toast(T("unfollow")); closeSheet(); return render(); }
+  if (ut) { teams.delete(ut.dataset.unteam); syncTeam(ut.dataset.unteam, false); ls.set("uzstv_teams", [...teams]); toast(T("unfollow")); closeSheet(); return render(); }
   const l2 = t.closest("[data-lang2]");
   if (l2) { lang2 = l2.dataset.lang2; return render(); }
 }, true);
