@@ -13,27 +13,3 @@
   ]
 }
 {
-  "items": [
-    {
-      "id": 1,
-      "title": "Barcelona vs Alaves",
-      "content_type": "football",
-      "language": "uz",
-      "genre": "Laliga",
-      "badge": "FUTBOL",
-     "url": "https://stream8.cinerama.uz/1016/tracks-v1a1/mono.m3u8",
-      "poster": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRH-Lg5mUOspC2PVnfW6H7HNmeUJwCruS5vMCzz9nmPtWs3CsTVhttps://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRH-Lg5mUOspC2PVnfW6H7HNmeUJwCruS5vMCzz9nmPtWs3CsTV",
-      "premium": false,
-      "views": 0,
-      "added": "2026-10-31T17:32:00.495623+00:00",
-      "home": "Barcelona",
-      "away": "Alaves",
-      "home_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx6Z0QlCeZ6BSzURLnQvy9P8njqvicQ9DewY0-KdQerg&s",
-      "away_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz09w7MWTo5slRyKXzsDlvcqd4Yye3uPUkKDYUgM_x09WkoUp_AyvTDYwD&s=10",
-      "league": "Laliga",
-      "match_time": "2026-10-31T01:00:00+05:00",
-      "score": "",
-      "minute": ""
-    }
-  ]
-}
