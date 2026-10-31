@@ -7,405 +7,1168 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 <style>
-:root{--a:#7c5cff;--a2:#22d3ee;--r:18px}
-:root[data-theme=dark]{--bg:#0a0c14;--s:#121624;--c:#181d30;--c2:#222942;--t:#f4f6fb;--m:#8d97b3;--b:#252c47;--sh:rgba(0,0,0,.5)}
-:root[data-theme=black]{--bg:#000;--s:#0b0b10;--c:#13131a;--c2:#1e1e28;--t:#fff;--m:#8a8a99;--b:#222230;--sh:rgba(0,0,0,.6)}
-:root[data-theme=light]{--bg:#eef1f7;--s:#fff;--c:#fff;--c2:#e6eaf3;--t:#0f1424;--m:#667089;--b:#d8deea;--sh:rgba(20,30,60,.12)}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0}
-body{background:var(--bg);color:var(--t);font-family:Inter,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding-bottom:calc(78px + env(safe-area-inset-bottom));-webkit-user-select:none;user-select:none;transition:background .25s}
-button,select,input{font-family:inherit;color:inherit}
-header{position:sticky;top:0;z-index:50;padding:10px 16px 0;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(18px)}
-.top{display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:20px;letter-spacing:-.4px}
-.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--a2));display:grid;place-items:center;font-style:normal;font-size:12px;color:#fff;box-shadow:0 4px 16px color-mix(in srgb,var(--a) 55%,transparent)}
-.ib{background:var(--c);border:1px solid var(--b);border-radius:12px;min-width:38px;height:38px;padding:0 11px;font-size:13px;font-weight:700;cursor:pointer;flex:none}
-.ib:active{transform:scale(.93)}.ib.on{background:var(--a);border-color:var(--a);color:#fff}
-.pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 0 10px}
-.pills::-webkit-scrollbar{display:none}
-.pill{flex:none;background:var(--c);border:1px solid var(--b);color:var(--m);padding:8px 15px;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
-.pill.on{background:linear-gradient(135deg,var(--a),var(--a2));border-color:transparent;color:#fff;box-shadow:0 6px 18px color-mix(in srgb,var(--a) 40%,transparent)}
-.pill.sm{padding:5px 12px;font-size:12px;font-weight:600}
-.wrap{padding:0 16px}
-.sec{display:flex;justify-content:space-between;align-items:center;margin:20px 0 10px}
-.sec h2{margin:0;font-size:17px;font-weight:800;letter-spacing:-.2px}
-.sec a{font-size:12px;color:var(--a2);font-weight:700;cursor:pointer}
-.hero{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:10px;margin:4px -16px 0;padding:0 16px}
-.hero::-webkit-scrollbar{display:none}
-.slide{flex:none;width:100%;scroll-snap-align:center;min-height:200px;border-radius:24px;position:relative;overflow:hidden;color:#fff;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center;cursor:pointer;box-shadow:0 14px 34px var(--sh)}
-.slide::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,7,14,.92),rgba(5,7,14,.1) 70%)}
-.slide>*{position:relative}
-.slide h3{margin:8px 0 3px;font-size:25px;font-weight:900;letter-spacing:-.6px;line-height:1.1}
-.slide p{margin:0;font-size:12px;opacity:.8}
-.go{margin-top:12px;align-self:flex-start;background:#fff;color:#000;border:none;border-radius:22px;padding:9px 20px;font-weight:800;font-size:13px}
-.dots{display:flex;justify-content:center;gap:5px;margin:9px 0 0}
-.dots b{width:6px;height:6px;border-radius:3px;background:var(--b);transition:.25s}.dots b.on{width:20px;background:var(--a)}
-.tag{display:inline-flex;align-items:center;gap:5px;align-self:flex-start;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px}
-.tag.live::before{content:"";width:6px;height:6px;border-radius:50%;background:#ff3b4e;animation:p 1.3s infinite}
-@keyframes p{50%{opacity:.25}}
-.hs{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 4px;scroll-snap-type:x proximity}
-.hs::-webkit-scrollbar{display:none}
-.hs .card{flex:none;width:148px;scroll-snap-align:start}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media(min-width:640px){.grid{grid-template-columns:repeat(4,1fr)}.hs .card{width:170px}}
-.grid.list{grid-template-columns:1fr}
-.card{background:var(--c);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;position:relative;cursor:pointer;box-shadow:0 6px 18px var(--sh);transition:transform .15s}
-.card:active{transform:scale(.96)}
-.poster{height:104px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;background-size:cover;background-position:center;padding:8px}
-.poster::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 65%)}
-.poster>*{position:relative;z-index:1}
-.poster .tag{position:absolute;top:7px;left:7px}
-.poster .ic{font-size:30px}.poster .nm{font-size:12px;font-weight:800;text-align:center;text-shadow:0 1px 4px #0009;line-height:1.15}
-.fav{position:absolute!important;top:5px;right:5px;z-index:3;background:rgba(0,0,0,.45);border:none;border-radius:50%;width:28px;height:28px;font-size:13px;cursor:pointer}
-.bar{position:absolute!important;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.25);z-index:2}.bar i{display:block;height:100%;background:var(--a2)}
-.cd{padding:9px 11px}.cd .t{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cd .m{display:flex;justify-content:space-between;font-size:11px;color:var(--m);margin-top:2px}
-.grid.list .card{display:flex}.grid.list .poster{width:120px;height:auto;min-height:84px;flex:none}.grid.list .cd{flex:1;display:flex;flex-direction:column;justify-content:center}
-.search{position:relative;margin:12px 0 4px}
-.search input{width:100%;padding:14px 42px 14px 44px;border-radius:16px;border:1px solid var(--b);background:var(--s);font-size:15px;outline:none;-webkit-user-select:text;user-select:text}
-.search input:focus{border-color:var(--a)}.search span{position:absolute;left:15px;top:50%;transform:translateY(-50%);opacity:.6}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-.tools{display:flex;gap:8px;margin:8px 0}
-.sel{background:var(--s);border:1px solid var(--b);padding:9px;border-radius:12px;font-size:12px;outline:none;flex:1}
-.lucky{flex:2;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;border:none;border-radius:12px;font-weight:800;font-size:13px;padding:10px;cursor:pointer}
-.empty{text-align:center;color:var(--m);padding:46px 20px;font-size:14px;grid-column:1/-1}.empty b{display:block;font-size:36px;margin-bottom:8px}
-.sk{border-radius:var(--r);height:158px;background:linear-gradient(90deg,var(--c) 25%,var(--c2) 50%,var(--c) 75%);background-size:200% 100%;animation:sh 1.2s infinite}
-@keyframes sh{to{background-position:-200% 0}}
-nav{position:fixed;bottom:calc(10px + env(safe-area-inset-bottom));left:14px;right:14px;z-index:60;display:flex;background:color-mix(in srgb,var(--s) 90%,transparent);backdrop-filter:blur(20px);border:1px solid var(--b);border-radius:24px;padding:6px;box-shadow:0 10px 30px var(--sh);max-width:520px;margin:0 auto}
-nav button{flex:1;background:none;border:none;color:var(--m);font-size:10px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 0;border-radius:18px;cursor:pointer}
-nav button .e{font-size:19px}nav button.on{background:color-mix(in srgb,var(--a) 22%,transparent);color:var(--t)}
-.player{position:fixed;inset:0;z-index:200;background:var(--bg);display:none;flex-direction:column;overflow-y:auto}
-.player.open{display:flex}
-.ptop{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;position:sticky;top:0;z-index:5;background:var(--s);border-bottom:1px solid var(--b)}
-.ptop h3{margin:0;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.vbox{position:relative;width:100%;aspect-ratio:16/9;max-height:56vh;background:#000}
-.vbox video,.vbox iframe{width:100%;height:100%;border:0;background:#000}
-.vover{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(0,0,0,.72);color:#fff;text-align:center;padding:16px;font-size:13px}
-.vover.show{display:flex}.vover button{background:var(--a);border:none;color:#fff;border-radius:18px;padding:8px 20px;font-weight:800;cursor:pointer}
-.seek{position:absolute;top:0;bottom:0;width:30%;display:none;align-items:center;justify-content:center;font-size:22px;color:#fff;background:rgba(255,255,255,.12);pointer-events:none}
-.spin{width:34px;height:34px;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:rot .8s linear infinite}@keyframes rot{to{transform:rotate(360deg)}}
-.ctrl{display:flex;gap:8px;padding:12px 14px 4px;overflow-x:auto;scrollbar-width:none}.ctrl::-webkit-scrollbar{display:none}.ctrl .sel{flex:none}
-.info{padding:8px 16px}.info h2{margin:0 0 8px;font-size:21px;font-weight:900;letter-spacing:-.4px}
-.meta{display:flex;flex-wrap:wrap;gap:7px}.meta span{background:var(--c);border:1px solid var(--b);color:var(--m);font-size:12px;padding:4px 10px;border-radius:12px}
-.rows{display:flex;flex-direction:column;gap:8px}
-.row{display:flex;align-items:center;gap:12px;background:var(--c);border:1px solid var(--b);border-radius:14px;padding:8px;cursor:pointer}
-.row.cur{border-color:var(--a);background:color-mix(in srgb,var(--a) 14%,var(--c))}
-.row .th{width:54px;height:40px;border-radius:10px;flex:none;display:grid;place-items:center;font-size:20px;background-size:cover;background-position:center;color:#fff}
-.row .tt{flex:1;min-width:0;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row small{color:var(--m);display:block;font-weight:500;margin-top:2px}
-.pcard{background:var(--c);border:1px solid var(--b);border-radius:20px;padding:16px;margin-bottom:12px}
-.pcard h3{margin:0 0 10px;font-size:15px}.pcard p{margin:4px 0;font-size:13px;color:var(--m)}
-.who{display:flex;align-items:center;gap:14px}.av{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--a2));display:grid;place-items:center;font-size:22px;font-weight:900;color:#fff;background-size:cover}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.stats b{display:block;font-size:22px}.stats span{font-size:11px;color:var(--m)}
-.sw{display:flex;gap:10px}.sw i{width:30px;height:30px;border-radius:50%;cursor:pointer;border:3px solid transparent}.sw i.on{border-color:var(--t)}
-.btn{display:block;width:100%;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;border:none;border-radius:14px;padding:13px;font-weight:800;font-size:14px;margin-top:8px;cursor:pointer}.btn.g{background:var(--c2);color:var(--t)}
-.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:#111d;color:#fff;backdrop-filter:blur(8px);padding:10px 18px;border-radius:20px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:999;max-width:88%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
-#splash{position:fixed;inset:0;z-index:999;background:var(--bg);display:grid;place-items:center;transition:opacity .4s}
-#splash .logo{font-size:34px}#splash i{width:54px;height:54px;font-size:20px;border-radius:16px}
-:focus-visible{outline:2px solid var(--a2);outline-offset:2px}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:root {
+  --a: #4f8cff;
+  --r: 12px;
+  --font: -apple-system, "SF Pro Text", Inter, "Segoe UI", Roboto, sans-serif;
+}
+:root[data-theme=dark] {
+  --bg: #0c0d10; --s: #14161b; --c: #1a1d23; --c2: #23262e;
+  --t: #eceef2; --m: #8b909c; --b: #262a33;
+}
+:root[data-theme=black] {
+  --bg: #000; --s: #0a0a0c; --c: #121316; --c2: #1c1d22;
+  --t: #fff; --m: #888c96; --b: #202127;
+}
+:root[data-theme=light] {
+  --bg: #f4f5f8; --s: #fff; --c: #fff; --c2: #eceef3;
+  --t: #14161c; --m: #6b7180; --b: #dfe2ea;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--t);
+  font-family: var(--font);
+  font-size: 14px;
+  min-height: 100vh;
+  padding-bottom: calc(66px + env(safe-area-inset-bottom));
+  -webkit-user-select: none;
+  user-select: none;
+}
+button, select, input { font-family: inherit; color: inherit; }
+button { cursor: pointer; }
+.i { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.i.f { fill: currentColor; stroke: none; }
+.i.s { width: 16px; height: 16px; }
+header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--b);
+}
+.logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; letter-spacing: -.3px; }
+.logo b { width: 24px; height: 24px; border-radius: 7px; background: var(--a); display: grid; place-items: center; color: #fff; }
+.logo b .i { width: 12px; height: 12px; }
+.hb { display: flex; gap: 4px; }
+.ib {
+  background: none; border: none; width: 38px; height: 38px; border-radius: 10px;
+  display: grid; place-items: center; color: var(--t);
+}
+.ib:active { background: var(--c2); }
+.ib.on { color: var(--a); }
+#view { max-width: 980px; margin: 0 auto; }
+.wrap { padding: 0 16px; }
+.seg {
+  display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none;
+  padding: 0 16px; border-bottom: 1px solid var(--b);
+}
+.seg::-webkit-scrollbar, .chips::-webkit-scrollbar, .hs::-webkit-scrollbar, .ctl::-webkit-scrollbar { display: none; }
+.seg button {
+  flex: none; background: none; border: none; padding: 12px 0; color: var(--m);
+  font-size: 14px; font-weight: 600; border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.seg button.on { color: var(--t); border-color: var(--a); }
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 12px 16px 2px; }
+.chip {
+  flex: none; background: var(--c); border: 1px solid var(--b); color: var(--m);
+  padding: 6px 13px; border-radius: 18px; font-size: 12px; font-weight: 600;
+}
+.chip.on { background: var(--t); color: var(--bg); border-color: var(--t); }
+.sec { display: flex; justify-content: space-between; align-items: center; margin: 24px 0 10px; }
+.sec h2 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.2px; }
+.sec a { color: var(--a); font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 2px; }
+.hero {
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; gap: 10px; margin: 14px -16px 0; padding: 0 16px;
+}
+.hero::-webkit-scrollbar { display: none; }
+.slide {
+  flex: none; width: 100%; scroll-snap-align: center; min-height: 210px;
+  border-radius: 16px; position: relative; overflow: hidden; color: #fff;
+  padding: 18px; display: flex; flex-direction: column; justify-content: flex-end;
+  background-size: cover; background-position: center; cursor: pointer;
+  border: 1px solid var(--b);
+}
+.slide::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,9,12,.92), rgba(8,9,12,.15) 75%); }
+.slide > * { position: relative; }
+.slide h3 { margin: 8px 0 2px; font-size: 24px; font-weight: 700; letter-spacing: -.5px; line-height: 1.15; }
+.slide p { margin: 0; font-size: 12px; opacity: .7; }
+.go {
+  margin-top: 12px; align-self: flex-start; background: #fff; color: #000; border: none;
+  border-radius: 8px; padding: 8px 16px; font-weight: 700; font-size: 13px;
+  display: flex; align-items: center; gap: 6px;
+}
+.go .i { width: 14px; height: 14px; }
+.dots { display: flex; justify-content: center; gap: 5px; margin-top: 10px; }
+.dots b { width: 5px; height: 5px; border-radius: 3px; background: var(--b); transition: .25s; }
+.dots b.on { width: 16px; background: var(--t); }
+.tag {
+  display: inline-flex; align-items: center; gap: 5px; align-self: flex-start;
+  background: rgba(0,0,0,.6); color: #fff; font-size: 10px; font-weight: 700;
+  padding: 3px 7px; border-radius: 6px; letter-spacing: .3px;
+}
+.tag.live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #ff453a; animation: pl 1.4s infinite; }
+@keyframes pl { 50% { opacity: .25; } }
+.hs { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 16px 4px; scroll-snap-type: x proximity; }
+.hs .card { flex: none; width: 150px; scroll-snap-align: start; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px 12px; }
+.grid.list { grid-template-columns: 1fr; gap: 8px; }
+.card { cursor: pointer; position: relative; }
+.card:active .poster { transform: scale(.97); }
+.poster {
+  aspect-ratio: 16/10; border-radius: var(--r); position: relative; overflow: hidden;
+  display: grid; place-items: center; color: #fff; background-size: cover; background-position: center;
+  border: 1px solid var(--b); transition: transform .15s;
+}
+.poster .mono { font-size: 26px; font-weight: 700; letter-spacing: -1px; opacity: .88; }
+.poster .tag { position: absolute; top: 7px; left: 7px; }
+.poster .no { position: absolute; bottom: 6px; left: 8px; font-size: 11px; font-weight: 700; color: #fff; text-shadow: 0 1px 3px #000a; }
+.fav {
+  position: absolute; top: 5px; right: 5px; z-index: 3; width: 28px; height: 28px;
+  background: rgba(0,0,0,.45); border: none; border-radius: 50%; color: #fff;
+  display: grid; place-items: center;
+}
+.fav .i { width: 15px; height: 15px; }
+.fav.on { color: #ff453a; }
+.fav.on .i { fill: currentColor; }
+.bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.25); }
+.bar i { display: block; height: 100%; background: var(--a); }
+.cd { padding: 7px 2px 0; }
+.cd .t { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cd .m { font-size: 11px; color: var(--m); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.grid.list .card { display: flex; gap: 12px; align-items: center; background: var(--c); border: 1px solid var(--b); border-radius: var(--r); padding: 8px; }
+.grid.list .poster { width: 110px; flex: none; }
+.grid.list .cd { padding: 0; flex: 1; min-width: 0; }
+.match {
+  display: flex; align-items: center; gap: 12px; background: var(--c);
+  border: 1px solid var(--b); border-radius: var(--r); padding: 10px; margin-bottom: 8px; cursor: pointer;
+}
+.match .poster { width: 76px; flex: none; aspect-ratio: 1; }
+.match .mi { flex: 1; min-width: 0; }
+.match .mt { font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.match .ms { font-size: 12px; color: var(--m); margin-top: 3px; display: flex; align-items: center; gap: 5px; }
+.match .ms.on { color: #ff6259; font-weight: 600; }
+.search { position: relative; margin: 14px 0 4px; display: flex; gap: 8px; }
+.search label { position: relative; flex: 1; display: block; }
+.search label .i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--m); width: 18px; height: 18px; }
+.search input {
+  width: 100%; padding: 12px 12px 12px 38px; border-radius: 12px;
+  border: 1px solid var(--b); background: var(--s); font-size: 15px; outline: none;
+  -webkit-user-select: text; user-select: text;
+}
+.search input:focus { border-color: var(--a); }
+.tools { display: flex; gap: 8px; margin: 12px 0 0; align-items: center; }
+.sel { background: var(--s); border: 1px solid var(--b); padding: 8px 10px; border-radius: 10px; font-size: 12px; outline: none; flex: 1; }
+.empty { text-align: center; color: var(--m); padding: 54px 20px; grid-column: 1/-1; }
+.empty .i { width: 34px; height: 34px; margin-bottom: 8px; opacity: .6; }
+.sk { aspect-ratio: 16/10; border-radius: var(--r); background: linear-gradient(90deg, var(--c) 25%, var(--c2) 50%, var(--c) 75%); background-size: 200% 100%; animation: sh 1.2s infinite; }
+@keyframes sh { to { background-position: -200% 0; } }
+nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; display: flex;
+  background: color-mix(in srgb, var(--s) 90%, transparent); backdrop-filter: blur(22px);
+  border-top: 1px solid var(--b); padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+}
+nav button {
+  flex: 1; background: none; border: none; color: var(--m); font-size: 10px; font-weight: 600;
+  display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px 0;
+}
+nav button.on { color: var(--a); }
+.list-g { background: var(--c); border: 1px solid var(--b); border-radius: 14px; margin-bottom: 16px; overflow: hidden; }
+.lr { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-bottom: 1px solid var(--b); }
+.lr:last-child { border: none; }
+.lr .i { color: var(--m); }
+.lr .lt { flex: 1; font-size: 14px; }
+.lr .lv { color: var(--m); font-size: 13px; }
+.lr.link { cursor: pointer; }
+.lr.link:active { background: var(--c2); }
+.sw { width: 44px; height: 26px; border-radius: 13px; border: none; background: var(--c2); position: relative; transition: .2s; flex: none; }
+.sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: .2s; }
+.sw.on { background: #34c759; }
+.sw.on::after { left: 21px; }
+.dotsw { display: flex; gap: 10px; }
+.dotsw i { width: 24px; height: 24px; border-radius: 50%; border: 2px solid transparent; outline: 1px solid var(--b); cursor: pointer; }
+.dotsw i.on { border-color: var(--bg); outline: 2px solid var(--t); }
+.who { display: flex; align-items: center; gap: 14px; padding: 18px 16px 6px; }
+.av { width: 56px; height: 56px; border-radius: 50%; background: var(--c2) center/cover; display: grid; place-items: center; font-size: 22px; font-weight: 700; }
+.who h3 { margin: 0; font-size: 18px; }
+.who p { margin: 3px 0 0; font-size: 12px; color: var(--m); }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; padding: 14px; }
+.stats b { display: block; font-size: 20px; }
+.stats span { font-size: 11px; color: var(--m); }
+.btn { display: block; width: 100%; background: var(--a); color: #fff; border: none; border-radius: 12px; padding: 13px; font-weight: 700; font-size: 14px; margin-top: 10px; }
+.btn.g { background: var(--c2); color: var(--t); }
+.player { position: fixed; inset: 0; z-index: 200; background: var(--bg); display: none; flex-direction: column; overflow-y: auto; }
+.player.open { display: flex; }
+.ptop {
+  display: flex; align-items: center; gap: 6px; padding: calc(6px + env(safe-area-inset-top)) 8px 6px;
+  position: sticky; top: 0; z-index: 5; background: var(--s); border-bottom: 1px solid var(--b);
+}
+.ptop h3 { margin: 0; flex: 1; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pbox { max-width: 980px; width: 100%; margin: 0 auto; }
+.vbox { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 58vh; background: #000; }
+.vbox video, .vbox iframe { width: 100%; height: 100%; border: 0; background: #000; }
+.vbox.aud video { opacity: 0; }
+.vbox.aud::after { content: "Audio rejimi"; position: absolute; inset: 0; display: grid; place-items: center; color: #888; pointer-events: none; }
+.vover {
+  position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; background: rgba(0,0,0,.74); color: #fff; text-align: center; padding: 16px; font-size: 13px;
+}
+.vover.show { display: flex; }
+.vover button { background: #fff; color: #000; border: none; border-radius: 8px; padding: 8px 18px; font-weight: 700; }
+.osd { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,.65); color: #fff; font-size: 26px; font-weight: 700; padding: 4px 12px; border-radius: 8px; display: none; }
+.seek { position: absolute; top: 0; bottom: 0; width: 30%; display: none; align-items: center; justify-content: center; color: #fff; background: rgba(255,255,255,.1); pointer-events: none; font-weight: 700; }
+.spin { width: 30px; height: 30px; border: 3px solid rgba(255,255,255,.25); border-top-color: #fff; border-radius: 50%; animation: rot .8s linear infinite; }
+@keyframes rot { to { transform: rotate(360deg); } }
+.ctl { display: flex; gap: 2px; padding: 10px 8px 2px; overflow-x: auto; scrollbar-width: none; }
+.ctl button {
+  flex: none; background: none; border: none; width: 58px; padding: 6px 0; border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--t); font-size: 10px;
+}
+.ctl button span { color: var(--m); }
+.ctl button.on { color: var(--a); }
+.ctl button.on span { color: var(--a); }
+.ctl button:active { background: var(--c2); }
+.info { padding: 10px 16px 0; }
+.info h2 { margin: 0 0 8px; font-size: 20px; font-weight: 700; letter-spacing: -.3px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.meta span { display: flex; align-items: center; gap: 5px; background: var(--c); border: 1px solid var(--b); color: var(--m); font-size: 12px; padding: 4px 9px; border-radius: 8px; }
+.rows { display: flex; flex-direction: column; gap: 6px; }
+.row { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 10px; cursor: pointer; border: 1px solid transparent; }
+.row:active { background: var(--c2); }
+.row.cur { background: var(--c); border-color: var(--b); }
+.row .th { width: 56px; height: 38px; border-radius: 8px; flex: none; display: grid; place-items: center; font-weight: 700; font-size: 13px; color: #fff; background-size: cover; background-position: center; }
+.row .nn { width: 22px; color: var(--m); font-size: 12px; text-align: right; flex: none; }
+.row .tt { flex: 1; min-width: 0; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row small { color: var(--m); display: block; font-weight: 400; margin-top: 2px; }
+#sheet { position: fixed; inset: 0; z-index: 400; background: rgba(0,0,0,.6); display: none; align-items: flex-end; justify-content: center; }
+#sheet.open { display: flex; }
+#sheetBox { background: var(--s); border-radius: 18px 18px 0 0; padding: 20px; width: 100%; max-width: 480px; padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+#sheetBox h3 { margin: 0 0 4px; }
+#sheetBox p { margin: 0 0 14px; color: var(--m); font-size: 13px; }
+#sheetBox input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--b); background: var(--c); font-size: 22px; text-align: center; letter-spacing: 8px; outline: none; -webkit-user-select: text; user-select: text; }
+.toast {
+  position: fixed; left: 50%; bottom: calc(80px + env(safe-area-inset-bottom)); transform: translate(-50%, 16px);
+  background: var(--t); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 600;
+  opacity: 0; pointer-events: none; transition: .25s; z-index: 999; max-width: 88%; text-align: center;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+#splash { position: fixed; inset: 0; z-index: 999; background: var(--bg); display: grid; place-items: center; transition: opacity .35s; }
+#splash .logo { font-size: 28px; }
+#splash .logo b { width: 40px; height: 40px; border-radius: 11px; }
+#splash .logo b .i { width: 18px; height: 18px; }
+:focus-visible { outline: 2px solid var(--a); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
-<div id="splash"><div class="logo"><i>▶</i>Uzs TV</div></div>
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+  <symbol id="i-tv" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8l3.5 2.5-1.3 4h-4.4l-1.3-4zM12 3v5M20 9.5l-4.5 1M17.5 19l-3.3-4.5M6.5 19l3.3-4.5M4 9.5l4.5 1"/></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><path d="M6 5v14M19 5l-10 7 10 7z"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="M18 5v14M5 5l10 7-10 7z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M5 12v7h14v-7"/></symbol>
+  <symbol id="i-pip" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><rect x="12" y="11" width="7" height="5" rx="1" fill="currentColor"/></symbol>
+  <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 3h6"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 17a8 8 0 1 1 16 0M12 17l4-5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-full" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-audio" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H4zM17 14h3v6h-3z"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h8M18 7h2M4 17h2M12 17h8"/><circle cx="15" cy="7" r="2.5"/><circle cx="9" cy="17" r="2.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4M4 4v4h4M4 13a8 8 0 0 0 14 4M20 20v-4h-4"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h14M5 15h14M10 4L8 20M16 4l-2 16"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10z"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 14h.01M15 14h.01"/></symbol>
+</svg>
+<div id="splash"><div class="logo"><b><svg class="i f"><use href="#i-play"/></svg></b>Uzs TV</div></div>
 <header>
-  <div class="top"><div class="logo"><i>▶</i>Uzs TV</div>
-    <div style="display:flex;gap:6px"><button class="ib" id="bLucky">🎲</button><button class="ib" id="bLang">UZ</button><button class="ib" id="bTheme">🌓</button></div></div>
-  <div class="pills" id="pills"></div>
+  <div class="logo"><b><svg class="i f"><use href="#i-play"/></svg></b>Uzs TV</div>
+  <div class="hb" id="hb"></div>
 </header>
 <main id="view"></main>
-<nav id="nav">
-  <button data-v="home"><span class="e">🏠</span><span data-i="home"></span></button>
-  <button data-v="search"><span class="e">🔍</span><span data-i="search"></span></button>
-  <button data-v="favs"><span class="e">❤️</span><span data-i="favs"></span></button>
-  <button data-v="profile"><span class="e">👤</span><span data-i="profile"></span></button>
-</nav>
+<nav id="nav"></nav>
 <div class="player" id="player">
-  <div class="ptop"><h3 id="pTitle"></h3><button class="ib on" id="pClose">✕</button></div>
-  <div class="vbox" id="vbox"><div class="seek" id="sL" style="left:0">⏪ 10</div><div class="seek" id="sR" style="right:0">10 ⏩</div><div class="vover" id="vover"></div></div>
-  <div class="ctrl">
-    <button class="ib" id="cPrev">⏮</button><button class="ib" id="cNext">⏭</button><button class="ib" id="cFav">🤍</button><button class="ib" id="cShare">📤</button>
-    <button class="ib" id="cPip">🖼</button><button class="ib" id="cSleep">⏱</button><button class="ib" id="cSpeed">1x</button><button class="ib" id="cRep">⚠️</button><button class="ib" id="cFs">⛶</button>
-    <select class="sel" id="cQual" style="display:none"></select>
+  <div class="ptop">
+    <button class="ib" id="pClose"><svg class="i"><use href="#i-back"/></svg></button>
+    <h3 id="pTitle"></h3>
   </div>
-  <div class="info"><h2 id="iTitle"></h2><div class="meta" id="iMeta"></div></div>
-  <div class="wrap"><div class="sec"><h2 id="simT"></h2></div><div class="rows" id="simRow"></div></div>
-  <div style="height:40px"></div>
+  <div class="pbox">
+    <div class="vbox" id="vbox">
+      <div class="seek" id="sL" style="left:0">-10</div>
+      <div class="seek" id="sR" style="right:0">+10</div>
+      <div class="osd" id="osd"></div>
+      <div class="vover" id="vover"></div>
+    </div>
+    <div class="ctl" id="ctl"></div>
+    <div class="info"><h2 id="iTitle"></h2><div class="meta" id="iMeta"></div></div>
+    <div class="wrap"><div class="sec"><h2 id="simT"></h2></div><div class="rows" id="simRow"></div></div>
+    <div style="height:40px"></div>
+  </div>
 </div>
+<div id="sheet"><div id="sheetBox"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
-/* ===== SOZLAMALAR ===== */
-const API_URL = "";            // bot API manzili, masalan "https://uzstv-bot.onrender.com" (bo'sh = faqat data.json)
+"use strict";
+/* ================= SOZLAMALAR ================= */
+const API_URL = "";   // masalan: "https://uzstv-bot.onrender.com" (bo'sh = faqat data.json)
 const DATA_URL = "data.json";
 const tg = window.Telegram && Telegram.WebApp;
-if (tg) { tg.ready(); tg.expand(); try { tg.setHeaderColor("secondary_bg_color"); } catch(e){} }
+if (tg) {
+  tg.ready();
+  tg.expand();
+  try { tg.setHeaderColor("secondary_bg_color"); } catch (e) {}
+}
 
-/* ===== TILLAR [uz, ru] ===== */
-const D={home:["Bosh","Главная"],search:["Qidiruv","Поиск"],favs:["Sevimli","Избранное"],profile:["Profil","Профиль"],all:["Hammasi","Все"],tv:["📺 TV","📺 ТВ"],football:["⚽ Futbol","⚽ Футбол"],movies:["🎬 Kino","🎬 Кино"],cartoons:["🧸 Multfilm","🧸 Мульты"],
-ph:["Kanal, kino, janr...","Канал, фильм, жанр..."],live:["JONLI","LIVE"],recent:["🕘 Davom ettirish","🕘 Продолжить"],trend:["🔥 Trend","🔥 Тренд"],nowlive:["🔴 Hozir efirda","🔴 Сейчас в эфире"],more:["Hammasi ›","Все ›"],
-none:["Hech narsa topilmadi","Ничего не найдено"],nofav:["Sevimlilar yo'q. Kartadagi 🤍 ni bosing.","Избранного нет. Нажмите 🤍 на карточке."],similar:["Shu turkumdan","Из этой категории"],
-err:["Efir yuklanmadi","Эфир не загрузился"],retry:["Qayta urinish","Повторить"],added:["Sevimlilarga qo'shildi","Добавлено в избранное"],removed:["Sevimlilardan olindi","Удалено из избранного"],
-copied:["Havola nusxalandi","Ссылка скопирована"],pip:["PiP qo'llab-quvvatlanmaydi","PiP не поддерживается"],offline:["Oflayn rejim (saqlangan ma'lumot)","Офлайн (сохранённые данные)"],
-quality:["Sifat","Качество"],auto:["Avto","Авто"],sleep:["Uyqu taymeri","Таймер сна"],sleepOff:["Taymer o'chirildi","Таймер выключен"],reported:["Muammo haqida xabar berildi, rahmat!","Жалоба отправлена, спасибо!"],
-genre:["Janr","Жанр"],views:["Ko'rishlar","Просмотры"],sort:["Tartib","Порядок"],pop:["🔥 Mashhur","🔥 Популярные"],az:["A–Z","А–Я"],newest:["🆕 Yangi","🆕 Новые"],
-lucky:["🎲 Tasodifiy kanal","🎲 Случайный канал"],hist:["Oxirgi qidiruvlar","Недавние запросы"],clearS:["Tozalash","Очистить"],popular:["Ommabop","Популярное"],
-stats:["Statistika","Статистика"],tot:["Jami","Всего"],watched:["Ko'rilgan","Просмотрено"],theme:["Mavzu","Тема"],accent:["Rang","Цвет"],lang:["Til","Язык"],
-layout:["Ko'rinish","Вид"],clearH:["🗑 Tarixni tozalash","🗑 Очистить историю"],cleared:["Tozalandi","Очищено"],refresh:["🔄 Yangilash","🔄 Обновить"],bot:["🤖 Botga o'tish","🤖 Перейти в бота"],
-free:["🆓 Bepul","🆓 Бесплатно"],match:["O'yin vaqti","Время матча"],autoNext:["Avto keyingisi","Авто-следующий"],on:["Yoqilgan","Вкл"],off:["O'chiq","Выкл"],close:["Yopish","Закрыть"]};
-let LANG = localStorage.getItem("uzstv_lang") || ((tg && tg.initDataUnsafe?.user?.language_code === "ru") ? "ru" : "uz");
-const T = k => (D[k] || [k,k])[LANG === "ru" ? 1 : 0];
+/* ================= TILLAR [uz, ru] ================= */
+const D = {
+  home: ["Bosh", "Главная"], tv: ["Efir", "Эфир"], football: ["Futbol", "Футбол"],
+  movies: ["Kino", "Кино"], me: ["Profil", "Профиль"], search: ["Qidiruv", "Поиск"],
+  favs: ["Sevimlilar", "Избранное"], history: ["Tarix", "История"],
+  all: ["Barchasi", "Все"], film: ["Kinolar", "Фильмы"], series: ["Seriallar", "Сериалы"], cartoons: ["Multfilmlar", "Мультфильмы"],
+  ph: ["Kanal, kino yoki janr", "Канал, фильм или жанр"], live: ["JONLI", "LIVE"],
+  recent: ["Davom ettirish", "Продолжить"], trend: ["Mashhur", "Популярное"], nowlive: ["Hozir efirda", "Сейчас в эфире"],
+  upcoming: ["Yaqin o'yinlar", "Ближайшие матчи"], fresh: ["Yangi qo'shilgan", "Новинки"], more: ["Barchasi", "Все"],
+  none: ["Hech narsa topilmadi", "Ничего не найдено"], nofav: ["Sevimlilar bo'sh", "Избранное пусто"],
+  nohist: ["Tarix bo'sh", "История пуста"], similar: ["Shu turkumdan", "Из этой категории"],
+  err: ["Efir yuklanmadi", "Эфир не загрузился"], retry: ["Qayta urinish", "Повторить"],
+  added: ["Sevimlilarga qo'shildi", "Добавлено в избранное"], removed: ["Sevimlilardan olindi", "Удалено из избранного"],
+  copied: ["Havola nusxalandi", "Ссылка скопирована"], pip: ["PiP qo'llab-quvvatlanmaydi", "PiP не поддерживается"],
+  offline: ["Aloqa yo'q, saqlangan ma'lumot ko'rsatilmoqda", "Нет связи, показаны сохранённые данные"],
+  quality: ["Sifat", "Качество"], auto: ["Avto", "Авто"], sleep: ["Taymer", "Таймер"], speed: ["Tezlik", "Скорость"],
+  channel: ["Raqam", "Номер"], audio: ["Audio", "Аудио"], report: ["Xabar", "Жалоба"], full: ["Ekran", "Экран"],
+  share: ["Ulashish", "Поделиться"], fav: ["Sevimli", "Избранное"], prev: ["Oldingi", "Пред."], next: ["Keyingi", "След."],
+  reported: ["Xabar yuborildi, rahmat", "Жалоба отправлена, спасибо"], sleepOff: ["Taymer o'chirildi", "Таймер выключен"],
+  sleepOn: ["O'chish vaqti", "Выключение через"], min: ["daq", "мин"], h: ["s", "ч"],
+  sort: ["Tartib", "Порядок"], pop: ["Mashhur", "Популярные"], az: ["A–Z", "А–Я"], newest: ["Yangi", "Новые"],
+  lucky: ["Tasodifiy", "Случайный"], hist: ["Oxirgi qidiruvlar", "Недавние запросы"], clear: ["Tozalash", "Очистить"],
+  genres: ["Janrlar", "Жанры"], stats: ["Ko'rilgan", "Просмотрено"], tot: ["Kontent", "Контент"],
+  rems: ["Eslatmalar", "Напоминания"], theme: ["Mavzu", "Тема"], accent: ["Rang", "Цвет"], lang: ["Til", "Язык"],
+  layout: ["Ro'yxat ko'rinishi", "Вид списка"], autoNext: ["Avto keyingisi", "Авто-следующий"],
+  saver: ["Trafik tejash", "Экономия трафика"], haptic: ["Tebranish", "Вибрация"], swipe: ["Surib kanal almashtirish", "Смена каналов свайпом"],
+  kids: ["Bolalar rejimi", "Детский режим"], clearAll: ["Tarixni tozalash", "Очистить историю"], refresh: ["Ma'lumotni yangilash", "Обновить данные"],
+  bot: ["Botga o'tish", "Перейти в бота"], free: ["Bepul", "Бесплатно"], watch: ["Ko'rish", "Смотреть"],
+  starts: ["Boshlanishiga", "До начала"], ended: ["Tugagan", "Завершён"], remOn: ["Eslatma qo'yildi", "Напоминание включено"],
+  remOff: ["Eslatma o'chirildi", "Напоминание выключено"], remMsg: ["o'yini tez orada boshlanadi", "скоро начнётся"],
+  pinSet: ["PIN o'rnating", "Задайте PIN"], pinAsk: ["PIN kiriting", "Введите PIN"], pinBad: ["PIN noto'g'ri", "Неверный PIN"],
+  pinNote: ["4 ta raqam. Bolalar rejimida faqat multfilmlar ko'rinadi.", "4 цифры. В детском режиме только мультфильмы."],
+  goCh: ["Kanal raqami", "Номер канала"], open: ["Ochish", "Открыть"], ok: ["Tayyor", "Готово"], cancel: ["Bekor", "Отмена"],
+  on: ["Yoqilgan", "Вкл"], off: ["O'chiq", "Выкл"], dark: ["Qorong'i", "Тёмная"], amoled: ["AMOLED", "AMOLED"], light: ["Yorug'", "Светлая"],
+  newb: ["YANGI", "НОВОЕ"], cleared: ["Tozalandi", "Очищено"], voiceNo: ["Ovozli qidiruv mavjud emas", "Голосовой поиск недоступен"],
+  noCh: ["Bunday kanal yo'q", "Нет такого канала"], tvShort: ["TV", "ТВ"]
+};
+let LANG = localStorage.getItem("uzstv_lang") ||
+  ((tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.language_code === "ru") ? "ru" : "uz");
+const T = k => (D[k] || [k, k])[LANG === "ru" ? 1 : 0];
 
-/* ===== YORDAMCHILAR ===== */
+/* ================= YORDAMCHILAR ================= */
 const $ = s => document.querySelector(s);
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const ls = { get(k,d){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }, set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} } };
-const hap = (t="light") => { try { tg && tg.HapticFeedback.impactOccurred(t); } catch(e){} };
-const GR = [["#312e81","#0f172a"],["#7f1d1d","#0f172a"],["#14532d","#0f172a"],["#581c87","#0f172a"],["#9a3412","#0f172a"],["#134e4a","#0f172a"],["#831843","#0f172a"]];
-const grad = t => { let h=0; for (const c of String(t)) h=(h*31+c.charCodeAt(0))>>>0; const g=GR[h%GR.length]; return `linear-gradient(135deg,${g[0]},${g[1]})`; };
-const bgOf = it => it.poster ? `background-image:url('${esc(it.poster)}')` : `background:${grad(it.title)}`;
-const ICON = {tv:"📺",football:"⚽",movies:"🎬",series:"🍿",cartoons:"🧸"};
-const isLive = it => it.content_type === "tv" || it.content_type === "football";
-const ACC = [["#7c5cff","#22d3ee"],["#ff3b5c","#ff9f43"],["#10b981","#a3e635"],["#3b82f6","#06b6d4"],["#ec4899","#8b5cf6"]];
-function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("show"),2200); }
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ls = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+const ic = (n, c) => `<svg class="i ${c || ""}"><use href="#i-${n}"/></svg>`;
+const hap = (t) => { if (S.haptic) { try { tg && tg.HapticFeedback.impactOccurred(t || "light"); } catch (e) {} } };
+const ACC = ["#4f8cff", "#34c759", "#ff9f0a", "#ff453a", "#8e7cff"];
+const LIVE = ["tv", "football"];
+const isLive = it => LIVE.includes(it.content_type);
+const MOVIE_TYPES = ["movies", "series", "cartoons"];
+function toast(m) {
+  const t = $("#toast");
+  t.textContent = m;
+  t.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => t.classList.remove("show"), 2200);
+}
+function hue(t) {
+  let h = 0;
+  for (const c of String(t)) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return h % 360;
+}
+function mono(t) {
+  const w = String(t).replace(/[^\p{L}\p{N} ]/gu, "").trim().split(/\s+/);
+  return ((w[0] || "?")[0] + (w[1] ? w[1][0] : (w[0] || "")[1] || "")).toUpperCase();
+}
+const bgOf = it => it.poster
+  ? `background-image:url('${esc(it.poster)}')`
+  : `background:linear-gradient(145deg,hsl(${hue(it.title)} 26% 26%),hsl(${hue(it.title)} 30% 12%))`;
 
-/* ===== HOLAT ===== */
-let items=[], meta={bot:""}, loading=true;
-let favs=new Set(ls.get("uzstv_favs",[])), hist=ls.get("uzstv_hist",[]), prog=ls.get("uzstv_prog",{}), sh=ls.get("uzstv_sh",[]);
-let view="home", type="all", genre="all", sortBy="default", query="", layout=ls.get("uzstv_layout","grid"), autoNext=ls.get("uzstv_an",true), accent=ls.get("uzstv_acc",0);
-let cur=null, hls=null, retries=0, sleepT=null, sleepI=0, speedI=0, heroT=null;
+/* ================= HOLAT ================= */
+let items = [], lib = [], meta = { bot: "" }, loading = true;
+let S = Object.assign({ autoNext: true, saver: false, haptic: true, swipe: true, kids: false, pin: "" }, ls.get("uzstv_s", {}));
+let favs = new Set(ls.get("uzstv_favs", []));
+let hist = ls.get("uzstv_hist", []);
+let prog = ls.get("uzstv_prog", {});
+let sh = ls.get("uzstv_sh", []);
+let rem = new Set(ls.get("uzstv_rem", []));
+let noted = {};
+let view = "home", sub = "all", genre = "all", sortBy = "default", query = "";
+let layout = ls.get("uzstv_layout", "grid"), accent = ls.get("uzstv_acc", 0);
+let cur = null, hls = null, retries = 0, srcs = [], srcI = 0;
+let sleepT = null, sleepI = 0, speedI = 0, heroT = null, audioOn = false, stallT = null, digits = "", digitT = null;
+const save = () => ls.set("uzstv_s", S);
 
-function applyAccent(){ const a=ACC[accent]||ACC[0]; document.documentElement.style.setProperty("--a",a[0]); document.documentElement.style.setProperty("--a2",a[1]); }
+function applyAccent() {
+  document.documentElement.style.setProperty("--a", ACC[accent] || ACC[0]);
+}
 applyAccent();
 
-/* ===== MA'LUMOT ===== */
-async function loadData(force){
-  loading=true; if(!items.length) render();
-  let ok=false;
-  if (API_URL && tg && tg.initData) {
-    try { const r=await fetch(API_URL.replace(/\/$/,"")+"/api/items",{headers:{"X-Init-Data":tg.initData}});
-      if (r.ok){ const d=await r.json(); items=d.items||[]; meta={bot:d.bot||meta.bot}; ok=true; }
-      else if (r.status===403){ document.body.innerHTML='<div class="empty"><b>🚫</b>Access denied</div>'; return; } } catch(e){}
-  }
-  if (!ok) { try { const r=await fetch(DATA_URL+(force?"?t="+Date.now():""),{cache:"no-store"}); const d=await r.json(); items=d.items||[]; if(d.bot) meta.bot=d.bot; ok=true; } catch(e){} }
-  if (ok) ls.set("uzstv_cache",{items,meta});
-  else { const c=ls.get("uzstv_cache",null); if(c){ items=c.items; meta=c.meta||meta; toast(T("offline")); } }
-  loading=false; render();
+function setLib() {
+  lib = S.kids ? items.filter(x => x.content_type === "cartoons") : items.slice();
 }
 
-/* ===== FILTR ===== */
-const byType = t => items.filter(x => x.content_type === t);
-const topBy = a => a.slice().sort((x,y)=>(y.views||0)-(x.views||0));
-function filt(a){
-  a=a.slice();
-  if (type!=="all") a=a.filter(x=>x.content_type===type);
-  if (genre!=="all") a=a.filter(x=>(x.genre||"").toLowerCase()===genre.toLowerCase());
-  if (query){ const q=query.toLowerCase(); a=a.filter(x=>(x.title||"").toLowerCase().includes(q)||(x.genre||"").toLowerCase().includes(q)||(x.badge||"").toLowerCase().includes(q)); }
-  if (sortBy==="views") a.sort((x,y)=>(y.views||0)-(x.views||0));
-  else if (sortBy==="alpha") a.sort((x,y)=>String(x.title).localeCompare(String(y.title)));
-  else if (sortBy==="new") a.sort((x,y)=>(y.id||0)-(x.id||0));
+/* ================= MA'LUMOT ================= */
+async function loadData(force) {
+  loading = true;
+  if (!items.length) render();
+  let ok = false;
+  if (API_URL && tg && tg.initData) {
+    try {
+      const r = await fetch(API_URL.replace(/\/$/, "") + "/api/items", { headers: { "X-Init-Data": tg.initData } });
+      if (r.ok) {
+        const d = await r.json();
+        items = d.items || [];
+        meta.bot = d.bot || meta.bot;
+        ok = true;
+      } else if (r.status === 403) {
+        document.body.innerHTML = '<div class="empty">Access denied</div>';
+        return;
+      }
+    } catch (e) {}
+  }
+  if (!ok) {
+    try {
+      const r = await fetch(DATA_URL + (force ? "?t=" + Date.now() : ""), { cache: "no-store" });
+      const d = await r.json();
+      items = d.items || [];
+      if (d.bot) meta.bot = d.bot;
+      ok = true;
+    } catch (e) {}
+  }
+  if (ok) ls.set("uzstv_cache", { items, meta });
+  else {
+    const c = ls.get("uzstv_cache", null);
+    if (c) { items = c.items; meta = c.meta || meta; toast(T("offline")); }
+  }
+  setLib();
+  loading = false;
+  render();
+}
+
+/* ================= FILTR ================= */
+const byType = t => lib.filter(x => x.content_type === t);
+const topBy = a => a.slice().sort((x, y) => (y.views || 0) - (x.views || 0));
+const newest = a => a.slice().sort((x, y) => (y.id || 0) - (x.id || 0));
+function filt(a) {
+  a = a.slice();
+  if (genre !== "all") a = a.filter(x => (x.genre || "").toLowerCase() === genre.toLowerCase());
+  if (query) {
+    const q = query.toLowerCase();
+    a = a.filter(x => [x.title, x.genre, x.badge].some(v => String(v || "").toLowerCase().includes(q)));
+  }
+  if (sortBy === "views") a.sort((x, y) => (y.views || 0) - (x.views || 0));
+  else if (sortBy === "alpha") a.sort((x, y) => String(x.title).localeCompare(String(y.title)));
+  else if (sortBy === "new") a.sort((x, y) => (y.id || 0) - (x.id || 0));
   return a;
 }
-
-/* ===== KARTA ===== */
-function card(it){
-  const p=prog[it.id], pct=p&&p.d?Math.min(100,Math.round(p.t/p.d*100)):0;
-  return `<div class="card" data-id="${it.id}"><div class="poster" style="${bgOf(it)}">
-    <span class="tag ${isLive(it)?"live":""}">${esc(it.badge||(isLive(it)?T("live"):""))}</span>
-    <button class="fav" data-fav="${it.id}">${favs.has(it.id)?"❤️":"🤍"}</button>
-    ${it.poster?"":`<div class="ic">${ICON[it.content_type]||"📺"}</div><div class="nm">${esc(it.title)}</div>`}
-    ${pct>2&&pct<97?`<div class="bar"><i style="width:${pct}%"></i></div>`:""}</div>
-    <div class="cd"><div class="t">${esc(it.title)}</div><div class="m"><span>${esc(it.match_time?"⏰ "+it.match_time:(it.genre||""))}</span><span>👁 ${it.views||0}</span></div></div></div>`;
+function channelNo(it) {
+  const l = items.filter(x => x.content_type === it.content_type);
+  return l.findIndex(x => x.id === it.id) + 1;
 }
-const grid = a => a.length ? `<div class="grid ${layout==="list"?"list":""}">${a.map(card).join("")}</div>` : `<div class="empty"><b>🔎</b>${T("none")}</div>`;
-const rowH = (t,a,go) => a.length ? `<div class="sec"><h2>${t}</h2>${go?`<a data-go="${go}">${T("more")}</a>`:""}</div><div class="hs">${a.map(card).join("")}</div>` : "";
 
-/* ===== RENDER ===== */
-function pillsH(){
-  const gs=[...new Set(items.filter(x=>type==="all"||x.content_type===type).map(x=>x.genre).filter(Boolean))];
-  return ["all","tv","football","movies","cartoons"].map(t=>`<div class="pill ${type===t?"on":""}" data-type="${t}">${T(t)}</div>`).join("")
-   + (view==="home"&&type!=="all"?gs.map(g=>`<div class="pill sm ${genre.toLowerCase()===g.toLowerCase()?"on":""}" data-genre="${esc(g)}">${esc(g)}</div>`).join(""):"");
+/* ================= O'YIN VAQTI ================= */
+function parseWhen(s) {
+  if (!s) return null;
+  const m = /^(\d{1,2}):(\d{2})$/.exec(String(s).trim());
+  if (m) {
+    const d = new Date();
+    d.setHours(+m[1], +m[2], 0, 0);
+    return d.getTime();
+  }
+  const t = Date.parse(s);
+  return isNaN(t) ? null : t;
 }
-function render(){
-  document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===view));
-  document.querySelectorAll("[data-i]").forEach(e=>e.textContent=T(e.dataset.i));
-  $("#bLang").textContent=LANG.toUpperCase();
-  $("#pills").style.display=(view==="home"||view==="favs")?"flex":"none";
-  $("#pills").innerHTML=pillsH();
-  const v=$("#view");
-  if (loading && !items.length){ v.innerHTML=`<div class="wrap" style="padding-top:10px"><div class="grid"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div></div></div>`; return; }
+function matchState(it) {
+  const t = parseWhen(it.match_time);
+  if (!t) return { k: "na", label: it.match_time || "" };
+  const diff = t - Date.now();
+  if (diff > 0) {
+    const m = Math.ceil(diff / 60000);
+    const txt = m >= 60 ? Math.floor(m / 60) + " " + T("h") + " " + (m % 60) + " " + T("min") : m + " " + T("min");
+    return { k: "soon", label: T("starts") + " " + txt, t };
+  }
+  if (diff > -3 * 3600e3) return { k: "live", label: T("live"), t };
+  return { k: "end", label: T("ended"), t };
+}
+function checkReminders() {
+  rem.forEach(id => {
+    const it = items.find(x => x.id === id);
+    if (!it) return;
+    const t = parseWhen(it.match_time);
+    if (!t) return;
+    const d = t - Date.now();
+    if (d > 0 && d < 5 * 60000 && !noted[id]) {
+      noted[id] = 1;
+      const msg = it.title + " " + T("remMsg");
+      try { tg && tg.HapticFeedback.notificationOccurred("success"); } catch (e) {}
+      if (tg && tg.showPopup) {
+        tg.showPopup({ message: msg, buttons: [{ id: "o", type: "default", text: T("watch") }, { type: "cancel" }] }, b => { if (b === "o") openPlayer(id); });
+      } else toast(msg);
+    }
+  });
+}
+function toggleRem(id) {
+  if (rem.has(id)) { rem.delete(id); toast(T("remOff")); }
+  else { rem.add(id); toast(T("remOn")); }
+  ls.set("uzstv_rem", [...rem]);
+  hap();
+}
+
+/* ================= KARTALAR ================= */
+function card(it) {
+  const p = prog[it.id];
+  const pct = p && p.d ? Math.min(100, Math.round(p.t / p.d * 100)) : 0;
+  const maxId = Math.max(0, ...items.map(x => x.id || 0));
+  const isNew = (it.id || 0) > maxId - 4 && items.length > 8;
+  const tag = it.badge || (isLive(it) ? T("live") : (isNew ? T("newb") : ""));
+  const sub2 = it.content_type === "football" ? matchState(it).label : (it.genre || "");
+  return `<div class="card" data-open="${it.id}">
+    <div class="poster" style="${bgOf(it)}">
+      ${tag ? `<span class="tag ${isLive(it) ? "live" : ""}">${esc(tag)}</span>` : ""}
+      <button class="fav ${favs.has(it.id) ? "on" : ""}" data-fav="${it.id}">${ic("heart")}</button>
+      ${it.poster ? "" : `<div class="mono">${esc(mono(it.title))}</div>`}
+      ${it.content_type === "tv" ? `<span class="no">${String(channelNo(it)).padStart(2, "0")}</span>` : ""}
+      ${pct > 2 && pct < 97 ? `<div class="bar"><i style="width:${pct}%"></i></div>` : ""}
+    </div>
+    <div class="cd"><div class="t">${esc(it.title)}</div><div class="m">${esc(sub2)}</div></div>
+  </div>`;
+}
+const grid = a => a.length
+  ? `<div class="grid ${layout === "list" ? "list" : ""}">${a.map(card).join("")}</div>`
+  : `<div class="empty">${ic("search")}<div>${T("none")}</div></div>`;
+const rowH = (t, a, go) => a.length
+  ? `<div class="sec"><h2>${t}</h2>${go ? `<a data-go="${go}">${T("more")}${ic("chev", "s")}</a>` : ""}</div><div class="hs">${a.map(card).join("")}</div>`
+  : "";
+function matchRow(it) {
+  const st = matchState(it);
+  return `<div class="match" data-open="${it.id}">
+    <div class="poster" style="${bgOf(it)}">${it.poster ? "" : `<div class="mono">${esc(mono(it.title))}</div>`}</div>
+    <div class="mi"><div class="mt">${esc(it.title)}</div>
+      <div class="ms ${st.k === "live" ? "on" : ""}">${ic(st.k === "live" ? "play" : "clock", "s " + (st.k === "live" ? "f" : ""))}${esc(st.label)}${it.genre ? " · " + esc(it.genre) : ""}</div></div>
+    <button class="ib ${rem.has(it.id) ? "on" : ""}" data-rem="${it.id}">${ic("bell")}</button>
+  </div>`;
+}
+const chipsH = (arr, attr, curv) =>
+  `<div class="chips">${arr.map(g => `<button class="chip ${String(curv).toLowerCase() === String(g[0]).toLowerCase() ? "on" : ""}" data-${attr}="${esc(g[0])}">${esc(g[1])}</button>`).join("")}</div>`;
+function genresOf(a) {
+  return [["all", T("all")]].concat([...new Set(a.map(x => x.genre).filter(Boolean))].map(g => [g, g]));
+}
+
+/* ================= EKRANLAR ================= */
+function renderNav() {
+  const tabs = [["home", "home"], ["tv", "tv"], ["football", "ball"], ["movies", "film"], ["me", "user"]];
+  const act = ["search", "favs", "history"].includes(view) ? "" : view;
+  $("#nav").innerHTML = tabs.map(t => `<button data-nav="${t[0]}" class="${act === t[0] ? "on" : ""}">${ic(t[1])}<span>${T(t[0])}</span></button>`).join("");
+  $("#hb").innerHTML =
+    `<button class="ib" data-nav="search">${ic("search")}</button>` +
+    `<button class="ib" data-nav="favs">${ic("heart")}</button>`;
+}
+
+function render() {
+  renderNav();
   clearInterval(heroT);
-  if (view==="profile") return profile(v);
-  if (view==="search") return searchV(v);
-  if (view==="favs"){ const a=filt(items.filter(x=>favs.has(x.id))); v.innerHTML=`<div class="wrap"><div class="sec"><h2>${T("favs")} (${a.length})</h2></div>${favs.size?grid(a):`<div class="empty"><b>❤️</b>${T("nofav")}</div>`}</div>`; return; }
-  if (type==="all"){
-    const hero=topBy(items).slice(0,5);
-    const recent=hist.map(h=>items.find(x=>x.id===h.id)).filter(Boolean).slice(0,10);
-    v.innerHTML=`<div class="wrap">
-      <div class="hero" id="hero">${hero.map(it=>`<div class="slide" data-id="${it.id}" style="${bgOf(it)}"><span class="tag ${isLive(it)?"live":""}">${esc(it.badge||T("live"))}</span><h3>${esc(it.title)}</h3><p>${esc(it.genre||"")} • 👁 ${it.views||0}</p><button class="go">▶ ${T("free").slice(3)}</button></div>`).join("")}</div>
-      <div class="dots" id="dots">${hero.map((_,i)=>`<b class="${i?"":"on"}"></b>`).join("")}</div>
-      ${rowH(T("recent"),recent)}${rowH(T("nowlive"),topBy(items.filter(isLive)).slice(0,10))}${rowH(T("trend"),topBy(items).slice(0,10))}
-      ${rowH(T("football"),byType("football"),"football")}${rowH(T("tv"),byType("tv"),"tv")}${rowH(T("movies"),byType("movies"),"movies")}${rowH(T("cartoons"),byType("cartoons"),"cartoons")}</div>`;
-    const h=$("#hero"); if(h&&hero.length>1){ let i=0; h.onscroll=()=>{ const n=Math.round(h.scrollLeft/h.clientWidth); document.querySelectorAll("#dots b").forEach((d,k)=>d.classList.toggle("on",k===n)); i=n; };
-      heroT=setInterval(()=>{ i=(i+1)%hero.length; h.scrollTo({left:i*h.clientWidth,behavior:"smooth"}); },5000); }
-  } else {
-    const a=filt(items);
-    v.innerHTML=`<div class="wrap"><div class="tools"><button class="lucky" id="lucky">${T("lucky")}</button>
-      <select class="sel" id="sort"><option value="default">${T("sort")}</option><option value="views" ${sortBy==="views"?"selected":""}>${T("pop")}</option><option value="alpha" ${sortBy==="alpha"?"selected":""}>${T("az")}</option><option value="new" ${sortBy==="new"?"selected":""}>${T("newest")}</option></select>
-      <button class="ib" id="layoutBtn">${layout==="grid"?"☰":"▦"}</button></div>
-      <div class="sec" style="margin-top:8px"><h2>${T(type)} (${a.length})</h2></div>${grid(a)}</div>`;
+  const v = $("#view");
+  if (loading && !items.length) {
+    v.innerHTML = `<div class="wrap" style="padding-top:16px"><div class="grid"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div></div></div>`;
+    return;
+  }
+  const fn = { home: vHome, tv: vTv, football: vFootball, movies: vMovies, me: vMe, search: vSearch, favs: vFavs, history: vHistory }[view];
+  fn(v);
+}
+
+function vHome(v) {
+  const hero = topBy(lib).slice(0, 5);
+  const recent = hist.map(h => items.find(x => x.id === h.id)).filter(x => x && lib.includes(x)).slice(0, 12);
+  const soon = byType("football").filter(x => matchState(x).k !== "end")
+    .sort((a, b) => (parseWhen(a.match_time) || 9e15) - (parseWhen(b.match_time) || 9e15)).slice(0, 10);
+  v.innerHTML = `<div class="wrap">
+    ${hero.length ? `<div class="hero" id="hero">${hero.map(it => `
+      <div class="slide" data-open="${it.id}" style="${bgOf(it)}">
+        ${isLive(it) ? `<span class="tag live">${T("live")}</span>` : ""}
+        <h3>${esc(it.title)}</h3>
+        <p>${esc([it.genre, it.content_type === "football" ? matchState(it).label : ""].filter(Boolean).join(" · "))}</p>
+        <button class="go">${ic("play", "f")}${T("watch")}</button>
+      </div>`).join("")}</div>
+      <div class="dots" id="dots">${hero.map((_, i) => `<b class="${i ? "" : "on"}"></b>`).join("")}</div>` : ""}
+    ${rowH(T("recent"), recent)}
+    ${rowH(T("nowlive"), topBy(lib.filter(isLive)).slice(0, 12))}
+    ${rowH(T("upcoming"), soon, "football")}
+    ${rowH(T("trend"), topBy(lib).slice(0, 12))}
+    ${rowH(T("fresh"), newest(lib).slice(0, 12))}
+    ${rowH(T("tv"), byType("tv"), "tv")}
+    ${rowH(T("film"), byType("movies"), "movies")}
+    ${rowH(T("series"), byType("series"), "movies")}
+    ${rowH(T("cartoons"), byType("cartoons"), "movies")}
+  </div>`;
+  const h = $("#hero");
+  if (h && hero.length > 1) {
+    let i = 0;
+    h.onscroll = () => {
+      i = Math.round(h.scrollLeft / h.clientWidth);
+      document.querySelectorAll("#dots b").forEach((d, k) => d.classList.toggle("on", k === i));
+    };
+    heroT = setInterval(() => { i = (i + 1) % hero.length; h.scrollTo({ left: i * h.clientWidth, behavior: "smooth" }); }, 6000);
   }
 }
 
-function searchV(v){
-  v.innerHTML=`<div class="wrap"><div class="search"><span>🔍</span><input id="q" value="${esc(query)}" placeholder="${T("ph")}" autocomplete="off"></div>
-    <div id="res"></div></div>`;
-  resultsV();
-}
-function resultsV(){
-  const r=$("#res"); if(!r) return;
-  if (!query){
-    const gs=[...new Set(items.map(x=>x.genre).filter(Boolean))].slice(0,14);
-    r.innerHTML=(sh.length?`<div class="sec"><h2>${T("hist")}</h2><a id="shClear">${T("clearS")}</a></div><div class="chips">${sh.map(s=>`<div class="pill sm" data-q="${esc(s)}">🕘 ${esc(s)}</div>`).join("")}</div>`:"")
-      +`<div class="sec"><h2>${T("genre")}</h2></div><div class="chips">${gs.map(g=>`<div class="pill sm" data-q="${esc(g)}">${esc(g)}</div>`).join("")}</div>`
-      +`<div class="sec"><h2>${T("popular")}</h2></div>${grid(topBy(items).slice(0,8))}`;
-  } else r.innerHTML=grid(filt(items).filter(()=>true));
-}
-function saveSearch(){ if(query.length>1){ sh=[query,...sh.filter(s=>s!==query)].slice(0,8); ls.set("uzstv_sh",sh); } }
-
-function profile(v){
-  const u=tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user;
-  const nm=u?((u.first_name||"")+" "+(u.last_name||"")).trim():"Guest";
-  const av=u&&u.photo_url?`background-image:url('${esc(u.photo_url)}')`:"";
-  v.innerHTML=`<div class="wrap" style="padding-top:14px">
-   <div class="pcard who"><div class="av" style="${av}">${av?"":esc(nm[0]||"U")}</div><div><h3 style="margin:0">${esc(nm)}</h3><p>${u?"@"+esc(u.username||"—")+" • ID "+u.id:""}</p><p>${T("free")}</p></div></div>
-   <div class="pcard"><h3>📊 ${T("stats")}</h3><div class="stats"><div><b>${items.length}</b><span>${T("tot")}</span></div><div><b>${favs.size}</b><span>${T("favs")}</span></div><div><b>${hist.length}</b><span>${T("watched")}</span></div></div></div>
-   <div class="pcard"><h3>🎨 ${T("theme")}</h3><div class="chips" style="margin-top:0"><div class="pill sm ${document.documentElement.dataset.theme==="dark"?"on":""}" data-th="dark">Dark</div><div class="pill sm ${document.documentElement.dataset.theme==="black"?"on":""}" data-th="black">AMOLED</div><div class="pill sm ${document.documentElement.dataset.theme==="light"?"on":""}" data-th="light">Light</div></div>
-     <h3 style="margin-top:12px">${T("accent")}</h3><div class="sw">${ACC.map((a,i)=>`<i data-acc="${i}" class="${accent===i?"on":""}" style="background:linear-gradient(135deg,${a[0]},${a[1]})"></i>`).join("")}</div>
-     <h3 style="margin-top:14px">${T("autoNext")}</h3><div class="pill sm ${autoNext?"on":""}" data-an style="display:inline-block">${autoNext?T("on"):T("off")}</div></div>
-   <button class="btn g" id="pRefresh">${T("refresh")}</button><button class="btn g" id="pClear">${T("clearH")}</button>
-   ${meta.bot?`<button class="btn" id="pBot">${T("bot")}</button>`:""}</div>`;
+function toolsH() {
+  return `<div class="tools">
+    <button class="chip" data-act="lucky" style="display:flex;gap:6px;align-items:center">${ic("shuffle", "s")}${T("lucky")}</button>
+    <select class="sel" id="sort">
+      <option value="default">${T("sort")}</option>
+      <option value="views" ${sortBy === "views" ? "selected" : ""}>${T("pop")}</option>
+      <option value="alpha" ${sortBy === "alpha" ? "selected" : ""}>${T("az")}</option>
+      <option value="new" ${sortBy === "new" ? "selected" : ""}>${T("newest")}</option>
+    </select>
+    <button class="ib" data-act="layout">${ic(layout === "grid" ? "list" : "grid")}</button>
+  </div>`;
 }
 
-/* ===== PLEYER ===== */
-const setOver = h => { const o=$("#vover"); o.innerHTML=h||""; o.classList.toggle("show",!!h); };
-const SPEEDS=[1,1.25,1.5,2,0.75], SLEEPS=[0,15,30,60];
+function vTv(v) {
+  const a = byType("tv");
+  v.innerHTML = chipsH(genresOf(a), "genre", genre) + `<div class="wrap">${toolsH()}
+    <div class="sec"><h2>${T("tv")} · ${filt(a).length}</h2></div>${grid(filt(a))}</div>`;
+}
 
-function openPlayer(id){
-  const it=items.find(x=>x.id===id); if(!it) return;
-  cur=it; retries=0; speedI=0; hap("medium");
-  it.views=(it.views||0)+1;
-  hist=[{id,t:Date.now()},...hist.filter(h=>h.id!==id)].slice(0,30); ls.set("uzstv_hist",hist);
-  if (API_URL&&tg&&tg.initData) fetch(API_URL.replace(/\/$/,"")+"/api/view/"+id,{method:"POST",headers:{"X-Init-Data":tg.initData}}).catch(()=>{});
-  paint(); $("#player").classList.add("open"); $("#player").scrollTop=0; document.body.style.overflow="hidden";
+function vFootball(v) {
+  const a = byType("football");
+  const g = { live: [], soon: [], end: [], na: [] };
+  a.forEach(x => g[matchState(x).k].push(x));
+  g.soon.sort((x, y) => matchState(x).t - matchState(y).t);
+  const sec = (t, l) => l.length ? `<div class="sec"><h2>${t}</h2></div>${l.map(matchRow).join("")}` : "";
+  v.innerHTML = `<div class="wrap">
+    ${sec(T("nowlive"), g.live)}${sec(T("upcoming"), g.soon)}${sec(T("football"), g.na)}${sec(T("ended"), g.end)}
+    ${a.length ? "" : `<div class="empty">${ic("ball")}<div>${T("none")}</div></div>`}</div>`;
+}
+
+function vMovies(v) {
+  const types = [["all", T("all")], ["movies", T("film")], ["series", T("series")], ["cartoons", T("cartoons")]];
+  const base = sub === "all" ? lib.filter(x => MOVIE_TYPES.includes(x.content_type)) : byType(sub);
+  v.innerHTML = `<div class="seg">${types.map(t => `<button class="${sub === t[0] ? "on" : ""}" data-sub="${t[0]}">${t[1]}</button>`).join("")}</div>
+    ${chipsH(genresOf(base), "genre", genre)}
+    <div class="wrap">${toolsH()}<div class="sec"><h2>${esc(types.find(t => t[0] === sub)[1])} · ${filt(base).length}</h2></div>${grid(filt(base))}</div>`;
+}
+
+function vFavs(v) {
+  const a = filt(lib.filter(x => favs.has(x.id)));
+  v.innerHTML = `<div class="wrap"><div class="sec"><h2>${T("favs")} · ${a.length}</h2></div>
+    ${favs.size ? grid(a) : `<div class="empty">${ic("heart")}<div>${T("nofav")}</div></div>`}</div>`;
+}
+
+function vHistory(v) {
+  const a = hist.map(h => items.find(x => x.id === h.id)).filter(Boolean);
+  v.innerHTML = `<div class="wrap"><div class="sec"><h2>${T("history")} · ${a.length}</h2>${a.length ? `<a data-act="clearHist">${T("clear")}</a>` : ""}</div>
+    ${a.length ? grid(a) : `<div class="empty">${ic("clock")}<div>${T("nohist")}</div></div>`}</div>`;
+}
+
+function vSearch(v) {
+  v.innerHTML = `<div class="wrap"><div class="search">
+      <label>${ic("search")}<input id="q" value="${esc(query)}" placeholder="${T("ph")}" autocomplete="off"></label>
+      <button class="ib" data-act="voice" style="background:var(--s);border:1px solid var(--b)">${ic("mic")}</button>
+    </div><div id="res"></div></div>`;
+  results();
+  if (!query) { const q = $("#q"); if (q && !("ontouchstart" in window)) q.focus(); }
+}
+function results() {
+  const r = $("#res");
+  if (!r) return;
+  if (query) { r.innerHTML = `<div class="sec"><h2>${filt(lib).length}</h2></div>${grid(filt(lib))}`; return; }
+  const gs = [...new Set(lib.map(x => x.genre).filter(Boolean))].slice(0, 16);
+  r.innerHTML =
+    (sh.length ? `<div class="sec"><h2>${T("hist")}</h2><a data-act="clearSh">${T("clear")}</a></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">${sh.map(s => `<button class="chip" data-q="${esc(s)}">${esc(s)}</button>`).join("")}</div>` : "") +
+    (gs.length ? `<div class="sec"><h2>${T("genres")}</h2></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">${gs.map(s => `<button class="chip" data-q="${esc(s)}">${esc(s)}</button>`).join("")}</div>` : "") +
+    `<div class="sec"><h2>${T("trend")}</h2></div>${grid(topBy(lib).slice(0, 8))}`;
+}
+function saveSearch() {
+  if (query.length > 1) { sh = [query].concat(sh.filter(s => s !== query)).slice(0, 8); ls.set("uzstv_sh", sh); }
+}
+
+const sw = (k, on) => `<button class="sw ${on ? "on" : ""}" data-set="${k}"></button>`;
+const lrow = (icon, t, right, attr) => `<div class="lr ${attr ? "link" : ""}" ${attr || ""}>${ic(icon)}<div class="lt">${t}</div>${right || ""}</div>`;
+function vMe(v) {
+  const u = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
+  const nm = u ? ((u.first_name || "") + " " + (u.last_name || "")).trim() : "Guest";
+  const th = document.documentElement.dataset.theme;
+  v.innerHTML = `<div class="wrap">
+    <div class="who"><div class="av" style="${u && u.photo_url ? `background-image:url('${esc(u.photo_url)}')` : ""}">${u && u.photo_url ? "" : esc(nm[0] || "U")}</div>
+      <div><h3>${esc(nm)}</h3><p>${u ? "@" + esc(u.username || "-") : ""} · ${T("free")}</p></div></div>
+    <div class="list-g stats" style="margin-top:12px"><div><b>${items.length}</b><span>${T("tot")}</span></div><div><b>${favs.size}</b><span>${T("favs")}</span></div><div><b>${hist.length}</b><span>${T("stats")}</span></div></div>
+    <div class="list-g">
+      ${lrow("heart", T("favs"), `<span class="lv">${favs.size}</span>${ic("chev", "s")}`, 'data-nav="favs"')}
+      ${lrow("clock", T("history"), `<span class="lv">${hist.length}</span>${ic("chev", "s")}`, 'data-nav="history"')}
+      ${lrow("bell", T("rems"), `<span class="lv">${rem.size}</span>`)}
+    </div>
+    <div class="list-g">
+      ${lrow("moon", T("theme"), `<div class="dotsw" style="gap:6px">${[["dark", "dark"], ["black", "amoled"], ["light", "light"]].map(t => `<button class="chip ${th === t[0] ? "on" : ""}" data-theme="${t[0]}">${T(t[1])}</button>`).join("")}</div>`)}
+      ${lrow("sliders", T("accent"), `<div class="dotsw">${ACC.map((c, i) => `<i data-acc="${i}" class="${accent === i ? "on" : ""}" style="background:${c}"></i>`).join("")}</div>`)}
+      ${lrow("globe", T("lang"), `<button class="chip" data-act="lang">${LANG.toUpperCase()}</button>`)}
+      ${lrow("list", T("layout"), sw("layout", layout === "list"))}
+    </div>
+    <div class="list-g">
+      ${lrow("next", T("autoNext"), sw("autoNext", S.autoNext))}
+      ${lrow("bolt", T("saver"), sw("saver", S.saver))}
+      ${lrow("hash", T("swipe"), sw("swipe", S.swipe))}
+      ${lrow("bell", T("haptic"), sw("haptic", S.haptic))}
+      ${lrow("shield", T("kids"), sw("kids", S.kids))}
+    </div>
+    <div class="list-g">
+      ${lrow("refresh", T("refresh"), "", 'data-act="refresh"')}
+      ${lrow("trash", T("clearAll"), "", 'data-act="clearHist"')}
+      ${meta.bot ? lrow("bot", T("bot"), ic("chev", "s"), 'data-act="bot"') : ""}
+    </div></div>`;
+}
+
+/* ================= SHEET ================= */
+function sheet(h) { $("#sheetBox").innerHTML = h; $("#sheet").classList.add("open"); const i = $("#sheetBox input"); if (i) setTimeout(() => i.focus(), 60); }
+function closeSheet() { $("#sheet").classList.remove("open"); }
+function pinSheet(mode) {
+  sheet(`<h3>${T(mode === "set" ? "pinSet" : "pinAsk")}</h3><p>${mode === "set" ? T("pinNote") : ""}</p>
+    <input id="pinIn" type="tel" maxlength="4" inputmode="numeric" autocomplete="off">
+    <button class="btn" data-act="pin" data-mode="${mode}">${T("ok")}</button>`);
+}
+function chSheet() {
+  sheet(`<h3>${T("goCh")}</h3><p>${esc(cur ? T(cur.content_type === "football" ? "football" : "tv") : "")}</p>
+    <input id="chIn" type="tel" maxlength="3" inputmode="numeric" autocomplete="off">
+    <button class="btn" data-act="goCh">${T("open")}</button>`);
+}
+
+/* ================= PLEYER ================= */
+const SPEEDS = [1, 1.25, 1.5, 2, 0.75];
+const SLEEPS = [0, 15, 30, 60];
+const setOver = h => { const o = $("#vover"); o.innerHTML = h || ""; o.classList.toggle("show", !!h); };
+function osd(t) {
+  const o = $("#osd");
+  o.textContent = t;
+  o.style.display = "block";
+  clearTimeout(osd._t);
+  osd._t = setTimeout(() => o.style.display = "none", 1400);
+}
+
+function openPlayer(id) {
+  const it = items.find(x => x.id === id);
+  if (!it) return;
+  cur = it; retries = 0; speedI = 0; srcI = 0; audioOn = false;
+  srcs = [it.url].concat(it.backups || it.urls || []).filter(Boolean);
+  it.views = (it.views || 0) + 1;
+  hist = [{ id, t: Date.now() }].concat(hist.filter(h => h.id !== id)).slice(0, 40);
+  ls.set("uzstv_hist", hist);
+  if (API_URL && tg && tg.initData) fetch(API_URL.replace(/\/$/, "") + "/api/view/" + id, { method: "POST", headers: { "X-Init-Data": tg.initData } }).catch(() => {});
+  hap("medium");
+  paint();
+  $("#player").classList.add("open");
+  $("#player").scrollTop = 0;
+  document.body.style.overflow = "hidden";
   if (tg) tg.BackButton.show();
-  play(it.url);
-}
-function paint(){
-  const it=cur;
-  $("#pTitle").textContent=it.title; $("#iTitle").textContent=it.title;
-  $("#cFav").textContent=favs.has(it.id)?"❤️":"🤍"; $("#cSpeed").textContent=SPEEDS[speedI]+"x"; $("#cSpeed").style.display=isLive(it)?"none":"";
-  $("#iMeta").innerHTML=[`<span>${ICON[it.content_type]||"📺"} ${esc(it.badge||"")}</span>`,`<span>🎭 ${esc(it.genre||"-")}</span>`,it.language?`<span>🌐 ${esc(it.language.toUpperCase())}</span>`:"",`<span>👁 ${it.views||0}</span>`,it.match_time?`<span>⏰ ${esc(it.match_time)}</span>`:"",`<span>${T("free")}</span>`].join("");
-  $("#simT").textContent=T("similar");
-  $("#simRow").innerHTML=items.filter(x=>x.content_type===it.content_type).map(x=>`<div class="row ${x.id===it.id?"cur":""}" data-id="${x.id}"><div class="th" style="${bgOf(x)}">${x.poster?"":(ICON[x.content_type]||"📺")}</div><div class="tt">${esc(x.title)}<small>${esc(x.genre||"")} • 👁 ${x.views||0}</small></div><span>${x.id===it.id?"▶":""}</span></div>`).join("");
-}
-function destroy(){
-  if (hls){ hls.destroy(); hls=null; }
-  const v=$("#vbox video, #vbox iframe"); if(v){ try{ v.pause&&v.pause(); v.removeAttribute&&v.removeAttribute("src"); v.load&&v.load(); }catch(e){} v.remove(); }
-  $("#cQual").style.display="none";
-}
-function play(url){
-  destroy(); setOver('<div class="spin"></div>');
-  if (location.protocol==="https:"&&url.startsWith("http://")) url="https://"+url.slice(7);
-  const box=$("#vbox"), yt=url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{6,})/);
-  if (yt){ const f=document.createElement("iframe"); f.src="https://www.youtube.com/embed/"+yt[1]+"?autoplay=1&playsinline=1"; f.allow="autoplay; fullscreen; picture-in-picture"; f.allowFullscreen=true; box.prepend(f); setOver(""); return; }
-  const video=document.createElement("video"); video.controls=true; video.autoplay=true; video.playsInline=true; video.setAttribute("playsinline",""); box.prepend(video);
-  const id=cur.id; let last=0;
-  video.addEventListener("playing",()=>setOver("")); video.addEventListener("waiting",()=>setOver('<div class="spin"></div>')); video.addEventListener("error",fail);
-  video.addEventListener("loadedmetadata",()=>{ if(!isLive(cur)&&isFinite(video.duration)){ const p=prog[id]; if(p&&p.t>20&&p.t<video.duration-20) video.currentTime=p.t; video.playbackRate=SPEEDS[speedI]; } });
-  video.addEventListener("timeupdate",()=>{ if(isLive(cur)||!isFinite(video.duration)||Date.now()-last<4000) return; last=Date.now(); prog[id]={t:video.currentTime,d:video.duration}; ls.set("uzstv_prog",prog); });
-  video.addEventListener("ended",()=>{ if(!isLive(cur)){ delete prog[id]; ls.set("uzstv_prog",prog); if(autoNext) step(1); } });
-  if (/\.m3u8/i.test(url)){
-    if (window.Hls&&Hls.isSupported()){
-      hls=new Hls({lowLatencyMode:true,maxBufferLength:30,enableWorker:true}); hls.loadSource(url); hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED,(_,d)=>{ video.play().catch(()=>{}); if(d.levels.length>1){ const q=$("#cQual"); q.innerHTML=`<option value="-1">${T("quality")}: ${T("auto")}</option>`+d.levels.map((l,i)=>`<option value="${i}">${l.height?l.height+"p":Math.round(l.bitrate/1000)+"k"}</option>`).join(""); q.style.display=""; } });
-      hls.on(Hls.Events.ERROR,(_,e)=>{ if(!e.fatal) return;
-        if (e.type===Hls.ErrorTypes.NETWORK_ERROR&&retries<3){ retries++; setTimeout(()=>hls&&hls.startLoad(),1200*retries); }
-        else if (e.type===Hls.ErrorTypes.MEDIA_ERROR&&retries<3){ retries++; hls.recoverMediaError(); } else fail(); });
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")){ video.src=url; video.play().catch(()=>{}); } else fail();
-  } else { video.src=url; video.play().catch(()=>{}); }
-}
-const fail = () => setOver(`<div style="font-size:30px">⚠️</div><div>${T("err")}</div><button id="vRetry">${T("retry")}</button>`);
-function closePlayer(){
-  destroy(); cur=null; clearTimeout(sleepT); sleepI=0; $("#cSleep").classList.remove("on");
-  $("#player").classList.remove("open"); document.body.style.overflow=""; if(tg) tg.BackButton.hide(); render();
-}
-function step(dir){
-  if (!cur) return;
-  const l=items.filter(x=>x.content_type===cur.content_type); if(!l.length) return;
-  const i=l.findIndex(x=>x.id===cur.id); openPlayer(l[(i+dir+l.length)%l.length].id);
-}
-function toggleFav(id){ if(favs.has(id)){ favs.delete(id); toast(T("removed")); } else { favs.add(id); toast(T("added")); } ls.set("uzstv_favs",[...favs]); hap(); }
-function cycleSleep(){
-  sleepI=(sleepI+1)%SLEEPS.length; clearTimeout(sleepT); const m=SLEEPS[sleepI];
-  $("#cSleep").classList.toggle("on",!!m); $("#cSleep").textContent=m?"⏱ "+m:"⏱";
-  if (m){ toast(T("sleep")+": "+m+" min"); sleepT=setTimeout(closePlayer,m*60000); } else toast(T("sleepOff"));
-}
-function seek(side){
-  const v=$("#vbox video"); if(!v||!isFinite(v.duration)||isLive(cur)) return;
-  v.currentTime=Math.max(0,Math.min(v.duration,v.currentTime+(side==="L"?-10:10)));
-  const e=$(side==="L"?"#sL":"#sR"); e.style.display="flex"; setTimeout(()=>e.style.display="none",450);
+  mediaSession();
+  play(srcs[0]);
 }
 
-/* ===== HODISALAR ===== */
-document.addEventListener("click",e=>{
-  const t=e.target, fb=t.closest("[data-fav]");
-  if (fb){ e.stopPropagation(); const id=+fb.dataset.fav; toggleFav(id); fb.textContent=favs.has(id)?"❤️":"🤍"; if(view==="favs") render(); return; }
-  const row=t.closest(".row"); if(row&&row.dataset.id) return openPlayer(+row.dataset.id);
-  const c=t.closest(".card, .slide"); if(c&&c.dataset.id) return openPlayer(+c.dataset.id);
-  const nv=t.closest("#nav button"); if(nv){ view=nv.dataset.v; if(view!=="search") query=""; genre="all"; sortBy="default"; hap(); render(); window.scrollTo({top:0}); return; }
-  const ty=t.closest("[data-type]"); if(ty){ type=ty.dataset.type; genre="all"; sortBy="default"; hap(); render(); return; }
-  const go=t.closest("[data-go]"); if(go){ view="home"; type=go.dataset.go; render(); window.scrollTo({top:0}); return; }
-  const g=t.closest("[data-genre]"); if(g){ genre=genre===g.dataset.genre?"all":g.dataset.genre; return render(); }
-  const q=t.closest("[data-q]"); if(q){ query=q.dataset.q; saveSearch(); return searchV($("#view")); }
-  const th=t.closest("[data-th]"); if(th){ document.documentElement.dataset.theme=th.dataset.th; localStorage.setItem("uzstv_theme",th.dataset.th); return render(); }
-  const ac=t.closest("[data-acc]"); if(ac){ accent=+ac.dataset.acc; ls.set("uzstv_acc",accent); applyAccent(); return render(); }
-  if (t.closest("[data-an]")){ autoNext=!autoNext; ls.set("uzstv_an",autoNext); return render(); }
-  switch(t.id){
-    case "lucky": case "bLucky": { if(items.length) openPlayer(items[Math.floor(Math.random()*items.length)].id); return; }
-    case "layoutBtn": layout=layout==="grid"?"list":"grid"; ls.set("uzstv_layout",layout); return render();
-    case "shClear": sh=[]; ls.set("uzstv_sh",sh); return resultsV();
-    case "pRefresh": return loadData(true);
-    case "pClear": hist=[]; prog={}; ls.set("uzstv_hist",hist); ls.set("uzstv_prog",prog); toast(T("cleared")); return render();
-    case "pBot": return tg.openTelegramLink("https://t.me/"+meta.bot);
+function paint() {
+  const it = cur;
+  const live = isLive(it);
+  $("#pTitle").textContent = it.title;
+  $("#iTitle").textContent = it.title;
+  const b = (id, icon, label, on) => `<button id="${id}" class="${on ? "on" : ""}">${ic(icon)}<span>${label}</span></button>`;
+  $("#ctl").innerHTML =
+    b("cPrev", "prev", T("prev")) + b("cNext", "next", T("next")) +
+    b("cFav", "heart", T("fav"), favs.has(it.id)) +
+    (live ? b("cNum", "hash", T("channel")) : b("cSpeed", "gauge", SPEEDS[speedI] + "x")) +
+    (it.content_type === "football" ? b("cRem", "bell", T("rems"), rem.has(it.id)) : "") +
+    b("cSleep", "timer", sleepI ? SLEEPS[sleepI] + " " + T("min") : T("sleep"), sleepI) +
+    (live ? b("cAud", "audio", T("audio"), audioOn) : "") +
+    b("cPip", "pip", "PiP") + b("cShare", "share", T("share")) +
+    b("cRep", "flag", T("report")) + b("cFs", "full", T("full")) +
+    `<select class="sel" id="cQual" style="display:none;flex:none;width:96px;margin:6px 4px"></select>`;
+  const st = it.content_type === "football" ? matchState(it).label : "";
+  $("#iMeta").innerHTML = [
+    it.badge ? `<span>${esc(it.badge)}</span>` : "",
+    it.genre ? `<span>${esc(it.genre)}</span>` : "",
+    it.language ? `<span>${ic("globe", "s")}${esc(String(it.language).toUpperCase())}</span>` : "",
+    `<span>${ic("eye", "s")}${it.views || 0}</span>`,
+    st ? `<span>${ic("clock", "s")}${esc(st)}</span>` : "",
+    it.content_type === "tv" ? `<span>${ic("hash", "s")}${channelNo(it)}</span>` : ""
+  ].join("");
+  $("#simT").textContent = T("similar");
+  $("#simRow").innerHTML = lib.filter(x => x.content_type === it.content_type).map((x, i) =>
+    `<div class="row ${x.id === it.id ? "cur" : ""}" data-open="${x.id}"><div class="nn">${i + 1}</div>
+      <div class="th" style="${bgOf(x)}">${x.poster ? "" : esc(mono(x.title))}</div>
+      <div class="tt">${esc(x.title)}<small>${esc(x.genre || "")}</small></div>${x.id === it.id ? ic("play", "s f") : ""}</div>`).join("");
+}
+
+function destroy() {
+  clearTimeout(stallT);
+  if (hls) { hls.destroy(); hls = null; }
+  const v = $("#vbox video, #vbox iframe");
+  if (v) {
+    try { v.pause && v.pause(); v.removeAttribute && v.removeAttribute("src"); v.load && v.load(); } catch (e) {}
+    v.remove();
+  }
+}
+
+function play(url) {
+  destroy();
+  setOver('<div class="spin"></div>');
+  $("#vbox").classList.toggle("aud", audioOn);
+  if (location.protocol === "https:" && url.startsWith("http://")) url = "https://" + url.slice(7);
+  const box = $("#vbox");
+  const yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{6,})/);
+  if (yt) {
+    const f = document.createElement("iframe");
+    f.src = "https://www.youtube.com/embed/" + yt[1] + "?autoplay=1&playsinline=1";
+    f.allow = "autoplay; fullscreen; picture-in-picture";
+    f.allowFullscreen = true;
+    box.prepend(f);
+    setOver("");
+    return;
+  }
+  const video = document.createElement("video");
+  video.controls = true; video.autoplay = true; video.playsInline = true;
+  video.setAttribute("playsinline", "");
+  box.prepend(video);
+  const id = cur.id;
+  let last = 0;
+  video.addEventListener("playing", () => { setOver(""); clearTimeout(stallT); });
+  video.addEventListener("waiting", () => {
+    setOver('<div class="spin"></div>');
+    clearTimeout(stallT);
+    if (isLive(cur)) stallT = setTimeout(() => { if (cur && cur.id === id) { toast(T("retry")); play(srcs[srcI]); } }, 14000);
+  });
+  video.addEventListener("error", fail);
+  video.addEventListener("loadedmetadata", () => {
+    if (!isLive(cur) && isFinite(video.duration)) {
+      const p = prog[id];
+      if (p && p.t > 20 && p.t < video.duration - 20) video.currentTime = p.t;
+      video.playbackRate = SPEEDS[speedI];
+    }
+  });
+  video.addEventListener("timeupdate", () => {
+    if (isLive(cur) || !isFinite(video.duration) || Date.now() - last < 4000) return;
+    last = Date.now();
+    prog[id] = { t: video.currentTime, d: video.duration };
+    ls.set("uzstv_prog", prog);
+  });
+  video.addEventListener("ended", () => {
+    if (isLive(cur)) return;
+    delete prog[id];
+    ls.set("uzstv_prog", prog);
+    if (S.autoNext) step(1);
+  });
+  if (/\.m3u8/i.test(url)) {
+    if (window.Hls && Hls.isSupported()) {
+      hls = new Hls({ lowLatencyMode: true, maxBufferLength: S.saver ? 12 : 30, enableWorker: true, capLevelToPlayerSize: true });
+      hls.loadSource(url);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, (_, d) => {
+        video.play().catch(() => {});
+        if (S.saver) {
+          let cap = -1;
+          d.levels.forEach((l, i) => { if (l.height && l.height <= 480) cap = Math.max(cap, i); });
+          if (cap >= 0) hls.autoLevelCapping = cap;
+        }
+        const q = $("#cQual");
+        if (d.levels.length > 1 && q) {
+          q.innerHTML = `<option value="-1">${T("quality")}: ${T("auto")}</option>` +
+            d.levels.map((l, i) => `<option value="${i}">${l.height ? l.height + "p" : Math.round(l.bitrate / 1000) + "k"}</option>`).join("");
+          q.style.display = "";
+        }
+      });
+      hls.on(Hls.Events.ERROR, (_, e) => {
+        if (!e.fatal) return;
+        if (e.type === Hls.ErrorTypes.NETWORK_ERROR && retries < 3) { retries++; setTimeout(() => hls && hls.startLoad(), 1200 * retries); }
+        else if (e.type === Hls.ErrorTypes.MEDIA_ERROR && retries < 3) { retries++; hls.recoverMediaError(); }
+        else fail();
+      });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) { video.src = url; video.play().catch(() => {}); }
+    else fail();
+  } else { video.src = url; video.play().catch(() => {}); }
+}
+
+function fail() {
+  if (srcI + 1 < srcs.length) { srcI++; retries = 0; toast("Zaxira manba " + (srcI + 1)); return play(srcs[srcI]); }
+  setOver(`${ic("flag")}<div>${T("err")}</div><button id="vRetry">${T("retry")}</button>`);
+}
+
+function closePlayer() {
+  destroy();
+  cur = null;
+  clearTimeout(sleepT);
+  sleepI = 0;
+  closeSheet();
+  $("#player").classList.remove("open");
+  document.body.style.overflow = "";
+  if (tg) tg.BackButton.hide();
+  render();
+}
+
+function step(dir) {
+  if (!cur) return;
+  const l = lib.filter(x => x.content_type === cur.content_type);
+  if (!l.length) return;
+  const i = Math.max(0, l.findIndex(x => x.id === cur.id));
+  openPlayer(l[(i + dir + l.length) % l.length].id);
+}
+function goChannel(n) {
+  if (!cur) return;
+  const l = items.filter(x => x.content_type === cur.content_type);
+  const it = l[n - 1];
+  if (it) openPlayer(it.id); else toast(T("noCh"));
+}
+function toggleFav(id) {
+  if (favs.has(id)) { favs.delete(id); toast(T("removed")); }
+  else { favs.add(id); toast(T("added")); }
+  ls.set("uzstv_favs", [...favs]);
+  hap();
+}
+function cycleSleep() {
+  sleepI = (sleepI + 1) % SLEEPS.length;
+  clearTimeout(sleepT);
+  const m = SLEEPS[sleepI];
+  if (m) { toast(T("sleepOn") + ": " + m + " " + T("min")); sleepT = setTimeout(closePlayer, m * 60000); }
+  else toast(T("sleepOff"));
+  paint();
+}
+function seek(side) {
+  const v = $("#vbox video");
+  if (!v || !isFinite(v.duration) || isLive(cur)) return;
+  v.currentTime = Math.max(0, Math.min(v.duration, v.currentTime + (side === "L" ? -10 : 10)));
+  const e = $(side === "L" ? "#sL" : "#sR");
+  e.style.display = "flex";
+  setTimeout(() => e.style.display = "none", 450);
+}
+function shareLink(it) {
+  return meta.bot ? `https://t.me/${meta.bot}?startapp=i${it.id}` : location.href;
+}
+function mediaSession() {
+  if (!("mediaSession" in navigator) || !cur) return;
+  try {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: cur.title, artist: "Uzs TV",
+      artwork: cur.poster ? [{ src: cur.poster, sizes: "512x512" }] : []
+    });
+    navigator.mediaSession.setActionHandler("previoustrack", () => step(-1));
+    navigator.mediaSession.setActionHandler("nexttrack", () => step(1));
+  } catch (e) {}
+}
+
+/* ================= HODISALAR ================= */
+document.addEventListener("click", e => {
+  const t = e.target;
+  const fb = t.closest("[data-fav]");
+  if (fb) {
+    e.stopPropagation();
+    const id = +fb.dataset.fav;
+    toggleFav(id);
+    fb.classList.toggle("on", favs.has(id));
+    if (view === "favs") render();
+    return;
+  }
+  const rb = t.closest("[data-rem]");
+  if (rb) { e.stopPropagation(); toggleRem(+rb.dataset.rem); rb.classList.toggle("on", rem.has(+rb.dataset.rem)); return; }
+  const op = t.closest("[data-open]");
+  if (op) return openPlayer(+op.dataset.open);
+  const nv = t.closest("[data-nav]");
+  if (nv) {
+    view = nv.dataset.nav;
+    if (view !== "search") query = "";
+    genre = "all"; sortBy = "default";
+    if (view === "movies") sub = "all";
+    hap();
+    render();
+    window.scrollTo({ top: 0 });
+    return;
+  }
+  const go = t.closest("[data-go]");
+  if (go) { view = go.dataset.go; genre = "all"; render(); window.scrollTo({ top: 0 }); return; }
+  const sb = t.closest("[data-sub]");
+  if (sb) { sub = sb.dataset.sub; genre = "all"; return render(); }
+  const g = t.closest("[data-genre]");
+  if (g) { genre = g.dataset.genre; return render(); }
+  const q = t.closest("[data-q]");
+  if (q) { query = q.dataset.q; saveSearch(); return vSearch($("#view")); }
+  const th = t.closest("[data-theme]");
+  if (th) { document.documentElement.dataset.theme = th.dataset.theme; localStorage.setItem("uzstv_theme", th.dataset.theme); return render(); }
+  const ac = t.closest("[data-acc]");
+  if (ac) { accent = +ac.dataset.acc; ls.set("uzstv_acc", accent); applyAccent(); return render(); }
+  const st = t.closest("[data-set]");
+  if (st) {
+    const k = st.dataset.set;
+    if (k === "layout") { layout = layout === "grid" ? "list" : "grid"; ls.set("uzstv_layout", layout); return render(); }
+    if (k === "kids") return pinSheet(S.kids ? "check" : "set");
+    S[k] = !S[k];
+    save();
+    return render();
+  }
+  const ac2 = t.closest("[data-act]");
+  if (ac2) {
+    switch (ac2.dataset.act) {
+      case "lucky": { if (lib.length) openPlayer(lib[Math.floor(Math.random() * lib.length)].id); return; }
+      case "layout": layout = layout === "grid" ? "list" : "grid"; ls.set("uzstv_layout", layout); return render();
+      case "clearSh": sh = []; ls.set("uzstv_sh", sh); return results();
+      case "clearHist": hist = []; prog = {}; ls.set("uzstv_hist", hist); ls.set("uzstv_prog", prog); toast(T("cleared")); return render();
+      case "refresh": return loadData(true);
+      case "lang": LANG = LANG === "uz" ? "ru" : "uz"; localStorage.setItem("uzstv_lang", LANG); return render();
+      case "bot": return tg && tg.openTelegramLink("https://t.me/" + meta.bot);
+      case "voice": return voice();
+      case "goCh": { const n = +($("#chIn").value || 0); closeSheet(); if (n) goChannel(n); return; }
+      case "pin": {
+        const val = $("#pinIn").value;
+        if (val.length !== 4) return;
+        if (ac2.dataset.mode === "set") { S.pin = val; S.kids = true; }
+        else if (val === S.pin) S.kids = false;
+        else { toast(T("pinBad")); return; }
+        save(); setLib(); closeSheet(); return render();
+      }
+    }
+  }
+  if (t.id === "sheet") return closeSheet();
+  const b = t.closest("#ctl button, #pClose, #vRetry");
+  if (!b) return;
+  switch (b.id) {
     case "pClose": return closePlayer();
     case "cPrev": return step(-1);
     case "cNext": return step(1);
-    case "cFav": if(cur){ toggleFav(cur.id); $("#cFav").textContent=favs.has(cur.id)?"❤️":"🤍"; } return;
+    case "cFav": toggleFav(cur.id); return paint();
+    case "cRem": toggleRem(cur.id); return paint();
+    case "cNum": return chSheet();
     case "cSleep": return cycleSleep();
-    case "cSpeed": { speedI=(speedI+1)%SPEEDS.length; const v=$("#vbox video"); if(v) v.playbackRate=SPEEDS[speedI]; t.textContent=SPEEDS[speedI]+"x"; return; }
-    case "cRep": if(cur){ if(API_URL&&tg&&tg.initData) fetch(API_URL.replace(/\/$/,"")+"/api/report/"+cur.id,{method:"POST",headers:{"X-Init-Data":tg.initData}}).catch(()=>{}); toast(T("reported")); } return;
-    case "cShare": if(cur){ const link=meta.bot?"https://t.me/"+meta.bot:location.href; const u="https://t.me/share/url?url="+encodeURIComponent(link)+"&text="+encodeURIComponent("📺 "+cur.title+" — Uzs TV");
-      if(tg) tg.openTelegramLink(u); else { navigator.clipboard&&navigator.clipboard.writeText(link); toast(T("copied")); } } return;
-    case "cPip": { const v=$("#vbox video"); if(v&&document.pictureInPictureEnabled) v.requestPictureInPicture().catch(()=>toast(T("pip"))); else toast(T("pip")); return; }
-    case "cFs": { const b=$("#vbox"), v=$("#vbox video")||b; if(v.webkitEnterFullscreen) v.webkitEnterFullscreen(); else (b.requestFullscreen||b.webkitRequestFullscreen).call(b); return; }
-    case "vRetry": if(cur){ retries=0; play(cur.url); } return;
+    case "cSpeed": {
+      speedI = (speedI + 1) % SPEEDS.length;
+      const v = $("#vbox video");
+      if (v) v.playbackRate = SPEEDS[speedI];
+      return paint();
+    }
+    case "cAud": audioOn = !audioOn; $("#vbox").classList.toggle("aud", audioOn); return paint();
+    case "cRep":
+      if (API_URL && tg && tg.initData) fetch(API_URL.replace(/\/$/, "") + "/api/report/" + cur.id, { method: "POST", headers: { "X-Init-Data": tg.initData } }).catch(() => {});
+      return toast(T("reported"));
+    case "cShare": {
+      const link = shareLink(cur);
+      const u = "https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(cur.title + " - Uzs TV");
+      if (tg) tg.openTelegramLink(u);
+      else { navigator.clipboard && navigator.clipboard.writeText(link); toast(T("copied")); }
+      return;
+    }
+    case "cPip": {
+      const v = $("#vbox video");
+      if (v && document.pictureInPictureEnabled) v.requestPictureInPicture().catch(() => toast(T("pip")));
+      else toast(T("pip"));
+      return;
+    }
+    case "cFs": {
+      const bx = $("#vbox"), v = $("#vbox video") || bx;
+      if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+      else (bx.requestFullscreen || bx.webkitRequestFullscreen).call(bx).then(() => {
+        try { screen.orientation.lock("landscape"); } catch (e) {}
+      }).catch(() => {});
+      return;
+    }
+    case "vRetry": retries = 0; srcI = 0; return play(srcs[0]);
   }
 });
-$("#vbox").addEventListener("dblclick",e=>{ const r=e.currentTarget.getBoundingClientRect(); seek(e.clientX-r.left<r.width/2?"L":"R"); });
-document.addEventListener("input",e=>{ if(e.target.id==="q"){ query=e.target.value.trim(); clearTimeout(window._qt); window._qt=setTimeout(resultsV,180); } });
-document.addEventListener("keydown",e=>{ if(e.target.id==="q"&&e.key==="Enter"){ saveSearch(); e.target.blur(); } if(e.key==="Escape"&&cur) closePlayer(); if(cur&&!e.target.matches("input,select")){ if(e.key==="ArrowRight") seek("R"); if(e.key==="ArrowLeft") seek("L"); } });
-document.addEventListener("change",e=>{ if(e.target.id==="sort"){ sortBy=e.target.value; render(); } if(e.target.id==="cQual"&&hls) hls.currentLevel=+e.target.value; });
-$("#bTheme").onclick=()=>{ const o=["dark","black","light"], n=o[(o.indexOf(document.documentElement.dataset.theme)+1)%3]; document.documentElement.dataset.theme=n; localStorage.setItem("uzstv_theme",n); hap(); if(view==="profile") render(); };
-$("#bLang").onclick=()=>{ LANG=LANG==="uz"?"ru":"uz"; localStorage.setItem("uzstv_lang",LANG); if(cur) paint(); render(); };
-if (tg) tg.BackButton.onClick(()=>{ if($("#player").classList.contains("open")) closePlayer(); });
-document.addEventListener("visibilitychange",()=>{ if(!document.hidden&&cur&&hls) hls.startLoad(); });
-window.addEventListener("offline",()=>toast(T("offline")));
 
-/* ===== BOSHLASH ===== */
-document.documentElement.dataset.theme=localStorage.getItem("uzstv_theme")||(tg&&tg.colorScheme)||"dark";
-loadData().finally(()=>{ const s=$("#splash"); s.style.opacity=0; setTimeout(()=>s.remove(),450); });
-setTimeout(()=>{const s=$("#splash");if(s)s.remove();},8000);
-setInterval(()=>{ if(!cur&&!document.hidden&&view!=="search") loadData(); },5*60*1000);
+function voice() {
+  const R = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!R) return toast(T("voiceNo"));
+  const r = new R();
+  r.lang = LANG === "ru" ? "ru-RU" : "uz-UZ";
+  r.onresult = e => { query = e.results[0][0].transcript; saveSearch(); vSearch($("#view")); };
+  try { r.start(); } catch (e) {}
+}
+
+/* video ustida: ikki marta bosish va surish */
+$("#vbox").addEventListener("dblclick", e => {
+  const r = e.currentTarget.getBoundingClientRect();
+  seek(e.clientX - r.left < r.width / 2 ? "L" : "R");
+});
+let tx = 0, ty = 0;
+$("#vbox").addEventListener("touchstart", e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+$("#vbox").addEventListener("touchend", e => {
+  if (!S.swipe || !cur || !isLive(cur)) return;
+  const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+  if (Math.abs(dx) > 80 && Math.abs(dy) < 50) step(dx < 0 ? 1 : -1);
+});
+
+document.addEventListener("input", e => {
+  if (e.target.id === "q") {
+    query = e.target.value.trim();
+    clearTimeout(window._qt);
+    window._qt = setTimeout(results, 180);
+  }
+});
+document.addEventListener("change", e => {
+  if (e.target.id === "sort") { sortBy = e.target.value; render(); }
+  if (e.target.id === "cQual" && hls) hls.currentLevel = +e.target.value;
+});
+document.addEventListener("keydown", e => {
+  const typing = e.target.matches && e.target.matches("input,select");
+  if (e.target.id === "q" && e.key === "Enter") { saveSearch(); e.target.blur(); }
+  if (e.key === "Enter" && e.target.id === "chIn") { const n = +e.target.value; closeSheet(); if (n) goChannel(n); }
+  if (e.key === "Escape") { if ($("#sheet").classList.contains("open")) closeSheet(); else if (cur) closePlayer(); }
+  if (!cur || typing) return;
+  if (e.key === "ArrowRight") seek("R");
+  else if (e.key === "ArrowLeft") seek("L");
+  else if (e.key === "ArrowUp") step(-1);
+  else if (e.key === "ArrowDown") step(1);
+  else if (e.key === "f") $("#cFs") && $("#cFs").click();
+  else if (/^\d$/.test(e.key) && isLive(cur)) {
+    digits += e.key;
+    osd(digits);
+    clearTimeout(digitT);
+    digitT = setTimeout(() => { const n = +digits; digits = ""; goChannel(n); }, 1300);
+  }
+});
+if (tg) tg.BackButton.onClick(() => { if (cur) closePlayer(); });
+document.addEventListener("visibilitychange", () => { if (!document.hidden && cur && hls) hls.startLoad(); });
+window.addEventListener("offline", () => toast(T("offline")));
+window.addEventListener("online", () => loadData());
+
+/* ================= BOSHLASH ================= */
+document.documentElement.dataset.theme = localStorage.getItem("uzstv_theme") || (tg && tg.colorScheme === "light" ? "light" : "dark");
+loadData().finally(() => {
+  const s = $("#splash");
+  if (s) { s.style.opacity = 0; setTimeout(() => s.remove(), 400); }
+  const sp = tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param;
+  const m = sp && /^i(\d+)$/.exec(sp);
+  if (m) openPlayer(+m[1]);
+});
+setTimeout(() => { const s = $("#splash"); if (s) s.remove(); }, 8000);
+setInterval(() => { if (!cur && !document.hidden && view !== "search") loadData(); }, 5 * 60 * 1000);
+setInterval(() => { checkReminders(); if (!cur && view === "football") render(); }, 30000);
 </script>
 </body>
 </html>
