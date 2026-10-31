@@ -261,6 +261,45 @@ nav button.on { color: var(--a); }
 #splash .logo b .i { width: 18px; height: 18px; }
 :focus-visible { outline: 2px solid var(--a); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+.mbtn{position:absolute;top:6px;left:6px;z-index:6;width:28px;height:28px;border-radius:50%;border:none;background:rgba(0,0,0,.65);color:#fff;display:none;place-items:center}
+#miniX{left:auto;right:6px}
+.skip{position:absolute;right:12px;bottom:46px;z-index:6;display:none;background:rgba(255,255,255,.92);color:#000;border:none;border-radius:8px;padding:8px 14px;font-weight:700;font-size:13px}
+.player.min{inset:auto 10px calc(74px + env(safe-area-inset-bottom)) auto;width:230px;height:auto;overflow:visible;background:none;z-index:150;box-shadow:0 8px 28px rgba(0,0,0,.55);border-radius:10px}
+.player.min .pbox>:not(.vbox),.player.min .ptop{display:none}
+.player.min .vbox{border-radius:10px;overflow:hidden;max-height:none}
+.player.min .mbtn{display:grid}
+.tms{gap:10px}
+.tm{flex:none;width:292px;min-height:152px;border-radius:16px;position:relative;overflow:hidden;color:#fff;padding:14px;display:flex;flex-direction:column;justify-content:space-between;background-size:cover;background-position:center;border:1px solid var(--b);cursor:pointer;scroll-snap-align:start}
+.tm::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,9,12,.92),rgba(8,9,12,.55))}
+.tm>*{position:relative}
+.tl{font-size:11px;opacity:.75;font-weight:600}
+.tvs{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.tt2{display:flex;flex-direction:column;align-items:center;gap:6px;width:92px;text-align:center;font-size:12px;font-weight:600}
+.mid{text-align:center}
+.mid b{display:block;font-size:22px;font-weight:700}
+.mid em{display:block;font-style:normal;font-size:11px;opacity:.75;margin-top:2px}
+.mid em.lv2{color:#ff6259;opacity:1;font-weight:700}
+.lg{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.14) center/contain no-repeat;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:700;flex:none}
+.lgs{display:flex;flex:none}
+.lgs .lg{width:36px;height:36px;font-size:11px;background-color:var(--c2);border:2px solid var(--c)}
+.lgs .lg+.lg{margin-left:-10px}
+.rk{flex:none;display:flex;align-items:flex-end;cursor:pointer;scroll-snap-align:start}
+.rk b{font-size:70px;font-weight:800;line-height:.78;color:transparent;-webkit-text-stroke:2px var(--m);margin-right:-14px;z-index:1}
+.rk .poster{width:104px;aspect-ratio:4/5}
+.notice{display:flex;align-items:center;gap:10px;background:var(--c);border:1px solid var(--b);border-left:3px solid var(--a);border-radius:10px;padding:8px 8px 8px 12px;margin-top:12px}
+.notice .nt{flex:1;font-size:13px}
+.desc{color:var(--m);font-size:13px;line-height:1.5;margin:10px 0 0}
+#maint{position:fixed;inset:0;z-index:998;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:30px}
+#maint .i{width:44px;height:44px;color:var(--m)}
+#onb{position:fixed;inset:0;z-index:997;background:var(--bg);display:none;flex-direction:column;justify-content:center;align-items:center;padding:30px;text-align:center;gap:14px}
+#onb .oi{width:84px;height:84px;border-radius:24px;background:var(--c);border:1px solid var(--b);display:grid;place-items:center;color:var(--a)}
+#onb .oi .i{width:38px;height:38px}
+#onb h2{margin:6px 0 0;font-size:24px;letter-spacing:-.4px}
+#onb p{margin:0;color:var(--m);max-width:300px;line-height:1.5}
+#onb .btn{max-width:320px}
+#sheetBox textarea{width:100%;min-height:90px;padding:12px;border-radius:12px;border:1px solid var(--b);background:var(--c);font-size:15px;outline:none;resize:none;-webkit-user-select:text;user-select:text}
+.meta span[data-team]{cursor:pointer}
 </style>
 </head>
 <body>
@@ -301,6 +340,14 @@ nav button.on { color: var(--a); }
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10z"/></symbol>
   <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 14h.01M15 14h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+  <symbol id="i-cast" viewBox="0 0 24 24"><path d="M3 18a3 3 0 0 1 3 3M3 13a8 8 0 0 1 8 8M3 8a13 13 0 0 1 13 13M3 5V4h18v16h-6"/></symbol>
+  <symbol id="i-subs" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 12h3M13 12h4M7 15h6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5l-5.4 3 1.2-6-4.5-4.2 6.1-.7z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14 6a4 4 0 0 0 5 5l-9 9a2.1 2.1 0 0 1-3-3l9-9a4 4 0 0 0-2-2z"/></symbol>
 </svg>
 <div id="splash"><div class="logo"><b><svg class="i f"><use href="#i-play"/></svg></b>Uzs TV</div></div>
 <header>
@@ -320,15 +367,20 @@ nav button.on { color: var(--a); }
       <div class="seek" id="sR" style="right:0">+10</div>
       <div class="osd" id="osd"></div>
       <div class="vover" id="vover"></div>
+      <button class="skip" id="skipI"></button>
+      <button class="mbtn" id="miniE"><svg class="i s"><use href="#i-full"/></svg></button>
+      <button class="mbtn" id="miniX"><svg class="i s"><use href="#i-x"/></svg></button>
     </div>
     <div class="ctl" id="ctl"></div>
-    <div class="info"><h2 id="iTitle"></h2><div class="meta" id="iMeta"></div></div>
+    <div class="info"><h2 id="iTitle"></h2><div class="meta" id="iMeta"></div><div id="detail"></div></div>
     <div class="wrap"><div class="sec"><h2 id="simT"></h2></div><div class="rows" id="simRow"></div></div>
     <div style="height:40px"></div>
   </div>
 </div>
 <div id="sheet"><div id="sheetBox"></div></div>
 <div class="toast" id="toast"></div>
+<div id="maint"><svg class="i"><use href="#i-wrench"/></svg><h2 style="margin:0">Uzs TV</h2><div class="mt2" style="color:var(--m)"></div></div>
+<div id="onb"></div>
 
 <script>
 "use strict";
@@ -382,6 +434,22 @@ const D = {
 let LANG = localStorage.getItem("uzstv_lang") ||
   ((tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.language_code === "ru") ? "ru" : "uz");
 const T = k => (D[k] || [k, k])[LANG === "ru" ? 1 : 0];
+Object.assign(D, {
+  today: ["Bugun", "Сегодня"], top10: ["Top 10", "Топ 10"], down: ["MUAMMO", "ПРОБЛЕМА"],
+  maint: ["Tez orada qaytamiz", "Скоро вернёмся"], last: ["Oldingi", "Прошлый"], subs: ["Subtitr", "Субтитры"],
+  cast: ["Uzatish", "Трансляция"], castNo: ["Bu qurilmada uzatish mavjud emas", "Трансляция недоступна"],
+  episodes: ["Qismlar", "Серии"], trailer: ["Treylerni ko'rish", "Смотреть трейлер"], epg: ["Bugungi dastur", "Программа на сегодня"],
+  week: ["Shu hafta ko'rilgan", "За неделю"], topGenre: ["Sevimli janr", "Любимый жанр"],
+  teams: ["Kuzatilgan jamoalar", "Отслеживаемые команды"], request: ["Kanal so'rash", "Запросить канал"],
+  reqPh: ["Qaysi kanal yoki kino kerak?", "Какой канал или фильм нужен?"], reqSent: ["So'rov yuborildi", "Запрос отправлен"],
+  reqNo: ["Admin bilan aloqa yo'q", "Нет связи с админом"], order: ["Tartiblash", "Порядок"],
+  follow: ["Jamoa kuzatilmoqda", "Команда отслеживается"], unfollow: ["Kuzatuv o'chirildi", "Отслеживание отключено"],
+  noTeams: ["Futbol sahifasida jamoa nomini bosing, uning o'yinlari avtomatik eslatiladi.", "Нажмите на название команды на странице матча, и напоминания будут приходить автоматически."],
+  skip: ["Introni o'tkazish", "Пропустить заставку"], onbNext: ["Davom", "Далее"], onbGo: ["Boshlash", "Начать"], onbSkip: ["O'tkazish", "Пропустить"],
+  o1t: ["Efir, futbol va kinolar", "Эфир, футбол и кино"], o1: ["TV kanallar, futbol, kino va seriallar bir joyda, bepul.", "ТВ, футбол, кино и сериалы в одном месте, бесплатно."],
+  o2t: ["Tez almashtirish", "Быстрое переключение"], o2: ["Kanal raqamini yozing, videoni suring yoki 0 bilan oldingi kanalga qayting.", "Введите номер, смахните видео или нажмите 0 для возврата."],
+  o3t: ["Futbolni o'tkazib yubormang", "Не пропустите футбол"], o3: ["Eslatma qo'ying va yoqtirgan jamoangizni kuzating.", "Включите напоминание и следите за любимой командой."]
+});
 
 /* ================= YORDAMCHILAR ================= */
 const $ = s => document.querySelector(s);
@@ -429,6 +497,11 @@ let view = "home", sub = "all", genre = "all", sortBy = "default", query = "";
 let layout = ls.get("uzstv_layout", "grid"), accent = ls.get("uzstv_acc", 0);
 let cur = null, hls = null, retries = 0, srcs = [], srcI = 0;
 let sleepT = null, sleepI = 0, speedI = 0, heroT = null, audioOn = false, stallT = null, digits = "", digitT = null;
+let prevId = null, seasonI = 0, epI = 0, lang2 = "all", favEdit = false, notice = null, maint = null, mini = false, subI = -1, onbI = 0;
+let teams = new Set(ls.get("uzstv_teams", []));
+let wst = ls.get("uzstv_wst", { d: {}, g: {} });
+let watched = ls.get("uzstv_w", {});
+let lastEp = ls.get("uzstv_le", {});
 const save = () => ls.set("uzstv_s", S);
 
 function applyAccent() {
@@ -452,6 +525,8 @@ async function loadData(force) {
         const d = await r.json();
         items = d.items || [];
         meta.bot = d.bot || meta.bot;
+        notice = d.notice || null;
+        maint = d.maintenance || null;
         ok = true;
       } else if (r.status === 403) {
         document.body.innerHTML = '<div class="empty">Access denied</div>';
@@ -465,6 +540,8 @@ async function loadData(force) {
       const d = await r.json();
       items = d.items || [];
       if (d.bot) meta.bot = d.bot;
+      notice = d.notice || null;
+      maint = d.maintenance || null;
       ok = true;
     } catch (e) {}
   }
@@ -485,6 +562,7 @@ const newest = a => a.slice().sort((x, y) => (y.id || 0) - (x.id || 0));
 function filt(a) {
   a = a.slice();
   if (genre !== "all") a = a.filter(x => (x.genre || "").toLowerCase() === genre.toLowerCase());
+  if (lang2 !== "all") a = a.filter(x => String(x.language || "").toLowerCase() === lang2);
   if (query) {
     const q = query.toLowerCase();
     a = a.filter(x => [x.title, x.genre, x.badge].some(v => String(v || "").toLowerCase().includes(q)));
@@ -524,7 +602,9 @@ function matchState(it) {
   return { k: "end", label: T("ended"), t };
 }
 function checkReminders() {
-  rem.forEach(id => {
+  const ids = new Set(rem);
+  items.forEach(x => { if (x.content_type === "football" && teamsOf(x).some(n => teams.has(n))) ids.add(x.id); });
+  ids.forEach(id => {
     const it = items.find(x => x.id === id);
     if (!it) return;
     const t = parseWhen(it.match_time);
@@ -547,14 +627,104 @@ function toggleRem(id) {
   hap();
 }
 
+/* ================= YORDAMCHI BLOKLAR ================= */
+function epgNow(it) {
+  if (it.epg && it.epg.length) {
+    const n = new Date(), nm = n.getHours() * 60 + n.getMinutes();
+    const l = it.epg.map(e => {
+      const m = /^(\d{1,2}):(\d{2})/.exec(e.t || e.time || "");
+      return m ? { m: +m[1] * 60 + +m[2], title: e.title || e.name, t: e.t || e.time } : null;
+    }).filter(Boolean).sort((a, b) => a.m - b.m);
+    let i = -1;
+    l.forEach((e, k) => { if (e.m <= nm) i = k; });
+    return { now: i >= 0 ? l[i] : null, next: l[i + 1] || null };
+  }
+  return { now: it.now ? { title: it.now } : null, next: it.next ? { title: it.next } : null };
+}
+function isToday(it) {
+  const t = parseWhen(it.match_time);
+  if (t == null) return !!it.today;
+  return new Date(t).toDateString() === new Date().toDateString();
+}
+function teamsOf(it) {
+  if (it.home && it.away) return [it.home, it.away];
+  const m = String(it.title).split(/\s+(?:vs|VS|v|-|–|—)\s+/);
+  return m.length > 1 ? [m[0], m[1]] : [it.title, ""];
+}
+function logo(url, name) {
+  return url ? `<i class="lg" style="background-image:url('${esc(url)}')"></i>` : `<i class="lg">${esc(mono(name))}</i>`;
+}
+function todayCard(it) {
+  const tm = teamsOf(it), st = matchState(it), t = parseWhen(it.match_time);
+  const hm = t ? new Date(t).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "vs";
+  const mid = st.k === "live"
+    ? `<b>${esc(it.score || "–")}</b><em class="lv2">${it.minute ? esc(it.minute) + "'" : T("live")}</em>`
+    : `<b>${hm}</b><em>${st.k === "soon" ? esc(st.label.replace(T("starts") + " ", "")) : ""}</em>`;
+  return `<div class="tm" data-open="${it.id}" style="${bgOf(it)}">
+    <div class="tl">${esc(it.league || it.genre || "")}</div>
+    <div class="tvs"><div class="tt2">${logo(it.home_logo, tm[0])}<span>${esc(tm[0])}</span></div>
+      <div class="mid">${mid}</div>
+      <div class="tt2">${logo(it.away_logo, tm[1])}<span>${esc(tm[1])}</span></div></div></div>`;
+}
+function rankH() {
+  const a = topBy(lib).slice(0, 10);
+  if (a.length < 3) return "";
+  return `<div class="sec"><h2>${T("top10")}</h2></div><div class="hs">${a.map((it, i) =>
+    `<div class="rk" data-open="${it.id}"><b>${i + 1}</b><div class="poster" style="${bgOf(it)}">${it.poster ? "" : `<div class="mono">${esc(mono(it.title))}</div>`}</div></div>`).join("")}</div>`;
+}
+function noticeH() {
+  if (!notice) return "";
+  const tx = typeof notice === "string" ? notice : notice.text;
+  if (!tx || ls.get("uzstv_nd", "") === tx) return "";
+  return `<div class="notice">${ic("bell")}<div class="nt">${esc(tx)}</div><button class="ib" data-act="noticeX">${ic("x", "s")}</button></div>`;
+}
+function maintCheck() {
+  const m = $("#maint"), on = !!(maint && maint.on);
+  m.style.display = on ? "flex" : "none";
+  if (on) m.querySelector(".mt2").textContent = maint.text || T("maint");
+}
+function weekSecs() {
+  let t = 0;
+  for (let i = 0; i < 7; i++) t += wst.d[new Date(Date.now() - i * 864e5).toISOString().slice(0, 10)] || 0;
+  return t;
+}
+function fmtDur(s) {
+  const m = Math.floor(s / 60);
+  return m >= 60 ? Math.floor(m / 60) + " " + T("h") + " " + (m % 60) + " " + T("min") : m + " " + T("min");
+}
+function insightH() {
+  const g = Object.entries(wst.g).sort((a, b) => b[1] - a[1])[0];
+  return `<div class="list-g">
+    ${lrow("clock", T("week"), `<span class="lv">${fmtDur(weekSecs())}</span>`)}
+    ${lrow("film", T("topGenre"), `<span class="lv">${esc(g ? g[0] : "-")}</span>`)}
+    ${lrow("star", T("teams"), `<span class="lv">${teams.size}</span>${ic("chev", "s")}`, 'data-act="teams"')}
+    ${lrow("send", T("request"), ic("chev", "s"), 'data-act="request"')}
+  </div>`;
+}
+function langChips(a) {
+  const ls2 = [...new Set(a.map(x => String(x.language || "").toLowerCase()).filter(Boolean))];
+  if (ls2.length < 2) return "";
+  return `<div class="chips">${[["all", T("all")]].concat(ls2.map(l => [l, l.toUpperCase()])).map(g =>
+    `<button class="chip ${lang2 === g[0] ? "on" : ""}" data-lang2="${esc(g[0])}">${esc(g[1])}</button>`).join("")}</div>`;
+}
+function onb() {
+  const sl = [["tv", "o1t", "o1"], ["hash", "o2t", "o2"], ["ball", "o3t", "o3"]], x = sl[onbI], o = $("#onb");
+  o.style.display = "flex";
+  o.innerHTML = `<div class="oi">${ic(x[0])}</div><h2>${T(x[1])}</h2><p>${T(x[2])}</p>
+    <div class="dots">${sl.map((_, i) => `<b class="${i === onbI ? "on" : ""}"></b>`).join("")}</div>
+    <button class="btn" data-act="${onbI < 2 ? "onbNext" : "onbDone"}">${onbI < 2 ? T("onbNext") : T("onbGo")}</button>
+    <button class="chip" data-act="onbDone" style="border:none;background:none">${T("onbSkip")}</button>`;
+}
+
 /* ================= KARTALAR ================= */
 function card(it) {
   const p = prog[it.id];
   const pct = p && p.d ? Math.min(100, Math.round(p.t / p.d * 100)) : 0;
   const maxId = Math.max(0, ...items.map(x => x.id || 0));
   const isNew = (it.id || 0) > maxId - 4 && items.length > 8;
-  const tag = it.badge || (isLive(it) ? T("live") : (isNew ? T("newb") : ""));
-  const sub2 = it.content_type === "football" ? matchState(it).label : (it.genre || "");
+  const tag = it.status === "down" ? T("down") : (it.badge || (isLive(it) ? T("live") : (isNew ? T("newb") : "")));
+  const ep0 = it.content_type === "tv" ? epgNow(it) : null;
+  const sub2 = it.content_type === "football" ? matchState(it).label : (ep0 && ep0.now ? ep0.now.title : (it.genre || ""));
   return `<div class="card" data-open="${it.id}">
     <div class="poster" style="${bgOf(it)}">
       ${tag ? `<span class="tag ${isLive(it) ? "live" : ""}">${esc(tag)}</span>` : ""}
@@ -575,9 +745,9 @@ const rowH = (t, a, go) => a.length
 function matchRow(it) {
   const st = matchState(it);
   return `<div class="match" data-open="${it.id}">
-    <div class="poster" style="${bgOf(it)}">${it.poster ? "" : `<div class="mono">${esc(mono(it.title))}</div>`}</div>
-    <div class="mi"><div class="mt">${esc(it.title)}</div>
-      <div class="ms ${st.k === "live" ? "on" : ""}">${ic(st.k === "live" ? "play" : "clock", "s " + (st.k === "live" ? "f" : ""))}${esc(st.label)}${it.genre ? " · " + esc(it.genre) : ""}</div></div>
+    <div class="lgs">${logo(it.home_logo, teamsOf(it)[0])}${logo(it.away_logo, teamsOf(it)[1])}</div>
+    <div class="mi"><div class="mt">${esc(teamsOf(it)[1] ? teamsOf(it)[0] + " – " + teamsOf(it)[1] : it.title)}</div>
+      <div class="ms ${st.k === "live" ? "on" : ""}">${ic(st.k === "live" ? "play" : "clock", "s " + (st.k === "live" ? "f" : ""))}${esc(st.label)}${it.score && st.k !== "soon" ? " · " + esc(it.score) : ""}${it.genre ? " · " + esc(it.genre) : ""}</div></div>
     <button class="ib ${rem.has(it.id) ? "on" : ""}" data-rem="${it.id}">${ic("bell")}</button>
   </div>`;
 }
@@ -599,6 +769,7 @@ function renderNav() {
 
 function render() {
   renderNav();
+  maintCheck();
   clearInterval(heroT);
   const v = $("#view");
   if (loading && !items.length) {
@@ -611,10 +782,12 @@ function render() {
 
 function vHome(v) {
   const hero = topBy(lib).slice(0, 5);
+  const today = byType("football").filter(isToday).sort((a, b) => (parseWhen(a.match_time) || 0) - (parseWhen(b.match_time) || 0));
   const recent = hist.map(h => items.find(x => x.id === h.id)).filter(x => x && lib.includes(x)).slice(0, 12);
   const soon = byType("football").filter(x => matchState(x).k !== "end")
     .sort((a, b) => (parseWhen(a.match_time) || 9e15) - (parseWhen(b.match_time) || 9e15)).slice(0, 10);
   v.innerHTML = `<div class="wrap">
+    ${noticeH()}${today.length ? `<div class="sec"><h2>${T("today")}</h2></div><div class="hs tms">${today.map(todayCard).join("")}</div>` : ""}
     ${hero.length ? `<div class="hero" id="hero">${hero.map(it => `
       <div class="slide" data-open="${it.id}" style="${bgOf(it)}">
         ${isLive(it) ? `<span class="tag live">${T("live")}</span>` : ""}
@@ -626,7 +799,7 @@ function vHome(v) {
     ${rowH(T("recent"), recent)}
     ${rowH(T("nowlive"), topBy(lib.filter(isLive)).slice(0, 12))}
     ${rowH(T("upcoming"), soon, "football")}
-    ${rowH(T("trend"), topBy(lib).slice(0, 12))}
+    ${rankH()}
     ${rowH(T("fresh"), newest(lib).slice(0, 12))}
     ${rowH(T("tv"), byType("tv"), "tv")}
     ${rowH(T("film"), byType("movies"), "movies")}
@@ -659,7 +832,7 @@ function toolsH() {
 
 function vTv(v) {
   const a = byType("tv");
-  v.innerHTML = chipsH(genresOf(a), "genre", genre) + `<div class="wrap">${toolsH()}
+  v.innerHTML = langChips(a) + chipsH(genresOf(a), "genre", genre) + `<div class="wrap">${toolsH()}
     <div class="sec"><h2>${T("tv")} · ${filt(a).length}</h2></div>${grid(filt(a))}</div>`;
 }
 
@@ -678,14 +851,18 @@ function vMovies(v) {
   const types = [["all", T("all")], ["movies", T("film")], ["series", T("series")], ["cartoons", T("cartoons")]];
   const base = sub === "all" ? lib.filter(x => MOVIE_TYPES.includes(x.content_type)) : byType(sub);
   v.innerHTML = `<div class="seg">${types.map(t => `<button class="${sub === t[0] ? "on" : ""}" data-sub="${t[0]}">${t[1]}</button>`).join("")}</div>
-    ${chipsH(genresOf(base), "genre", genre)}
+    ${langChips(base)}${chipsH(genresOf(base), "genre", genre)}
     <div class="wrap">${toolsH()}<div class="sec"><h2>${esc(types.find(t => t[0] === sub)[1])} · ${filt(base).length}</h2></div>${grid(filt(base))}</div>`;
 }
 
 function vFavs(v) {
-  const a = filt(lib.filter(x => favs.has(x.id)));
-  v.innerHTML = `<div class="wrap"><div class="sec"><h2>${T("favs")} · ${a.length}</h2></div>
-    ${favs.size ? grid(a) : `<div class="empty">${ic("heart")}<div>${T("nofav")}</div></div>`}</div>`;
+  const a = [...favs].map(id => lib.find(x => x.id === id)).filter(Boolean);
+  let body;
+  if (!a.length) body = `<div class="empty">${ic("heart")}<div>${T("nofav")}</div></div>`;
+  else if (favEdit) body = `<div class="rows">${a.map(it => `<div class="row"><div class="th" style="${bgOf(it)}">${it.poster ? "" : esc(mono(it.title))}</div>
+    <div class="tt">${esc(it.title)}</div><button class="ib" data-mv="${it.id}:-1">${ic("up", "s")}</button><button class="ib" data-mv="${it.id}:1">${ic("down", "s")}</button></div>`).join("")}</div>`;
+  else body = grid(a);
+  v.innerHTML = `<div class="wrap"><div class="sec"><h2>${T("favs")} · ${a.length}</h2>${a.length ? `<a data-act="favEdit">${favEdit ? T("ok") : T("order")}</a>` : ""}</div>${body}</div>`;
 }
 
 function vHistory(v) {
@@ -733,6 +910,7 @@ function vMe(v) {
       ${lrow("clock", T("history"), `<span class="lv">${hist.length}</span>${ic("chev", "s")}`, 'data-nav="history"')}
       ${lrow("bell", T("rems"), `<span class="lv">${rem.size}</span>`)}
     </div>
+    ${insightH()}
     <div class="list-g">
       ${lrow("moon", T("theme"), `<div class="dotsw" style="gap:6px">${[["dark", "dark"], ["black", "amoled"], ["light", "light"]].map(t => `<button class="chip ${th === t[0] ? "on" : ""}" data-theme="${t[0]}">${T(t[1])}</button>`).join("")}</div>`)}
       ${lrow("sliders", T("accent"), `<div class="dotsw">${ACC.map((c, i) => `<i data-acc="${i}" class="${accent === i ? "on" : ""}" style="background:${c}"></i>`).join("")}</div>`)}
@@ -779,16 +957,40 @@ function osd(t) {
   osd._t = setTimeout(() => o.style.display = "none", 1400);
 }
 
-function openPlayer(id) {
+function seasonsOf(it) {
+  if (it.seasons && it.seasons.length) return it.seasons;
+  if (it.episodes && it.episodes.length) return [{ name: "1", episodes: it.episodes }];
+  return null;
+}
+function curEp() {
+  const ss = cur && seasonsOf(cur);
+  return ss ? ss[seasonI].episodes[epI] : null;
+}
+function epKey() { return cur.id + ":" + seasonI + ":" + epI; }
+function openPlayer(id, s, e) {
   const it = items.find(x => x.id === id);
   if (!it) return;
-  cur = it; retries = 0; speedI = 0; srcI = 0; audioOn = false;
-  srcs = [it.url].concat(it.backups || it.urls || []).filter(Boolean);
+  if (cur && cur.id !== id) prevId = cur.id;
+  cur = it; retries = 0; speedI = 0; srcI = 0; audioOn = false; subI = -1;
+  const ss = seasonsOf(it);
+  if (ss) {
+    const le = lastEp[id] || { s: 0, e: 0 };
+    seasonI = s != null ? s : le.s;
+    epI = e != null ? e : le.e;
+    if (!ss[seasonI] || !ss[seasonI].episodes[epI]) { seasonI = 0; epI = 0; }
+    lastEp[id] = { s: seasonI, e: epI };
+    ls.set("uzstv_le", lastEp);
+  }
+  const src = curEp() || it;
+  srcs = [src.url].concat(src.backups || src.urls || []).filter(Boolean);
+  if (!srcs.length) srcs = [""];
   it.views = (it.views || 0) + 1;
   hist = [{ id, t: Date.now() }].concat(hist.filter(h => h.id !== id)).slice(0, 40);
   ls.set("uzstv_hist", hist);
   if (API_URL && tg && tg.initData) fetch(API_URL.replace(/\/$/, "") + "/api/view/" + id, { method: "POST", headers: { "X-Init-Data": tg.initData } }).catch(() => {});
   hap("medium");
+  mini = false;
+  $("#player").classList.remove("min");
   paint();
   $("#player").classList.add("open");
   $("#player").scrollTop = 0;
@@ -797,37 +999,99 @@ function openPlayer(id) {
   mediaSession();
   play(srcs[0]);
 }
+function minimize() {
+  if (!cur) return;
+  mini = true;
+  $("#player").classList.add("min");
+  document.body.style.overflow = "";
+  if (tg) tg.BackButton.hide();
+  render();
+}
+function expand() {
+  mini = false;
+  $("#player").classList.remove("min");
+  document.body.style.overflow = "hidden";
+  if (tg) tg.BackButton.show();
+}
+function markWatched() {
+  if (!cur) return;
+  watched[seasonsOf(cur) ? epKey() : cur.id] = 1;
+  ls.set("uzstv_w", watched);
+}
+function nextEp() {
+  const ss = cur && seasonsOf(cur);
+  if (!ss) return false;
+  let sn = seasonI, en = epI + 1;
+  if (en >= ss[sn].episodes.length) { sn++; en = 0; }
+  if (!ss[sn]) return false;
+  openPlayer(cur.id, sn, en);
+  return true;
+}
 
 function paint() {
-  const it = cur;
-  const live = isLive(it);
-  $("#pTitle").textContent = it.title;
+  const it = cur, live = isLive(it), ss = seasonsOf(it), ep = curEp();
+  const subs = (ep && ep.subs) || it.subs || [];
+  $("#pTitle").textContent = it.title + (ep ? " · " + (ep.title || (epI + 1)) : "");
   $("#iTitle").textContent = it.title;
+  $("#skipI").textContent = T("skip");
   const b = (id, icon, label, on) => `<button id="${id}" class="${on ? "on" : ""}">${ic(icon)}<span>${label}</span></button>`;
   $("#ctl").innerHTML =
     b("cPrev", "prev", T("prev")) + b("cNext", "next", T("next")) +
+    (live && prevId ? b("cLast", "back", T("last")) : "") +
     b("cFav", "heart", T("fav"), favs.has(it.id)) +
     (live ? b("cNum", "hash", T("channel")) : b("cSpeed", "gauge", SPEEDS[speedI] + "x")) +
     (it.content_type === "football" ? b("cRem", "bell", T("rems"), rem.has(it.id)) : "") +
+    (subs.length ? b("cSub", "subs", subI >= 0 ? (subs[subI].label || subs[subI].lang) : T("subs"), subI >= 0) : "") +
     b("cSleep", "timer", sleepI ? SLEEPS[sleepI] + " " + T("min") : T("sleep"), sleepI) +
     (live ? b("cAud", "audio", T("audio"), audioOn) : "") +
-    b("cPip", "pip", "PiP") + b("cShare", "share", T("share")) +
+    b("cCast", "cast", T("cast")) + b("cPip", "pip", "PiP") + b("cShare", "share", T("share")) +
     b("cRep", "flag", T("report")) + b("cFs", "full", T("full")) +
     `<select class="sel" id="cQual" style="display:none;flex:none;width:96px;margin:6px 4px"></select>`;
   const st = it.content_type === "football" ? matchState(it).label : "";
+  const tm = it.content_type === "football" ? teamsOf(it).filter(Boolean) : [];
   $("#iMeta").innerHTML = [
     it.badge ? `<span>${esc(it.badge)}</span>` : "",
+    it.status ? `<span>${esc(it.status === "down" ? T("down") : "OK")}</span>` : "",
     it.genre ? `<span>${esc(it.genre)}</span>` : "",
     it.language ? `<span>${ic("globe", "s")}${esc(String(it.language).toUpperCase())}</span>` : "",
     `<span>${ic("eye", "s")}${it.views || 0}</span>`,
     st ? `<span>${ic("clock", "s")}${esc(st)}</span>` : "",
-    it.content_type === "tv" ? `<span>${ic("hash", "s")}${channelNo(it)}</span>` : ""
+    it.score ? `<span>${esc(it.score)}</span>` : "",
+    it.content_type === "tv" ? `<span>${ic("hash", "s")}${channelNo(it)}</span>` : "",
+    tm.length > 1 ? tm.map(n => `<span data-team="${esc(n)}" style="${teams.has(n) ? "color:var(--a);border-color:var(--a)" : ""}">${ic("star", "s")}${esc(n)}</span>`).join("") : ""
   ].join("");
-  $("#simT").textContent = T("similar");
-  $("#simRow").innerHTML = lib.filter(x => x.content_type === it.content_type).map((x, i) =>
-    `<div class="row ${x.id === it.id ? "cur" : ""}" data-open="${x.id}"><div class="nn">${i + 1}</div>
-      <div class="th" style="${bgOf(x)}">${x.poster ? "" : esc(mono(x.title))}</div>
-      <div class="tt">${esc(x.title)}<small>${esc(x.genre || "")}</small></div>${x.id === it.id ? ic("play", "s f") : ""}</div>`).join("");
+  let d = "";
+  if (it.desc) d += `<p class="desc">${esc(it.desc)}</p>`;
+  const facts = [it.year, it.duration, it.country].filter(Boolean);
+  if (facts.length) d += `<div class="meta" style="margin-top:8px">${facts.map(f => `<span>${esc(f)}</span>`).join("")}</div>`;
+  if (it.cast && it.cast.length) d += `<div class="meta" style="margin-top:8px">${it.cast.map(c => `<span>${esc(c)}</span>`).join("")}</div>`;
+  if (it.trailer) d += `<button class="btn g" data-act="trailer">${T("trailer")}</button>`;
+  if (it.epg && it.epg.length) {
+    const e = epgNow(it);
+    d += `<div class="sec"><h2>${T("epg")}</h2></div><div class="list-g">${it.epg.map(x =>
+      `<div class="lr" ${e.now && (x.title || x.name) === e.now.title ? 'style="color:var(--a)"' : ""}><div class="lv" style="width:48px">${esc(x.t || x.time)}</div><div class="lt">${esc(x.title || x.name)}</div></div>`).join("")}</div>`;
+  }
+  if (hls && hls.levels && hls.levels.length > 1) {
+    const q = $("#cQual");
+    q.innerHTML = `<option value="-1">${T("quality")}: ${T("auto")}</option>` + hls.levels.map((l, i) => `<option value="${i}" ${hls.currentLevel === i ? "selected" : ""}>${l.height ? l.height + "p" : Math.round(l.bitrate / 1000) + "k"}</option>`).join("");
+    q.style.display = "";
+  }
+  $("#detail").innerHTML = d;
+  if (ss) {
+    $("#simT").textContent = T("episodes");
+    $("#simRow").innerHTML = (ss.length > 1 ? `<div class="chips" style="padding:0 0 8px">${ss.map((x, i) =>
+      `<button class="chip ${i === seasonI ? "on" : ""}" data-season="${i}">${esc(x.name || i + 1)}</button>`).join("")}</div>` : "") +
+      ss[seasonI].episodes.map((x, i) =>
+        `<div class="row ${i === epI ? "cur" : ""}" data-ep="${i}"><div class="nn">${i + 1}</div>
+        <div class="tt">${esc(x.title || ("#" + (i + 1)))}<small>${esc(x.duration || "")}</small></div>
+        ${watched[it.id + ":" + seasonI + ":" + i] ? ic("check", "s") : ""}${i === epI ? ic("play", "s f") : ""}</div>`).join("");
+  } else {
+    $("#simT").textContent = T("similar");
+    $("#simRow").innerHTML = lib.filter(x => x.content_type === it.content_type).map((x, i) =>
+      `<div class="row ${x.id === it.id ? "cur" : ""}" data-open="${x.id}"><div class="nn">${i + 1}</div>
+        <div class="th" style="${bgOf(x)}">${x.poster ? "" : esc(mono(x.title))}</div>
+        <div class="tt">${esc(x.title)}<small>${esc(x.genre || "")}</small></div>${x.id === it.id ? ic("play", "s f") : ""}</div>`).join("");
+  }
 }
 
 function destroy() {
@@ -860,7 +1124,7 @@ function play(url) {
   video.controls = true; video.autoplay = true; video.playsInline = true;
   video.setAttribute("playsinline", "");
   box.prepend(video);
-  const id = cur.id;
+  const id = cur.id, pk = cur.id + (seasonsOf(cur) ? ":" + seasonI + ":" + epI : "");
   let last = 0;
   video.addEventListener("playing", () => { setOver(""); clearTimeout(stallT); });
   video.addEventListener("waiting", () => {
@@ -869,9 +1133,24 @@ function play(url) {
     if (isLive(cur)) stallT = setTimeout(() => { if (cur && cur.id === id) { toast(T("retry")); play(srcs[srcI]); } }, 14000);
   });
   video.addEventListener("error", fail);
+  const sbs = ((curEp() && curEp().subs) || cur.subs || []);
+  if (sbs.length) video.crossOrigin = "anonymous";
+  sbs.forEach(x => {
+    const tr = document.createElement("track");
+    tr.kind = "subtitles"; tr.label = x.label || x.lang; tr.srclang = x.lang || "uz"; tr.src = x.url;
+    video.appendChild(tr);
+    tr.track.mode = "disabled";
+  });
+  video.addEventListener("timeupdate", () => {
+    const iv = (curEp() && curEp().intro) || cur.intro, sk = $("#skipI");
+    if (!sk) return;
+    const on = iv && video.currentTime >= iv[0] && video.currentTime < iv[1];
+    sk.style.display = on ? "block" : "none";
+    sk.dataset.to = on ? iv[1] : "";
+  });
   video.addEventListener("loadedmetadata", () => {
     if (!isLive(cur) && isFinite(video.duration)) {
-      const p = prog[id];
+      const p = prog[pk];
       if (p && p.t > 20 && p.t < video.duration - 20) video.currentTime = p.t;
       video.playbackRate = SPEEDS[speedI];
     }
@@ -879,14 +1158,15 @@ function play(url) {
   video.addEventListener("timeupdate", () => {
     if (isLive(cur) || !isFinite(video.duration) || Date.now() - last < 4000) return;
     last = Date.now();
-    prog[id] = { t: video.currentTime, d: video.duration };
+    prog[pk] = { t: video.currentTime, d: video.duration };
     ls.set("uzstv_prog", prog);
   });
   video.addEventListener("ended", () => {
     if (isLive(cur)) return;
-    delete prog[id];
+    delete prog[pk];
     ls.set("uzstv_prog", prog);
-    if (S.autoNext) step(1);
+    markWatched();
+    if (S.autoNext && !nextEp()) step(1);
   });
   if (/\.m3u8/i.test(url)) {
     if (window.Hls && Hls.isSupported()) {
@@ -929,7 +1209,8 @@ function closePlayer() {
   clearTimeout(sleepT);
   sleepI = 0;
   closeSheet();
-  $("#player").classList.remove("open");
+  $("#player").classList.remove("open", "min");
+  mini = false;
   document.body.style.overflow = "";
   if (tg) tg.BackButton.hide();
   render();
@@ -988,6 +1269,32 @@ function mediaSession() {
 /* ================= HODISALAR ================= */
 document.addEventListener("click", e => {
   const t = e.target;
+  const mv = t.closest("[data-mv]");
+  if (mv) {
+    e.stopPropagation();
+    const [id, dir] = mv.dataset.mv.split(":").map(Number);
+    const arr = [...favs], i = arr.indexOf(id), j = i + dir;
+    if (i >= 0 && j >= 0 && j < arr.length) { [arr[i], arr[j]] = [arr[j], arr[i]]; favs = new Set(arr); ls.set("uzstv_favs", arr); render(); }
+    return;
+  }
+  const ep = t.closest("[data-ep]");
+  if (ep && cur) return openPlayer(cur.id, seasonI, +ep.dataset.ep);
+  const se = t.closest("[data-season]");
+  if (se && cur) return openPlayer(cur.id, +se.dataset.season, 0);
+  const tmb = t.closest("[data-team]");
+  if (tmb) {
+    const n = tmb.dataset.team;
+    if (teams.has(n)) { teams.delete(n); toast(T("unfollow")); } else { teams.add(n); toast(T("follow")); }
+    ls.set("uzstv_teams", [...teams]);
+    return paint();
+  }
+  const ut = t.closest("[data-unteam]");
+  if (ut) { teams.delete(ut.dataset.unteam); ls.set("uzstv_teams", [...teams]); toast(T("unfollow")); closeSheet(); return render(); }
+  const l2 = t.closest("[data-lang2]");
+  if (l2) { lang2 = l2.dataset.lang2; return render(); }
+}, true);
+document.addEventListener("click", e => {
+  const t = e.target;
   const fb = t.closest("[data-fav]");
   if (fb) {
     e.stopPropagation();
@@ -1007,6 +1314,7 @@ document.addEventListener("click", e => {
     if (view !== "search") query = "";
     genre = "all"; sortBy = "default";
     if (view === "movies") sub = "all";
+    lang2 = "all"; favEdit = false;
     hap();
     render();
     window.scrollTo({ top: 0 });
@@ -1036,6 +1344,27 @@ document.addEventListener("click", e => {
   const ac2 = t.closest("[data-act]");
   if (ac2) {
     switch (ac2.dataset.act) {
+      case "noticeX": { const tx = typeof notice === "string" ? notice : (notice && notice.text); ls.set("uzstv_nd", tx || ""); return render(); }
+      case "favEdit": favEdit = !favEdit; return render();
+      case "teams":
+        sheet(`<h3>${T("teams")}</h3><p>${teams.size ? "" : T("noTeams")}</p><div style="display:flex;gap:8px;flex-wrap:wrap">${[...teams].map(n => `<button class="chip" data-unteam="${esc(n)}">${esc(n)} ×</button>`).join("")}</div>`);
+        return;
+      case "request":
+        sheet(`<h3>${T("request")}</h3><p></p><textarea id="reqIn" placeholder="${T("reqPh")}"></textarea><button class="btn" data-act="sendReq">${T("ok")}</button>`);
+        return;
+      case "sendReq": {
+        const tx = ($("#reqIn").value || "").trim();
+        if (!tx) return;
+        closeSheet();
+        if (API_URL && tg && tg.initData) {
+          fetch(API_URL.replace(/\/$/, "") + "/api/request", { method: "POST", headers: { "X-Init-Data": tg.initData, "Content-Type": "application/json" }, body: JSON.stringify({ text: tx }) })
+            .then(() => toast(T("reqSent"))).catch(() => toast(T("reqNo")));
+        } else toast(T("reqNo"));
+        return;
+      }
+      case "trailer": { const u = cur && cur.trailer; if (u) { if (tg && tg.openLink) tg.openLink(u); else window.open(u, "_blank"); } return; }
+      case "onbNext": onbI++; return onb();
+      case "onbDone": ls.set("uzstv_onb", true); $("#onb").style.display = "none"; return;
       case "lucky": { if (lib.length) openPlayer(lib[Math.floor(Math.random() * lib.length)].id); return; }
       case "layout": layout = layout === "grid" ? "list" : "grid"; ls.set("uzstv_layout", layout); return render();
       case "clearSh": sh = []; ls.set("uzstv_sh", sh); return results();
@@ -1056,12 +1385,31 @@ document.addEventListener("click", e => {
     }
   }
   if (t.id === "sheet") return closeSheet();
-  const b = t.closest("#ctl button, #pClose, #vRetry");
+  const b = t.closest("#ctl button, #pClose, #vRetry, #miniE, #miniX, #skipI");
   if (!b) return;
   switch (b.id) {
-    case "pClose": return closePlayer();
+    case "pClose": return minimize();
+    case "miniE": return expand();
+    case "miniX": return closePlayer();
+    case "skipI": { const v = $("#vbox video"); if (v && b.dataset.to) v.currentTime = +b.dataset.to; return; }
+    case "cLast": if (prevId) openPlayer(prevId); return;
+    case "cSub": {
+      const v = $("#vbox video");
+      if (!v) return;
+      const tt = [...v.textTracks];
+      subI = subI + 1 >= tt.length ? -1 : subI + 1;
+      tt.forEach((x, i) => x.mode = i === subI ? "showing" : "disabled");
+      return paint();
+    }
+    case "cCast": {
+      const v = $("#vbox video");
+      if (v && v.remote && v.remote.prompt) v.remote.prompt().catch(() => {});
+      else if (v && v.webkitShowPlaybackTargetPicker) v.webkitShowPlaybackTargetPicker();
+      else toast(T("castNo"));
+      return;
+    }
     case "cPrev": return step(-1);
-    case "cNext": return step(1);
+    case "cNext": return nextEp() || step(1);
     case "cFav": toggleFav(cur.id); return paint();
     case "cRem": toggleRem(cur.id); return paint();
     case "cNum": return chSheet();
@@ -1138,7 +1486,7 @@ document.addEventListener("keydown", e => {
   const typing = e.target.matches && e.target.matches("input,select");
   if (e.target.id === "q" && e.key === "Enter") { saveSearch(); e.target.blur(); }
   if (e.key === "Enter" && e.target.id === "chIn") { const n = +e.target.value; closeSheet(); if (n) goChannel(n); }
-  if (e.key === "Escape") { if ($("#sheet").classList.contains("open")) closeSheet(); else if (cur) closePlayer(); }
+  if (e.key === "Escape") { if ($("#sheet").classList.contains("open")) closeSheet(); else if (cur && !mini) minimize(); else if (cur) closePlayer(); }
   if (!cur || typing) return;
   if (e.key === "ArrowRight") seek("R");
   else if (e.key === "ArrowLeft") seek("L");
@@ -1149,10 +1497,10 @@ document.addEventListener("keydown", e => {
     digits += e.key;
     osd(digits);
     clearTimeout(digitT);
-    digitT = setTimeout(() => { const n = +digits; digits = ""; goChannel(n); }, 1300);
+    digitT = setTimeout(() => { const n = +digits; digits = ""; if (n === 0) { if (prevId) openPlayer(prevId); } else goChannel(n); }, 1300);
   }
 });
-if (tg) tg.BackButton.onClick(() => { if (cur) closePlayer(); });
+if (tg) tg.BackButton.onClick(() => { if (cur && !mini) minimize(); else if (cur) closePlayer(); });
 document.addEventListener("visibilitychange", () => { if (!document.hidden && cur && hls) hls.startLoad(); });
 window.addEventListener("offline", () => toast(T("offline")));
 window.addEventListener("online", () => loadData());
@@ -1165,8 +1513,17 @@ loadData().finally(() => {
   const sp = tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param;
   const m = sp && /^i(\d+)$/.exec(sp);
   if (m) openPlayer(+m[1]);
+  if (!ls.get("uzstv_onb", false)) onb();
 });
 setTimeout(() => { const s = $("#splash"); if (s) s.remove(); }, 8000);
+setInterval(() => {
+  const v = $("#vbox video");
+  if (!cur || !v || v.paused || v.ended) return;
+  const d = new Date().toISOString().slice(0, 10);
+  wst.d[d] = (wst.d[d] || 0) + 5;
+  if (cur.genre) wst.g[cur.genre] = (wst.g[cur.genre] || 0) + 5;
+  ls.set("uzstv_wst", wst);
+}, 5000);
 setInterval(() => { if (!cur && !document.hidden && view !== "search") loadData(); }, 5 * 60 * 1000);
 setInterval(() => { checkReminders(); if (!cur && view === "football") render(); }, 30000);
 </script>
