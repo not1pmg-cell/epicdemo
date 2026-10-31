@@ -255,7 +255,7 @@ nav button.on { color: var(--a); }
   opacity: 0; pointer-events: none; transition: .25s; z-index: 999; max-width: 88%; text-align: center;
 }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
-#splash { position: fixed; inset: 0; z-index: 999; background: var(--bg); display: grid; place-items: center; transition: opacity .35s; }
+#splash { position: fixed; inset: 0; z-index: 999; background: var(--bg); display: grid; place-items: center; transition: opacity .35s; pointer-events: none; }
 #splash .logo { font-size: 28px; }
 #splash .logo b { width: 40px; height: 40px; border-radius: 11px; }
 #splash .logo b .i { width: 18px; height: 18px; }
@@ -912,7 +912,7 @@ function vMe(v) {
     </div>
     ${insightH()}
     <div class="list-g">
-      ${lrow("moon", T("theme"), `<div class="dotsw" style="gap:6px">${[["dark", "dark"], ["black", "amoled"], ["light", "light"]].map(t => `<button class="chip ${th === t[0] ? "on" : ""}" data-theme="${t[0]}">${T(t[1])}</button>`).join("")}</div>`)}
+      ${lrow("moon", T("theme"), `<div class="dotsw" style="gap:6px">${[["dark", "dark"], ["black", "amoled"], ["light", "light"]].map(t => `<button class="chip ${th === t[0] ? "on" : ""}" data-th="${t[0]}">${T(t[1])}</button>`).join("")}</div>`)}
       ${lrow("sliders", T("accent"), `<div class="dotsw">${ACC.map((c, i) => `<i data-acc="${i}" class="${accent === i ? "on" : ""}" style="background:${c}"></i>`).join("")}</div>`)}
       ${lrow("globe", T("lang"), `<button class="chip" data-act="lang">${LANG.toUpperCase()}</button>`)}
       ${lrow("list", T("layout"), sw("layout", layout === "list"))}
@@ -1328,8 +1328,9 @@ document.addEventListener("click", e => {
   if (g) { genre = g.dataset.genre; return render(); }
   const q = t.closest("[data-q]");
   if (q) { query = q.dataset.q; saveSearch(); return vSearch($("#view")); }
-  const th = t.closest("[data-theme]");
-  if (th) { document.documentElement.dataset.theme = th.dataset.theme; localStorage.setItem("uzstv_theme", th.dataset.theme); return render(); }
+  /* TUZATISH: <html data-theme> bilan to'qnashmaslik uchun data-th ishlatiladi */
+  const th = t.closest("[data-th]");
+  if (th) { document.documentElement.dataset.theme = th.dataset.th; localStorage.setItem("uzstv_theme", th.dataset.th); return render(); }
   const ac = t.closest("[data-acc]");
   if (ac) { accent = +ac.dataset.acc; ls.set("uzstv_acc", accent); applyAccent(); return render(); }
   const st = t.closest("[data-set]");
@@ -1483,7 +1484,7 @@ document.addEventListener("change", e => {
   if (e.target.id === "cQual" && hls) hls.currentLevel = +e.target.value;
 });
 document.addEventListener("keydown", e => {
-  const typing = e.target.matches && e.target.matches("input,select");
+  const typing = e.target.matches && e.target.matches("input,select,textarea");
   if (e.target.id === "q" && e.key === "Enter") { saveSearch(); e.target.blur(); }
   if (e.key === "Enter" && e.target.id === "chIn") { const n = +e.target.value; closeSheet(); if (n) goChannel(n); }
   if (e.key === "Escape") { if ($("#sheet").classList.contains("open")) closeSheet(); else if (cur && !mini) minimize(); else if (cur) closePlayer(); }
