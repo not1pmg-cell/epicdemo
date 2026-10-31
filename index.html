@@ -194,7 +194,7 @@ async function loadData(force){
 
 /* ===== FILTR ===== */
 const byType = t => items.filter(x => x.content_type === t);
-const top = a => a.slice().sort((x,y)=>(y.views||0)-(x.views||0));
+const topBy = a => a.slice().sort((x,y)=>(y.views||0)-(x.views||0));
 function filt(a){
   a=a.slice();
   if (type!=="all") a=a.filter(x=>x.content_type===type);
@@ -238,12 +238,12 @@ function render(){
   if (view==="search") return searchV(v);
   if (view==="favs"){ const a=filt(items.filter(x=>favs.has(x.id))); v.innerHTML=`<div class="wrap"><div class="sec"><h2>${T("favs")} (${a.length})</h2></div>${favs.size?grid(a):`<div class="empty"><b>❤️</b>${T("nofav")}</div>`}</div>`; return; }
   if (type==="all"){
-    const hero=top(items).slice(0,5);
+    const hero=topBy(items).slice(0,5);
     const recent=hist.map(h=>items.find(x=>x.id===h.id)).filter(Boolean).slice(0,10);
     v.innerHTML=`<div class="wrap">
       <div class="hero" id="hero">${hero.map(it=>`<div class="slide" data-id="${it.id}" style="${bgOf(it)}"><span class="tag ${isLive(it)?"live":""}">${esc(it.badge||T("live"))}</span><h3>${esc(it.title)}</h3><p>${esc(it.genre||"")} • 👁 ${it.views||0}</p><button class="go">▶ ${T("free").slice(3)}</button></div>`).join("")}</div>
       <div class="dots" id="dots">${hero.map((_,i)=>`<b class="${i?"":"on"}"></b>`).join("")}</div>
-      ${rowH(T("recent"),recent)}${rowH(T("nowlive"),top(items.filter(isLive)).slice(0,10))}${rowH(T("trend"),top(items).slice(0,10))}
+      ${rowH(T("recent"),recent)}${rowH(T("nowlive"),topBy(items.filter(isLive)).slice(0,10))}${rowH(T("trend"),topBy(items).slice(0,10))}
       ${rowH(T("football"),byType("football"),"football")}${rowH(T("tv"),byType("tv"),"tv")}${rowH(T("movies"),byType("movies"),"movies")}${rowH(T("cartoons"),byType("cartoons"),"cartoons")}</div>`;
     const h=$("#hero"); if(h&&hero.length>1){ let i=0; h.onscroll=()=>{ const n=Math.round(h.scrollLeft/h.clientWidth); document.querySelectorAll("#dots b").forEach((d,k)=>d.classList.toggle("on",k===n)); i=n; };
       heroT=setInterval(()=>{ i=(i+1)%hero.length; h.scrollTo({left:i*h.clientWidth,behavior:"smooth"}); },5000); }
@@ -267,7 +267,7 @@ function resultsV(){
     const gs=[...new Set(items.map(x=>x.genre).filter(Boolean))].slice(0,14);
     r.innerHTML=(sh.length?`<div class="sec"><h2>${T("hist")}</h2><a id="shClear">${T("clearS")}</a></div><div class="chips">${sh.map(s=>`<div class="pill sm" data-q="${esc(s)}">🕘 ${esc(s)}</div>`).join("")}</div>`:"")
       +`<div class="sec"><h2>${T("genre")}</h2></div><div class="chips">${gs.map(g=>`<div class="pill sm" data-q="${esc(g)}">${esc(g)}</div>`).join("")}</div>`
-      +`<div class="sec"><h2>${T("popular")}</h2></div>${grid(top(items).slice(0,8))}`;
+      +`<div class="sec"><h2>${T("popular")}</h2></div>${grid(topBy(items).slice(0,8))}`;
   } else r.innerHTML=grid(filt(items).filter(()=>true));
 }
 function saveSearch(){ if(query.length>1){ sh=[query,...sh.filter(s=>s!==query)].slice(0,8); ls.set("uzstv_sh",sh); } }
@@ -404,6 +404,7 @@ window.addEventListener("offline",()=>toast(T("offline")));
 /* ===== BOSHLASH ===== */
 document.documentElement.dataset.theme=localStorage.getItem("uzstv_theme")||(tg&&tg.colorScheme)||"dark";
 loadData().finally(()=>{ const s=$("#splash"); s.style.opacity=0; setTimeout(()=>s.remove(),450); });
+setTimeout(()=>{const s=$("#splash");if(s)s.remove();},8000);
 setInterval(()=>{ if(!cur&&!document.hidden&&view!=="search") loadData(); },5*60*1000);
 </script>
 </body>
