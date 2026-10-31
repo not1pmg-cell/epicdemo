@@ -385,7 +385,7 @@ nav button.on { color: var(--a); }
 <script>
 "use strict";
 /* ================= SOZLAMALAR ================= */
-const API_URL = "https://not1pmg-cell.github.io/epicdemo/"
+const API_URL = ""
 const DATA_URL = "data.json";
 function syncTeam(name, on) {   // jamoa kuzatuvi botga yuboriladi (yopiq paytda eslatma uchun)
   if (API_URL && tg && tg.initData) fetch(API_URL.replace(/\/$/, "") + "/api/follow", { method: "POST", headers: { "X-Init-Data": tg.initData, "Content-Type": "application/json" }, body: JSON.stringify({ team: name, on }) }).catch(() => {});
