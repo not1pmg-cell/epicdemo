@@ -109,12 +109,53 @@ async def sync_matches():
         })
     out.sort(key=lambda z: z["time"])
     d = load_fx()
+    prev = {x["ext_id"]: x for x in d["matches"]}
     d["matches"] = out
     d["updated"] = m.utcnow().isoformat()
     save_fx(d)
     _state["error"] = ""
     _apply_to_items(out)
+    events = _detect_events(prev, out)
+    if events:
+        t = asyncio.create_task(_notify_events(events))
+        m._bg_tasks.add(t)
+        t.add_done_callback(m._bg_tasks.discard)
     return len(out)
+
+
+def _detect_events(prev, matches):
+    """Oldingi holat bilan solishtirib gol / o'yin tugashi hodisalarini topadi."""
+    ev = []
+    for x in matches:
+        p = prev.get(x["ext_id"])
+        if not p:
+            continue
+        if x["status"] in LIVE_ST and x["score"] and x["score"] != p.get("score", "") and x["score"] != "0:0":
+            ev.append(("goal", x))
+        elif x["status"] == "FINISHED" and p.get("status") != "FINISHED" and x["score"]:
+            ev.append(("end", x))
+    return ev
+
+
+async def _notify_events(events):
+    from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+    users = m.load_users()
+    markup = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(
+        text="📺 Ko'rish", web_app=WebAppInfo(url=m.get_mini_app_url()))]])
+    for kind, x in events:
+        teams = {x["home"].lower(), x["away"].lower()}
+        mn = x["minute"]
+        mn = (mn + "'" if mn.isdigit() else mn) if mn else ""
+        if kind == "goal":
+            text = f"⚽ <b>GOL!</b> {escape(x['home'])} {escape(x['score'])} {escape(x['away'])}" + (f"\n⏱ {escape(mn)}" if mn else "")
+        else:
+            text = f"🏁 <b>O'yin tugadi</b>\n{escape(x['home'])} {escape(x['score'])} {escape(x['away'])}"
+        for uid, u in users.items():
+            if u.get("banned") or u.get("blocked"):
+                continue
+            if teams & {t.lower() for t in u.get("follow", [])}:
+                await m.safe_send(int(uid), text, reply_markup=markup)
+                await asyncio.sleep(0.05)
 
 
 def _apply_to_items(matches):
@@ -134,6 +175,19 @@ def _apply_to_items(matches):
             it["match_time"] = fx["time"]
             it.pop("reminded", None)
             changed = True
+    # tugaganiga 4 soatdan oshgan o'yinlar Mini App'da avtomatik yashiriladi
+    now = m.utcnow()
+    for it in items:
+        if it.get("ext_id") and not it.get("hidden"):
+            fx = by.get(it["ext_id"])
+            try:
+                start = _dt(it.get("match_time") or "")
+            except ValueError:
+                continue
+            if (fx and fx["status"] in ("FINISHED", "CANCELLED")) or (not fx and now - start > timedelta(hours=6)):
+                if now - start > timedelta(hours=4):
+                    it["hidden"] = True
+                    changed = True
     if changed:
         m.save_items(items)
     if m.load_settings().get("fixtures_auto"):
@@ -143,14 +197,15 @@ def _apply_to_items(matches):
 
 
 async def sync_scorers():
+    """Top futbolchilar va turnir jadvallarini yangilaydi (bepul limit: daqiqasiga 10 so'rov)."""
     if not API_KEY:
         return
-    d = load_fx()
+    scorers, tables = {}, {}
     async with ClientSession(timeout=ClientTimeout(total=20)) as s:
         for code in COMPS:
             try:
                 data = await _get(s, f"/competitions/{code}/scorers", {"limit": 10})
-                d["scorers"][code] = [{
+                scorers[code] = [{
                     "name": (r.get("player") or {}).get("name", "?"),
                     "team": (r.get("team") or {}).get("shortName") or (r.get("team") or {}).get("name", ""),
                     "crest": (r.get("team") or {}).get("crest", ""),
@@ -159,7 +214,23 @@ async def sync_scorers():
                 } for r in data.get("scorers", [])]
             except Exception as e:
                 log.warning("scorers %s: %s", code, e)
-            await asyncio.sleep(7)  # bepul limit: daqiqasiga 10 so'rov
+            await asyncio.sleep(7)
+            try:
+                data = await _get(s, f"/competitions/{code}/standings")
+                st = data.get("standings") or []
+                tot = next((x for x in st if x.get("type") == "TOTAL"), st[0] if st else {})
+                tables[code] = [{
+                    "pos": r.get("position"), "team": (r.get("team") or {}).get("shortName") or (r.get("team") or {}).get("name", ""),
+                    "crest": (r.get("team") or {}).get("crest", ""), "played": r.get("playedGames") or 0,
+                    "won": r.get("won") or 0, "draw": r.get("draw") or 0, "lost": r.get("lost") or 0,
+                    "gd": r.get("goalDifference") or 0, "pts": r.get("points") or 0,
+                } for r in tot.get("table", [])]
+            except Exception as e:
+                log.warning("standings %s: %s", code, e)
+            await asyncio.sleep(7)
+    d = load_fx()  # yangi holatni o'qiymiz (jadval o'zgargan bo'lishi mumkin)
+    d["scorers"].update({k: v for k, v in scorers.items() if v})
+    d.setdefault("tables", {}).update({k: v for k, v in tables.items() if v})
     d["scorers_at"] = m.utcnow().isoformat()
     save_fx(d)
     _state["scorers_at"] = time.time()
@@ -220,11 +291,12 @@ async def loop():
 async def api_fixtures(request):
     user = m._auth(request, allow_maintenance=True)
     if m.maintenance_info()["on"] and not m.is_admin(user["id"]):
-        return web.json_response({"matches": [], "scorers": {}})
+        return web.json_response({"matches": [], "scorers": {}, "tables": {}, "comps": COMPS})
     d = load_fx()
     linked = {i.get("ext_id"): i["id"] for i in m.load_items() if i.get("ext_id") and not i.get("hidden")}
     ms = [dict(x, item_id=linked.get(x["ext_id"])) for x in d["matches"]]
-    return web.json_response({"matches": ms, "scorers": d["scorers"], "comps": COMPS, "updated": d.get("updated")})
+    return web.json_response({"matches": ms, "scorers": d["scorers"], "tables": d.get("tables", {}),
+                              "comps": COMPS, "updated": d.get("updated")})
 
 
 def add_routes(app):
@@ -281,7 +353,7 @@ def init(module):
             await cb.message.answer(f"❌ {escape(str(e))}", reply_markup=kb([b("📅 Kunlik o'yinlar", "fx:menu")]))
 
     async def sync_scorers_once_if_empty():
-        if not load_fx()["scorers"]:
+        if not load_fx()["scorers"] or not load_fx().get("tables"):
             t = asyncio.create_task(sync_scorers())
             m._bg_tasks.add(t)
             t.add_done_callback(m._bg_tasks.discard)
